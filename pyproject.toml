@@ -11,7 +11,7 @@ license = "Apache-2.0"
 requires-python = ">=3.10"
 authors = [
     {name = "semcod"},
-    "Tom Sapletta <tom@sapletta.com>",
+    {name = "Tom Sapletta", email = "tom@sapletta.com"},
 ]
 keywords = ["llm", "validation", "code-review", "ast", "static-analysis"]
 classifiers = [
