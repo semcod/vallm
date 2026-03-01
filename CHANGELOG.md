@@ -1,3 +1,35 @@
+## [0.1.5] - 2026-03-01
+
+### Summary
+
+feat(examples): CLI interface improvements
+
+### Core
+
+- update src/vallm/cli.py
+- update src/vallm/core/gitignore.py
+- update src/vallm/core/languages.py
+
+### Docs
+
+- docs: update README
+- docs: update README
+- docs: update README
+- docs: update README
+- docs: update README
+
+### Test
+
+- update tests/test_gitignore.py
+- update tests/test_languages.py
+
+### Other
+
+- update examples/08_code2llm_integration/main.py
+- update examples/09_code2logic_integration/main.py
+- scripts: update run.sh
+
+
 # CHANGELOG
 
 All notable changes to this project will be documented in this file.

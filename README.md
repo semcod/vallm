@@ -29,15 +29,32 @@ vallm validates code proposals through a **four-tier pipeline** — from millise
 ## Features
 
 - **Multi-language AST parsing** via tree-sitter (165+ languages)
-- **Syntax validation** with ast.parse and tree-sitter error detection
-- **Import resolution** checking for Python
+- **Syntax validation** with ast.parse (Python) and tree-sitter error detection
+- **Import resolution** checking for Python, JavaScript/TypeScript, Go, Rust, Java, C/C++
 - **Complexity metrics** via radon (Python) and lizard (16 languages)
-- **Security scanning** with pattern matching and optional bandit integration
+- **Security scanning** with language-specific patterns and optional bandit integration
 - **LLM-as-judge** semantic review via Ollama, litellm, or direct HTTP
 - **Code graph analysis** — import/call graph diffing for structural regression detection
 - **AST similarity scoring** with normalized fingerprinting
 - **Pluggy-based plugin system** for custom validators
 - **Rich CLI** with JSON/text output formats
+
+## Supported Languages
+
+| Language | Syntax | Imports | Complexity | Security |
+|----------|--------|---------|------------|----------|
+| Python | ✅ AST + tree-sitter | ✅ Full resolution | ✅ radon + lizard | ✅ bandit + patterns |
+| JavaScript | ✅ tree-sitter | ✅ Node.js builtins | ✅ lizard | ✅ XSS, eval patterns |
+| TypeScript | ✅ tree-sitter | ✅ Node.js builtins | ✅ lizard | ✅ XSS, eval patterns |
+| Go | ✅ tree-sitter | ✅ stdlib + modules | ✅ lizard | ✅ SQL injection, exec |
+| Rust | ✅ tree-sitter | ✅ crates | ✅ lizard | ✅ unsafe, unwrap |
+| Java | ✅ tree-sitter | ✅ stdlib packages | ✅ lizard | ✅ Runtime.exec, SQL |
+| C/C++ | ✅ tree-sitter | ✅ std headers | ✅ lizard | ✅ buffer overflow, system |
+| Ruby | ✅ tree-sitter | ⚠️ Limited | ✅ lizard | ⚠️ Limited |
+| PHP | ✅ tree-sitter | ⚠️ Limited | ✅ lizard | ⚠️ Limited |
+| Swift | ✅ tree-sitter | ⚠️ Limited | ✅ lizard | ⚠️ Limited |
+| Kotlin | ✅ tree-sitter | ⚠️ Limited | ✅ lizard | ⚠️ Limited |
+| Scala | ✅ tree-sitter | ⚠️ Limited | ✅ lizard | ⚠️ Limited |
 
 ## Installation
 

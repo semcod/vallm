@@ -16,6 +16,9 @@ EXAMPLES=(
     "04_graph_analysis"
     "05_llm_semantic_review"
     "06_multilang_validation"
+    "07_multi_language"
+    "08_code2llm_integration"
+    "09_code2logic_integration"
 )
 
 # Colors for output

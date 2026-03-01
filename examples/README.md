@@ -61,6 +61,24 @@ python main.py
 - **C**: C99/C11 standard compliance
 - **Universal interface**: Consistent API across languages
 
+### 7. Multi-Language (`07_multi_language/`)
+**Demonstrates**: Comprehensive multi-language support with 30+ languages
+- **Auto-detection**: Language detection from file extensions
+- **30+ Languages**: Python, Go, Rust, Java, C/C++, Zig, Julia, Nim, V, and more
+- **Batch validation**: Validate mixed-language projects
+
+### 8. code2llm Integration (`08_code2llm_integration/`)
+**Demonstrates**: Integration with code2llm for project analysis
+- **Structure analysis**: code2llm analyzes project layout
+- **Quality validation**: vallm validates each file
+- **Combined reports**: Unified structural + quality metrics
+
+### 9. code2logic Integration (`09_code2logic_integration/`)
+**Demonstrates**: Integration with code2logic for logical analysis
+- **Control flow**: Extract branches, loops, conditions
+- **Call graphs**: Visualize function dependencies
+- **Complexity analysis**: Identify high-complexity functions
+
 ## 📊 Analysis Data
 
 Each example generates analysis data in its `.vallm/` folder:

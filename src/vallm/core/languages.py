@@ -58,6 +58,40 @@ class Language(Enum):
     ERLANG = ("erlang", ".erl", "Erlang")
     OCAML = ("ocaml", ".ml", "OCaml")
     
+    # Additional languages
+    ZIG = ("zig", ".zig", "Zig")
+    CRYSTAL = ("crystal", ".cr", "Crystal")
+    DART = ("dart", ".dart", "Dart")
+    GROOVY = ("groovy", ".groovy", "Groovy")
+    CLOJURE = ("clojure", ".clj", "Clojure")
+    FSHARP = ("fsharp", ".fs", "F#")
+    COFFEESCRIPT = ("coffeescript", ".coffee", "CoffeeScript")
+    PURESCRIPT = ("purescript", ".purs", "PureScript")
+    REASON = ("reason", ".re", "ReasonML")
+    RESCRIPT = ("rescript", ".res", "ReScript")
+    NIM = ("nim", ".nim", "Nim")
+    VALA = ("vala", ".vala", "Vala")
+    D = ("d", ".d", "D")
+    OBJECTIVE_C = ("objc", ".mm", "Objective-C")  # Using .mm to avoid conflict with MATLAB's .m
+    ASSEMBLY = ("asm", ".asm", "Assembly")
+    FORTRAN = ("fortran", ".f90", "Fortran")
+    ADA = ("ada", ".ada", "Ada")
+    COBOL = ("cobol", ".cob", "COBOL")
+    LISP = ("lisp", ".lisp", "Lisp")
+    SCHEME = ("scheme", ".scm", "Scheme")
+    JULIA = ("julia", ".jl", "Julia")
+    GLEAM = ("gleam", ".gleam", "Gleam")
+    V = ("v", ".v", "V")
+    WASM = ("wasm", ".wat", "WebAssembly Text")
+    PROC = ("prolog", ".pro", "Prolog")  # Using .pro to avoid conflict with Perl's .pl
+    TYPST = ("typst", ".typ", "Typst")
+    TACL = ("tact", ".tact", "Tact")
+    MOVE = ("move", ".move", "Move")
+    CAIRO = ("cairo", ".cairo", "Cairo")
+    NOIR = ("noir", ".nr", "Noir")
+    CIRCOM = ("circom", ".circom", "Circom")
+    SWAY = ("sway", ".sw", "Sway")
+    
     def __init__(self, tree_sitter_id: str, extension: str, display_name: str):
         self.tree_sitter_id = tree_sitter_id
         self.extension = extension
@@ -106,6 +140,9 @@ class Language(Enum):
             Language.C, Language.CPP, Language.H, Language.HPP,
             Language.RUST, Language.GO, Language.SWIFT,
             Language.JAVA, Language.KOTLIN, Language.SCALA,
+            Language.ZIG, Language.NIM, Language.V, Language.D,
+            Language.CRYSTAL, Language.DART, Language.OBJECTIVE_C,
+            Language.FORTRAN, Language.ADA, Language.COBOL,
         }
     
     @property

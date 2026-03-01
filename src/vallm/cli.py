@@ -142,11 +142,13 @@ def batch(
     recursive: bool = typer.Option(False, "--recursive", "-r", help="Recurse into directories"),
     include: Optional[str] = typer.Option(None, "--include", help="File patterns to include (comma-separated, e.g., '*.py,*.js')"),
     exclude: Optional[str] = typer.Option(None, "--exclude", help="File patterns to exclude (comma-separated)"),
+    use_gitignore: bool = typer.Option(True, "--use-gitignore/--no-gitignore", help="Respect .gitignore patterns (default: True)"),
     output_format: str = typer.Option("rich", "--format", help="Output format: rich, json, text"),
     fail_fast: bool = typer.Option(False, "--fail-fast", "-x", help="Stop on first failure"),
 ):
     """Validate multiple files with auto-detected languages."""
     from vallm.config import VallmSettings
+    from vallm.core.gitignore import load_gitignore, should_exclude, create_default_gitignore_parser
     from vallm.core.languages import detect_language, Language
     from vallm.core.proposal import Proposal
     from vallm.scoring import validate as run_validate, Verdict
@@ -155,10 +157,19 @@ def batch(
     
     settings = VallmSettings()
     
+    # Load .gitignore parser
+    gitignore_parser = None
+    if use_gitignore:
+        gitignore_parser = load_gitignore()
+        if gitignore_parser.root.exists():
+            console.print(f"[dim]Using .gitignore from {gitignore_parser.root}[/dim]")
+        else:
+            console.print(f"[dim]No .gitignore found, using default excludes[/dim]")
+    
     # Build file list
     files_to_validate: list[Path] = []
     include_patterns = [p.strip() for p in (include or "*.py,*.js,*.ts,*.java,*.go,*.rs,*.cpp,*.c,*.rb,*.php").split(",")]
-    exclude_patterns = [p.strip() for p in (exclude or "node_modules/*,venv/*,.git/*,__pycache__/*").split(",")] if exclude else []
+    exclude_patterns = [p.strip() for p in (exclude or "").split(",")] if exclude else []
     
     for path in paths:
         if path.is_file():
@@ -173,16 +184,27 @@ def batch(
                     if file_path.is_file():
                         files_to_validate.append(file_path)
     
-    # Filter by patterns
+    # Filter by patterns and .gitignore
     filtered_files = []
+    excluded_by_gitignore = 0
     for f in files_to_validate:
         str_path = str(f)
-        # Check excludes first
+        
+        # Check .gitignore first (if enabled)
+        if use_gitignore and gitignore_parser and gitignore_parser.matches(f):
+            excluded_by_gitignore += 1
+            continue
+        
+        # Check explicit excludes
         if any(fnmatch.fnmatch(str_path, p) or fnmatch.fnmatch(f.name, p) for p in exclude_patterns):
             continue
+        
         # Check includes
         if any(fnmatch.fnmatch(f.name, p) for p in include_patterns):
             filtered_files.append(f)
+    
+    if excluded_by_gitignore > 0:
+        console.print(f"[dim]Excluded {excluded_by_gitignore} files by .gitignore[/dim]")
     
     if not filtered_files:
         console.print("[yellow]No files found to validate[/yellow]")
