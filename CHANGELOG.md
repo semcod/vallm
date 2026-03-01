@@ -1,3 +1,19 @@
+## [0.1.6] - 2026-03-01
+
+### Summary
+
+feat(build): commit message generator
+
+### Ci
+
+- config: update ci.yml
+- config: update publish.yml
+
+### Other
+
+- config: update .pre-commit-config.yaml
+
+
 ## [0.1.5] - 2026-03-01
 
 ### Added
