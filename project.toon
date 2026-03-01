@@ -1,0 +1,219 @@
+# vallm | 36f 2898L | python:36
+# Keys: M=modules, D=details, i=imports, c=classes, f=functions, m=methods
+M[36]:
+  tests/test_pipeline.py,39
+  tests/test_scoring.py,53
+  examples/01_basic_validation.py,87
+  examples/02_ast_comparison.py,70
+  examples/03_security_check.py,54
+  examples/04_graph_analysis.py,79
+  examples/05_llm_semantic_review.py,103
+  examples/06_multilang_validation.py,71
+  src/vallm/__init__.py,13
+  src/vallm/__main__.py,3
+  src/vallm/cli.py,190
+  src/vallm/config.py,38
+  src/vallm/core/__init__.py,1
+  src/vallm/core/ast_compare.py,98
+  src/vallm/core/graph_builder.py,94
+  src/vallm/core/graph_diff.py,71
+  src/vallm/core/proposal.py,29
+  src/vallm/hookspecs.py,23
+  src/vallm/sandbox/__init__.py,1
+  src/vallm/sandbox/runner.py,119
+  src/vallm/scoring.py,137
+  src/vallm/validators/__init__.py,1
+  src/vallm/validators/base.py,14
+  src/vallm/validators/complexity.py,143
+  src/vallm/validators/imports.py,101
+  src/vallm/validators/security.py,133
+  src/vallm/validators/semantic.py,210
+  src/vallm/validators/syntax.py,80
+  tests/__init__.py,0
+  tests/test_ast_compare.py,42
+  tests/test_complexity.py,40
+  tests/test_graph.py,37
+  tests/test_imports.py,25
+  tests/test_security.py,25
+  tests/test_syntax.py,29
+  tests/test_vallm.py,7
+D:
+  tests/test_pipeline.py:
+    i: vallm.{Proposal,VallmSettings,validate},vallm.scoring.Verdict
+    e: test_pipeline_good_code,test_pipeline_syntax_error,test_pipeline_missing_import
+    test_pipeline_good_code()
+    test_pipeline_syntax_error()
+    test_pipeline_missing_import()
+  tests/test_scoring.py:
+    i: vallm.config.VallmSettings,vallm.scoring
+    e: test_verdict_pass,test_verdict_review,test_verdict_fail,test_hard_gate_on_error,test_weighted_score,test_custom_thresholds
+    test_verdict_pass()
+    test_verdict_review()
+    test_verdict_fail()
+    test_hard_gate_on_error()
+    test_weighted_score()
+    test_custom_thresholds()
+  examples/01_basic_validation.py:
+    i: vallm.{Proposal,VallmSettings,validate}
+    e: main
+    main()
+  examples/02_ast_comparison.py:
+    i: vallm.core.ast_compare.{parse_code,python_ast_similarity,structural_diff_summary,tree_sitter_error_count,tree_sitter_node_count}
+    e: main
+    main()
+  examples/03_security_check.py:
+    i: vallm.{Proposal,VallmSettings},vallm.validators.security.SecurityValidator
+    e: main
+    main()
+  examples/04_graph_analysis.py:
+    i: vallm.core.graph_builder.build_python_graph,vallm.core.graph_diff.diff_python_code
+    e: main
+    main()
+  examples/05_llm_semantic_review.py:
+    i: vallm.{Proposal,VallmSettings,validate}
+    e: main
+    main()
+  examples/06_multilang_validation.py:
+    i: vallm.{Proposal,VallmSettings,validate}
+    e: main
+    main()
+  src/vallm/cli.py:
+    i: typer,pathlib.Path,rich.console.Console,rich.panel.Panel,rich.table.Table,typing.Optional
+    e: validate,check,info
+    validate(code:Optional[str]=typer.Option(None; '--code'; '-c'; help='Code string to validate');file:Optional[Path]=typer.Option(None; '--file'; '-f'; help='File to validate');language:str=typer.Option('python'; '--lang'; '-l'; help='Programming language');reference:Optional[Path]=typer.Option(None; '--ref'; '-r'; help='Reference code file');config:Optional[Path]=typer.Option(None; '--config'; help='Path to vallm.toml');enable_semantic:bool=typer.Option(False; '--semantic'; help='Enable LLM-as-judge');...+1)
+    check(file:Path=typer.Argument(...; help='File to syntax-check');language:str=typer.Option('python'; '--lang'; '-l'; help='Programming language'))
+    info()
+    _check_dep(module:str;label:str)
+    _output_rich(result;verbose:bool)
+    _output_json(result)
+    _output_text(result)
+  src/vallm/config.py:
+    i: pathlib.Path,pydantic.Field,pydantic_settings.{BaseSettings,SettingsConfigDict},typing.Optional
+    e: VallmSettings
+    VallmSettings: from_toml(1)  # vallm configuration with layered sour...
+  src/vallm/core/ast_compare.py:
+    i: ast,tree_sitter_language_pack.get_parser,typing.Optional
+    e: parse_code,parse_python_ast,normalize_python_ast,python_ast_similarity,tree_sitter_node_count,tree_sitter_error_count,structural_diff_summary
+    parse_code(code:str;language:str='python')
+    parse_python_ast(code:str)->Optional[ast.AST]
+    normalize_python_ast(tree:Any)->str
+    python_ast_similarity(code1:str;code2:str)->float
+    tree_sitter_node_count(code:str;language:str='python')->int
+    tree_sitter_error_count(code:str;language:str='python')->int
+    structural_diff_summary(code1:str;code2:str;language:str='python')->dict
+  src/vallm/core/graph_builder.py:
+    i: ast,dataclasses.{dataclass,field}
+    e: ImportEdge,CallEdge,CodeGraph,build_python_graph
+    ImportEdge:   # Represents an import dependency.
+    CallEdge:   # Represents a function call relationship.
+    CodeGraph: to_dict(0)  # A graph of code relationships (import...
+    build_python_graph(code:str;module_name:str='<module>')->CodeGraph
+  src/vallm/core/graph_diff.py:
+    i: dataclasses.{dataclass,field},vallm.core.graph_builder.{CodeGraph,build_python_graph}
+    e: GraphDiffResult,diff_graphs,diff_python_code
+    GraphDiffResult: has_changes(0),breaking_changes(0)  # Result of comparing two code graphs.
+    diff_graphs(before:CodeGraph;after:CodeGraph)->GraphDiffResult
+    diff_python_code(before_code:str;after_code:str)->GraphDiffResult
+    _diff_list(before;after;added:bool)
+  src/vallm/core/proposal.py:
+    i: dataclasses.{dataclass,field},typing.Optional
+    e: Proposal
+    Proposal: code_bytes(0),reference_bytes(0)  # A code proposal to be validated.
+  src/vallm/hookspecs.py:
+    i: pluggy,typing.TYPE_CHECKING
+    e: VallmSpec
+    VallmSpec: validate_proposal(2),get_validator_name(0),get_validator_tier(0)  # Hook specifications that validators m...
+  src/vallm/sandbox/runner.py:
+    i: dataclasses.{dataclass,field},typing.Optional,vallm.config.VallmSettings
+    e: ExecutionResult,SandboxRunner
+    ExecutionResult: success(0)  # Result of sandboxed code execution.
+    SandboxRunner: __init__(1),run(2),_run_subprocess(2),_run_docker(2)  # Unified interface for running code in...
+  src/vallm/scoring.py:
+    i: dataclasses.{dataclass,field},enum.Enum,typing.Optional,vallm.config.VallmSettings,vallm.core.proposal.Proposal
+    e: Verdict,Severity,Issue,ValidationResult,PipelineResult,compute_verdict,validate
+    Verdict: 
+    Severity: 
+    Issue: __str__(0)  # A single issue found during validation.
+    ValidationResult: weighted_score(0),has_errors(0)  # Result from a single validator.
+    PipelineResult: weighted_score(0),all_issues(0),error_count(0),warning_count(0)  # Aggregated result from all validators.
+    compute_verdict(results:list[ValidationResult];settings:Optional[VallmSettings]=None)->PipelineResult
+    validate(proposal:Proposal;settings:Optional[VallmSettings]=None;validators:Optional[list]=None;context:Optional[dict]=None)->PipelineResult
+    _get_default_validators(settings:VallmSettings)->list
+  src/vallm/validators/base.py:
+    i: abc.{ABC,abstractmethod},vallm.core.proposal.Proposal,vallm.scoring.ValidationResult
+    e: BaseValidator
+    BaseValidator: validate(2)  # Base class for all vallm validators.
+  src/vallm/validators/complexity.py:
+    i: lizard,radon.complexity.cc_visit,radon.metrics.mi_visit,typing.Optional,vallm.config.VallmSettings,vallm.core.proposal.Proposal,vallm.scoring.{Issue,Severity,ValidationResult},vallm.validators.base.BaseValidator
+    e: ComplexityValidator
+    ComplexityValidator: __init__(1),validate(2),_check_python_complexity(1),_check_lizard(3)  # Tier 2: Cyclomatic complexity, mainta...
+  src/vallm/validators/imports.py:
+    i: ast,importlib.util,vallm.core.proposal.Proposal,vallm.scoring.{Issue,Severity,ValidationResult},vallm.validators.base.BaseValidator
+    e: _KNOWN_MODULES,ImportValidator
+    ImportValidator: validate(2),_module_exists(1)  # Tier 1: Validate that imports are res...
+  src/vallm/validators/security.py:
+    i: ast,re,vallm.core.proposal.Proposal,vallm.scoring.{Issue,Severity,ValidationResult},vallm.validators.base.BaseValidator
+    e: _DANGEROUS_PATTERNS,SecurityValidator
+    SecurityValidator: validate(2),_check_patterns(1),_check_python_ast(1),_get_func_name(1),_try_bandit(1)  # Tier 2: Security analysis using built...
+  src/vallm/validators/semantic.py:
+    i: json,re,typing.Optional,vallm.config.VallmSettings,vallm.core.proposal.Proposal,vallm.scoring.{Issue,Severity,ValidationResult},vallm.validators.base.BaseValidator
+    e: _REVIEW_PROMPT,SemanticValidator
+    SemanticValidator: __init__(1),validate(2),_build_prompt(1),_call_llm(1),_call_ollama(1)  # Tier 3: LLM-as-judge semantic code re...
+  src/vallm/validators/syntax.py:
+    i: ast,vallm.core.ast_compare.tree_sitter_error_count,vallm.core.proposal.Proposal,vallm.scoring.{Issue,Severity,ValidationResult},vallm.validators.base.BaseValidator
+    e: SyntaxValidator
+    SyntaxValidator: validate(2),_validate_python(1),_validate_treesitter(2)  # Tier 1: Fast syntax validation.
+  tests/test_ast_compare.py:
+    i: vallm.core.ast_compare.{parse_code,parse_python_ast,python_ast_similarity,tree_sitter_error_count,tree_sitter_node_count}
+    e: test_parse_code_python,test_parse_code_javascript,test_parse_python_ast_valid,test_parse_python_ast_invalid,test_similarity_identical,test_similarity_renamed,test_similarity_different,test_node_count
+    test_parse_code_python()
+    test_parse_code_javascript()
+    test_parse_python_ast_valid()
+    test_parse_python_ast_invalid()
+    test_similarity_identical()
+    test_similarity_renamed()
+    test_similarity_different()
+    test_node_count()
+  tests/test_complexity.py:
+    i: vallm.config.VallmSettings,vallm.core.proposal.Proposal,vallm.validators.complexity.ComplexityValidator
+    e: test_simple_code,test_complex_code,test_javascript_lizard
+    test_simple_code()
+    test_complex_code()
+    test_javascript_lizard()
+  tests/test_graph.py:
+    i: vallm.core.graph_builder.build_python_graph,vallm.core.graph_diff.diff_python_code
+    e: test_build_graph_imports,test_build_graph_functions,test_build_graph_classes,test_build_graph_calls,test_diff_added_function,test_diff_removed_function,test_diff_no_changes
+    test_build_graph_imports()
+    test_build_graph_functions()
+    test_build_graph_classes()
+    test_build_graph_calls()
+    test_diff_added_function()
+    test_diff_removed_function()
+    test_diff_no_changes()
+  tests/test_imports.py:
+    i: vallm.core.proposal.Proposal,vallm.validators.imports.ImportValidator
+    e: test_valid_imports,test_missing_import,test_no_imports,test_non_python_skipped
+    test_valid_imports()
+    test_missing_import()
+    test_no_imports()
+    test_non_python_skipped()
+  tests/test_security.py:
+    i: vallm.core.proposal.Proposal,vallm.validators.security.SecurityValidator
+    e: test_safe_code,test_eval_detected,test_exec_detected,test_hardcoded_secret
+    test_safe_code()
+    test_eval_detected()
+    test_exec_detected()
+    test_hardcoded_secret()
+  tests/test_syntax.py:
+    i: vallm.core.proposal.Proposal,vallm.validators.syntax.SyntaxValidator
+    e: test_valid_python,test_invalid_python,test_valid_javascript,test_invalid_javascript,test_valid_c,test_empty_code
+    test_valid_python()
+    test_invalid_python()
+    test_valid_javascript()
+    test_invalid_javascript()
+    test_valid_c()
+    test_empty_code()
+  tests/test_vallm.py:
+    e: test_placeholder,test_import
+    test_placeholder()
+    test_import()

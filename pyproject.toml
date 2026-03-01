@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "vallm"
-version = "0.1.1"
+version = "0.1.3"
 description = "A complete toolkit for validating LLM-generated code"
 readme = "README.md"
 license = "Apache-2.0"
@@ -72,6 +72,9 @@ semantic = "vallm.validators.semantic:SemanticValidator"
 [project.urls]
 Homepage = "https://github.com/semcod/vallm"
 Repository = "https://github.com/semcod/vallm"
+
+[tool.hatch.build.targets.sdist]
+exclude = ["publish-env", "venv", ".venv", ".code2llm_cache", "project", ".idea", ".ruff_cache"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/vallm"]

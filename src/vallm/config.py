@@ -14,7 +14,6 @@ class VallmSettings(BaseSettings):
 
     model_config = SettingsConfigDict(
         env_prefix="VALLM_",
-        toml_file="vallm.toml",
     )
 
     # Scoring thresholds
