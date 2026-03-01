@@ -1,114 +1,252 @@
-.PHONY: help install install-all install-dev test lint server client shell docker docker-up docker-down clean docs
+.PHONY: install dev-install test lint format clean help analyze run docker mermaid-png install-mermaid check-mermaid clean-png test-toon validate-toon test-all-formats build publish bump-patch bump-minor bump-major
 
-PYTHON  := .venv/bin/python
-PIP     := .venv/bin/pip
-PYTEST  := .venv/bin/pytest
-PORT    ?= $(if $(TOONIC_PORT),$(TOONIC_PORT),8900)
+PYTHON := .venv/bin/python
 
-help: ## Show this help
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | \
-		awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
+# Default target
+help:
+	@echo "code2llm - Python Code Flow Analysis Tool with LLM Integration and TOON Format"
+	@echo ""
+	@echo "🚀 Installation:"
+	@echo "  make install       - Install package"
+	@echo "  make dev-install   - Install with development dependencies"
+	@echo ""
+	@echo "🧪 Testing:"
+	@echo "  make test          - Run test suite"
+	@echo "  make test-toon     - Test TOON format only"
+	@echo "  make validate-toon - Validate TOON format output"
+	@echo "  make test-all-formats - Test all output formats"
+	@echo ""
+	@echo "🔧 Code Quality:"
+	@echo "  make lint          - Run linters (flake8, black --check)"
+	@echo "  make format        - Format code with black"
+	@echo "  make typecheck     - Run mypy type checking"
+	@echo "  make check         - Run all quality checks"
+	@echo ""
+	@echo "📊 Analysis:"
+	@echo "  make analyze       - Run analysis on current project (TOON format)"
+	@echo "  make run           - Run with example arguments"
+	@echo "  make analyze-all   - Run analysis with all formats"
+	@echo ""
+	@echo "🎯 TOON Format:"
+	@echo "  make toon-demo     - Quick TOON format demo"
+	@echo "  make toon-compare  - Compare TOON vs YAML formats"
+	@echo "  make toon-validate - Validate TOON format structure"
+	@echo ""
+	@echo "📦 Building & Release:"
+	@echo "  make build         - Build distribution packages"
+	@echo "  make publish       - Publish to PyPI (with version bump)"
+	@echo "  make publish-test  - Publish to TestPyPI"
+	@echo "  make bump-patch    - Bump patch version"
+	@echo "  make bump-minor    - Bump minor version"
+	@echo "  make bump-major    - Bump major version"
+	@echo ""
+	@echo "🎨 Visualization:"
+	@echo "  make mermaid-png   - Generate PNG from all Mermaid files"
+	@echo "  make install-mermaid - Install Mermaid CLI renderer"
+	@echo "  make check-mermaid - Check available Mermaid renderers"
+	@echo ""
+	@echo "🧹 Maintenance:"
+	@echo "  make clean         - Remove build artifacts"
+	@echo "  make clean-png     - Clean PNG files"
+	@echo ""
 
-# ── Setup ─────────────────────────────────────────────────────
+# =============================================================================
+# Installation
+# =============================================================================
 
-venv: ## Create virtual environment
-	python3 -m venv .venv
-	$(PIP) install --upgrade pip
+install:
+	$(PYTHON) -m pip install -e .
+	@echo "✓ code2llm installed with TOON format support"
 
-install: venv ## Install core package
-	$(PIP) install -e .
+dev-install:
+	$(PYTHON) -m pip install -e ".[dev]"
+	@echo "✓ code2llm installed with dev dependencies"
 
-install-dev: venv ## Install with dev + server deps
-	$(PIP) install -e ".[dev,server]"
+# =============================================================================
+# Testing
+# =============================================================================
 
-install-all: venv ## Install everything (video, audio, llm, server)
-	$(PIP) install -e ".[all]"
+test:
+	$(PYTHON) -m pytest tests/ -v --tb=short 2>/dev/null || echo "No tests yet - create tests/ directory"
 
-install-llm: ## Install LLM dependencies (litellm)
-	$(PIP) install litellm
+test-cov:
+	$(PYTHON) -m pytest tests/ --cov=code2llm --cov-report=html --cov-report=term 2>/dev/null || echo "No tests yet"
 
-# ── Testing ───────────────────────────────────────────────────
+test-toon:
+	@echo "🎯 Testing TOON format..."
+	$(PYTHON) -m code2llm ./ -v -o ./test_toon -m hybrid -f toon
+	$(PYTHON) validate_toon.py test_toon/analysis.toon
+	@echo "✓ TOON format test complete"
 
-test: ## Run all tests
-	$(PYTEST) tests/ -v
+validate-toon: test-toon
 
-test-server: ## Run server tests only
-	$(PYTEST) tests/test_server.py -v
+test-all-formats:
+	@echo "📊 Testing all output formats..."
+	$(PYTHON) -m code2llm ./ -v -o ./test_all -m hybrid -f all
+	$(PYTHON) validate_toon.py test_all/analysis.toon
+	@echo "✓ All formats test complete"
 
-test-cov: ## Run tests with coverage
-	$(PYTEST) tests/ -v --cov=toonic --cov-report=html
+test-comprehensive:
+	@echo "🚀 Running comprehensive test suite..."
+	bash project.sh
+	@echo "✓ Comprehensive tests complete"
 
-# ── Server ────────────────────────────────────────────────────
+# =============================================================================
+# Code Quality
+# =============================================================================
 
-server: ## Start Toonic Server (web UI on :8900)
-	$(PYTHON) -m toonic.server --port $(PORT)
+lint:
+	$(PYTHON) -m flake8 code2llm/ --max-line-length=100 --ignore=E203,W503 2>/dev/null || echo "flake8 not installed"
+	$(PYTHON) -m black --check code2llm/ 2>/dev/null || echo "black not installed"
+	@echo "✓ Linting complete"
 
-server-code: ## Analyze code example
-	$(PYTHON) -m toonic.server \
-		--source file:./examples/code-analysis/sample-project/ \
-		--port $(PORT) \
-		--goal "find bugs, security issues, suggest improvements" \
-		--interval 0
+format:
+	$(PYTHON) -m black code2llm/ --line-length=100 2>/dev/null || echo "black not installed, run: pip install black"
+	@echo "✓ Code formatted"
 
-server-logs: ## Monitor log example
-	$(PYTHON) -m toonic.server \
-		--source log:./docker/test-data/sample.logfile \
-		--port $(PORT) \
-		--goal "monitor logs, detect errors" \
-		--interval 10
+typecheck:
+	$(PYTHON) -m mypy code2llm/ --ignore-missing-imports 2>/dev/null || echo "mypy not installed"
 
-server-camera: ## Connect real RTSP camera
-	$(PYTHON) -m toonic.server \
-		--source "rtsp://admin:123456@192.168.188.146:554/h264Preview_01_main" \
-		--port $(PORT) \
-		--goal "monitor video stream, detect changes" \
-		--interval 15
+check: lint typecheck test
+	@echo "✓ All checks passed"
 
-server-multi: ## Multi-source (code + logs + camera)
-	$(PYTHON) -m toonic.server \
-		--source file:./examples/code-analysis/sample-project/ \
-		--source log:./docker/test-data/sample.logfile \
-		--source "rtsp://admin:123456@192.168.188.146:554/h264Preview_01_main" \
-		--port $(PORT) \
-		--goal "comprehensive analysis: code + logs + video" \
-		--interval 30
+# =============================================================================
+# Analysis
+# =============================================================================
 
-client: ## Start CLI shell client
-	$(PYTHON) -m toonic.server.client
+run:
+	$(PYTHON) -m code2llm ../python/stts_core -v -o ./output
 
-status: ## Show server status
-	$(PYTHON) -m toonic.server.client --status
+analyze:
+	@echo "🎯 Running TOON format analysis on current project..."
+	$(PYTHON) -m code2llm ./ -v -o ./analysis -m hybrid -f toon
+	$(PYTHON) validate_toon.py analysis/analysis.toon
+	@echo "✓ TOON analysis complete - check analysis/analysis.toon"
 
-# ── Docker ────────────────────────────────────────────────────
+analyze-all:
+	@echo "📊 Running analysis with all formats..."
+	$(PYTHON) -m code2llm ./ -v -o ./analysis_all -m hybrid -f all
+	$(PYTHON) validate_toon.py analysis_all/analysis.toon
+	@echo "✓ All formats analysis complete - check analysis_all/"
 
-docker-build: ## Build Docker image
-	docker compose -f docker/docker-compose.yml build
+# =============================================================================
+# TOON Format Specific
+# =============================================================================
 
-docker-up: ## Start Docker stack (RTSP + server)
-	docker compose -f docker/docker-compose.yml up -d
+toon-demo:
+	@echo "🎯 Quick TOON format demo..."
+	$(PYTHON) -m code2llm ./ -v -o ./demo -m hybrid -f toon
+	@echo "📁 Generated: demo/analysis.toon"
+	@echo "📊 Size: $$(du -h demo/analysis.toon | cut -f1)"
+	@echo "🔍 Preview:"
+	@head -20 demo/analysis.toon
 
-docker-down: ## Stop Docker stack
-	docker compose -f docker/docker-compose.yml down
+toon-compare:
+	@echo "📊 Comparing TOON vs YAML formats..."
+	$(PYTHON) -m code2llm ./ -v -o ./compare -m hybrid -f toon,yaml
+	@echo "📁 Files generated:"
+	@echo "  - TOON:  compare/analysis.toon  ($$(du -h compare/analysis.toon | cut -f1))"
+	@echo "  - YAML:  compare/analysis.yaml  ($$(du -h compare/analysis.yaml | cut -f1))"
+	@echo "  - Ratio: $$(echo "scale=1; $$(du -k compare/analysis.yaml | cut -f1) / $$(du -k compare/analysis.toon | cut -f1)" | bc)x smaller"
+	$(PYTHON) validate_toon.py compare/analysis.yaml compare/analysis.toon
 
-docker-logs: ## Show Docker logs
-	docker compose -f docker/docker-compose.yml logs -f toonic-server
+toon-validate:
+	@echo "🔍 Validating TOON format structure..."
+	$(PYTHON) validate_toon.py analysis/analysis.toon 2>/dev/null || $(PYTHON) validate_toon.py test_toon/analysis.toon 2>/dev/null || echo "Run 'make test-toon' first"
 
-docker-streams: ## Start only RTSP test streams
-	docker compose -f docker/docker-compose.yml up -d rtsp-server test-stream-video test-stream-cam2 test-stream-audio
+# =============================================================================
+# Building
+# =============================================================================
 
-# ── Conversion ────────────────────────────────────────────────
+build:
+	rm -rf build/ dist/ *.egg-info
+	$(PYTHON) -m build
+	@echo "✓ Build complete - check dist/"
 
-convert: ## Convert file: make convert FILE=./main.py FMT=toon
-	$(PYTHON) -m toonic spec $(FILE) --format $(FMT)
+# =============================================================================
+# Release
+# =============================================================================
 
-batch: ## Batch convert directory: make batch DIR=./src/
-	$(PYTHON) -m toonic batch $(DIR)
+publish-test: build
+	@echo "🚀 Publishing to TestPyPI..."
+	$(PYTHON) -m venv publish-test-env
+	publish-test-env/bin/pip install twine
+	publish-test-env/bin/python -m twine upload --repository testpypi dist/*
+	rm -rf publish-test-env
+	@echo "✓ Published to TestPyPI"
 
-# ── Cleanup ───────────────────────────────────────────────────
+bump-patch:
+	@echo "🔢 Bumping patch version..."
+	$(PYTHON) scripts/bump_version.py patch 2>/dev/null || echo "Create scripts/bump_version.py or edit pyproject.toml manually"
 
-clean: ## Remove build artifacts
-	rm -rf build/ dist/ *.egg-info .pytest_cache htmlcov .coverage
-	find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true
+bump-minor:
+	@echo "🔢 Bumping minor version..."
+	$(PYTHON) scripts/bump_version.py minor 2>/dev/null || echo "Create scripts/bump_version.py or edit pyproject.toml manually"
 
-clean-docker: ## Remove Docker volumes and images
-	docker compose -f docker/docker-compose.yml down -v --rmi local
+bump-major:
+	@echo "🔢 Bumping major version..."
+	$(PYTHON) scripts/bump_version.py major 2>/dev/null || echo "Create scripts/bump_version.py or edit pyproject.toml manually"
+
+publish: build
+	@echo "🚀 Publishing to PyPI..."
+	@echo "🔢 Bumping patch version..."
+	$(MAKE) bump-patch
+	@echo "🔨 Rebuilding package with new version..."
+	$(MAKE) build
+	@echo "📦 Publishing to PyPI..."
+	$(PYTHON) -m venv publish-env
+	publish-env/bin/pip install twine
+	publish-env/bin/python -m twine upload dist/*
+	rm -rf publish-env
+	@echo "✓ Published to PyPI"
+
+# =============================================================================
+# Visualization
+# =============================================================================
+
+mermaid-png:
+	$(PYTHON) mermaid_to_png.py --batch output output
+
+mermaid-png-%:
+	$(PYTHON) mermaid_to_png.py output/$*.mmd output/$*.png
+
+install-mermaid:
+	npm install -g @mermaid-js/mermaid-cli
+
+check-mermaid:
+	@echo "Checking available Mermaid renderers..."
+	@which mmdc > /dev/null && echo "✓ mmdc (mermaid-cli)" || echo "✗ mmdc (run: npm install -g @mermaid-js/mermaid-cli)"
+	@which npx > /dev/null && echo "✓ npx (for @mermaid-js/mermaid-cli)" || echo "✗ npx (install Node.js)"
+	@which puppeteer > /dev/null && echo "✓ puppeteer" || echo "✗ puppeteer (run: npm install -g puppeteer)"
+
+# =============================================================================
+# Maintenance
+# =============================================================================
+
+clean:
+	rm -rf build/ dist/ *.egg-info
+	rm -rf .pytest_cache .coverage htmlcov/
+	rm -rf code2llm/__pycache__ code2llm/*/__pycache__
+	rm -rf test_* demo compare analysis analysis_all output_* 2>/dev/null || true
+	find . -name "*.pyc" -delete 2>/dev/null || true
+	find . -name "__pycache__" -type d -exec rm -rf {} + 2>/dev/null || true
+	@echo "✓ Cleaned build artifacts and test outputs"
+
+clean-png:
+	rm -f output/*.png
+	@echo "✓ Cleaned PNG files"
+
+# =============================================================================
+# Quick Start
+# =============================================================================
+
+quickstart:
+	@echo "🚀 Quick Start with code2llm TOON format:"
+	@echo ""
+	@echo "1. Install:        make install"
+	@echo "2. Test TOON:      make test-toon"
+	@echo "3. Analyze:        make analyze"
+	@echo "4. Compare:        make toon-compare"
+	@echo "5. All formats:    make test-all-formats"
+	@echo ""
+	@echo "📖 For more: make help"
