@@ -1,0 +1,84 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "vallm"
+version = "0.1.1"
+description = "A complete toolkit for validating LLM-generated code"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.10"
+authors = [
+    {name = "semcod"},
+    "Tom Sapletta <tom@sapletta.com>",
+]
+keywords = ["llm", "validation", "code-review", "ast", "static-analysis"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Quality Assurance",
+    "Topic :: Software Development :: Testing",
+]
+dependencies = [
+    "pluggy>=1.4",
+    "pydantic>=2.0",
+    "pydantic-settings>=2.0",
+    "typer>=0.9",
+    "rich>=13.0",
+    "tree-sitter>=0.22",
+    "tree-sitter-language-pack>=0.5",
+    "radon>=6.0",
+    "lizard>=1.17",
+    "pyflakes>=3.0",
+]
+
+[project.optional-dependencies]
+security = ["bandit>=1.7"]
+semantic = [
+    "code-bert-score>=0.4",
+]
+llm = [
+    "ollama>=0.4",
+    "litellm>=1.0",
+]
+graph = [
+    "networkx>=3.0",
+]
+all = [
+    "vallm[security,semantic,llm,graph]",
+]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "ruff>=0.4",
+]
+
+[project.scripts]
+vallm = "vallm.cli:app"
+
+[project.entry-points."vallm.validators"]
+syntax = "vallm.validators.syntax:SyntaxValidator"
+imports = "vallm.validators.imports:ImportValidator"
+complexity = "vallm.validators.complexity:ComplexityValidator"
+security = "vallm.validators.security:SecurityValidator"
+semantic = "vallm.validators.semantic:SemanticValidator"
+
+[project.urls]
+Homepage = "https://github.com/semcod/vallm"
+Repository = "https://github.com/semcod/vallm"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/vallm"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
