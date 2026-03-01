@@ -1,3 +1,15 @@
+## [0.1.7] - 2026-03-01
+
+### Summary
+
+refactor(examples): configuration management system
+
+### Other
+
+- update examples/10_mcp_ollama_demo/mcp_demo.py
+- update examples/10_mcp_ollama_demo/refactored_output.py
+
+
 ## [0.1.6] - 2026-03-01
 
 ### Summary

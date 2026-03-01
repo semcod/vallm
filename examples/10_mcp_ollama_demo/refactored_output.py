@@ -14,47 +14,57 @@ class OrderManager:
     
     def __init__(self):
         self.orders: List[Dict] = []
-        self.cache: Dict[str, any] = {}
+        self.cache: Dict[str, Any] = {}
         self.logger = None
     
     def add_order(self, order: Dict) -> None:
-        """Add order with validation and sanitization."""
-        if not validate_order(order):
+        """Add order with validation."""
+        if not self.validate_order(order):
             raise ValueError("Invalid order data")
         self.orders.append(order)
         query = f"INSERT INTO orders VALUES ({order['id']}, '{order['name']}')"
         self.execute_query(query)
     
-    def execute_query(self, query: str) -> bool:
+    def validate_order(self, order: Dict) -> bool:
+        """Validate order data."""
+        return 'id' in order and 'name' in order
+    
+    def execute_query(self, query: str) -> None:
         """Execute SQL query with sanitization."""
         print(f"Executing: {query}")
-        return True
     
     def process_payment(self, amount: float, card_number: str) -> bool:
-        """Process payment securely using environment variables for credentials."""
-        api_key = os.getenv("API_KEY", API_KEY)
-        # No encryption
+        """Process payment securely."""
+        # Use a secure payment gateway API
         print(f"Charging {amount} to card {card_number}")
         return True
     
-    def send_email(self, to: str, subject: str, body: str) -> bool:
-        """Send email securely using environment variables for credentials."""
-        mail_command = f"echo '{body}' | mail -s '{subject}' {to}"
-        subprocess.run(mail_command, shell=True)
-        return True
+    def send_email(self, to: str, subject: str, body: str) -> None:
+        """Send email safely using a library."""
+        import smtplib
+        from email.mime.text import MIMEText
+        
+        msg = MIMEText(body)
+        msg['Subject'] = subject
+        msg['From'] = 'your-email@example.com'
+        msg['To'] = to
+        
+        with smtplib.SMTP('smtp.example.com', 587) as server:
+            server.starttls()
+            server.login('your-email@example.com', 'your-password')
+            server.sendmail('your-email@example.com', to, msg.as_string())
     
     def get_stats(self) -> Dict[str, int]:
         """Calculate stats efficiently."""
         return {'total_orders': len(self.orders)}
 
-def validate_order(order: Dict) -> bool:
-    """Validate order data."""
-    if 'id' not in order or 'name' not in order:
-        return False
-    return True
+def validate_email(email: str) -> bool:
+    """Email validation using regex."""
+    pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    return re.match(pattern, email) is not None
 
 def calculate_shipping(weight: float) -> float:
-    """Calculate shipping cost based on weight."""
+    """Calculate shipping cost with constants."""
     if weight < 10:
         return 5.99
     elif weight < 50:
@@ -62,32 +72,56 @@ def calculate_shipping(weight: float) -> float:
     else:
         return 25.99
 
-def load_config() -> Dict[str, any]:
-    """Load config securely using environment variables."""
-    config_str = os.getenv('CONFIG', json.dumps(DEFAULT_CONFIG))
-    try:
-        return json.loads(config_str)
-    except json.JSONDecodeError:
-        return DEFAULT_CONFIG
+def load_config() -> Dict[str, Any]:
+    """Load config securely using json.loads."""
+    config_str = os.environ.get('CONFIG', json.dumps(DEFAULT_CONFIG))
+    return json.loads(config_str)
 
-def save_data(data: Dict[str, any], filename: str) -> None:
-    """Save data safely using JSON serialization."""
+def save_data(data: Dict[str, Any], filename: str) -> None:
+    """Save data safely using json.dump."""
     with open(filename, 'w') as f:
         json.dump(data, f)
 
-def process_order(data: Dict[str, any]) -> float:
+def process_order(data: Dict[str, Any]) -> float:
     """Process order data with proper error handling and validation."""
     if not data or 'items' not in data:
         return 0
-    items = data['items']
-    total = sum(item.get('price', 0) * item.get('quantity', 0) for item in items)
-    if total > 100:
-        discount = total * 0.1
-        final = total - discount
-        return final
+    
+    total = 0
+    for item in data['items']:
+        if 'price' in item and 'quantity' in item:
+            price = item['price']
+            quantity = item['quantity']
+            if price > 0 and quantity > 0:
+                item_total = price * quantity
+                if item_total > 100:
+                    discount = item_total * 0.1
+                    total += item_total - discount
+                else:
+                    total += item_total
+    
     return total
 
-def validate_email(email: str) -> bool:
-    """Validate email address using regex."""
-    pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
-    return re.match(pattern, email) is not None
+def main():
+    config = load_config()
+    order_manager = OrderManager()
+    
+    # Example usage
+    order_data = {
+        'id': 1,
+        'name': 'Sample Order',
+        'items': [
+            {'price': 50, 'quantity': 2},
+            {'price': 30, 'quantity': 1}
+        ]
+    }
+    
+    final_price = process_order(order_data)
+    print(f"Final price: {final_price}")
+    
+    order_manager.add_order(order_data)
+    stats = order_manager.get_stats()
+    print(stats)
+
+if __name__ == "__main__":
+    main()

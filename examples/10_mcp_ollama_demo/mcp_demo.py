@@ -74,19 +74,38 @@ def analyze_with_code2llm(code_path: Path) -> dict:
     log_step(1, "Analyzing code structure with code2llm")
     
     try:
-        from code2llm import analyze_file
+        from code2llm import ProjectAnalyzer
         
         logger.info(f"Analyzing file: {code_path}")
-        result = analyze_file(str(code_path))
+        analyzer = ProjectAnalyzer()
+        
+        # Analyze the directory containing the file
+        project_result = analyzer.analyze_project(str(code_path.parent))
         
         print(f"{Colors.GREEN}✓ Analysis complete{Colors.END}")
-        print(f"  Functions found: {len(result.get('functions', []))}")
-        print(f"  Classes found: {len(result.get('classes', []))}")
-        print(f"  Complexity: {result.get('complexity', 'N/A')}")
+        print(f"  Functions found: {project_result.get_function_count()}")
+        print(f"  Classes found: {project_result.get_class_count()}")
+        print(f"  Modules: {len(project_result.modules)}")
+        print(f"  Code smells detected: {len(project_result.smells)}")
+        print(f"  Entry points: {len(project_result.entry_points)}")
         
-        return result
-    except ImportError:
-        logger.warning("code2llm not available, using basic analysis")
+        # Extract detailed information
+        functions_info = [{'name': f.name, 'line': f.line_start} for f in project_result.functions]
+        classes_info = [{'name': c.name, 'line': c.line_start} for c in project_result.classes]
+        smells_info = [{'type': s.type, 'message': s.message, 'line': s.line} for s in project_result.smells]
+        
+        return {
+            'functions': functions_info,
+            'classes': classes_info,
+            'modules': list(project_result.modules),
+            'total_lines': len(code_path.read_text().split('\n')),
+            'source': code_path.read_text(),
+            'complexity': 'Available in code2llm analysis',
+            'smells': smells_info,
+            'issues': []  # Will be filled by vallm validation
+        }
+    except Exception as e:
+        logger.warning(f"code2llm analysis failed: {e}, using basic analysis")
         # Fallback analysis
         code = code_path.read_text()
         lines = code.split('\n')
@@ -94,7 +113,7 @@ def analyze_with_code2llm(code_path: Path) -> dict:
         functions = [l for l in lines if l.strip().startswith('def ')]
         classes = [l for l in lines if l.strip().startswith('class ')]
         
-        print(f"{Colors.YELLOW}⚠ code2llm not installed, using basic analysis{Colors.END}")
+        print(f"{Colors.YELLOW}⚠ code2llm analysis failed, using basic analysis{Colors.END}")
         print(f"  Functions found: {len(functions)}")
         print(f"  Classes found: {len(classes)}")
         print(f"  Total lines: {len(lines)}")
@@ -103,7 +122,8 @@ def analyze_with_code2llm(code_path: Path) -> dict:
             'functions': functions,
             'classes': classes,
             'total_lines': len(lines),
-            'source': code
+            'source': code,
+            'issues': []
         }
 
 
