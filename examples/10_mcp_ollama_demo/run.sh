@@ -24,6 +24,7 @@ echo -e "${NC}"
 
 # Configuration
 DEMO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+VALLM_ROOT="$(cd "$DEMO_DIR/../../.." && pwd)"
 CONTAINER_NAME="vallm-mcp-demo"
 OLLAMA_PORT=11434
 
@@ -74,20 +75,19 @@ if docker ps -a | grep -q "$CONTAINER_NAME"; then
     fi
 else
     print_step "Building Docker image (this may take a few minutes)..."
-    cd "$DEMO_DIR"
-    docker build -t vallm-mcp-demo:latest . 2>&1 | tee docker-build.log
+    # Build from vallm root so the Dockerfile can access the full project
+    cd "$VALLM_ROOT"
+    docker build -t vallm-mcp-demo:latest -f "$DEMO_DIR/Dockerfile" . 2>&1 | tee "$DEMO_DIR/docker-build.log"
     
     print_step "Creating and starting container..."
     docker run -d \
         --name "$CONTAINER_NAME" \
         -p $OLLAMA_PORT:11434 \
-        -v "$DEMO_DIR:/app" \
-        -w /app \
         vallm-mcp-demo:latest \
         bash -c "ollama serve &
                  sleep 5
                  ollama pull qwen2.5-coder:7b
-                 tail -f /dev/null" 2>&1 | tee docker-run.log &
+                 tail -f /dev/null" 2>&1 | tee "$DEMO_DIR/docker-run.log" &
     
     print_warning "Waiting for Ollama to start and download model (this may take 5-10 minutes)..."
     
@@ -152,8 +152,10 @@ echo ""
 print_step "Executing mcp_demo.py..."
 cd "$DEMO_DIR"
 
-# Run with logging
-python3 mcp_demo.py --file legacy_code/order_processor.py --max-iterations 3 2>&1 | tee mcp-demo-output.log
+# Run with logging inside container
+print_step "Running mcp_demo.py inside container..."
+docker exec -w /vallm/examples/10_mcp_ollama_demo "$CONTAINER_NAME" \
+    python3 mcp_demo.py --file legacy_code/order_processor.py --max-iterations 3 2>&1 | tee mcp-demo-output.log
 
 DEMO_EXIT_CODE=${PIPESTATUS[0]}
 
