@@ -1,3 +1,28 @@
+## [0.1.8] - 2026-03-01
+
+### Summary
+
+fix(examples): configuration management system
+
+### Docs
+
+- docs: update README
+
+### Other
+
+- docker: update Dockerfile
+- update examples/11_claude_code_autonomous/claude_autonomous_demo.py
+- scripts: update docker-entrypoint.sh
+- update examples/11_claude_code_autonomous/legacy_code/data_processor.py
+- update examples/11_claude_code_autonomous/requirements.txt
+- scripts: update run.sh
+- docker: update Dockerfile
+- scripts: update docker-entrypoint.sh
+- update examples/12_ollama_simple_demo/legacy_code/simple_buggy.py
+- update examples/12_ollama_simple_demo/ollama_simple_demo.py
+- ... and 2 more
+
+
 ## [0.1.7] - 2026-03-01
 
 ### Summary
