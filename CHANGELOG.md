@@ -1,33 +1,17 @@
 ## [0.1.5] - 2026-03-01
 
-### Summary
+### Added
+- **.gitignore support** — `vallm batch` respects `.gitignore` patterns with `--use-gitignore` flag (default: true)
+- **30+ languages** — expanded Language enum with Zig, Dart, Crystal, Nim, V, Julia, Clojure, F#, Gleam, WebAssembly, Cairo, Noir, Circom, Sway, and more
+- **Gitignore parser** — full support for directory patterns, negations, glob patterns
+- **Tests** — 13 tests for gitignore, 39 tests for language detection (52 total)
+- **Examples 08 & 09** — integration examples with code2llm and code2logic packages
+- **Language metadata** — `is_compiled`, `is_scripting`, `is_web` properties for each language
 
-feat(examples): CLI interface improvements
-
-### Core
-
-- update src/vallm/cli.py
-- update src/vallm/core/gitignore.py
-- update src/vallm/core/languages.py
-
-### Docs
-
-- docs: update README
-- docs: update README
-- docs: update README
-- docs: update README
-- docs: update README
-
-### Test
-
-- update tests/test_gitignore.py
-- update tests/test_languages.py
-
-### Other
-
-- update examples/08_code2llm_integration/main.py
-- update examples/09_code2logic_integration/main.py
-- scripts: update run.sh
+### Changed
+- **CLI `batch` command** — added `--use-gitignore/--no-gitignore` flag
+- **Language detection** — improved auto-detection for 30+ file extensions
+- **project.sh** — prepared for vallm batch validation integration
 
 
 # CHANGELOG

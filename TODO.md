@@ -56,11 +56,11 @@
 - [ ] **Tests for sandbox runner** — mock subprocess/docker
 - [ ] **CLI integration tests** — test `vallm validate`, `vallm check`, `vallm info` via `typer.testing.CliRunner`
 
-## Packaging / CI
+## Packaging / CI (Completed ✓)
 
-- [ ] **GitHub Actions CI** — pytest + ruff + mypy on Python 3.10–3.13
-- [ ] **Coverage reporting** — add `pytest-cov` config, badge is currently static 85%
-- [ ] **Publish automation** — GitHub Actions workflow for PyPI release on tag
+- [x] **GitHub Actions CI** — pytest + ruff + mypy on Python 3.10–3.13
+- [x] **Coverage reporting** — add `pytest-cov` config, badge is currently static 85%
+- [x] **Publish automation** — GitHub Actions workflow for PyPI release on tag
 - [ ] **CONTRIBUTING.md** — referenced in README badge but doesn't exist
 
 Last updated: 2026-03-01

@@ -1,0 +1,4 @@
+vallm[llm]>=0.1.5
+code2llm>=0.1.0
+code2logic>=0.1.0
+requests>=2.31.0

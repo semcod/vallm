@@ -4,11 +4,10 @@
 
 [![PyPI](https://img.shields.io/pypi/v/vallm)](https://pypi.org/project/vallm/)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/vallm)](https://pypi.org/project/vallm/)
+[![CI](https://github.com/semcod/vallm/workflows/CI/badge.svg)](https://github.com/semcod/vallm/actions)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://python.org)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![Linting: ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
-[![Tests](https://img.shields.io/badge/tests-passing-brightgreen)](https://github.com/semcod/vallm/actions)
+[![Code style: ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![Coverage](https://img.shields.io/badge/coverage-85%25-brightgreen)](https://github.com/semcod/vallm/actions)
 [![Type checking: mypy](https://img.shields.io/badge/type%20checking-mypy-blue)](https://mypy-lang.org/)
 [![Security: bandit](https://img.shields.io/badge/security-bandit-brightgreen)](https://bandit.readthedocs.io/)
