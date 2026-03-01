@@ -1,3 +1,34 @@
+## [0.1.4] - 2026-03-01
+
+### Summary
+
+feat(examples): code analysis engine
+
+### Docs
+
+- docs: update README
+- docs: update README
+- docs: update README
+- docs: update README
+- docs: update README
+- docs: update README
+- docs: update README
+- docs: update README
+
+### Other
+
+- update examples/01_basic_validation/main.py
+- update examples/02_ast_comparison/main.py
+- update examples/03_security_check/main.py
+- update examples/04_graph_analysis.py
+- update examples/04_graph_analysis/main.py
+- update examples/05_llm_semantic_review/main.py
+- update examples/05_llm_semantic_review/main_template.py
+- update examples/06_multilang_validation/main.py
+- update examples/06_multilang_validation/main_template.py
+- scripts: update run.sh
+
+
 ## [0.1.3] - 2026-03-01
 
 ### Summary

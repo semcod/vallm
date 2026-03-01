@@ -3,6 +3,9 @@
 Demonstrates: syntax, import, and complexity validation (Tier 1 & 2).
 """
 
+import json
+import os
+from pathlib import Path
 from vallm import Proposal, validate, VallmSettings
 
 # Good code — should PASS
@@ -51,6 +54,19 @@ def overly_complex(a, b, c, d, e, f, g):
         return 0
 """
 
+def save_analysis_data(example_name: str, result_data: dict):
+    """Save analysis data to .vallm folder."""
+    vallm_dir = Path(".vallm")
+    vallm_dir.mkdir(exist_ok=True)
+    
+    # Save result summary
+    summary_file = vallm_dir / f"{example_name}_summary.json"
+    with open(summary_file, 'w') as f:
+        json.dump(result_data, f, indent=2, default=str)
+    
+    print(f"Analysis data saved to {summary_file}")
+
+
 def main():
     settings = VallmSettings(
         enable_syntax=True,
@@ -59,6 +75,8 @@ def main():
         enable_security=False,
         enable_semantic=False,
     )
+
+    all_results = {}
 
     print("=" * 60)
     print("Example 1: Validating GOOD code")
@@ -69,6 +87,13 @@ def main():
     print(f"Score:   {result.weighted_score:.2f}")
     for r in result.results:
         print(f"  {r.validator}: score={r.score:.2f}, issues={len(r.issues)}")
+    
+    # Store result data
+    all_results["good_code"] = {
+        "verdict": result.verdict.value,
+        "score": result.weighted_score,
+        "validators": {r.validator: {"score": r.score, "issues": len(r.issues)} for r in result.results}
+    }
     print()
 
     print("=" * 60)
@@ -82,6 +107,13 @@ def main():
         print(f"  {r.validator}: score={r.score:.2f}, issues={len(r.issues)}")
         for issue in r.issues:
             print(f"    {issue}")
+    
+    # Store result data
+    all_results["bad_code"] = {
+        "verdict": result.verdict.value,
+        "score": result.weighted_score,
+        "validators": {r.validator: {"score": r.score, "issues": len(r.issues), "issue_details": [str(i) for i in r.issues]} for r in result.results}
+    }
     print()
 
     print("=" * 60)
@@ -95,6 +127,23 @@ def main():
         print(f"  {r.validator}: score={r.score:.2f}, issues={len(r.issues)}")
         for issue in r.issues:
             print(f"    {issue}")
+    
+    # Store result data
+    all_results["complex_code"] = {
+        "verdict": result.verdict.value,
+        "score": result.weighted_score,
+        "validators": {r.validator: {"score": r.score, "issues": len(r.issues), "issue_details": [str(i) for i in r.issues]} for r in result.results}
+    }
+
+    # Save all analysis data
+    save_analysis_data("basic_validation", all_results)
+    
+    # Print summary
+    print("\n" + "=" * 60)
+    print("SUMMARY")
+    print("=" * 60)
+    for name, data in all_results.items():
+        print(f"{name}: {data['verdict']} (score: {data['score']:.2f})")
 
 
 if __name__ == "__main__":

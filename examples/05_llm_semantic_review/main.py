@@ -8,6 +8,8 @@ Prerequisites:
     3. Install ollama package: pip install ollama
 """
 
+import json
+from pathlib import Path
 from vallm import Proposal, VallmSettings, validate
 
 # Code with subtle bug (off-by-one error)
@@ -59,6 +61,19 @@ def f(d):
 """
 
 
+def save_analysis_data(example_name: str, result_data: dict):
+    """Save analysis data to .vallm folder."""
+    vallm_dir = Path(".vallm")
+    vallm_dir.mkdir(exist_ok=True)
+    
+    # Save result summary
+    summary_file = vallm_dir / f"{example_name}_summary.json"
+    with open(summary_file, 'w') as f:
+        json.dump(result_data, f, indent=2, default=str)
+    
+    print(f"Analysis data saved to {summary_file}")
+
+
 def main():
     settings = VallmSettings(
         enable_syntax=True,
@@ -70,6 +85,8 @@ def main():
         llm_model="qwen2.5-coder:7b",
         llm_base_url="http://localhost:11434",
     )
+
+    all_results = {}
 
     print("=" * 60)
     print("LLM Review: Buggy binary search (with reference)")

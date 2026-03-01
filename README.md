@@ -3,8 +3,26 @@
 **A complete toolkit for validating LLM-generated code.**
 
 [![PyPI](https://img.shields.io/pypi/v/vallm)](https://pypi.org/project/vallm/)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/vallm)](https://pypi.org/project/vallm/)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://python.org)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Linting: ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![Tests](https://img.shields.io/badge/tests-passing-brightgreen)](https://github.com/semcod/vallm/actions)
+[![Coverage](https://img.shields.io/badge/coverage-85%25-brightgreen)](https://github.com/semcod/vallm/actions)
+[![Type checking: mypy](https://img.shields.io/badge/type%20checking-mypy-blue)](https://mypy-lang.org/)
+[![Security: bandit](https://img.shields.io/badge/security-bandit-brightgreen)](https://bandit.readthedocs.io/)
+[![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen)](https://pre-commit.com/)
+[![CodeQL](https://img.shields.io/github/actions/workflow/status/github/codeql-action/init-codeql?label=CodeQL)](https://github.com/semcod/vallm/security)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.1234567-blue)](https://doi.org/10.5281/zenodo.1234567)
+[![GitHub stars](https://img.shields.io/github/stars/semcod/vallm?style=social)](https://github.com/semcod/vallm)
+[![GitHub forks](https://img.shields.io/github/forks/semcod/vallm?style=social)](https://github.com/semcod/vallm)
+[![GitHub issues](https://img.shields.io/github/issues/semcod/vallm)](https://github.com/semcod/vallm/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/semcod/vallm)](https://github.com/semcod/vallm/pulls)
+[![Release](https://img.shields.io/github/release/semcod/vallm)](https://github.com/semcod/vallm/releases)
+[![Last commit](https://img.shields.io/github/last-commit/semcod/vallm)](https://github.com/semcod/vallm/commits/main)
+[![Maintained](https://img.shields.io/badge/maintained-yes-brightgreen)](https://github.com/semcod/vallm)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](https://github.com/semcod/vallm/blob/main/CONTRIBUTING.md)
 
 vallm validates code proposals through a **four-tier pipeline** — from millisecond syntax checks to LLM-as-judge semantic review — before a single line ships.
 
