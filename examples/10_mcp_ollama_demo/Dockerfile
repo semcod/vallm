@@ -18,7 +18,8 @@ COPY . /vallm
 WORKDIR /vallm
 
 # Install additional dependencies
-RUN pip install --no-cache-dir code2llm code2logic requests
+COPY examples/10_mcp_ollama_demo/requirements.txt /tmp/
+RUN pip install --no-cache-dir -r /tmp/requirements.txt
 
 # Install vallm in editable mode
 RUN pip install -e ".[llm]"
