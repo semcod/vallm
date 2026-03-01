@@ -179,7 +179,7 @@ if docker exec "$CONTAINER_NAME" test -f /vallm/examples/10_mcp_ollama_demo/refa
     # Run vallm on the refactored code
     echo -e "${CYAN}Running final validation...${NC}\n"
     
-    docker exec -w /app "$CONTAINER_NAME" \
+    docker exec -w /vallm/examples/10_mcp_ollama_demo "$CONTAINER_NAME" \
         python3 -c "
 from vallm import Proposal, validate, VallmSettings
 
@@ -202,7 +202,8 @@ for r in result.results:
     
 else
     print_error "Refactoring did not produce valid output"
-    if [ -f "$DEMO_DIR/refactored_output_best_attempt.py" ]; then
+    docker cp "$CONTAINER_NAME:/vallm/examples/10_mcp_ollama_demo/refactored_output_best_attempt.py" "$DEMO_DIR/" 2>/dev/null || true
+    if docker exec "$CONTAINER_NAME" test -f /vallm/examples/10_mcp_ollama_demo/refactored_output_best_attempt.py; then
         echo ""
         print_warning "Best attempt saved to: refactored_output_best_attempt.py"
     fi

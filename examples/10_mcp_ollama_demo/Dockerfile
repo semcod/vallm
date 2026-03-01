@@ -31,7 +31,7 @@ WORKDIR /vallm/examples/10_mcp_ollama_demo
 EXPOSE 11434
 
 # Start Ollama and pull model, then keep running
-COPY docker-entrypoint.sh /usr/local/bin/
+COPY examples/10_mcp_ollama_demo/docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 ENTRYPOINT ["docker-entrypoint.sh"]
