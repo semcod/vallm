@@ -82,24 +82,12 @@ else
     print_step "Creating and starting container..."
     docker run -d \
         --name "$CONTAINER_NAME" \
-        -p $OLLAMA_PORT:11434 \
+        --network host \
         vallm-mcp-demo:latest \
-        bash -c "ollama serve &
-                 sleep 5
-                 ollama pull qwen2.5-coder:7b
-                 tail -f /dev/null" 2>&1 | tee "$DEMO_DIR/docker-run.log" &
+        tail -f /dev/null 2>&1 | tee "$DEMO_DIR/docker-run.log" &
     
-    print_warning "Waiting for Ollama to start and download model (this may take 5-10 minutes)..."
-    
-    # Wait for Ollama to be ready
-    for i in {1..60}; do
-        if curl -s http://localhost:$OLLAMA_PORT/api/tags > /dev/null 2>&1; then
-            print_success "Ollama is ready!"
-            break
-        fi
-        echo -n "."
-        sleep 10
-    done
+    print_warning "Waiting for container to start..."
+    sleep 3
 fi
 
 # Check if Ollama is responding
@@ -111,12 +99,13 @@ if curl -s http://localhost:$OLLAMA_PORT/api/tags > /dev/null 2>&1; then
     if curl -s http://localhost:$OLLAMA_PORT/api/tags | grep -q "qwen2.5-coder"; then
         print_success "Qwen 2.5 Coder 7B model is available"
     else
-        print_warning "Model not found, pulling..."
-        docker exec "$CONTAINER_NAME" ollama pull qwen2.5-coder:7b 2>&1 | tee -a docker-run.log
+        print_error "Model qwen2.5-coder:7b not found locally. Please run:"
+        echo "  ollama pull qwen2.5-coder:7b"
+        exit 1
     fi
 else
-    print_error "Ollama is not responding. Check container logs:"
-    echo "  docker logs $CONTAINER_NAME"
+    print_error "Local Ollama is not responding. Please start Ollama first:"
+    echo "  ollama serve"
     exit 1
 fi
 

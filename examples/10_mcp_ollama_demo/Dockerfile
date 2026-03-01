@@ -8,8 +8,7 @@ RUN apt-get update && apt-get install -y \
     zstd \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Ollama
-RUN curl -fsSL https://ollama.com/install.sh | sh
+# Use local Ollama - don't install in container
 
 # Set up working directory
 WORKDIR /app
@@ -27,8 +26,7 @@ RUN pip install -e ".[llm]"
 # Set working directory for demo
 WORKDIR /vallm/examples/10_mcp_ollama_demo
 
-# Expose Ollama API port
-EXPOSE 11434
+# No need to expose Ollama port - using local instance
 
 # Start Ollama and pull model, then keep running
 COPY examples/10_mcp_ollama_demo/docker-entrypoint.sh /usr/local/bin/

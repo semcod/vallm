@@ -1,35 +1,32 @@
 #!/bin/bash
 set -e
 
-# Start Ollama in background
-echo "🚀 Starting Ollama server..."
-ollama serve &
-OLLAMA_PID=$!
+# Check if local Ollama is available
+echo "🔗 Checking for local Ollama..."
+if ! curl -s http://localhost:11434/api/tags > /dev/null 2>&1; then
+    echo "❌ Local Ollama not found at http://localhost:11434"
+    echo "Please start Ollama locally first:"
+    echo "  ollama serve"
+    exit 1
+fi
 
-# Wait for Ollama to be ready
-echo "⏳ Waiting for Ollama to start..."
-for i in {1..30}; do
-    if curl -s http://localhost:11434/api/tags > /dev/null 2>&1; then
-        echo "✓ Ollama is ready!"
-        break
-    fi
-    sleep 1
-done
+echo "✓ Local Ollama is accessible!"
 
-# Pull Qwen 2.5 Coder 7B if not present
+# Check if Qwen 2.5 Coder 7B model is available
 echo "📦 Checking for qwen2.5-coder:7b model..."
-if ! ollama list | grep -q "qwen2.5-coder:7b"; then
-    echo "⬇️  Pulling qwen2.5-coder:7b (this may take a while)..."
-    ollama pull qwen2.5-coder:7b
-    echo "✓ Model downloaded!"
+if ! curl -s http://localhost:11434/api/tags | grep -q "qwen2.5-coder:7b"; then
+    echo "❌ qwen2.5-coder:7b model not found locally"
+    echo "Please pull the model first:"
+    echo "  ollama pull qwen2.5-coder:7b"
+    exit 1
 else
-    echo "✓ Model already present"
+    echo "✓ Model available locally"
 fi
 
 # Execute the provided command or default to bash
 if [ $# -eq 0 ]; then
     echo ""
-    echo "🎯 Ollama is ready with qwen2.5-coder:7b!"
+    echo "🎯 Ready to use local Ollama with qwen2.5-coder:7b!"
     echo "   API available at: http://localhost:11434"
     echo ""
     exec bash
