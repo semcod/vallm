@@ -1,134 +1,3 @@
-## [0.1.4] - 2026-03-01
-
-### Summary
-
-feat(examples): code analysis engine
-
-### Docs
-
-- docs: update README
-- docs: update README
-- docs: update README
-- docs: update README
-- docs: update README
-- docs: update README
-- docs: update README
-- docs: update README
-
-### Other
-
-- update examples/01_basic_validation/main.py
-- update examples/02_ast_comparison/main.py
-- update examples/03_security_check/main.py
-- update examples/04_graph_analysis.py
-- update examples/04_graph_analysis/main.py
-- update examples/05_llm_semantic_review/main.py
-- update examples/05_llm_semantic_review/main_template.py
-- update examples/06_multilang_validation/main.py
-- update examples/06_multilang_validation/main_template.py
-- scripts: update run.sh
-
-
-## [0.1.3] - 2026-03-01
-
-### Summary
-
-fix(tests): code analysis engine
-
-### Core
-
-- update src/vallm/__init__.py
-- update src/vallm/cli.py
-- update src/vallm/config.py
-- update src/vallm/core/graph_diff.py
-- update src/vallm/sandbox/__init__.py
-- update src/vallm/sandbox/runner.py
-- update src/vallm/scoring.py
-- update src/vallm/validators/__init__.py
-- update src/vallm/validators/base.py
-- update src/vallm/validators/complexity.py
-- ... and 4 more
-
-### Docs
-
-- docs: update README
-- docs: update README
-- docs: update context.md
-
-### Test
-
-- update tests/__init__.py
-- update tests/test_ast_compare.py
-- update tests/test_complexity.py
-- update tests/test_graph.py
-- update tests/test_imports.py
-- update tests/test_pipeline.py
-- update tests/test_scoring.py
-- update tests/test_security.py
-- update tests/test_syntax.py
-
-### Build
-
-- update pyproject.toml
-
-### Config
-
-- config: update goal.yaml
-
-### Other
-
-- update examples/01_basic_validation.py
-- update examples/02_ast_comparison.py
-- update examples/03_security_check.py
-- update examples/04_graph_analysis.py
-- update examples/05_llm_semantic_review.py
-- update examples/06_multilang_validation.py
-- scripts: update project.sh
-- update project.toon
-- update project/analysis.toon
-- update project/evolution.toon
-
-
-## [0.1.1] - 2026-03-01
-
-### Summary
-
-refactor(docs): configuration management system
-
-### Core
-
-- update src/vallm/__init__.py
-- update src/vallm/__main__.py
-- update src/vallm/config.py
-- update src/vallm/core/__init__.py
-- update src/vallm/core/ast_compare.py
-- update src/vallm/core/graph_builder.py
-- update src/vallm/core/proposal.py
-- update src/vallm/hookspecs.py
-
-### Docs
-
-- docs: update TODO.md
-
-### Test
-
-- update tests/test_vallm.py
-
-### Build
-
-- update pyproject.toml
-
-### Config
-
-- config: update goal.yaml
-
-### Other
-
-- update .gitignore
-- build: update Makefile
-- update TICKET
-
-
 # CHANGELOG
 
 All notable changes to this project will be documented in this file.
@@ -138,14 +7,62 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Planned
+- Refactor 5 critical-CC functions (target max-CC ≤7)
+- Wire pluggy plugin manager for entry_point-based validator discovery
+- Add LogicalErrorValidator (pyflakes), LintValidator (ruff), TypeCheckValidator (mypy)
+- Add RegressionValidator (Tier 4) with pytest-json-report
+- Integrate apted/zss for AST edit distance scoring
+- Add CodeBERTScore embedding similarity to SemanticValidator
+- NetworkX graph analysis (cycle detection, centrality)
+- TOML config loading, `[tool.vallm]` support
+- Pre-commit hook integration
+- GitHub Actions CI/CD pipeline
+- CONTRIBUTING.md
+
+### Added (Multi-Language Support)
+- **Language enum** — 30+ programming languages with metadata (compiled/scripting/web)
+- **Auto-detection** — detect language from file path, extension, or name
+- **`vallm.core.languages`** — centralized language definitions and utilities
+- **CLI auto-detection** — `vallm validate --file script.py` auto-detects Python
+- **`vallm batch`** command — validate multiple files with mixed languages
+- **Lizard integration** — complexity analysis for 16+ languages (Go, Rust, Java, C/C++, etc.)
+- **Tree-sitter for all** — syntax validation for 165+ languages
+- **Example 07** — comprehensive multi-language demo with 8 languages
+
+## [0.1.3] - 2026-03-01
+
 ### Added
-- Initial project setup
+- **Full package implementation** — 4-tier validation pipeline
+- **SyntaxValidator** (Tier 1) — ast.parse + tree-sitter for 165+ languages
+- **ImportValidator** (Tier 1) — module resolution with stdlib awareness
+- **ComplexityValidator** (Tier 2) — radon (Python CC, MI) + lizard (16 languages)
+- **SecurityValidator** (Tier 2) — regex patterns + AST-based eval/exec detection + optional bandit
+- **SemanticValidator** (Tier 3) — LLM-as-judge via Ollama, litellm, or direct HTTP
+- **Scoring engine** — weighted scores, confidence, hard gates, PASS/REVIEW/FAIL verdict
+- **CLI** — `vallm validate`, `vallm check`, `vallm info` with rich/json/text output
+- **Config** — pydantic-settings with `VALLM_*` env vars
+- **Pluggy hookspecs** — extension points for custom validators
+- **Sandbox** — subprocess and Docker backends for safe code execution
+- **Code graph analysis** — import/call graph building and structural diffing
+- **AST comparison** — tree-sitter node counting, Python AST normalization and similarity
+- **6 examples** — basic validation, AST comparison, security, graph analysis, LLM review, multi-language
+- **45 unit tests** — all passing
+- **Published to PyPI** as `vallm` v0.1.3
 
-### Changed
+### Tested
+- Validated with local Ollama + Qwen 2.5 Coder 7B
+- LLM correctly identified off-by-one bugs in binary search
+- Multi-language validation (Python, JavaScript, C) working
 
-### Fixed
+## [0.1.1] - 2026-03-01
 
-### Removed
+### Added
+- Initial project scaffolding — pyproject.toml, src layout, hookspecs, config
+- Core data models: Proposal, ValidationResult, PipelineResult
+- AST comparison utilities (tree-sitter + Python ast)
+- Graph builder and diff modules
+- Base validator interface
 
 ---
 

@@ -9,6 +9,7 @@ from radon.complexity import cc_visit
 from radon.metrics import mi_visit
 
 from vallm.config import VallmSettings
+from vallm.core.languages import Language, detect_language, LIZARD_SUPPORTED
 from vallm.core.proposal import Proposal
 from vallm.scoring import Issue, Severity, ValidationResult
 from vallm.validators.base import BaseValidator
@@ -113,17 +114,29 @@ class ComplexityValidator(BaseValidator):
         issues = []
         details = {}
 
-        ext_map = {
-            "python": "py", "javascript": "js", "typescript": "ts",
-            "c": "c", "cpp": "cpp", "java": "java", "go": "go",
-            "rust": "rs", "ruby": "rb", "swift": "swift",
-        }
-        ext = ext_map.get(language, language)
+        # Use Language enum for extension mapping
+        lang_obj = detect_language(language) if language else None
+        if lang_obj and lang_obj in LIZARD_SUPPORTED:
+            ext = lang_obj.extension.lstrip(".")
+        elif lang_obj:
+            # Fall back to tree-sitter id for unknown lizard languages
+            ext_map = {
+                "python": "py", "javascript": "js", "typescript": "ts",
+                "c": "c", "cpp": "cpp", "java": "java", "go": "go",
+                "rust": "rs", "ruby": "rb", "swift": "swift",
+                "php": "php", "kotlin": "kt", "scala": "scala",
+            }
+            ext = ext_map.get(language, language)
+        else:
+            ext = language
+        
         fname = filename or f"proposal.{ext}"
 
         try:
             result = lizard.analyze_file.analyze_source_code(fname, code)
             details["lizard_functions"] = []
+            details["language"] = language
+            details["lizard_supported"] = lang_obj in LIZARD_SUPPORTED if lang_obj else False
 
             for func in result.function_list:
                 func_info = {

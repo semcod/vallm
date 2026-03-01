@@ -175,16 +175,116 @@ Register via `pyproject.toml`:
 custom = "mypackage.validators:MyValidator"
 ```
 
+## Multi-Language Support
+
+vallm supports **30+ programming languages** via tree-sitter parsers:
+
+### Auto-Detection
+
+```python
+from vallm import detect_language, Language
+
+# Auto-detect from file path
+lang = detect_language("main.rs")  # → Language.RUST
+print(lang.display_name)  # "Rust"
+print(lang.is_compiled)     # True
+```
+
+### CLI with Auto-Detection
+
+```bash
+# Language auto-detected from file extension
+vallm validate --file script.py      # → Python
+vallm check main.go                   # → Go  
+vallm validate --file lib.rs          # → Rust
+
+# Batch validation with mixed languages
+vallm batch src/ --recursive --include "*.py,*.js,*.ts,*.go,*.rs"
+```
+
+### Supported Languages
+
+| Language | Category | Complexity | Syntax |
+|----------|----------|------------|--------|
+| Python | Scripting | ✓ radon + lizard | ✓ ast + tree-sitter |
+| JavaScript | Web/Scripting | ✓ lizard | ✓ tree-sitter |
+| TypeScript | Web/Scripting | ✓ lizard | ✓ tree-sitter |
+| Go | Compiled | ✓ lizard | ✓ tree-sitter |
+| Rust | Compiled | ✓ lizard | ✓ tree-sitter |
+| Java | Compiled | ✓ lizard | ✓ tree-sitter |
+| C/C++ | Compiled | ✓ lizard | ✓ tree-sitter |
+| Ruby | Scripting | ✓ lizard | ✓ tree-sitter |
+| PHP | Web | ✓ lizard | ✓ tree-sitter |
+| Swift | Compiled | ✓ lizard | ✓ tree-sitter |
+| + 20 more via tree-sitter | | ✓ tree-sitter | ✓ tree-sitter |
+
+See `examples/07_multi_language/` for a comprehensive demo.
+
 ## Examples
 
-See the `examples/` directory:
+Each example lives in its own folder with `main.py` and `README.md`. Run all at once:
 
-- `01_basic_validation.py` — Default pipeline with good, bad, and complex code
-- `02_ast_comparison.py` — AST similarity and structural diff
-- `03_security_check.py` — Security pattern detection
-- `04_graph_analysis.py` — Import/call graph diffing
-- `05_llm_semantic_review.py` — Ollama LLM-as-judge review
-- `06_multilang_validation.py` — JavaScript and C validation
+```bash
+cd examples && ./run.sh
+```
+
+| Example | What it demonstrates |
+|---------|---------------------|
+| `01_basic_validation/` | Default pipeline — good, bad, and complex code |
+| `02_ast_comparison/` | AST similarity scoring, tree-sitter multi-language parsing |
+| `03_security_check/` | Security pattern detection (eval, exec, hardcoded secrets) |
+| `04_graph_analysis/` | Import/call graph building and structural diffing |
+| `05_llm_semantic_review/` | Ollama Qwen 2.5 Coder 7B LLM-as-judge review |
+| `06_multilang_validation/` | JavaScript and C validation via tree-sitter |
+| `07_multi_language/` | **Comprehensive multi-language support** — 8+ languages with auto-detection |
+
+## Architecture
+
+```
+src/vallm/
+├── cli.py              # Typer CLI: validate, check, info, batch
+├── config.py           # pydantic-settings (VALLM_* env vars)
+├── hookspecs.py        # pluggy hook specifications
+├── scoring.py          # Weighted scoring + verdict engine
+├── core/
+│   ├── languages.py    # Language enum, auto-detection, 30+ languages
+│   ├── proposal.py     # Proposal model
+│   ├── ast_compare.py  # tree-sitter + Python AST similarity
+│   ├── graph_builder.py # Import/call graph construction
+│   └── graph_diff.py   # Before/after graph comparison
+├── validators/
+│   ├── syntax.py       # Tier 1: ast.parse + tree-sitter (multi-lang)
+│   ├── imports.py      # Tier 1: module resolution (Python)
+│   ├── complexity.py   # Tier 2: radon (Python) + lizard (16+ langs)
+│   ├── security.py     # Tier 2: patterns + bandit
+│   └── semantic.py     # Tier 3: LLM-as-judge
+└── sandbox/
+    └── runner.py       # subprocess / Docker execution
+```
+
+## Roadmap
+
+**v0.2 — Completeness**
+- Wire pluggy plugin manager (entry_point-based validator discovery)
+- Add LogicalErrorValidator (pyflakes) and LintValidator (ruff)
+- TOML config loading (`vallm.toml`, `[tool.vallm]`)
+- Pre-commit hook integration
+- GitHub Actions CI/CD
+
+**v0.3 — Depth**
+- AST edit distance via apted/zss
+- CodeBERTScore embedding similarity
+- NetworkX cycle detection and centrality in graph analysis
+- RegressionValidator (Tier 4) with pytest-json-report
+- TypeCheckValidator (mypy/pyright)
+
+**v0.4 — Intelligence**
+- `--fix` auto-repair mode (LLM-based retry loop)
+- hypothesis/crosshair property-based test generation
+- E2B cloud sandbox backend
+- Streaming LLM output
+
+See [TODO.md](TODO.md) for the full task breakdown.
 
 ## License
 

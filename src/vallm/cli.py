@@ -22,7 +22,7 @@ console = Console()
 def validate(
     code: Optional[str] = typer.Option(None, "--code", "-c", help="Code string to validate"),
     file: Optional[Path] = typer.Option(None, "--file", "-f", help="File to validate"),
-    language: str = typer.Option("python", "--lang", "-l", help="Programming language"),
+    language: Optional[str] = typer.Option(None, "--lang", "-l", help="Programming language (auto-detected from file extension if not specified)"),
     reference: Optional[Path] = typer.Option(None, "--ref", "-r", help="Reference code file"),
     config: Optional[Path] = typer.Option(None, "--config", help="Path to vallm.toml"),
     enable_semantic: bool = typer.Option(False, "--semantic", help="Enable LLM-as-judge"),
@@ -33,6 +33,7 @@ def validate(
 ):
     """Validate a code proposal through the vallm pipeline."""
     from vallm.config import VallmSettings
+    from vallm.core.languages import detect_language, get_language_for_validation
     from vallm.core.proposal import Proposal
     from vallm.scoring import validate as run_validate
 
@@ -64,10 +65,17 @@ def validate(
         settings.llm_model = model
     settings.verbose = verbose
 
+    # Auto-detect language from file if not specified
+    detected_language = get_language_for_validation(file if file else "python", language)
+    if language is None and file:
+        lang_obj = detect_language(file)
+        if lang_obj:
+            console.print(f"[dim]Detected language: {lang_obj.display_name}[/dim]")
+
     # Build proposal
     proposal = Proposal(
         code=code_str,
-        language=language,
+        language=detected_language,
         reference_code=ref_code,
         filename=str(file) if file else None,
     )
@@ -96,9 +104,10 @@ def validate(
 @app.command()
 def check(
     file: Path = typer.Argument(..., help="File to syntax-check"),
-    language: str = typer.Option("python", "--lang", "-l", help="Programming language"),
+    language: Optional[str] = typer.Option(None, "--lang", "-l", help="Programming language (auto-detected if not specified)"),
 ):
     """Quick syntax check only (tier 1)."""
+    from vallm.core.languages import detect_language
     from vallm.core.proposal import Proposal
     from vallm.validators.syntax import SyntaxValidator
 
@@ -107,7 +116,15 @@ def check(
         raise typer.Exit(1)
 
     code = file.read_text()
-    proposal = Proposal(code=code, language=language, filename=str(file))
+    
+    # Auto-detect language
+    lang_obj = detect_language(file)
+    lang = language or (lang_obj.tree_sitter_id if lang_obj else "python")
+    
+    if language is None and lang_obj:
+        console.print(f"[dim]Detected language: {lang_obj.display_name}[/dim]")
+    
+    proposal = Proposal(code=code, language=lang, filename=str(file))
     result = SyntaxValidator().validate(proposal, {})
 
     if result.score == 1.0:
@@ -117,6 +134,123 @@ def check(
         for issue in result.issues:
             console.print(f"  {issue}")
         raise typer.Exit(1)
+
+
+@app.command()
+def batch(
+    paths: list[Path] = typer.Argument(..., help="Files or directories to validate"),
+    recursive: bool = typer.Option(False, "--recursive", "-r", help="Recurse into directories"),
+    include: Optional[str] = typer.Option(None, "--include", help="File patterns to include (comma-separated, e.g., '*.py,*.js')"),
+    exclude: Optional[str] = typer.Option(None, "--exclude", help="File patterns to exclude (comma-separated)"),
+    output_format: str = typer.Option("rich", "--format", help="Output format: rich, json, text"),
+    fail_fast: bool = typer.Option(False, "--fail-fast", "-x", help="Stop on first failure"),
+):
+    """Validate multiple files with auto-detected languages."""
+    from vallm.config import VallmSettings
+    from vallm.core.languages import detect_language, Language
+    from vallm.core.proposal import Proposal
+    from vallm.scoring import validate as run_validate, Verdict
+    
+    import fnmatch
+    
+    settings = VallmSettings()
+    
+    # Build file list
+    files_to_validate: list[Path] = []
+    include_patterns = [p.strip() for p in (include or "*.py,*.js,*.ts,*.java,*.go,*.rs,*.cpp,*.c,*.rb,*.php").split(",")]
+    exclude_patterns = [p.strip() for p in (exclude or "node_modules/*,venv/*,.git/*,__pycache__/*").split(",")] if exclude else []
+    
+    for path in paths:
+        if path.is_file():
+            files_to_validate.append(path)
+        elif path.is_dir():
+            if recursive:
+                for file_path in path.rglob("*"):
+                    if file_path.is_file():
+                        files_to_validate.append(file_path)
+            else:
+                for file_path in path.iterdir():
+                    if file_path.is_file():
+                        files_to_validate.append(file_path)
+    
+    # Filter by patterns
+    filtered_files = []
+    for f in files_to_validate:
+        str_path = str(f)
+        # Check excludes first
+        if any(fnmatch.fnmatch(str_path, p) or fnmatch.fnmatch(f.name, p) for p in exclude_patterns):
+            continue
+        # Check includes
+        if any(fnmatch.fnmatch(f.name, p) for p in include_patterns):
+            filtered_files.append(f)
+    
+    if not filtered_files:
+        console.print("[yellow]No files found to validate[/yellow]")
+        raise typer.Exit(0)
+    
+    console.print(f"[bold]Validating {len(filtered_files)} files...[/bold]\n")
+    
+    results_by_language: dict[str, list[tuple[Path, any]]] = {}
+    failed_files = []
+    passed_count = 0
+    
+    for file_path in filtered_files:
+        lang_obj = detect_language(file_path)
+        lang_name = lang_obj.display_name if lang_obj else "Unknown"
+        
+        try:
+            code = file_path.read_text()
+            proposal = Proposal(
+                code=code,
+                language=lang_obj.tree_sitter_id if lang_obj else "python",
+                filename=str(file_path)
+            )
+            
+            result = run_validate(proposal, settings)
+            
+            if lang_name not in results_by_language:
+                results_by_language[lang_name] = []
+            results_by_language[lang_name].append((file_path, result))
+            
+            if result.verdict == Verdict.PASS:
+                passed_count += 1
+                console.print(f"[green]✓[/green] {file_path} ({lang_name})")
+            elif result.verdict == Verdict.REVIEW:
+                console.print(f"[yellow]⚠[/yellow] {file_path} ({lang_name}) - needs review")
+            else:
+                failed_files.append(file_path)
+                console.print(f"[red]✗[/red] {file_path} ({lang_name}) - failed")
+                
+            if fail_fast and result.verdict == Verdict.FAIL:
+                break
+                
+        except Exception as e:
+            failed_files.append(file_path)
+            console.print(f"[red]✗[/red] {file_path} - error: {e}")
+            if fail_fast:
+                break
+    
+    # Summary table
+    console.print("\n" + "="*60)
+    console.print("[bold]BATCH VALIDATION SUMMARY[/bold]")
+    console.print("="*60)
+    
+    table = Table()
+    table.add_column("Language", style="cyan")
+    table.add_column("Files", justify="right")
+    table.add_column("Passed", justify="right")
+    table.add_column("Failed", justify="right")
+    
+    for lang, results in sorted(results_by_language.items()):
+        passed = sum(1 for _, r in results if r.verdict == Verdict.PASS)
+        failed = len(results) - passed
+        table.add_row(lang, str(len(results)), f"[green]{passed}[/green]", f"[red]{failed}[/red]" if failed > 0 else str(failed))
+    
+    console.print(table)
+    console.print(f"\nTotal: {len(filtered_files)} files, {passed_count} passed, {len(failed_files)} failed")
+    
+    if failed_files:
+        raise typer.Exit(2)
 
 
 @app.command()
