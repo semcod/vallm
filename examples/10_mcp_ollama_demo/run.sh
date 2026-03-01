@@ -159,10 +159,14 @@ docker exec -w /vallm/examples/10_mcp_ollama_demo "$CONTAINER_NAME" \
 
 DEMO_EXIT_CODE=${PIPESTATUS[0]}
 
+print_step "Copying results from container..."
+docker cp "$CONTAINER_NAME:/vallm/examples/10_mcp_ollama_demo/refactored_output.py" "$DEMO_DIR/" 2>/dev/null || true
+docker cp "$CONTAINER_NAME:/vallm/examples/10_mcp_ollama_demo/mcp_demo.log" "$DEMO_DIR/" 2>/dev/null || true
+
 # Step 5: Show results
 print_section "STEP 5: Results"
 
-if [ -f "$DEMO_DIR/refactored_output.py" ]; then
+if docker exec "$CONTAINER_NAME" test -f /vallm/examples/10_mcp_ollama_demo/refactored_output.py; then
     print_success "Refactoring successful!"
     echo ""
     echo -e "${BOLD}Refactored code saved to:${NC} refactored_output.py"
