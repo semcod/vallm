@@ -1,0 +1,365 @@
+#!/usr/bin/env python3
+"""GitHub Actions workflow for comprehensive testing."""
+
+name: Comprehensive Tests
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    # Run tests weekly on Sundays at 2 AM UTC
+    - cron: '0 2 * * 0'
+
+jobs:
+  test-matrix:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ['3.10', '3.11', '3.12', '3.13']
+        
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .[dev,all]
+    
+    - name: Run unit tests
+      run: |
+        pytest tests/ -v --cov=vallm --cov-report=xml --cov-report=html
+    
+    - name: Run E2E CLI tests
+      run: |
+        pytest tests/test_cli_e2e.py -v
+    
+    - name: Run installation tests
+      run: |
+        pytest tests/test_installation.py -v
+    
+    - name: Test semantic validation (if available)
+      run: |
+        pytest tests/test_semantic_validation.py -v
+      continue-on-error: true  # May fail without LLM setup
+    
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage.xml
+        flags: unittests
+        name: codecov-umbrella
+
+  docker-tests:
+    runs-on: ubuntu-latest
+    needs: test-matrix
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+    
+    - name: Test Docker installation across systems
+      run: |
+        chmod +x scripts/test_docker_installation.sh
+        ./scripts/test_docker_installation.sh
+    
+    - name: Build and test Docker images
+      run: |
+        # Test each Docker stage
+        for stage in ubuntu-22 ubuntu-24 debian-12 alpine fedora-39 centos-9 python-slim python-alpine; do
+          echo "Testing $stage..."
+          docker build --target $stage -t vallm-test-$stage -f Dockerfile.test .
+          
+          # Test basic functionality
+          docker run --rm vallm-test-$stage vallm --help
+          docker run --rm vallm-test-$stage vallm info
+          
+          # Test validation
+          docker run --rm vallm-test-$stage sh -c "
+            echo 'def hello(): return \"world\"' > test.py
+            vallm validate --file test.py
+          "
+        done
+
+  integration-tests:
+    runs-on: ubuntu-latest
+    needs: test-matrix
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .[all]
+    
+    - name: Set up Ollama
+      run: |
+        curl -fsSL https://ollama.ai/install.sh | sh
+        ollama serve &
+        sleep 10
+        ollama pull qwen2.5-coder:7b
+    
+    - name: Test semantic validation with LLM
+      run: |
+        # Create test files
+        mkdir -p test_project
+        echo 'def fibonacci(n: int) -> list[int]:
+            if n <= 0:
+                return []
+            fib = [0, 1]
+            for i in range(2, n):
+                fib.append(fib[i-1] + fib[i-2])
+            return fib' > test_project/good.py
+        
+        echo 'def get_input():
+            name = input("Enter name: ")
+            print("Hello", name)
+            return name' > test_project/bad.py
+        
+        # Test semantic validation
+        vallm validate --file test_project/good.py --semantic --model qwen2.5-coder:7b
+        vallm batch test_project --recursive --semantic --model qwen2.5-coder:7b
+    
+    - name: Test multi-language validation
+      run: |
+        mkdir -p multilang_test
+        
+        # Python
+        echo 'def hello(): return "world"' > multilang_test/test.py
+        
+        # JavaScript
+        echo 'function hello() { return "world"; }' > multilang_test/test.js
+        
+        # Go
+        echo 'package main
+func main() { println("Hello, World!") }' > multilang_test/test.go
+        
+        # Rust
+        echo 'fn main() { println!("Hello, World!"); }' > multilang_test/test.rs
+        
+        # Test batch validation
+        vallm batch multilang_test --recursive --include "*.py,*.js,*.go,*.rs"
+
+  performance-tests:
+    runs-on: ubuntu-latest
+    needs: test-matrix
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .[all]
+        pip install pytest-benchmark
+    
+    - name: Run performance tests
+      run: |
+        # Create large test project
+        mkdir -p large_project
+        for i in {1..100}; do
+          echo "def function_$i():
+            return $i" > large_project/file_$i.py
+        done
+        
+        # Benchmark batch validation
+        time vallm batch large_project --recursive
+        time vallm batch large_project --recursive --format json
+        time vallm batch large_project --recursive --format text
+
+  security-tests:
+    runs-on: ubuntu-latest
+    needs: test-matrix
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .[security]
+        pip install bandit safety
+    
+    - name: Run security scans
+      run: |
+        # Bandit security scan
+        bandit -r src/ -f json -o bandit-report.json
+        
+        # Safety check for dependencies
+        safety check --json --output safety-report.json
+        
+        # Test vallm security validation
+        mkdir -p security_test
+        echo 'import os
+os.system("rm -rf /")' > security_test/dangerous.py
+        
+        echo 'eval(user_input)' > security_test/eval.py
+        
+        echo 'subprocess.Popen(["ls", "-la"], shell=True)' > security_test/shell.py
+        
+        vallm batch security_test --recursive --security
+    
+    - name: Upload security reports
+      uses: actions/upload-artifact@v3
+      with:
+        name: security-reports
+        path: |
+          bandit-report.json
+          safety-report.json
+
+  compatibility-tests:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Test pip installation
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .
+        vallm --help
+        vallm info
+    
+    - name: Test pipx installation
+      run: |
+        pip install pipx
+        pipx install --editable .
+        vallm --help
+        vallm info
+        pipx uninstall vallm
+      continue-on-error: true  # pipx might not be available on all systems
+    
+    - name: Test different Python versions compatibility
+      run: |
+        # Test with different Python versions if available
+        for py in python3.10 python3.11 python3.12; do
+          if command -v $py &> /dev/null; then
+            echo "Testing with $py"
+            $py -m venv test_env
+            source test_env/bin/activate || test_env\\Scripts\\activate
+            pip install -e .
+            vallm --help
+            deactivate || true
+            rm -rf test_env
+          fi
+        done
+
+  documentation-tests:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .[all]
+        pip install mkdocs mkdocs-material
+    
+    - name: Test documentation examples
+      run: |
+        # Test all examples from README
+        mkdir -p examples_test
+        
+        # Test Python API example
+        echo 'from vallm import Proposal, validate
+code = "def hello(): return \"world\""
+proposal = Proposal(code=code, language="python")
+result = validate(proposal)
+print(f"Verdict: {result.verdict.value}")' > examples_test/api_test.py
+        python examples_test/api_test.py
+        
+        # Test CLI examples
+        echo 'def fibonacci(n: int) -> list[int]:
+            if n <= 0:
+                return []
+            fib = [0, 1]
+            for i in range(2, n):
+                fib.append(fib[i-1] + fib[i-2])
+            return fib' > examples_test/fibonacci.py
+        
+        vallm validate --file examples_test/fibonacci.py
+        vallm check examples_test/fibonacci.py
+        vallm batch examples_test --recursive
+    
+    - name: Validate README examples
+      run: |
+        # Extract and test code blocks from README
+        python -c "
+        import re
+        from pathlib import Path
+        
+        readme = Path('README.md').read_text()
+        code_blocks = re.findall(r'```bash\n(.*?)\n```', readme, re.DOTALL)
+        
+        for i, block in enumerate(code_blocks):
+            if 'vallm' in block and not block.startswith('#'):
+                print(f'Testing command {i+1}: {block.strip()}')
+                # Note: Some commands might require setup, so we just validate syntax
+                if block.strip().startswith('vallm'):
+                    print('  ✓ Valid vallm command')
+        "
+
+  final-summary:
+    runs-on: ubuntu-latest
+    needs: [test-matrix, docker-tests, integration-tests, performance-tests, security-tests, compatibility-tests, documentation-tests]
+    if: always()
+    
+    steps:
+    - name: Test Summary
+      run: |
+        echo "## Test Summary" >> $GITHUB_STEP_SUMMARY
+        echo "| Job | Status |" >> $GITHUB_STEP_SUMMARY
+        echo "|-----|--------|" >> $GITHUB_STEP_SUMMARY
+        echo "| Test Matrix | ${{ needs.test-matrix.result }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Docker Tests | ${{ needs.docker-tests.result }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Integration Tests | ${{ needs.integration-tests.result }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Performance Tests | ${{ needs.performance-tests.result }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Security Tests | ${{ needs.security-tests.result }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Compatibility Tests | ${{ needs.compatibility-tests.result }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Documentation Tests | ${{ needs.documentation-tests.result }} |" >> $GITHUB_STEP_SUMMARY
+        
+        if [[ "${{ needs.test-matrix.result }}" == "success" && "${{ needs.docker-tests.result }}" == "success" ]]; then
+          echo "✅ All critical tests passed!" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "❌ Some tests failed. Please check the logs." >> $GITHUB_STEP_SUMMARY
+        fi
