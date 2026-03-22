@@ -1,3 +1,25 @@
+## [0.1.9] - 2026-03-22
+
+### Summary
+
+docs: comprehensive documentation update with code health metrics and refactoring roadmap
+
+### Docs
+
+- docs: add code health metrics section to README (CC̄=3.5, max-CC=42, god modules=2)
+- docs: document critical functions requiring refactoring (batch CC=42, validate CC=18)
+- docs: add god modules inventory (imports.py 653L, cli.py 401L)
+- docs: create CONTRIBUTING.md with development guidelines
+- docs: update TODO.md with prioritized refactoring queue (4 priority levels)
+- docs: update example list in README (12 examples including MCP and Ollama demos)
+
+### Analysis
+
+- analysis: generate code2llm analysis files (analysis.toon, evolution.toon, context.md)
+- metrics: 91 functions, 19 classes, 56 modules, 8 critical functions (CC≥10)
+
+---
+
 ## [0.1.8] - 2026-03-01
 
 ### Summary
@@ -98,6 +120,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Lizard integration** — complexity analysis for 16+ languages (Go, Rust, Java, C/C++, etc.)
 - **Tree-sitter for all** — syntax validation for 165+ languages
 - **Example 07** — comprehensive multi-language demo with 8 languages
+
+## [0.1.9] - 2026-03-22
+
+### Docs
+- Update CHANGELOG.md
 
 ## [0.1.3] - 2026-03-01
 
