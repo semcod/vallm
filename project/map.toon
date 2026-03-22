@@ -1,0 +1,309 @@
+# vallm | 1388f 7803L | python:42,shell:8
+# Keys: M=modules, D=details, i=imports, c=classes, f=functions, m=methods
+M[50]:
+  examples/01_basic_validation/main.py,150
+  examples/02_ast_comparison/main.py,126
+  examples/03_security_check/main.py,126
+  examples/04_graph_analysis/main.py,166
+  examples/05_llm_semantic_review/main.py,136
+  examples/05_llm_semantic_review/main_template.py,150
+  examples/06_multilang_validation/main.py,217
+  examples/06_multilang_validation/main_template.py,150
+  examples/07_multi_language/main.py,327
+  examples/08_code2llm_integration/main.py,250
+  examples/09_code2logic_integration/main.py,298
+  examples/10_mcp_ollama_demo/docker-entrypoint.sh,35
+  examples/10_mcp_ollama_demo/legacy_code/order_processor.py,131
+  examples/10_mcp_ollama_demo/mcp_demo.py,420
+  examples/10_mcp_ollama_demo/refactored_output.py,127
+  examples/10_mcp_ollama_demo/run.sh,260
+  examples/11_claude_code_autonomous/docker-entrypoint.sh,30
+  examples/11_claude_code_autonomous/legacy_code/data_processor.py,224
+  examples/11_claude_code_autonomous/run.sh,232
+  examples/12_ollama_simple_demo/best_version.py,87
+  examples/12_ollama_simple_demo/docker-entrypoint.sh,31
+  examples/12_ollama_simple_demo/iteration_1.py,87
+  examples/12_ollama_simple_demo/iteration_2.py,87
+  examples/12_ollama_simple_demo/legacy_code/simple_buggy.py,112
+  examples/12_ollama_simple_demo/ollama_simple_demo.py,357
+  examples/12_ollama_simple_demo/run.sh,201
+  examples/run.sh,133
+  project.sh,14
+  scripts/bump_version.py,78
+  src/vallm/__init__.py,19
+  src/vallm/__main__.py,5
+  src/vallm/cli.py,401
+  src/vallm/config.py,58
+  src/vallm/core/__init__.py,3
+  src/vallm/core/ast_compare.py,135
+  src/vallm/core/gitignore.py,272
+  src/vallm/core/graph_diff.py,86
+  src/vallm/core/languages.py,220
+  src/vallm/core/proposal.py,37
+  src/vallm/hookspecs.py,33
+  src/vallm/sandbox/__init__.py,1
+  src/vallm/sandbox/runner.py,144
+  src/vallm/scoring.py,191
+  src/vallm/validators/__init__.py,1
+  src/vallm/validators/base.py,21
+  src/vallm/validators/complexity.py,183
+  src/vallm/validators/imports.py,653
+  src/vallm/validators/security.py,253
+  src/vallm/validators/semantic.py,249
+  src/vallm/validators/syntax.py,96
+D:
+  src/vallm/cli.py:
+    e: validate,check,batch,info,_check_dep,_output_rich,_output_json,_output_text
+    validate(code;file;language;reference;config;enable_semantic;enable_security;model;output_format;verbose)
+    check(file;language)
+    batch(paths;recursive;include;exclude;use_gitignore;output_format;fail_fast)
+    info()
+    _check_dep(module;label)
+    _output_rich(result;verbose)
+    _output_json(result)
+    _output_text(result)
+  src/vallm/validators/complexity.py:
+    e: ComplexityValidator
+    ComplexityValidator(BaseValidator): __init__(1),validate(2),_check_python_complexity(1),_check_lizard(3)  # Tier 2: Cyclomatic complexity, maintainability index, and fu...
+  src/vallm/validators/semantic.py:
+    e: SemanticValidator
+    SemanticValidator(BaseValidator): __init__(1),validate(2),_build_prompt(1),_call_llm(1),_call_ollama(1),_call_litellm(1),_call_http(1),_parse_response(1)  # Tier 3: LLM-as-judge semantic code review...
+  examples/05_llm_semantic_review/main_template.py:
+    e: save_analysis_data,main
+    save_analysis_data(example_name;result_data)
+    main()
+  examples/01_basic_validation/main.py:
+    e: save_analysis_data,main
+    save_analysis_data(example_name;result_data)
+    main()
+  examples/06_multilang_validation/main_template.py:
+    e: save_analysis_data,main
+    save_analysis_data(example_name;result_data)
+    main()
+  examples/10_mcp_ollama_demo/mcp_demo.py:
+    e: Colors,log_section,log_step,log_code,analyze_with_code2llm,validate_with_vallm,call_ollama,generate_refactoring_prompt,extract_code_from_response,run_mcp_workflow,main
+    Colors:
+    log_section(title)
+    log_step(step;description)
+    log_code(label;code;max_lines)
+    analyze_with_code2llm(code_path)
+    validate_with_vallm(code;description)
+    call_ollama(prompt;model;temperature)
+    generate_refactoring_prompt(code;analysis)
+    extract_code_from_response(response)
+    run_mcp_workflow(code_path;max_iterations)
+    main()
+  src/vallm/core/gitignore.py:
+    e: GitignoreParser,load_gitignore,get_default_excludes,create_default_gitignore_parser,should_exclude
+    GitignoreParser: __init__(1),_parse(1),matches(1),_match_pattern(3),_fnmatch(2),_pattern_to_regex(1)  # Parse .gitignore files and match paths against patterns...
+    load_gitignore(path)
+    get_default_excludes()
+    create_default_gitignore_parser()
+    should_exclude(path;gitignore_parser;use_defaults)
+  examples/05_llm_semantic_review/main.py:
+    e: save_analysis_data,main
+    save_analysis_data(example_name;result_data)
+    main()
+  examples/07_multi_language/main.py:
+    e: test_language_detection,validate_single_language,validate_all_languages,save_results,print_language_info,main
+    test_language_detection()
+    validate_single_language(lang_name;code;is_bad)
+    validate_all_languages()
+    save_results(results)
+    print_language_info()
+    main()
+  src/vallm/validators/imports.py:
+    e: ImportValidator
+    ImportValidator(BaseValidator): validate(2),_validate_python(1),_validate_javascript(1),_validate_typescript(1),_validate_js_ts(3),_validate_go(1),_validate_rust(1),_validate_java(1),_validate_c(1),_validate_cpp(1),_validate_c_cpp(2),_extract_js_imports(2),_extract_go_imports(1),_extract_rust_imports(1),_extract_java_imports(1),_extract_c_includes(2),_python_module_exists(0),_js_module_exists(1),_go_module_exists(0),_rust_module_exists(0),_java_module_exists(0),_c_header_exists(0)  # Tier 1: Validate that imports are resolvable...
+  examples/09_code2logic_integration/main.py:
+    e: analyze_with_code2logic,validate_with_vallm,build_call_graph,generate_report,visualize_flow,main
+    analyze_with_code2logic(code)
+    validate_with_vallm(code)
+    build_call_graph(code)
+    generate_report(code2logic_result;vallm_result;graph_result;output_path)
+    visualize_flow(code;output_path)
+    main()
+  examples/10_mcp_ollama_demo/legacy_code/order_processor.py:
+    e: OrderManager,process_order,load_config,save_data,calculate,validate_email_1,validate_email_2,calculate_shipping,dead_code
+    OrderManager: __init__(0),add_order(1),execute_query(1),process_payment(2),send_email(3),get_stats(0)  # Class with mixed responsibilities - SOLID violation...
+    process_order(data)
+    load_config()
+    save_data(data;filename)
+    calculate(x;y;z;a;b;c)
+    validate_email_1(email)
+    validate_email_2(email)
+    calculate_shipping(weight)
+    dead_code()
+  examples/11_claude_code_autonomous/legacy_code/data_processor.py:
+    e: DataProcessor,ReportGenerator,load_config,init_database,main
+    DataProcessor: __init__(0),process_user_data(1),calculate_metrics(1),export_data(2),validate_email(1),validate_email_again(1),process_with_external_api(1),complex_calculation(10),unused_function(0),another_unused_function(2)  # Data processor with multiple responsibilities - violates SRP...
+    ReportGenerator: __init__(1),generate_report(0),export_report(1)  # Report generator with tight coupling to DataProcessor...
+    load_config()
+    init_database()
+    main()
+  src/vallm/validators/security.py:
+    e: SecurityValidator
+    SecurityValidator(BaseValidator): validate(2),_check_patterns(2),_check_python_ast(1),_get_func_name(0),_try_bandit(0)  # Tier 2: Security analysis using built-in patterns and option...
+  examples/04_graph_analysis/main.py:
+    e: save_analysis_data,main
+    save_analysis_data(example_name;result_data)
+    main()
+  examples/12_ollama_simple_demo/ollama_simple_demo.py:
+    e: Colors,log_section,log_step,analyze_with_code2llm,call_ollama,validate_with_vallm,run_simple_test,generate_ollama_prompt,extract_code_from_response,run_simple_workflow,main
+    Colors:
+    log_section(title)
+    log_step(step;description)
+    analyze_with_code2llm(code_path)
+    call_ollama(prompt;model)
+    validate_with_vallm(code)
+    run_simple_test(code)
+    generate_ollama_prompt(code;analysis)
+    extract_code_from_response(response)
+    run_simple_workflow(code_path;max_iterations)
+    main()
+  examples/10_mcp_ollama_demo/refactored_output.py:
+    e: OrderManager,validate_email,calculate_shipping,load_config,save_data,process_order,main
+    OrderManager: __init__(0),add_order(1),validate_order(1),execute_query(1),process_payment(2),send_email(3),get_stats(0)  # Class with single responsibility - adheres to SOLID principl...
+    validate_email(email)
+    calculate_shipping(weight)
+    load_config()
+    save_data(data;filename)
+    process_order(data)
+    main()
+  examples/08_code2llm_integration/main.py:
+    e: create_sample_project,analyze_with_code2llm,validate_with_vallm,generate_report,main
+    create_sample_project(base_path)
+    analyze_with_code2llm(project_path)
+    validate_with_vallm(project_path)
+    generate_report(code2llm_result;vallm_result;output_path)
+    main()
+  examples/12_ollama_simple_demo/legacy_code/simple_buggy.py:
+    e: BadClass,process_user_input,load_config,save_data,calculate_total,duplicate_function,duplicate_function,unused_function,main
+    BadClass: __init__(0),process_data(1),another_method(0)  # Class with multiple issues...
+    process_user_input(user_input)
+    load_config()
+    save_data(data;filename)
+    calculate_total(items)
+    duplicate_function()
+    duplicate_function()
+    unused_function()
+    main()
+  src/vallm/scoring.py:
+    e: Verdict,Severity,Issue,ValidationResult,PipelineResult,compute_verdict,validate,_get_default_validators
+    Verdict(Enum):
+    Severity(Enum):
+    Issue: __str__(0)  # A single issue found during validation...
+    ValidationResult:  # Result from a single validator...
+    PipelineResult:  # Aggregated result from all validators...
+    compute_verdict(results;settings)
+    validate(proposal;settings;validators;context)
+    _get_default_validators(settings)
+  src/vallm/core/graph_diff.py:
+    e: GraphDiffResult,diff_graphs,diff_python_code,_diff_list
+    GraphDiffResult:  # Result of comparing two code graphs...
+    diff_graphs(before;after)
+    diff_python_code(before_code;after_code)
+    _diff_list(before;after;added)
+  src/vallm/core/languages.py:
+    e: Language,detect_language,get_language_for_validation
+    Language(Enum): __init__(3),from_extension(1),from_path(1),from_string(1)  # Supported programming languages with their tree-sitter ident...
+    detect_language(source)
+    get_language_for_validation(source;explicit)
+  scripts/bump_version.py:
+    e: bump_version,main
+    bump_version(version_str;bump_type)
+    main()
+  examples/12_ollama_simple_demo/iteration_1.py:
+    e: process_user_input,load_config,save_data,calculate_total,main
+    process_user_input(user_input)
+    load_config()
+    save_data(data;filename)
+    calculate_total(items)
+    main()
+  examples/12_ollama_simple_demo/best_version.py:
+    e: process_user_input,load_config,save_data,calculate_total,main
+    process_user_input(user_input)
+    load_config()
+    save_data(data;filename)
+    calculate_total(items)
+    main()
+  examples/12_ollama_simple_demo/iteration_2.py:
+    e: process_user_input,load_config,save_data,calculate_total,main
+    process_user_input(user_input)
+    load_config()
+    save_data(data;filename)
+    calculate_total(items)
+    main()
+  examples/03_security_check/main.py:
+    e: save_analysis_data,main
+    save_analysis_data(example_name;result_data)
+    main()
+  src/vallm/validators/syntax.py:
+    e: SyntaxValidator
+    SyntaxValidator(BaseValidator): validate(2),_validate_python(1),_validate_treesitter(2)  # Tier 1: Fast syntax validation...
+  src/vallm/core/ast_compare.py:
+    e: parse_code,parse_python_ast,normalize_python_ast,python_ast_similarity,tree_sitter_node_count,tree_sitter_error_count,structural_diff_summary
+    parse_code(code;language)
+    parse_python_ast(code)
+    normalize_python_ast(tree)
+    python_ast_similarity(code1;code2)
+    tree_sitter_node_count(code;language)
+    tree_sitter_error_count(code;language)
+    structural_diff_summary(code1;code2;language)
+  src/vallm/sandbox/runner.py:
+    e: ExecutionResult,SandboxRunner
+    ExecutionResult:  # Result of sandboxed code execution...
+    SandboxRunner: __init__(1),run(2),_run_subprocess(2),_run_docker(2)  # Unified interface for running code in a sandbox...
+  examples/06_multilang_validation/main.py:
+    e: main
+    main()
+  src/vallm/config.py:
+    e: VallmSettings
+    VallmSettings(BaseSettings): from_toml(1)  # vallm configuration with layered sources: defaults → TOML → ...
+  examples/02_ast_comparison/main.py:
+    e: save_analysis_data,main
+    save_analysis_data(example_name;result_data)
+    main()
+  src/vallm/hookspecs.py:
+    e: VallmSpec
+    VallmSpec: validate_proposal(2),get_validator_name(0),get_validator_tier(0)  # Hook specifications that validators must implement...
+  src/vallm/validators/base.py:
+    e: BaseValidator
+    BaseValidator(ABC): validate(2)  # Base class for all vallm validators...
+  src/vallm/__init__.py:
+  src/vallm/__main__.py:
+  src/vallm/validators/__init__.py:
+  src/vallm/core/proposal.py:
+    e: Proposal
+    Proposal:  # A code proposal to be validated.
+
+Attributes:
+    code: The ...
+  src/vallm/core/__init__.py:
+  src/vallm/sandbox/__init__.py:
+  project.sh:
+  examples/run.sh:
+    e: run_example
+    run_example()
+  examples/11_claude_code_autonomous/docker-entrypoint.sh:
+  examples/12_ollama_simple_demo/run.sh:
+  examples/12_ollama_simple_demo/docker-entrypoint.sh:
+  examples/11_claude_code_autonomous/run.sh:
+    e: print_section,print_step,print_success,print_warning,print_error
+    print_section()
+    print_step()
+    print_success()
+    print_warning()
+    print_error()
+  examples/10_mcp_ollama_demo/docker-entrypoint.sh:
+  examples/10_mcp_ollama_demo/run.sh:
+    e: print_section,print_step,print_success,print_warning,print_error,print,print,print,print
+    print_section()
+    print_step()
+    print_success()
+    print_warning()
+    print_error()
+    print()
+    print()
+    print()
+    print()

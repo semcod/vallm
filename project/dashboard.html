@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>vallm — Health Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+  :root {
+    --bg: #0f172a; --surface: #1e293b; --border: #334155;
+    --text: #e2e8f0; --muted: #94a3b8;
+    --green: #22c55e; --yellow: #eab308; --red: #ef4444; --blue: #3b82f6;
+    --orange: #f97316;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #f8fafc; --surface: #ffffff; --border: #e2e8f0;
+      --text: #1e293b; --muted: #64748b;
+    }
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Segoe UI',system-ui,sans-serif; background:var(--bg); color:var(--text); padding:2rem; }
+  h1 { font-size:1.5rem; margin-bottom:.5rem; }
+  h2 { font-size:1.1rem; color:var(--muted); margin:1.5rem 0 .75rem; border-bottom:1px solid var(--border); padding-bottom:.25rem; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:1rem; margin:1rem 0; }
+  .card { background:var(--surface); border:1px solid var(--border); border-radius:.5rem; padding:1rem; }
+  .card .value { font-size:1.8rem; font-weight:700; }
+  .card .label { color:var(--muted); font-size:.8rem; text-transform:uppercase; }
+  .chart-container { background:var(--surface); border:1px solid var(--border); border-radius:.5rem; padding:1rem; margin:1rem 0; }
+  .table-wrap { overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; font-size:.85rem; }
+  th { text-align:left; color:var(--muted); padding:.5rem; border-bottom:1px solid var(--border); white-space:nowrap; }
+  td { padding:.5rem; border-bottom:1px solid var(--border); }
+  .badge { padding:.15rem .5rem; border-radius:.25rem; font-size:.75rem; font-weight:600; }
+  .badge.critical { background:var(--red); color:#fff; }
+  .badge.error { background:var(--orange); color:#fff; }
+  .badge.warning { background:var(--yellow); color:#000; }
+  .badge.high { background:var(--red); color:#fff; }
+  .badge.medium { background:var(--yellow); color:#000; }
+  .badge.low { background:var(--green); color:#fff; }
+  tr.critical td { background:rgba(239,68,68,.08); }
+  tr.error td { background:rgba(249,115,22,.06); }
+  tr.warning td { background:rgba(234,179,8,.05); }
+  .health-indicator { display:inline-block; width:12px; height:12px; border-radius:50%; margin-right:.5rem; }
+  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+  .three-col { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; }
+  .evo-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:.75rem; }
+  .evo-cards .card { text-align:center; }
+  .trend { font-size:.75rem; color:var(--muted); }
+  .lang-tag { display:inline-block; padding:.1rem .4rem; border-radius:.2rem; font-size:.7rem; font-weight:600; margin-right:.25rem; color:#fff; }
+  @media (max-width:768px) { .two-col,.three-col { grid-template-columns:1fr; } }
+  footer { margin-top:2rem; color:var(--muted); font-size:.75rem; text-align:center; }
+</style>
+</head>
+<body>
+<h1>
+  <span class="health-indicator" style="background:#22c55e"></span>
+  vallm — Good
+</h1>
+<p style="color:var(--muted);font-size:.85rem;">
+  Analyzed 2026-03-22 by code2llm
+  &nbsp;·&nbsp; Primary language: <strong>python</strong>
+  &nbsp;·&nbsp; Python: 22, Shell: 1
+</p>
+
+<div class="grid">
+  <div class="card"><div class="value">91</div><div class="label">Functions</div></div>
+  <div class="card"><div class="value">19</div><div class="label">Classes</div></div>
+  <div class="card"><div class="value">16</div><div class="label">Files</div></div>
+  <div class="card"><div class="value">4,170</div><div class="label">Lines</div></div>
+  <div class="card"><div class="value">2</div><div class="label">Languages</div></div>
+  <div class="card"><div class="value">4.3</div><div class="label">Avg CC</div></div>
+  <div class="card"><div class="value">8</div><div class="label">Critical (CC≥10)</div></div>
+  <div class="card"><div class="value">0</div><div class="label">Duplicates</div></div>
+  <div class="card"><div class="value">0</div><div class="label">Cycles</div></div>
+</div>
+
+<div class="three-col">
+  <div class="chart-container">
+    <h2 style="border:none;margin:0 0 .5rem;">Language Distribution</h2>
+    <canvas id="langChart" height="200"></canvas>
+  </div>
+  <div class="chart-container">
+    <h2 style="border:none;margin:0 0 .5rem;">Largest Modules (lines)</h2>
+    <canvas id="modLinesChart" height="200"></canvas>
+  </div>
+  <div class="chart-container">
+    <h2 style="border:none;margin:0 0 .5rem;">Most Complex Modules (functions)</h2>
+    <canvas id="modFuncsChart" height="200"></canvas>
+  </div>
+</div>
+
+<div class="two-col">
+  <div class="chart-container">
+    <h2 style="border:none;margin:0 0 .5rem;">Evolution (2026-03-22)</h2>
+    <div class="evo-cards">
+      <div class="card"><div class="value">4.3</div><div class="label">CC̄ →</div></div>
+      <div class="card"><div class="value">8</div><div class="label">Critical →</div></div>
+      <div class="card"><div class="value">4170</div><div class="label">Lines</div></div>
+    </div>
+    <p class="trend" style="margin-top:.5rem;">Run analysis multiple times to build a trend chart (≥3 data points needed).</p>
+  </div>
+  <div>
+    <h2>Top Modules (23)</h2>
+    <div class="card"><div class="table-wrap">
+    <table>
+      <thead><tr><th>Module</th><th>Path</th><th style="text-align:right">Lines</th><th style="text-align:right">Funcs</th><th style="text-align:right">Classes</th><th style="text-align:right">CC max</th></tr></thead>
+      <tbody>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>imports.py</td>
+                <td style="color:var(--muted);font-size:.75rem">src/vallm/validators</td>
+                <td style="text-align:right">653</td>
+                <td style="text-align:right">22</td>
+                <td style="text-align:right">1</td>
+                <td style="text-align:right">10</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>cli.py</td>
+                <td style="color:var(--muted);font-size:.75rem">src/vallm</td>
+                <td style="text-align:right">401</td>
+                <td style="text-align:right">8</td>
+                <td style="text-align:right">0</td>
+                <td style="text-align:right">42</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>gitignore.py</td>
+                <td style="color:var(--muted);font-size:.75rem">src/vallm/core</td>
+                <td style="text-align:right">272</td>
+                <td style="text-align:right">10</td>
+                <td style="text-align:right">1</td>
+                <td style="text-align:right">11</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>security.py</td>
+                <td style="color:var(--muted);font-size:.75rem">src/vallm/validators</td>
+                <td style="text-align:right">253</td>
+                <td style="text-align:right">5</td>
+                <td style="text-align:right">1</td>
+                <td style="text-align:right">9</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>semantic.py</td>
+                <td style="color:var(--muted);font-size:.75rem">src/vallm/validators</td>
+                <td style="text-align:right">249</td>
+                <td style="text-align:right">8</td>
+                <td style="text-align:right">1</td>
+                <td style="text-align:right">12</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>languages.py</td>
+                <td style="color:var(--muted);font-size:.75rem">src/vallm/core</td>
+                <td style="text-align:right">220</td>
+                <td style="text-align:right">6</td>
+                <td style="text-align:right">1</td>
+                <td style="text-align:right">6</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>scoring.py</td>
+                <td style="color:var(--muted);font-size:.75rem">src/vallm</td>
+                <td style="text-align:right">191</td>
+                <td style="text-align:right">4</td>
+                <td style="text-align:right">5</td>
+                <td style="text-align:right">7</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>complexity.py</td>
+                <td style="color:var(--muted);font-size:.75rem">src/vallm/validators</td>
+                <td style="text-align:right">183</td>
+                <td style="text-align:right">4</td>
+                <td style="text-align:right">1</td>
+                <td style="text-align:right">12</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>runner.py</td>
+                <td style="color:var(--muted);font-size:.75rem">src/vallm/sandbox</td>
+                <td style="text-align:right">144</td>
+                <td style="text-align:right">4</td>
+                <td style="text-align:right">2</td>
+                <td style="text-align:right">4</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>ast_compare.py</td>
+                <td style="color:var(--muted);font-size:.75rem">src/vallm/core</td>
+                <td style="text-align:right">135</td>
+                <td style="text-align:right">7</td>
+                <td style="text-align:right">0</td>
+                <td style="text-align:right">4</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>syntax.py</td>
+                <td style="color:var(--muted);font-size:.75rem">src/vallm/validators</td>
+                <td style="text-align:right">96</td>
+                <td style="text-align:right">3</td>
+                <td style="text-align:right">1</td>
+                <td style="text-align:right">4</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>graph_diff.py</td>
+                <td style="color:var(--muted);font-size:.75rem">src/vallm/core</td>
+                <td style="text-align:right">86</td>
+                <td style="text-align:right">3</td>
+                <td style="text-align:right">1</td>
+                <td style="text-align:right">6</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>bump_version.py</td>
+                <td style="color:var(--muted);font-size:.75rem">scripts</td>
+                <td style="text-align:right">78</td>
+                <td style="text-align:right">2</td>
+                <td style="text-align:right">0</td>
+                <td style="text-align:right">5</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>config.py</td>
+                <td style="color:var(--muted);font-size:.75rem">src/vallm</td>
+                <td style="text-align:right">58</td>
+                <td style="text-align:right">1</td>
+                <td style="text-align:right">1</td>
+                <td style="text-align:right">3</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>proposal.py</td>
+                <td style="color:var(--muted);font-size:.75rem">src/vallm/core</td>
+                <td style="text-align:right">37</td>
+                <td style="text-align:right">0</td>
+                <td style="text-align:right">1</td>
+                <td style="text-align:right">0</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>hookspecs.py</td>
+                <td style="color:var(--muted);font-size:.75rem">src/vallm</td>
+                <td style="text-align:right">33</td>
+                <td style="text-align:right">3</td>
+                <td style="text-align:right">1</td>
+                <td style="text-align:right">1</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>base.py</td>
+                <td style="color:var(--muted);font-size:.75rem">src/vallm/validators</td>
+                <td style="text-align:right">21</td>
+                <td style="text-align:right">1</td>
+                <td style="text-align:right">1</td>
+                <td style="text-align:right">1</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>__init__.py</td>
+                <td style="color:var(--muted);font-size:.75rem">src/vallm</td>
+                <td style="text-align:right">19</td>
+                <td style="text-align:right">0</td>
+                <td style="text-align:right">0</td>
+                <td style="text-align:right">0</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#89e051;margin-right:6px"></span>project.sh</td>
+                <td style="color:var(--muted);font-size:.75rem">.</td>
+                <td style="text-align:right">14</td>
+                <td style="text-align:right">0</td>
+                <td style="text-align:right">0</td>
+                <td style="text-align:right">0</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>__main__.py</td>
+                <td style="color:var(--muted);font-size:.75rem">src/vallm</td>
+                <td style="text-align:right">5</td>
+                <td style="text-align:right">0</td>
+                <td style="text-align:right">0</td>
+                <td style="text-align:right">0</td>
+            </tr></tbody>
+    </table>
+    </div></div>
+  </div>
+</div>
+
+<h2>Alerts (10)</h2>
+<div class="card"><div class="table-wrap">
+<table>
+  <thead><tr><th>Severity</th><th>Target</th><th>Type</th><th>Value</th><th>Limit</th></tr></thead>
+  <tbody>
+            <tr class="critical">
+                <td><span class="badge critical">critical</span></td>
+                <td>batch</td>
+                <td>cc_exceeded</td>
+                <td>42</td>
+                <td>15</td>
+            </tr>
+            <tr class="critical">
+                <td><span class="badge critical">critical</span></td>
+                <td>batch</td>
+                <td>high_fan_out</td>
+                <td>34</td>
+                <td>10</td>
+            </tr>
+            <tr class="critical">
+                <td><span class="badge critical">critical</span></td>
+                <td>validate</td>
+                <td>high_fan_out</td>
+                <td>20</td>
+                <td>10</td>
+            </tr>
+            <tr class="error">
+                <td><span class="badge error">error</span></td>
+                <td>SemanticValidator._parse_response</td>
+                <td>high_fan_out</td>
+                <td>17</td>
+                <td>10</td>
+            </tr>
+            <tr class="warning">
+                <td><span class="badge warning">warning</span></td>
+                <td>validate</td>
+                <td>cc_exceeded</td>
+                <td>18</td>
+                <td>15</td>
+            </tr>
+            <tr class="warning">
+                <td><span class="badge warning">warning</span></td>
+                <td>check</td>
+                <td>high_fan_out</td>
+                <td>12</td>
+                <td>10</td>
+            </tr>
+            <tr class="warning">
+                <td><span class="badge warning">warning</span></td>
+                <td>main</td>
+                <td>high_fan_out</td>
+                <td>11</td>
+                <td>10</td>
+            </tr>
+            <tr class="warning">
+                <td><span class="badge warning">warning</span></td>
+                <td>SandboxRunner._run_docker</td>
+                <td>high_fan_out</td>
+                <td>11</td>
+                <td>10</td>
+            </tr>
+            <tr class="warning">
+                <td><span class="badge warning">warning</span></td>
+                <td>info</td>
+                <td>high_fan_out</td>
+                <td>10</td>
+                <td>10</td>
+            </tr>
+            <tr class="warning">
+                <td><span class="badge warning">warning</span></td>
+                <td>SecurityValidator._try_bandit</td>
+                <td>high_fan_out</td>
+                <td>10</td>
+                <td>10</td>
+            </tr></tbody>
+</table>
+</div></div>
+
+<div class="two-col">
+<div>
+<h2>Hotspots (8)</h2>
+<div class="card"><div class="table-wrap">
+<table>
+  <thead><tr><th>Function</th><th>Fan-out</th><th>Note</th></tr></thead>
+  <tbody>
+            <tr>
+                <td><strong>batch</strong></td>
+                <td>34</td>
+                <td>Validate multiple files with auto-detected languages.</td>
+            </tr>
+            <tr>
+                <td><strong>validate</strong></td>
+                <td>20</td>
+                <td>Validate a code proposal through the vallm pipeline.</td>
+            </tr>
+            <tr>
+                <td><strong>SemanticValidator._parse_response</strong></td>
+                <td>17</td>
+                <td>Parse LLM JSON response into a ValidationResult.</td>
+            </tr>
+            <tr>
+                <td><strong>check</strong></td>
+                <td>12</td>
+                <td>Quick syntax check only (tier 1).</td>
+            </tr>
+            <tr>
+                <td><strong>main</strong></td>
+                <td>11</td>
+                <td>Orchestrates 11 calls</td>
+            </tr>
+            <tr>
+                <td><strong>SandboxRunner._run_docker</strong></td>
+                <td>11</td>
+                <td>Run code in a Docker container (requires docker package).</td>
+            </tr>
+            <tr>
+                <td><strong>info</strong></td>
+                <td>10</td>
+                <td>Show vallm configuration and available validators.</td>
+            </tr>
+            <tr>
+                <td><strong>SecurityValidator._try_bandit</strong></td>
+                <td>10</td>
+                <td>Try to run bandit if installed.</td>
+            </tr></tbody>
+</table>
+</div></div>
+</div>
+
+<div>
+<h2>Refactoring Priorities (6)</h2>
+<div class="card"><div class="table-wrap">
+<table>
+  <thead><tr><th>#</th><th>Action</th><th>Impact</th><th>Effort</th></tr></thead>
+  <tbody>
+            <tr>
+                <td>1</td>
+                <td>Split batch (CC=42 → target CC<10)</td>
+                <td><span class="badge high">high</span></td>
+                <td>low</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Split god module src/vallm/validators/imports.py (653L, 1 classes)</td>
+                <td><span class="badge high">high</span></td>
+                <td>high</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Split validate (CC=18 → target CC<10)</td>
+                <td><span class="badge medium">medium</span></td>
+                <td>low</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Reduce batch fan-out (currently 34)</td>
+                <td><span class="badge medium">medium</span></td>
+                <td>medium</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Reduce validate fan-out (currently 20)</td>
+                <td><span class="badge medium">medium</span></td>
+                <td>medium</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Reduce SemanticValidator._parse_response fan-out (currently 17)</td>
+                <td><span class="badge medium">medium</span></td>
+                <td>medium</td>
+            </tr></tbody>
+</table>
+</div></div>
+</div>
+</div>
+
+<footer>Generated by code2llm on 2026-03-22 14:21</footer>
+
+<script>
+// Evolution chart disabled — fewer than 3 data points
+
+// Language distribution pie chart
+const langCtx = document.getElementById('langChart').getContext('2d');
+new Chart(langCtx, {
+  type: 'doughnut',
+  data: {
+    labels: ['Python', 'Shell'],
+    datasets: [{
+      data: [22, 1],
+      backgroundColor: ['#3572A5', '#89e051'],
+      borderColor: 'var(--border)', borderWidth: 1
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'right', labels: { color: '#e2e8f0', font: {size: 11} } }
+    }
+  }
+});
+
+// Module lines bar chart
+const modLinesCtx = document.getElementById('modLinesChart').getContext('2d');
+new Chart(modLinesCtx, {
+  type: 'bar',
+  data: {
+    labels: ['imports.py', 'cli.py', 'gitignore.py', 'security.py', 'semantic.py', 'languages.py', 'scoring.py', 'complexity.py', 'runner.py', 'ast_compare.py', 'syntax.py', 'graph_diff.py', 'bump_version.py', 'config.py', 'proposal.py'],
+    datasets: [{ label: 'Lines', data: [653, 401, 272, 253, 249, 220, 191, 183, 144, 135, 96, 86, 78, 58, 37],
+      backgroundColor: '#3b82f6'
+    }]
+  },
+  options: {
+    responsive: true, indexAxis: 'y',
+    scales: {
+      x: { grid:{color:'#334155'}, ticks:{color:'#94a3b8'} },
+      y: { grid:{color:'#334155'}, ticks:{color:'#94a3b8',font:{size:10}} }
+    },
+    plugins: { legend: { display:false } }
+  }
+});
+
+// Module functions bar chart
+const modFuncsCtx = document.getElementById('modFuncsChart').getContext('2d');
+new Chart(modFuncsCtx, {
+  type: 'bar',
+  data: {
+    labels: ['imports.py', 'gitignore.py', 'cli.py', 'semantic.py', 'ast_compare.py', 'languages.py', 'security.py', 'complexity.py', 'scoring.py', 'runner.py', 'graph_diff.py', 'syntax.py', 'hookspecs.py', 'bump_version.py', 'config.py'],
+    datasets: [{ label: 'Functions', data: [22, 10, 8, 8, 7, 6, 5, 4, 4, 4, 3, 3, 3, 2, 1],
+      backgroundColor: '#22c55e'
+    }]
+  },
+  options: {
+    responsive: true, indexAxis: 'y',
+    scales: {
+      x: { grid:{color:'#334155'}, ticks:{color:'#94a3b8'} },
+      y: { grid:{color:'#334155'}, ticks:{color:'#94a3b8',font:{size:10}} }
+    },
+    plugins: { legend: { display:false } }
+  }
+});
+</script>
+</body>
+</html>

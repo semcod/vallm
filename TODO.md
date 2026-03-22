@@ -1,17 +1,34 @@
 # TODO
 
-## Refactoring — reduce complexity (from analysis.toon)
+## Refactoring — reduce complexity (current status: 2026-03-22)
 
-5 functions have CC≥10 (target: max-CC ≤7, CC̄ ≤2.8):
+**Current Metrics (from code2llm analysis):**
+- CC̄ = 3.5 (target: ≤2.4)
+- Max CC = 42 (target: ≤20)
+- God modules = 2 (target: 0)
+- High CC (≥15) = 2 functions (target: ≤1)
+- Critical functions (CC≥10) = 8 functions
 
-- [ ] **`cli.validate` CC=14, fan=18** — extract settings build, proposal build, and output dispatch into separate functions
-- [ ] **`cli.batch` CC=high** — newly added, needs refactoring (inline: extract file filtering, result aggregation)
+**Priority 1: Critical Functions (CC≥15)**
+
+- [ ] **`cli.batch` CC=42, fan=34** — SPLIT: extract file discovery, filtering, validation loop, result aggregation, and output formatting into separate modules
+- [ ] **`scoring.validate` CC=18, fan=20** — REFACTOR: extract validator sorting and fail-fast execution logic
+
+**Priority 2: High Complexity (CC 10-15)**
+
 - [ ] **`SemanticValidator._parse_response` CC=12, fan=17** — split JSON extraction, score normalization, and issue parsing into 3 methods
 - [ ] **`ComplexityValidator._check_python_complexity` CC=11** — extract radon block analysis and MI check into helpers
 - [ ] **`_output_rich` CC=11, fan=8** — extract verdict panel, results table, and issues list into separate renderers
-- [ ] **`ImportValidator.validate` CC=11** — extract AST walking into `_extract_imports()` generator
+- [ ] **`ImportValidator._validate_python` CC=10, fan=13** — extract AST walking into `_extract_imports()` generator
+- [ ] **`cli.validate` CC=high** — extract settings build, proposal build, and output dispatch
 
-9 more functions at CC 5–10 to review after critical ones are resolved.
+**Priority 3: God Modules**
+
+- [ ] **`validators/imports.py` (653L, 22 methods)** — SPLIT into language-specific submodules: python.py, javascript.py, go.py, rust.py, java.py, c_cpp.py
+  - Risk: 22 import paths depend on this — maintain backward compatibility via `__init__.py` re-exports
+- [ ] **`cli.py` (401L, 8 methods, CC=42)** — SPLIT: extract output formatters to `output.py`, batch logic to `batch.py`
+
+**Priority 4: Medium Complexity (CC 5-10)** — 19 functions to review after critical ones
 
 ## Multi-Language Support (Completed ✓)
 

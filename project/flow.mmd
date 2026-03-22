@@ -1,0 +1,892 @@
+flowchart TD
+    subgraph examples_01_basic_validation
+        examples__save_analysis_data["save_analysis_data"]
+        examples__01_basic_validation__main__main("main CC=12")
+    end
+    subgraph examples_02_ast_comparison
+        examples__save_analysis_data["save_analysis_data"]
+        examples__02_ast_comparison__main__main["main"]
+    end
+    subgraph examples_03_security_check
+        examples__save_analysis_data["save_analysis_data"]
+        examples__03_security_check__main__main["main"]
+    end
+    subgraph examples_04_graph_analysis
+        examples__save_analysis_data["save_analysis_data"]
+        examples__04_graph_analysis__main__main("main CC=9")
+    end
+    subgraph examples_05_llm_semantic_review
+        examples__save_analysis_data["save_analysis_data"]
+        examples__main("main CC=12")
+        examples__save_analysis_data["save_analysis_data"]
+        examples__05_llm_semantic_review__main__main("main CC=11")
+    end
+    subgraph examples_06_multilang_validation
+        examples__06_multilang_validation__main__main["main"]
+        examples__save_analysis_data["save_analysis_data"]
+        examples__main("main CC=12")
+    end
+    subgraph examples_07_multi_language
+        examples__test_language_detection["test_language_detection"]
+        examples__validate_single_language["validate_single_language"]
+        examples__validate_all_languages["validate_all_languages"]
+        examples__07_multi_language__main__save_results["save_results"]
+        examples__print_language_info("print_language_info CC=8")
+        examples__07_multi_language__main__main("main CC=11")
+    end
+    subgraph examples_08_code2llm_integration
+        examples__create_sample_project["create_sample_project"]
+        examples__analyze_with_code2llm("analyze_with_code2llm CC=8")
+        examples__validate_with_vallm["validate_with_vallm"]
+        examples__generate_report["generate_report"]
+        examples__08_code2llm_integration__main__main["main"]
+    end
+    subgraph examples_09_code2logic_integration
+        examples__analyze_with_code2logic["analyze_with_code2logic"]
+        examples__validate_with_vallm["validate_with_vallm"]
+        examples__build_call_graph["build_call_graph"]
+        examples__generate_report("generate_report CC=10")
+        examples__visualize_flow["visualize_flow"]
+        examples__09_code2logic_integration__main__main["main"]
+    end
+    subgraph examples_10_mcp_ollama_demo
+        examples____init__["__init__"]
+        examples__add_order["add_order"]
+        examples__validate_order["validate_order"]
+        examples__execute_query["execute_query"]
+        examples__process_payment["process_payment"]
+        examples__send_email["send_email"]
+        examples__get_stats["get_stats"]
+        examples__validate_email["validate_email"]
+        examples__calculate_shipping["calculate_shipping"]
+        examples__load_config["load_config"]
+        examples__save_data["save_data"]
+        examples__process_order("process_order CC=9")
+        examples__main["main"]
+        examples__process_order("process_order CC=10")
+        examples__load_config["load_config"]
+        examples__save_data["save_data"]
+        examples__calculate["calculate"]
+        examples____init__["__init__"]
+        examples__add_order["add_order"]
+        examples__execute_query["execute_query"]
+        examples__process_payment["process_payment"]
+        examples__send_email["send_email"]
+        examples__get_stats["get_stats"]
+        examples__validate_email_1["validate_email_1"]
+        examples__validate_email_2["validate_email_2"]
+        examples__calculate_shipping["calculate_shipping"]
+        examples__dead_code["dead_code"]
+        examples__log_section["log_section"]
+        examples__10_mcp_ollama_demo__mcp_demo__log_step["log_step"]
+        examples__10_mcp_ollama_demo__mcp_demo__log_code["log_code"]
+        examples__analyze_with_code2llm("analyze_with_code2llm CC=9")
+        examples__validate_with_vallm("validate_with_vallm CC=12")
+        examples__call_ollama["call_ollama"]
+        examples__generate_refactoring_prompt["generate_refactoring_prompt"]
+        examples__extract_code_from_response["extract_code_from_response"]
+        examples__run_mcp_workflow["run_mcp_workflow"]
+        examples__10_mcp_ollama_demo__mcp_demo__main["main"]
+        examples__10_mcp_ollama_demo__run__print_section["print_section"]
+        examples__10_mcp_ollama_demo__run__print_step["print_step"]
+        examples__10_mcp_ollama_demo__run__print_success["print_success"]
+        examples__10_mcp_ollama_demo__run__print_warning["print_warning"]
+        examples__10_mcp_ollama_demo__run__print_error["print_error"]
+        examples__10_mcp_ollama_demo__run__print["print"]
+    end
+    subgraph examples_11_claude_code_autonomous
+        examples__load_config["load_config"]
+        examples__init_database["init_database"]
+        examples____init__["__init__"]
+        examples__process_user_data("process_user_data CC=10")
+        examples__calculate_metrics("calculate_metrics CC=10")
+        examples__export_data["export_data"]
+        examples__validate_email["validate_email"]
+        examples__validate_email_again["validate_email_again"]
+        examples__process_with_external_api["process_with_external_api"]
+        examples__complex_calculation["complex_calculation"]
+        examples__unused_function["unused_function"]
+        examples__another_unused_function["another_unused_function"]
+        examples____init__["__init__"]
+        examples__generate_report["generate_report"]
+        examples__export_report["export_report"]
+        examples__main["main"]
+        examples__print_section["print_section"]
+        examples__print_step["print_step"]
+        examples__print_success["print_success"]
+        examples__print_warning["print_warning"]
+        examples__print_error["print_error"]
+    end
+    subgraph examples_12_ollama_simple_demo
+        examples__process_user_input["process_user_input"]
+        examples__load_config["load_config"]
+        examples__save_data["save_data"]
+        examples__calculate_total["calculate_total"]
+        examples__12_ollama_simple_demo__iteration_1__main["main"]
+        examples__process_user_input["process_user_input"]
+        examples__load_config["load_config"]
+        examples__save_data["save_data"]
+        examples__calculate_total["calculate_total"]
+        examples__main["main"]
+        examples__process_user_input["process_user_input"]
+        examples__load_config["load_config"]
+        examples__save_data["save_data"]
+        examples__calculate_total["calculate_total"]
+        examples__12_ollama_simple_demo__iteration_2__main["main"]
+        examples__log_section["log_section"]
+        examples__log_step["log_step"]
+        examples__analyze_with_code2llm["analyze_with_code2llm"]
+        examples__call_ollama["call_ollama"]
+        examples__validate_with_vallm["validate_with_vallm"]
+        examples__run_simple_test["run_simple_test"]
+        examples__generate_ollama_prompt["generate_ollama_prompt"]
+        examples__extract_code_from_response["extract_code_from_response"]
+        examples__run_simple_workflow("run_simple_workflow CC=9")
+        examples__main["main"]
+        examples__process_user_input["process_user_input"]
+        examples__load_config["load_config"]
+        examples__save_data["save_data"]
+        examples__calculate_total["calculate_total"]
+        examples__duplicate_function["duplicate_function"]
+        examples__unused_function["unused_function"]
+        examples____init__["__init__"]
+        examples__process_data("process_data CC=8")
+        examples__another_method["another_method"]
+        examples__main["main"]
+    end
+    subgraph examples_run
+        examples__run__run_example["run_example"]
+    end
+    subgraph publish_env_lib
+        publish_env____init__["__init__"]
+        publish_env____init__["__init__"]
+        publish_env__merge_paths["merge_paths"]
+        publish_env____init__["__init__"]
+        publish_env____init__["__init__"]
+        publish_env____init__["__init__"]
+        publish_env____init__["__init__"]
+        publish_env____init__["__init__"]
+        publish_env____init__["__init__"]
+        publish_env____init__["__init__"]
+        publish_env____init__["__init__"]
+        publish_env__generate_key["generate_key"]
+        publish_env__encrypt["encrypt"]
+        publish_env__encrypt_at_time["encrypt_at_time"]
+        publish_env___encrypt_from_parts["_encrypt_from_parts"]
+        publish_env__decrypt["decrypt"]
+        publish_env__decrypt_at_time["decrypt_at_time"]
+        publish_env__extract_timestamp["extract_timestamp"]
+        publish_env___get_unverified_token_data["_get_unverified_token_data"]
+        publish_env___verify_signature["_verify_signature"]
+        publish_env___decrypt_data["_decrypt_data"]
+        publish_env____init__["__init__"]
+        publish_env__encrypt["encrypt"]
+        publish_env__encrypt_at_time["encrypt_at_time"]
+        publish_env__rotate["rotate"]
+        publish_env__decrypt["decrypt"]
+        publish_env__decrypt_at_time["decrypt_at_time"]
+        publish_env__extract_timestamp["extract_timestamp"]
+        publish_env__uri_reference["uri_reference"]
+        publish_env__iri_reference["iri_reference"]
+        publish_env__is_valid_uri["is_valid_uri"]
+        publish_env__normalize_uri["normalize_uri"]
+        publish_env__urlparse["urlparse"]
+        publish_env__normalize_scheme["normalize_scheme"]
+        publish_env__normalize_authority["normalize_authority"]
+        publish_env__normalize_username["normalize_username"]
+        publish_env__normalize_password["normalize_password"]
+        publish_env__normalize_host["normalize_host"]
+        publish_env__normalize_path["normalize_path"]
+        publish_env__normalize_query["normalize_query"]
+        publish_env__normalize_fragment["normalize_fragment"]
+        publish_env__normalize_percent_characters["normalize_percent_characters"]
+        publish_env__remove_dot_segments("remove_dot_segments CC=9")
+        publish_env__encode_component["encode_component"]
+        publish_env____init__["__init__"]
+        publish_env__allow_schemes["allow_schemes"]
+        publish_env__allow_hosts["allow_hosts"]
+        publish_env__allow_ports["allow_ports"]
+        publish_env__allow_use_of_password["allow_use_of_password"]
+        publish_env__forbid_use_of_password["forbid_use_of_password"]
+        publish_env__check_validity_of["check_validity_of"]
+        publish_env__require_presence_of["require_presence_of"]
+        publish_env__validate("validate CC=8")
+        publish_env__check_password["check_password"]
+        publish_env__ensure_one_of["ensure_one_of"]
+        publish_env__ensure_required_components_exist["ensure_required_components_exist"]
+        publish_env__is_valid["is_valid"]
+        publish_env__authority_is_valid["authority_is_valid"]
+        publish_env__host_is_valid["host_is_valid"]
+        publish_env__scheme_is_valid["scheme_is_valid"]
+    end
+    subgraph scripts_bump_version
+        scripts__bump_version__bump_version["bump_version"]
+        scripts__bump_version__main["main"]
+    end
+    subgraph src_vallm
+        src__validate_proposal["validate_proposal"]
+        src__get_validator_name["get_validator_name"]
+        src__get_validator_tier["get_validator_tier"]
+        src__vallm__config__VallmSettings__from_toml["from_toml"]
+        src__vallm__cli__validate{{validate CC=18}}
+        src__vallm__cli__check("check CC=8")
+        src__vallm__cli__batch{{batch CC=42}}
+        src__vallm__cli__info["info"]
+        src__vallm__cli___check_dep["_check_dep"]
+        src__vallm__cli___output_rich("_output_rich CC=11")
+        src__vallm__cli___output_json["_output_json"]
+        src__vallm__cli___output_text["_output_text"]
+        src__vallm__scoring__Issue____str__["__str__"]
+        src__vallm__scoring__compute_verdict["compute_verdict"]
+        src__vallm__scoring__validate["validate"]
+        src__vallm__scoring___get_default_validators["_get_default_validators"]
+        src__validate["validate"]
+        src____init__["__init__"]
+        src__validate["validate"]
+        src___check_python_complexity("_check_python_complexity CC=11")
+        src___check_lizard("_check_lizard CC=12")
+        src__validate("validate CC=9")
+        src___check_patterns["_check_patterns"]
+        src___check_python_ast["_check_python_ast"]
+        src___get_func_name["_get_func_name"]
+        src___try_bandit["_try_bandit"]
+        src____init__["__init__"]
+        src__validate["validate"]
+        src___build_prompt["_build_prompt"]
+        src___call_llm["_call_llm"]
+        src___call_ollama["_call_ollama"]
+        src___call_litellm["_call_litellm"]
+        src___call_http["_call_http"]
+        src___parse_response("_parse_response CC=12")
+        src__validate["validate"]
+        src___validate_python["_validate_python"]
+        src___validate_treesitter["_validate_treesitter"]
+        src__vallm__core__graph_diff__diff_graphs["diff_graphs"]
+        src__vallm__core__graph_diff__diff_python_code["diff_python_code"]
+        src__vallm__core__graph_diff___diff_list["_diff_list"]
+        src__vallm__core__ast_compare__parse_code["parse_code"]
+        src__vallm__core__ast_compare__parse_python_ast["parse_python_ast"]
+        src__normalize_python_ast["normalize_python_ast"]
+        src__python_ast_similarity["python_ast_similarity"]
+        src__tree_sitter_node_count["tree_sitter_node_count"]
+        src__tree_sitter_error_count["tree_sitter_error_count"]
+        src__structural_diff_summary["structural_diff_summary"]
+        src__validate["validate"]
+        src___validate_python("_validate_python CC=10")
+        src___validate_javascript["_validate_javascript"]
+        src___validate_typescript["_validate_typescript"]
+        src___validate_js_ts["_validate_js_ts"]
+        src___validate_go["_validate_go"]
+        src___validate_rust["_validate_rust"]
+        src___validate_java["_validate_java"]
+        src___validate_c["_validate_c"]
+        src___validate_cpp["_validate_cpp"]
+        src___validate_c_cpp["_validate_c_cpp"]
+        src___extract_js_imports["_extract_js_imports"]
+        src___extract_go_imports["_extract_go_imports"]
+    end
+    scripts__bump_version__bump_version --> publish_env__map
+    scripts__bump_version__main --> scripts__bump_version__bump_version
+    scripts__bump_version__main --> publish_env__print
+    publish_env____init__ --> publish_env__to_str
+    publish_env____init__ --> publish_env__list
+    publish_env____init__ --> publish_env__unsplit
+    publish_env___encrypt_from_parts --> publish_env___check_bytes
+    publish_env__decrypt --> publish_env___get_unverified_token_data
+    publish_env__decrypt_at_time --> publish_env___get_unverified_token_data
+    publish_env__extract_timestamp --> publish_env___get_unverified_token_data
+    publish_env__rotate --> publish_env___get_unverified_token_data
+    publish_env__uri_reference --> publish_env__from_string
+    publish_env__iri_reference --> publish_env__from_string
+    publish_env__is_valid_uri --> publish_env__from_string
+    publish_env__normalize_uri --> publish_env__from_string
+    publish_env__urlparse --> publish_env__from_string
+    publish_env__normalize_authority --> publish_env__normalize_host
+    publish_env__normalize_authority --> publish_env__normalize_percent_characters
+    publish_env__normalize_path --> publish_env__normalize_percent_characters
+    publish_env__normalize_path --> publish_env__remove_dot_segments
+    publish_env__normalize_query --> publish_env__normalize_percent_characters
+    publish_env__normalize_fragment --> publish_env__normalize_percent_characters
+    publish_env__normalize_percent_characters --> publish_env__set
+    publish_env__encode_component --> publish_env__to_bytes
+    publish_env__encode_component --> publish_env__to_str
+    publish_env____init__ --> publish_env__set
+    publish_env__allow_schemes --> publish_env__normalize_scheme
+    publish_env__allow_hosts --> publish_env__normalize_host
+    publish_env__validate --> publish_env__ensure_one_of
+    publish_env__validate --> publish_env__check_password
+    publish_env__validate --> publish_env__ensure_required_components_exist
+    publish_env__validate --> publish_env__ensure_components_are_valid
+    publish_env__authority_is_valid --> publish_env__is_valid
+    publish_env__authority_is_valid --> publish_env__host_is_valid
+    publish_env__host_is_valid --> publish_env__is_valid
+    publish_env__host_is_valid --> publish_env__valid_ipv4_host_address
+    publish_env__scheme_is_valid --> publish_env__is_valid
+    publish_env__path_is_valid --> publish_env__is_valid
+    publish_env__query_is_valid --> publish_env__is_valid
+    publish_env__fragment_is_valid --> publish_env__is_valid
+    publish_env__subauthority_component_is_valid --> publish_env__host_is_valid
+    publish_env__ensure_components_are_valid --> publish_env__set
+    publish_env__ensure_components_are_valid --> publish_env__subauthority_component_is_valid
+    publish_env__to_str --> publish_env__hasattr
+    publish_env__to_bytes --> publish_env__hasattr
+    publish_env____delattr__ --> publish_env__delattr
+    publish_env__authority_info --> publish_env__valid_ipv4_host_address
+    publish_env__authority_is_valid --> publish_env__authority_is_valid
+    publish_env__scheme_is_valid --> publish_env__scheme_is_valid
+    publish_env__path_is_valid --> publish_env__path_is_valid
+    publish_env__query_is_valid --> publish_env__query_is_valid
+    publish_env__fragment_is_valid --> publish_env__fragment_is_valid
+    publish_env__resolve_with --> publish_env__type
+    publish_env__resolve_with --> publish_env__normalize_path
+    publish_env__copy_with --> publish_env__list
+    publish_env__process --> publish_env__rule
+    publish_env__tokenize --> publish_env__rule
+    publish_env____eq__ --> publish_env__from_string
+    publish_env____eq__ --> publish_env__type
+    publish_env__normalize --> publish_env__normalize_scheme
+    publish_env__normalize --> publish_env__normalize_authority
+    publish_env__normalize --> publish_env__normalize_path
+    publish_env__normalize --> publish_env__normalize_query
+    publish_env__normalize --> publish_env__normalize_fragment
+    publish_env__from_string --> publish_env__to_str
+    publish_env__from_string --> publish_env__encode_component
+    publish_env__encode --> publish_env__to_str
+    publish_env__encode --> publish_env__encode_component
+    publish_env__skipToken --> publish_env__rule
+    publish_env__parse --> publish_env__rule
+    publish_env___generate_authority --> publish_env__normalize_authority
+    publish_env___generate_authority --> publish_env__to_str
+    publish_env__from_parts --> publish_env__authority_from
+    publish_env__from_string --> publish_env__from_string
+    publish_env__from_string --> publish_env__authority_from
+    publish_env__encode --> publish_env__hasattr
+    publish_env__from_parts --> publish_env__to_bytes
+    publish_env__from_string --> publish_env__to_bytes
+    publish_env__copy_with --> publish_env__hasattr
+    publish_env__copy_with --> publish_env__to_str
+    publish_env__authority_from --> publish_env__split_authority
+    publish_env__renderAttrs --> publish_env__escapeHtml
+    publish_env__code_inline --> publish_env__escapeHtml
+    publish_env__code_block --> publish_env__escapeHtml
+    publish_env__fence --> publish_env__escapeHtml
+    publish_env__fence --> publish_env__unescapeAll
+    publish_env__text --> publish_env__escapeHtml
+    publish_env__to_unicode --> publish_env__map_domain
+    publish_env__to_unicode --> publish_env__decode
+    publish_env__to_ascii --> publish_env__map_domain
+    publish_env__to_ascii --> publish_env__encode
+    publish_env__parse --> publish_env__type
+    publish_env__parseInline --> publish_env__type
+    publish_env__validateLink --> publish_env__validateLink
+    publish_env__normalizeLink --> publish_env__normalizeLink
+    publish_env__normalizeLinkText --> publish_env__normalizeLinkText
+    publish_env____repr__ --> publish_env__type
+    publish_env___add_child --> publish_env__type
+    publish_env___set_children_from_tokens --> publish_env__list
+    publish_env____init__ --> publish_env__cast
+    publish_env__info --> publish_env___implementation
+    publish_env__main --> publish_env__print
+    publish_env__main --> publish_env__info
+    publish_env____init__ --> publish_env__urlparse
+    publish_env__get_host --> publish_env__urlparse
+    publish_env__get_full_url --> publish_env__to_native_string
+    publish_env__get_full_url --> publish_env__urlparse
+    publish_env__extract_cookies_to_jar --> publish_env__hasattr
+    publish_env__set --> publish_env__remove_cookie_by_name
+    publish_env__set --> publish_env__morsel_to_cookie
+    publish_env__set --> publish_env__create_cookie
+    publish_env__keys --> publish_env__list
+    publish_env__values --> publish_env__list
+    publish_env__items --> publish_env__list
+    publish_env____delitem__ --> publish_env__remove_cookie_by_name
+    publish_env__set_cookie --> publish_env__hasattr
+    publish_env___copy_cookie_jar --> publish_env__hasattr
+    publish_env__create_cookie --> publish_env__set
+    publish_env__create_cookie --> publish_env__list
+    publish_env__morsel_to_cookie --> publish_env__create_cookie
+    publish_env__cookiejar_from_dict --> publish_env__create_cookie
+    publish_env__merge_cookies --> publish_env__cookiejar_from_dict
+    publish_env___urllib3_request_context --> publish_env__urlparse
+    publish_env__proxy_manager_for --> publish_env__get_auth_from_url
+    publish_env__proxy_manager_for --> publish_env__proxy_from_url
+    publish_env__cert_verify --> publish_env__extract_zipped_paths
+    publish_env__build_response --> publish_env__get_encoding_from_headers
+    publish_env__build_response --> publish_env__extract_cookies_to_jar
+    publish_env__build_connection_pool_key_attributes --> publish_env___urllib3_request_context
+    publish_env__get_connection_with_tls_context --> publish_env__select_proxy
+    publish_env__get_connection_with_tls_context --> publish_env__prepend_scheme_if_needed
+    publish_env__get_connection_with_tls_context --> publish_env__parse_url
+    publish_env__get_connection --> publish_env__select_proxy
+    publish_env__get_connection --> publish_env__prepend_scheme_if_needed
+    publish_env__get_connection --> publish_env__parse_url
+    publish_env__get_connection --> publish_env__urlparse
+    publish_env__request_url --> publish_env__select_proxy
+    publish_env__request_url --> publish_env__urlparse
+    publish_env__request_url --> publish_env__urldefragauth
+    publish_env__proxy_headers --> publish_env__get_auth_from_url
+    publish_env__proxy_headers --> publish_env___basic_auth_str
+    publish_env___check_cryptography --> publish_env__list
+    publish_env___check_cryptography --> publish_env__map
+    publish_env__merge_setting --> publish_env__to_key_val_list
+    publish_env__merge_hooks --> publish_env__merge_setting
+    publish_env__get_redirect_target --> publish_env__to_native_string
+    publish_env__should_strip_auth --> publish_env__urlparse
+    publish_env__resolve_redirects --> publish_env__urlparse
+    publish_env__resolve_redirects --> publish_env__to_native_string
+    publish_env__resolve_redirects --> publish_env__extract_cookies_to_jar
+    publish_env__resolve_redirects --> publish_env__merge_cookies
+    publish_env__rebuild_auth --> publish_env__get_netrc_auth
+    publish_env__rebuild_proxies --> publish_env__resolve_proxies
+    publish_env__rebuild_proxies --> publish_env__urlparse
+    publish_env__rebuild_proxies --> publish_env__get_auth_from_url
+    publish_env__rebuild_proxies --> publish_env___basic_auth_str
+    publish_env____init__ --> publish_env__default_headers
+    publish_env____init__ --> publish_env__default_hooks
+    publish_env____init__ --> publish_env__cookiejar_from_dict
+    publish_env__prepare_request --> publish_env__merge_cookies
+    publish_env__prepare_request --> publish_env__cookiejar_from_dict
+    publish_env__prepare_request --> publish_env__get_netrc_auth
+    publish_env__prepare_request --> publish_env__merge_setting
+    publish_env__prepare_request --> publish_env__merge_hooks
+    publish_env__send --> publish_env__dispatch_hook
+    publish_env__send --> publish_env__extract_cookies_to_jar
+    publish_env__send --> publish_env__resolve_proxies
+    publish_env__merge_environment_settings --> publish_env__merge_setting
+    publish_env__merge_environment_settings --> publish_env__get_environ_proxies
+    publish_env__get --> publish_env__request
+    publish_env__options --> publish_env__request
+    publish_env__head --> publish_env__request
+    publish_env__post --> publish_env__request
+    publish_env__put --> publish_env__request
+    publish_env__patch --> publish_env__request
+    publish_env__delete --> publish_env__request
+    publish_env__dispatch_hook --> publish_env__hasattr
+    publish_env___basic_auth_str --> publish_env__to_native_string
+    publish_env___basic_auth_str --> publish_env__type
+    publish_env____call__ --> publish_env___basic_auth_str
+    publish_env__init_per_thread_state --> publish_env__hasattr
+    publish_env__build_digest_header --> publish_env__urlparse
+    publish_env__handle_401 --> publish_env__parse_dict_header
+    publish_env__handle_401 --> publish_env__extract_cookies_to_jar
+    publish_env____post_init__ --> publish_env__convert_attrs
+    publish_env__attrIndex --> publish_env__list
+    publish_env__attrItems --> publish_env__list
+    publish_env__as_dict --> publish_env__filter
+    publish_env___encode_params --> publish_env__hasattr
+    publish_env___encode_params --> publish_env__to_key_val_list
+    publish_env___encode_params --> publish_env__urlencode
+    publish_env___encode_files --> publish_env__to_key_val_list
+    publish_env___encode_files --> publish_env__encode_multipart_formdata
+    publish_env___encode_files --> publish_env__hasattr
+    publish_env__register_hook --> publish_env__hasattr
+    publish_env__copy --> publish_env___copy_cookie_jar
+    publish_env__prepare_method --> publish_env__to_native_string
+    publish_env__prepare_url --> publish_env__requote_uri
+    publish_env__prepare_url --> publish_env__parse_url
+    publish_env__prepare_url --> publish_env__unicode_is_ascii
+    publish_env__prepare_url --> publish_env__to_native_string
+    publish_env__prepare_headers --> publish_env__check_header_validity
+    publish_env__prepare_headers --> publish_env__to_native_string
+    publish_env__prepare_body --> publish_env__hasattr
+    publish_env__prepare_body --> publish_env__super_len
+    publish_env__prepare_content_length --> publish_env__super_len
+    publish_env__prepare_auth --> publish_env__get_auth_from_url
+    publish_env__prepare_cookies --> publish_env__get_cookie_header
+    publish_env__prepare_cookies --> publish_env__cookiejar_from_dict
+    publish_env__iter_content --> publish_env__iter_slices
+    publish_env__iter_content --> publish_env__generate
+    publish_env__iter_content --> publish_env__hasattr
+    publish_env__iter_content --> publish_env__stream_decode_response_unicode
+    publish_env__iter_content --> publish_env__type
+    publish_env__json --> publish_env__guess_json_utf
+    publish_env__close --> publish_env__release_conn
+    publish_env__dict_to_sequence --> publish_env__hasattr
+    publish_env__super_len --> publish_env__hasattr
+    publish_env__get_netrc_auth --> publish_env__urlparse
+    publish_env__extract_zipped_paths --> publish_env__atomic_open
+    publish_env__to_key_val_list --> publish_env__list
+    publish_env__parse_list_header --> publish_env__unquote_header_value
+    publish_env__parse_dict_header --> publish_env__unquote_header_value
+    publish_env__add_dict_to_cookiejar --> publish_env__cookiejar_from_dict
+    publish_env__get_encoding_from_headers --> publish_env___parse_content_type_header
+    publish_env__get_unicode_from_response --> publish_env__get_encoding_from_headers
+    publish_env__requote_uri --> publish_env__unquote_unreserved
+    publish_env__address_in_network --> publish_env__dotted_netmask
+    publish_env__should_bypass_proxies --> publish_env__urlparse
+    publish_env__should_bypass_proxies --> publish_env__is_ipv4_address
+    publish_env__should_bypass_proxies --> publish_env__set_environ
+    publish_env__should_bypass_proxies --> publish_env__is_valid_cidr
+    publish_env__should_bypass_proxies --> publish_env__address_in_network
+    publish_env__get_environ_proxies --> publish_env__should_bypass_proxies
+    publish_env__select_proxy --> publish_env__urlparse
+    publish_env__resolve_proxies --> publish_env__urlparse
+    publish_env__resolve_proxies --> publish_env__get_environ_proxies
+    publish_env__resolve_proxies --> publish_env__should_bypass_proxies
+    publish_env__default_headers --> publish_env__default_user_agent
+    publish_env__prepend_scheme_if_needed --> publish_env__parse_url
+    publish_env__get_auth_from_url --> publish_env__urlparse
+    publish_env__check_header_validity --> publish_env___validate_header_part
+    publish_env___validate_header_part --> publish_env__type
+    publish_env__urldefragauth --> publish_env__urlparse
+    publish_env__parse_requirement --> publish_env___parse_requirement
+    publish_env___parse_requirement --> publish_env___parse_extras
+    publish_env___parse_requirement --> publish_env___parse_requirement_details
+    publish_env___parse_requirement_details --> publish_env___parse_requirement_marker
+    publish_env___parse_requirement_details --> publish_env___parse_specifier
+    publish_env___parse_requirement_marker --> publish_env___parse_marker
+    publish_env___parse_extras --> publish_env___parse_extras_list
+    publish_env___parse_specifier --> publish_env___parse_version_many
+    publish_env__parse_marker --> publish_env___parse_full_marker
+    publish_env___parse_full_marker --> publish_env___parse_marker
+    publish_env___parse_marker --> publish_env___parse_marker_atom
+    publish_env___parse_marker_atom --> publish_env___parse_marker_item
+    publish_env___parse_marker_atom --> publish_env___parse_marker
+    publish_env___parse_marker_item --> publish_env___parse_marker_var
+    publish_env___parse_marker_item --> publish_env___parse_marker_op
+    publish_env___parse_marker_var --> publish_env__process_env_var
+    publish_env___parse_marker_var --> publish_env__process_python_str
+    publish_env____init__ --> publish_env___parse_requirement
+    publish_env____init__ --> publish_env___normalize_extra_values
+    publish_env____hash__ --> publish_env__hash
+    publish_env____hash__ --> publish_env__canonicalize_name
+    publish_env____eq__ --> publish_env__canonicalize_name
+    publish_env___parse_elf --> publish_env__open
+    publish_env___is_linux_armhf --> publish_env___parse_elf
+    publish_env___is_linux_i686 --> publish_env___parse_elf
+    publish_env___have_compatible_abi --> publish_env___is_linux_armhf
+    publish_env___have_compatible_abi --> publish_env___is_linux_i686
+    publish_env___glibc_version_string --> publish_env___glibc_version_string_confstr
+    publish_env___glibc_version_string --> publish_env___glibc_version_string_ctypes
+    publish_env___get_glibc_version --> publish_env___glibc_version_string
+    publish_env___get_glibc_version --> publish_env___parse_glibc_version
+    publish_env___is_compatible --> publish_env___get_glibc_version
+    publish_env___is_compatible --> publish_env__hasattr
+    publish_env__platform_tags --> publish_env___have_compatible_abi
+    publish_env__platform_tags --> publish_env__set
+    publish_env__platform_tags --> publish_env___get_glibc_version
+    publish_env__platform_tags --> publish_env___is_compatible
+    publish_env____init__ --> publish_env__bytes
+    publish_env____init__ --> publish_env__hasattr
+    publish_env__parse_email --> publish_env___get_payload
+    publish_env__parse_email --> publish_env__cast
+    publish_env____get__ --> publish_env__cast
+    publish_env___process_metadata_version --> publish_env__cast
+    publish_env___process_description_content_type --> publish_env__list
+    publish_env___process_dynamic --> publish_env__map
+    publish_env___process_dynamic --> publish_env__list
+    publish_env__from_email --> publish_env__parse_email
+    publish_env___get_spec_version --> publish_env___coerce_version
+    publish_env___compare_compatible --> publish_env___version_join
+    publish_env___compare_compatible --> publish_env__list
+    publish_env___compare_compatible --> publish_env___version_split
+    publish_env___compare_equal --> publish_env__canonicalize_version
+    publish_env___compare_equal --> publish_env___version_split
+    publish_env___compare_equal --> publish_env___pad_version
+    publish_env___compare_equal --> publish_env___public_version
+    publish_env___compare_less_than_equal --> publish_env___public_version
+    publish_env___compare_greater_than_equal --> publish_env___public_version
+    publish_env___compare_less_than --> publish_env___base_version
+    publish_env___compare_greater_than --> publish_env___base_version
+    publish_env__contains --> publish_env__list
+    publish_env__filter --> publish_env___coerce_version
+    publish_env___pad_version --> publish_env__list
+    publish_env____init__ --> publish_env__map
+    publish_env__contains --> publish_env___coerce_version
+    publish_env___toml_dict_factory --> publish_env___toml_key
+    publish_env___toml_dict_factory --> publish_env___toml_value
+    publish_env___get --> publish_env__type
+    publish_env___get_required --> publish_env___get
+    publish_env___get_sequence --> publish_env___get
+    publish_env___get_sequence --> publish_env__type
+    publish_env___get_as --> publish_env___get
+    publish_env___get_required_as --> publish_env___get_as
+    publish_env___get_sequence_as --> publish_env___get_sequence
+    publish_env___get_object --> publish_env___get
+    publish_env___get_sequence_of_objects --> publish_env___get_sequence
+    publish_env___get_required_sequence_of_objects --> publish_env___get_sequence_of_objects
+    publish_env___validate_normalized_name --> publish_env__is_normalized_name
+    publish_env___from_dict --> publish_env___validate_path_url
+    publish_env___from_dict --> publish_env___get_required
+    publish_env___from_dict --> publish_env___get
+    publish_env___from_dict --> publish_env___get_required_as
+    publish_env___from_dict --> publish_env___get_as
+    publish_env___from_dict --> publish_env___get_sequence
+    publish_env___from_dict --> publish_env___get_object
+    publish_env___from_dict --> publish_env___get_sequence_as
+    publish_env___from_dict --> publish_env___get_required_sequence_of_objects
+    publish_env__canonicalize_name --> publish_env__cast
+    publish_env__parse_wheel_filename --> publish_env__canonicalize_name
+    publish_env__parse_wheel_filename --> publish_env__parse_tag
+    publish_env__parse_wheel_filename --> publish_env__cast
+    publish_env__parse_sdist_filename --> publish_env__canonicalize_name
+    publish_env___get_musl_version --> publish_env___parse_musl_version
+    publish_env___get_musl_version --> publish_env__open
+    publish_env__platform_tags --> publish_env___get_musl_version
+    publish_env___normalize_extras --> publish_env__canonicalize_name
+    publish_env___normalize_extra_values --> publish_env___normalize_extras
+    publish_env___normalize --> publish_env__canonicalize_name
+    publish_env___evaluate_markers --> publish_env___normalize
+    publish_env___evaluate_markers --> publish_env___eval_op
+    publish_env__default_environment --> publish_env__format_full_version
+    publish_env____init__ --> publish_env___parse_marker
+    publish_env____str__ --> publish_env___format_marker
+    publish_env__evaluate --> publish_env__cast
+    publish_env__evaluate --> publish_env___evaluate_markers
+    publish_env__evaluate --> publish_env__default_environment
+    publish_env__evaluate --> publish_env___repair_python_full_version
+    publish_env__evaluate --> publish_env__canonicalize_name
+    publish_env___repair_python_full_version --> publish_env__cast
+    publish_env__execfile --> publish_env__compile
+    publish_env__execfile --> publish_env__open
+    publish_env__add_cffi_module --> publish_env__execfile
+    publish_env__add_cffi_module --> publish_env__error
+    publish_env__add_cffi_module --> publish_env__hasattr
+    publish_env___set_py_limited_api --> publish_env__hasattr
+    publish_env___add_c_module --> publish_env___set_py_limited_api
+    publish_env___add_c_module --> publish_env__make_c_source
+    publish_env___add_py_module --> publish_env__make_py_source
+    publish_env__cffi_modules --> publish_env__add_cffi_module
+    publish_env____init__ --> publish_env__hash
+    publish_env____setstate__ --> publish_env__hash
+    publish_env__parse_tag --> publish_env__set
+    publish_env___cpython_abis --> publish_env___version_nodot
+    publish_env___cpython_abis --> publish_env___get_config_var
+    publish_env___cpython_abis --> publish_env__hasattr
+    publish_env__cpython_tags --> publish_env__list
+    publish_env__cpython_tags --> publish_env___is_threaded_cpython
+    publish_env__cpython_tags --> publish_env___abi3_applies
+    publish_env__cpython_tags --> publish_env___version_nodot
+    publish_env__cpython_tags --> publish_env___cpython_abis
+    publish_env__cpython_tags --> publish_env__platform_tags
+    publish_env___generic_abi --> publish_env___get_config_var
+    publish_env___generic_abi --> publish_env___cpython_abis
+    publish_env___generic_abi --> publish_env___normalize_string
+    publish_env__generic_tags --> publish_env__list
+    publish_env__generic_tags --> publish_env__interpreter_name
+    publish_env__generic_tags --> publish_env__interpreter_version
+    publish_env__generic_tags --> publish_env___generic_abi
+    publish_env__generic_tags --> publish_env__platform_tags
+    publish_env___py_interpreter_range --> publish_env___version_nodot
+    publish_env__compatible_tags --> publish_env__list
+    publish_env__compatible_tags --> publish_env___py_interpreter_range
+    publish_env__compatible_tags --> publish_env__platform_tags
+    publish_env__mac_platforms --> publish_env__cast
+    publish_env__mac_platforms --> publish_env___mac_arch
+    publish_env__mac_platforms --> publish_env___mac_binary_formats
+    publish_env__mac_platforms --> publish_env__map
+    publish_env__ios_platforms --> publish_env__cast
+    publish_env__ios_platforms --> publish_env__map
+    publish_env__android_platforms --> publish_env___normalize_string
+    publish_env___linux_platforms --> publish_env___normalize_string
+    publish_env___generic_platforms --> publish_env___normalize_string
+    publish_env__platform_tags --> publish_env__mac_platforms
+    publish_env__platform_tags --> publish_env__ios_platforms
+    publish_env__platform_tags --> publish_env__android_platforms
+    publish_env__platform_tags --> publish_env___linux_platforms
+    publish_env__platform_tags --> publish_env___generic_platforms
+    publish_env__interpreter_version --> publish_env___get_config_var
+    publish_env__interpreter_version --> publish_env___version_nodot
+    publish_env___version_nodot --> publish_env__map
+    publish_env__sys_tags --> publish_env__interpreter_name
+    publish_env__sys_tags --> publish_env__compatible_tags
+    publish_env__sys_tags --> publish_env__cpython_tags
+    publish_env__sys_tags --> publish_env__generic_tags
+    publish_env__sys_tags --> publish_env__interpreter_version
+    publish_env___generate --> publish_env__attach_exception_info
+    publish_env___load --> publish_env__attach_exception_info
+    publish_env___loaded_struct_or_union --> publish_env__check
+    publish_env___loaded_gen_constant --> publish_env__type
+    publish_env___loaded_gen_enum --> publish_env__type
+    publish_env___loaded_gen_macro --> publish_env__type
+    publish_env___loaded_gen_variable --> publish_env__type
+    publish_env____init__ --> publish_env__get_typecache
+    publish_env__dlopen --> publish_env___make_ffi_library
+    publish_env__dlclose --> publish_env__type
+    publish_env__typeof --> publish_env___builtin_function_type
+    publish_env__typeof --> publish_env__hasattr
+    publish_env__typeof --> publish_env__type
+    publish_env__verify --> publish_env___caller_dir_pycache
+    publish_env___pointer_to --> publish_env__pointer_cache
+    publish_env__addressof --> publish_env__type
+    publish_env__include --> publish_env__type
+    publish_env___apply_windows_unicode --> publish_env__list
+    publish_env___apply_embedding_fix --> publish_env__hasattr
+    publish_env__set_source --> publish_env__hasattr
+    publish_env__set_source_pkgconfig --> publish_env__flags_from_pkgconfig
+    publish_env__set_source_pkgconfig --> publish_env__merge_flags
+    publish_env__distutils_extension --> publish_env__recompile
+    publish_env__distutils_extension --> publish_env__hasattr
+    publish_env__emit_c_code --> publish_env__recompile
+    publish_env__emit_c_code --> publish_env__hasattr
+    publish_env__emit_python_code --> publish_env__recompile
+    publish_env__emit_python_code --> publish_env__hasattr
+    publish_env__compile --> publish_env__recompile
+    publish_env__compile --> publish_env__hasattr
+    publish_env__embedding_init_code --> publish_env__compile
+    publish_env___make_ffi_library --> publish_env___load_backend_lib
+    publish_env__flags_from_pkgconfig --> publish_env__call
+    publish_env__flags_from_pkgconfig --> publish_env__merge_flags
+    publish_env__as_field_python_expr --> publish_env__format_four_bytes
+    publish_env__as_python_expr --> publish_env__format_four_bytes
+    publish_env__collect_step_tables --> publish_env__set
+    publish_env___rel_readlines --> publish_env__open
+    publish_env___struct_ctx --> publish_env__list
+    publish_env___add_missing_struct_unions --> publish_env__list
+    publish_env___print_string_literal_in_array --> publish_env__type
+    publish_env___print_string_literal_in_array --> publish_env__map
+    publish_env___is_file_like --> publish_env__hasattr
+    publish_env___make_c_or_py_source --> publish_env___is_file_like
+    publish_env___make_c_or_py_source --> publish_env__print
+    publish_env___make_c_or_py_source --> publish_env__open
+    publish_env__make_c_source --> publish_env___make_c_or_py_source
+    publish_env__make_py_source --> publish_env___make_c_or_py_source
+    publish_env___patch_for_embedding --> publish_env___patch_meth
+    publish_env___patch_for_embedding --> publish_env__list
+    publish_env___patch_for_target --> publish_env___patch_meth
+    publish_env__recompile --> publish_env__make_c_source
+    publish_env__recompile --> publish_env__make_py_source
+    publish_env__recompile --> publish_env___is_file_like
+    publish_env__recompile --> publish_env___modname_to_file
+    publish_env__recompile --> publish_env__get_extension
+    publish_env__recompile --> publish_env__compile
+    publish_env__compile --> publish_env___build
+    publish_env__flatten --> publish_env___flatten
+    publish_env___cast_from --> publish_env__type
+    publish_env___to_ctypes --> publish_env__type
+    publish_env___convert_to_address --> publish_env___convert_to_address
+    publish_env____repr__ --> publish_env____repr__
+    publish_env__new_void_type --> publish_env__type
+    publish_env__new_pointer_type --> publish_env__hasattr
+    publish_env__complete_struct_or_union --> publish_env__hasattr
+    publish_env__new_function_type --> publish_env____repr__
+    publish_env__gcp --> publish_env__hash
+    publish_env__typeoffsetof --> publish_env__type
+    publish_env__rawaddressof --> publish_env__type
+    publish_env__load_library --> publish_env__list
+    publish_env__load_library --> publish_env__hasattr
+    publish_env__load_library --> publish_env__map
+    publish_env___generate_cpy_function_decl --> publish_env__set
+    publish_env___loaded_cpy_variable --> publish_env__delattr
+    publish_env___loaded_cpy_variable --> publish_env__type
+    publish_env___validate_local --> publish_env___parse_local_version
+    publish_env____init__ --> publish_env___parse_letter_version
+    publish_env____init__ --> publish_env___parse_local_version
+    publish_env____replace__ --> publish_env___validate_epoch
+    publish_env____replace__ --> publish_env___validate_release
+    publish_env____replace__ --> publish_env___validate_pre
+    publish_env____replace__ --> publish_env___validate_post
+    publish_env____replace__ --> publish_env___validate_dev
+    publish_env____replace__ --> publish_env___validate_local
+    publish_env____str__ --> publish_env__map
+    publish_env___preprocess --> publish_env___remove_line_directives
+    publish_env___preprocess --> publish_env___preprocess_extern_python
+    publish_env___preprocess --> publish_env___warn_for_string_literal
+    publish_env___preprocess --> publish_env__list
+    publish_env___common_type_names --> publish_env__set
+    publish_env___parse --> publish_env___preprocess
+    publish_env___parse --> publish_env___common_type_names
+    publish_env___parse_decl --> publish_env__hasattr
+    publish_env___parse_function_type --> publish_env__list
+    publish_env___parse_function_type --> publish_env__hasattr
+    publish_env___get_unknown_type --> publish_env__unknown_type
+    publish_env___get_unknown_ptr_type --> publish_env__unknown_ptr_type
+    publish_env__get_c_name --> publish_env__qualify
+    publish_env__build_backend_type --> publish_env__global_cache
+    publish_env____init__ --> publish_env__qualify
+    publish_env____init__ --> publish_env____init__
+    publish_env__finish_backend_type --> publish_env__list
+    publish_env__force_the_name --> publish_env__force_the_name
+    publish_env__get_typecache --> publish_env__hasattr
+    publish_env__get_typecache --> publish_env__type
+    publish_env__pointer_cache --> publish_env__global_cache
+    publish_env__attach_exception_info --> publish_env__type
+    publish_env__as_python_bytes --> publish_env__format_four_bytes
+    publish_env__html_parts --> publish_env__publish_parts
+    publish_env__html_body --> publish_env__html_parts
+    publish_env__get_transforms --> publish_env__list
+    publish_env__main --> publish_env__publish_cmdline
+    publish_env____init__ --> publish_env___locate_engine_class
+    publish_env____init__ --> publish_env__flatten
+    publish_env____init__ --> publish_env___get_so_suffixes
+    publish_env____init__ --> publish_env___caller_dir_pycache
+    publish_env__get_module_name --> publish_env__hasattr
+    publish_env__get_extension --> publish_env__maybe_relative_path
+    publish_env__get_extension --> publish_env__get_extension
+    publish_env___locate_module --> publish_env___get_so_suffixes
+    publish_env___write_source --> publish_env___ensure_dir
+    publish_env___write_source --> publish_env__open
+    publish_env___compile_module --> publish_env__compile
+    publish_env___compile_module --> publish_env___ensure_dir
+    publish_env__cleanup_tmpdir --> publish_env___caller_dir_pycache
+    publish_env__cleanup_tmpdir --> publish_env___get_so_suffixes
+    publish_env__decode --> publish_env__error_string
+    publish_env____init__ --> publish_env__open
+    publish_env____init__ --> publish_env__check_encoding
+    publish_env__read --> publish_env__hasattr
+    publish_env____init__ --> publish_env__print
+    publish_env__write --> publish_env__check_encoding
+    publish_env__write --> publish_env__error_string
+    publish_env____init__ --> publish_env__get_reader_class
+    publish_env____init__ --> publish_env__get_writer_class
+    publish_env____init__ --> publish_env__get_parser_class
+    publish_env__set_reader --> publish_env__get_reader_class
+    publish_env__set_writer --> publish_env__get_writer_class
+    publish_env__debugging_dumps --> publish_env__print
+    publish_env__prompt --> publish_env__print
+    publish_env__report_Exception --> publish_env__print
+    publish_env__report_Exception --> publish_env__error_string
+    publish_env__report_SystemMessage --> publish_env__print
+    publish_env__report_UnicodeError --> publish_env__error_string
+    publish_env__publish_cmdline --> publish_env___name_arg_warning
+    publish_env__publish_file --> publish_env___name_arg_warning
+    publish_env__publish_file --> publish_env__publish_programmatically
+    publish_env__publish_string --> publish_env___name_arg_warning
+    publish_env__publish_string --> publish_env__publish_programmatically
+    publish_env__publish_parts --> publish_env___name_arg_warning
+    publish_env__publish_parts --> publish_env__publish_programmatically
+    publish_env__publish_doctree --> publish_env___name_arg_warning
+    publish_env__publish_doctree --> publish_env__publish_programmatically
+    publish_env__publish_from_doctree --> publish_env___name_arg_warning
+    publish_env__rst2something --> publish_env__publish_cmdline
+    publish_env__rst2html --> publish_env__rst2something
+    publish_env__rst2html4 --> publish_env__rst2something
+    publish_env__rst2html5 --> publish_env__rst2something
+    publish_env__rst2latex --> publish_env__rst2something
+    publish_env__rst2man --> publish_env__rst2something
+    publish_env__rst2odt --> publish_env__rst2something
+    publish_env__rst2pseudoxml --> publish_env__rst2something
+    publish_env__rst2s5 --> publish_env__rst2something
+    publish_env__rst2xetex --> publish_env__rst2something
+    publish_env__rst2xml --> publish_env__rst2something
+    publish_env__fix_switch_cases --> publish_env___extract_nested_case
+    publish_env___extract_nested_case --> publish_env__cast
+    publish_env__fix_atomic_specifiers --> publish_env___fix_atomic_specifiers_once
+    publish_env___fix_atomic_specifiers_once --> publish_env__cast
+    publish_env__parse_file --> publish_env__preprocess_file
+    publish_env__run --> publish_env__print
+    publish_env__get_state --> publish_env__print
+    publish_env__check_line --> publish_env__print
+    publish_env__error --> publish_env___exception_data
+    publish_env__error --> publish_env__print
+    publish_env__make_transition --> publish_env__hasattr
+    publish_env__add_initial_transitions --> publish_env__add_initial_transitions
+    publish_env__pprint --> publish_env__print
+    publish_env__get_2D_block --> publish_env__column_indices
+    publish_env__parse_cfgfile --> publish_env__open
+    publish_env__traverse --> publish_env__list
+    publish_env__next_node --> publish_env__next
+    publish_env__astext --> publish_env__unescape
+    publish_env___dom_node --> publish_env__serial_escape
+    publish_env__starttag --> publish_env__serial_escape
+    publish_env__update_all_atts --> publish_env__filter
+    publish_env__validate_content --> publish_env__next
+    publish_env__get_header --> publish_env__header
+    publish_env__set_id --> publish_env__make_id
+    publish_env__set_duplicate_name_id --> publish_env__dupname
+    publish_env__note_substitution_def --> publish_env__whitespace_normalize_name
+
+    classDef highCC fill:#ff6b6b,stroke:#c92a2a,color:#fff
+    classDef medCC fill:#ffd43b,stroke:#f08c00,color:#000
+    class publish_env__renderToken,publish_env__send,publish_env__resolve_redirects,publish_env__build_digest_header,publish_env___encode_files,publish_env__prepare_url,publish_env__prepare_body,publish_env__super_len,publish_env__should_bypass_proxies,publish_env__parse_email,publish_env__filter,publish_env___cpython_abis,publish_env__cpython_tags,publish_env__mac_platforms,publish_env__collect_type_table,publish_env__write_c_source_to_f,publish_env___generate_cpy_function_decl,publish_env___struct_ctx,publish_env__recompile,publish_env__complete_struct_or_union,publish_env___generate_cpy_function_decl,publish_env___internal_parse,publish_env___parse_decl,publish_env___get_type_and_quals,publish_env___parse_function_type,publish_env___get_struct_union_enum_type,publish_env___parse_constant,publish_env__finish_backend_type,publish_env__run,publish_env__get_indented highCC
+    class publish_env__remove_dot_segments,publish_env__validate,publish_env__resolve_with,publish_env__tokenize,publish_env__encode,publish_env__tokenize,publish_env__split_authority,publish_env____compile__,publish_env__fence,publish_env__configure,publish_env__pretty,publish_env__remove_cookie_by_name,publish_env___find_no_duplicates,publish_env__cert_verify,publish_env__check_compatibility,publish_env__merge_setting,publish_env__should_strip_auth,publish_env__send,publish_env__merge_environment_settings,publish_env__as_dict,publish_env___encode_params,publish_env__iter_lines,publish_env__json,publish_env__get_netrc_auth,publish_env__extract_zipped_paths,publish_env__guess_json_utf,publish_env___is_compatible,publish_env__platform_tags,publish_env__from_raw,publish_env___write_metadata medCC

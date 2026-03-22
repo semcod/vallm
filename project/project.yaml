@@ -1,0 +1,434 @@
+version: '1'
+project:
+  name: vallm
+  repo: /home/tom/github/semcod/vallm
+  language: python
+  analyzed_at: '2026-03-22T14:21:25Z'
+  tool: code2llm
+  stats:
+    files: 16
+    lines: 4170
+    functions: 91
+    classes: 19
+health:
+  cc_avg: 4.3
+  critical_count: 8
+  critical_limit: 10
+  duplicates: 0
+  cycles: 0
+  alerts:
+  - type: cc_exceeded
+    target: batch
+    value: 42
+    limit: 15
+    severity: critical
+  - type: high_fan_out
+    target: batch
+    value: 34
+    limit: 10
+    severity: critical
+  - type: high_fan_out
+    target: validate
+    value: 20
+    limit: 10
+    severity: critical
+  - type: high_fan_out
+    target: SemanticValidator._parse_response
+    value: 17
+    limit: 10
+    severity: error
+  - type: cc_exceeded
+    target: validate
+    value: 18
+    limit: 15
+    severity: warning
+  - type: high_fan_out
+    target: check
+    value: 12
+    limit: 10
+    severity: warning
+  - type: high_fan_out
+    target: main
+    value: 11
+    limit: 10
+    severity: warning
+  - type: high_fan_out
+    target: SandboxRunner._run_docker
+    value: 11
+    limit: 10
+    severity: warning
+  - type: high_fan_out
+    target: info
+    value: 10
+    limit: 10
+    severity: warning
+  - type: high_fan_out
+    target: SecurityValidator._try_bandit
+    value: 10
+    limit: 10
+    severity: warning
+modules:
+- path: src/vallm/cli.py
+  lines: 401
+  classes: 0
+  methods: 8
+  cc_max: 42
+  inbound_deps: 0
+  exports:
+  - name: validate
+    type: function
+    cc: 18
+    flag: split
+    fan_out: 20
+  - name: check
+    type: function
+    cc: 8
+    fan_out: 12
+  - name: batch
+    type: function
+    cc: 42
+    flag: split
+    fan_out: 34
+  - name: info
+    type: function
+    cc: 2
+    fan_out: 10
+- path: src/vallm/validators/complexity.py
+  lines: 183
+  classes: 1
+  methods: 4
+  cc_max: 12
+  inbound_deps: 0
+  exports:
+  - name: ComplexityValidator
+    type: class
+    cc_avg: 6.8
+    methods:
+    - name: _check_python_complexity
+      cc: 11
+    - name: _check_lizard
+      cc: 12
+- path: src/vallm/validators/semantic.py
+  lines: 249
+  classes: 1
+  methods: 8
+  cc_max: 12
+  inbound_deps: 0
+  exports:
+  - name: SemanticValidator
+    type: class
+    cc_avg: 3.2
+    methods:
+    - name: _parse_response
+      cc: 12
+      fan_out: 17
+- path: src/vallm/core/gitignore.py
+  lines: 272
+  classes: 1
+  methods: 10
+  cc_max: 11
+  inbound_deps: 1
+  exports:
+  - name: GitignoreParser
+    type: class
+    cc_avg: 5.7
+    methods:
+    - name: _pattern_to_regex
+      cc: 11
+  - name: load_gitignore
+    type: function
+    cc: 3
+  - name: get_default_excludes
+    type: function
+    cc: 1
+  - name: create_default_gitignore_parser
+    type: function
+    cc: 2
+  - name: should_exclude
+    type: function
+    cc: 4
+- path: src/vallm/validators/imports.py
+  lines: 653
+  classes: 1
+  methods: 22
+  cc_max: 10
+  inbound_deps: 0
+  exports:
+  - name: ImportValidator
+    type: class
+    cc_avg: 3.3
+    methods:
+    - name: _validate_python
+      cc: 10
+- path: src/vallm/validators/security.py
+  lines: 253
+  classes: 1
+  methods: 5
+  cc_max: 9
+  inbound_deps: 0
+  exports:
+  - name: SecurityValidator
+    type: class
+    cc_avg: 5.4
+    methods:
+    - name: _try_bandit
+      cc: 5
+      fan_out: 10
+- path: src/vallm/scoring.py
+  lines: 191
+  classes: 5
+  methods: 4
+  cc_max: 7
+  inbound_deps: 0
+  exports:
+  - name: Verdict
+    type: class
+    cc_avg: 0.0
+  - name: Severity
+    type: class
+    cc_avg: 0.0
+  - name: Issue
+    type: class
+    cc_avg: 3.0
+  - name: ValidationResult
+    type: class
+    cc_avg: 0.0
+  - name: PipelineResult
+    type: class
+    cc_avg: 0.0
+  - name: compute_verdict
+    type: function
+    cc: 6
+  - name: validate
+    type: function
+    cc: 7
+- path: src/vallm/core/graph_diff.py
+  lines: 86
+  classes: 1
+  methods: 3
+  cc_max: 6
+  inbound_deps: 1
+  exports:
+  - name: GraphDiffResult
+    type: class
+    cc_avg: 0.0
+  - name: diff_graphs
+    type: function
+    cc: 5
+  - name: diff_python_code
+    type: function
+    cc: 1
+- path: src/vallm/core/languages.py
+  lines: 220
+  classes: 1
+  methods: 6
+  cc_max: 6
+  inbound_deps: 4
+  exports:
+  - name: Language
+    type: class
+    cc_avg: 3.0
+  - name: detect_language
+    type: function
+    cc: 5
+  - name: get_language_for_validation
+    type: function
+    cc: 4
+- path: scripts/bump_version.py
+  lines: 78
+  classes: 0
+  methods: 2
+  cc_max: 5
+  inbound_deps: 2
+  exports:
+  - name: bump_version
+    type: function
+    cc: 5
+  - name: main
+    type: function
+    cc: 5
+    fan_out: 11
+- path: src/vallm/core/ast_compare.py
+  lines: 135
+  classes: 0
+  methods: 7
+  cc_max: 4
+  inbound_deps: 2
+  exports:
+  - name: parse_code
+    type: function
+    cc: 1
+  - name: parse_python_ast
+    type: function
+    cc: 2
+  - name: normalize_python_ast
+    type: function
+    cc: 1
+  - name: python_ast_similarity
+    type: function
+    cc: 4
+  - name: tree_sitter_node_count
+    type: function
+    cc: 1
+  - name: tree_sitter_error_count
+    type: function
+    cc: 1
+  - name: structural_diff_summary
+    type: function
+    cc: 1
+- path: src/vallm/sandbox/runner.py
+  lines: 144
+  classes: 2
+  methods: 4
+  cc_max: 4
+  inbound_deps: 0
+  exports:
+  - name: ExecutionResult
+    type: class
+    cc_avg: 0.0
+  - name: SandboxRunner
+    type: class
+    cc_avg: 3.0
+    methods:
+    - name: _run_docker
+      cc: 3
+      fan_out: 11
+- path: src/vallm/validators/syntax.py
+  lines: 96
+  classes: 1
+  methods: 3
+  cc_max: 4
+  inbound_deps: 0
+  exports:
+  - name: SyntaxValidator
+    type: class
+    cc_avg: 3.0
+- path: src/vallm/config.py
+  lines: 58
+  classes: 1
+  methods: 1
+  cc_max: 3
+  inbound_deps: 0
+  exports:
+  - name: VallmSettings
+    type: class
+    cc_avg: 3.0
+- path: src/vallm/hookspecs.py
+  lines: 33
+  classes: 1
+  methods: 3
+  cc_max: 1
+  inbound_deps: 0
+  exports:
+  - name: VallmSpec
+    type: class
+    cc_avg: 1.0
+- path: src/vallm/validators/base.py
+  lines: 21
+  classes: 1
+  methods: 1
+  cc_max: 1
+  inbound_deps: 0
+  exports:
+  - name: BaseValidator
+    type: class
+    cc_avg: 1.0
+- path: project.sh
+  lines: 14
+  classes: 0
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+- path: src/vallm/__init__.py
+  lines: 19
+  classes: 0
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+- path: src/vallm/__main__.py
+  lines: 5
+  classes: 0
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+- path: src/vallm/core/__init__.py
+  lines: 3
+  classes: 0
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+- path: src/vallm/core/proposal.py
+  lines: 37
+  classes: 1
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+  exports:
+  - name: Proposal
+    type: class
+    cc_avg: 0.0
+- path: src/vallm/sandbox/__init__.py
+  lines: 1
+  classes: 0
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+- path: src/vallm/validators/__init__.py
+  lines: 1
+  classes: 0
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+hotspots:
+- name: batch
+  fan_out: 34
+  note: Validate multiple files with auto-detected languages.
+- name: validate
+  fan_out: 20
+  note: Validate a code proposal through the vallm pipeline.
+- name: SemanticValidator._parse_response
+  fan_out: 17
+  note: Parse LLM JSON response into a ValidationResult.
+- name: check
+  fan_out: 12
+  note: Quick syntax check only (tier 1).
+- name: main
+  fan_out: 11
+  note: Orchestrates 11 calls
+- name: SandboxRunner._run_docker
+  fan_out: 11
+  note: Run code in a Docker container (requires docker package).
+- name: info
+  fan_out: 10
+  note: Show vallm configuration and available validators.
+- name: SecurityValidator._try_bandit
+  fan_out: 10
+  note: Try to run bandit if installed.
+refactoring:
+  priorities:
+  - action: Split batch (CC=42 → target CC<10)
+    impact: high
+    effort: low
+    module: cli.py
+  - action: Split god module src/vallm/validators/imports.py (653L, 1 classes)
+    impact: high
+    effort: high
+  - action: Split validate (CC=18 → target CC<10)
+    impact: medium
+    effort: low
+    module: cli.py
+  - action: Reduce batch fan-out (currently 34)
+    impact: medium
+    effort: medium
+  - action: Reduce validate fan-out (currently 20)
+    impact: medium
+    effort: medium
+  - action: Reduce SemanticValidator._parse_response fan-out (currently 17)
+    impact: medium
+    effort: medium
+evolution:
+- date: '2026-03-22'
+  cc_avg: 4.3
+  critical: 8
+  lines: 4170
+  note: Automated analysis

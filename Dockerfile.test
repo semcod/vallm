@@ -1,0 +1,138 @@
+# Multi-stage Dockerfile for vallm testing across different systems
+
+# Stage 1: Ubuntu 22.04
+FROM ubuntu:22.04 AS ubuntu-22
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y \
+    python3.11 \
+    python3.11-pip \
+    python3.11-venv \
+    python3.11-dev \
+    git \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+COPY . .
+RUN python3.11 -m venv /opt/venv
+RUN . /opt/venv/bin/activate && pip install -e .[all]
+RUN . /opt/venv/bin/activate && vallm --help
+RUN . /opt/venv/bin/activate && vallm info
+
+# Stage 2: Ubuntu 24.04
+FROM ubuntu:24.04 AS ubuntu-24
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y \
+    python3.12 \
+    python3.12-pip \
+    python3.12-venv \
+    python3.12-dev \
+    git \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+COPY . .
+RUN python3.12 -m venv /opt/venv
+RUN . /opt/venv/bin/activate && pip install -e .[all]
+RUN . /opt/venv/bin/activate && vallm --help
+RUN . /opt/venv/bin/activate && vallm info
+
+# Stage 3: Debian 12 (Bookworm)
+FROM debian:bookworm AS debian-12
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y \
+    python3.11 \
+    python3-pip \
+    python3-venv \
+    python3-dev \
+    git \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+COPY . .
+RUN python3 -m venv /opt/venv
+RUN . /opt/venv/bin/activate && pip install -e .[all]
+RUN . /opt/venv/bin/activate && vallm --help
+RUN . /opt/venv/bin/activate && vallm info
+
+# Stage 4: Alpine Linux
+FROM alpine:3.19 AS alpine
+RUN apk add --no-cache \
+    python3-dev \
+    py3-pip \
+    py3-virtualenv \
+    git \
+    curl \
+    gcc \
+    musl-dev \
+    linux-headers
+
+WORKDIR /app
+COPY . .
+RUN python3 -m venv /opt/venv
+RUN . /opt/venv/bin/activate && pip install -e .[all]
+RUN . /opt/venv/bin/activate && vallm --help
+RUN . /opt/venv/bin/activate && vallm info
+
+# Stage 5: Fedora 39
+FROM fedora:39 AS fedora-39
+RUN dnf install -y \
+    python3.11 \
+    python3-pip \
+    python3-devel \
+    git \
+    curl \
+    && dnf clean all
+
+WORKDIR /app
+COPY . .
+RUN python3.11 -m venv /opt/venv
+RUN . /opt/venv/bin/activate && pip install -e .[all]
+RUN . /opt/venv/bin/activate && vallm --help
+RUN . /opt/venv/bin/activate && vallm info
+
+# Stage 6: CentOS Stream 9
+FROM quay.io/centos/centos:stream9 AS centos-9
+RUN dnf install -y \
+    python3.9 \
+    python3-pip \
+    python3-devel \
+    git \
+    curl \
+    && dnf clean all
+
+WORKDIR /app
+COPY . .
+RUN python3.9 -m venv /opt/venv
+RUN . /opt/venv/bin/activate && pip install -e .[all]
+RUN . /opt/venv/bin/activate && vallm --help
+RUN . /opt/venv/bin/activate && vallm info
+
+# Stage 7: Python Slim (Debian-based)
+FROM python:3.11-slim AS python-slim
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+COPY . .
+RUN pip install -e .[all]
+RUN vallm --help
+RUN vallm info
+
+# Stage 8: Python Alpine
+FROM python:3.11-alpine AS python-alpine
+RUN apk add --no-cache \
+    git \
+    curl \
+    gcc \
+    musl-dev
+
+WORKDIR /app
+COPY . .
+RUN pip install -e .[all]
+RUN vallm --help
+RUN vallm info

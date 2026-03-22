@@ -1,0 +1,406 @@
+# vallm | 56f 8604L | python:56
+# Keys: M=modules, D=details, i=imports, c=classes, f=functions, m=methods
+M[56]:
+  examples/12_ollama_simple_demo/best_version.py,67
+  examples/12_ollama_simple_demo/iteration_1.py,67
+  examples/12_ollama_simple_demo/iteration_2.py,67
+  examples/01_basic_validation/main.py,120
+  examples/02_ast_comparison/main.py,94
+  examples/03_security_check/main.py,81
+  examples/04_graph_analysis/main.py,127
+  examples/05_llm_semantic_review/main.py,114
+  examples/05_llm_semantic_review/main_template.py,120
+  examples/06_multilang_validation/main.py,180
+  examples/06_multilang_validation/main_template.py,120
+  examples/07_multi_language/main.py,262
+  examples/08_code2llm_integration/main.py,188
+  examples/09_code2logic_integration/main.py,222
+  examples/10_mcp_ollama_demo/legacy_code/order_processor.py,100
+  examples/10_mcp_ollama_demo/mcp_demo.py,305
+  examples/10_mcp_ollama_demo/refactored_output.py,101
+  examples/11_claude_code_autonomous/claude_autonomous_demo.py,533
+  examples/11_claude_code_autonomous/legacy_code/data_processor.py,166
+  examples/12_ollama_simple_demo/legacy_code/simple_buggy.py,81
+  examples/12_ollama_simple_demo/ollama_simple_demo.py,267
+  scripts/bump_version.py,54
+  src/vallm/__init__.py,16
+  src/vallm/__main__.py,3
+  src/vallm/cli.py,306
+  src/vallm/config.py,37
+  src/vallm/core/__init__.py,2
+  src/vallm/core/ast_compare.py,98
+  src/vallm/core/gitignore.py,194
+  src/vallm/core/graph_builder.py,94
+  src/vallm/core/graph_diff.py,71
+  src/vallm/core/languages.py,166
+  src/vallm/core/proposal.py,29
+  src/vallm/hookspecs.py,23
+  src/vallm/sandbox/__init__.py,1
+  src/vallm/sandbox/runner.py,119
+  src/vallm/scoring.py,137
+  src/vallm/validators/__init__.py,1
+  src/vallm/validators/base.py,14
+  src/vallm/validators/complexity.py,153
+  src/vallm/validators/imports.py,537
+  src/vallm/validators/security.py,211
+  src/vallm/validators/semantic.py,210
+  src/vallm/validators/syntax.py,80
+  tests/__init__.py,0
+  tests/test_ast_compare.py,42
+  tests/test_complexity.py,40
+  tests/test_gitignore.py,170
+  tests/test_graph.py,37
+  tests/test_imports.py,25
+  tests/test_languages.py,204
+  tests/test_pipeline.py,39
+  tests/test_scoring.py,53
+  tests/test_security.py,25
+  tests/test_syntax.py,29
+  tests/test_vallm.py,7
+D:
+  examples/12_ollama_simple_demo/best_version.py:
+    i: os,json,typing.{Any,Dict,List}
+    e: process_user_input,load_config,save_data,calculate_total,main
+    process_user_input(user_input:str)->str
+    load_config()->Dict[str,Any]
+    save_data(data:Dict[str;Any];filename:str)->None
+    calculate_total(items:List[Dict[str;Any]])->float
+    main()
+  examples/12_ollama_simple_demo/iteration_1.py:
+    i: os,json,typing.{Any,Dict,List}
+    e: process_user_input,load_config,save_data,calculate_total,main
+    process_user_input(user_input:str)->str
+    load_config()->Dict[str,Any]
+    save_data(data:Dict[str;Any];filename:str)->None
+    calculate_total(items:List[Dict[str;Any]])->float
+    main()
+  examples/12_ollama_simple_demo/iteration_2.py:
+    i: os,json,typing.{Any,Dict,List}
+    e: process_user_input,load_config,save_data,calculate_total,main
+    process_user_input(user_input:str)->str
+    load_config()->Dict[str,Any]
+    save_data(data:Dict[str;Any];filename:str)->None
+    calculate_total(items:List[Dict[str;Any]])->float
+    main()
+  examples/01_basic_validation/main.py:
+    i: json,os,pathlib.Path,vallm.{Proposal,VallmSettings,validate}
+    e: save_analysis_data,main
+    save_analysis_data(example_name:str;result_data:dict)
+    main()
+  examples/02_ast_comparison/main.py:
+    i: json,pathlib.Path,vallm.core.ast_compare.{parse_code,python_ast_similarity,structural_diff_summary,tree_sitter_error_count,tree_sitter_node_count}
+    e: save_analysis_data,main
+    save_analysis_data(example_name:str;result_data:dict)
+    main()
+  examples/03_security_check/main.py:
+    i: json,pathlib.Path,vallm.{Proposal,VallmSettings},vallm.validators.security.SecurityValidator
+    e: save_analysis_data,main
+    save_analysis_data(example_name:str;result_data:dict)
+    main()
+  examples/04_graph_analysis/main.py:
+    i: json,pathlib.Path,vallm.core.graph_builder.build_python_graph,vallm.core.graph_diff.diff_python_code
+    e: save_analysis_data,main
+    save_analysis_data(example_name:str;result_data:dict)
+    main()
+  examples/05_llm_semantic_review/main.py:
+    i: json,pathlib.Path,vallm.{Proposal,VallmSettings,validate}
+    e: save_analysis_data,main
+    save_analysis_data(example_name:str;result_data:dict)
+    main()
+  examples/05_llm_semantic_review/main_template.py:
+    i: json,os,pathlib.Path,vallm.{Proposal,VallmSettings,validate}
+    e: save_analysis_data,main
+    save_analysis_data(example_name:str;result_data:dict)
+    main()
+  examples/06_multilang_validation/main.py:
+    i: vallm.{Proposal,VallmSettings,validate}
+    e: main
+    main()
+  examples/06_multilang_validation/main_template.py:
+    i: json,os,pathlib.Path,vallm.{Proposal,VallmSettings,validate}
+    e: save_analysis_data,main
+    save_analysis_data(example_name:str;result_data:dict)
+    main()
+  examples/07_multi_language/main.py:
+    i: json,pathlib.Path,vallm.{Language,Proposal,VallmSettings,detect_language,validate}
+    e: test_language_detection,validate_single_language,validate_all_languages,save_results,print_language_info,main
+    test_language_detection()
+    validate_single_language(lang_name:str;code:str;is_bad:bool=False)->dict
+    validate_all_languages()
+    save_results(results:list[dict])
+    print_language_info()
+    main()
+  examples/08_code2llm_integration/main.py:
+    i: json,pathlib.Path,vallm.{Proposal,VallmSettings,validate},vallm.core.languages.detect_language
+    e: create_sample_project,analyze_with_code2llm,validate_with_vallm,generate_report,main
+    create_sample_project(base_path:Path)->None
+    analyze_with_code2llm(project_path:Path)->dict
+    validate_with_vallm(project_path:Path)->dict
+    generate_report(code2llm_result:dict;vallm_result:dict;output_path:Path)->None
+    main()
+  examples/09_code2logic_integration/main.py:
+    i: json,pathlib.Path,vallm.{Proposal,VallmSettings,validate},vallm.core.graph_builder.build_python_graph,vallm.core.languages.{Language,detect_language}
+    e: analyze_with_code2logic,validate_with_vallm,build_call_graph,generate_report,visualize_flow,main
+    analyze_with_code2logic(code:str)->dict
+    validate_with_vallm(code:str)->dict
+    build_call_graph(code:str)->dict
+    generate_report(code2logic_result:dict;vallm_result:dict;graph_result:dict;output_path:Path)->None
+    visualize_flow(code:str;output_path:Path)->None
+    main()
+  examples/10_mcp_ollama_demo/legacy_code/order_processor.py:
+    i: json,os,datetime
+    e: OrderManager,process_order,load_config,save_data,calculate,validate_email_1,validate_email_2,calculate_shipping
+    OrderManager: __init__(0),add_order(1),execute_query(1),process_payment(2),send_email(3)  # Class with mixed responsibilities - S...
+    process_order(data)
+    load_config()
+    save_data(data;filename)
+    calculate(x;y;z;a;b;c)
+    validate_email_1(email)
+    validate_email_2(email)
+    calculate_shipping(weight)
+    dead_code()
+  examples/10_mcp_ollama_demo/mcp_demo.py:
+    i: json,logging,sys,time,requests,pathlib.Path,typing.Optional
+    e: Colors,log_section,log_step,log_code,analyze_with_code2llm,validate_with_vallm,call_ollama,generate_refactoring_prompt
+    Colors: 
+    log_section(title:str)
+    log_step(step:int;description:str)
+    log_code(label:str;code:str;max_lines:int=30)
+    analyze_with_code2llm(code_path:Path)->dict
+    validate_with_vallm(code:str;description:str='Code')->dict
+    call_ollama(prompt:str;model:str='qwen2.5-coder:7b';temperature:float=0.2)->str
+    generate_refactoring_prompt(code:str;analysis:dict)->str
+    extract_code_from_response(response:str)->str
+  examples/10_mcp_ollama_demo/refactored_output.py:
+    i: json,os,datetime,subprocess,re,typing.{Dict,List,Optional}
+    e: OrderManager,validate_email,calculate_shipping,load_config,save_data,process_order,main
+    OrderManager: __init__(0),add_order(1),validate_order(1),execute_query(1),process_payment(2)  # Class with single responsibility - ad...
+    validate_email(email:str)->bool
+    calculate_shipping(weight:float)->float
+    load_config()->Dict[str,Any]
+    save_data(data:Dict[str;Any];filename:str)->None
+    process_order(data:Dict[str;Any])->float
+    main()
+  examples/11_claude_code_autonomous/legacy_code/data_processor.py:
+    i: json,os,sqlite3,subprocess,sys,datetime,typing.{Any,Dict,List,Optional}
+    e: DataProcessor,ReportGenerator,load_config,init_database,main
+    DataProcessor: __init__(0),process_user_data(1),calculate_metrics(1),export_data(2),validate_email(1)  # Data processor with multiple responsi...
+    ReportGenerator: __init__(1),generate_report(0),export_report(1)  # Report generator with tight coupling...
+    load_config()
+    init_database()
+    main()
+  examples/12_ollama_simple_demo/legacy_code/simple_buggy.py:
+    i: os,json
+    e: BadClass,process_user_input,load_config,save_data,calculate_total,duplicate_function,duplicate_function,unused_function
+    BadClass: __init__(0),process_data(1),another_method(0)  # Class with multiple issues.
+    process_user_input(user_input)
+    load_config()
+    save_data(data;filename)
+    calculate_total(items)
+    duplicate_function()
+    duplicate_function()
+    unused_function()
+    main()
+  examples/12_ollama_simple_demo/ollama_simple_demo.py:
+    i: json,logging,os,subprocess,sys,time,pathlib.Path,typing.{Dict,List,Optional}
+    e: Colors,log_section,log_step,analyze_with_code2llm,call_ollama,validate_with_vallm,run_simple_test,generate_ollama_prompt
+    Colors: 
+    log_section(title:str)
+    log_step(step:int;description:str)
+    analyze_with_code2llm(code_path:Path)->Dict
+    call_ollama(prompt:str;model:str='qwen2.5-coder:7b')->str
+    validate_with_vallm(code:str)->Dict
+    run_simple_test(code:str)->Dict
+    generate_ollama_prompt(code:str;analysis:Dict)->str
+    extract_code_from_response(response:str)->str
+  scripts/bump_version.py:
+    i: sys,re,pathlib.Path
+    e: bump_version,main
+    bump_version(version_str;bump_type)
+    main()
+  src/vallm/cli.py:
+    i: typer,__future__.annotations,pathlib.Path,rich.console.Console,rich.panel.Panel,rich.table.Table,typing.Optional
+    e: validate,check,batch,info
+    validate(code:Optional[str]=typer.Option(None; '--code'; '-c'; help='Code string to validate');file:Optional[Path]=typer.Option(None; '--file'; '-f'; help='File to validate');language:Optional[str]=typer.Option(None; '--lang'; '-l'; help='Programming language (auto-detected from file extension if not specified)');reference:Optional[Path]=typer.Option(None; '--ref'; '-r'; help='Reference code file');config:Optional[Path]=typer.Option(None; '--config'; help='Path to vallm.toml');enable_semantic:bool=typer.Option(False; '--semantic'; help='Enable LLM-as-judge');...+1)
+    check(file:Path=typer.Argument(...; help='File to syntax-check');language:Optional[str]=typer.Option(None; '--lang'; '-l'; help='Programming language (auto-detected if not specified)'))
+    batch(paths:list[Path]=typer.Argument(...; help='Files or directories to validate');recursive:bool=typer.Option(False; '--recursive'; '-r'; help='Recurse into directories');include:Optional[str]=typer.Option(None; '--include'; help="File patterns to include (comma-separated; e.g.; '*.py;*.js')");exclude:Optional[str]=typer.Option(None; '--exclude'; help='File patterns to exclude (comma-separated)');use_gitignore:bool=typer.Option(True; '--use-gitignore/--no-gitignore'; help='Respect .gitignore patterns (default: True)');output_format:str=typer.Option('rich'; '--format'; help='Output format: rich; json; text');...+1)
+    info()
+    _check_dep(module:str;label:str)
+    _output_rich(result;verbose:bool)
+    _output_json(result)
+    _output_text(result)
+  src/vallm/config.py:
+    i: __future__.annotations,pathlib.Path,pydantic.Field,pydantic_settings.{BaseSettings,SettingsConfigDict},typing.Optional
+    e: VallmSettings
+    VallmSettings: from_toml(1)  # vallm configuration with layered sour...
+  src/vallm/core/ast_compare.py:
+    i: ast,__future__.annotations,tree_sitter_language_pack.get_parser,typing.Optional
+    e: parse_code,parse_python_ast,normalize_python_ast,python_ast_similarity,tree_sitter_node_count,tree_sitter_error_count,structural_diff_summary
+    parse_code(code:str;language:str='python')
+    parse_python_ast(code:str)->Optional[Any]
+    normalize_python_ast(tree:Any)->str
+    python_ast_similarity(code1:str;code2:str)->float
+    tree_sitter_node_count(code:str;language:str='python')->int
+    tree_sitter_error_count(code:str;language:str='python')->int
+    structural_diff_summary(code1:str;code2:str;language:str='python')->dict
+  src/vallm/core/gitignore.py:
+    i: os,re,__future__.annotations,pathlib.Path,typing.Optional
+    e: GitignoreParser,load_gitignore,get_default_excludes,create_default_gitignore_parser,should_exclude
+    GitignoreParser: __init__(1),_parse(1),matches(1),_match_pattern(3),_fnmatch(2)  # Parse .gitignore files and match path...
+    load_gitignore(path:Any='.')->GitignoreParser
+    get_default_excludes()->list[str]
+    create_default_gitignore_parser()->GitignoreParser
+    should_exclude(path:Path;gitignore_parser:Optional[GitignoreParser]=None;use_defaults:bool=True)->bool
+  src/vallm/core/graph_builder.py:
+    i: ast,__future__.annotations,dataclasses.{dataclass,field}
+    e: ImportEdge,CallEdge,CodeGraph,build_python_graph
+    ImportEdge:   # Represents an import dependency.
+    CallEdge:   # Represents a function call relationship.
+    CodeGraph: to_dict(0)  # A graph of code relationships (import...
+    build_python_graph(code:str;module_name:str='<module>')->CodeGraph
+  src/vallm/core/graph_diff.py:
+    i: __future__.annotations,dataclasses.{dataclass,field},vallm.core.graph_builder.{CodeGraph,build_python_graph}
+    e: GraphDiffResult,diff_graphs,diff_python_code
+    GraphDiffResult: has_changes(0),breaking_changes(0)  # Result of comparing two code graphs.
+    diff_graphs(before:CodeGraph;after:CodeGraph)->GraphDiffResult
+    diff_python_code(before_code:str;after_code:str)->GraphDiffResult
+    _diff_list(before;after;added:bool)
+  src/vallm/core/languages.py:
+    i: __future__.annotations,enum.{Enum,auto},pathlib.Path,typing.Optional
+    e: Language,detect_language,get_language_for_validation
+    Language: __init__(3),from_extension(1),from_path(1),from_string(1),is_compiled(0)  # Supported programming languages with...
+    detect_language(source:Any)->Optional[Language]
+    get_language_for_validation(source:Any;explicit:Optional[str]=None)->str
+  src/vallm/core/proposal.py:
+    i: __future__.annotations,dataclasses.{dataclass,field},typing.Optional
+    e: Proposal
+    Proposal: code_bytes(0),reference_bytes(0)  # A code proposal to be validated.
+  src/vallm/hookspecs.py:
+    i: pluggy,__future__.annotations,typing.TYPE_CHECKING
+    e: VallmSpec
+    VallmSpec: validate_proposal(2),get_validator_name(0),get_validator_tier(0)  # Hook specifications that validators m...
+  src/vallm/sandbox/runner.py:
+    i: __future__.annotations,dataclasses.{dataclass,field},typing.Optional,vallm.config.VallmSettings
+    e: ExecutionResult,SandboxRunner
+    ExecutionResult: success(0)  # Result of sandboxed code execution.
+    SandboxRunner: __init__(1),run(2),_run_subprocess(2),_run_docker(2)  # Unified interface for running code in...
+  src/vallm/scoring.py:
+    i: __future__.annotations,dataclasses.{dataclass,field},enum.Enum,typing.Optional,vallm.config.VallmSettings,vallm.core.proposal.Proposal
+    e: Verdict,Severity,Issue,ValidationResult,PipelineResult,compute_verdict,validate
+    Verdict: 
+    Severity: 
+    Issue: __str__(0)  # A single issue found during validation.
+    ValidationResult: weighted_score(0),has_errors(0)  # Result from a single validator.
+    PipelineResult: weighted_score(0),all_issues(0),error_count(0),warning_count(0)  # Aggregated result from all validators.
+    compute_verdict(results:list[ValidationResult];settings:Optional[VallmSettings]=None)->PipelineResult
+    validate(proposal:Proposal;settings:Optional[VallmSettings]=None;validators:Optional[list]=None;context:Optional[dict]=None)->PipelineResult
+    _get_default_validators(settings:VallmSettings)->list
+  src/vallm/validators/base.py:
+    i: __future__.annotations,abc.{ABC,abstractmethod},vallm.core.proposal.Proposal,vallm.scoring.ValidationResult
+    e: BaseValidator
+    BaseValidator: validate(2)  # Base class for all vallm validators.
+  src/vallm/validators/complexity.py:
+    i: lizard,__future__.annotations,radon.complexity.cc_visit,radon.metrics.mi_visit,typing.Optional,vallm.config.VallmSettings,vallm.core.languages.{LIZARD_SUPPORTED,Language,detect_language},vallm.core.proposal.Proposal
+    e: ComplexityValidator
+    ComplexityValidator: __init__(1),validate(2),_check_python_complexity(1),_check_lizard(3)  # Tier 2: Cyclomatic complexity, mainta...
+  src/vallm/validators/imports.py:
+    i: ast,re,__future__.annotations,importlib.util,tree_sitter_language_pack.get_parser,typing.Optional,vallm.core.proposal.Proposal,vallm.scoring.{Issue,Severity,ValidationResult}
+    e: ImportValidator
+    ImportValidator: validate(2),_validate_python(1),_validate_javascript(1),_validate_typescript(1),_validate_js_ts(3)  # Tier 1: Validate that imports are res...
+  src/vallm/validators/security.py:
+    i: ast,re,__future__.annotations,vallm.core.proposal.Proposal,vallm.scoring.{Issue,Severity,ValidationResult},vallm.validators.base.BaseValidator
+    e: SecurityValidator
+    SecurityValidator: validate(2),_check_patterns(2),_check_python_ast(1),_get_func_name(1),_try_bandit(1)  # Tier 2: Security analysis using built...
+  src/vallm/validators/semantic.py:
+    i: json,re,__future__.annotations,typing.Optional,vallm.config.VallmSettings,vallm.core.proposal.Proposal,vallm.scoring.{Issue,Severity,ValidationResult},vallm.validators.base.BaseValidator
+    e: SemanticValidator
+    SemanticValidator: __init__(1),validate(2),_build_prompt(1),_call_llm(1),_call_ollama(1)  # Tier 3: LLM-as-judge semantic code re...
+  src/vallm/validators/syntax.py:
+    i: ast,__future__.annotations,vallm.core.ast_compare.tree_sitter_error_count,vallm.core.proposal.Proposal,vallm.scoring.{Issue,Severity,ValidationResult},vallm.validators.base.BaseValidator
+    e: SyntaxValidator
+    SyntaxValidator: validate(2),_validate_python(1),_validate_treesitter(2)  # Tier 1: Fast syntax validation.
+  tests/test_ast_compare.py:
+    i: vallm.core.ast_compare.{parse_code,parse_python_ast,python_ast_similarity,tree_sitter_error_count,tree_sitter_node_count}
+    e: test_parse_code_python,test_parse_code_javascript,test_parse_python_ast_valid,test_parse_python_ast_invalid,test_similarity_identical,test_similarity_renamed,test_similarity_different,test_node_count
+    test_parse_code_python()
+    test_parse_code_javascript()
+    test_parse_python_ast_valid()
+    test_parse_python_ast_invalid()
+    test_similarity_identical()
+    test_similarity_renamed()
+    test_similarity_different()
+    test_node_count()
+  tests/test_complexity.py:
+    i: vallm.config.VallmSettings,vallm.core.proposal.Proposal,vallm.validators.complexity.ComplexityValidator
+    e: test_simple_code,test_complex_code,test_javascript_lizard
+    test_simple_code()
+    test_complex_code()
+    test_javascript_lizard()
+  tests/test_gitignore.py:
+    i: tempfile,pytest,pathlib.Path,vallm.core.gitignore.{GitignoreParser,create_default_gitignore_parser,get_default_excludes,load_gitignore,should_exclude}
+    e: TestGitignoreParser,TestLoadGitignore,TestDefaultExcludes,TestShouldExclude,TestIntegration
+    TestGitignoreParser: test_simple_pattern(0),test_directory_pattern(0),test_negation_pattern(0),test_parse_gitignore_content(1),test_comments_and_empty_lines(0)  # Test gitignore pattern matching.
+    TestLoadGitignore: test_load_from_directory(1),test_load_from_file_path(1),test_load_nonexistent(1)  # Test loading .gitignore from filesystem.
+    TestDefaultExcludes: test_default_excludes_list(0),test_default_parser(0)  # Test default exclude patterns.
+    TestShouldExclude: test_with_gitignore(1),test_with_defaults_fallback(0),test_no_defaults(0)  # Test the should_exclude convenience f...
+    TestIntegration: test_complex_gitignore(1)  # Integration tests for gitignore funct...
+  tests/test_graph.py:
+    i: vallm.core.graph_builder.build_python_graph,vallm.core.graph_diff.diff_python_code
+    e: test_build_graph_imports,test_build_graph_functions,test_build_graph_classes,test_build_graph_calls,test_diff_added_function,test_diff_removed_function,test_diff_no_changes
+    test_build_graph_imports()
+    test_build_graph_functions()
+    test_build_graph_classes()
+    test_build_graph_calls()
+    test_diff_added_function()
+    test_diff_removed_function()
+    test_diff_no_changes()
+  tests/test_imports.py:
+    i: vallm.core.proposal.Proposal,vallm.validators.imports.ImportValidator
+    e: test_valid_imports,test_missing_import,test_no_imports,test_non_python_skipped
+    test_valid_imports()
+    test_missing_import()
+    test_no_imports()
+    test_non_python_skipped()
+  tests/test_languages.py:
+    i: pytest,vallm.core.languages.{LIZARD_SUPPORTED,Language,detect_language,get_language_for_validation}
+    e: TestLanguageEnum,TestFromExtension,TestFromPath,TestFromString,TestDetectLanguage,TestGetLanguageForValidation,TestLizardSupported,TestNewLanguages
+    TestLanguageEnum: test_all_languages_have_properties(0),test_python_properties(0),test_rust_properties(0),test_javascript_properties(0),test_go_properties(0)  # Test Language enum functionality.
+    TestFromExtension: test_common_extensions(0),test_extension_without_dot(0),test_case_insensitive(0),test_unknown_extension(0)  # Test language detection from file ext...
+    TestFromPath: test_simple_paths(0),test_paths_with_directories(0),test_path_objects(0)  # Test language detection from file paths.
+    TestFromString: test_by_name(0),test_by_display_name(0),test_by_tree_sitter_id(0),test_case_insensitive(0),test_by_extension(0)  # Test language detection from string n...
+    TestDetectLanguage: test_from_path(0),test_from_extension(0),test_from_name(0),test_unknown(0)  # Test the main detect_language function.
+  tests/test_pipeline.py:
+    i: vallm.{Proposal,VallmSettings,validate},vallm.scoring.Verdict
+    e: test_pipeline_good_code,test_pipeline_syntax_error,test_pipeline_missing_import
+    test_pipeline_good_code()
+    test_pipeline_syntax_error()
+    test_pipeline_missing_import()
+  tests/test_scoring.py:
+    i: vallm.config.VallmSettings,vallm.scoring
+    e: test_verdict_pass,test_verdict_review,test_verdict_fail,test_hard_gate_on_error,test_weighted_score,test_custom_thresholds
+    test_verdict_pass()
+    test_verdict_review()
+    test_verdict_fail()
+    test_hard_gate_on_error()
+    test_weighted_score()
+    test_custom_thresholds()
+  tests/test_security.py:
+    i: vallm.core.proposal.Proposal,vallm.validators.security.SecurityValidator
+    e: test_safe_code,test_eval_detected,test_exec_detected,test_hardcoded_secret
+    test_safe_code()
+    test_eval_detected()
+    test_exec_detected()
+    test_hardcoded_secret()
+  tests/test_syntax.py:
+    i: vallm.core.proposal.Proposal,vallm.validators.syntax.SyntaxValidator
+    e: test_valid_python,test_invalid_python,test_valid_javascript,test_invalid_javascript,test_valid_c,test_empty_code
+    test_valid_python()
+    test_invalid_python()
+    test_valid_javascript()
+    test_invalid_javascript()
+    test_valid_c()
+    test_empty_code()
+  tests/test_vallm.py:
+    e: test_placeholder,test_import
+    test_placeholder()
+    test_import()

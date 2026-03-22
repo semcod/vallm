@@ -145,6 +145,10 @@ def batch(
     use_gitignore: bool = typer.Option(True, "--use-gitignore/--no-gitignore", help="Respect .gitignore patterns (default: True)"),
     output_format: str = typer.Option("rich", "--format", help="Output format: rich, json, text"),
     fail_fast: bool = typer.Option(False, "--fail-fast", "-x", help="Stop on first failure"),
+    enable_semantic: bool = typer.Option(False, "--semantic", help="Enable LLM-as-judge"),
+    enable_security: bool = typer.Option(False, "--security", help="Enable security checks"),
+    model: Optional[str] = typer.Option(None, "--model", "-m", help="LLM model for semantic"),
+    verbose: bool = typer.Option(False, "--verbose", "-v", help="Verbose output"),
 ):
     """Validate multiple files with auto-detected languages."""
     from vallm.config import VallmSettings
@@ -156,6 +160,13 @@ def batch(
     import fnmatch
     
     settings = VallmSettings()
+    
+    # Apply command line options
+    settings.enable_semantic = enable_semantic
+    settings.enable_security = enable_security
+    if model:
+        settings.llm_model = model
+    settings.verbose = verbose
     
     # Load .gitignore parser
     gitignore_parser = None
