@@ -96,44 +96,46 @@ if __name__ == "__main__":
     
     def test_semantic_cache_performance(self):
         """Test that semantic cache improves performance."""
+        import tempfile
         from vallm.validators.semantic_cache import SemanticCache
         
-        cache = SemanticCache()
-        
-        # Mock validation result
-        mock_result = Mock()
-        mock_result.validator = "semantic"
-        mock_result.score = 0.8
-        mock_result.weight = 1.0
-        mock_result.issues = []
-        mock_result.details = {}
-        
-        code = "def test(): pass"
-        language = "python"
-        model = "test-model"
-        
-        # First call should miss cache
-        start_time = time.time()
-        cached_result = cache.get(code, language, model)
-        first_call_time = time.time() - start_time
-        
-        assert cached_result is None
-        
-        # Store in cache
-        cache.set(code, language, model, mock_result)
-        
-        # Second call should hit cache
-        start_time = time.time()
-        cached_result = cache.get(code, language, model)
-        second_call_time = time.time() - start_time
-        
-        assert cached_result is not None
-        assert cached_result.validator == "semantic"
-        
-        # Cache hit should be much faster
-        assert second_call_time < first_call_time * 0.1, (
-            f"Cache hit ({second_call_time:.6f}s) should be faster than miss ({first_call_time:.6f}s)"
-        )
+        with tempfile.TemporaryDirectory() as temp_dir:
+            cache = SemanticCache(Path(temp_dir))
+            
+            # Mock validation result
+            mock_result = Mock()
+            mock_result.validator = "semantic"
+            mock_result.score = 0.8
+            mock_result.weight = 1.0
+            mock_result.issues = []
+            mock_result.details = {}
+            
+            code = "def test(): pass"
+            language = "python"
+            model = "test-model"
+            
+            # First call should miss cache
+            start_time = time.time()
+            cached_result = cache.get(code, language, model)
+            first_call_time = time.time() - start_time
+            
+            assert cached_result is None
+            
+            # Store in cache
+            cache.set(code, language, model, mock_result)
+            
+            # Second call should hit cache
+            start_time = time.time()
+            cached_result = cache.get(code, language, model)
+            second_call_time = time.time() - start_time
+            
+            assert cached_result is not None
+            assert cached_result.validator == "semantic"
+            
+            # Cache hit should be much faster
+            assert second_call_time < first_call_time * 0.1, (
+                f"Cache hit ({second_call_time:.6f}s) should be faster than miss ({first_call_time:.6f}s)"
+            )
     
     def test_cache_key_generation(self):
         """Test cache key generation is consistent."""
@@ -166,6 +168,7 @@ if __name__ == "__main__":
         """Test cache persistence across instances."""
         import tempfile
         import json
+        from vallm.validators.semantic_cache import SemanticCache
         
         with tempfile.TemporaryDirectory() as temp_dir:
             cache_dir = Path(temp_dir)

@@ -97,7 +97,6 @@
 - [x] **Plugin system tests** - added test coverage for plugin manager in `test_plugins.py`
 - [x] **LogicalErrorValidator** - implemented pyflakes integration in `validators/logical.py`
 - [x] **LintValidator** - implemented ruff integration in `validators/lint.py`
-- [x] **SemanticCache** - implemented caching layer for semantic validation
 - [ ] **Type annotations** — add return types to all public functions; run mypy in CI
 - [ ] **Docstrings** — several internal methods lack docstrings
 - [x] **Tests for semantic validator** - comprehensive test suite exists
@@ -110,4 +109,4 @@
 - [x] **Publish automation** — GitHub Actions workflow for PyPI release on tag
 - [x] **CONTRIBUTING.md** - comprehensive contribution guidelines ✅
 
-Last updated: 2026-03-23 (refactoring completed)
+Last updated: 2026-03-23

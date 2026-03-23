@@ -100,6 +100,8 @@ def batch_command(
     use_gitignore: bool = typer.Option(True, "--gitignore/--no-gitignore", help="Respect .gitignore"),
     enable_semantic: bool = typer.Option(False, "--semantic", help="Enable LLM-as-judge"),
     enable_security: bool = typer.Option(False, "--security", help="Enable security checks"),
+    no_imports: bool = typer.Option(False, "--no-imports", help="Skip import validation (faster)"),
+    no_complexity: bool = typer.Option(False, "--no-complexity", help="Skip complexity analysis (faster)"),
     model: Optional[str] = typer.Option(None, "--model", "-m", help="LLM model for semantic"),
     output_format: str = typer.Option("rich", "--output", "-o", help="Output format"),
     fail_fast: bool = typer.Option(False, "--fail-fast", help="Stop on first failure"),
@@ -116,7 +118,7 @@ def batch_command(
         from vallm.cli.batch_processor import BatchProcessor
         processor = BatchProcessor(console)
     
-    settings = build_batch_settings(enable_semantic, enable_security, model, verbose)
+    settings = build_batch_settings(enable_semantic, enable_security, model, verbose, no_imports, no_complexity)
     
     results_by_language, failed_files, passed_count = processor.process_batch(
         paths=paths,
