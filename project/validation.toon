@@ -1,1 +1,285 @@
 Using .gitignore from .
+Excluded 30455 files by .gitignore
+Validating 163 files...
+Processing 1/163: CONTRIBUTING.md
+Processing 2/163: project.toon
+Processing 3/163: goal.yaml
+Processing 4/163: Makefile
+Processing 5/163: .pre-commit-hooks.yaml
+Processing 6/163: .pre-commit-config.yaml
+Processing 7/163: VERSION
+Processing 8/163: TICKET
+Processing 9/163: LICENSE
+Processing 10/163: pyproject.toml
+Processing 11/163: TODO.md
+Processing 12/163: Dockerfile.test
+Processing 13/163: CHANGELOG.md
+Processing 14/163: project.sh
+Processing 15/163: README.md
+Processing 16/163: docs/README.md
+Processing 17/163: docs/TESTING.md
+Processing 18/163: code2llm_output/context.md
+Processing 19/163: code2llm_output/README.md
+Processing 20/163: code2llm_output/analysis.toon
+Processing 21/163: project2/duplication.toon
+Processing 22/163: examples/run.sh
+Processing 23/163: examples/__init__.py
+Processing 24/163: examples/README.md
+Processing 25/163: tests/test_performance.py
+Processing 26/163: tests/test_security.py
+Processing 27/163: tests/conftest.py
+Processing 28/163: tests/test_scoring.py
+Processing 29/163: tests/test_imports.py
+Processing 30/163: tests/test_vallm.py
+Processing 31/163: tests/test_languages.py
+Processing 32/163: tests/test_syntax.py
+Processing 33/163: tests/test_sandbox.py
+Processing 34/163: tests/test_complexity.py
+Processing 35/163: tests/__init__.py
+Processing 36/163: tests/test_ast_compare.py
+Processing 37/163: tests/test_plugins.py
+Processing 38/163: tests/test_graph.py
+Processing 39/163: tests/test_installation.py
+Processing 40/163: tests/test_cli_e2e.py
+Processing 41/163: tests/test_semantic_validation.py
+Processing 42/163: tests/test_gitignore.py
+Processing 43/163: tests/test_pipeline.py
+Processing 44/163: scripts/bump_version.py
+Processing 45/163: scripts/test_docker_installation.sh
+Processing 46/163: project/validation.toon
+Processing 47/163: project/project.toon
+Processing 48/163: project/compact_flow.mmd
+Processing 49/163: project/map.toon
+Processing 50/163: project/validation.json
+
+✗ project/validation.json (JSON) - fail
+  • syntax.tree_sitter: tree-sitter found 4 parse error(s) in json
+Processing 51/163: project/calls.mmd
+Processing 52/163: project/index.html
+Processing 53/163: project/flow.toon
+Processing 54/163: project/analysis.yaml
+
+✗ project/analysis.yaml (YAML) - fail
+  • syntax.tree_sitter: tree-sitter found 1 parse error(s) in yaml
+Processing 55/163: project/validation.yaml
+Processing 56/163: project/context.md
+Processing 57/163: project/prompt.txt
+Processing 58/163: project/evolution.toon
+Processing 59/163: project/project.yaml
+Processing 60/163: project/flow.mmd
+Processing 61/163: project/dashboard.html
+Processing 62/163: project/README.md
+Processing 63/163: project/analysis.toon
+Processing 64/163: project/duplication.toon
+Processing 65/163: src/vallm/hookspecs.py
+Processing 66/163: src/vallm/config.py
+Processing 67/163: src/vallm/cli.py
+Processing 68/163: src/vallm/scoring.py
+Processing 69/163: src/vallm/py.typed
+Processing 70/163: src/vallm/__init__.py
+Processing 71/163: src/vallm/__main__.py
+Processing 72/163: src/vallm/validators/complexity.py
+Processing 73/163: src/vallm/validators/base.py
+Processing 74/163: src/vallm/validators/logical.py
+Processing 75/163: src/vallm/validators/security.py
+
+✗ src/vallm/validators/security.py (Python) - fail
+  • python.import.resolvable: Module 'bandit.core.manager' not found (line 223)
+  • python.import.resolvable: Module 'bandit.core.config' not found (line 224)
+Processing 76/163: src/vallm/validators/__init__.py
+Processing 77/163: src/vallm/validators/semantic_cache.py
+Processing 78/163: src/vallm/validators/semantic.py
+Processing 79/163: src/vallm/validators/syntax.py
+Processing 80/163: src/vallm/validators/lint.py
+Processing 81/163: src/vallm/validators/imports.py
+
+✗ src/vallm/validators/imports.py (Python) - fail
+  • python.import.resolvable: Module 'imports.wrapper' not found (line 8)
+Processing 82/163: src/vallm/core/graph_diff.py
+Processing 83/163: src/vallm/core/proposal.py
+Processing 84/163: src/vallm/core/__init__.py
+Processing 85/163: src/vallm/core/ast_compare.py
+Processing 86/163: src/vallm/core/gitignore.py
+Processing 87/163: src/vallm/core/graph_builder.py
+Processing 88/163: src/vallm/core/languages.py
+Processing 89/163: src/vallm/cli/output_formatters.py
+Processing 90/163: src/vallm/cli/__init__.py
+Processing 91/163: src/vallm/cli/command_handlers.py
+Processing 92/163: src/vallm/cli/settings_builders.py
+Processing 93/163: src/vallm/cli/batch_processor.py
+Processing 94/163: src/vallm/sandbox/runner.py
+
+✗ src/vallm/sandbox/runner.py (Python) - fail
+  • python.import.resolvable: Module 'docker' not found (line 104)
+Processing 95/163: src/vallm/sandbox/__init__.py
+Processing 96/163: src/vallm/validators/imports/base.py
+Processing 97/163: src/vallm/validators/imports/javascript_imports.py
+
+✗ src/vallm/validators/imports/javascript_imports.py (Python) - fail
+  • python.import.resolvable: Module 'base' not found (line 6)
+Processing 98/163: src/vallm/validators/imports/python_imports.py
+
+✗ src/vallm/validators/imports/python_imports.py (Python) - fail
+  • python.import.resolvable: Module 'base' not found (line 8)
+Processing 99/163: src/vallm/validators/imports/go_imports.py
+
+✗ src/vallm/validators/imports/go_imports.py (Python) - fail
+  • python.import.resolvable: Module 'base' not found (line 6)
+Processing 100/163: src/vallm/validators/imports/c_imports.py
+
+✗ src/vallm/validators/imports/c_imports.py (Python) - fail
+  • python.import.resolvable: Module 'base' not found (line 6)
+Processing 101/163: src/vallm/validators/imports/__init__.py
+
+✗ src/vallm/validators/imports/__init__.py (Python) - fail
+  • python.import.resolvable: Module 'base' not found (line 3)
+  • python.import.resolvable: Module 'factory' not found (line 4)
+  • python.import.resolvable: Module 'python_imports' not found (line 5)
+  • python.import.resolvable: Module 'javascript_imports' not found (line 6)
+  • python.import.resolvable: Module 'go_imports' not found (line 7)
+  • python.import.resolvable: Module 'rust_imports' not found (line 8)
+  • python.import.resolvable: Module 'java_imports' not found (line 9)
+  • python.import.resolvable: Module 'c_imports' not found (line 10)
+  • python.import.resolvable: Module 'wrapper' not found (line 13)
+Processing 102/163: src/vallm/validators/imports/rust_imports.py
+
+✗ src/vallm/validators/imports/rust_imports.py (Python) - fail
+  • python.import.resolvable: Module 'base' not found (line 6)
+Processing 103/163: src/vallm/validators/imports/utils.py
+Processing 104/163: src/vallm/validators/imports/wrapper.py
+
+✗ src/vallm/validators/imports/wrapper.py (Python) - fail
+  • python.import.resolvable: Module 'factory' not found (line 7)
+Processing 105/163: src/vallm/validators/imports/factory.py
+
+✗ src/vallm/validators/imports/factory.py (Python) - fail
+  • python.import.resolvable: Module 'base' not found (line 4)
+  • python.import.resolvable: Module 'python_imports' not found (line 5)
+  • python.import.resolvable: Module 'javascript_imports' not found (line 6)
+  • python.import.resolvable: Module 'go_imports' not found (line 7)
+  • python.import.resolvable: Module 'rust_imports' not found (line 8)
+  • python.import.resolvable: Module 'java_imports' not found (line 9)
+  • python.import.resolvable: Module 'c_imports' not found (line 10)
+Processing 106/163: src/vallm/validators/imports/java_imports.py
+
+✗ src/vallm/validators/imports/java_imports.py (Python) - fail
+  • python.import.resolvable: Module 'base' not found (line 6)
+Processing 107/163: examples/05_llm_semantic_review/main_template.py
+
+✗ examples/05_llm_semantic_review/main_template.py (Python) - fail
+  • python.import.resolvable: Module 'examples.utils' not found (line 58)
+Processing 108/163: examples/05_llm_semantic_review/main.py
+
+✗ examples/05_llm_semantic_review/main.py (Python) - fail
+  • python.import.resolvable: Module 'examples.utils' not found (line 14)
+Processing 109/163: examples/05_llm_semantic_review/README.md
+Processing 110/163: examples/09_code2logic_integration/main.py
+Processing 111/163: examples/09_code2logic_integration/README.md
+Processing 112/163: examples/11_claude_code_autonomous/run.sh
+Processing 113/163: examples/11_claude_code_autonomous/docker-entrypoint.sh
+Processing 114/163: examples/11_claude_code_autonomous/requirements.txt
+Processing 115/163: examples/11_claude_code_autonomous/claude_autonomous_demo.py
+
+✗ examples/11_claude_code_autonomous/claude_autonomous_demo.py (Python) - fail
+  • python.import.resolvable: Module 'examples.utils' not found (line 22)
+Processing 116/163: examples/11_claude_code_autonomous/Dockerfile
+Processing 117/163: examples/11_claude_code_autonomous/README.md
+Processing 118/163: examples/04_graph_analysis/main.py
+
+✗ examples/04_graph_analysis/main.py (Python) - fail
+  • python.import.resolvable: Module 'examples.utils' not found (line 9)
+Processing 119/163: examples/04_graph_analysis/README.md
+Processing 120/163: examples/12_ollama_simple_demo/run.sh
+Processing 121/163: examples/12_ollama_simple_demo/ollama_simple_demo.py
+
+✗ examples/12_ollama_simple_demo/ollama_simple_demo.py (Python) - fail
+  • python.import.resolvable: Module 'examples.utils' not found (line 19)
+Processing 122/163: examples/12_ollama_simple_demo/iteration_1.py
+
+✗ examples/12_ollama_simple_demo/iteration_1.py (Python) - fail
+  • python.import.resolvable: Module 'utils' not found (line 13)
+  • python.import.resolvable: Module 'utils' not found (line 18)
+Processing 123/163: examples/12_ollama_simple_demo/docker-entrypoint.sh
+Processing 124/163: examples/12_ollama_simple_demo/requirements.txt
+Processing 125/163: examples/12_ollama_simple_demo/best_version.py
+
+✗ examples/12_ollama_simple_demo/best_version.py (Python) - fail
+  • python.import.resolvable: Module 'utils' not found (line 13)
+  • python.import.resolvable: Module 'utils' not found (line 18)
+Processing 126/163: examples/12_ollama_simple_demo/Dockerfile
+Processing 127/163: examples/12_ollama_simple_demo/iteration_2.py
+
+✗ examples/12_ollama_simple_demo/iteration_2.py (Python) - fail
+  • python.import.resolvable: Module 'utils' not found (line 13)
+  • python.import.resolvable: Module 'utils' not found (line 18)
+Processing 128/163: examples/01_basic_validation/main.py
+
+✗ examples/01_basic_validation/main.py (Python) - fail
+  • python.import.resolvable: Module 'examples.utils' not found (line 61)
+Processing 129/163: examples/01_basic_validation/README.md
+Processing 130/163: examples/02_ast_comparison/main.py
+
+✗ examples/02_ast_comparison/main.py (Python) - fail
+  • python.import.resolvable: Module 'examples.utils' not found (line 9)
+Processing 131/163: examples/02_ast_comparison/README.md
+Processing 132/163: examples/03_security_check/main.py
+
+✗ examples/03_security_check/main.py (Python) - fail
+  • python.import.resolvable: Module 'examples.utils' not found (line 9)
+Processing 133/163: examples/03_security_check/README.md
+Processing 134/163: examples/06_multilang_validation/main_template.py
+
+✗ examples/06_multilang_validation/main_template.py (Python) - fail
+  • python.import.resolvable: Module 'examples.utils' not found (line 58)
+Processing 135/163: examples/06_multilang_validation/main.py
+Processing 136/163: examples/06_multilang_validation/README.md
+Processing 137/163: examples/07_multi_language/main.py
+Processing 138/163: examples/07_multi_language/README.md
+Processing 139/163: examples/10_mcp_ollama_demo/run.sh
+Processing 140/163: examples/10_mcp_ollama_demo/docker-entrypoint.sh
+Processing 141/163: examples/10_mcp_ollama_demo/refactored_output.py
+Processing 142/163: examples/10_mcp_ollama_demo/requirements.txt
+Processing 143/163: examples/10_mcp_ollama_demo/mcp_demo.py
+
+✗ examples/10_mcp_ollama_demo/mcp_demo.py (Python) - fail
+  • python.import.resolvable: Module 'examples.utils' not found (line 22)
+Processing 144/163: examples/10_mcp_ollama_demo/Dockerfile
+Processing 145/163: examples/10_mcp_ollama_demo/README.md
+Processing 146/163: examples/utils/__init__.py
+
+✗ examples/utils/__init__.py (Python) - fail
+  • python.import.resolvable: Module 'extract_code_from_response' not found 
+(line 12)
+Processing 147/163: examples/utils/extraction.py
+Processing 148/163: examples/utils/save_analysis_data.py
+Processing 149/163: examples/utils/extract_code_from_response.py
+Processing 150/163: examples/utils/validation_runner.py
+Processing 151/163: examples/utils/logging_utils.py
+Processing 152/163: examples/08_code2llm_integration/main.py
+Processing 153/163: examples/08_code2llm_integration/README.md
+Processing 154/163: examples/10_mcp_ollama_demo/legacy_code/order_processor.py
+Processing 155/163: 
+examples/01_basic_validation/.vallm/basic_validation_summary.json
+Processing 156/163: examples/12_ollama_simple_demo/legacy_code/simple_buggy.py
+Processing 157/163: examples/12_ollama_simple_demo/utils/process_user_input.py
+Processing 158/163: examples/12_ollama_simple_demo/utils/load_config.py
+Processing 159/163: examples/12_ollama_simple_demo/utils/__init__.py
+
+✗ examples/12_ollama_simple_demo/utils/__init__.py (Python) - fail
+  • python.import.resolvable: Module 'calculate_total' not found (line 5)
+  • python.import.resolvable: Module 'load_config' not found (line 6)
+  • python.import.resolvable: Module 'main' not found (line 7)
+  • python.import.resolvable: Module 'process_user_input' not found (line 8)
+  • python.import.resolvable: Module 'save_data' not found (line 9)
+Processing 160/163: examples/12_ollama_simple_demo/utils/calculate_total.py
+Processing 161/163: examples/12_ollama_simple_demo/utils/main.py
+
+✗ examples/12_ollama_simple_demo/utils/main.py (Python) - fail
+  • python.import.resolvable: Module 'load_config' not found (line 10)
+  • python.import.resolvable: Module 'process_user_input' not found (line 11)
+  • python.import.resolvable: Module 'calculate_total' not found (line 12)
+  • python.import.resolvable: Module 'save_data' not found (line 13)
+Processing 162/163: examples/12_ollama_simple_demo/utils/save_data.py
+Processing 163/163: 
+examples/11_claude_code_autonomous/legacy_code/data_processor.py
+✓ Results saved to toon/validation.txt
