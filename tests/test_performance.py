@@ -54,7 +54,7 @@ if __name__ == "__main__":
             
             # Test sequential processing
             start_time = time.time()
-            results_seq, failed_seq, passed_seq = processor.process_batch(
+            results_seq, failed_seq, passed_seq, _ = processor.process_batch(
                 paths=test_files,
                 recursive=False,
                 include=None,
@@ -70,7 +70,7 @@ if __name__ == "__main__":
             
             # Test parallel processing
             start_time = time.time()
-            results_par, failed_par, passed_par = processor.process_batch(
+            results_par, failed_par, passed_par, _ = processor.process_batch(
                 paths=test_files,
                 recursive=False,
                 include=None,

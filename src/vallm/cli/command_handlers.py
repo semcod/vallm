@@ -122,15 +122,44 @@ def batch_command(
         exclude=exclude,
         use_gitignore=use_gitignore,
         settings=settings,
-        output_format=output_format,
+        output_format=format,
         fail_fast=fail_fast,
         verbose=verbose,
         show_issues=show_issues,
     )
     
-    processor.output_batch_results(
-        results_by_language, passed_count, failed_files, output_format, filtered_files
-    )
+    # Handle output to file or stdout
+    if output:
+        output_dir = Path(output)
+        output_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Generate filename based on format
+        if format == "toon":
+            output_file = output_dir / "validation.toon"
+        elif format == "json":
+            output_file = output_dir / "validation.json"
+        elif format == "yaml":
+            output_file = output_dir / "validation.yaml"
+        else:
+            output_file = output_dir / "validation.txt"
+        
+        # Redirect output to file
+        import sys
+        original_stdout = sys.stdout
+        try:
+            with open(output_file, 'w', encoding='utf-8') as f:
+                sys.stdout = f
+                processor.output_batch_results(
+                    results_by_language, passed_count, failed_files, format, filtered_files
+                )
+        finally:
+            sys.stdout = original_stdout
+            
+        console.print(f"[green]✓[/green] Results saved to {output_file}")
+    else:
+        processor.output_batch_results(
+            results_by_language, passed_count, failed_files, format, filtered_files
+        )
     
     if failed_files:
         raise typer.Exit(2)
