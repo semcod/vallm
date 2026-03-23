@@ -124,6 +124,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Tree-sitter for all** — syntax validation for 165+ languages
 - **Example 07** — comprehensive multi-language demo with 8 languages
 
+## [0.1.13] - 2026-03-23
+
+### Docs
+- Update README.md
+- Update TODO.md
+- Update project/context.md
+
+### Other
+- Update project/analysis.toon
+- Update project/dashboard.html
+- Update project/flow.toon
+- Update project/map.toon
+- Update project/project.toon
+- Update project/project.yaml
+
 ## [0.1.12] - 2026-03-23
 
 ### Docs

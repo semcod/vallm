@@ -1,6 +1,6 @@
-# vallm | 1419f 10390L | python:73,shell:8
+# vallm | 1418f 10098L | python:72,shell:8
 # Keys: M=modules, D=details, i=imports, c=classes, f=functions, m=methods
-M[81]:
+M[80]:
   examples/__init__.py,1
   examples/01_basic_validation/main.py,77
   examples/02_ast_comparison/main.py,115
@@ -46,11 +46,10 @@ M[81]:
   scripts/bump_version.py,78
   src/vallm/__init__.py,19
   src/vallm/__main__.py,5
-  src/vallm/cli/__init__.py,32
-  src/vallm/cli/batch_processor.py,262
+  src/vallm/cli/__init__.py,43
+  src/vallm/cli/batch_processor.py,271
   src/vallm/cli/command_handlers.py,297
-  src/vallm/cli/optimized_batch_processor.py,346
-  src/vallm/cli/output_formatters.py,306
+  src/vallm/cli/output_formatters.py,341
   src/vallm/config.py,58
   src/vallm/core/__init__.py,3
   src/vallm/core/ast_compare.py,135
@@ -61,7 +60,7 @@ M[81]:
   src/vallm/hookspecs.py,33
   src/vallm/sandbox/__init__.py,1
   src/vallm/sandbox/runner.py,144
-  src/vallm/scoring.py,212
+  src/vallm/scoring.py,211
   src/vallm/validators/__init__.py,1
   src/vallm/validators/base.py,21
   src/vallm/validators/complexity.py,183
@@ -87,10 +86,6 @@ D:
     e: walk,validate_import_path
     walk(root;project_root;gitignore_matcher;skip_tests;skip_hidden;max_depth;current_depth)
     validate_import_path(import_path;source_file;project_root;known_modules;stdlib_modules)
-  src/vallm/cli/optimized_batch_processor.py:
-    e: OptimizedBatchProcessor,create_optimized_batch_processor
-    OptimizedBatchProcessor: __init__(1),process_batch(11),output_batch_results(4),_load_gitignore_parser(1),_build_file_list(2),_filter_files(5),_process_files_sequential(6),_process_files_parallel(6),_validate_single_file(2),_show_detailed_result(3),_show_validation_start(3),_handle_no_files_found(1)  # Optimized batch processor with parallel processing capabilit...
-    create_optimized_batch_processor(console)
   src/vallm/cli/batch_processor.py:
     e: BatchProcessor
     BatchProcessor: __init__(1),process_batch(10),output_batch_results(4),_load_gitignore_parser(1),_build_file_list(2),_filter_files(5),_parse_filter_patterns(2),_should_exclude_file(2),_matches_include_pattern(2),_handle_no_files_found(1),_show_validation_start(2),_process_files(6)  # Handles batch validation of multiple files...
@@ -112,12 +107,6 @@ D:
     generate_feedback_prompt(current_code;validation;test_results;analysis)
     run_autonomous_workflow(code_path;max_iterations)
     main()
-  examples/utils/__init__.py:
-    e: save_analysis_data,run_validation_examples,validate_code_example,print_summary
-    save_analysis_data(example_name;result_data)
-    run_validation_examples(example_name;good_code;bad_code;complex_code;settings)
-    validate_code_example(name;code;settings;all_results;include_issue_details)
-    print_summary(all_results)
   examples/10_mcp_ollama_demo/mcp_demo.py:
     e: Colors,log_section,log_step,log_code,analyze_with_code2llm,validate_with_vallm,call_ollama,generate_refactoring_prompt,run_mcp_workflow,main
     Colors:
@@ -130,6 +119,12 @@ D:
     generate_refactoring_prompt(code;analysis)
     run_mcp_workflow(code_path;max_iterations)
     main()
+  examples/utils/__init__.py:
+    e: save_analysis_data,run_validation_examples,validate_code_example,print_summary
+    save_analysis_data(example_name;result_data)
+    run_validation_examples(example_name;good_code;bad_code;complex_code;settings)
+    validate_code_example(name;code;settings;all_results;include_issue_details)
+    print_summary(all_results)
   examples/utils/validation_runner.py:
     e: run_validation_examples
     run_validation_examples(example_name;good_code;bad_code;complex_code;settings)
@@ -140,6 +135,21 @@ D:
     get_default_excludes()
     create_default_gitignore_parser()
     should_exclude(path;gitignore_parser;use_defaults)
+  src/vallm/cli/output_formatters.py:
+    e: output_validate_result,output_batch_results,output_batch_empty,output_json,output_text,output_rich,output_batch_rich,output_batch_text,output_batch_json,output_batch_yaml,output_batch_toon,print_summary_header,build_results_table
+    output_validate_result(result;output_format;verbose)
+    output_batch_results(results_by_language;filtered_files;passed_count;failed_files;output_format)
+    output_batch_empty(output_format)
+    output_json(result)
+    output_text(result)
+    output_rich(result;verbose)
+    output_batch_rich(results_by_language;filtered_files;passed_count;failed_files)
+    output_batch_text(results_by_language;filtered_files;passed_count;failed_files)
+    output_batch_json(results_by_language;filtered_files;passed_count;failed_files)
+    output_batch_yaml(results_by_language;filtered_files;passed_count;failed_files)
+    output_batch_toon(results_by_language;filtered_files;passed_count;failed_files)
+    print_summary_header()
+    build_results_table(results_by_language)
   examples/05_llm_semantic_review/main.py:
     e: main
     main()
@@ -235,21 +245,6 @@ D:
     duplicate_function()
     unused_function()
     main()
-  src/vallm/cli/output_formatters.py:
-    e: output_validate_result,output_batch_results,output_batch_empty,output_json,output_text,output_rich,output_batch_rich,output_batch_text,output_batch_json,output_batch_yaml,output_batch_toon,print_summary_header,build_results_table
-    output_validate_result(result;output_format;verbose)
-    output_batch_results(results_by_language;filtered_files;passed_count;failed_files;output_format)
-    output_batch_empty(output_format)
-    output_json(result)
-    output_text(result)
-    output_rich(result;verbose)
-    output_batch_rich(results_by_language;filtered_files;passed_count;failed_files)
-    output_batch_text(results_by_language;filtered_files;passed_count;failed_files)
-    output_batch_json(results_by_language;filtered_files;passed_count;failed_files)
-    output_batch_yaml(results_by_language;filtered_files;passed_count;failed_files)
-    output_batch_toon(results_by_language;filtered_files;passed_count;failed_files)
-    print_summary_header()
-    build_results_table(results_by_language)
   src/vallm/validators/imports/python_imports.py:
     e: PythonImportValidator
     PythonImportValidator(BaseImportValidator): validate(2),extract_imports(1),module_exists(1),get_language(0),_get_error_message(1),_get_rule_name(0)  # Python-specific import validator...
@@ -322,12 +317,12 @@ D:
   examples/03_security_check/main.py:
     e: main
     main()
-  src/vallm/validators/syntax.py:
-    e: SyntaxValidator
-    SyntaxValidator(BaseValidator): validate(2),_validate_python(1),_validate_treesitter(2)  # Tier 1: Fast syntax validation...
   src/vallm/validators/semantic.py:
     e: SemanticValidator
     SemanticValidator(BaseValidator): __init__(1),validate(2),_build_prompt(1),_call_llm(1),_call_ollama(1),_call_litellm(1),_call_http(1),_parse_response(1),_extract_json_from_response(1),_create_parse_error_result(1),_create_json_error_result(1),_parse_scores(1),_parse_issues(1),_parse_severity(1),_parse_line_number(1)  # Tier 3: LLM-as-judge semantic code review...
+  src/vallm/validators/syntax.py:
+    e: SyntaxValidator
+    SyntaxValidator(BaseValidator): validate(2),_validate_python(1),_validate_treesitter(2)  # Tier 1: Fast syntax validation...
   src/vallm/core/ast_compare.py:
     e: parse_code,parse_python_ast,normalize_python_ast,python_ast_similarity,tree_sitter_node_count,tree_sitter_error_count,structural_diff_summary
     parse_code(code;language)
@@ -363,15 +358,15 @@ D:
   src/vallm/validators/imports/rust_imports.py:
     e: RustImportValidator
     RustImportValidator(BaseImportValidator): get_language(0),_get_error_message(1),_get_rule_name(0),extract_imports(1),module_exists(1)  # Rust import validator...
+  src/vallm/config.py:
+    e: VallmSettings
+    VallmSettings(BaseSettings): from_toml(1)  # vallm configuration with layered sources: defaults → TOML → ...
   examples/utils/extract_code_from_response.py:
     e: extract_code_from_response
     extract_code_from_response(response)
   examples/12_ollama_simple_demo/utils/calculate_total.py:
     e: calculate_total
     calculate_total(items)
-  src/vallm/config.py:
-    e: VallmSettings
-    VallmSettings(BaseSettings): from_toml(1)  # vallm configuration with layered sources: defaults → TOML → ...
   src/vallm/validators/imports/wrapper.py:
     e: ImportValidator
     ImportValidator(BaseValidator): validate(2)  # Backward compatibility wrapper for the refactored import val...

@@ -4,12 +4,12 @@
 
 - **Project**: vallm
 - **Language**: python
-- **Files**: 31
-- **Lines**: 7605
-- **Functions**: 185
-- **Classes**: 32
-- **Avg CC**: 3.5
-- **Critical (CC≥10)**: 9
+- **Files**: 30
+- **Lines**: 7313
+- **Functions**: 172
+- **Classes**: 31
+- **Avg CC**: 3.4
+- **Critical (CC≥10)**: 7
 
 ## Architecture
 
@@ -21,21 +21,20 @@
 
 - `bump_version.py` — 78L, 2 methods, CC↑5
 
-### src/vallm/ (5 files, 327L, 12 functions)
+### src/vallm/ (5 files, 326L, 12 functions)
 
-- `scoring.py` — 212L, 8 methods, CC↑6
+- `scoring.py` — 211L, 8 methods, CC↑6
 - `config.py` — 58L, 1 methods, CC↑3
 - `hookspecs.py` — 33L, 3 methods, CC↑1
 - `__init__.py` — 19L, 0 methods, CC↑0
 - `__main__.py` — 5L, 0 methods, CC↑0
 
-### src/vallm/cli/ (5 files, 1243L, 49 functions)
+### src/vallm/cli/ (4 files, 952L, 36 functions)
 
-- `optimized_batch_processor.py` — 346L, 13 methods, CC↑19
-- `batch_processor.py` — 262L, 12 methods, CC↑18
-- `output_formatters.py` — 306L, 13 methods, CC↑7
+- `batch_processor.py` — 271L, 12 methods, CC↑18
+- `output_formatters.py` — 341L, 13 methods, CC↑11
 - `command_handlers.py` — 297L, 11 methods, CC↑4
-- `__init__.py` — 32L, 0 methods, CC↑0
+- `__init__.py` — 43L, 0 methods, CC↑0
 
 ### src/vallm/core/ (6 files, 778L, 26 functions)
 
@@ -72,9 +71,6 @@
 ## Key Exports
 
 - **walk** (function, CC=27) ⚠ split
-- **OptimizedBatchProcessor** (class, CC̄=6.5)
-  - `_process_files_sequential` CC=15 ⚠ split
-  - `_process_files_parallel` CC=19 ⚠ split
 - **BatchProcessor** (class, CC̄=4.8)
   - `_process_files` CC=18 ⚠ split
 - **ComplexityValidator** (class, CC̄=6.8)
@@ -83,7 +79,6 @@
 
 ## Hotspots (High Fan-Out)
 
-- **OptimizedBatchProcessor._process_files_parallel** — fan-out=16: Analysis pipeline, 16 stages
 - **JavaScriptImportValidator.extract_imports** — fan-out=14: Extract import statements from JavaScript/TypeScript using tree-sitter.
 - **GoImportValidator.extract_imports** — fan-out=13: Extract import statements from Go using tree-sitter.
 - **RustImportValidator.extract_imports** — fan-out=13: Extract use statements from Rust using tree-sitter.
@@ -95,16 +90,14 @@ Args:
 Ret
 - **main** — fan-out=11: Orchestrates 11 calls
 - **SemanticValidator._parse_response** — fan-out=11: Parse LLM JSON response into a ValidationResult.
+- **BatchProcessor._process_files** — fan-out=11: Analysis pipeline, 11 stages
 
 ## Refactoring Priorities
 
 | # | Action | Impact | Effort |
 |---|--------|--------|--------|
 | 1 | Split walk (CC=27 → target CC<10) | high | low |
-| 2 | Split OptimizedBatchProcessor._process_files_sequential (CC=15 → target CC<10) | medium | low |
-| 3 | Split OptimizedBatchProcessor._process_files_parallel (CC=19 → target CC<10) | medium | low |
-| 4 | Split BatchProcessor._process_files (CC=18 → target CC<10) | medium | low |
-| 5 | Reduce OptimizedBatchProcessor._process_files_parallel fan-out (currently 16) | medium | medium |
+| 2 | Split BatchProcessor._process_files (CC=18 → target CC<10) | medium | low |
 
 ## Context for LLM
 

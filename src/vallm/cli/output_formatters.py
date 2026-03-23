@@ -235,7 +235,7 @@ def output_batch_yaml(
     passed_count: int,
     failed_files: list,
 ) -> None:
-    """Output YAML batch summary."""
+    """Output YAML batch summary with detailed per-file results."""
     print("# vallm batch validation results")
     print("---")
     print(f"summary:")
@@ -243,17 +243,28 @@ def output_batch_yaml(
     print(f"  passed: {passed_count}")
     print(f"  failed: {len(failed_files)}")
     print()
-    
+
+    # Detailed per-file results
     if results_by_language:
-        print("results_by_language:")
+        print("files:")
         for lang, results in results_by_language.items():
-            print(f"  {lang}:")
-            for i, r in enumerate(results):
-                print(f"    - verdict: {r.verdict.value}")
-                print(f"      score: {r.weighted_score:.2f}")
-                print(f"      issues_count: {len(r.all_issues)}")
+            for r in results:
+                filename = getattr(r, 'filename', None) or 'unknown'
+                print(f"  - path: {filename}")
+                print(f"    language: {lang}")
+                print(f"    verdict: {r.verdict.value}")
+                print(f"    score: {r.weighted_score:.2f}")
+                print(f"    issues_count: {len(r.all_issues)}")
+                if r.all_issues:
+                    print(f"    issues:")
+                    for issue in r.all_issues:
+                        line_info = f", line: {issue.line}" if issue.line else ""
+                        col_info = f", column: {issue.column}" if issue.column else ""
+                        print(f"      - validator: {issue.validator}")
+                        print(f"        severity: {issue.severity.value}")
+                        print(f"        message: \"{issue.message}\"{line_info}{col_info}")
         print()
-    
+
     if failed_files:
         print("failed_files:")
         for file_path, error in failed_files:
@@ -267,7 +278,7 @@ def output_batch_toon(
     passed_count: int,
     failed_files: list,
 ) -> None:
-    """Output TOON format batch summary."""
+    """Output TOON format batch summary with detailed per-file results."""
     print(f"# vallm batch | {len(filtered_files)}f | {passed_count}✓ {len(failed_files)}✗")
     print()
     print("SUMMARY:")
@@ -275,16 +286,26 @@ def output_batch_toon(
     print(f"  passed: {passed_count}")
     print(f"  failed: {len(failed_files)}")
     print()
-    
+
+    # Detailed per-file results
     if results_by_language:
-        print("BY_LANGUAGE:")
+        print("FILES:")
         for lang, results in results_by_language.items():
-            passed = sum(1 for r in results if r.verdict.value == "pass")
-            total = len(results)
-            print(f"  {lang}: {passed}/{total}")
-    
-    if failed_files:
+            print(f"  [{lang}]")
+            for r in results:
+                filename = getattr(r, 'filename', None) or 'unknown'
+                status_icon = "✓" if r.verdict.value == "pass" else "✗"
+                print(f"    {status_icon} {filename}")
+                print(f"      verdict: {r.verdict.value}")
+                print(f"      score: {r.weighted_score:.2f}")
+                if r.all_issues:
+                    print(f"      issues: {len(r.all_issues)}")
+                    for issue in r.all_issues:
+                        location = f"@{issue.line}" if issue.line else ""
+                        print(f"        [{issue.severity.value}] {issue.validator}: {issue.message}{location}")
         print()
+
+    if failed_files:
         print("FAILED:")
         for file_path, error in failed_files:
             print(f"  ✗ {file_path}: {error}")

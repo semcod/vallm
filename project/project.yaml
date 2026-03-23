@@ -3,16 +3,16 @@ project:
   name: vallm
   repo: /home/tom/github/semcod/vallm
   language: python
-  analyzed_at: '2026-03-23T19:32:38Z'
+  analyzed_at: '2026-03-23T19:37:37Z'
   tool: code2llm
   stats:
-    files: 31
-    lines: 7605
-    functions: 185
-    classes: 32
+    files: 30
+    lines: 7313
+    functions: 172
+    classes: 31
 health:
-  cc_avg: 3.5
-  critical_count: 9
+  cc_avg: 3.4
+  critical_count: 7
   critical_limit: 10
   duplicates: 0
   cycles: 0
@@ -22,24 +22,9 @@ health:
     value: 27
     limit: 15
     severity: critical
-  - type: high_fan_out
-    target: OptimizedBatchProcessor._process_files_parallel
-    value: 16
-    limit: 10
-    severity: error
-  - type: cc_exceeded
-    target: OptimizedBatchProcessor._process_files_parallel
-    value: 19
-    limit: 15
-    severity: warning
   - type: cc_exceeded
     target: BatchProcessor._process_files
     value: 18
-    limit: 15
-    severity: warning
-  - type: cc_exceeded
-    target: OptimizedBatchProcessor._process_files_sequential
-    value: 15
     limit: 15
     severity: warning
   - type: high_fan_out
@@ -73,12 +58,12 @@ health:
     limit: 10
     severity: warning
   - type: high_fan_out
-    target: SandboxRunner._run_docker
+    target: BatchProcessor._process_files
     value: 11
     limit: 10
     severity: warning
   - type: high_fan_out
-    target: BatchProcessor._process_files
+    target: SandboxRunner._run_docker
     value: 11
     limit: 10
     severity: warning
@@ -118,31 +103,8 @@ modules:
   - name: validate_import_path
     type: function
     cc: 14
-- path: src/vallm/cli/optimized_batch_processor.py
-  lines: 346
-  classes: 1
-  methods: 13
-  cc_max: 19
-  inbound_deps: 1
-  exports:
-  - name: OptimizedBatchProcessor
-    type: class
-    cc_avg: 6.5
-    methods:
-    - name: _filter_files
-      cc: 13
-    - name: _process_files_sequential
-      cc: 15
-      flag: split
-    - name: _process_files_parallel
-      cc: 19
-      flag: split
-      fan_out: 16
-  - name: create_optimized_batch_processor
-    type: function
-    cc: 1
 - path: src/vallm/cli/batch_processor.py
-  lines: 262
+  lines: 271
   classes: 1
   methods: 12
   cc_max: 18
@@ -171,12 +133,58 @@ modules:
       cc: 11
     - name: _check_lizard
       cc: 12
+- path: src/vallm/cli/output_formatters.py
+  lines: 341
+  classes: 0
+  methods: 13
+  cc_max: 11
+  inbound_deps: 2
+  exports:
+  - name: output_validate_result
+    type: function
+    cc: 3
+  - name: output_batch_results
+    type: function
+    cc: 4
+  - name: output_batch_empty
+    type: function
+    cc: 4
+  - name: output_json
+    type: function
+    cc: 2
+  - name: output_text
+    type: function
+    cc: 2
+  - name: output_rich
+    type: function
+    cc: 6
+  - name: output_batch_rich
+    type: function
+    cc: 3
+  - name: output_batch_text
+    type: function
+    cc: 7
+  - name: output_batch_json
+    type: function
+    cc: 6
+  - name: output_batch_yaml
+    type: function
+    cc: 11
+  - name: output_batch_toon
+    type: function
+    cc: 7
+  - name: print_summary_header
+    type: function
+    cc: 1
+  - name: build_results_table
+    type: function
+    cc: 6
 - path: src/vallm/core/gitignore.py
   lines: 272
   classes: 1
   methods: 10
   cc_max: 11
-  inbound_deps: 2
+  inbound_deps: 1
   exports:
   - name: GitignoreParser
     type: class
@@ -243,52 +251,6 @@ modules:
     - name: _try_bandit
       cc: 5
       fan_out: 10
-- path: src/vallm/cli/output_formatters.py
-  lines: 306
-  classes: 0
-  methods: 13
-  cc_max: 7
-  inbound_deps: 3
-  exports:
-  - name: output_validate_result
-    type: function
-    cc: 3
-  - name: output_batch_results
-    type: function
-    cc: 4
-  - name: output_batch_empty
-    type: function
-    cc: 4
-  - name: output_json
-    type: function
-    cc: 2
-  - name: output_text
-    type: function
-    cc: 2
-  - name: output_rich
-    type: function
-    cc: 6
-  - name: output_batch_rich
-    type: function
-    cc: 3
-  - name: output_batch_text
-    type: function
-    cc: 7
-  - name: output_batch_json
-    type: function
-    cc: 4
-  - name: output_batch_yaml
-    type: function
-    cc: 6
-  - name: output_batch_toon
-    type: function
-    cc: 7
-  - name: print_summary_header
-    type: function
-    cc: 1
-  - name: build_results_table
-    type: function
-    cc: 6
 - path: src/vallm/validators/imports/java_imports.py
   lines: 68
   classes: 1
@@ -314,7 +276,7 @@ modules:
   classes: 1
   methods: 6
   cc_max: 6
-  inbound_deps: 6
+  inbound_deps: 5
   exports:
   - name: Language
     type: class
@@ -326,7 +288,7 @@ modules:
     type: function
     cc: 4
 - path: src/vallm/scoring.py
-  lines: 212
+  lines: 211
   classes: 5
   methods: 8
   cc_max: 6
@@ -620,7 +582,7 @@ modules:
   cc_max: 0
   inbound_deps: 0
 - path: src/vallm/cli/__init__.py
-  lines: 32
+  lines: 43
   classes: 0
   methods: 0
   cc_max: 0
@@ -660,9 +622,6 @@ modules:
   cc_max: 0
   inbound_deps: 0
 hotspots:
-- name: OptimizedBatchProcessor._process_files_parallel
-  fan_out: 16
-  note: Analysis pipeline, 16 stages
 - name: JavaScriptImportValidator.extract_imports
   fan_out: 14
   note: Extract import statements from JavaScript/TypeScript using tree-sitter.
@@ -682,40 +641,29 @@ hotspots:
 - name: SemanticValidator._parse_response
   fan_out: 11
   note: Parse LLM JSON response into a ValidationResult.
-- name: SandboxRunner._run_docker
-  fan_out: 11
-  note: Run code in a Docker container (requires docker package).
 - name: BatchProcessor._process_files
   fan_out: 11
   note: Analysis pipeline, 11 stages
+- name: SandboxRunner._run_docker
+  fan_out: 11
+  note: Run code in a Docker container (requires docker package).
 - name: walk
   fan_out: 11
   note: "Walk directory tree yielding Python files.\n\nArgs:\n    root: Root directory\
     \ to st"
+- name: info_command
+  fan_out: 11
+  note: Show information about supported languages and validators.
 refactoring:
   priorities:
   - action: Split walk (CC=27 → target CC<10)
     impact: high
     effort: low
     module: utils.py
-  - action: Split OptimizedBatchProcessor._process_files_sequential (CC=15 → target
-      CC<10)
-    impact: medium
-    effort: low
-    module: optimized_batch_processor.py
-  - action: Split OptimizedBatchProcessor._process_files_parallel (CC=19 → target
-      CC<10)
-    impact: medium
-    effort: low
-    module: optimized_batch_processor.py
   - action: Split BatchProcessor._process_files (CC=18 → target CC<10)
     impact: medium
     effort: low
     module: batch_processor.py
-  - action: Reduce OptimizedBatchProcessor._process_files_parallel fan-out (currently
-      16)
-    impact: medium
-    effort: medium
 evolution:
 - date: '2026-03-22'
   cc_avg: 4.3
@@ -723,7 +671,7 @@ evolution:
   lines: 5299
   note: Automated analysis
 - date: '2026-03-23'
-  cc_avg: 3.5
-  critical: 9
-  lines: 7605
+  cc_avg: 3.4
+  critical: 7
+  lines: 7313
   note: Automated analysis

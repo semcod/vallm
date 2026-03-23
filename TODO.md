@@ -68,8 +68,8 @@
 
 ## Missing validators (from spec)
 
-- [ ] **LogicalErrorValidator (Tier 1)** — integrate `pyflakes` (already a dependency, not wired up)
-- [ ] **LintValidator (Tier 1)** — integrate `ruff` for style/lint checks via subprocess JSON output
+- [x] **LogicalErrorValidator (Tier 1)** — integrate `pyflakes` (already a dependency, not wired up) ✅ Implemented
+- [x] **LintValidator (Tier 1)** — integrate `ruff` for style/lint checks via subprocess JSON output ✅ Implemented
 - [ ] **RegressionValidator (Tier 4)** — test execution + result comparison via `pytest-json-report`
 - [ ] **TypeCheckValidator (Tier 2)** — `mypy`/`pyright` as optional fast correctness signal
 
@@ -97,6 +97,7 @@
 - [x] **Plugin system tests** - added test coverage for plugin manager in `test_plugins.py`
 - [x] **LogicalErrorValidator** - implemented pyflakes integration in `validators/logical.py`
 - [x] **LintValidator** - implemented ruff integration in `validators/lint.py`
+- [x] **SemanticCache** - implemented caching layer for semantic validation
 - [ ] **Type annotations** — add return types to all public functions; run mypy in CI
 - [ ] **Docstrings** — several internal methods lack docstrings
 - [x] **Tests for semantic validator** - comprehensive test suite exists
@@ -109,4 +110,4 @@
 - [x] **Publish automation** — GitHub Actions workflow for PyPI release on tag
 - [x] **CONTRIBUTING.md** - comprehensive contribution guidelines ✅
 
-Last updated: 2026-03-23
+Last updated: 2026-03-23 (refactoring completed)

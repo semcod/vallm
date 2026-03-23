@@ -234,8 +234,17 @@ class BatchProcessor:
                     passed_count += 1
                 else:
                     failed_files.append((file_path, f"Validation {result.verdict.value}"))
+                    # Show failed file details in rich format (even without verbose)
+                    if output_format == "rich" and result.all_issues:
+                        self.console.print(f"\n[red]✗ {file_path} ({lang_obj.display_name}) - {result.verdict.value}[/red]")
+                        for issue in result.all_issues:
+                            location = f" (line {issue.line})" if issue.line else ""
+                            severity_color = {"error": "red", "warning": "yellow", "info": "blue"}.get(issue.severity.value, "white")
+                            self.console.print(f"  [{severity_color}]• {issue.validator}: {issue.message}{location}[/{severity_color}]")
+                    elif output_format == "rich":
+                        self.console.print(f"[red]✗[/red] {file_path} ({lang_obj.display_name}) - {result.verdict.value}")
                 
-                # Show detailed output if verbose
+                # Show detailed output if verbose (for all files, not just failed)
                 if verbose:
                     self.console.print(f"\n[bold]{file_path}[/bold]")
                     from vallm.cli.output_formatters import output_validate_result

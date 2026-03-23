@@ -139,13 +139,13 @@ vallm info
 ### Generate Validation Summary File
 
 ```bash
-# JSON summary for entire project
+# JSON summary for entire project (with per-file details and issues)
 vallm batch . --recursive --format json > validation-summary.json
 
-# YAML summary for src/ directory
+# YAML summary for src/ directory (with per-file details and issues)
 vallm batch src/ --recursive --format yaml > validation-summary.yaml
 
-# TOON format (compact) for CI/CD
+# TOON format (compact, human-readable) with per-file details
 vallm batch . --recursive --format toon > validation-summary.toon
 
 # Text format with security checks
@@ -156,6 +156,96 @@ vallm batch . --recursive --semantic --model qwen2.5-coder:7b --format json > fu
 
 # Tee output to both console and file
 vallm batch . --recursive --format json | tee validation-summary.json
+```
+
+**Output Structure (JSON/YAML/TOON formats now include per-file details):**
+
+```json
+{
+  "summary": {
+    "total_files": 146,
+    "passed": 145,
+    "failed": 1
+  },
+  "files": [
+    {
+      "path": "src/proxym/config.py",
+      "language": "python",
+      "verdict": "fail",
+      "score": 0.45,
+      "issues_count": 3,
+      "issues": [
+        {
+          "validator": "syntax",
+          "severity": "error",
+          "message": "Invalid syntax at line 42",
+          "line": 42,
+          "column": 15
+        },
+        {
+          "validator": "imports",
+          "severity": "error", 
+          "message": "Module 'requests' not found",
+          "line": 5,
+          "column": 0
+        }
+      ]
+    }
+  ],
+  "failed_files": [
+    {"path": "src/proxym/config.py", "error": "Validation fail"}
+  ]
+}
+```
+
+```yaml
+---
+summary:
+  total_files: 146
+  passed: 145
+  failed: 1
+
+files:
+  - path: src/proxym/config.py
+    language: python
+    verdict: fail
+    score: 0.45
+    issues_count: 3
+    issues:
+      - validator: syntax
+        severity: error
+        message: "Invalid syntax at line 42"
+        line: 42
+        column: 15
+      - validator: imports
+        severity: error
+        message: "Module 'requests' not found"
+        line: 5
+```
+
+```toon
+# vallm batch | 146f | 145✓ 1✗
+
+SUMMARY:
+  total: 146
+  passed: 145
+  failed: 1
+
+FILES:
+  [python]
+    ✗ src/proxym/config.py
+      verdict: fail
+      score: 0.45
+      issues: 2
+        [error] syntax: Invalid syntax at line 42@42
+        [error] imports: Module 'requests' not found@5
+    ✓ src/proxym/ctl.py
+      verdict: pass
+      score: 0.92
+      issues: 0
+
+FAILED:
+  ✗ src/proxym/config.py: Validation fail
 ```
 
 ### Batch Command Options
