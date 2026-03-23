@@ -60,7 +60,7 @@ class TestPluginSystem:
         pm.register(validator)
         
         # Check that validator is registered
-        assert validator in pm.list_plugin()
+        assert validator in pm.get_plugins()
     
     def test_validate_proposal_hook(self):
         """Test calling validate_proposal through plugin system."""

@@ -1,4 +1,4 @@
-# vallm/flow | 325 func | 12 pipelines | 9 hub-types | 2026-03-23
+# vallm/flow | 319 func | 12 pipelines | 8 hub-types | 2026-03-23
 
 PIPELINES[12] (Analysis:2, Core:3, Export:2, IO:1, NLP:1, Unknown:3):
   Src [Analysis]: Proposal → Optional[Language]
@@ -43,19 +43,19 @@ PIPELINES[12] (Analysis:2, Core:3, Export:2, IO:1, NLP:1, Unknown:3):
               → output_rich(result:ValidationResult, verbose:bool) → None CC=6    IO ■
               PURITY: 2/4 pure  BOTTLENECK: _process_files(CC=23)
 
-  Examples [Unknown]: ? → ?
-              → main()                                  CC=4    IO ▶
-              → run_autonomous_workflow(code_path:Path, max_iterations:int) CC=9    IO
-              → run_runtime_tests(code_path:Path, test_file:Optional[Path]) → Dict CC=8    IO
-              → create_basic_tests(code_path:Path, test_file:Path) CC=7    IO ■
-              PURITY: 0/4 pure  BOTTLENECK: run_autonomous_workflow(CC=9)
-
   Src [Core]: ? → ?
               → main()                                  CC=9    IO ▶
               → diff_python_code(before_code:str, after_code:str) → GraphDiffResult CC=1    pure
               → diff_graphs(before:CodeGraph, after:CodeGraph) → GraphDiffResult CC=5    pure
               → _diff_list(before, after, added:bool)   CC=9    pure ■
               PURITY: 3/4 pure  BOTTLENECK: main(CC=9)
+
+  Examples [Unknown]: ? → ?
+              → main()                                  CC=4    IO ▶
+              → run_autonomous_workflow(code_path:Path, max_iterations:int) CC=9    IO
+              → run_runtime_tests(code_path:Path, test_file:Optional[Path]) → Dict CC=8    IO
+              → create_basic_tests(code_path:Path, test_file:Path) CC=7    IO ■
+              PURITY: 0/4 pure  BOTTLENECK: run_autonomous_workflow(CC=9)
 
   Examples [Unknown]: ? → ?
               → main()                                  CC=5    IO ▶
@@ -225,6 +225,24 @@ CONTRACTS:
       OUT: None
       SIDE-EFFECT: IO(print, print, print)
 
+  Pipeline: Src
+    main()
+      IN:  ()
+      OUT: None
+      SIDE-EFFECT: IO(print, print, print)
+
+    diff_python_code(before_code:str, after_code:str) → GraphDiffResult
+      IN:  before_code:str, after_code:str
+      OUT: GraphDiffResult
+
+    diff_graphs(before:CodeGraph, after:CodeGraph) → GraphDiffResult
+      IN:  before:CodeGraph, after:CodeGraph
+      OUT: GraphDiffResult
+
+    _diff_list(before, after, added:bool)
+      IN:  before, after, added:bool
+      OUT: None
+
   Pipeline: Examples
     main()
       IN:  ()
@@ -245,24 +263,6 @@ CONTRACTS:
       IN:  code_path:Path, test_file:Path
       OUT: None
       SIDE-EFFECT: IO(read_text, write_text, print)
-
-  Pipeline: Src
-    main()
-      IN:  ()
-      OUT: None
-      SIDE-EFFECT: IO(print, print, print)
-
-    diff_python_code(before_code:str, after_code:str) → GraphDiffResult
-      IN:  before_code:str, after_code:str
-      OUT: GraphDiffResult
-
-    diff_graphs(before:CodeGraph, after:CodeGraph) → GraphDiffResult
-      IN:  before:CodeGraph, after:CodeGraph
-      OUT: GraphDiffResult
-
-    _diff_list(before, after, added:bool)
-      IN:  before, after, added:bool
-      OUT: None
 
   Pipeline: Examples
     main()
@@ -345,30 +345,30 @@ CONTRACTS:
       OUT: Optional[Language]
 
 
-DATA_TYPES (by cross-function usage) [251 annotated, 0 inferred / 325 functions]:
-  str                  consumed:188 produced:45   !! HUB-TYPE → split interface
+DATA_TYPES (by cross-function usage) [242 annotated, 1 inferred / 319 functions]:
+  str                  consumed:186 produced:45   !! HUB-TYPE → split interface
   dict                 consumed:36  produced:14   !! HUB-TYPE → split interface
   bool                 consumed:33  produced:16   !! HUB-TYPE → split interface
   Path                 consumed:34  produced:0    !! HUB-TYPE → split interface
   int                  consumed:22  produced:4    !! HUB-TYPE → split interface
-  str, Any             consumed:12  produced:13   !! HUB-TYPE → split interface
   list                 consumed:18  produced:6    !! HUB-TYPE → split interface
   ValidationResult     consumed:5   produced:18 
   Proposal             consumed:16  produced:1    !! HUB-TYPE → split interface
+  str, Any             consumed:6   produced:10 
   VallmSettings        consumed:11  produced:2    !! HUB-TYPE → split interface
   Dict                 consumed:7   produced:6  
-  float                consumed:4   produced:7  
   list[Path]           consumed:6   produced:2  
+  float                consumed:4   produced:4  
   Issue                consumed:1   produced:4  
   Language             consumed:0   produced:4    narrow scope
-  list[Issue]          consumed:0   produced:3    narrow scope
   list[str]            consumed:2   produced:1    narrow scope
+  str | Path           consumed:3   produced:0    narrow scope
   ExecutionResult      consumed:0   produced:3    narrow scope
   GitignoreParser      consumed:1   produced:2    narrow scope
-  str | Path           consumed:3   produced:0    narrow scope
+  list[Issue]          consumed:0   produced:3    narrow scope
 
   HUB TYPES (consumed ≥10):
-    str → 188 consumers → split into:
+    str → 186 consumers → split into:
       - (analyze consumers to suggest sub-interfaces)
     dict → 36 consumers → split into:
       - replace with typed alternatives (dataclass/TypedDict)
@@ -378,8 +378,6 @@ DATA_TYPES (by cross-function usage) [251 annotated, 0 inferred / 325 functions]
       - (analyze consumers to suggest sub-interfaces)
     int → 22 consumers → split into:
       - (analyze consumers to suggest sub-interfaces)
-    str, Any → 12 consumers → split into:
-      - (analyze consumers to suggest sub-interfaces)
     list → 18 consumers → split into:
       - (analyze consumers to suggest sub-interfaces)
     Proposal → 16 consumers → split into:
@@ -388,10 +386,10 @@ DATA_TYPES (by cross-function usage) [251 annotated, 0 inferred / 325 functions]
       - (analyze consumers to suggest sub-interfaces)
 
 SIDE_EFFECTS:
-  IO:        main, LogicalErrorValidator._check_pyflakes, SecurityValidator._try_bandit, SemanticCache.__init__, SemanticCache.get, SemanticCache.set, SemanticCache.clear, LintValidator._check_ruff, SemanticValidator._call_http, SemanticValidator._parse_response
+  IO:        main, LogicalErrorValidator._check_pyflakes, SecurityValidator._try_bandit, SemanticCache.__init__, SemanticCache.get, SemanticCache.set, SemanticCache.clear, SemanticValidator._call_http, SemanticValidator._parse_response, LintValidator._check_ruff
   Cache:     SemanticCache.get_cache_stats, get_semantic_cache, clear_semantic_cache, SemanticValidator.__init__, SemanticValidator.validate
-  Mutation:  _initialize_validators, _run_validation_pipeline, _get_default_validators, ComplexityValidator.__init__, ComplexityValidator.validate, ComplexityValidator._check_python_complexity, ComplexityValidator._check_lizard, LogicalErrorValidator.__init__, SecurityValidator.validate, SecurityValidator._check_patterns
-  Pure:      bump_version, VallmSpec.validate_proposal, VallmSpec.get_validator_name, VallmSpec.get_validator_tier, Issue.__str__, compute_verdict, validate, _initialize_settings, _initialize_context, BaseValidator.validate
+  Mutation:  ComplexityValidator.__init__, ComplexityValidator.validate, ComplexityValidator._check_python_complexity, ComplexityValidator._check_lizard, LogicalErrorValidator.__init__, _initialize_validators, _run_validation_pipeline, _get_default_validators, SecurityValidator.validate, SecurityValidator._check_patterns
+  Pure:      bump_version, VallmSpec.validate_proposal, VallmSpec.get_validator_name, VallmSpec.get_validator_tier, BaseValidator.validate, LogicalErrorValidator.validate, LogicalErrorValidator._parse_pyflakes_line, create_validator, Issue.__str__, compute_verdict
 
   PIPELINE PURITY:
     Src             ██░░ 50% pure
@@ -400,8 +398,8 @@ SIDE_EFFECTS:
     Src             ███░ 75% pure
     Src             ███░ 75% pure
     Src             ██░░ 50% pure
-    Examples        ░░░░ 0% pure
     Src             ███░ 75% pure
+    Examples        ░░░░ 0% pure
     Examples        ░░░░ 0% pure
     Examples        ██░░ 50% pure
     Examples        ░░░░ 0% pure

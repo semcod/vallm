@@ -3,11 +3,11 @@ project:
   name: vallm
   repo: /home/tom/github/semcod/vallm
   language: python
-  analyzed_at: '2026-03-23T20:31:11Z'
+  analyzed_at: '2026-03-23T20:50:50Z'
   tool: code2llm
   stats:
     files: 30
-    lines: 7402
+    lines: 7436
     functions: 175
     classes: 31
 health:
@@ -109,7 +109,7 @@ modules:
     type: function
     cc: 14
 - path: src/vallm/cli/batch_processor.py
-  lines: 271
+  lines: 301
   classes: 1
   methods: 12
   cc_max: 23
@@ -692,5 +692,5 @@ evolution:
 - date: '2026-03-23'
   cc_avg: 3.5
   critical: 8
-  lines: 7402
+  lines: 7436
   note: Automated analysis

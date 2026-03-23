@@ -144,8 +144,38 @@ class BatchProcessor:
         
         # Add default exclude patterns
         patterns["exclude"].extend([
-            "*.pyc", "*.pyo", "*.pyd", "__pycache__", ".git", ".pytest_cache",
+            # Python
+            "*.pyc", "*.pyo", "*.pyd", "__pycache__", ".pytest_cache",
             "*.egg-info", "build", "dist", ".tox", ".coverage", "htmlcov",
+            # Git
+            ".git", ".gitignore", ".gitmodules", ".github",
+            # IDE/Editor
+            ".vscode", ".idea", "*.swp", "*.swo", "*~", ".DS_Store",
+            # Virtual environments
+            "venv", "env", ".venv", "ENV", "virtualenv", "publish-env",
+            # Dependencies
+            "node_modules", "npm-debug.log*", "yarn-debug.log*", "yarn-error.log*",
+            # Build artifacts
+            "build", "dist", "target", "bin", "out",
+            # Cache and temp
+            ".cache", "cache", "*.cache", "tmp", "temp", "*.tmp", "*.temp",
+            # Logs
+            "*.log", "logs",
+            # OS specific
+            ".DS_Store", "Thumbs.db", "desktop.ini",
+            # Project specific
+            ".ruff_cache", ".mypy_cache", ".pytest_cache", ".coverage",
+            # Documentation build
+            "_build", "site", ".doctrees",
+            # Database
+            "*.db", "*.sqlite", "*.sqlite3",
+            # Archives
+            "*.zip", "*.tar.gz", "*.rar", "*.7z",
+            # Binary files
+            "*.png", "*.jpg", "*.jpeg", "*.gif", "*.bmp", "*.ico",
+            "*.pdf", "*.doc", "*.docx", "*.xls", "*.xlsx",
+            # Large data files
+            "*.jsonl", "*.parquet", "*.csv", "*.tsv",
         ])
         
         return patterns
@@ -155,9 +185,19 @@ class BatchProcessor:
         import fnmatch
         
         file_str = str(file_path)
+        file_name = file_path.name
+        
         for pattern in exclude_patterns:
-            if fnmatch.fnmatch(file_str, pattern) or fnmatch.fnmatch(file_path.name, pattern):
+            # Check full path match
+            if fnmatch.fnmatch(file_str, pattern):
                 return True
+            # Check filename match
+            if fnmatch.fnmatch(file_name, pattern):
+                return True
+            # Check if any parent directory matches the pattern
+            for parent in file_path.parts:
+                if fnmatch.fnmatch(parent, pattern):
+                    return True
         return False
     
     def _matches_include_pattern(self, file_path: Path, include_patterns: list[str]) -> bool:

@@ -5,7 +5,7 @@
 - **Project**: vallm
 - **Language**: python
 - **Files**: 30
-- **Lines**: 7402
+- **Lines**: 7436
 - **Functions**: 175
 - **Classes**: 31
 - **Avg CC**: 3.5
@@ -29,9 +29,9 @@
 - `__init__.py` — 19L, 0 methods, CC↑0
 - `__main__.py` — 5L, 0 methods, CC↑0
 
-### src/vallm/cli/ (4 files, 1028L, 39 functions)
+### src/vallm/cli/ (4 files, 1058L, 39 functions)
 
-- `batch_processor.py` — 271L, 12 methods, CC↑23
+- `batch_processor.py` — 301L, 12 methods, CC↑23
 - `output_formatters.py` — 421L, 16 methods, CC↑17
 - `command_handlers.py` — 293L, 11 methods, CC↑4
 - `__init__.py` — 43L, 0 methods, CC↑0

@@ -10,7 +10,7 @@ flowchart TD
     examples_09_code2logic_integration["examples.09_code2logic_integration<br/>6 funcs"]
     examples_10_mcp_ollama_demo["examples.10_mcp_ollama_demo<br/>42 funcs"]
     examples_11_claude_code_autonomous["examples.11_claude_code_autonomous<br/>33 funcs"]
-    examples_12_ollama_simple_demo["examples.12_ollama_simple_demo<br/>36 funcs"]
+    examples_12_ollama_simple_demo["examples.12_ollama_simple_demo<br/>30 funcs"]
     examples_utils["examples.utils<br/>13 funcs"]
     publish_env_lib["publish-env.lib<br/>11744 funcs"]
     scripts_bump_version["scripts.bump_version<br/>2 funcs"]
@@ -18,7 +18,7 @@ flowchart TD
     src_vallm ==>|97| publish_env_lib
     examples_utils ==>|81| publish_env_lib
     examples_11_claude_code_autonomous ==>|76| publish_env_lib
-    examples_12_ollama_simple_demo ==>|72| publish_env_lib
+    examples_12_ollama_simple_demo ==>|64| publish_env_lib
     examples_10_mcp_ollama_demo ==>|53| publish_env_lib
     examples_09_code2logic_integration ==>|40| publish_env_lib
     examples_04_graph_analysis ==>|33| publish_env_lib
@@ -35,12 +35,12 @@ flowchart TD
     examples_01_basic_validation -->|2| examples_utils
     examples_06_multilang_validation -->|2| examples_utils
     examples_10_mcp_ollama_demo -->|2| examples_utils
-    examples_11_claude_code_autonomous -->|1| examples_utils
     examples_04_graph_analysis -->|1| src_vallm
     examples_04_graph_analysis -->|1| examples_utils
-    examples_12_ollama_simple_demo -->|1| examples_utils
+    examples_11_claude_code_autonomous -->|1| examples_utils
     examples_01_basic_validation -->|1| publish_env_lib
     examples_02_ast_comparison -->|1| examples_utils
     examples_03_security_check -->|1| examples_utils
+    examples_12_ollama_simple_demo -->|1| examples_utils
     examples_07_multi_language -->|1| src_vallm
     examples_08_code2llm_integration -->|1| src_vallm

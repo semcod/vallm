@@ -1,6 +1,5 @@
 # Git
 .git/
-publish-env/
 releases
 vendor/
 publish-env

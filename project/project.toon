@@ -1,4 +1,4 @@
-# vallm | 95f 12017L | python:95
+# vallm | 95f 11971L | python:95
 # Keys: M=modules, D=details, i=imports, c=classes, f=functions, m=methods
 M[95]:
   examples/01_basic_validation/main.py,63
@@ -17,9 +17,9 @@ M[95]:
   examples/10_mcp_ollama_demo/refactored_output.py,101
   examples/11_claude_code_autonomous/claude_autonomous_demo.py,489
   examples/11_claude_code_autonomous/legacy_code/data_processor.py,166
-  examples/12_ollama_simple_demo/best_version.py,42
-  examples/12_ollama_simple_demo/iteration_1.py,42
-  examples/12_ollama_simple_demo/iteration_2.py,42
+  examples/12_ollama_simple_demo/best_version.py,15
+  examples/12_ollama_simple_demo/iteration_1.py,15
+  examples/12_ollama_simple_demo/iteration_2.py,15
   examples/12_ollama_simple_demo/legacy_code/simple_buggy.py,81
   examples/12_ollama_simple_demo/ollama_simple_demo.py,256
   examples/12_ollama_simple_demo/utils/__init__.py,14
@@ -40,7 +40,7 @@ M[95]:
   src/vallm/__main__.py,3
   src/vallm/cli.py,5
   src/vallm/cli/__init__.py,33
-  src/vallm/cli/batch_processor.py,208
+  src/vallm/cli/batch_processor.py,229
   src/vallm/cli/command_handlers.py,204
   src/vallm/cli/output_formatters.py,329
   src/vallm/cli/settings_builders.py,44
@@ -90,7 +90,7 @@ M[95]:
   tests/test_performance.py,148
   tests/test_pipeline.py,39
   tests/test_plugins.py,116
-  tests/test_sandbox.py,93
+  tests/test_sandbox.py,95
   tests/test_scoring.py,53
   tests/test_security.py,25
   tests/test_semantic_validation.py,265
@@ -210,25 +210,16 @@ D:
     init_database()
     main()
   examples/12_ollama_simple_demo/best_version.py:
-    i: os,json,typing.{Any,Dict,List}
-    e: load_config,save_data,calculate_total,main
-    load_config()->Dict[str, Any]
-    save_data(data:Dict[str;Any];filename:str)->None
-    calculate_total(items:List[Dict[str;Any]])->float
+    i: os,json,typing.{Any,Dict,List},utils.{calculate_total,load_config,save_data}
+    e: main
     main()
   examples/12_ollama_simple_demo/iteration_1.py:
-    i: os,json,typing.{Any,Dict,List}
-    e: load_config,save_data,calculate_total,main
-    load_config()->Dict[str, Any]
-    save_data(data:Dict[str;Any];filename:str)->None
-    calculate_total(items:List[Dict[str;Any]])->float
+    i: os,json,typing.{Any,Dict,List},utils.{calculate_total,load_config,save_data}
+    e: main
     main()
   examples/12_ollama_simple_demo/iteration_2.py:
-    i: os,json,typing.{Any,Dict,List}
-    e: load_config,save_data,calculate_total,main
-    load_config()->Dict[str, Any]
-    save_data(data:Dict[str;Any];filename:str)->None
-    calculate_total(items:List[Dict[str;Any]])->float
+    i: os,json,typing.{Any,Dict,List},utils.{calculate_total,load_config,save_data}
+    e: main
     main()
   examples/12_ollama_simple_demo/legacy_code/simple_buggy.py:
     i: os,json

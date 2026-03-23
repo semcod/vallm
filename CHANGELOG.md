@@ -124,6 +124,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Tree-sitter for all** — syntax validation for 165+ languages
 - **Example 07** — comprehensive multi-language demo with 8 languages
 
+## [0.1.21] - 2026-03-23
+
+### Docs
+- Update docs/README.md
+- Update project/README.md
+- Update project/context.md
+
+### Test
+- Update tests/test_plugins.py
+- Update tests/test_sandbox.py
+
+### Other
+- Update .gitignore
+- Update examples/12_ollama_simple_demo/best_version.py
+- Update examples/12_ollama_simple_demo/iteration_1.py
+- Update examples/12_ollama_simple_demo/iteration_2.py
+- Update project/analysis.toon
+- Update project/calls.mmd
+- Update project/calls.png
+- Update project/compact_flow.mmd
+- Update project/compact_flow.png
+- Update project/dashboard.html
+- ... and 10 more files
+
 ## [0.1.20] - 2026-03-23
 
 ### Docs
