@@ -152,7 +152,7 @@ Content outside the markers is preserved when regenerating. Enable this with `sy
 
 ```
 vallm/
-├── examples/        ├── cli/        ├── hookspecs    ├── vallm/    ├── bump_version        ├── __main__            ├── base            ├── logical            ├── complexity        ├── validators/            ├── security            ├── semantic_cache            ├── syntax            ├── semantic            ├── lint            ├── imports/            ├── graph_diff        ├── core/            ├── ast_compare            ├── proposal            ├── gitignore        ├── scoring            ├── output_formatters            ├── batch_processor            ├── languages        ├── sandbox/                ├── base                ├── javascript_imports                ├── python_imports                ├── go_imports                ├── c_imports                ├── rust_imports                ├── utils                ├── wrapper                ├── factory                ├── java_imports        ├── main_template        ├── main        ├── main        ├── claude_autonomous_demo        ├── main        ├── ollama_simple_demo        ├── iteration_1        ├── best_version        ├── iteration_2        ├── main        ├── main        ├── main        ├── main_template        ├── main        ├── main        ├── refactored_output        ├── mcp_demo            ├── runner    ├── utils/        ├── save_analysis_data        ├── extraction        ├── extract_code_from_response        ├── logging_utils        ├── validation_runner            ├── order_processor        ├── main            ├── process_user_input            ├── simple_buggy            ├── load_config        ├── utils/            ├── calculate_total            ├── main            ├── save_data├── project    ├── run        ├── run        ├── docker-entrypoint        ├── run        ├── docker-entrypoint        ├── run        ├── docker-entrypoint            ├── data_processor        ├── config            ├── command_handlers```
+        ├── hookspecs        ├── cli/├── examples/    ├── bump_version    ├── vallm/        ├── __main__            ├── base            ├── logical            ├── complexity        ├── validators/            ├── security            ├── semantic_cache            ├── syntax            ├── semantic            ├── lint            ├── imports/            ├── graph_diff        ├── core/            ├── ast_compare            ├── gitignore            ├── proposal            ├── output_formatters        ├── scoring            ├── batch_processor            ├── runner        ├── sandbox/                ├── base            ├── languages                ├── javascript_imports                ├── python_imports                ├── go_imports                ├── c_imports                ├── rust_imports                ├── utils                ├── wrapper                ├── factory        ├── main_template                ├── java_imports        ├── main        ├── main        ├── main        ├── ollama_simple_demo        ├── iteration_1        ├── best_version        ├── iteration_2        ├── main        ├── claude_autonomous_demo        ├── main        ├── main        ├── main_template        ├── main        ├── refactored_output        ├── main    ├── utils/        ├── extraction        ├── save_analysis_data        ├── extract_code_from_response        ├── mcp_demo        ├── validation_runner        ├── logging_utils            ├── order_processor        ├── main            ├── simple_buggy            ├── process_user_input            ├── load_config        ├── utils/            ├── calculate_total            ├── save_data            ├── main├── project    ├── run        ├── run        ├── docker-entrypoint        ├── run        ├── docker-entrypoint        ├── run        ├── docker-entrypoint            ├── data_processor        ├── config            ├── command_handlers```
 
 ## API Overview
 
@@ -168,16 +168,18 @@ vallm/
 - **`SemanticValidator`** — Tier 3: LLM-as-judge semantic code review.
 - **`LintValidator`** — Validator for linting issues using ruff.
 - **`GraphDiffResult`** — Result of comparing two code graphs.
-- **`Proposal`** — A code proposal to be validated.
 - **`GitignoreParser`** — Parse .gitignore files and match paths against patterns.
+- **`Proposal`** — A code proposal to be validated.
 - **`Verdict`** — —
 - **`Severity`** — —
 - **`Issue`** — A single issue found during validation.
 - **`ValidationResult`** — Result from a single validator.
 - **`PipelineResult`** — Aggregated result from all validators.
 - **`BatchProcessor`** — Handles batch validation of multiple files.
-- **`Language`** — Supported programming languages with their tree-sitter identifiers.
+- **`ExecutionResult`** — Result of sandboxed code execution.
+- **`SandboxRunner`** — Unified interface for running code in a sandbox.
 - **`BaseImportValidator`** — Base class for all import validators.
+- **`Language`** — Supported programming languages with their tree-sitter identifiers.
 - **`JavaScriptImportValidator`** — JavaScript/TypeScript import validator.
 - **`PythonImportValidator`** — Python-specific import validator.
 - **`GoImportValidator`** — Go import validator.
@@ -190,8 +192,6 @@ vallm/
 - **`Colors`** — —
 - **`OrderManager`** — Class with single responsibility - adheres to SOLID principles.
 - **`Colors`** — —
-- **`ExecutionResult`** — Result of sandboxed code execution.
-- **`SandboxRunner`** — Unified interface for running code in a sandbox.
 - **`Colors`** — ANSI color codes for terminal output.
 - **`OrderManager`** — Class with mixed responsibilities - SOLID violation.
 - **`BadClass`** — Class with multiple issues.
@@ -220,8 +220,6 @@ vallm/
 - `get_default_excludes()` — Get default exclude patterns used when no .gitignore exists.
 - `create_default_gitignore_parser()` — Create a parser with default exclude patterns.
 - `should_exclude(path, gitignore_parser, use_defaults)` — Check if a path should be excluded.
-- `compute_verdict(results, settings, filename)` — Compute the aggregate verdict from a list of validation results.
-- `validate(proposal, settings, validators, context)` — Run the full validation pipeline on a proposal.
 - `output_validate_result(result, output_format, verbose)` — Output validation result in the specified format.
 - `output_batch_results(results_by_language, filtered_files, passed_count, failed_files)` — Output batch validation results in the specified format.
 - `output_batch_empty(output_format)` — Output empty results.
@@ -238,6 +236,8 @@ vallm/
 - `output_batch_toon(results_by_language, filtered_files, passed_count, failed_files)` — Output TOON format batch summary with detailed per-file results.
 - `print_summary_header()` — Print summary header for batch results.
 - `build_results_table(results_by_language)` — Build results table for rich output.
+- `compute_verdict(results, settings, filename)` — Compute the aggregate verdict from a list of validation results.
+- `validate(proposal, settings, validators, context)` — Run the full validation pipeline on a proposal.
 - `detect_language(source)` — Auto-detect language from file path, extension, or name.
 - `get_language_for_validation(source, explicit)` — Get tree-sitter language ID for validation.
 - `walk(root, project_root, gitignore_matcher, skip_tests)` — Walk directory tree yielding Python files.
@@ -250,18 +250,6 @@ vallm/
 - `generate_report(code2logic_result, vallm_result, graph_result, output_path)` — Generate combined analysis report.
 - `visualize_flow(code, output_path)` — Generate control flow visualization.
 - `main()` — Main example function.
-- `log_section(title)` — Print a section header.
-- `log_step(step, description)` — Print a step.
-- `log_code(label, code, max_lines)` — Log code with label.
-- `analyze_with_code2llm(code_path)` — Analyze code structure and smells using code2llm.
-- `call_claude_code(prompt, model, temperature)` — Call Claude Code API.
-- `validate_with_vallm(code, description)` — Validate code using vallm.
-- `run_runtime_tests(code_path, test_file)` — Run runtime tests on the refactored code.
-- `create_basic_tests(code_path, test_file)` — Create basic tests for the code.
-- `generate_claude_prompt(code, analysis, iteration)` — Generate comprehensive prompt for Claude Code.
-- `generate_feedback_prompt(current_code, validation, test_results, analysis)` — Generate feedback prompt for Claude based on validation and test results.
-- `run_autonomous_workflow(code_path, max_iterations)` — Run the complete autonomous refactoring workflow.
-- `main()` — Main entry point.
 - `main()` — —
 - `log_section(title)` — —
 - `log_step(step, description)` — —
@@ -276,9 +264,27 @@ vallm/
 - `main()` — Main function with improvements.
 - `main()` — Main function with improvements.
 - `main()` — —
+- `log_section(title)` — Print a section header.
+- `log_step(step, description)` — Print a step.
+- `log_code(label, code, max_lines)` — Log code with label.
+- `analyze_with_code2llm(code_path)` — Analyze code structure and smells using code2llm.
+- `call_claude_code(prompt, model, temperature)` — Call Claude Code API.
+- `validate_with_vallm(code, description)` — Validate code using vallm.
+- `run_runtime_tests(code_path, test_file)` — Run runtime tests on the refactored code.
+- `create_basic_tests(code_path, test_file)` — Create basic tests for the code.
+- `generate_claude_prompt(code, analysis, iteration)` — Generate comprehensive prompt for Claude Code.
+- `generate_feedback_prompt(current_code, validation, test_results, analysis)` — Generate feedback prompt for Claude based on validation and test results.
+- `run_autonomous_workflow(code_path, max_iterations)` — Run the complete autonomous refactoring workflow.
+- `main()` — Main entry point.
 - `main()` — —
 - `main()` — —
 - `main()` — —
+- `main()` — —
+- `validate_email(email)` — Email validation using regex.
+- `calculate_shipping(weight)` — Calculate shipping cost with constants.
+- `load_config()` — Load config securely using json.loads.
+- `save_data(data, filename)` — Save data safely using json.dump.
+- `process_order(data)` — Process order data with proper error handling and validation.
 - `main()` — —
 - `test_language_detection()` — Test automatic language detection from various sources.
 - `validate_single_language(lang_name, code, is_bad)` — Validate a single language code sample.
@@ -286,12 +292,14 @@ vallm/
 - `save_results(results)` — Save validation results.
 - `print_language_info()` — Print supported languages info.
 - `main()` — Main example function.
-- `validate_email(email)` — Email validation using regex.
-- `calculate_shipping(weight)` — Calculate shipping cost with constants.
-- `load_config()` — Load config securely using json.loads.
-- `save_data(data, filename)` — Save data safely using json.dump.
-- `process_order(data)` — Process order data with proper error handling and validation.
-- `main()` — —
+- `save_analysis_data(example_name, result_data)` — Save analysis data to .vallm folder.
+- `run_validation_examples(example_name, good_code, bad_code, complex_code)` — Run standard validation examples (good, bad, complex code).
+- `validate_code_example(name, code, settings, all_results)` — Validate a code example and store results.
+- `print_summary(all_results)` — Print summary of all validation results.
+- `extract_code_from_response(response, language)` — Extract code from LLM response.
+- `extract_json_from_response(response)` — Extract JSON object from LLM response.
+- `save_analysis_data(example_name, result_data)` — Save analysis data to JSON file.
+- `extract_code_from_response(response)` — Extract Python code from LLM response.
 - `log_section(title)` — Print a section header.
 - `log_step(step, description)` — Print a step.
 - `log_code(label, code, max_lines)` — Log code with label.
@@ -301,19 +309,11 @@ vallm/
 - `generate_refactoring_prompt(code, analysis)` — Generate prompt for LLM to refactor code.
 - `run_mcp_workflow(code_path, max_iterations)` — Run the complete MCP workflow.
 - `main()` — Main entry point.
-- `save_analysis_data(example_name, result_data)` — Save analysis data to .vallm folder.
 - `run_validation_examples(example_name, good_code, bad_code, complex_code)` — Run standard validation examples (good, bad, complex code).
-- `validate_code_example(name, code, settings, all_results)` — Validate a code example and store results.
-- `print_summary(all_results)` — Print summary of all validation results.
-- `save_analysis_data(example_name, result_data)` — Save analysis data to JSON file.
-- `extract_code_from_response(response, language)` — Extract code from LLM response.
-- `extract_json_from_response(response)` — Extract JSON object from LLM response.
-- `extract_code_from_response(response)` — Extract Python code from LLM response.
 - `log_section(title)` — Print a section header.
 - `log_step(step, description)` — Print a step indicator.
 - `log_code(label, code, max_lines)` — Log code with label and truncation.
 - `log_result(status, message)` — Log a result with appropriate color.
-- `run_validation_examples(example_name, good_code, bad_code, complex_code)` — Run standard validation examples (good, bad, complex code).
 - `process_order(data)` — Process order data - has multiple issues.
 - `load_config()` — Load config - security issue with eval.
 - `save_data(data, filename)` — Save data - uses pickle without validation.
@@ -327,7 +327,6 @@ vallm/
 - `validate_with_vallm(project_path)` — Validate all Python files with vallm.
 - `generate_report(code2llm_result, vallm_result, output_path)` — Generate combined analysis report.
 - `main()` — Main example function.
-- `process_user_input(user_input)` — Process user input with standard logic.
 - `process_user_input(user_input)` — Process user input with security issues.
 - `load_config()` — Load configuration with eval.
 - `save_data(data, filename)` — Save data without validation.
@@ -335,10 +334,11 @@ vallm/
 - `duplicate_function()` — Another duplicate function.
 - `unused_function()` — This function is never used.
 - `main()` — Main function with problems.
+- `process_user_input(user_input)` — Process user input with standard logic.
 - `load_config()` — Load configuration with default values.
 - `calculate_total(items)` — Calculate total price from items list.
-- `run_demo_main()` — Run the standard demo main function pattern.
 - `save_data(data, filename)` — Save data to JSON file.
+- `run_demo_main()` — Run the standard demo main function pattern.
 - `run_example()` — —
 - `print_section()` — —
 - `print_step()` — —
