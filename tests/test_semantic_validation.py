@@ -76,9 +76,9 @@ class TestSemanticValidation:
         """Test semantic validation with good code."""
         from vallm.validators.semantic import SemanticValidator
         from vallm.core.proposal import Proposal
+        from unittest.mock import patch
         
         validator = SemanticValidator()
-        validator.llm_provider = mock_llm
         
         code = """
 def fibonacci(n: int) -> list[int]:
@@ -91,7 +91,20 @@ def fibonacci(n: int) -> list[int]:
 """
         
         proposal = Proposal(code=code, language="python")
-        result = validator.validate(proposal, {})
+        
+        # Mock the _call_llm method to return a valid JSON response
+        mock_response = '''```json
+{
+    "correctness": 5,
+    "style": 5,
+    "security": 5,
+    "completeness": 5,
+    "issues": [],
+    "summary": "Good code"
+}
+```'''
+        with patch.object(validator, '_call_llm', return_value=mock_response):
+            result = validator.validate(proposal, {})
         
         assert result.score >= 0.7
         assert result.validator == "semantic"
@@ -128,9 +141,9 @@ def process_data(data):
         """Test semantic validation with syntax errors."""
         from vallm.validators.semantic import SemanticValidator
         from vallm.core.proposal import Proposal
+        from unittest.mock import patch
         
         validator = SemanticValidator()
-        validator.llm_provider = mock_llm
         
         code = """
 def invalid_syntax(
@@ -138,7 +151,20 @@ def invalid_syntax(
 """
         
         proposal = Proposal(code=code, language="python")
-        result = validator.validate(proposal, {})
+        
+        # Mock the _call_llm method to return a valid JSON response with syntax error
+        mock_response = '''```json
+{
+    "correctness": 1,
+    "style": 2,
+    "security": 5,
+    "completeness": 1,
+    "issues": [{"message": "Syntax error", "severity": "error", "line": 2}],
+    "summary": "Has syntax errors"
+}
+```'''
+        with patch.object(validator, '_call_llm', return_value=mock_response):
+            result = validator.validate(proposal, {})
         
         assert result.score <= 0.2
         assert result.validator == "semantic"

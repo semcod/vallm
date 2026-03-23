@@ -1,0 +1,1104 @@
+{
+  "summary": {
+    "total_files": 163,
+    "passed": 110,
+    "failed": 53,
+    "success_rate": 67.5
+  },
+  "files": [
+    {
+      "path": "unknown",
+      "language": "yaml",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "yaml",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "yaml",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "yaml",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "toml",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "bash",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "bash",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "bash",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "bash",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "bash",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "bash",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "bash",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "bash",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "bash",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "python",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    },
+    {
+      "path": "unknown",
+      "language": "json",
+      "verdict": "pass",
+      "score": 1.0,
+      "issues": [],
+      "issues_count": 0
+    }
+  ],
+  "failed_files": [
+    {
+      "path": "CONTRIBUTING.md",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "project.toon",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "Makefile",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "VERSION",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "TICKET",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "LICENSE",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "TODO.md",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "Dockerfile.test",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "README.md",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "docs/README.md",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "docs/TESTING.md",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "code2llm_output/context.md",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "code2llm_output/README.md",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "code2llm_output/analysis.toon",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "project2/duplication.toon",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "examples/README.md",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "project/validation.toon",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "project/project.toon",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "project/compact_flow.mmd",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "project/map.toon",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "project/validation.json",
+      "error": "Error: [Errno 2] No such file or directory: 'project/validation.json'"
+    },
+    {
+      "path": "project/calls.mmd",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "project/index.html",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "project/flow.toon",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "project/validation.yaml",
+      "error": "Error: [Errno 2] No such file or directory: 'project/validation.yaml'"
+    },
+    {
+      "path": "project/context.md",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "project/prompt.txt",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "project/evolution.toon",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "project/flow.mmd",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "project/dashboard.html",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "project/README.md",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "project/analysis.toon",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "project/duplication.toon",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "toon/validation.txt",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "src/vallm/py.typed",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "examples/05_llm_semantic_review/README.md",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "examples/09_code2logic_integration/README.md",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "examples/11_claude_code_autonomous/requirements.txt",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "examples/11_claude_code_autonomous/Dockerfile",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "examples/11_claude_code_autonomous/README.md",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "examples/04_graph_analysis/README.md",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "examples/12_ollama_simple_demo/requirements.txt",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "examples/12_ollama_simple_demo/Dockerfile",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "examples/01_basic_validation/README.md",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "examples/02_ast_comparison/README.md",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "examples/03_security_check/README.md",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "examples/06_multilang_validation/README.md",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "examples/07_multi_language/README.md",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "examples/10_mcp_ollama_demo/requirements.txt",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "examples/10_mcp_ollama_demo/Dockerfile",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "examples/10_mcp_ollama_demo/README.md",
+      "error": "Unsupported file type"
+    },
+    {
+      "path": "examples/08_code2llm_integration/README.md",
+      "error": "Unsupported file type"
+    }
+  ]
+}
