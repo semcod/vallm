@@ -3,11 +3,11 @@ project:
   name: vallm
   repo: /home/tom/github/semcod/vallm
   language: python
-  analyzed_at: '2026-03-23T21:04:57Z'
+  analyzed_at: '2026-03-23T21:11:02Z'
   tool: code2llm
   stats:
     files: 30
-    lines: 7527
+    lines: 7523
     functions: 175
     classes: 31
 health:
@@ -698,5 +698,5 @@ evolution:
 - date: '2026-03-23'
   cc_avg: 3.5
   critical: 8
-  lines: 7527
+  lines: 7523
   note: Automated analysis

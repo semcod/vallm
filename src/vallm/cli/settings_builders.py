@@ -40,8 +40,6 @@ def build_batch_settings(
     enable_security: bool,
     model: Optional[str],
     verbose: bool,
-    no_imports: bool = False,
-    no_complexity: bool = False,
 ) -> VallmSettings:
     """Load and configure settings for batch validation."""
     settings = VallmSettings()
@@ -49,8 +47,6 @@ def build_batch_settings(
     # Override with command line options
     settings.enable_semantic = enable_semantic
     settings.enable_security = enable_security
-    settings.enable_imports = not no_imports
-    settings.enable_complexity = not no_complexity
     if model:
         settings.llm_model = model
     settings.verbose = verbose

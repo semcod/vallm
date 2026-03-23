@@ -5,7 +5,7 @@
 - **Project**: vallm
 - **Language**: python
 - **Files**: 30
-- **Lines**: 7527
+- **Lines**: 7523
 - **Functions**: 175
 - **Classes**: 31
 - **Avg CC**: 3.5

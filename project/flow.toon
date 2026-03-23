@@ -8,19 +8,19 @@ PIPELINES[12] (Analysis:2, Core:3, Export:2, IO:1, NLP:1, Unknown:3):
               → from_path(cls, path:str | Path) → Optional[Language] CC=1    pure ■
               PURITY: 2/4 pure  BOTTLENECK: _check_lizard(CC=12)
 
-  Src [Unknown]: Proposal → Optional[int]
-              → validate(proposal:Proposal, context:dict) → ValidationResult CC=3    cache ▶
-              → _parse_response(response_text:str) → ValidationResult CC=4    IO
-              → _parse_issues(data:dict) → list         CC=3    mutation
-              → _parse_line_number(line) → Optional[int] CC=4    pure ■
-              PURITY: 1/4 pure  BOTTLENECK: _parse_response(CC=4)
-
   Src [Core]: Proposal → ?
               → validate(proposal:Proposal, context:dict) → ValidationResult CC=2    pure ▶
               → _validate_treesitter(code:str, language:str) → tuple[float, list[Issue]] CC=3    mutation
               → tree_sitter_error_count(code:str, language:str) → int CC=1    mutation
               → parse_code(code:str, language:str)      CC=1    pure ■
               PURITY: 2/4 pure  BOTTLENECK: _validate_treesitter(CC=3)
+
+  Src [Unknown]: Proposal → Optional[int]
+              → validate(proposal:Proposal, context:dict) → ValidationResult CC=3    cache ▶
+              → _parse_response(response_text:str) → ValidationResult CC=4    IO
+              → _parse_issues(data:dict) → list         CC=3    mutation
+              → _parse_line_number(line) → Optional[int] CC=4    pure ■
+              PURITY: 1/4 pure  BOTTLENECK: _parse_response(CC=4)
 
   Src [Core]: Path | str → str
               → matches(path:Path | str) → bool         CC=4    pure ▶
@@ -43,19 +43,19 @@ PIPELINES[12] (Analysis:2, Core:3, Export:2, IO:1, NLP:1, Unknown:3):
               → output_rich(result:ValidationResult, verbose:bool) → None CC=6    IO ■
               PURITY: 2/4 pure  BOTTLENECK: _process_files(CC=26)
 
-  Examples [Unknown]: ? → ?
-              → main()                                  CC=4    IO ▶
-              → run_autonomous_workflow(code_path:Path, max_iterations:int) CC=9    IO
-              → run_runtime_tests(code_path:Path, test_file:Optional[Path]) → Dict CC=8    IO
-              → create_basic_tests(code_path:Path, test_file:Path) CC=7    IO ■
-              PURITY: 0/4 pure  BOTTLENECK: run_autonomous_workflow(CC=9)
-
   Src [Core]: ? → ?
               → main()                                  CC=9    IO ▶
               → diff_python_code(before_code:str, after_code:str) → GraphDiffResult CC=1    pure
               → diff_graphs(before:CodeGraph, after:CodeGraph) → GraphDiffResult CC=5    pure
               → _diff_list(before, after, added:bool)   CC=9    pure ■
               PURITY: 3/4 pure  BOTTLENECK: main(CC=9)
+
+  Examples [Unknown]: ? → ?
+              → main()                                  CC=4    IO ▶
+              → run_autonomous_workflow(code_path:Path, max_iterations:int) CC=9    IO
+              → run_runtime_tests(code_path:Path, test_file:Optional[Path]) → Dict CC=8    IO
+              → create_basic_tests(code_path:Path, test_file:Path) CC=7    IO ■
+              PURITY: 0/4 pure  BOTTLENECK: run_autonomous_workflow(CC=9)
 
   Examples [Unknown]: ? → ?
               → main()                                  CC=5    IO ▶
@@ -129,27 +129,6 @@ CONTRACTS:
     validate(proposal:Proposal, context:dict) → ValidationResult
       IN:  proposal:Proposal, context:dict
       OUT: ValidationResult
-      SIDE-EFFECT: cache(self.cache.get, self.cache.set)
-      INVARIANT: raises on invalid input
-
-    _parse_response(response_text:str) → ValidationResult
-      IN:  response_text:str
-      OUT: ValidationResult
-      SIDE-EFFECT: IO(loads)
-
-    _parse_issues(data:dict) → list
-      IN:  data:dict
-      OUT: list
-      SIDE-EFFECT: pure
-
-    _parse_line_number(line) → Optional[int]
-      IN:  line
-      OUT: Optional[int]
-
-  Pipeline: Src
-    validate(proposal:Proposal, context:dict) → ValidationResult
-      IN:  proposal:Proposal, context:dict
-      OUT: ValidationResult
       INVARIANT: raises on invalid input
 
     _validate_treesitter(code:str, language:str) → tuple[float, list[Issue]]
@@ -166,6 +145,27 @@ CONTRACTS:
     parse_code(code:str, language:str)
       IN:  code:str, language:str
       OUT: None
+
+  Pipeline: Src
+    validate(proposal:Proposal, context:dict) → ValidationResult
+      IN:  proposal:Proposal, context:dict
+      OUT: ValidationResult
+      SIDE-EFFECT: cache(self.cache.get, self.cache.set)
+      INVARIANT: raises on invalid input
+
+    _parse_response(response_text:str) → ValidationResult
+      IN:  response_text:str
+      OUT: ValidationResult
+      SIDE-EFFECT: IO(loads)
+
+    _parse_issues(data:dict) → list
+      IN:  data:dict
+      OUT: list
+      SIDE-EFFECT: pure
+
+    _parse_line_number(line) → Optional[int]
+      IN:  line
+      OUT: Optional[int]
 
   Pipeline: Src
     matches(path:Path | str) → bool
@@ -225,6 +225,24 @@ CONTRACTS:
       OUT: None
       SIDE-EFFECT: IO(print, print, print)
 
+  Pipeline: Src
+    main()
+      IN:  ()
+      OUT: None
+      SIDE-EFFECT: IO(print, print, print)
+
+    diff_python_code(before_code:str, after_code:str) → GraphDiffResult
+      IN:  before_code:str, after_code:str
+      OUT: GraphDiffResult
+
+    diff_graphs(before:CodeGraph, after:CodeGraph) → GraphDiffResult
+      IN:  before:CodeGraph, after:CodeGraph
+      OUT: GraphDiffResult
+
+    _diff_list(before, after, added:bool)
+      IN:  before, after, added:bool
+      OUT: None
+
   Pipeline: Examples
     main()
       IN:  ()
@@ -245,24 +263,6 @@ CONTRACTS:
       IN:  code_path:Path, test_file:Path
       OUT: None
       SIDE-EFFECT: IO(read_text, write_text, print)
-
-  Pipeline: Src
-    main()
-      IN:  ()
-      OUT: None
-      SIDE-EFFECT: IO(print, print, print)
-
-    diff_python_code(before_code:str, after_code:str) → GraphDiffResult
-      IN:  before_code:str, after_code:str
-      OUT: GraphDiffResult
-
-    diff_graphs(before:CodeGraph, after:CodeGraph) → GraphDiffResult
-      IN:  before:CodeGraph, after:CodeGraph
-      OUT: GraphDiffResult
-
-    _diff_list(before, after, added:bool)
-      IN:  before, after, added:bool
-      OUT: None
 
   Pipeline: Examples
     main()
@@ -355,17 +355,17 @@ DATA_TYPES (by cross-function usage) [242 annotated, 0 inferred / 316 functions]
   ValidationResult     consumed:5   produced:18 
   Proposal             consumed:16  produced:1    !! HUB-TYPE → split interface
   str, Any             consumed:6   produced:10 
-  Dict                 consumed:7   produced:6  
   VallmSettings        consumed:11  produced:2    !! HUB-TYPE → split interface
+  Dict                 consumed:7   produced:6  
   list[Path]           consumed:6   produced:2  
   float                consumed:4   produced:4  
   Issue                consumed:1   produced:4  
   Language             consumed:0   produced:4    narrow scope
+  str | Path           consumed:3   produced:0    narrow scope
+  list[Issue]          consumed:0   produced:3    narrow scope
   ExecutionResult      consumed:0   produced:3    narrow scope
   GitignoreParser      consumed:1   produced:2    narrow scope
-  str | Path           consumed:3   produced:0    narrow scope
   list[str]            consumed:2   produced:1    narrow scope
-  list[Issue]          consumed:0   produced:3    narrow scope
 
   HUB TYPES (consumed ≥10):
     str → 186 consumers → split into:
@@ -386,20 +386,20 @@ DATA_TYPES (by cross-function usage) [242 annotated, 0 inferred / 316 functions]
       - (analyze consumers to suggest sub-interfaces)
 
 SIDE_EFFECTS:
-  IO:        main, LogicalErrorValidator._check_pyflakes, SecurityValidator._try_bandit, SemanticCache.__init__, SemanticCache.get, SemanticCache.set, SemanticCache.clear, SemanticValidator._call_http, SemanticValidator._parse_response, LintValidator._check_ruff
+  IO:        main, LogicalErrorValidator._check_pyflakes, SemanticCache.__init__, SemanticCache.get, SemanticCache.set, SemanticCache.clear, SecurityValidator._try_bandit, SemanticValidator._call_http, SemanticValidator._parse_response, LintValidator._check_ruff
   Cache:     SemanticCache.get_cache_stats, get_semantic_cache, clear_semantic_cache, SemanticValidator.__init__, SemanticValidator.validate
-  Mutation:  _initialize_validators, _run_validation_pipeline, _get_default_validators, ComplexityValidator.__init__, ComplexityValidator.validate, ComplexityValidator._check_python_complexity, ComplexityValidator._check_lizard, LogicalErrorValidator.__init__, SecurityValidator.validate, SecurityValidator._check_patterns
+  Mutation:  _initialize_validators, _run_validation_pipeline, _get_default_validators, LogicalErrorValidator.__init__, ComplexityValidator.__init__, ComplexityValidator.validate, ComplexityValidator._check_python_complexity, ComplexityValidator._check_lizard, SecurityValidator.validate, SecurityValidator._check_patterns
   Pure:      bump_version, VallmSpec.validate_proposal, VallmSpec.get_validator_name, VallmSpec.get_validator_tier, Issue.__str__, compute_verdict, validate, _initialize_settings, _initialize_context, BaseValidator.validate
 
   PIPELINE PURITY:
     Src             ██░░ 50% pure
+    Src             ██░░ 50% pure
     Src             █░░░ 25% pure
-    Src             ██░░ 50% pure
     Src             ███░ 75% pure
     Src             ███░ 75% pure
     Src             ██░░ 50% pure
+    Src             ███░ 75% pure
     Examples        ░░░░ 0% pure
-    Src             ███░ 75% pure
     Examples        ░░░░ 0% pure
     Examples        ██░░ 50% pure
     Examples        ░░░░ 0% pure
