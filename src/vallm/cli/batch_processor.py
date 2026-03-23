@@ -51,7 +51,7 @@ class BatchProcessor:
         
         self._show_validation_start(filtered_files, output_format)
         
-        results_by_language, failed_files, passed_count = self._process_files(
+        results_by_language, failed_files, passed_count, _ = self._process_files(
             filtered_files, settings, output_format, fail_fast, verbose, show_issues
         )
         

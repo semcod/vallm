@@ -16,4 +16,4 @@ __all__ = [
     "detect_language",
 ]
 
-__version__ = "0.1.22"
+__version__ = "0.1.23"
