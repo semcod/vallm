@@ -150,7 +150,7 @@ def output_batch_rich(
     if failed_files:
         console.print("\n[red]Failed Files:[/red]")
         for file_path, error in failed_files:
-            console.print(f"  [red]•[/red] {file_path}: {error}")
+            console.print(f"  [red]•[/{red}] {file_path}: {error}")
 
 
 def output_batch_text(
@@ -188,30 +188,44 @@ def output_batch_json(
     passed_count: int,
     failed_files: list,
 ) -> None:
-    """Output JSON batch summary."""
+    """Output JSON batch summary with detailed per-file results."""
+    # Build detailed files list with path and full details
+    files_details = []
+    for lang, results in results_by_language.items():
+        for r in results:
+            # Get filename from result if available
+            filename = getattr(r, 'filename', None) or 'unknown'
+            files_details.append({
+                "path": filename,
+                "language": lang,
+                "verdict": r.verdict.value,
+                "score": r.weighted_score,
+                "issues": [
+                    {
+                        "validator": issue.validator,
+                        "severity": issue.severity.value,
+                        "message": issue.message,
+                        "line": issue.line,
+                        "column": issue.column,
+                    }
+                    for issue in r.all_issues
+                ],
+                "issues_count": len(r.all_issues),
+            })
+
     data = {
         "summary": {
             "total_files": len(filtered_files),
             "passed": passed_count,
             "failed": len(failed_files),
         },
-        "results_by_language": {},
+        "files": files_details,
         "failed_files": [
             {"path": str(file_path), "error": error}
             for file_path, error in failed_files
         ],
     }
-    
-    for lang, results in results_by_language.items():
-        data["results_by_language"][lang] = [
-            {
-                "verdict": r.verdict.value,
-                "score": r.weighted_score,
-                "issues_count": len(r.all_issues),
-            }
-            for r in results
-        ]
-    
+
     print(json.dumps(data, indent=2))
 
 

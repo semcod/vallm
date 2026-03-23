@@ -136,6 +136,28 @@ vallm check src/main.go
 vallm info
 ```
 
+### Generate Validation Summary File
+
+```bash
+# JSON summary for entire project
+vallm batch . --recursive --format json > validation-summary.json
+
+# YAML summary for src/ directory
+vallm batch src/ --recursive --format yaml > validation-summary.yaml
+
+# TOON format (compact) for CI/CD
+vallm batch . --recursive --format toon > validation-summary.toon
+
+# Text format with security checks
+vallm batch . --recursive --format text --security > validation-report.txt
+
+# Full validation with semantic review - save to file
+vallm batch . --recursive --semantic --model qwen2.5-coder:7b --format json > full-validation.json
+
+# Tee output to both console and file
+vallm batch . --recursive --format json | tee validation-summary.json
+```
+
 ### Batch Command Options
 
 | Option | Short | Description |

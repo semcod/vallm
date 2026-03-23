@@ -3,16 +3,16 @@ project:
   name: vallm
   repo: /home/tom/github/semcod/vallm
   language: python
-  analyzed_at: '2026-03-23T19:22:38Z'
+  analyzed_at: '2026-03-23T19:32:38Z'
   tool: code2llm
   stats:
-    files: 27
-    lines: 6793
-    functions: 147
-    classes: 28
+    files: 31
+    lines: 7605
+    functions: 185
+    classes: 32
 health:
   cc_avg: 3.5
-  critical_count: 6
+  critical_count: 9
   critical_limit: 10
   duplicates: 0
   cycles: 0
@@ -22,9 +22,24 @@ health:
     value: 27
     limit: 15
     severity: critical
+  - type: high_fan_out
+    target: OptimizedBatchProcessor._process_files_parallel
+    value: 16
+    limit: 10
+    severity: error
+  - type: cc_exceeded
+    target: OptimizedBatchProcessor._process_files_parallel
+    value: 19
+    limit: 15
+    severity: warning
   - type: cc_exceeded
     target: BatchProcessor._process_files
     value: 18
+    limit: 15
+    severity: warning
+  - type: cc_exceeded
+    target: OptimizedBatchProcessor._process_files_sequential
+    value: 15
     limit: 15
     severity: warning
   - type: high_fan_out
@@ -43,6 +58,11 @@ health:
     limit: 10
     severity: warning
   - type: high_fan_out
+    target: LintValidator._parse_ruff_text
+    value: 12
+    limit: 10
+    severity: warning
+  - type: high_fan_out
     target: main
     value: 11
     limit: 10
@@ -53,18 +73,28 @@ health:
     limit: 10
     severity: warning
   - type: high_fan_out
-    target: BatchProcessor._process_files
+    target: SandboxRunner._run_docker
     value: 11
     limit: 10
     severity: warning
   - type: high_fan_out
-    target: SandboxRunner._run_docker
+    target: BatchProcessor._process_files
     value: 11
     limit: 10
     severity: warning
   - type: high_fan_out
     target: walk
     value: 11
+    limit: 10
+    severity: warning
+  - type: high_fan_out
+    target: info_command
+    value: 11
+    limit: 10
+    severity: warning
+  - type: high_fan_out
+    target: LogicalErrorValidator._check_pyflakes
+    value: 10
     limit: 10
     severity: warning
   - type: high_fan_out
@@ -88,6 +118,29 @@ modules:
   - name: validate_import_path
     type: function
     cc: 14
+- path: src/vallm/cli/optimized_batch_processor.py
+  lines: 346
+  classes: 1
+  methods: 13
+  cc_max: 19
+  inbound_deps: 1
+  exports:
+  - name: OptimizedBatchProcessor
+    type: class
+    cc_avg: 6.5
+    methods:
+    - name: _filter_files
+      cc: 13
+    - name: _process_files_sequential
+      cc: 15
+      flag: split
+    - name: _process_files_parallel
+      cc: 19
+      flag: split
+      fan_out: 16
+  - name: create_optimized_batch_processor
+    type: function
+    cc: 1
 - path: src/vallm/cli/batch_processor.py
   lines: 262
   classes: 1
@@ -123,7 +176,7 @@ modules:
   classes: 1
   methods: 10
   cc_max: 11
-  inbound_deps: 1
+  inbound_deps: 2
   exports:
   - name: GitignoreParser
     type: class
@@ -159,6 +212,23 @@ modules:
   - name: diff_python_code
     type: function
     cc: 1
+- path: src/vallm/validators/lint.py
+  lines: 182
+  classes: 1
+  methods: 6
+  cc_max: 9
+  inbound_deps: 0
+  exports:
+  - name: LintValidator
+    type: class
+    cc_avg: 4.4
+    methods:
+    - name: _parse_ruff_text
+      cc: 9
+      fan_out: 12
+  - name: create_validator
+    type: function
+    cc: 1
 - path: src/vallm/validators/security.py
   lines: 253
   classes: 1
@@ -178,7 +248,7 @@ modules:
   classes: 0
   methods: 13
   cc_max: 7
-  inbound_deps: 2
+  inbound_deps: 3
   exports:
   - name: output_validate_result
     type: function
@@ -230,21 +300,21 @@ modules:
     type: class
     cc_avg: 2.4
 - path: src/vallm/validators/imports/python_imports.py
-  lines: 101
+  lines: 113
   classes: 1
-  methods: 3
+  methods: 6
   cc_max: 7
   inbound_deps: 0
   exports:
   - name: PythonImportValidator
     type: class
-    cc_avg: 4.7
+    cc_avg: 2.8
 - path: src/vallm/core/languages.py
   lines: 227
   classes: 1
   methods: 6
   cc_max: 6
-  inbound_deps: 5
+  inbound_deps: 6
   exports:
   - name: Language
     type: class
@@ -256,7 +326,7 @@ modules:
     type: function
     cc: 4
 - path: src/vallm/scoring.py
-  lines: 211
+  lines: 212
   classes: 5
   methods: 8
   cc_max: 6
@@ -281,6 +351,23 @@ modules:
     type: function
     cc: 6
   - name: validate
+    type: function
+    cc: 1
+- path: src/vallm/validators/logical.py
+  lines: 142
+  classes: 1
+  methods: 5
+  cc_max: 6
+  inbound_deps: 0
+  exports:
+  - name: LogicalErrorValidator
+    type: class
+    cc_avg: 3.5
+    methods:
+    - name: _check_pyflakes
+      cc: 6
+      fan_out: 10
+  - name: create_validator
     type: function
     cc: 1
 - path: scripts/bump_version.py
@@ -322,21 +409,37 @@ modules:
       cc: 3
       fan_out: 13
 - path: src/vallm/validators/imports/javascript_imports.py
-  lines: 106
+  lines: 118
   classes: 1
-  methods: 4
+  methods: 7
   cc_max: 5
   inbound_deps: 0
   exports:
   - name: JavaScriptImportValidator
     type: class
-    cc_avg: 3.2
+    cc_avg: 2.3
     methods:
     - name: extract_imports
       cc: 4
       fan_out: 14
+- path: src/vallm/validators/semantic_cache.py
+  lines: 187
+  classes: 1
+  methods: 8
+  cc_max: 5
+  inbound_deps: 2
+  exports:
+  - name: SemanticCache
+    type: class
+    cc_avg: 2.5
+  - name: get_semantic_cache
+    type: function
+    cc: 2
+  - name: clear_semantic_cache
+    type: function
+    cc: 2
 - path: src/vallm/cli/command_handlers.py
-  lines: 272
+  lines: 297
   classes: 0
   methods: 11
   cc_max: 4
@@ -350,10 +453,11 @@ modules:
     cc: 1
   - name: batch_command
     type: function
-    cc: 2
+    cc: 3
   - name: info_command
     type: function
-    cc: 3
+    cc: 4
+    fan_out: 11
 - path: src/vallm/core/ast_compare.py
   lines: 135
   classes: 0
@@ -400,7 +504,7 @@ modules:
       cc: 3
       fan_out: 11
 - path: src/vallm/validators/semantic.py
-  lines: 282
+  lines: 296
   classes: 1
   methods: 15
   cc_max: 4
@@ -556,6 +660,9 @@ modules:
   cc_max: 0
   inbound_deps: 0
 hotspots:
+- name: OptimizedBatchProcessor._process_files_parallel
+  fan_out: 16
+  note: Analysis pipeline, 16 stages
 - name: JavaScriptImportValidator.extract_imports
   fan_out: 14
   note: Extract import statements from JavaScript/TypeScript using tree-sitter.
@@ -565,35 +672,50 @@ hotspots:
 - name: RustImportValidator.extract_imports
   fan_out: 13
   note: Extract use statements from Rust using tree-sitter.
+- name: LintValidator._parse_ruff_text
+  fan_out: 12
+  note: "Parse ruff text output as fallback.\n\nArgs:\n    output: Ruff text output\n\
+    \    \nRet"
 - name: main
   fan_out: 11
   note: Orchestrates 11 calls
 - name: SemanticValidator._parse_response
   fan_out: 11
   note: Parse LLM JSON response into a ValidationResult.
-- name: BatchProcessor._process_files
-  fan_out: 11
-  note: Analysis pipeline, 11 stages
 - name: SandboxRunner._run_docker
   fan_out: 11
   note: Run code in a Docker container (requires docker package).
+- name: BatchProcessor._process_files
+  fan_out: 11
+  note: Analysis pipeline, 11 stages
 - name: walk
   fan_out: 11
   note: "Walk directory tree yielding Python files.\n\nArgs:\n    root: Root directory\
     \ to st"
-- name: SecurityValidator._try_bandit
-  fan_out: 10
-  note: Try to run bandit if installed.
 refactoring:
   priorities:
   - action: Split walk (CC=27 → target CC<10)
     impact: high
     effort: low
     module: utils.py
+  - action: Split OptimizedBatchProcessor._process_files_sequential (CC=15 → target
+      CC<10)
+    impact: medium
+    effort: low
+    module: optimized_batch_processor.py
+  - action: Split OptimizedBatchProcessor._process_files_parallel (CC=19 → target
+      CC<10)
+    impact: medium
+    effort: low
+    module: optimized_batch_processor.py
   - action: Split BatchProcessor._process_files (CC=18 → target CC<10)
     impact: medium
     effort: low
     module: batch_processor.py
+  - action: Reduce OptimizedBatchProcessor._process_files_parallel fan-out (currently
+      16)
+    impact: medium
+    effort: medium
 evolution:
 - date: '2026-03-22'
   cc_avg: 4.3
@@ -602,6 +724,6 @@ evolution:
   note: Automated analysis
 - date: '2026-03-23'
   cc_avg: 3.5
-  critical: 6
-  lines: 6793
+  critical: 9
+  lines: 7605
   note: Automated analysis

@@ -23,10 +23,21 @@ app.command(name="check")(check_command)
 app.command(name="batch")(batch_command)
 app.command(name="info")(info_command)
 
+# Backward compatibility aliases
+batch = batch_command
+validate = validate_command
+check = check_command
+info = info_command
+
 __all__ = [
     "app",
     "validate_command",
-    "check_command", 
+    "check_command",
     "batch_command",
     "info_command",
+    # Backward compatibility
+    "validate",
+    "check",
+    "batch",
+    "info",
 ]

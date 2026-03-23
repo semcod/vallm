@@ -1,28 +1,36 @@
-# code2llm/evolution | 297 func | 62f | 2026-03-23
+# code2llm/evolution | 335 func | 66f | 2026-03-23
 
-NEXT[3] (ranked by impact):
+NEXT[5] (ranked by impact):
   [1] !! SPLIT           examples/11_claude_code_autonomous/claude_autonomous_demo.py
       WHY: 650L, 1 classes, max CC=12
       EFFORT: ~4h  IMPACT: 7800
 
-  [2] !! SPLIT-FUNC      walk  CC=27  fan=11
+  [2] !  SPLIT-FUNC      OptimizedBatchProcessor._process_files_parallel  CC=19  fan=16
+      WHY: CC=19 exceeds 15
+      EFFORT: ~1h  IMPACT: 304
+
+  [3] !! SPLIT-FUNC      walk  CC=27  fan=11
       WHY: CC=27 exceeds 15
       EFFORT: ~1h  IMPACT: 297
 
-  [3] !  SPLIT-FUNC      BatchProcessor._process_files  CC=18  fan=11
+  [4] !  SPLIT-FUNC      BatchProcessor._process_files  CC=18  fan=11
       WHY: CC=18 exceeds 15
       EFFORT: ~1h  IMPACT: 198
+
+  [5] !  SPLIT-FUNC      OptimizedBatchProcessor._process_files_sequential  CC=15  fan=8
+      WHY: CC=15 exceeds 15
+      EFFORT: ~1h  IMPACT: 120
 
 
 RISKS[1]:
   ⚠ Splitting examples/11_claude_code_autonomous/claude_autonomous_demo.py may break 12 import paths
 
 METRICS-TARGET:
-  CC̄:          3.3 → ≤2.3
+  CC̄:          3.4 → ≤2.4
   max-CC:      27 → ≤13
   god-modules: 1 → 0
-  high-CC(≥15): 2 → ≤1
+  high-CC(≥15): 4 → ≤2
   hub-types:   0 → ≤0
 
 HISTORY:
-  prev CC̄=3.4 → now CC̄=3.3
+  prev CC̄=3.3 → now CC̄=3.4

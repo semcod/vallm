@@ -1,18 +1,18 @@
-# code2llm | 36f 3896L | python:35,shell:1 | 2026-03-23
-# CC̄=3.5 | critical:6/12041 | dups:0 | cycles:0
+# code2llm | 40f 4817L | python:39,shell:1 | 2026-03-23
+# CC̄=3.5 | critical:9/12079 | dups:0 | cycles:0
 
 HEALTH[20]:
   🟡 CC    renderToken CC=17 (limit:15)
   🟡 CC    send CC=19 (limit:15)
-  🟡 CC    resolve_redirects CC=15 (limit:15)
   🟡 CC    build_digest_header CC=19 (limit:15)
-  🟡 CC    super_len CC=18 (limit:15)
-  🟡 CC    should_bypass_proxies CC=17 (limit:15)
+  🟡 CC    resolve_redirects CC=15 (limit:15)
   🟡 CC    _encode_files CC=21 (limit:15)
   🟡 CC    prepare_url CC=17 (limit:15)
   🟡 CC    prepare_body CC=17 (limit:15)
-  🟡 CC    parse_email CC=26 (limit:15)
+  🟡 CC    super_len CC=18 (limit:15)
+  🟡 CC    should_bypass_proxies CC=17 (limit:15)
   🟡 CC    filter CC=16 (limit:15)
+  🟡 CC    parse_email CC=26 (limit:15)
   🟡 CC    _cpython_abis CC=15 (limit:15)
   🟡 CC    cpython_tags CC=15 (limit:15)
   🟡 CC    mac_platforms CC=15 (limit:15)
@@ -32,22 +32,26 @@ LAYERS:
   scripts/                        CC̄=5.0    ←in:0  →out:0
   │ bump_version                78L  0C    2m  CC=5      ←2
   │
-  src/                            CC̄=3.4    ←in:0  →out:0
-  │ output_formatters          306L  0C   13m  CC=7      ←2
-  │ semantic                   282L  1C   15m  CC=4      ←0
-  │ !  gitignore                  272L  1C   10m  CC=11     ←1
-  │ command_handlers           272L  0C   11m  CC=4      ←0
+  src/                            CC̄=3.5    ←in:0  →out:0
+  │ !! optimized_batch_processor   346L  1C   13m  CC=19     ←1
+  │ output_formatters          306L  0C   13m  CC=7      ←3
+  │ command_handlers           297L  0C   11m  CC=4      ←0
+  │ semantic                   296L  1C   15m  CC=4      ←0
+  │ !  gitignore                  272L  1C   10m  CC=11     ←2
   │ !! batch_processor            262L  1C   12m  CC=18     ←0
   │ security                   253L  1C    5m  CC=9      ←0
-  │ languages                  227L  1C    6m  CC=6      ←5
-  │ scoring                    211L  5C    8m  CC=6      ←0
+  │ languages                  227L  1C    6m  CC=6      ←6
+  │ scoring                    212L  5C    8m  CC=6      ←0
+  │ semantic_cache             187L  1C    8m  CC=5      ←2
   │ !  complexity                 183L  1C    4m  CC=12     ←0
+  │ lint                       182L  1C    6m  CC=9      ←0
   │ !! utils                      150L  0C    2m  CC=27     ←0
   │ runner                     144L  2C    4m  CC=4      ←0
+  │ logical                    142L  1C    5m  CC=6      ←0
   │ ast_compare                135L  0C    7m  CC=4      ←2
-  │ javascript_imports         106L  1C    4m  CC=5      ←0
+  │ javascript_imports         118L  1C    7m  CC=5      ←0
+  │ python_imports             113L  1C    6m  CC=7      ←0
   │ graph_diff                 104L  1C    3m  CC=9      ←1
-  │ python_imports             101L  1C    3m  CC=7      ←0
   │ syntax                      96L  1C    3m  CC=4      ←0
   │ c_imports                   88L  1C    4m  CC=5      ←0
   │ go_imports                  84L  1C    5m  CC=5      ←0
@@ -74,47 +78,54 @@ LAYERS:
 
 DUPLICATES[0]: none
 
-FUNCTIONS (CC≥10, 6 of 147):
+FUNCTIONS (CC≥10, 9 of 185):
    27.0  walk                                       28n   4exit  loops+cond+ret  !! split
+   19.0  OptimizedBatchProcessor._process_files_parallel    5n   2exit  cond+ret  !! split
    18.0  BatchProcessor._process_files               4n   2exit  loops+ret  !! split
+   15.0  OptimizedBatchProcessor._process_files_sequential    4n   2exit  loops+ret  !! split
    14.0  validate_import_path                       29n   9exit  loops+cond+ret
+   13.0  OptimizedBatchProcessor._filter_files      14n   2exit  loops+cond+ret
    12.0  ComplexityValidator._check_lizard          10n   3exit  cond+ret
    11.0  ComplexityValidator._check_python_complexity    6n   3exit  cond+ret
    11.0  GitignoreParser._pattern_to_regex          12n   2exit  loops+cond+ret
 
   summary:
-    critical(≥10): 6 | high(5-10): 26 | medium(2-5): 72 | low(<2): 43
-    4% CC≥10  22% CC≥5
+    critical(≥10): 9 | high(5-10): 33 | medium(2-5): 85 | low(<2): 58
+    5% CC≥10  23% CC≥5
 
 HOTSPOTS:
-  #1  JavaScriptImportValidator.extract_imports  fan=14   "JavaScriptImportValidator method, fan-out=14"
-  #2  GoImportValidator.extract_imports    fan=13   "GoImportValidator method, fan-out=13"
-  #3  RustImportValidator.extract_imports  fan=13   "RustImportValidator method, fan-out=13"
-  #4  main                                 fan=11   "calls 11 functions"
-  #5  SemanticValidator._parse_response    fan=11   "SemanticValidator method, fan-out=11"
-  #6  BatchProcessor._process_files        fan=11   "analysis pipeline, 11 stages"
-  #7  SandboxRunner._run_docker            fan=11   "SandboxRunner method, fan-out=11"
-  #8  walk                                 fan=11   "calls 11 functions"
-  #9  SecurityValidator._try_bandit        fan=10   "SecurityValidator method, fan-out=10"
-  #10 ComplexityValidator._check_lizard    fan=9    "ComplexityValidator method, fan-out=9"
+  #1  OptimizedBatchProcessor._process_files_parallel  fan=16   "analysis pipeline, 16 stages"
+  #2  JavaScriptImportValidator.extract_imports  fan=14   "JavaScriptImportValidator method, fan-out=14"
+  #3  GoImportValidator.extract_imports    fan=13   "GoImportValidator method, fan-out=13"
+  #4  RustImportValidator.extract_imports  fan=13   "RustImportValidator method, fan-out=13"
+  #5  LintValidator._parse_ruff_text       fan=12   "LintValidator method, fan-out=12"
+  #6  main                                 fan=11   "calls 11 functions"
+  #7  SemanticValidator._parse_response    fan=11   "SemanticValidator method, fan-out=11"
+  #8  SandboxRunner._run_docker            fan=11   "SandboxRunner method, fan-out=11"
+  #9  BatchProcessor._process_files        fan=11   "analysis pipeline, 11 stages"
+  #10 walk                                 fan=11   "calls 11 functions"
 
 CLASSES:
   SemanticValidator              ████████████████████████  15m  CC̄=2.3   max=4   
+  OptimizedBatchProcessor        ███████████████████       12m  CC̄=6.5   max=19    !!
   BatchProcessor                 ███████████████████       12m  CC̄=4.8   max=18    !!
   BaseImportValidator            ███████████                7m  CC̄=1.3   max=3   
+  JavaScriptImportValidator      ███████████                7m  CC̄=2.3   max=5   
+  SemanticCache                  █████████                  6m  CC̄=2.5   max=5   
   GitignoreParser                █████████                  6m  CC̄=5.7   max=11  
+  PythonImportValidator          █████████                  6m  CC̄=2.8   max=7   
   SecurityValidator              ████████                   5m  CC̄=5.4   max=9   
+  LintValidator                  ████████                   5m  CC̄=4.4   max=9   
   GoImportValidator              ████████                   5m  CC̄=2.2   max=5   
   RustImportValidator            ████████                   5m  CC̄=1.6   max=3   
   JavaImportValidator            ████████                   5m  CC̄=2.4   max=7   
   ComplexityValidator            ██████                     4m  CC̄=6.8   max=12  
+  LogicalErrorValidator          ██████                     4m  CC̄=3.5   max=6   
   Language                       ██████                     4m  CC̄=3.0   max=6   
   SandboxRunner                  ██████                     4m  CC̄=3.0   max=4   
-  JavaScriptImportValidator      ██████                     4m  CC̄=3.2   max=5   
   CImportValidator               ██████                     4m  CC̄=2.8   max=5   
   VallmSpec                      ████                       3m  CC̄=1.0   max=1   
   SyntaxValidator                ████                       3m  CC̄=3.0   max=4   
-  PythonImportValidator          ████                       3m  CC̄=4.7   max=7   
   ImportValidatorFactory         ████                       3m  CC̄=1.3   max=2   
   Issue                          █                          1m  CC̄=3.0   max=3   
   BaseValidator                  █                          1m  CC̄=1.0   max=1   
@@ -2502,6 +2513,11 @@ Adds the f...
     Delimiter
     StateInline
       __init__(4)  CC=1.0
+  src/vallm/cli/optimized_batch_processor.py:
+    e: OptimizedBatchProcessor,create_optimized_batch_processor
+    OptimizedBatchProcessor  # Optimized batch processor with parallel processing capabilit...
+      __init__(1)  CC=2.0
+    create_optimized_batch_processor(console)
   publish-env/lib/python3.13/site-packages/cryptography/hazmat/primitives/serialization/ssh.py:
     e: _SSHCipher,_FragList,_SSHFormatRSA,_SSHFormatDSA,_SSHFormatECDSA,_SSHFormatEd25519,_SSHFormatSKEd25519,_SSHFormatSKECDSA,SSHCertificateType,SSHCertificate,SSHCertificateBuilder,_get_ssh_key_type,_ecdsa_key_type,_ssh_pem_encode,_check_block_size,_check_empty,_init_cipher,_get_u32,_get_u64,_get_sshstr,_get_mpint,_to_mpint,load_application,_lookup_kformat,load_ssh_private_key,_serialize_ssh_private_key,_get_ec_hash_alg,_load_ssh_public_identity,load_ssh_public_identity,_parse_exts_opts,ssh_key_fingerprint,load_ssh_public_key,serialize_ssh_public_key
     _SSHCipher
@@ -2689,6 +2705,9 @@ Private:
     get_decode_cache(exclude)
     decode(string,exclude)
     repl_func_with_cache(match,cache)
+  publish-env/lib/python3.13/site-packages/charset_normalizer/legacy.py:
+    e: detect
+    detect(byte_str,should_rename_legacy)
   publish-env/lib/python3.13/site-packages/charset_normalizer/utils.py:
     e: is_accentuated,remove_accent,unicode_range,is_latin,is_punctuation,is_symbol,is_emoticon,is_separator,is_case_variable,is_cjk,is_hiragana,is_katakana,is_hangul,is_thai,is_arabic,is_arabic_isolated_form,is_cjk_uncommon,is_unicode_range_secondary,is_unprintable,any_specified_encoding,is_multi_byte_encoding,identify_sig_or_bom,should_strip_sig_or_bom,iana_name,cp_similarity,is_cp_similar,set_logging_handler,cut_sequence_chunks
     is_accentuated(character)
@@ -2719,9 +2738,6 @@ Private:
     is_cp_similar(iana_name_a,iana_name_b)
     set_logging_handler(name,level,format_string)
     cut_sequence_chunks(sequences,encoding_iana,offsets,chunk_size,bom_or_sig_available,strip_sig_or_bom,sig_payload,is_multi_byte_decoder,decoded_payload)
-  publish-env/lib/python3.13/site-packages/charset_normalizer/legacy.py:
-    e: detect
-    detect(byte_str,should_rename_legacy)
   publish-env/lib/python3.13/site-packages/urllib3/util/ssl_.py:
     e: _is_bpo_43522_fixed,_is_has_never_check_common_name_reliable,assert_fingerprint,resolve_cert_reqs,resolve_ssl_version,create_urllib3_context,ssl_wrap_socket,ssl_wrap_socket,ssl_wrap_socket,is_ipaddress,_is_key_file_encrypted,_ssl_wrap_socket_impl
     _is_bpo_43522_fixed(implementation_name,version_info,pypy_version_info)
@@ -4213,28 +4229,6 @@ Highlights only the Angula...
     untar_file(filename,location)
     _untar_without_filter(filename,location,tar,leading)
     unpack_file(filename,location,content_type)
-  publish-env/lib/python3.13/site-packages/docutils/transforms/misc.py:
-    e: CallBack,ClassAttribute,Transitions
-    CallBack  # Inserts a callback into a document.  The callback is called ...
-      apply(0)  CC=1.0
-    ClassAttribute  # Move the "class" attribute specified in the "pending" node i...
-      apply(0)  CC=3.0
-    Transitions  # Move transitions at the end of sections up the tree.  Compla...
-      apply(0)  CC=2.0
-        → visit_transition(1)  CC=13.0
-  publish-env/lib/python3.13/site-packages/docutils/writers/manpage.py:
-    e: Writer,Table,Translator,insert_URI_breakpoints
-    Writer  # manpage writer class...
-      __init__(0)  CC=1.0
-        → __init__(0)  CC=1.0
-    Table  # man package table handling....
-      __init__(0)  CC=1.0
-    Translator  # Docutils to man page translator.
-
-Generate unix-like manual ...
-      __init__(1)  CC=2.0
-        → __init__(1)  CC=2.0
-    insert_URI_breakpoints(s)
   publish-env/lib/python3.13/site-packages/pip/_internal/operations/install/wheel.py:
     e: File,ZipBackedFile,ScriptFile,MissingCallableSuffix,PipScriptMaker,rehash,csv_io_kwargs,fix_script,wheel_root_is_purelib,get_entrypoints,message_about_scripts_not_on_PATH,_normalized_outrows,_record_to_fs_path,_fs_to_record_path,get_csv_rows_for_installed,get_console_script_specs,_raise_for_invalid_entrypoint,_install_wheel,req_error_context,install_wheel
     File
@@ -4264,6 +4258,28 @@ Generate unix-like manual ...
     _install_wheel(name,wheel_zip,wheel_path,scheme,pycompile,warn_script_location,direct_url,requested)
     req_error_context(req_description)
     install_wheel(name,wheel_path,scheme,req_description,pycompile,warn_script_location,direct_url,requested)
+  publish-env/lib/python3.13/site-packages/docutils/transforms/misc.py:
+    e: CallBack,ClassAttribute,Transitions
+    CallBack  # Inserts a callback into a document.  The callback is called ...
+      apply(0)  CC=1.0
+    ClassAttribute  # Move the "class" attribute specified in the "pending" node i...
+      apply(0)  CC=3.0
+    Transitions  # Move transitions at the end of sections up the tree.  Compla...
+      apply(0)  CC=2.0
+        → visit_transition(1)  CC=13.0
+  publish-env/lib/python3.13/site-packages/docutils/writers/manpage.py:
+    e: Writer,Table,Translator,insert_URI_breakpoints
+    Writer  # manpage writer class...
+      __init__(0)  CC=1.0
+        → __init__(0)  CC=1.0
+    Table  # man package table handling....
+      __init__(0)  CC=1.0
+    Translator  # Docutils to man page translator.
+
+Generate unix-like manual ...
+      __init__(1)  CC=2.0
+        → __init__(1)  CC=2.0
+    insert_URI_breakpoints(s)
   publish-env/lib/python3.13/site-packages/docutils/parsers/rst/directives/tables.py:
     e: Table,RSTTable,CSVTable,ListTable,align
     Table  # Generic table base class....
@@ -4762,11 +4778,6 @@ Example:
     >>> print(Padding("...
       __init__(2)  CC=1.0
         → unpack(0)  CC=5.0
-  publish-env/lib/python3.13/site-packages/rich/logging.py:
-    e: RichHandler
-    RichHandler  # A logging handler that renders output with Rich. The time / ...
-      __init__(2)  CC=3.0
-        → __init__(2)  CC=3.0
   publish-env/lib/python3.13/site-packages/rich/align.py:
     e: Align,VerticalCenter
     Align  # Align a renderable by adding spaces if necessary.
@@ -4779,6 +4790,11 @@ Args:
 Warn:
     This class is dep...
       __init__(2)  CC=1.0
+  publish-env/lib/python3.13/site-packages/rich/logging.py:
+    e: RichHandler
+    RichHandler  # A logging handler that renders output with Rich. The time / ...
+      __init__(2)  CC=3.0
+        → __init__(2)  CC=3.0
   publish-env/lib/python3.13/site-packages/requests_toolbelt/_compat.py:
     e: HTTPHeaderDict
     HTTPHeaderDict  # :param headers:
@@ -4794,6 +4810,23 @@ Warn:
   publish-env/lib/python3.13/site-packages/mdurl/_format.py:
     e: format
     format(url)
+  publish-env/lib/python3.13/site-packages/twine/package.py:
+    e: PackageMetadata,PackageFile,Hexdigest,HashManager,_safe_name
+    PackageMetadata
+    PackageFile
+      __init__(5)  CC=1.0
+    Hexdigest
+    HashManager  # Manage our hashing objects for simplicity.
+
+This will also a...
+      __init__(1)  CC=2.0
+    _safe_name(name)
+  publish-env/lib/python3.13/site-packages/pygments/formatters/groff.py:
+    e: GroffFormatter
+    GroffFormatter  # Format tokens with groff escapes to change their color and f...
+      __init__(0)  CC=1.0
+        → __init__(0)  CC=1.0
+        → _make_styles(0)  CC=9.0
   publish-env/lib/python3.13/site-packages/jeepney/low_level.py:
     e: SizeLimitError,Endianness,MessageType,MessageFlag,HeaderFields,FixedType,Boolean,FileDescriptor,StringType,ObjectPathType,Struct,DictEntry,Array,Variant,Header,Message,Parser,BufferPipe,padding,parse_signature,calc_msg_size,parse_header_fields,serialise_header_fields
     SizeLimitError  # Raised when trying to (de-)serialise data exceeding D-Bus' s...
@@ -4841,23 +4874,6 @@ It's not normally neces...
     calc_msg_size(buf)
     parse_header_fields(buf,endianness)
     serialise_header_fields(d,endianness)
-  publish-env/lib/python3.13/site-packages/twine/package.py:
-    e: PackageMetadata,PackageFile,Hexdigest,HashManager,_safe_name
-    PackageMetadata
-    PackageFile
-      __init__(5)  CC=1.0
-    Hexdigest
-    HashManager  # Manage our hashing objects for simplicity.
-
-This will also a...
-      __init__(1)  CC=2.0
-    _safe_name(name)
-  publish-env/lib/python3.13/site-packages/pygments/formatters/groff.py:
-    e: GroffFormatter
-    GroffFormatter  # Format tokens with groff escapes to change their color and f...
-      __init__(0)  CC=1.0
-        → __init__(0)  CC=1.0
-        → _make_styles(0)  CC=9.0
   publish-env/lib/python3.13/site-packages/pygments/lexers/__init__.py:
     e: _automodule,_fn_matches,_load_lexers,get_all_lexers,find_lexer_class,find_lexer_class_by_name,get_lexer_by_name,load_lexer_from_file,find_lexer_class_for_filename,get_lexer_for_filename,get_lexer_for_mimetype,_iter_lexerclasses,guess_lexer_for_filename,guess_lexer
     _automodule  # Automatically import lexers....
@@ -5356,6 +5372,22 @@ Fancy is a self-hosted, pure obje...
     MuPADLexer  # A MuPAD lexer.
 Contributed by Christopher Creutzig <christop...
     BCLexer  # A BC lexer....
+  publish-env/lib/python3.13/site-packages/pygments/lexers/erlang.py:
+    e: ErlangLexer,ErlangShellLexer,ElixirLexer,ElixirConsoleLexer,gen_elixir_string_rules,gen_elixir_sigstr_rules
+    ErlangLexer  # For the Erlang functional programming language....
+    ErlangShellLexer  # Shell sessions in erl (for Erlang code)....
+      get_tokens_unprocessed(1)  CC=6.0
+        → get_tokens_unprocessed(1)  CC=6.0
+    ElixirLexer  # For the Elixir language....
+      get_tokens_unprocessed(1)  CC=10.0
+        → get_tokens_unprocessed(1)  CC=10.0
+    ElixirConsoleLexer  # For Elixir interactive console (iex) output like:
+
+.. source...
+      get_tokens_unprocessed(1)  CC=7.0
+        → get_tokens_unprocessed(1)  CC=7.0
+    gen_elixir_string_rules(name,symbol,token)
+    gen_elixir_sigstr_rules(term,term_class,token,interpol)
   publish-env/lib/python3.13/site-packages/pygments/lexers/robotframework.py:
     e: RobotFrameworkLexer,VariableTokenizer,RowTokenizer,RowSplitter,Tokenizer,Comment,Setting,ImportSetting,TestCaseSetting,KeywordSetting,Variable,KeywordCall,GherkinTokenizer,TemplatedKeywordCall,ForLoop,_Table,UnknownTable,VariableTable,SettingTable,TestCaseTable,KeywordTable,VariableSplitter,normalize
     RobotFrameworkLexer  # For Robot Framework test data.
@@ -5418,22 +5450,6 @@ Supports both space and pipe...
         → _finalize(0)  CC=2.0
         → _has_list_or_dict_variable_index(0)  CC=2.0
     normalize(string,remove)
-  publish-env/lib/python3.13/site-packages/pygments/lexers/erlang.py:
-    e: ErlangLexer,ErlangShellLexer,ElixirLexer,ElixirConsoleLexer,gen_elixir_string_rules,gen_elixir_sigstr_rules
-    ErlangLexer  # For the Erlang functional programming language....
-    ErlangShellLexer  # Shell sessions in erl (for Erlang code)....
-      get_tokens_unprocessed(1)  CC=6.0
-        → get_tokens_unprocessed(1)  CC=6.0
-    ElixirLexer  # For the Elixir language....
-      get_tokens_unprocessed(1)  CC=10.0
-        → get_tokens_unprocessed(1)  CC=10.0
-    ElixirConsoleLexer  # For Elixir interactive console (iex) output like:
-
-.. source...
-      get_tokens_unprocessed(1)  CC=7.0
-        → get_tokens_unprocessed(1)  CC=7.0
-    gen_elixir_string_rules(name,symbol,token)
-    gen_elixir_sigstr_rules(term,term_class,token,interpol)
   publish-env/lib/python3.13/site-packages/pygments/lexers/freefem.py:
     e: FreeFemLexer
     FreeFemLexer  # For FreeFem++ source.
@@ -5596,6 +5612,12 @@ A :c...
     format_full_version(info)
     default_environment()
     _repair_python_full_version(env)
+  publish-env/lib/python3.13/site-packages/pip/_vendor/rich/rule.py:
+    e: Rule
+    Rule  # A console renderable to draw a horizontal rule (line).
+
+Args...
+      __init__(1)  CC=3.0
   publish-env/lib/python3.13/site-packages/pip/_vendor/typing_extensions.py:
     e: _Sentinel,_ExtensionsSpecialForm,_DefaultMixin,_TypeVarLikeMeta,_EllipsisDummy,_SpecialForm,Format,IntVar,_get_protocol_attrs,_caller,_ensure_subclassable,_set_default,_set_module,_create_concatenate_alias,_concatenate_getitem,_unpack_args,_has_generic_or_protocol_as_origin,_is_unpacked_typevartuple
     _Sentinel
@@ -5620,12 +5642,6 @@ A :c...
     _unpack_args()
     _has_generic_or_protocol_as_origin()
     _is_unpacked_typevartuple(x)
-  publish-env/lib/python3.13/site-packages/pip/_vendor/rich/rule.py:
-    e: Rule
-    Rule  # A console renderable to draw a horizontal rule (line).
-
-Args...
-      __init__(1)  CC=3.0
   publish-env/lib/python3.13/site-packages/pip/_vendor/rich/_win32_console.py:
     e: LegacyWindowsError,WindowsCoordinates,CONSOLE_SCREEN_BUFFER_INFO,CONSOLE_CURSOR_INFO,LegacyWindowsTerm,GetStdHandle,GetConsoleMode,FillConsoleOutputCharacter,FillConsoleOutputAttribute,SetConsoleTextAttribute,GetConsoleScreenBufferInfo,SetConsoleCursorPosition,GetConsoleCursorInfo,SetConsoleCursorInfo,SetConsoleTitle
     LegacyWindowsError
@@ -5761,13 +5777,13 @@ finalize(obj, ...
     e: CheckCommand
     CheckCommand  # Verify installed packages have compatible dependencies....
       run(2)  CC=10.0
-  publish-env/lib/python3.13/site-packages/pip/_internal/commands/index.py:
-    e: IndexCommand
-    IndexCommand  # Inspect information available from package indexes....
-      add_options(0)  CC=1.0
   publish-env/lib/python3.13/site-packages/pip/_internal/commands/wheel.py:
     e: WheelCommand
     WheelCommand  # Build Wheel archives for your requirements and dependencies....
+      add_options(0)  CC=1.0
+  publish-env/lib/python3.13/site-packages/pip/_internal/commands/index.py:
+    e: IndexCommand
+    IndexCommand  # Inspect information available from package indexes....
       add_options(0)  CC=1.0
   publish-env/lib/python3.13/site-packages/docutils/parsers/rst/tableparser.py:
     e: TableMarkupError,TableParser,GridTableParser,SimpleTableParser,update_dict_of_lists
@@ -5813,6 +5829,13 @@ Here's an example of ...
     format_values(values)
     value_or(values,other)
     parser_name(argument)
+  publish-env/lib/python3.13/site-packages/docutils/writers/html5_polyglot/__init__.py:
+    e: Writer,HTMLTranslator
+    Writer
+      __init__(0)  CC=1.0
+    HTMLTranslator  # This writer generates `polyglot markup`: HTML5 that is also ...
+      __init__(1)  CC=1.0
+        → __init__(1)  CC=1.0
   publish-env/lib/python3.13/site-packages/docutils/writers/odf_odt/prepstyles.py:
     e: prepstyle,main
     prepstyle(filename)
@@ -5826,13 +5849,6 @@ Here's an example of ...
       format(2)  CC=10.0
     OdtPygmentsLaTeXFormatter
       format(2)  CC=8.0
-  publish-env/lib/python3.13/site-packages/docutils/writers/html5_polyglot/__init__.py:
-    e: Writer,HTMLTranslator
-    Writer
-      __init__(0)  CC=1.0
-    HTMLTranslator  # This writer generates `polyglot markup`: HTML5 that is also ...
-      __init__(1)  CC=1.0
-        → __init__(1)  CC=1.0
   publish-env/lib/python3.13/site-packages/markdown_it/rules_inline/html_inline.py:
     e: isLetter,html_inline
     isLetter(ch)
@@ -6194,6 +6210,10 @@ This is treate...
       __init__(2)  CC=1.0
     _is_html_file(file_url)
     build_source(location)
+  publish-env/lib/python3.13/site-packages/pip/_internal/metadata/_json.py:
+    e: json_name,msg_to_json
+    json_name(field)
+    msg_to_json(msg)
   publish-env/lib/python3.13/site-packages/pip/_internal/utils/logging.py:
     e: BrokenStdoutLoggingError,IndentingFormatter,IndentedRenderable,PipConsole,RichPipStreamHandler,BetterRotatingFileHandler,MaxLevelFilter,ExcludeLoggerFilter,_is_broken_pipe_error,indent_log,get_indentation,get_console,setup_logging
     BrokenStdoutLoggingError  # Raised if BrokenPipeError occurs for the stdout stream while...
@@ -6220,10 +6240,6 @@ This is treate...
     get_indentation()
     get_console()
     setup_logging(verbosity,no_color,user_log_file)
-  publish-env/lib/python3.13/site-packages/pip/_internal/metadata/_json.py:
-    e: json_name,msg_to_json
-    json_name(field)
-    msg_to_json(msg)
   publish-env/lib/python3.13/site-packages/pip/_internal/metadata/importlib/_envs.py:
     e: _DistributionFinder,Environment,_looks_like_wheel
     _DistributionFinder  # Finder to locate distributions.
@@ -6265,15 +6281,15 @@ The interpreted text is simp...
   publish-env/lib/python3.13/site-packages/markdown_it/rules_core/text_join.py:
     e: text_join
     text_join(state)
+  publish-env/lib/python3.13/site-packages/markdown_it/rules_inline/fragments_join.py:
+    e: fragments_join
+    fragments_join(state)
   publish-env/lib/python3.13/site-packages/markdown_it/rules_core/replacements.py:
     e: replaceFn,replace_scoped,replace_rare,replace
     replaceFn(match)
     replace_scoped(inlineTokens)
     replace_rare(inlineTokens)
     replace(state)
-  publish-env/lib/python3.13/site-packages/markdown_it/rules_inline/fragments_join.py:
-    e: fragments_join
-    fragments_join(state)
   publish-env/lib/python3.13/site-packages/cryptography/hazmat/backends/openssl/backend.py:
     e: Backend
     Backend  # OpenSSL API binding interfaces....
@@ -6286,6 +6302,11 @@ The interpreted text is simp...
         → _check_python_ast(1)  CC=6.0
         → _get_func_name(0)  CC=3.0
         → _try_bandit(0)  CC=5.0
+  src/vallm/validators/lint.py:
+    e: LintValidator,create_validator
+    LintValidator  # Validator for linting issues using ruff....
+      __init__(1)  CC=1.0
+    create_validator(settings)
   src/vallm/core/graph_diff.py:
     e: GraphDiffResult,diff_graphs,diff_python_code,_diff_list
     GraphDiffResult  # Result of comparing two code graphs....
@@ -6337,6 +6358,13 @@ The interpreted text is simp...
     valid_ipv4_host_address(host)
     subauthority_component_is_valid(uri,component)
     ensure_components_are_valid(uri,validated_components)
+  publish-env/lib/python3.13/site-packages/rfc3986/iri.py:
+    e: IRIReference
+    IRIReference  # Immutable object representing a parsed IRI Reference.
+
+Can b...
+      __new__(6)  CC=4.0
+        → __new__(6)  CC=4.0
   publish-env/lib/python3.13/site-packages/rfc3986/parseresult.py:
     e: ParseResultMixin,ParseResult,ParseResultBytes,split_authority,authority_from
     ParseResultMixin
@@ -6355,13 +6383,6 @@ This uses t...
     e: ParserInline
     ParserInline
       __init__(0)  CC=3.0
-  publish-env/lib/python3.13/site-packages/rfc3986/iri.py:
-    e: IRIReference
-    IRIReference  # Immutable object representing a parsed IRI Reference.
-
-Can b...
-      __new__(6)  CC=4.0
-        → __new__(6)  CC=4.0
   publish-env/lib/python3.13/site-packages/packaging/utils.py:
     e: InvalidName,InvalidWheelFilename,InvalidSdistFilename,canonicalize_name,is_normalized_name,canonicalize_version,parse_wheel_filename,parse_sdist_filename
     InvalidName  # An invalid distribution name; users should refer to the pack...
@@ -6684,26 +6705,11 @@ Subcommands:
 
 - list...
       add_options(0)  CC=1.0
-  publish-env/lib/python3.13/site-packages/pip/_internal/models/link.py:
-    e: LinkHash,MetadataFile,Link,_CleanResult,supported_hashes,_clean_url_path_part,_clean_file_url_path,_clean_url_path,_ensure_quoted_url,_absolute_link_url,_clean_link,links_equivalent
-    LinkHash  # Links to content may have embedded hash values. This class p...
-      __post_init__(0)  CC=2.0
-    MetadataFile  # Information about a core metadata file associated with a dis...
-      __post_init__(0)  CC=3.0
-    Link  # Represents a parsed link from a Package Index's simple URL...
-      __init__(7)  CC=5.0
-        → _egg_fragment(0)  CC=3.0
-    _CleanResult  # Convert link for equivalency check.
-
-This is used in the res...
-    supported_hashes(hashes)
-    _clean_url_path_part(part)
-    _clean_file_url_path(part)
-    _clean_url_path(path,is_local_path)
-    _ensure_quoted_url(url)
-    _absolute_link_url(base_url,url)
-    _clean_link(link)
-    links_equivalent(link1,link2)
+  publish-env/lib/python3.13/site-packages/pip/_internal/vcs/git.py:
+    e: Git,looks_like_hash
+    Git
+      get_base_rev_args(0)  CC=1.0
+    looks_like_hash(sha)
   publish-env/lib/python3.13/site-packages/pip/_internal/models/search_scope.py:
     e: SearchScope
     SearchScope  # Encapsulates the locations that pip is configured to search....
@@ -6740,11 +6746,26 @@ This is used in the res...
     _handle_config_settings(option,opt_str,value,parser)
     _handle_merge_hash(option,opt_str,value,parser)
     check_list_path_option(options)
-  publish-env/lib/python3.13/site-packages/pip/_internal/vcs/git.py:
-    e: Git,looks_like_hash
-    Git
-      get_base_rev_args(0)  CC=1.0
-    looks_like_hash(sha)
+  publish-env/lib/python3.13/site-packages/pip/_internal/models/link.py:
+    e: LinkHash,MetadataFile,Link,_CleanResult,supported_hashes,_clean_url_path_part,_clean_file_url_path,_clean_url_path,_ensure_quoted_url,_absolute_link_url,_clean_link,links_equivalent
+    LinkHash  # Links to content may have embedded hash values. This class p...
+      __post_init__(0)  CC=2.0
+    MetadataFile  # Information about a core metadata file associated with a dis...
+      __post_init__(0)  CC=3.0
+    Link  # Represents a parsed link from a Package Index's simple URL...
+      __init__(7)  CC=5.0
+        → _egg_fragment(0)  CC=3.0
+    _CleanResult  # Convert link for equivalency check.
+
+This is used in the res...
+    supported_hashes(hashes)
+    _clean_url_path_part(part)
+    _clean_file_url_path(part)
+    _clean_url_path(path,is_local_path)
+    _ensure_quoted_url(url)
+    _absolute_link_url(base_url,url)
+    _clean_link(link)
+    links_equivalent(link1,link2)
   publish-env/lib/python3.13/site-packages/pip/_internal/utils/direct_url_helpers.py:
     e: direct_url_as_pep440_direct_reference,direct_url_for_editable,direct_url_from_link
     direct_url_as_pep440_direct_reference(direct_url,name)
@@ -6811,6 +6832,13 @@ The table of contents is generated in tw...
       run(0)  CC=1.0
     Footer  # Contents of document footer....
       run(0)  CC=1.0
+  publish-env/lib/python3.13/site-packages/docutils/utils/math/tex2mathml_extern.py:
+    e: _check_result,blahtexml,latexml,pandoc,ttm
+    _check_result(result,details)
+    blahtexml(math_code,as_block)
+    latexml(math_code,as_block)
+    pandoc(math_code,as_block)
+    ttm(math_code,as_block)
   publish-env/lib/python3.13/site-packages/docutils/utils/math/math2html.py:
     e: Trace,ContainerConfig,EscapeConfig,FormulaConfig,CommandLineParser,Options,Cloner,ContainerExtractor,Parser,LoneCommand,TextParser,ExcludingParser,BoundedParser,BoundedDummy,StringParser,ContainerOutput,EmptyOutput,FixedOutput,ContentsOutput,TaggedOutput,FilteredOutput,StringOutput,Globable,EndingList,PositionEnding,Position,TextPosition,Container,BlackBox,StringContainer,Constant,DocumentParameters,FormulaParser,FormulaBit,TaggedBit,FormulaConstant,RawText,FormulaSymbol,FormulaNumber,Comment,WhiteSpace,Bracket,SquareBracket,MathsProcessor,FormulaProcessor,Formula,WholeFormula,FormulaFactory,FormulaCommand,CommandBit,EmptyCommand,SpacedCommand,AlphaCommand,OneParamFunction,SymbolFunction,TextFunction,FontFunction,BigBracket,FormulaEquation,FormulaCell,FormulaRow,MultiRowFormula,FormulaArray,FormulaMatrix,FormulaCases,EquationEnvironment,BeginCommand,CombiningFunction,OversetFunction,UndersetFunction,LimitCommand,LimitPreviousCommand,LimitsProcessor,BracketCommand,BracketProcessor,ParameterDefinition,ParameterFunction,HybridFunction,HybridSize,math2html,main
     Trace  # A tracing class...
@@ -7026,13 +7054,6 @@ Including those in Globable, ...
       getsize(1)  CC=4.0
     math2html(formula)
     main()
-  publish-env/lib/python3.13/site-packages/docutils/utils/math/tex2mathml_extern.py:
-    e: _check_result,blahtexml,latexml,pandoc,ttm
-    _check_result(result,details)
-    blahtexml(math_code,as_block)
-    latexml(math_code,as_block)
-    pandoc(math_code,as_block)
-    ttm(math_code,as_block)
   publish-env/lib/python3.13/site-packages/markdown_it/rules_block/paragraph.py:
     e: paragraph
     paragraph(state,startLine,endLine,silent)
@@ -7512,6 +7533,21 @@ Provides an interface ...
     show_vendor_versions()
     show_tags(options)
     ca_bundle_info(config)
+  publish-env/lib/python3.13/site-packages/pip/_internal/utils/temp_dir.py:
+    e: TempDirectoryTypeRegistry,_Default,TempDirectory,AdjacentTempDirectory,global_tempdir_manager,tempdir_registry
+    TempDirectoryTypeRegistry  # Manages temp directory behavior...
+      __init__(0)  CC=1.0
+    _Default
+    TempDirectory  # Helper class that owns and cleans up a temporary directory.
+...
+      __init__(5)  CC=6.0
+        → __init__(5)  CC=6.0
+        → _create(1)  CC=1.0
+    AdjacentTempDirectory  # Helper class that creates a temporary directory adjacent to ...
+      __init__(2)  CC=1.0
+        → __init__(2)  CC=1.0
+    global_tempdir_manager()
+    tempdir_registry()
   publish-env/lib/python3.13/site-packages/pip/_internal/utils/misc.py:
     e: StreamWrapper,HiddenText,ConfiguredBuildBackendHookCaller,get_pip_version,normalize_version_info,ensure_dir,get_prog,rmtree,_onerror_ignore,_onerror_reraise,rmtree_errorhandler,display_path,backup_dir,ask_path_exists,_check_no_input,ask,ask_input,ask_password,strtobool,format_size,tabulate,is_installable_dir,read_chunks,normalize_path,splitext,renames,is_local,write_output,enum,build_netloc,build_url_from_netloc,parse_netloc,split_auth_from_netloc,redact_netloc,_transform_url,_get_netloc,_redact_netloc,split_auth_netloc_from_url,remove_auth_from_url,redact_auth_from_url,redact_auth_from_requirement,hide_value,hide_url,protect_pip_from_modification_on_windows,check_externally_managed,is_console_interactive,hash_file,pairwise,partition,warn_if_run_as_root
     StreamWrapper
@@ -7568,21 +7604,6 @@ Provides an interface ...
     pairwise(iterable)
     partition(pred,iterable)
     warn_if_run_as_root()
-  publish-env/lib/python3.13/site-packages/pip/_internal/utils/temp_dir.py:
-    e: TempDirectoryTypeRegistry,_Default,TempDirectory,AdjacentTempDirectory,global_tempdir_manager,tempdir_registry
-    TempDirectoryTypeRegistry  # Manages temp directory behavior...
-      __init__(0)  CC=1.0
-    _Default
-    TempDirectory  # Helper class that owns and cleans up a temporary directory.
-...
-      __init__(5)  CC=6.0
-        → __init__(5)  CC=6.0
-        → _create(1)  CC=1.0
-    AdjacentTempDirectory  # Helper class that creates a temporary directory adjacent to ...
-      __init__(2)  CC=1.0
-        → __init__(2)  CC=1.0
-    global_tempdir_manager()
-    tempdir_registry()
   publish-env/lib/python3.13/site-packages/pip/_internal/utils/entrypoints.py:
     e: _wrapper,get_best_invocation_for_this_pip,get_best_invocation_for_this_python
     _wrapper(args)
@@ -7724,6 +7745,13 @@ In modern browsers, <mstyle> is equivalent to...
     e: default_hooks,dispatch_hook
     default_hooks()
     dispatch_hook(key,hooks,hook_data)
+  publish-env/lib/python3.13/site-packages/packaging/requirements.py:
+    e: InvalidRequirement,Requirement
+    InvalidRequirement  # An invalid requirement was found, users should refer to PEP ...
+    Requirement  # Parse a requirement.
+
+Parse a given requirement string into ...
+      __init__(1)  CC=5.0
   publish-env/lib/python3.13/site-packages/packaging/_parser.py:
     e: Node,Variable,Value,Op,ParsedRequirement,parse_requirement,_parse_requirement,_parse_requirement_details,_parse_requirement_marker,_parse_extras,_parse_extras_list,_parse_specifier,_parse_version_many,parse_marker,_parse_full_marker,_parse_marker,_parse_marker_atom,_parse_marker_item,_parse_marker_var,process_env_var,process_python_str,_parse_marker_op
     Node
@@ -7752,13 +7780,6 @@ In modern browsers, <mstyle> is equivalent to...
     process_env_var(env_var)
     process_python_str(python_str)
     _parse_marker_op(tokenizer)
-  publish-env/lib/python3.13/site-packages/packaging/requirements.py:
-    e: InvalidRequirement,Requirement
-    InvalidRequirement  # An invalid requirement was found, users should refer to PEP ...
-    Requirement  # Parse a requirement.
-
-Parse a given requirement string into ...
-      __init__(1)  CC=5.0
   publish-env/lib/python3.13/site-packages/rich/screen.py:
     e: Screen
     Screen  # A renderable that fills the terminal screen and crops excess...
@@ -7822,6 +7843,12 @@ Args:
     format_multipart_header_param(name,value)
     format_header_param_html5(name,value)
     format_header_param(name,value)
+  publish-env/lib/python3.13/site-packages/readme_renderer/rst.py:
+    e: ReadMeHTMLTranslator,render
+    ReadMeHTMLTranslator
+      emptytag(3)  CC=4.0
+        → emptytag(3)  CC=4.0
+    render(raw,stream)
   publish-env/lib/python3.13/site-packages/secretstorage/util.py:
     e: DBusAddressWrapper,open_session,format_secret,exec_prompt,unlock_objects,add_match_rules
     DBusAddressWrapper  # A wrapper class around :class:`jeepney.wrappers.DBusAddress`...
@@ -7836,12 +7863,6 @@ Args:
     e: get_filetype_from_line,get_filetype_from_buffer
     get_filetype_from_line(l)
     get_filetype_from_buffer(buf,max_lines)
-  publish-env/lib/python3.13/site-packages/readme_renderer/rst.py:
-    e: ReadMeHTMLTranslator,render
-    ReadMeHTMLTranslator
-      emptytag(3)  CC=4.0
-        → emptytag(3)  CC=4.0
-    render(raw,stream)
   publish-env/lib/python3.13/site-packages/jeepney/auth.py:
     e: ClientState,AuthenticationError,FDNegotiationError,Authenticator,make_auth_external,make_auth_anonymous
     ClientState
@@ -7868,12 +7889,6 @@ If en...
     e: Keyring
     Keyring  # libsecret Keyring...
       collection(0)  CC=1.0
-  publish-env/lib/python3.13/site-packages/pygments/formatters/pangomarkup.py:
-    e: PangoMarkupFormatter,escape_special_chars
-    PangoMarkupFormatter  # Format tokens as Pango Markup code. It can then be rendered ...
-      __init__(0)  CC=6.0
-        → __init__(0)  CC=6.0
-    escape_special_chars(text,table)
   publish-env/lib/python3.13/site-packages/keyring/backends/macOS/api.py:
     e: error,Error,NotFound,KeychainDenied,SecAuthFailure,k_,create_cf,_,_,create_query,cfstr_to_str,find_generic_password,set_generic_password,delete_generic_password
     error
@@ -7891,6 +7906,12 @@ If en...
     find_generic_password(kc_name,service,username,not_found_ok)
     set_generic_password(name,service,username,password)
     delete_generic_password(name,service,username)
+  publish-env/lib/python3.13/site-packages/pygments/formatters/pangomarkup.py:
+    e: PangoMarkupFormatter,escape_special_chars
+    PangoMarkupFormatter  # Format tokens as Pango Markup code. It can then be rendered ...
+      __init__(0)  CC=6.0
+        → __init__(0)  CC=6.0
+    escape_special_chars(text,table)
   publish-env/lib/python3.13/site-packages/pygments/lexers/lilypond.py:
     e: LilyPondLexer,builtin_words
     LilyPondLexer  # Lexer for input to LilyPond, a text-based music typesetter.
@@ -7905,6 +7926,16 @@ If en...
     VimLexer  # Lexer for VimL script files....
       __init__(0)  CC=1.0
         → __init__(0)  CC=1.0
+  publish-env/lib/python3.13/site-packages/pygments/lexers/r.py:
+    e: RConsoleLexer,SLexer,RdLexer
+    RConsoleLexer  # For R console transcripts or R CMD BATCH output files....
+      get_tokens_unprocessed(1)  CC=6.0
+        → get_tokens_unprocessed(1)  CC=6.0
+    SLexer  # For S, S-plus, and R source code....
+      analyse_text(0)  CC=2.0
+    RdLexer  # Pygments Lexer for R documentation (Rd) files
+
+This is a ver...
   publish-env/lib/python3.13/site-packages/pygments/lexers/graphics.py:
     e: GLShaderLexer,HLSLShaderLexer,PostScriptLexer,AsymptoteLexer,GnuplotLexer,PovrayLexer,_shortened,_shortened_many
     GLShaderLexer  # GLSL (OpenGL Shader) lexer....
@@ -7918,16 +7949,6 @@ If en...
       analyse_text(0)  CC=5.0
     _shortened(word)
     _shortened_many()
-  publish-env/lib/python3.13/site-packages/pygments/lexers/r.py:
-    e: RConsoleLexer,SLexer,RdLexer
-    RConsoleLexer  # For R console transcripts or R CMD BATCH output files....
-      get_tokens_unprocessed(1)  CC=6.0
-        → get_tokens_unprocessed(1)  CC=6.0
-    SLexer  # For S, S-plus, and R source code....
-      analyse_text(0)  CC=2.0
-    RdLexer  # Pygments Lexer for R documentation (Rd) files
-
-This is a ver...
   publish-env/lib/python3.13/site-packages/pygments/lexers/pawn.py:
     e: SourcePawnLexer,PawnLexer
     SourcePawnLexer  # For SourcePawn source code with preprocessor directives....
@@ -8053,10 +8074,6 @@ Example:
 Example:
     >>> if Confirm...
       render_default(1)  CC=2.0
-  publish-env/lib/python3.13/site-packages/pip/_vendor/rich/file_proxy.py:
-    e: FileProxy
-    FileProxy  # Wraps a file (e.g. sys.stdout) and redirects writes to a con...
-      __init__(2)  CC=1.0
   publish-env/lib/python3.13/site-packages/pip/_vendor/rich/spinner.py:
     e: Spinner
     Spinner  # A spinner animation.
@@ -8064,6 +8081,10 @@ Example:
 Args:
     name (str): Name of spinner ...
       __init__(2)  CC=3.0
+  publish-env/lib/python3.13/site-packages/pip/_vendor/rich/file_proxy.py:
+    e: FileProxy
+    FileProxy  # Wraps a file (e.g. sys.stdout) and redirects writes to a con...
+      __init__(2)  CC=1.0
   publish-env/lib/python3.13/site-packages/pip/_vendor/pyproject_hooks/_impl.py:
     e: BackendUnavailable,HookMissing,UnsupportedOperation,BuildBackendHookCaller,write_json,read_json,default_subprocess_runner,quiet_subprocess_runner,norm_and_check
     BackendUnavailable  # Will be raised if the backend cannot be imported in the hook...
@@ -8274,6 +8295,11 @@ A...
     _initialize_validators(validators,settings)
     _run_validation_pipeline(proposal,validators,context,settings)
     _get_default_validators(settings)
+  src/vallm/validators/logical.py:
+    e: LogicalErrorValidator,create_validator
+    LogicalErrorValidator  # Validator for logical errors using pyflakes....
+      __init__(1)  CC=1.0
+    create_validator(settings)
   src/vallm/core/languages.py:
     e: Language,detect_language,get_language_for_validation
     Language  # Supported programming languages with their tree-sitter ident...
@@ -8393,6 +8419,11 @@ Regex reference: h...
 Args:
     theme (Theme): A theme instanc...
       __init__(1)  CC=1.0
+  publish-env/lib/python3.13/site-packages/rich/filesize.py:
+    e: _to_str,pick_unit_and_suffix,decimal
+    _to_str(size,suffixes,base)
+    pick_unit_and_suffix(size,suffixes,base)
+    decimal(size)
   publish-env/lib/python3.13/site-packages/rich/bar.py:
     e: Bar
     Bar  # Renders a solid block bar.
@@ -8400,11 +8431,6 @@ Args:
 Args:
     size (float): Value fo...
       __init__(3)  CC=1.0
-  publish-env/lib/python3.13/site-packages/rich/filesize.py:
-    e: _to_str,pick_unit_and_suffix,decimal
-    _to_str(size,suffixes,base)
-    pick_unit_and_suffix(size,suffixes,base)
-    decimal(size)
   publish-env/lib/python3.13/site-packages/idna/intranges.py:
     e: intranges_from_list,_encode_range,_decode_range,intranges_contain
     intranges_from_list(list_)
@@ -8429,10 +8455,6 @@ can...
     choose_boundary()
     iter_field_objects(fields)
     encode_multipart_formdata(fields,boundary)
-  publish-env/lib/python3.13/site-packages/secretstorage/item.py:
-    e: Item
-    Item  # Represents a secret item....
-      __init__(3)  CC=1.0
   publish-env/lib/python3.13/site-packages/secretstorage/collection.py:
     e: Collection,create_collection,get_all_collections,get_default_collection,get_any_collection,get_collection_by_alias,search_items
     Collection  # Represents a collection....
@@ -8443,11 +8465,10 @@ can...
     get_any_collection(connection)
     get_collection_by_alias(connection,alias)
     search_items(connection,attributes)
-  publish-env/lib/python3.13/site-packages/keyring/cli.py:
-    e: CommandLineTool,main
-    CommandLineTool
-      __init__(0)  CC=1.0
-    main(argv)
+  publish-env/lib/python3.13/site-packages/secretstorage/item.py:
+    e: Item
+    Item  # Represents a secret item....
+      __init__(3)  CC=1.0
   publish-env/lib/python3.13/site-packages/jeepney/fds.py:
     e: NoFDError,FileDescriptor,fds_buf_size
     NoFDError  # Raised by :class:`FileDescriptor` methods if it was already ...
@@ -8456,6 +8477,11 @@ can...
 This wrapper ...
       __init__(1)  CC=1.0
     fds_buf_size()
+  publish-env/lib/python3.13/site-packages/keyring/cli.py:
+    e: CommandLineTool,main
+    CommandLineTool
+      __init__(0)  CC=1.0
+    main(argv)
   publish-env/lib/python3.13/site-packages/twine/wheel.py:
     e: Wheel
     Wheel
@@ -8475,22 +8501,6 @@ This ...
         → __init__(2)  CC=1.0
     open_dbus_connection(bus,enable_fds,auth_timeout)
     open_dbus_router(bus,enable_fds)
-  publish-env/lib/python3.13/site-packages/keyring/backends/Windows.py:
-    e: Persistence,DecodingCredential,WinVaultKeyring
-    Persistence
-      __get__(2)  CC=1.0
-    DecodingCredential
-    WinVaultKeyring  # WinVaultKeyring stores encrypted passwords using the Windows...
-      priority(0)  CC=2.0
-  publish-env/lib/python3.13/site-packages/keyring/backends/SecretService.py:
-    e: Keyring
-    Keyring  # Secret Service Keyring...
-      priority(0)  CC=5.0
-  publish-env/lib/python3.13/site-packages/keyring/backends/macOS/__init__.py:
-    e: Keyring,warn_keychain
-    Keyring  # macOS Keychain...
-      priority(0)  CC=3.0
-    warn_keychain(func)
   publish-env/lib/python3.13/site-packages/jeepney/io/blocking.py:
     e: _Future,DBusConnectionBase,DBusConnection,Proxy,timeout_to_deadline,deadline_to_timeout,unwrap_read,prep_socket,open_dbus_connection
     _Future
@@ -8510,6 +8520,22 @@ You can call met...
     unwrap_read(b)
     prep_socket(addr,enable_fds,timeout)
     open_dbus_connection(bus,enable_fds,auth_timeout)
+  publish-env/lib/python3.13/site-packages/keyring/backends/Windows.py:
+    e: Persistence,DecodingCredential,WinVaultKeyring
+    Persistence
+      __get__(2)  CC=1.0
+    DecodingCredential
+    WinVaultKeyring  # WinVaultKeyring stores encrypted passwords using the Windows...
+      priority(0)  CC=2.0
+  publish-env/lib/python3.13/site-packages/keyring/backends/SecretService.py:
+    e: Keyring
+    Keyring  # Secret Service Keyring...
+      priority(0)  CC=5.0
+  publish-env/lib/python3.13/site-packages/keyring/backends/macOS/__init__.py:
+    e: Keyring,warn_keychain
+    Keyring  # macOS Keychain...
+      priority(0)  CC=3.0
+    warn_keychain(func)
   publish-env/lib/python3.13/site-packages/pygments/lexers/make.py:
     e: MakefileLexer,BaseMakefileLexer,CMakeLexer
     MakefileLexer  # Lexer for BSD and GNU make extensions (lenient enough to han...
@@ -8726,6 +8752,12 @@ Args:
     e: InspectCommand
     InspectCommand  # Inspect the content of a Python environment and produce a re...
       add_options(0)  CC=1.0
+  publish-env/lib/python3.13/site-packages/pip/_internal/commands/lock.py:
+    e: LockCommand
+    LockCommand  # EXPERIMENTAL - Lock packages and their dependencies from:
+
+-...
+      add_options(0)  CC=1.0
   publish-env/lib/python3.13/site-packages/pip/_internal/commands/download.py:
     e: DownloadCommand
     DownloadCommand  # Download packages from:
@@ -8742,12 +8774,6 @@ Args:
     change_root(new_root,pathname)
     get_src_prefix()
     is_osx_framework()
-  publish-env/lib/python3.13/site-packages/pip/_internal/commands/lock.py:
-    e: LockCommand
-    LockCommand  # EXPERIMENTAL - Lock packages and their dependencies from:
-
--...
-      add_options(0)  CC=1.0
   publish-env/lib/python3.13/site-packages/pip/_internal/models/target_python.py:
     e: TargetPython
     TargetPython  # Encapsulates the properties of a Python interpreter one is t...
@@ -8851,6 +8877,12 @@ The following a...
     _openssl_assert(ok)
     build_conditional_library(lib,conditional_names)
     _verify_package_version(version)
+  src/vallm/validators/semantic_cache.py:
+    e: SemanticCache,get_semantic_cache,clear_semantic_cache
+    SemanticCache  # Cache for semantic validation results to improve performance...
+      __init__(1)  CC=2.0
+    get_semantic_cache()
+    clear_semantic_cache()
   src/vallm/validators/imports/javascript_imports.py:
     e: JavaScriptImportValidator
     JavaScriptImportValidator  # JavaScript/TypeScript import validator....
@@ -8960,13 +8992,13 @@ Catching this error will catch both
       __init__(0)  CC=4.0
     strip_control_codes(text,_translate_table)
     escape_control_codes(text,_translate_table)
-  publish-env/lib/python3.13/site-packages/readme_renderer/clean.py:
-    e: clean
-    clean(html,tags,attributes)
   publish-env/lib/python3.13/site-packages/readme_renderer/markdown.py:
     e: render,_highlight
     render(raw,variant)
     _highlight(html)
+  publish-env/lib/python3.13/site-packages/readme_renderer/clean.py:
+    e: clean
+    clean(html,tags,attributes)
   publish-env/lib/python3.13/site-packages/pygments/token.py:
     e: _TokenType,is_token_subtype,string_to_tokentype
     _TokenType
@@ -9398,6 +9430,11 @@ a functional and object-oriented programming l...
     NumPyLexer  # A Python lexer recognizing Numerical Python builtins....
       get_tokens_unprocessed(1)  CC=4.0
         → get_tokens_unprocessed(1)  CC=4.0
+  publish-env/lib/python3.13/site-packages/pip/_vendor/urllib3/contrib/_securetransport/bindings.py:
+    e: CFConst,SecurityConst,load_cdll
+    CFConst  # A class object that acts as essentially a namespace for Core...
+    SecurityConst  # A class object that acts as essentially a namespace for Secu...
+    load_cdll(name,macos10_16_path)
   publish-env/lib/python3.13/site-packages/pip/_internal/commands/freeze.py:
     e: FreezeCommand,_should_suppress_build_backends,_dev_pkgs
     FreezeCommand  # Output installed packages in requirements format.
@@ -9406,11 +9443,6 @@ packages ...
       add_options(0)  CC=1.0
     _should_suppress_build_backends()
     _dev_pkgs()
-  publish-env/lib/python3.13/site-packages/pip/_vendor/urllib3/contrib/_securetransport/bindings.py:
-    e: CFConst,SecurityConst,load_cdll
-    CFConst  # A class object that acts as essentially a namespace for Core...
-    SecurityConst  # A class object that acts as essentially a namespace for Secu...
-    load_cdll(name,macos10_16_path)
   publish-env/lib/python3.13/site-packages/pip/_internal/commands/help.py:
     e: HelpCommand
     HelpCommand  # Show help for commands...
@@ -9578,16 +9610,16 @@ Col...
     _int_to_u32be(n)
     _common_args_checks(algorithm,length,otherinfo)
     _concatkdf_derive(key_material,length,auxfn,otherinfo)
-  src/vallm/validators/semantic.py:
-    e: SemanticValidator
-    SemanticValidator  # Tier 3: LLM-as-judge semantic code review....
-      __init__(1)  CC=2.0
   src/vallm/validators/syntax.py:
     e: SyntaxValidator
     SyntaxValidator  # Tier 1: Fast syntax validation....
       validate(2)  CC=2.0
         → _validate_python(1)  CC=4.0
         → _validate_treesitter(2)  CC=3.0
+  src/vallm/validators/semantic.py:
+    e: SemanticValidator
+    SemanticValidator  # Tier 3: LLM-as-judge semantic code review....
+      __init__(1)  CC=2.0
   src/vallm/core/ast_compare.py:
     e: parse_code,parse_python_ast,normalize_python_ast,python_ast_similarity,tree_sitter_node_count,tree_sitter_error_count,structural_diff_summary
     parse_code(code,language)
@@ -9609,8 +9641,8 @@ Col...
     e: validate_command,check_command,batch_command,info_command,_load_code,_load_reference,_detect_and_log_language,_build_proposal,_exit_on_verdict,_show_language_info,_show_general_info
     validate_command(code,file,language,reference,config,enable_semantic,enable_security,model,output_format,verbose,exit_on_verdict)
     check_command(code,file,language,output_format)
-    batch_command(paths,recursive,include,exclude,use_gitignore,enable_semantic,enable_security,model,output_format,fail_fast,verbose,show_issues)
-    info_command(language)
+    batch_command(paths,recursive,include,exclude,use_gitignore,enable_semantic,enable_security,model,output_format,fail_fast,verbose,show_issues,parallel)
+    info_command(language,clear_cache)
     _load_code(file,code)
     _load_reference(reference)
     _detect_and_log_language(file,language)
@@ -10156,14 +10188,14 @@ These can be use...
     get_directory_distribution(directory)
     get_wheel_distribution(wheel,canonical_name)
     get_metadata_distribution(metadata_contents,filename,canonical_name)
+  publish-env/lib/python3.13/site-packages/docutils/utils/punctuation_chars.py:
+    e: match_chars
+    match_chars(c1,c2)
   publish-env/lib/python3.13/site-packages/docutils/readers/pep.py:
     e: Reader
     Reader
       __init__(2)  CC=3.0
         → __init__(2)  CC=3.0
-  publish-env/lib/python3.13/site-packages/docutils/utils/punctuation_chars.py:
-    e: match_chars
-    match_chars(c1,c2)
   publish-env/lib/python3.13/site-packages/docutils/transforms/writer_aux.py:
     e: Admonitions
     Admonitions  # Transform specific admonitions, like this:
@@ -10643,12 +10675,6 @@ Based on tcsh lexer....
     ResourceLexer  # Lexer for ICU Resource bundles.
     ...
       analyse_text(0)  CC=2.0
-  publish-env/lib/python3.13/site-packages/pygments/lexers/lean.py:
-    e: Lean3Lexer,Lean4Lexer
-    Lean3Lexer  # For the Lean 3 theorem prover....
-      analyse_text(0)  CC=2.0
-    Lean4Lexer  # For the Lean 4 theorem prover....
-      analyse_text(0)  CC=2.0
   publish-env/lib/python3.13/site-packages/pygments/lexers/typst.py:
     e: TypstLexer
     TypstLexer  # For Typst code.
@@ -10659,6 +10685,12 @@ Additional options accepted:
     S...
       __init__(0)  CC=1.0
         → __init__(0)  CC=1.0
+  publish-env/lib/python3.13/site-packages/pygments/lexers/lean.py:
+    e: Lean3Lexer,Lean4Lexer
+    Lean3Lexer  # For the Lean 3 theorem prover....
+      analyse_text(0)  CC=2.0
+    Lean4Lexer  # For the Lean 4 theorem prover....
+      analyse_text(0)  CC=2.0
   publish-env/lib/python3.13/site-packages/pygments/lexers/vip.py:
     e: VisualPrologBaseLexer,VisualPrologLexer,VisualPrologGrammarLexer
     VisualPrologBaseLexer
@@ -11207,6 +11239,9 @@ grammar: https://github.com/PRQL/prql...
     e: EmscriptenRequest
     EmscriptenRequest
       set_header(2)  CC=1.0
+  publish-env/lib/python3.13/site-packages/urllib3/contrib/emscripten/__init__.py:
+    e: inject_into_urllib3
+    inject_into_urllib3()
   publish-env/lib/python3.13/site-packages/requests_toolbelt/adapters/ssl.py:
     e: SSLAdapter
     SSLAdapter  # A HTTPS Adapter for Python Requests that allows the choice o...
@@ -11232,9 +11267,6 @@ grammar: https://github.com/PRQL/prql...
   publish-env/lib/python3.13/site-packages/pip/_internal/main.py:
     e: main
     main(args)
-  publish-env/lib/python3.13/site-packages/urllib3/contrib/emscripten/__init__.py:
-    e: inject_into_urllib3
-    inject_into_urllib3()
   publish-env/lib/python3.13/site-packages/pip/_vendor/requests/api.py:
     e: request,get,options,head,post,put,patch,delete
     request(method,url)
@@ -11447,17 +11479,17 @@ VERBOSE is betw...
   publish-env/lib/python3.13/site-packages/pip/_internal/operations/install/editable_legacy.py:
     e: install_editable
     install_editable()
-  publish-env/lib/python3.13/site-packages/docutils/readers/standalone.py:
-    e: Reader
-    Reader
-      get_transforms(0)  CC=1.0
-        → get_transforms(0)  CC=1.0
   publish-env/lib/python3.13/site-packages/docutils/readers/doctree.py:
     e: Reader
     Reader  # Adapt the Reader API for an existing document tree.
 
 The exi...
       parse(0)  CC=1.0
+  publish-env/lib/python3.13/site-packages/docutils/readers/standalone.py:
+    e: Reader
+    Reader
+      get_transforms(0)  CC=1.0
+        → get_transforms(0)  CC=1.0
   publish-env/lib/python3.13/site-packages/docutils/writers/null.py:
     e: Writer
     Writer
@@ -11480,12 +11512,6 @@ The exi...
   publish-env/lib/python3.13/site-packages/markdown_it/presets/zero.py:
     e: make
     make()
-  publish-env/lib/python3.13/site-packages/markdown_it/presets/default.py:
-    e: make
-    make()
-  publish-env/lib/python3.13/site-packages/markdown_it/presets/commonmark.py:
-    e: make
-    make()
   publish-env/lib/python3.13/site-packages/markdown_it/presets/__init__.py:
     e: gfm_like
     gfm_like  # GitHub Flavoured Markdown (GFM) like.
@@ -11493,6 +11519,12 @@ The exi...
 This adds the linkify...
       make(-1)  CC=1.0
         → make(-1)  CC=1.0
+  publish-env/lib/python3.13/site-packages/markdown_it/presets/commonmark.py:
+    e: make
+    make()
+  publish-env/lib/python3.13/site-packages/markdown_it/presets/default.py:
+    e: make
+    make()
   publish-env/lib/python3.13/site-packages/cryptography/hazmat/backends/__init__.py:
     e: default_backend
     default_backend()
@@ -11555,6 +11587,7 @@ This adds the linkify...
     e: _cffi_stop_error_capture,_cffi_stop_error_capture
     _cffi_stop_error_capture()
     _cffi_stop_error_capture()
+  examples/__init__.py:
   publish-env/lib/python3.13/site-packages/cryptography/__init__.py:
   publish-env/lib/python3.13/site-packages/cryptography/__about__.py:
   publish-env/lib/python3.13/site-packages/rfc3986/abnf_regexp.py:
@@ -11595,9 +11628,9 @@ This adds the linkify...
     e: WindowsConsoleFeatures
     WindowsConsoleFeatures  # Windows features available....
   publish-env/lib/python3.13/site-packages/rich/default_styles.py:
+  publish-env/lib/python3.13/site-packages/rich/_emoji_codes.py:
   publish-env/lib/python3.13/site-packages/idna/__init__.py:
   publish-env/lib/python3.13/site-packages/idna/package_data.py:
-  publish-env/lib/python3.13/site-packages/rich/_emoji_codes.py:
   publish-env/lib/python3.13/site-packages/readme_renderer/__init__.py:
   publish-env/lib/python3.13/site-packages/pip/__main__.py:
   publish-env/lib/python3.13/site-packages/requests_toolbelt/exceptions.py:
@@ -11635,9 +11668,9 @@ If t...
   publish-env/lib/python3.13/site-packages/keyring/__init__.py:
   publish-env/lib/python3.13/site-packages/keyring/__main__.py:
   publish-env/lib/python3.13/site-packages/charset_normalizer/version.py:
+  publish-env/lib/python3.13/site-packages/charset_normalizer/constant.py:
   publish-env/lib/python3.13/site-packages/charset_normalizer/__init__.py:
   publish-env/lib/python3.13/site-packages/charset_normalizer/__main__.py:
-  publish-env/lib/python3.13/site-packages/charset_normalizer/constant.py:
   publish-env/lib/python3.13/site-packages/jeepney/__init__.py:
   publish-env/lib/python3.13/site-packages/twine/__init__.py:
   publish-env/lib/python3.13/site-packages/jeepney/io/__init__.py:
@@ -11649,57 +11682,57 @@ If t...
   publish-env/lib/python3.13/site-packages/pygments/styles/paraiso_dark.py:
     e: ParaisoDarkStyle
     ParaisoDarkStyle
-  publish-env/lib/python3.13/site-packages/pygments/styles/rrt.py:
-    e: RrtStyle
-    RrtStyle  # Minimalistic "rrt" theme, based on Zap and Emacs defaults....
   publish-env/lib/python3.13/site-packages/pygments/styles/fruity.py:
     e: FruityStyle
     FruityStyle  # Pygments version of the "native" vim theme....
+  publish-env/lib/python3.13/site-packages/pygments/styles/native.py:
+    e: NativeStyle
+    NativeStyle  # Pygments version of the "native" vim theme....
   publish-env/lib/python3.13/site-packages/pygments/styles/murphy.py:
     e: MurphyStyle
     MurphyStyle  # Murphy's style from CodeRay....
+  publish-env/lib/python3.13/site-packages/pygments/styles/rrt.py:
+    e: RrtStyle
+    RrtStyle  # Minimalistic "rrt" theme, based on Zap and Emacs defaults....
   publish-env/lib/python3.13/site-packages/pygments/styles/lilypond.py:
     e: LilyPondStyle
     LilyPondStyle  # Style for the LilyPond language.
 
 .. versionadded:: 2.11...
-  publish-env/lib/python3.13/site-packages/pygments/styles/lightbulb.py:
-    e: LightbulbStyle
-    LightbulbStyle  # A minimal dark theme based on the Lightbulb theme for VSCode...
-  publish-env/lib/python3.13/site-packages/pygments/styles/native.py:
-    e: NativeStyle
-    NativeStyle  # Pygments version of the "native" vim theme....
   publish-env/lib/python3.13/site-packages/pygments/styles/algol.py:
     e: AlgolStyle
     AlgolStyle
   publish-env/lib/python3.13/site-packages/pygments/styles/friendly.py:
     e: FriendlyStyle
     FriendlyStyle  # A modern style based on the VIM pyte theme....
+  publish-env/lib/python3.13/site-packages/pygments/styles/lightbulb.py:
+    e: LightbulbStyle
+    LightbulbStyle  # A minimal dark theme based on the Lightbulb theme for VSCode...
   publish-env/lib/python3.13/site-packages/pygments/styles/lovelace.py:
     e: LovelaceStyle
     LovelaceStyle  # The style used in Lovelace interactive learning environment....
   publish-env/lib/python3.13/site-packages/pygments/styles/algol_nu.py:
     e: Algol_NuStyle
     Algol_NuStyle
-  publish-env/lib/python3.13/site-packages/pygments/styles/rainbow_dash.py:
-    e: RainbowDashStyle
-    RainbowDashStyle  # A bright and colorful syntax highlighting theme....
   publish-env/lib/python3.13/site-packages/pygments/styles/autumn.py:
     e: AutumnStyle
     AutumnStyle  # A colorful style, inspired by the terminal highlighting styl...
+  publish-env/lib/python3.13/site-packages/pygments/styles/rainbow_dash.py:
+    e: RainbowDashStyle
+    RainbowDashStyle  # A bright and colorful syntax highlighting theme....
   publish-env/lib/python3.13/site-packages/pygments/styles/zenburn.py:
     e: ZenburnStyle
     ZenburnStyle  # Low contrast Zenburn style....
-  publish-env/lib/python3.13/site-packages/pygments/styles/manni.py:
-    e: ManniStyle
-    ManniStyle  # A colorful style, inspired by the terminal highlighting styl...
-  publish-env/lib/python3.13/site-packages/pygments/styles/igor.py:
-    e: IgorStyle
-    IgorStyle  # Pygments version of the official colors for Igor Pro procedu...
   publish-env/lib/python3.13/site-packages/pygments/styles/nord.py:
     e: NordStyle,NordDarkerStyle
     NordStyle  # Pygments version of the "nord" theme by Arctic Ice Studio....
     NordDarkerStyle  # Pygments version of a darker "nord" theme by Arctic Ice Stud...
+  publish-env/lib/python3.13/site-packages/pygments/styles/igor.py:
+    e: IgorStyle
+    IgorStyle  # Pygments version of the official colors for Igor Pro procedu...
+  publish-env/lib/python3.13/site-packages/pygments/styles/manni.py:
+    e: ManniStyle
+    ManniStyle  # A colorful style, inspired by the terminal highlighting styl...
   publish-env/lib/python3.13/site-packages/pygments/styles/vs.py:
     e: VisualStudioStyle
     VisualStudioStyle
@@ -11722,32 +11755,32 @@ If t...
   publish-env/lib/python3.13/site-packages/pygments/styles/coffee.py:
     e: CoffeeStyle
     CoffeeStyle  # A warm and cozy theme based off gruvbox...
+  publish-env/lib/python3.13/site-packages/pygments/styles/borland.py:
+    e: BorlandStyle
+    BorlandStyle  # Style similar to the style used in the borland IDEs....
   publish-env/lib/python3.13/site-packages/pygments/styles/friendly_grayscale.py:
     e: FriendlyGrayscaleStyle
     FriendlyGrayscaleStyle  # A modern grayscale style based on the friendly style.
 
 .. ve...
-  publish-env/lib/python3.13/site-packages/pygments/styles/borland.py:
-    e: BorlandStyle
-    BorlandStyle  # Style similar to the style used in the borland IDEs....
-  publish-env/lib/python3.13/site-packages/pygments/styles/abap.py:
-    e: AbapStyle
-    AbapStyle
-  publish-env/lib/python3.13/site-packages/pygments/styles/inkpot.py:
-    e: InkPotStyle
-    InkPotStyle
   publish-env/lib/python3.13/site-packages/pygments/styles/sas.py:
     e: SasStyle
     SasStyle  # Style inspired by SAS' enhanced program editor. Note This is...
+  publish-env/lib/python3.13/site-packages/pygments/styles/inkpot.py:
+    e: InkPotStyle
+    InkPotStyle
   publish-env/lib/python3.13/site-packages/pygments/styles/default.py:
     e: DefaultStyle
     DefaultStyle  # The default style (inspired by Emacs 22)....
-  publish-env/lib/python3.13/site-packages/pygments/styles/stata_dark.py:
-    e: StataDarkStyle
-    StataDarkStyle
   publish-env/lib/python3.13/site-packages/pygments/styles/emacs.py:
     e: EmacsStyle
     EmacsStyle  # The default style (inspired by Emacs 22)....
+  publish-env/lib/python3.13/site-packages/pygments/styles/abap.py:
+    e: AbapStyle
+    AbapStyle
+  publish-env/lib/python3.13/site-packages/pygments/styles/stata_dark.py:
+    e: StataDarkStyle
+    StataDarkStyle
   publish-env/lib/python3.13/site-packages/pygments/styles/pastie.py:
     e: PastieStyle
     PastieStyle  # Style similar to the pastie default style....
@@ -11769,43 +11802,40 @@ If t...
   publish-env/lib/python3.13/site-packages/pygments/styles/vim.py:
     e: VimStyle
     VimStyle  # Styles somewhat like vim 7.0...
+  publish-env/lib/python3.13/site-packages/pygments/styles/dracula.py:
+    e: DraculaStyle
+    DraculaStyle
   publish-env/lib/python3.13/site-packages/pygments/styles/colorful.py:
     e: ColorfulStyle
     ColorfulStyle  # A colorful style, inspired by CodeRay....
   publish-env/lib/python3.13/site-packages/pygments/styles/xcode.py:
     e: XcodeStyle
     XcodeStyle  # Style similar to the Xcode default colouring theme....
-  publish-env/lib/python3.13/site-packages/pygments/styles/dracula.py:
-    e: DraculaStyle
-    DraculaStyle
   publish-env/lib/python3.13/site-packages/pygments/styles/trac.py:
     e: TracStyle
     TracStyle  # Port of the default trac highlighter design....
   publish-env/lib/python3.13/site-packages/pygments/styles/perldoc.py:
     e: PerldocStyle
     PerldocStyle  # Style similar to the style used in the perldoc code blocks....
-  publish-env/lib/python3.13/site-packages/pygments/styles/gh_dark.py:
-    e: GhDarkStyle
-    GhDarkStyle  # Github's Dark-Colorscheme based theme for Pygments...
   publish-env/lib/python3.13/site-packages/pygments/styles/arduino.py:
     e: ArduinoStyle
     ArduinoStyle  # The Arduino® language style. This style is designed to highl...
+  publish-env/lib/python3.13/site-packages/pygments/styles/gh_dark.py:
+    e: GhDarkStyle
+    GhDarkStyle  # Github's Dark-Colorscheme based theme for Pygments...
+  publish-env/lib/python3.13/site-packages/pygments/lexers/tact.py:
+    e: TactLexer
+    TactLexer  # For Tact source code....
   publish-env/lib/python3.13/site-packages/pygments/lexers/bqn.py:
     e: BQNLexer
     BQNLexer  # A simple BQN lexer....
   publish-env/lib/python3.13/site-packages/pygments/lexers/_vbscript_builtins.py:
-  publish-env/lib/python3.13/site-packages/pygments/lexers/ncl.py:
-    e: NCLLexer
-    NCLLexer  # Lexer for NCL code....
   publish-env/lib/python3.13/site-packages/pygments/lexers/gsql.py:
     e: GSQLLexer
     GSQLLexer  # For GSQL queries (version 3.x)....
   publish-env/lib/python3.13/site-packages/pygments/lexers/bare.py:
     e: BareLexer
     BareLexer  # For BARE schema source....
-  publish-env/lib/python3.13/site-packages/pygments/lexers/tact.py:
-    e: TactLexer
-    TactLexer  # For Tact source code....
   publish-env/lib/python3.13/site-packages/pygments/lexers/_usd_builtins.py:
   publish-env/lib/python3.13/site-packages/pygments/lexers/ambient.py:
     e: AmbientTalkLexer
@@ -11813,25 +11843,28 @@ If t...
   publish-env/lib/python3.13/site-packages/pygments/lexers/xorg.py:
     e: XorgLexer
     XorgLexer  # Lexer for xorg.conf files....
+  publish-env/lib/python3.13/site-packages/pygments/lexers/ncl.py:
+    e: NCLLexer
+    NCLLexer  # Lexer for NCL code....
   publish-env/lib/python3.13/site-packages/pygments/lexers/apdlexer.py:
     e: apdlexer
     apdlexer  # For APDL source code....
+  publish-env/lib/python3.13/site-packages/pygments/lexers/_scilab_builtins.py:
   publish-env/lib/python3.13/site-packages/pygments/lexers/webidl.py:
     e: WebIDLLexer
     WebIDLLexer  # For Web IDL....
   publish-env/lib/python3.13/site-packages/pygments/lexers/devicetree.py:
     e: DevicetreeLexer
     DevicetreeLexer  # Lexer for Devicetree files....
-  publish-env/lib/python3.13/site-packages/pygments/lexers/rust.py:
-    e: RustLexer
-    RustLexer  # Lexer for the Rust programming language (version 1.47)....
-  publish-env/lib/python3.13/site-packages/pygments/lexers/_scilab_builtins.py:
-  publish-env/lib/python3.13/site-packages/pygments/lexers/rita.py:
-    e: RitaLexer
-    RitaLexer  # Lexer for RITA....
   publish-env/lib/python3.13/site-packages/pygments/lexers/hare.py:
     e: HareLexer
     HareLexer  # Lexer for the Hare programming language....
+  publish-env/lib/python3.13/site-packages/pygments/lexers/rust.py:
+    e: RustLexer
+    RustLexer  # Lexer for the Rust programming language (version 1.47)....
+  publish-env/lib/python3.13/site-packages/pygments/lexers/rita.py:
+    e: RitaLexer
+    RitaLexer  # Lexer for RITA....
   publish-env/lib/python3.13/site-packages/pygments/lexers/jmespath.py:
     e: JMESPathLexer
     JMESPathLexer  # For JMESPath queries....
@@ -11859,10 +11892,10 @@ See http://phix.x10.mx...
     e: HexdumpLexer
     HexdumpLexer  # For typical hex dump output formats by the UNIX and GNU/Linu...
   publish-env/lib/python3.13/site-packages/pygments/lexers/math.py:
+  publish-env/lib/python3.13/site-packages/pygments/lexers/_lilypond_builtins.py:
   publish-env/lib/python3.13/site-packages/pygments/lexers/blueprint.py:
     e: BlueprintLexer
     BlueprintLexer  # For Blueprint UI markup....
-  publish-env/lib/python3.13/site-packages/pygments/lexers/_lilypond_builtins.py:
   publish-env/lib/python3.13/site-packages/pygments/lexers/felix.py:
     e: FelixLexer
     FelixLexer  # For Felix source code....
@@ -11881,16 +11914,16 @@ R...
   publish-env/lib/python3.13/site-packages/pygments/lexers/ptx.py:
     e: PtxLexer
     PtxLexer  # For NVIDIA `PTX <https://docs.nvidia.com/cuda/parallel-threa...
+  publish-env/lib/python3.13/site-packages/pygments/lexers/srcinfo.py:
+    e: SrcinfoLexer
+    SrcinfoLexer  # Lexer for .SRCINFO files used by Arch Linux Packages.
+    ...
   publish-env/lib/python3.13/site-packages/pygments/lexers/automation.py:
     e: AutohotkeyLexer,AutoItLexer
     AutohotkeyLexer  # For autohotkey source code....
     AutoItLexer  # For AutoIt files.
 
 AutoIt is a freeware BASIC-like scripting...
-  publish-env/lib/python3.13/site-packages/pygments/lexers/srcinfo.py:
-    e: SrcinfoLexer
-    SrcinfoLexer  # Lexer for .SRCINFO files used by Arch Linux Packages.
-    ...
   publish-env/lib/python3.13/site-packages/pygments/lexers/iolang.py:
     e: IoLexer
     IoLexer  # For Io (a small, prototype-based programming language) sourc...
@@ -11900,14 +11933,14 @@ AutoIt is a freeware BASIC-like scripting...
   publish-env/lib/python3.13/site-packages/pygments/lexers/berry.py:
     e: BerryLexer
     BerryLexer  # For Berry source code....
+  publish-env/lib/python3.13/site-packages/pygments/lexers/func.py:
+    e: FuncLexer
+    FuncLexer  # For FunC source code....
   publish-env/lib/python3.13/site-packages/pygments/lexers/savi.py:
     e: SaviLexer
     SaviLexer  # For Savi source code.
 
 .. versionadded: 2.10...
-  publish-env/lib/python3.13/site-packages/pygments/lexers/func.py:
-    e: FuncLexer
-    FuncLexer  # For FunC source code....
   publish-env/lib/python3.13/site-packages/pygments/lexers/dax.py:
     e: DaxLexer
     DaxLexer  # Lexer for Power BI DAX
@@ -11950,29 +11983,31 @@ Referenced from: https://github.com/s...
 
 FoxPro syntax a...
   publish-env/lib/python3.13/site-packages/pygments/lexers/_ada_builtins.py:
-  publish-env/lib/python3.13/site-packages/pygments/lexers/sieve.py:
-    e: SieveLexer
-    SieveLexer  # Lexer for sieve format....
   publish-env/lib/python3.13/site-packages/pygments/lexers/igor.py:
     e: IgorLexer
     IgorLexer  # Pygments Lexer for Igor Pro procedure files (.ipf)....
-  publish-env/lib/python3.13/site-packages/pygments/lexers/_sourcemod_builtins.py:
-  publish-env/lib/python3.13/site-packages/pygments/lexers/web.py:
+  publish-env/lib/python3.13/site-packages/pygments/lexers/sieve.py:
+    e: SieveLexer
+    SieveLexer  # Lexer for sieve format....
   publish-env/lib/python3.13/site-packages/pygments/lexers/graph.py:
     e: CypherLexer
     CypherLexer  # For Cypher Query Language
 
 For the Cypher version in Neo4j 3...
+  publish-env/lib/python3.13/site-packages/pygments/lexers/web.py:
+  publish-env/lib/python3.13/site-packages/pygments/lexers/stata.py:
+    e: StataLexer
+    StataLexer  # For Stata do files....
   publish-env/lib/python3.13/site-packages/pygments/lexers/gcodelexer.py:
     e: GcodeLexer
     GcodeLexer  # For gcode source code....
   publish-env/lib/python3.13/site-packages/pygments/lexers/other.py:
-  publish-env/lib/python3.13/site-packages/pygments/lexers/stata.py:
-    e: StataLexer
-    StataLexer  # For Stata do files....
   publish-env/lib/python3.13/site-packages/pygments/lexers/ride.py:
     e: RideLexer
     RideLexer  # For Ride source code....
+  publish-env/lib/python3.13/site-packages/pygments/lexers/chapel.py:
+    e: ChapelLexer
+    ChapelLexer  # For Chapel source....
   publish-env/lib/python3.13/site-packages/pygments/lexers/ldap.py:
     e: LdifLexer,LdaprcLexer
     LdifLexer  # Lexer for LDIF...
@@ -11980,17 +12015,14 @@ For the Cypher version in Neo4j 3...
   publish-env/lib/python3.13/site-packages/pygments/lexers/go.py:
     e: GoLexer
     GoLexer  # For Go source....
-  publish-env/lib/python3.13/site-packages/pygments/lexers/chapel.py:
-    e: ChapelLexer
-    ChapelLexer  # For Chapel source....
+  publish-env/lib/python3.13/site-packages/pygments/lexers/sophia.py:
+    e: SophiaLexer
+    SophiaLexer  # A Sophia lexer....
   publish-env/lib/python3.13/site-packages/pygments/lexers/snobol.py:
     e: SnobolLexer
     SnobolLexer  # Lexer for the SNOBOL4 programming language.
 
 Recognizes the ...
-  publish-env/lib/python3.13/site-packages/pygments/lexers/sophia.py:
-    e: SophiaLexer
-    SophiaLexer  # A Sophia lexer....
   publish-env/lib/python3.13/site-packages/pygments/lexers/_tsql_builtins.py:
   publish-env/lib/python3.13/site-packages/pygments/lexers/jsx.py:
     e: JsxLexer,TsxLexer
@@ -11998,7 +12030,6 @@ Recognizes the ...
     ...
     TsxLexer  # For TypeScript with embedded JSX
     ...
-  publish-env/lib/python3.13/site-packages/pygments/lexers/_csound_builtins.py:
   publish-env/lib/python3.13/site-packages/pygments/lexers/archetype.py:
     e: AtomsLexer,OdinLexer,CadlLexer,AdlLexer
     AtomsLexer  # Lexer for Values used in ADL and ODIN.
@@ -12007,6 +12038,7 @@ Recognizes the ...
     OdinLexer  # Lexer for ODIN syntax....
     CadlLexer  # Lexer for cADL syntax....
     AdlLexer  # Lexer for ADL syntax....
+  publish-env/lib/python3.13/site-packages/pygments/lexers/_csound_builtins.py:
   publish-env/lib/python3.13/site-packages/pygments/lexers/qlik.py:
     e: QlikLexer
     QlikLexer  # Lexer for qlik code, including .qvs files...
@@ -12014,13 +12046,13 @@ Recognizes the ...
     e: VCTreeStatusLexer,PyPyLogLexer
     VCTreeStatusLexer  # For colorizing output of version control status commands, li...
     PyPyLogLexer  # Lexer for PyPy log files....
-  publish-env/lib/python3.13/site-packages/pygments/lexers/boa.py:
-    e: BoaLexer
-    BoaLexer  # Lexer for the Boa language....
   publish-env/lib/python3.13/site-packages/pygments/lexers/q.py:
     e: KLexer,QLexer
     KLexer  # For K source code....
     QLexer  # For `Q <https://code.kx.com/>`_ source code....
+  publish-env/lib/python3.13/site-packages/pygments/lexers/boa.py:
+    e: BoaLexer
+    BoaLexer  # Lexer for the Boa language....
   publish-env/lib/python3.13/site-packages/pygments/lexers/elm.py:
     e: ElmLexer
     ElmLexer  # For Elm source code....
@@ -12043,6 +12075,7 @@ Recognizes the ...
     TealLexer  # For the Transaction Execution Approval Language (TEAL)
 
 For ...
+  publish-env/lib/python3.13/site-packages/pygments/lexers/_sourcemod_builtins.py:
   publish-env/lib/python3.13/site-packages/pygments/lexers/spice.py:
     e: SpiceLexer
     SpiceLexer  # For Spice source....
@@ -12053,15 +12086,15 @@ For ...
   publish-env/lib/python3.13/site-packages/pygments/lexers/thingsdb.py:
     e: ThingsDBLexer
     ThingsDBLexer  # Lexer for the ThingsDB programming language....
+  publish-env/lib/python3.13/site-packages/pygments/lexers/sas.py:
+    e: SASLexer
+    SASLexer  # For SAS files....
   publish-env/lib/python3.13/site-packages/pygments/lexers/whiley.py:
     e: WhileyLexer
     WhileyLexer  # Lexer for the Whiley programming language....
   publish-env/lib/python3.13/site-packages/pygments/lexers/gleam.py:
     e: GleamLexer
     GleamLexer  # Lexer for the Gleam programming language (version 1.0.0)....
-  publish-env/lib/python3.13/site-packages/pygments/lexers/sas.py:
-    e: SASLexer
-    SASLexer  # For SAS files....
   publish-env/lib/python3.13/site-packages/pygments/lexers/_qlik_builtins.py:
   publish-env/lib/python3.13/site-packages/pygments/lexers/qvt.py:
     e: QVToLexer
@@ -12087,11 +12120,13 @@ Reference for imp...
   publish-env/lib/python3.13/site-packages/pygments/lexers/parasail.py:
     e: ParaSailLexer
     ParaSailLexer  # For ParaSail source code....
+  publish-env/lib/python3.13/site-packages/pygments/lexers/_css_builtins.py:
+  publish-env/lib/python3.13/site-packages/pygments/lexers/_postgres_builtins.py:
   publish-env/lib/python3.13/site-packages/pygments/lexers/amdgpu.py:
     e: AMDGPULexer
     AMDGPULexer  # For AMD GPU assembly....
-  publish-env/lib/python3.13/site-packages/pygments/lexers/_postgres_builtins.py:
   publish-env/lib/python3.13/site-packages/pygments/lexers/_openedge_builtins.py:
+  publish-env/lib/python3.13/site-packages/pygments/lexers/_mapping.py:
   publish-env/lib/python3.13/site-packages/pygments/lexers/tlb.py:
     e: TlbLexer
     TlbLexer  # For TL-b source code....
@@ -12113,6 +12148,16 @@ The grammar definition use to transcr...
   publish-env/lib/python3.13/site-packages/pygments/lexers/graphviz.py:
     e: GraphvizLexer
     GraphvizLexer  # For graphviz DOT graph description language....
+  publish-env/lib/python3.13/site-packages/pygments/lexers/_scheme_builtins.py:
+  publish-env/lib/python3.13/site-packages/pygments/lexers/praat.py:
+    e: PraatLexer
+    PraatLexer  # For Praat scripts....
+  publish-env/lib/python3.13/site-packages/pygments/lexers/eiffel.py:
+    e: EiffelLexer
+    EiffelLexer  # For Eiffel source code....
+  publish-env/lib/python3.13/site-packages/pygments/lexers/tls.py:
+    e: TlsLexer
+    TlsLexer  # The TLS presentation language, described in RFC 8446....
   publish-env/lib/python3.13/site-packages/pygments/lexers/grammar_notation.py:
     e: BnfLexer,AbnfLexer,JsgfLexer,PegLexer
     BnfLexer  # This lexer is for grammar notations which are similar to
@@ -12124,21 +12169,9 @@ ori...
     PegLexer  # This lexer is for Parsing Expression Grammars (PEG).
 
 Variou...
-  publish-env/lib/python3.13/site-packages/pygments/lexers/_css_builtins.py:
-  publish-env/lib/python3.13/site-packages/pygments/lexers/_scheme_builtins.py:
-  publish-env/lib/python3.13/site-packages/pygments/lexers/praat.py:
-    e: PraatLexer
-    PraatLexer  # For Praat scripts....
-  publish-env/lib/python3.13/site-packages/pygments/lexers/eiffel.py:
-    e: EiffelLexer
-    EiffelLexer  # For Eiffel source code....
-  publish-env/lib/python3.13/site-packages/pygments/lexers/tls.py:
-    e: TlsLexer
-    TlsLexer  # The TLS presentation language, described in RFC 8446....
   publish-env/lib/python3.13/site-packages/pygments/lexers/jslt.py:
     e: JSLTLexer
     JSLTLexer  # For JSLT source....
-  publish-env/lib/python3.13/site-packages/pygments/lexers/_mapping.py:
   publish-env/lib/python3.13/site-packages/pygments/lexers/graphql.py:
     e: GraphQLLexer
     GraphQLLexer  # Lexer for GraphQL syntax...
@@ -12152,31 +12185,31 @@ Variou...
   publish-env/lib/python3.13/site-packages/pygments/lexers/smv.py:
     e: NuSMVLexer
     NuSMVLexer  # Lexer for the NuSMV language....
+  publish-env/lib/python3.13/site-packages/pygments/lexers/text.py:
   publish-env/lib/python3.13/site-packages/pygments/lexers/pony.py:
     e: PonyLexer
     PonyLexer  # For Pony source code....
-  publish-env/lib/python3.13/site-packages/pygments/lexers/text.py:
-  publish-env/lib/python3.13/site-packages/pygments/lexers/minecraft.py:
-    e: SNBTLexer,MCFunctionLexer,MCSchemaLexer
-    SNBTLexer  # Lexer for stringified NBT, a data format used in Minecraft
- ...
-    MCFunctionLexer  # Lexer for the mcfunction scripting language used in Minecraf...
-    MCSchemaLexer  # Lexer for Minecraft Add-ons data Schemas, an interface struc...
   publish-env/lib/python3.13/site-packages/pygments/lexers/pointless.py:
     e: PointlessLexer
     PointlessLexer  # For Pointless source code....
   publish-env/lib/python3.13/site-packages/pygments/lexers/ooc.py:
     e: OocLexer
     OocLexer  # For Ooc source code...
+  publish-env/lib/python3.13/site-packages/pygments/lexers/minecraft.py:
+    e: SNBTLexer,MCFunctionLexer,MCSchemaLexer
+    SNBTLexer  # Lexer for stringified NBT, a data format used in Minecraft
+ ...
+    MCFunctionLexer  # Lexer for the mcfunction scripting language used in Minecraf...
+    MCSchemaLexer  # Lexer for Minecraft Add-ons data Schemas, an interface struc...
   publish-env/lib/python3.13/site-packages/pygments/lexers/_asy_builtins.py:
+  publish-env/lib/python3.13/site-packages/pygments/lexers/kuin.py:
+    e: KuinLexer
+    KuinLexer  # For Kuin source code....
   publish-env/lib/python3.13/site-packages/pygments/lexers/mips.py:
     e: MIPSLexer
     MIPSLexer  # A MIPS Assembly Lexer.
 
 Based on the Emacs major mode by hli...
-  publish-env/lib/python3.13/site-packages/pygments/lexers/kuin.py:
-    e: KuinLexer
-    KuinLexer  # For Kuin source code....
   publish-env/lib/python3.13/site-packages/pygments/lexers/elpi.py:
     e: ElpiLexer
     ElpiLexer  # Lexer for the Elpi programming language....
@@ -12279,20 +12312,20 @@ grammar: https://ziglang.org/do...
     ColorTriplet  # The red, green, and blue components of a color....
   publish-env/lib/python3.13/site-packages/pip/_vendor/rich/_export_format.py:
   publish-env/lib/python3.13/site-packages/pip/_vendor/rich/_palettes.py:
+  publish-env/lib/python3.13/site-packages/pip/_vendor/rich/_cell_widths.py:
   publish-env/lib/python3.13/site-packages/pip/_vendor/rich/region.py:
     e: Region
     Region  # Defines a rectangular region of the screen....
-  publish-env/lib/python3.13/site-packages/pip/_vendor/rich/_spinners.py:
   publish-env/lib/python3.13/site-packages/pip/_vendor/rich/themes.py:
+  publish-env/lib/python3.13/site-packages/pip/_vendor/rich/_spinners.py:
   publish-env/lib/python3.13/site-packages/pip/_vendor/rich/_windows.py:
     e: WindowsConsoleFeatures
     WindowsConsoleFeatures  # Windows features available....
-  publish-env/lib/python3.13/site-packages/pip/_vendor/rich/_cell_widths.py:
   publish-env/lib/python3.13/site-packages/pip/_vendor/rich/default_styles.py:
   publish-env/lib/python3.13/site-packages/pip/_vendor/idna/__init__.py:
+  publish-env/lib/python3.13/site-packages/pip/_vendor/rich/_emoji_codes.py:
   publish-env/lib/python3.13/site-packages/pip/_vendor/idna/package_data.py:
   publish-env/lib/python3.13/site-packages/pip/_vendor/urllib3/_version.py:
-  publish-env/lib/python3.13/site-packages/pip/_vendor/rich/_emoji_codes.py:
   publish-env/lib/python3.13/site-packages/pip/_vendor/idna/idnadata.py:
   publish-env/lib/python3.13/site-packages/pip/_vendor/resolvelib/__init__.py:
   publish-env/lib/python3.13/site-packages/pip/_vendor/pyproject_hooks/__init__.py:
@@ -12342,39 +12375,39 @@ Follow...
   publish-env/lib/python3.13/site-packages/rich/_unicode_data/_versions.py:
   publish-env/lib/python3.13/site-packages/rich/_unicode_data/unicode6-0-0.py:
   publish-env/lib/python3.13/site-packages/rich/_unicode_data/unicode10-0-0.py:
-  publish-env/lib/python3.13/site-packages/rich/_unicode_data/unicode12-1-0.py:
   publish-env/lib/python3.13/site-packages/rich/_unicode_data/unicode6-2-0.py:
+  publish-env/lib/python3.13/site-packages/rich/_unicode_data/unicode12-1-0.py:
   publish-env/lib/python3.13/site-packages/rich/_unicode_data/unicode6-1-0.py:
   publish-env/lib/python3.13/site-packages/rich/_unicode_data/unicode15-1-0.py:
   publish-env/lib/python3.13/site-packages/rich/_unicode_data/unicode12-0-0.py:
   publish-env/lib/python3.13/site-packages/rich/_unicode_data/unicode17-0-0.py:
-  publish-env/lib/python3.13/site-packages/rich/_unicode_data/unicode7-0-0.py:
   publish-env/lib/python3.13/site-packages/rich/_unicode_data/unicode14-0-0.py:
+  publish-env/lib/python3.13/site-packages/rich/_unicode_data/unicode7-0-0.py:
   publish-env/lib/python3.13/site-packages/rich/_unicode_data/unicode4-1-0.py:
   publish-env/lib/python3.13/site-packages/rich/_unicode_data/unicode9-0-0.py:
   publish-env/lib/python3.13/site-packages/rich/_unicode_data/unicode15-0-0.py:
   publish-env/lib/python3.13/site-packages/rich/_unicode_data/unicode13-0-0.py:
+  publish-env/lib/python3.13/site-packages/rich/_unicode_data/unicode16-0-0.py:
   publish-env/lib/python3.13/site-packages/rich/_unicode_data/unicode5-1-0.py:
   publish-env/lib/python3.13/site-packages/rich/_unicode_data/unicode8-0-0.py:
-  publish-env/lib/python3.13/site-packages/rich/_unicode_data/unicode16-0-0.py:
+  publish-env/lib/python3.13/site-packages/rich/_unicode_data/unicode5-2-0.py:
   publish-env/lib/python3.13/site-packages/rich/_unicode_data/unicode6-3-0.py:
   publish-env/lib/python3.13/site-packages/docutils/languages/he.py:
-  publish-env/lib/python3.13/site-packages/rich/_unicode_data/unicode5-2-0.py:
   publish-env/lib/python3.13/site-packages/docutils/languages/sk.py:
-  publish-env/lib/python3.13/site-packages/rich/_unicode_data/unicode11-0-0.py:
   publish-env/lib/python3.13/site-packages/docutils/languages/fa.py:
   publish-env/lib/python3.13/site-packages/docutils/languages/zh_tw.py:
   publish-env/lib/python3.13/site-packages/docutils/languages/es.py:
   publish-env/lib/python3.13/site-packages/docutils/languages/da.py:
+  publish-env/lib/python3.13/site-packages/rich/_unicode_data/unicode11-0-0.py:
   publish-env/lib/python3.13/site-packages/docutils/languages/fi.py:
-  publish-env/lib/python3.13/site-packages/docutils/languages/it.py:
   publish-env/lib/python3.13/site-packages/docutils/languages/sv.py:
+  publish-env/lib/python3.13/site-packages/docutils/languages/it.py:
   publish-env/lib/python3.13/site-packages/docutils/languages/ja.py:
   publish-env/lib/python3.13/site-packages/docutils/languages/eo.py:
-  publish-env/lib/python3.13/site-packages/docutils/languages/ka.py:
   publish-env/lib/python3.13/site-packages/docutils/languages/uk.py:
-  publish-env/lib/python3.13/site-packages/docutils/languages/nl.py:
+  publish-env/lib/python3.13/site-packages/docutils/languages/ka.py:
   publish-env/lib/python3.13/site-packages/docutils/languages/de.py:
+  publish-env/lib/python3.13/site-packages/docutils/languages/nl.py:
   publish-env/lib/python3.13/site-packages/docutils/languages/lt.py:
   publish-env/lib/python3.13/site-packages/docutils/languages/ru.py:
   publish-env/lib/python3.13/site-packages/docutils/languages/lv.py:
@@ -12383,12 +12416,12 @@ Follow...
   publish-env/lib/python3.13/site-packages/docutils/languages/pl.py:
   publish-env/lib/python3.13/site-packages/docutils/languages/ca.py:
   publish-env/lib/python3.13/site-packages/docutils/languages/fr.py:
-  publish-env/lib/python3.13/site-packages/docutils/languages/zh_cn.py:
-  publish-env/lib/python3.13/site-packages/docutils/languages/ar.py:
   publish-env/lib/python3.13/site-packages/docutils/languages/gl.py:
+  publish-env/lib/python3.13/site-packages/docutils/languages/ar.py:
+  publish-env/lib/python3.13/site-packages/docutils/languages/zh_cn.py:
   publish-env/lib/python3.13/site-packages/docutils/languages/af.py:
-  publish-env/lib/python3.13/site-packages/docutils/languages/cs.py:
   publish-env/lib/python3.13/site-packages/docutils/languages/pt_br.py:
+  publish-env/lib/python3.13/site-packages/docutils/languages/cs.py:
   publish-env/lib/python3.13/site-packages/docutils/utils/urischemes.py:
   publish-env/lib/python3.13/site-packages/docutils/utils/_typing.py:
   publish-env/lib/python3.13/site-packages/docutils/parsers/rst/languages/he.py:
@@ -12401,17 +12434,16 @@ Follow...
   publish-env/lib/python3.13/site-packages/docutils/parsers/rst/languages/it.py:
   publish-env/lib/python3.13/site-packages/docutils/parsers/rst/languages/sv.py:
   publish-env/lib/python3.13/site-packages/docutils/parsers/rst/languages/ja.py:
-  publish-env/lib/python3.13/site-packages/docutils/parsers/rst/languages/eo.py:
+  publish-env/lib/python3.13/site-packages/docutils/parsers/commonmark_wrapper.py:
   publish-env/lib/python3.13/site-packages/docutils/parsers/rst/languages/uk.py:
   publish-env/lib/python3.13/site-packages/docutils/parsers/rst/languages/ka.py:
   publish-env/lib/python3.13/site-packages/docutils/parsers/rst/languages/nl.py:
-  publish-env/lib/python3.13/site-packages/docutils/parsers/commonmark_wrapper.py:
   publish-env/lib/python3.13/site-packages/docutils/parsers/rst/languages/de.py:
   publish-env/lib/python3.13/site-packages/docutils/parsers/rst/languages/lt.py:
   publish-env/lib/python3.13/site-packages/docutils/parsers/rst/languages/ru.py:
   publish-env/lib/python3.13/site-packages/docutils/parsers/rst/languages/lv.py:
-  publish-env/lib/python3.13/site-packages/docutils/parsers/rst/languages/ko.py:
   publish-env/lib/python3.13/site-packages/docutils/parsers/rst/languages/en.py:
+  publish-env/lib/python3.13/site-packages/docutils/parsers/rst/languages/ko.py:
   publish-env/lib/python3.13/site-packages/docutils/parsers/rst/languages/pl.py:
   publish-env/lib/python3.13/site-packages/docutils/parsers/rst/languages/ca.py:
   publish-env/lib/python3.13/site-packages/docutils/parsers/rst/languages/fr.py:
@@ -12422,6 +12454,7 @@ Follow...
   publish-env/lib/python3.13/site-packages/docutils/parsers/rst/languages/pt_br.py:
   publish-env/lib/python3.13/site-packages/docutils/parsers/rst/languages/cs.py:
   publish-env/lib/python3.13/site-packages/docutils/parsers/rst/directives/html.py:
+  publish-env/lib/python3.13/site-packages/docutils/parsers/rst/languages/eo.py:
   publish-env/lib/python3.13/site-packages/docutils/utils/math/unichar2tex.py:
   publish-env/lib/python3.13/site-packages/docutils/utils/math/mathalphabet2unichar.py:
   publish-env/lib/python3.13/site-packages/docutils/utils/math/tex2unichar.py:
@@ -12524,12 +12557,8 @@ Attributes:
     print_warning()
     print_error()
   examples/11_claude_code_autonomous/docker-entrypoint.sh:
-  examples/12_ollama_simple_demo/docker-entrypoint.sh:
   examples/12_ollama_simple_demo/run.sh:
-  examples/10_mcp_ollama_demo/docker-entrypoint.sh:
-  publish-env/lib/python3.13/site-packages/keyring/backend_complete.zsh:
-    e: backend_complete
-    backend_complete()
+  examples/12_ollama_simple_demo/docker-entrypoint.sh:
   examples/10_mcp_ollama_demo/run.sh:
     e: print_section,print_step,print_success,print_warning,print_error,print,print,print,print
     print_section()
@@ -12541,3 +12570,7 @@ Attributes:
     print()
     print()
     print()
+  publish-env/lib/python3.13/site-packages/keyring/backend_complete.zsh:
+    e: backend_complete
+    backend_complete()
+  examples/10_mcp_ollama_demo/docker-entrypoint.sh:

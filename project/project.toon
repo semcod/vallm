@@ -1,14 +1,7 @@
-# vallm | 95f 12194L | python:95
+# vallm | 95f 11887L | python:95
 # Keys: M=modules, D=details, i=imports, c=classes, f=functions, m=methods
 M[95]:
-  src/vallm/cli/optimized_batch_processor.py,259
-  src/vallm/validators/lint.py,138
-  src/vallm/validators/logical.py,103
-  src/vallm/validators/semantic_cache.py,136
-  tests/test_performance.py,146
-  tests/test_plugins.py,116
-  tests/test_sandbox.py,93
-  examples/01_basic_validation/main.py,60
+  examples/01_basic_validation/main.py,63
   examples/02_ast_comparison/main.py,87
   examples/03_security_check/main.py,74
   examples/04_graph_analysis/main.py,120
@@ -35,6 +28,7 @@ M[95]:
   examples/12_ollama_simple_demo/utils/main.py,21
   examples/12_ollama_simple_demo/utils/process_user_input.py,33
   examples/12_ollama_simple_demo/utils/save_data.py,15
+  examples/__init__.py,1
   examples/utils/__init__.py,155
   examples/utils/extract_code_from_response.py,19
   examples/utils/extraction.py,55
@@ -45,7 +39,7 @@ M[95]:
   src/vallm/__init__.py,16
   src/vallm/__main__.py,3
   src/vallm/cli.py,5
-  src/vallm/cli/__init__.py,25
+  src/vallm/cli/__init__.py,33
   src/vallm/cli/batch_processor.py,200
   src/vallm/cli/command_handlers.py,207
   src/vallm/cli/output_formatters.py,253
@@ -72,13 +66,16 @@ M[95]:
   src/vallm/validators/imports/factory.py,36
   src/vallm/validators/imports/go_imports.py,67
   src/vallm/validators/imports/java_imports.py,51
-  src/vallm/validators/imports/javascript_imports.py,80
-  src/vallm/validators/imports/python_imports.py,87
+  src/vallm/validators/imports/javascript_imports.py,89
+  src/vallm/validators/imports/python_imports.py,96
   src/vallm/validators/imports/rust_imports.py,59
   src/vallm/validators/imports/utils.py,117
   src/vallm/validators/imports/wrapper.py,24
+  src/vallm/validators/lint.py,138
+  src/vallm/validators/logical.py,103
   src/vallm/validators/security.py,211
   src/vallm/validators/semantic.py,243
+  src/vallm/validators/semantic_cache.py,136
   src/vallm/validators/syntax.py,80
   tests/__init__.py,0
   tests/conftest.py,51
@@ -90,47 +87,16 @@ M[95]:
   tests/test_imports.py,25
   tests/test_installation.py,206
   tests/test_languages.py,204
+  tests/test_performance.py,146
   tests/test_pipeline.py,39
+  tests/test_plugins.py,116
+  tests/test_sandbox.py,93
   tests/test_scoring.py,53
   tests/test_security.py,25
   tests/test_semantic_validation.py,265
   tests/test_syntax.py,29
   tests/test_vallm.py,7
 D:
-  src/vallm/cli/optimized_batch_processor.py:
-    i: asyncio,os,concurrent.futures,concurrent.futures.{ThreadPoolExecutor,as_completed},pathlib.Path,rich.console.Console,rich.progress.{Progress,TaskID},typing.Optional
-    e: OptimizedBatchProcessor,create_optimized_batch_processor
-    OptimizedBatchProcessor: __init__(1),process_batch(7),output_batch_results(4),_load_gitignore_parser(1),_build_file_list(2)  # Optimized batch processor with parall...
-    create_optimized_batch_processor(console:Console)->OptimizedBatchProcessor
-  src/vallm/validators/lint.py:
-    i: json,subprocess,tempfile,pathlib.Path,typing.List,vallm.core.proposal.Proposal,vallm.scoring.{Issue,Severity,ValidationResult}
-    e: LintValidator,create_validator
-    LintValidator: __init__(1),validate(2),_check_ruff(1),_parse_ruff_result(1),_parse_ruff_text(1)  # Validator for linting issues using ruff.
-    create_validator(settings=None)->LintValidator
-  src/vallm/validators/logical.py:
-    i: subprocess,tempfile,pathlib.Path,typing.List,vallm.core.proposal.Proposal,vallm.scoring.{Issue,Severity,ValidationResult}
-    e: LogicalErrorValidator,create_validator
-    LogicalErrorValidator: __init__(1),validate(2),_check_pyflakes(1),_parse_pyflakes_line(1)  # Validator for logical errors using py...
-    create_validator(settings=None)->LogicalErrorValidator
-  src/vallm/validators/semantic_cache.py:
-    i: hashlib,json,tempfile,pathlib.Path,typing.{Dict,Optional,Tuple},vallm.scoring.ValidationResult
-    e: SemanticCache,get_semantic_cache,clear_semantic_cache
-    SemanticCache: __init__(1),_get_cache_key(3),get(3),set(4),clear(0)  # Cache for semantic validation results...
-    get_semantic_cache()->SemanticCache
-    clear_semantic_cache()->None
-  tests/test_performance.py:
-    i: tempfile,time,pytest,pathlib.Path,unittest.mock.{Mock,patch},vallm.cli.optimized_batch_processor.create_optimized_batch_processor,vallm.config.VallmSettings
-    e: TestPerformanceOptimizations
-    TestPerformanceOptimizations: test_parallel_vs_sequential_performance(0),test_semantic_cache_performance(0),test_cache_key_generation(0),test_cache_persistence(0),test_max_workers_limiting(0)  # Test performance optimizations.
-  tests/test_plugins.py:
-    i: pluggy,pytest,unittest.mock.Mock,vallm.core.proposal.Proposal,vallm.hookspecs.{VallmSpec,hookimpl},vallm.scoring.{Issue,Severity,ValidationResult}
-    e: MockValidator,TestPluginSystem
-    MockValidator: validate_proposal(2),get_validator_name(0),get_validator_tier(0)  # Mock validator for testing plugin sys...
-    TestPluginSystem: test_plugin_manager_creation(0),test_register_validator(0),test_validate_proposal_hook(0),test_multiple_validators(0),test_get_validator_info_hooks(0)  # Test cases for plugin system.
-  tests/test_sandbox.py:
-    i: tempfile,pytest,pathlib.Path,unittest.mock.{Mock,patch},vallm.config.VallmSettings,vallm.sandbox.runner.SandboxRunner
-    e: TestSandboxRunner
-    TestSandboxRunner: test_init_default_settings(0),test_init_custom_settings(0),test_run_python_code_success(1),test_run_python_code_syntax_error(1),test_run_timeout(1)  # Test cases for SandboxRunner.
   examples/01_basic_validation/main.py:
     i: json,os,pathlib.Path,vallm.{Proposal,VallmSettings,validate}
     e: main
@@ -476,11 +442,11 @@ D:
   src/vallm/validators/imports/javascript_imports.py:
     i: base.BaseImportValidator,typing.{Any,Dict,List},vallm.core.proposal.Proposal,vallm.scoring.{Issue,Severity,ValidationResult}
     e: _KNOWN_JS_MODULES,JavaScriptImportValidator
-    JavaScriptImportValidator: __init__(1),validate(2),extract_imports(1),module_exists(1)  # JavaScript/TypeScript import validator.
+    JavaScriptImportValidator: __init__(1),validate(2),extract_imports(1),module_exists(1),get_language(0)  # JavaScript/TypeScript import validator.
   src/vallm/validators/imports/python_imports.py:
     i: ast,base.BaseImportValidator,importlib.util,typing.{Any,Dict,List},vallm.core.proposal.Proposal,vallm.scoring.{Issue,Severity,ValidationResult}
     e: _KNOWN_PYTHON_MODULES,PythonImportValidator
-    PythonImportValidator: validate(2),extract_imports(1),module_exists(1)  # Python-specific import validator.
+    PythonImportValidator: validate(2),extract_imports(1),module_exists(1),get_language(0),_get_error_message(1)  # Python-specific import validator.
   src/vallm/validators/imports/rust_imports.py:
     i: base.BaseImportValidator,typing.{Any,Dict,List},vallm.core.proposal.Proposal,vallm.scoring.{Issue,Severity,ValidationResult}
     e: _KNOWN_RUST_MODULES,RustImportValidator
@@ -494,6 +460,16 @@ D:
     i: factory.ImportValidatorFactory,typing.{Any,Dict},vallm.core.proposal.Proposal,vallm.scoring.ValidationResult,vallm.validators.base.BaseValidator
     e: ImportValidator
     ImportValidator: validate(2)  # Backward compatibility wrapper for th...
+  src/vallm/validators/lint.py:
+    i: json,subprocess,tempfile,pathlib.Path,typing.List,vallm.core.proposal.Proposal,vallm.scoring.{Issue,Severity,ValidationResult}
+    e: LintValidator,create_validator
+    LintValidator: __init__(1),validate(2),_check_ruff(1),_parse_ruff_result(1),_parse_ruff_text(1)  # Validator for linting issues using ruff.
+    create_validator(settings=None)->LintValidator
+  src/vallm/validators/logical.py:
+    i: subprocess,tempfile,pathlib.Path,typing.List,vallm.core.proposal.Proposal,vallm.scoring.{Issue,Severity,ValidationResult}
+    e: LogicalErrorValidator,create_validator
+    LogicalErrorValidator: __init__(1),validate(2),_check_pyflakes(1),_parse_pyflakes_line(1)  # Validator for logical errors using py...
+    create_validator(settings=None)->LogicalErrorValidator
   src/vallm/validators/security.py:
     i: ast,re,vallm.core.proposal.Proposal,vallm.scoring.{Issue,Severity,ValidationResult},vallm.validators.base.BaseValidator
     e: _PYTHON_PATTERNS,_JS_PATTERNS,_GO_PATTERNS,_RUST_PATTERNS,_JAVA_PATTERNS,_C_CPP_PATTERNS,_UNIVERSAL_PATTERNS,_LANGUAGE_PATTERNS
@@ -502,6 +478,12 @@ D:
     i: json,re,typing.Optional,vallm.config.VallmSettings,vallm.core.proposal.Proposal,vallm.scoring.{Issue,Severity,ValidationResult},vallm.validators.base.BaseValidator
     e: _REVIEW_PROMPT,SemanticValidator
     SemanticValidator: __init__(1),validate(2),_build_prompt(1),_call_llm(1),_call_ollama(1)  # Tier 3: LLM-as-judge semantic code re...
+  src/vallm/validators/semantic_cache.py:
+    i: hashlib,json,tempfile,pathlib.Path,typing.{Dict,Optional,Tuple},vallm.scoring.ValidationResult
+    e: SemanticCache,get_semantic_cache,clear_semantic_cache
+    SemanticCache: __init__(1),_get_cache_key(3),get(3),set(4),clear(0)  # Cache for semantic validation results...
+    get_semantic_cache()->SemanticCache
+    clear_semantic_cache()->None
   src/vallm/validators/syntax.py:
     i: ast,vallm.core.ast_compare.tree_sitter_error_count,vallm.core.proposal.Proposal,vallm.scoring.{Issue,Severity,ValidationResult},vallm.validators.base.BaseValidator
     e: SyntaxValidator
@@ -579,12 +561,25 @@ D:
     TestFromPath: test_simple_paths(0),test_paths_with_directories(0),test_path_objects(0)  # Test language detection from file paths.
     TestFromString: test_by_name(0),test_by_display_name(0),test_by_tree_sitter_id(0),test_case_insensitive(0),test_by_extension(0)  # Test language detection from string n...
     TestDetectLanguage: test_from_path(0),test_from_extension(0),test_from_name(0),test_unknown(0)  # Test the main detect_language function.
+  tests/test_performance.py:
+    i: tempfile,time,pytest,pathlib.Path,unittest.mock.{Mock,patch},vallm.cli.optimized_batch_processor.create_optimized_batch_processor,vallm.config.VallmSettings
+    e: TestPerformanceOptimizations
+    TestPerformanceOptimizations: test_parallel_vs_sequential_performance(0),test_semantic_cache_performance(0),test_cache_key_generation(0),test_cache_persistence(0),test_max_workers_limiting(0)  # Test performance optimizations.
   tests/test_pipeline.py:
     i: vallm.{Proposal,VallmSettings,validate},vallm.scoring.Verdict
     e: test_pipeline_good_code,test_pipeline_syntax_error,test_pipeline_missing_import
     test_pipeline_good_code()
     test_pipeline_syntax_error()
     test_pipeline_missing_import()
+  tests/test_plugins.py:
+    i: pluggy,pytest,unittest.mock.Mock,vallm.core.proposal.Proposal,vallm.hookspecs.{VallmSpec,hookimpl},vallm.scoring.{Issue,Severity,ValidationResult}
+    e: MockValidator,TestPluginSystem
+    MockValidator: validate_proposal(2),get_validator_name(0),get_validator_tier(0)  # Mock validator for testing plugin sys...
+    TestPluginSystem: test_plugin_manager_creation(0),test_register_validator(0),test_validate_proposal_hook(0),test_multiple_validators(0),test_get_validator_info_hooks(0)  # Test cases for plugin system.
+  tests/test_sandbox.py:
+    i: tempfile,pytest,pathlib.Path,unittest.mock.{Mock,patch},vallm.config.VallmSettings,vallm.sandbox.runner.SandboxRunner
+    e: TestSandboxRunner
+    TestSandboxRunner: test_init_default_settings(0),test_init_custom_settings(0),test_run_python_code_success(1),test_run_python_code_syntax_error(1),test_run_timeout(1)  # Test cases for SandboxRunner.
   tests/test_scoring.py:
     i: vallm.config.VallmSettings,vallm.scoring
     e: test_verdict_pass,test_verdict_review,test_verdict_fail,test_hard_gate_on_error,test_weighted_score,test_custom_thresholds

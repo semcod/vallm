@@ -4,12 +4,12 @@
 
 - **Project**: vallm
 - **Language**: python
-- **Files**: 27
-- **Lines**: 6793
-- **Functions**: 147
-- **Classes**: 28
+- **Files**: 31
+- **Lines**: 7605
+- **Functions**: 185
+- **Classes**: 32
 - **Avg CC**: 3.5
-- **Critical (CC≥10)**: 6
+- **Critical (CC≥10)**: 9
 
 ## Architecture
 
@@ -21,19 +21,20 @@
 
 - `bump_version.py` — 78L, 2 methods, CC↑5
 
-### src/vallm/ (5 files, 326L, 12 functions)
+### src/vallm/ (5 files, 327L, 12 functions)
 
-- `scoring.py` — 211L, 8 methods, CC↑6
+- `scoring.py` — 212L, 8 methods, CC↑6
 - `config.py` — 58L, 1 methods, CC↑3
 - `hookspecs.py` — 33L, 3 methods, CC↑1
 - `__init__.py` — 19L, 0 methods, CC↑0
 - `__main__.py` — 5L, 0 methods, CC↑0
 
-### src/vallm/cli/ (4 files, 872L, 36 functions)
+### src/vallm/cli/ (5 files, 1243L, 49 functions)
 
+- `optimized_batch_processor.py` — 346L, 13 methods, CC↑19
 - `batch_processor.py` — 262L, 12 methods, CC↑18
 - `output_formatters.py` — 306L, 13 methods, CC↑7
-- `command_handlers.py` — 272L, 11 methods, CC↑4
+- `command_handlers.py` — 297L, 11 methods, CC↑4
 - `__init__.py` — 32L, 0 methods, CC↑0
 
 ### src/vallm/core/ (6 files, 778L, 26 functions)
@@ -50,20 +51,20 @@
 - `runner.py` — 144L, 4 methods, CC↑4
 - `__init__.py` — 1L, 0 methods, CC↑0
 
-### src/vallm/validators/ (6 files, 836L, 28 functions)
+### src/vallm/validators/ (9 files, 1361L, 47 functions)
 
 - `complexity.py` — 183L, 4 methods, CC↑12
+- `lint.py` — 182L, 6 methods, CC↑9
 - `security.py` — 253L, 5 methods, CC↑9
-- `semantic.py` — 282L, 15 methods, CC↑4
-- `syntax.py` — 96L, 3 methods, CC↑4
-- `base.py` — 21L, 1 methods, CC↑1
-- _1 more files_
+- `logical.py` — 142L, 5 methods, CC↑6
+- `semantic_cache.py` — 187L, 8 methods, CC↑5
+- _4 more files_
 
-### src/vallm/validators/imports/ (11 files, 843L, 39 functions)
+### src/vallm/validators/imports/ (11 files, 867L, 45 functions)
 
 - `utils.py` — 150L, 2 methods, CC↑27
 - `java_imports.py` — 68L, 5 methods, CC↑7
-- `python_imports.py` — 101L, 3 methods, CC↑7
+- `python_imports.py` — 113L, 6 methods, CC↑7
 - `c_imports.py` — 88L, 4 methods, CC↑5
 - `go_imports.py` — 84L, 5 methods, CC↑5
 - _6 more files_
@@ -71,6 +72,9 @@
 ## Key Exports
 
 - **walk** (function, CC=27) ⚠ split
+- **OptimizedBatchProcessor** (class, CC̄=6.5)
+  - `_process_files_sequential` CC=15 ⚠ split
+  - `_process_files_parallel` CC=19 ⚠ split
 - **BatchProcessor** (class, CC̄=4.8)
   - `_process_files` CC=18 ⚠ split
 - **ComplexityValidator** (class, CC̄=6.8)
@@ -79,20 +83,28 @@
 
 ## Hotspots (High Fan-Out)
 
+- **OptimizedBatchProcessor._process_files_parallel** — fan-out=16: Analysis pipeline, 16 stages
 - **JavaScriptImportValidator.extract_imports** — fan-out=14: Extract import statements from JavaScript/TypeScript using tree-sitter.
 - **GoImportValidator.extract_imports** — fan-out=13: Extract import statements from Go using tree-sitter.
 - **RustImportValidator.extract_imports** — fan-out=13: Extract use statements from Rust using tree-sitter.
+- **LintValidator._parse_ruff_text** — fan-out=12: Parse ruff text output as fallback.
+
+Args:
+    output: Ruff text output
+    
+Ret
 - **main** — fan-out=11: Orchestrates 11 calls
 - **SemanticValidator._parse_response** — fan-out=11: Parse LLM JSON response into a ValidationResult.
-- **BatchProcessor._process_files** — fan-out=11: Analysis pipeline, 11 stages
-- **SandboxRunner._run_docker** — fan-out=11: Run code in a Docker container (requires docker package).
 
 ## Refactoring Priorities
 
 | # | Action | Impact | Effort |
 |---|--------|--------|--------|
 | 1 | Split walk (CC=27 → target CC<10) | high | low |
-| 2 | Split BatchProcessor._process_files (CC=18 → target CC<10) | medium | low |
+| 2 | Split OptimizedBatchProcessor._process_files_sequential (CC=15 → target CC<10) | medium | low |
+| 3 | Split OptimizedBatchProcessor._process_files_parallel (CC=19 → target CC<10) | medium | low |
+| 4 | Split BatchProcessor._process_files (CC=18 → target CC<10) | medium | low |
+| 5 | Reduce OptimizedBatchProcessor._process_files_parallel fan-out (currently 16) | medium | medium |
 
 ## Context for LLM
 

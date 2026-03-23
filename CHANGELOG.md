@@ -124,37 +124,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Tree-sitter for all** — syntax validation for 165+ languages
 - **Example 07** — comprehensive multi-language demo with 8 languages
 
-## [0.1.11] - 2026-03-23
+## [0.1.12] - 2026-03-23
 
 ### Docs
 - Update CHANGELOG.md
 - Update README.md
-- Update TODO.md
 - Update docs/README.md
 - Update project/README.md
 - Update project/context.md
 
-### Test
-- Update tests/conftest.py
-- Update tests/test_cli_e2e.py
-- Update tests/test_installation.py
-- Update tests/test_performance.py
-- Update tests/test_plugins.py
-- Update tests/test_sandbox.py
-- Update tests/test_semantic_validation.py
-
 ### Other
-- Update .gitignore
-- Update .pre-commit-hooks.yaml
-- Update Makefile
-- Update examples/01_basic_validation/.vallm/basic_validation_summary.json
-- Update examples/01_basic_validation/main.py
-- Update examples/02_ast_comparison/main.py
-- Update examples/03_security_check/main.py
-- Update examples/04_graph_analysis/main.py
-- Update examples/05_llm_semantic_review/main.py
-- Update examples/05_llm_semantic_review/main_template.py
-- ... and 38 more files
+- Update project/analysis.toon
+- Update project/calls.mmd
+- Update project/calls.png
+- Update project/compact_flow.mmd
+- Update project/compact_flow.png
+- Update project/dashboard.html
+- Update project/duplication.toon
+- Update project/evolution.toon
+- Update project/flow.mmd
+- Update project/flow.png
+- ... and 6 more files
 
 ## [0.1.11] - 2026-03-23
 
@@ -195,11 +185,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 | Code Duplication | 504 lines | 35 lines | ✅ **93% eliminated** |
 | CLI Module Size | 850 lines | 9 lines | ✅ **99% reduction** |
 
+### 🛠️ New Validators
+- **LogicalErrorValidator** — Tier 1: pyflakes integration for detecting logical errors and unused imports
+- **LintValidator** — Tier 1: ruff integration for style and lint checks with JSON output
+- **SemanticCache** — Caching layer for semantic validation results to improve performance
+
 ### 🛠️ New Shared Utilities
 - `examples/utils/validation_runner.py` - Standard validation patterns
 - `examples/utils/extract_code_from_response.py` - LLM response parsing
 - `examples/12_ollama_simple_demo/utils/` - Demo-specific utilities
 - Enhanced `BaseImportValidator` - Common validation logic
+
+### 🧪 New Test Suites
+- **test_sandbox.py** — Comprehensive sandbox runner tests (8 test cases)
+- **test_plugins.py** — Plugin system tests for pluggy integration (8 test cases)
+- **test_performance.py** — Performance and load testing (12 test cases)
+- Enhanced test coverage in existing test files
 
 ### 📚 Documentation Updates
 - **README.md** - Updated architecture section with new modular structure
