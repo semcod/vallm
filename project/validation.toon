@@ -1,16 +1,13 @@
-# vallm batch | 163f | 111✓ 52✗
+# vallm batch | 163f | 110✓ 53✗
 
 SUMMARY:
   total: 163
-  passed: 111
-  failed: 52
-  success: 68.1%
+  passed: 110
+  failed: 53
+  success: 67.5%
 
 FILES:
   [yaml]
-    ✓ unknown
-      verdict: pass
-      score: 1.00
     ✓ unknown
       verdict: pass
       score: 1.00
@@ -342,11 +339,6 @@ FILES:
       verdict: pass
       score: 1.00
   [json]
-    ✗ unknown
-      verdict: fail
-      score: 0.00
-      issues: 1
-        [error] syntax.tree_sitter: tree-sitter found 4 parse error(s) in json
     ✓ unknown
       verdict: pass
       score: 1.00
@@ -373,10 +365,11 @@ FAILED:
   ✗ project/project.toon: Unsupported file type
   ✗ project/compact_flow.mmd: Unsupported file type
   ✗ project/map.toon: Unsupported file type
-  ✗ project/validation.json: Validation fail
+  ✗ project/validation.json: Error: [Errno 2] No such file or directory: 'project/validation.json'
   ✗ project/calls.mmd: Unsupported file type
   ✗ project/index.html: Unsupported file type
   ✗ project/flow.toon: Unsupported file type
+  ✗ project/validation.yaml: Error: [Errno 2] No such file or directory: 'project/validation.yaml'
   ✗ project/context.md: Unsupported file type
   ✗ project/prompt.txt: Unsupported file type
   ✗ project/evolution.toon: Unsupported file type
