@@ -156,8 +156,8 @@ def invalid_syntax(
         mock_response = '''```json
 {
     "correctness": 1,
-    "style": 2,
-    "security": 5,
+    "style": 1,
+    "security": 1,
     "completeness": 1,
     "issues": [{"message": "Syntax error", "severity": "error", "line": 2}],
     "summary": "Has syntax errors"
