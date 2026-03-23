@@ -8,19 +8,19 @@ PIPELINES[12] (Analysis:2, Core:3, Export:2, IO:1, NLP:1, Unknown:3):
               → from_path(cls, path:str | Path) → Optional[Language] CC=1    pure ■
               PURITY: 2/4 pure  BOTTLENECK: _check_lizard(CC=12)
 
-  Src [Core]: Proposal → ?
-              → validate(proposal:Proposal, context:dict) → ValidationResult CC=2    pure ▶
-              → _validate_treesitter(code:str, language:str) → tuple[float, list[Issue]] CC=3    mutation
-              → tree_sitter_error_count(code:str, language:str) → int CC=1    mutation
-              → parse_code(code:str, language:str)      CC=1    pure ■
-              PURITY: 2/4 pure  BOTTLENECK: _validate_treesitter(CC=3)
-
   Src [Unknown]: Proposal → Optional[int]
               → validate(proposal:Proposal, context:dict) → ValidationResult CC=3    cache ▶
               → _parse_response(response_text:str) → ValidationResult CC=4    IO
               → _parse_issues(data:dict) → list         CC=3    mutation
               → _parse_line_number(line) → Optional[int] CC=4    pure ■
               PURITY: 1/4 pure  BOTTLENECK: _parse_response(CC=4)
+
+  Src [Core]: Proposal → ?
+              → validate(proposal:Proposal, context:dict) → ValidationResult CC=2    pure ▶
+              → _validate_treesitter(code:str, language:str) → tuple[float, list[Issue]] CC=3    mutation
+              → tree_sitter_error_count(code:str, language:str) → int CC=1    mutation
+              → parse_code(code:str, language:str)      CC=1    pure ■
+              PURITY: 2/4 pure  BOTTLENECK: _validate_treesitter(CC=3)
 
   Src [Core]: Path | str → str
               → matches(path:Path | str) → bool         CC=4    pure ▶
@@ -38,17 +38,10 @@ PIPELINES[12] (Analysis:2, Core:3, Export:2, IO:1, NLP:1, Unknown:3):
 
   Src [Export]: list[Path] → None
               → process_batch(paths:list[Path], recursive:bool, include:Optional[str], exclude:Optional[str], use_gitignore:bool, settings:VallmSettings, output_format:str, fail_fast:bool, verbose:bool, show_issues:bool) → tuple[dict, list, int] CC=2    pure ▶
-              → _process_files(filtered_files:list[Path], settings:VallmSettings, output_format:str, fail_fast:bool, verbose:bool, show_issues:bool) → tuple[dict, list, int, list] CC=24   IO  !!
+              → _process_files(filtered_files:list[Path], settings:VallmSettings, output_format:str, fail_fast:bool, verbose:bool, show_issues:bool) → tuple[dict, list, int, list] CC=26   IO  !!
               → output_validate_result(result:ValidationResult, output_format:str, verbose:bool) → None CC=3    pure
               → output_rich(result:ValidationResult, verbose:bool) → None CC=6    IO ■
-              PURITY: 2/4 pure  BOTTLENECK: _process_files(CC=24)
-
-  Src [Core]: ? → ?
-              → main()                                  CC=9    IO ▶
-              → diff_python_code(before_code:str, after_code:str) → GraphDiffResult CC=1    pure
-              → diff_graphs(before:CodeGraph, after:CodeGraph) → GraphDiffResult CC=5    pure
-              → _diff_list(before, after, added:bool)   CC=9    pure ■
-              PURITY: 3/4 pure  BOTTLENECK: main(CC=9)
+              PURITY: 2/4 pure  BOTTLENECK: _process_files(CC=26)
 
   Examples [Unknown]: ? → ?
               → main()                                  CC=4    IO ▶
@@ -56,6 +49,13 @@ PIPELINES[12] (Analysis:2, Core:3, Export:2, IO:1, NLP:1, Unknown:3):
               → run_runtime_tests(code_path:Path, test_file:Optional[Path]) → Dict CC=8    IO
               → create_basic_tests(code_path:Path, test_file:Path) CC=7    IO ■
               PURITY: 0/4 pure  BOTTLENECK: run_autonomous_workflow(CC=9)
+
+  Src [Core]: ? → ?
+              → main()                                  CC=9    IO ▶
+              → diff_python_code(before_code:str, after_code:str) → GraphDiffResult CC=1    pure
+              → diff_graphs(before:CodeGraph, after:CodeGraph) → GraphDiffResult CC=5    pure
+              → _diff_list(before, after, added:bool)   CC=9    pure ■
+              PURITY: 3/4 pure  BOTTLENECK: main(CC=9)
 
   Examples [Unknown]: ? → ?
               → main()                                  CC=5    IO ▶
@@ -129,27 +129,6 @@ CONTRACTS:
     validate(proposal:Proposal, context:dict) → ValidationResult
       IN:  proposal:Proposal, context:dict
       OUT: ValidationResult
-      INVARIANT: raises on invalid input
-
-    _validate_treesitter(code:str, language:str) → tuple[float, list[Issue]]
-      IN:  code:str, language:str
-      OUT: tuple[float, list[Issue]]
-      SIDE-EFFECT: pure
-      INVARIANT: raises on invalid input
-
-    tree_sitter_error_count(code:str, language:str) → int
-      IN:  code:str, language:str
-      OUT: int
-      SIDE-EFFECT: global(errors)
-
-    parse_code(code:str, language:str)
-      IN:  code:str, language:str
-      OUT: None
-
-  Pipeline: Src
-    validate(proposal:Proposal, context:dict) → ValidationResult
-      IN:  proposal:Proposal, context:dict
-      OUT: ValidationResult
       SIDE-EFFECT: cache(self.cache.get, self.cache.set)
       INVARIANT: raises on invalid input
 
@@ -166,6 +145,27 @@ CONTRACTS:
     _parse_line_number(line) → Optional[int]
       IN:  line
       OUT: Optional[int]
+
+  Pipeline: Src
+    validate(proposal:Proposal, context:dict) → ValidationResult
+      IN:  proposal:Proposal, context:dict
+      OUT: ValidationResult
+      INVARIANT: raises on invalid input
+
+    _validate_treesitter(code:str, language:str) → tuple[float, list[Issue]]
+      IN:  code:str, language:str
+      OUT: tuple[float, list[Issue]]
+      SIDE-EFFECT: pure
+      INVARIANT: raises on invalid input
+
+    tree_sitter_error_count(code:str, language:str) → int
+      IN:  code:str, language:str
+      OUT: int
+      SIDE-EFFECT: global(errors)
+
+    parse_code(code:str, language:str)
+      IN:  code:str, language:str
+      OUT: None
 
   Pipeline: Src
     matches(path:Path | str) → bool
@@ -213,7 +213,7 @@ CONTRACTS:
       IN:  filtered_files:list[Path], settings:VallmSettings, output_format:str, fail_fast:bool, verbose:bool, show_issues:bool
       OUT: tuple[dict, list, int, list]
       SIDE-EFFECT: IO(print, read_text, print)
-      SMELL: CC=24 → split
+      SMELL: CC=26 → split
 
     output_validate_result(result:ValidationResult, output_format:str, verbose:bool) → None
       IN:  result:ValidationResult, output_format:str, verbose:bool
@@ -224,24 +224,6 @@ CONTRACTS:
       IN:  result:ValidationResult, verbose:bool
       OUT: None
       SIDE-EFFECT: IO(print, print, print)
-
-  Pipeline: Src
-    main()
-      IN:  ()
-      OUT: None
-      SIDE-EFFECT: IO(print, print, print)
-
-    diff_python_code(before_code:str, after_code:str) → GraphDiffResult
-      IN:  before_code:str, after_code:str
-      OUT: GraphDiffResult
-
-    diff_graphs(before:CodeGraph, after:CodeGraph) → GraphDiffResult
-      IN:  before:CodeGraph, after:CodeGraph
-      OUT: GraphDiffResult
-
-    _diff_list(before, after, added:bool)
-      IN:  before, after, added:bool
-      OUT: None
 
   Pipeline: Examples
     main()
@@ -263,6 +245,24 @@ CONTRACTS:
       IN:  code_path:Path, test_file:Path
       OUT: None
       SIDE-EFFECT: IO(read_text, write_text, print)
+
+  Pipeline: Src
+    main()
+      IN:  ()
+      OUT: None
+      SIDE-EFFECT: IO(print, print, print)
+
+    diff_python_code(before_code:str, after_code:str) → GraphDiffResult
+      IN:  before_code:str, after_code:str
+      OUT: GraphDiffResult
+
+    diff_graphs(before:CodeGraph, after:CodeGraph) → GraphDiffResult
+      IN:  before:CodeGraph, after:CodeGraph
+      OUT: GraphDiffResult
+
+    _diff_list(before, after, added:bool)
+      IN:  before, after, added:bool
+      OUT: None
 
   Pipeline: Examples
     main()
@@ -346,10 +346,10 @@ CONTRACTS:
 
 
 DATA_TYPES (by cross-function usage) [242 annotated, 0 inferred / 316 functions]:
-  str                  consumed:185 produced:45   !! HUB-TYPE → split interface
+  str                  consumed:186 produced:45   !! HUB-TYPE → split interface
   dict                 consumed:36  produced:14   !! HUB-TYPE → split interface
   bool                 consumed:33  produced:16   !! HUB-TYPE → split interface
-  Path                 consumed:34  produced:0    !! HUB-TYPE → split interface
+  Path                 consumed:35  produced:0    !! HUB-TYPE → split interface
   int                  consumed:22  produced:4    !! HUB-TYPE → split interface
   list                 consumed:19  produced:6    !! HUB-TYPE → split interface
   ValidationResult     consumed:5   produced:18 
@@ -361,20 +361,20 @@ DATA_TYPES (by cross-function usage) [242 annotated, 0 inferred / 316 functions]
   float                consumed:4   produced:4  
   Issue                consumed:1   produced:4  
   Language             consumed:0   produced:4    narrow scope
-  GitignoreParser      consumed:1   produced:2    narrow scope
-  list[Issue]          consumed:0   produced:3    narrow scope
-  list[str]            consumed:2   produced:1    narrow scope
-  str | Path           consumed:3   produced:0    narrow scope
   ExecutionResult      consumed:0   produced:3    narrow scope
+  GitignoreParser      consumed:1   produced:2    narrow scope
+  str | Path           consumed:3   produced:0    narrow scope
+  list[str]            consumed:2   produced:1    narrow scope
+  list[Issue]          consumed:0   produced:3    narrow scope
 
   HUB TYPES (consumed ≥10):
-    str → 185 consumers → split into:
+    str → 186 consumers → split into:
       - (analyze consumers to suggest sub-interfaces)
     dict → 36 consumers → split into:
       - replace with typed alternatives (dataclass/TypedDict)
     bool → 33 consumers → split into:
       - (analyze consumers to suggest sub-interfaces)
-    Path → 34 consumers → split into:
+    Path → 35 consumers → split into:
       - (analyze consumers to suggest sub-interfaces)
     int → 22 consumers → split into:
       - (analyze consumers to suggest sub-interfaces)
@@ -386,20 +386,20 @@ DATA_TYPES (by cross-function usage) [242 annotated, 0 inferred / 316 functions]
       - (analyze consumers to suggest sub-interfaces)
 
 SIDE_EFFECTS:
-  IO:        main, LogicalErrorValidator._check_pyflakes, SemanticCache.__init__, SemanticCache.get, SemanticCache.set, SemanticCache.clear, SecurityValidator._try_bandit, LintValidator._check_ruff, SemanticValidator._call_http, SemanticValidator._parse_response
+  IO:        main, LogicalErrorValidator._check_pyflakes, SecurityValidator._try_bandit, SemanticCache.__init__, SemanticCache.get, SemanticCache.set, SemanticCache.clear, SemanticValidator._call_http, SemanticValidator._parse_response, LintValidator._check_ruff
   Cache:     SemanticCache.get_cache_stats, get_semantic_cache, clear_semantic_cache, SemanticValidator.__init__, SemanticValidator.validate
   Mutation:  _initialize_validators, _run_validation_pipeline, _get_default_validators, ComplexityValidator.__init__, ComplexityValidator.validate, ComplexityValidator._check_python_complexity, ComplexityValidator._check_lizard, LogicalErrorValidator.__init__, SecurityValidator.validate, SecurityValidator._check_patterns
   Pure:      bump_version, VallmSpec.validate_proposal, VallmSpec.get_validator_name, VallmSpec.get_validator_tier, Issue.__str__, compute_verdict, validate, _initialize_settings, _initialize_context, BaseValidator.validate
 
   PIPELINE PURITY:
     Src             ██░░ 50% pure
-    Src             ██░░ 50% pure
     Src             █░░░ 25% pure
+    Src             ██░░ 50% pure
     Src             ███░ 75% pure
     Src             ███░ 75% pure
     Src             ██░░ 50% pure
-    Src             ███░ 75% pure
     Examples        ░░░░ 0% pure
+    Src             ███░ 75% pure
     Examples        ░░░░ 0% pure
     Examples        ██░░ 50% pure
     Examples        ░░░░ 0% pure

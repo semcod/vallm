@@ -67,7 +67,7 @@
   <div class="card"><div class="value">175</div><div class="label">Functions</div></div>
   <div class="card"><div class="value">31</div><div class="label">Classes</div></div>
   <div class="card"><div class="value">30</div><div class="label">Files</div></div>
-  <div class="card"><div class="value">7,452</div><div class="label">Lines</div></div>
+  <div class="card"><div class="value">7,527</div><div class="label">Lines</div></div>
   <div class="card"><div class="value">2</div><div class="label">Languages</div></div>
   <div class="card"><div class="value">3.5</div><div class="label">Avg CC</div></div>
   <div class="card"><div class="value">8</div><div class="label">Critical (CC≥10)</div></div>
@@ -96,7 +96,7 @@
     <div class="evo-cards">
       <div class="card"><div class="value">3.5</div><div class="label">CC̄ ↓</div></div>
       <div class="card"><div class="value">8</div><div class="label">Critical →</div></div>
-      <div class="card"><div class="value">7452</div><div class="label">Lines</div></div>
+      <div class="card"><div class="value">7527</div><div class="label">Lines</div></div>
     </div>
     <p class="trend" style="margin-top:.5rem;">Run analysis multiple times to build a trend chart (≥3 data points needed).</p>
   </div>
@@ -115,12 +115,20 @@
                 <td style="text-align:right">17</td>
             </tr>
             <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>command_handlers.py</td>
+                <td style="color:var(--muted);font-size:.75rem">src/vallm/cli</td>
+                <td style="text-align:right">323</td>
+                <td style="text-align:right">11</td>
+                <td style="text-align:right">0</td>
+                <td style="text-align:right">6</td>
+            </tr>
+            <tr>
                 <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>batch_processor.py</td>
                 <td style="color:var(--muted);font-size:.75rem">src/vallm/cli</td>
-                <td style="text-align:right">317</td>
+                <td style="text-align:right">319</td>
                 <td style="text-align:right">12</td>
                 <td style="text-align:right">1</td>
-                <td style="text-align:right">24</td>
+                <td style="text-align:right">26</td>
             </tr>
             <tr>
                 <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>semantic.py</td>
@@ -128,14 +136,6 @@
                 <td style="text-align:right">296</td>
                 <td style="text-align:right">15</td>
                 <td style="text-align:right">1</td>
-                <td style="text-align:right">4</td>
-            </tr>
-            <tr>
-                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>command_handlers.py</td>
-                <td style="color:var(--muted);font-size:.75rem">src/vallm/cli</td>
-                <td style="text-align:right">293</td>
-                <td style="text-align:right">11</td>
-                <td style="text-align:right">0</td>
                 <td style="text-align:right">4</td>
             </tr>
             <tr>
@@ -165,7 +165,7 @@
             <tr>
                 <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>scoring.py</td>
                 <td style="color:var(--muted);font-size:.75rem">src/vallm</td>
-                <td style="text-align:right">211</td>
+                <td style="text-align:right">213</td>
                 <td style="text-align:right">8</td>
                 <td style="text-align:right">5</td>
                 <td style="text-align:right">6</td>
@@ -271,7 +271,7 @@
   </div>
 </div>
 
-<h2>Alerts (15)</h2>
+<h2>Alerts (16)</h2>
 <div class="card"><div class="table-wrap">
 <table>
   <thead><tr><th>Severity</th><th>Target</th><th>Type</th><th>Value</th><th>Limit</th></tr></thead>
@@ -283,11 +283,11 @@
                 <td>27</td>
                 <td>15</td>
             </tr>
-            <tr class="error">
-                <td><span class="badge error">error</span></td>
+            <tr class="critical">
+                <td><span class="badge critical">critical</span></td>
                 <td>BatchProcessor._process_files</td>
                 <td>cc_exceeded</td>
-                <td>24</td>
+                <td>26</td>
                 <td>15</td>
             </tr>
             <tr class="warning">
@@ -362,6 +362,13 @@
             </tr>
             <tr class="warning">
                 <td><span class="badge warning">warning</span></td>
+                <td>batch_command</td>
+                <td>high_fan_out</td>
+                <td>11</td>
+                <td>10</td>
+            </tr>
+            <tr class="warning">
+                <td><span class="badge warning">warning</span></td>
                 <td>info_command</td>
                 <td>high_fan_out</td>
                 <td>11</td>
@@ -370,13 +377,6 @@
             <tr class="warning">
                 <td><span class="badge warning">warning</span></td>
                 <td>LogicalErrorValidator._check_pyflakes</td>
-                <td>high_fan_out</td>
-                <td>10</td>
-                <td>10</td>
-            </tr>
-            <tr class="warning">
-                <td><span class="badge warning">warning</span></td>
-                <td>SecurityValidator._try_bandit</td>
                 <td>high_fan_out</td>
                 <td>10</td>
                 <td>10</td>
@@ -445,9 +445,9 @@ Args:
     root: Root directory to st</td>
             </tr>
             <tr>
-                <td><strong>info_command</strong></td>
+                <td><strong>batch_command</strong></td>
                 <td>11</td>
-                <td>Show information about supported languages and validators.</td>
+                <td>Validate multiple files with auto-detected languages.</td>
             </tr></tbody>
 </table>
 </div></div>
@@ -461,19 +461,19 @@ Args:
   <tbody>
             <tr>
                 <td>1</td>
-                <td>Split walk (CC=27 → target CC<10)</td>
+                <td>Split BatchProcessor._process_files (CC=26 → target CC<10)</td>
                 <td><span class="badge high">high</span></td>
                 <td>low</td>
             </tr>
             <tr>
                 <td>2</td>
-                <td>Split output_batch_toon (CC=17 → target CC<10)</td>
-                <td><span class="badge medium">medium</span></td>
+                <td>Split walk (CC=27 → target CC<10)</td>
+                <td><span class="badge high">high</span></td>
                 <td>low</td>
             </tr>
             <tr>
                 <td>3</td>
-                <td>Split BatchProcessor._process_files (CC=24 → target CC<10)</td>
+                <td>Split output_batch_toon (CC=17 → target CC<10)</td>
                 <td><span class="badge medium">medium</span></td>
                 <td>low</td>
             </tr></tbody>
@@ -482,7 +482,7 @@ Args:
 </div>
 </div>
 
-<footer>Generated by code2llm on 2026-03-23 20:57</footer>
+<footer>Generated by code2llm on 2026-03-23 21:04</footer>
 
 <script>
 // Evolution chart disabled — fewer than 3 data points
@@ -512,8 +512,8 @@ const modLinesCtx = document.getElementById('modLinesChart').getContext('2d');
 new Chart(modLinesCtx, {
   type: 'bar',
   data: {
-    labels: ['output_formatters.py', 'batch_processor.py', 'semantic.py', 'command_handlers.py', 'gitignore.py', 'security.py', 'languages.py', 'scoring.py', 'semantic_cache.py', 'complexity.py', 'lint.py', 'utils.py', 'runner.py', 'logical.py', 'ast_compare.py'],
-    datasets: [{ label: 'Lines', data: [421, 317, 296, 293, 272, 255, 227, 211, 187, 183, 182, 150, 144, 142, 135],
+    labels: ['output_formatters.py', 'command_handlers.py', 'batch_processor.py', 'semantic.py', 'gitignore.py', 'security.py', 'languages.py', 'scoring.py', 'semantic_cache.py', 'complexity.py', 'lint.py', 'utils.py', 'runner.py', 'logical.py', 'ast_compare.py'],
+    datasets: [{ label: 'Lines', data: [421, 323, 319, 296, 272, 255, 227, 213, 187, 183, 182, 150, 144, 142, 135],
       backgroundColor: '#3b82f6'
     }]
   },

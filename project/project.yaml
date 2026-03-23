@@ -3,11 +3,11 @@ project:
   name: vallm
   repo: /home/tom/github/semcod/vallm
   language: python
-  analyzed_at: '2026-03-23T20:57:08Z'
+  analyzed_at: '2026-03-23T21:04:57Z'
   tool: code2llm
   stats:
     files: 30
-    lines: 7452
+    lines: 7527
     functions: 175
     classes: 31
 health:
@@ -24,9 +24,9 @@ health:
     severity: critical
   - type: cc_exceeded
     target: BatchProcessor._process_files
-    value: 24
+    value: 26
     limit: 15
-    severity: error
+    severity: critical
   - type: cc_exceeded
     target: output_batch_toon
     value: 17
@@ -78,6 +78,11 @@ health:
     limit: 10
     severity: warning
   - type: high_fan_out
+    target: batch_command
+    value: 11
+    limit: 10
+    severity: warning
+  - type: high_fan_out
     target: info_command
     value: 11
     limit: 10
@@ -109,18 +114,18 @@ modules:
     type: function
     cc: 14
 - path: src/vallm/cli/batch_processor.py
-  lines: 317
+  lines: 319
   classes: 1
   methods: 12
-  cc_max: 24
+  cc_max: 26
   inbound_deps: 0
   exports:
   - name: BatchProcessor
     type: class
-    cc_avg: 5.4
+    cc_avg: 5.6
     methods:
     - name: _process_files
-      cc: 24
+      cc: 26
       flag: split
       fan_out: 12
 - path: src/vallm/cli/output_formatters.py
@@ -286,6 +291,27 @@ modules:
   - name: PythonImportValidator
     type: class
     cc_avg: 2.8
+- path: src/vallm/cli/command_handlers.py
+  lines: 323
+  classes: 0
+  methods: 11
+  cc_max: 6
+  inbound_deps: 0
+  exports:
+  - name: validate_command
+    type: function
+    cc: 2
+  - name: check_command
+    type: function
+    cc: 1
+  - name: batch_command
+    type: function
+    cc: 6
+    fan_out: 11
+  - name: info_command
+    type: function
+    cc: 4
+    fan_out: 11
 - path: src/vallm/core/languages.py
   lines: 227
   classes: 1
@@ -303,7 +329,7 @@ modules:
     type: function
     cc: 4
 - path: src/vallm/scoring.py
-  lines: 211
+  lines: 213
   classes: 5
   methods: 8
   cc_max: 6
@@ -415,26 +441,6 @@ modules:
   - name: clear_semantic_cache
     type: function
     cc: 2
-- path: src/vallm/cli/command_handlers.py
-  lines: 293
-  classes: 0
-  methods: 11
-  cc_max: 4
-  inbound_deps: 0
-  exports:
-  - name: validate_command
-    type: function
-    cc: 2
-  - name: check_command
-    type: function
-    cc: 1
-  - name: batch_command
-    type: function
-    cc: 2
-  - name: info_command
-    type: function
-    cc: 4
-    fan_out: 11
 - path: src/vallm/core/ast_compare.py
   lines: 135
   classes: 0
@@ -666,11 +672,15 @@ hotspots:
   fan_out: 11
   note: "Walk directory tree yielding Python files.\n\nArgs:\n    root: Root directory\
     \ to st"
-- name: info_command
+- name: batch_command
   fan_out: 11
-  note: Show information about supported languages and validators.
+  note: Validate multiple files with auto-detected languages.
 refactoring:
   priorities:
+  - action: Split BatchProcessor._process_files (CC=26 → target CC<10)
+    impact: high
+    effort: low
+    module: batch_processor.py
   - action: Split walk (CC=27 → target CC<10)
     impact: high
     effort: low
@@ -679,10 +689,6 @@ refactoring:
     impact: medium
     effort: low
     module: output_formatters.py
-  - action: Split BatchProcessor._process_files (CC=24 → target CC<10)
-    impact: medium
-    effort: low
-    module: batch_processor.py
 evolution:
 - date: '2026-03-22'
   cc_avg: 4.3
@@ -692,5 +698,5 @@ evolution:
 - date: '2026-03-23'
   cc_avg: 3.5
   critical: 8
-  lines: 7452
+  lines: 7527
   note: Automated analysis
