@@ -1,52 +1,52 @@
-# redup/duplication | 15 groups | 64f 9133L | 2026-03-23
+# redup/duplication | 15 groups | 64f 9169L | 2026-03-23
 
 SUMMARY:
   files_scanned: 64
-  total_lines:   9133
+  total_lines:   9169
   dup_groups:    15
   dup_fragments: 38
-  saved_lines:   189
-  scan_ms:       2571
+  saved_lines:   202
+  scan_ms:       1840
 
 DUPLICATES[15] (ranked by impact):
-  [c9458bf93f705b4b] ! STRU  module_exists  L=12 N=4 saved=36 sim=1.00
-      src/vallm/validators/imports/javascript_imports.py:95-106  (module_exists)
+  [c9458bf93f705b4b] ! STRU  module_exists  L=14 N=4 saved=42 sim=1.00
       src/vallm/validators/imports/go_imports.py:71-84  (module_exists)
-      src/vallm/validators/imports/java_imports.py:58-68  (module_exists)
+      src/vallm/validators/imports/javascript_imports.py:95-106  (module_exists)
       src/vallm/validators/imports/rust_imports.py:71-78  (module_exists)
+      src/vallm/validators/imports/java_imports.py:58-68  (module_exists)
   [4cc03a1a56378e08] ! STRU  validate  L=32 N=2 saved=32 sim=1.00
       src/vallm/validators/logical.py:24-55  (validate)
       src/vallm/validators/lint.py:25-56  (validate)
   [14c3d7e0a4a6c0c3] ! STRU  main  L=32 N=2 saved=32 sim=1.00
       examples/08_code2llm_integration/main.py:215-246  (main)
       examples/11_claude_code_autonomous/legacy_code/data_processor.py:191-221  (main)
+  [183ebb7ae3613479]   STRU  walk  L=18 N=2 saved=18 sim=1.00
+      src/vallm/validators/imports/rust_imports.py:41-58  (walk)
+      src/vallm/validators/imports/java_imports.py:40-50  (walk)
   [101bf1d2354cdfbd]   STRU  main  L=14 N=2 saved=14 sim=1.00
       examples/05_llm_semantic_review/main_template.py:57-70  (main)
       examples/06_multilang_validation/main_template.py:57-70  (main)
   [13cd6b2e197989f2]   EXAC  log_code  L=12 N=2 saved=12 sim=1.00
       examples/10_mcp_ollama_demo/mcp_demo.py:60-71  (log_code)
       examples/11_claude_code_autonomous/claude_autonomous_demo.py:64-75  (log_code)
-  [183ebb7ae3613479]   STRU  walk  L=11 N=2 saved=11 sim=1.00
-      src/vallm/validators/imports/java_imports.py:40-50  (walk)
-      src/vallm/validators/imports/rust_imports.py:41-58  (walk)
   [05ee27d24d1ef1ca]   STRU  _get_error_message  L=3 N=4 saved=9 sim=1.00
-      src/vallm/validators/imports/javascript_imports.py:112-114  (_get_error_message)
       src/vallm/validators/imports/go_imports.py:26-28  (_get_error_message)
-      src/vallm/validators/imports/java_imports.py:25-27  (_get_error_message)
+      src/vallm/validators/imports/javascript_imports.py:112-114  (_get_error_message)
       src/vallm/validators/imports/rust_imports.py:25-27  (_get_error_message)
+      src/vallm/validators/imports/java_imports.py:25-27  (_get_error_message)
   [832093a05c629e45]   STRU  _get_rule_name  L=3 N=4 saved=9 sim=1.00
-      src/vallm/validators/imports/javascript_imports.py:116-118  (_get_rule_name)
       src/vallm/validators/imports/go_imports.py:30-32  (_get_rule_name)
-      src/vallm/validators/imports/java_imports.py:29-31  (_get_rule_name)
+      src/vallm/validators/imports/javascript_imports.py:116-118  (_get_rule_name)
       src/vallm/validators/imports/rust_imports.py:29-31  (_get_rule_name)
+      src/vallm/validators/imports/java_imports.py:29-31  (_get_rule_name)
   [41aa6f04f7f1893f]   EXAC  main  L=4 N=3 saved=8 sim=1.00
+      examples/12_ollama_simple_demo/iteration_1.py:16-19  (main)
       examples/12_ollama_simple_demo/best_version.py:16-19  (main)
       examples/12_ollama_simple_demo/iteration_2.py:16-19  (main)
-      examples/12_ollama_simple_demo/iteration_1.py:16-19  (main)
   [cb5445721e37217d]   STRU  get_language  L=3 N=3 saved=6 sim=1.00
       src/vallm/validators/imports/go_imports.py:22-24  (get_language)
-      src/vallm/validators/imports/java_imports.py:21-23  (get_language)
       src/vallm/validators/imports/rust_imports.py:21-23  (get_language)
+      src/vallm/validators/imports/java_imports.py:21-23  (get_language)
   [32613ac6694b783e]   STRU  log_section  L=6 N=2 saved=6 sim=1.00
       examples/10_mcp_ollama_demo/mcp_demo.py:46-51  (log_section)
       examples/11_claude_code_autonomous/claude_autonomous_demo.py:50-55  (log_section)
@@ -65,7 +65,7 @@ DUPLICATES[15] (ranked by impact):
 
 REFACTOR[15] (ranked by priority):
   [1] ○ extract_function   → src/vallm/validators/imports/utils/module_exists.py
-      WHY: 4 occurrences of 12-line block across 4 files — saves 36 lines
+      WHY: 4 occurrences of 14-line block across 4 files — saves 42 lines
       FILES: src/vallm/validators/imports/go_imports.py, src/vallm/validators/imports/java_imports.py, src/vallm/validators/imports/javascript_imports.py, src/vallm/validators/imports/rust_imports.py
   [2] ◐ extract_function   → src/vallm/validators/utils/validate.py
       WHY: 2 occurrences of 32-line block across 2 files — saves 32 lines
@@ -73,15 +73,15 @@ REFACTOR[15] (ranked by priority):
   [3] ◐ extract_function   → examples/utils/main.py
       WHY: 2 occurrences of 32-line block across 2 files — saves 32 lines
       FILES: examples/08_code2llm_integration/main.py, examples/11_claude_code_autonomous/legacy_code/data_processor.py
-  [4] ○ extract_function   → examples/utils/main.py
+  [4] ○ extract_function   → src/vallm/validators/imports/utils/walk.py
+      WHY: 2 occurrences of 18-line block across 2 files — saves 18 lines
+      FILES: src/vallm/validators/imports/java_imports.py, src/vallm/validators/imports/rust_imports.py
+  [5] ○ extract_function   → examples/utils/main.py
       WHY: 2 occurrences of 14-line block across 2 files — saves 14 lines
       FILES: examples/05_llm_semantic_review/main_template.py, examples/06_multilang_validation/main_template.py
-  [5] ○ extract_function   → examples/utils/log_code.py
+  [6] ○ extract_function   → examples/utils/log_code.py
       WHY: 2 occurrences of 12-line block across 2 files — saves 12 lines
       FILES: examples/10_mcp_ollama_demo/mcp_demo.py, examples/11_claude_code_autonomous/claude_autonomous_demo.py
-  [6] ○ extract_function   → src/vallm/validators/imports/utils/walk.py
-      WHY: 2 occurrences of 11-line block across 2 files — saves 11 lines
-      FILES: src/vallm/validators/imports/java_imports.py, src/vallm/validators/imports/rust_imports.py
   [7] ○ extract_function   → src/vallm/validators/imports/utils/_get_error_message.py
       WHY: 4 occurrences of 3-line block across 4 files — saves 9 lines
       FILES: src/vallm/validators/imports/go_imports.py, src/vallm/validators/imports/java_imports.py, src/vallm/validators/imports/javascript_imports.py, src/vallm/validators/imports/rust_imports.py
@@ -112,4 +112,4 @@ REFACTOR[15] (ranked by priority):
 
 METRICS-TARGET:
   dup_groups:  15 → 0
-  saved_lines: 189 lines recoverable
+  saved_lines: 202 lines recoverable
