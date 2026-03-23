@@ -3,7 +3,7 @@ VALLM BATCH VALIDATION RESULTS
 ┏━━━━━━━━━━┳━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━━━━━┓
 ┃ Language ┃ Total ┃ Passed ┃ Failed ┃ Avg Score ┃
 ┡━━━━━━━━━━╇━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━━━━━┩
-│ yaml     │     6 │      5 │      1 │      0.83 │
+│ yaml     │     5 │      5 │      0 │      1.00 │
 │ toml     │     1 │      1 │      0 │      1.00 │
 │ bash     │     9 │      9 │      0 │      1.00 │
 │ python   │    95 │     67 │     28 │      0.96 │
@@ -38,7 +38,6 @@ Failed Files:
   • project/calls.mmd: Unsupported file type
   • project/index.html: Unsupported file type
   • project/flow.toon: Unsupported file type
-  • project/analysis.yaml: Validation fail
   • project/context.md: Unsupported file type
   • project/prompt.txt: Unsupported file type
   • project/evolution.toon: Unsupported file type
@@ -47,6 +46,7 @@ Failed Files:
   • project/README.md: Unsupported file type
   • project/analysis.toon: Unsupported file type
   • project/duplication.toon: Unsupported file type
+  • toon/validation.txt: Unsupported file type
   • src/vallm/py.typed: Unsupported file type
   • src/vallm/validators/security.py: Validation fail
   • src/vallm/validators/imports.py: Validation fail

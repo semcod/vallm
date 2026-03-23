@@ -243,6 +243,8 @@ class BatchProcessor:
                 # Show progress for rich output only
                 if output_format == "rich" and not verbose:
                     self.console.print(f"[dim]Processing {i}/{len(filtered_files)}: {file_path}[/dim]")
+                elif output_format == "rich" and verbose:
+                    self.console.print(f"[dim]Processing {i}/{len(filtered_files)}: {file_path}[/dim]")
                 
                 # Read file
                 try:
