@@ -4,37 +4,43 @@
 
 - **Project**: vallm
 - **Language**: python
-- **Files**: 16
-- **Lines**: 6522
-- **Functions**: 114
-- **Classes**: 19
-- **Avg CC**: 4.6
-- **Critical (CC≥10)**: 16
+- **Files**: 27
+- **Lines**: 6793
+- **Functions**: 147
+- **Classes**: 28
+- **Avg CC**: 3.5
+- **Critical (CC≥10)**: 6
 
 ## Architecture
 
-### root/ (1 files, 16L, 0 functions)
+### root/ (1 files, 18L, 0 functions)
 
-- `project.sh` — 16L, 0 methods, CC↑0
+- `project.sh` — 18L, 0 methods, CC↑0
 
 ### scripts/ (1 files, 78L, 2 functions)
 
 - `bump_version.py` — 78L, 2 methods, CC↑5
 
-### src/vallm/ (6 files, 1221L, 39 functions)
+### src/vallm/ (5 files, 326L, 12 functions)
 
-- `cli.py` — 895L, 27 methods, CC↑18
 - `scoring.py` — 211L, 8 methods, CC↑6
 - `config.py` — 58L, 1 methods, CC↑3
 - `hookspecs.py` — 33L, 3 methods, CC↑1
 - `__init__.py` — 19L, 0 methods, CC↑0
-- _1 more files_
+- `__main__.py` — 5L, 0 methods, CC↑0
 
-### src/vallm/core/ (6 files, 753L, 26 functions)
+### src/vallm/cli/ (4 files, 872L, 36 functions)
+
+- `batch_processor.py` — 262L, 12 methods, CC↑18
+- `output_formatters.py` — 306L, 13 methods, CC↑7
+- `command_handlers.py` — 272L, 11 methods, CC↑4
+- `__init__.py` — 32L, 0 methods, CC↑0
+
+### src/vallm/core/ (6 files, 778L, 26 functions)
 
 - `gitignore.py` — 272L, 10 methods, CC↑11
-- `graph_diff.py` — 86L, 3 methods, CC↑6
-- `languages.py` — 220L, 6 methods, CC↑6
+- `graph_diff.py` — 104L, 3 methods, CC↑9
+- `languages.py` — 227L, 6 methods, CC↑6
 - `ast_compare.py` — 135L, 7 methods, CC↑4
 - `__init__.py` — 3L, 0 methods, CC↑0
 - _1 more files_
@@ -44,42 +50,49 @@
 - `runner.py` — 144L, 4 methods, CC↑4
 - `__init__.py` — 1L, 0 methods, CC↑0
 
-### src/vallm/validators/ (7 files, 847L, 43 functions)
+### src/vallm/validators/ (6 files, 836L, 28 functions)
 
 - `complexity.py` — 183L, 4 methods, CC↑12
-- `semantic.py` — 282L, 8 methods, CC↑12
-- `imports.py` — 11L, 22 methods, CC↑10
 - `security.py` — 253L, 5 methods, CC↑9
+- `semantic.py` — 282L, 15 methods, CC↑4
 - `syntax.py` — 96L, 3 methods, CC↑4
-- _2 more files_
+- `base.py` — 21L, 1 methods, CC↑1
+- _1 more files_
+
+### src/vallm/validators/imports/ (11 files, 843L, 39 functions)
+
+- `utils.py` — 150L, 2 methods, CC↑27
+- `java_imports.py` — 68L, 5 methods, CC↑7
+- `python_imports.py` — 101L, 3 methods, CC↑7
+- `c_imports.py` — 88L, 4 methods, CC↑5
+- `go_imports.py` — 84L, 5 methods, CC↑5
+- _6 more files_
 
 ## Key Exports
 
-- **validate** (function, CC=18) ⚠ split
+- **walk** (function, CC=27) ⚠ split
+- **BatchProcessor** (class, CC̄=4.8)
+  - `_process_files` CC=18 ⚠ split
 - **ComplexityValidator** (class, CC̄=6.8)
 - **GitignoreParser** (class, CC̄=5.7)
 - **SecurityValidator** (class, CC̄=5.4)
 
 ## Hotspots (High Fan-Out)
 
-- **validate** — fan-out=21: Validate a code proposal through the vallm pipeline.
-- **SemanticValidator._parse_response** — fan-out=17: Parse LLM JSON response into a ValidationResult.
-- **check** — fan-out=13: Quick syntax check only (tier 1).
-- **batch** — fan-out=12: Validate multiple files with auto-detected languages.
+- **JavaScriptImportValidator.extract_imports** — fan-out=14: Extract import statements from JavaScript/TypeScript using tree-sitter.
+- **GoImportValidator.extract_imports** — fan-out=13: Extract import statements from Go using tree-sitter.
+- **RustImportValidator.extract_imports** — fan-out=13: Extract use statements from Rust using tree-sitter.
 - **main** — fan-out=11: Orchestrates 11 calls
+- **SemanticValidator._parse_response** — fan-out=11: Parse LLM JSON response into a ValidationResult.
+- **BatchProcessor._process_files** — fan-out=11: Analysis pipeline, 11 stages
 - **SandboxRunner._run_docker** — fan-out=11: Run code in a Docker container (requires docker package).
-- **SecurityValidator._try_bandit** — fan-out=10: Try to run bandit if installed.
 
 ## Refactoring Priorities
 
 | # | Action | Impact | Effort |
 |---|--------|--------|--------|
-| 1 | Split god module src/vallm/cli.py (895L, 0 classes) | high | high |
-| 2 | Split validate (CC=18 → target CC<10) | medium | low |
-| 3 | Split _show_file_details (CC=15 → target CC<10) | medium | low |
-| 4 | Split _output_batch_rich (CC=18 → target CC<10) | medium | low |
-| 5 | Reduce validate fan-out (currently 21) | medium | medium |
-| 6 | Reduce SemanticValidator._parse_response fan-out (currently 17) | medium | medium |
+| 1 | Split walk (CC=27 → target CC<10) | high | low |
+| 2 | Split BatchProcessor._process_files (CC=18 → target CC<10) | medium | low |
 
 ## Context for LLM
 

@@ -19,6 +19,8 @@ from typing import Optional
 
 import requests
 
+from examples.utils import extract_code_from_response
+
 # Setup logging
 logging.basicConfig(
     level=logging.INFO,
@@ -249,27 +251,6 @@ REFACTORED CODE:
     return prompt
 
 
-def extract_code_from_response(response: str) -> str:
-    """Extract Python code from LLM response."""
-    # Try to extract from markdown code blocks
-    import re
-    
-    # Look for python code blocks
-    pattern = r'```python\s*(.*?)```'
-    matches = re.findall(pattern, response, re.DOTALL)
-    
-    if matches:
-        return matches[0].strip()
-    
-    # Try generic code blocks
-    pattern = r'```\s*(.*?)```'
-    matches = re.findall(pattern, response, re.DOTALL)
-    
-    if matches:
-        return matches[0].strip()
-    
-    # Return whole response if no code blocks found
-    return response.strip()
 
 
 def run_mcp_workflow(code_path: Path, max_iterations: int = 3):

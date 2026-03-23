@@ -97,5 +97,17 @@ class PythonImportValidator(BaseImportValidator):
             return True
         try:
             return importlib.util.find_spec(top_level) is not None
-        except (ModuleNotFoundError, ValueError):
+        except (ImportError, ValueError):
             return False
+    
+    def get_language(self) -> str:
+        """Get the language identifier."""
+        return "python"
+    
+    def _get_error_message(self, module_name: str) -> str:
+        """Get error message for missing module."""
+        return f"Module '{module_name}' not found"
+    
+    def _get_rule_name(self) -> str:
+        """Get rule name for validation errors."""
+        return "python.import.resolvable"

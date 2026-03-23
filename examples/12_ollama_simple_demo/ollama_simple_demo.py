@@ -16,6 +16,8 @@ from typing import Dict, List, Optional
 
 import requests
 
+from examples.utils import extract_code_from_response
+
 # Setup logging
 logging.basicConfig(
     level=logging.INFO,
@@ -185,25 +187,6 @@ REFACTORED CODE:
 ```python
 """
 
-def extract_code_from_response(response: str) -> str:
-    """Extract Python code from response."""
-    import re
-    
-    # Look for python code blocks
-    pattern = r'```python\s*(.*?)```'
-    matches = re.findall(pattern, response, re.DOTALL)
-    
-    if matches:
-        return matches[0].strip()
-    
-    # Try generic code blocks
-    pattern = r'```\s*(.*?)```'
-    matches = re.findall(pattern, response, re.DOTALL)
-    
-    if matches:
-        return matches[0].strip()
-    
-    return response.strip()
 
 def run_simple_workflow(code_path: Path, max_iterations: int = 3):
     """Run simple refactoring workflow."""

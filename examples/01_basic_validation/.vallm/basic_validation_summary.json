@@ -1,0 +1,54 @@
+{
+  "good_code": {
+    "verdict": "pass",
+    "score": 1.0,
+    "validators": {
+      "syntax": {
+        "score": 1.0,
+        "issues": 0
+      },
+      "imports.python": {
+        "score": 1.0,
+        "issues": 0
+      },
+      "complexity": {
+        "score": 1.0,
+        "issues": 0
+      }
+    }
+  },
+  "bad_code": {
+    "verdict": "fail",
+    "score": 0.0,
+    "validators": {
+      "syntax": {
+        "score": 0.0,
+        "issues": 1,
+        "issue_details": [
+          "[error]:2:26 SyntaxError: expected ':'"
+        ]
+      }
+    }
+  },
+  "complex_code": {
+    "verdict": "pass",
+    "score": 1.0,
+    "validators": {
+      "syntax": {
+        "score": 1.0,
+        "issues": 0,
+        "issue_details": []
+      },
+      "imports.python": {
+        "score": 1.0,
+        "issues": 0,
+        "issue_details": []
+      },
+      "complexity": {
+        "score": 1.0,
+        "issues": 0,
+        "issue_details": []
+      }
+    }
+  }
+}

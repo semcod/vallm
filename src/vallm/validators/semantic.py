@@ -56,13 +56,27 @@ class SemanticValidator(BaseValidator):
         self.model = settings.llm_model
         self.base_url = settings.llm_base_url
         self.temperature = settings.llm_temperature
+        
+        # Initialize cache for performance
+        from vallm.validators.semantic_cache import get_semantic_cache
+        self.cache = get_semantic_cache()
 
     def validate(self, proposal: Proposal, context: dict) -> ValidationResult:
+        # Check cache first
+        cached_result = self.cache.get(proposal.code, proposal.language, self.model)
+        if cached_result is not None:
+            return cached_result
+        
         prompt = self._build_prompt(proposal)
 
         try:
             response_text = self._call_llm(prompt)
-            return self._parse_response(response_text)
+            result = self._parse_response(response_text)
+            
+            # Cache the result
+            self.cache.set(proposal.code, proposal.language, self.model, result)
+            
+            return result
         except Exception as e:
             return ValidationResult(
                 validator=self.name,

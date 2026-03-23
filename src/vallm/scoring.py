@@ -51,6 +51,7 @@ class ValidationResult:
     confidence: float = 1.0  # validator's self-assessed confidence
     issues: list[Issue] = field(default_factory=list)
     details: dict = field(default_factory=dict)
+    language: Optional[str] = None  # Language of validated code (for grouping)
 
     @property
     def weighted_score(self) -> float:

@@ -10,25 +10,6 @@ from typing import List, Dict, Any
 # Global variable - bad practice
 data_cache = {}
 
-def process_user_input(user_input: str) -> str:
-    """Process user input safely."""
-    if user_input.startswith('calc:'):
-        calculation = user_input[5:]
-        try:
-            result = eval(calculation)
-        except Exception as e:
-            return f"Error in calculation: {e}"
-        return str(result)
-    
-    if user_input.startswith('search:'):
-        query = user_input[7:]
-        sql = f"SELECT * FROM users WHERE name = ?"
-        # Use parameterized queries to prevent SQL injection
-        print(f"Executing: {sql} with query '{query}'")
-        return sql
-    
-    return "processed"
-
 def load_config() -> Dict[str, Any]:
     """Load configuration safely."""
     config_str = os.environ.get('CONFIG', '{}')
@@ -64,24 +45,8 @@ def calculate_total(items: List[Dict[str, Any]]) -> float:
 
 def main():
     """Main function with improvements."""
-    config = load_config()
-    
-    # Process user input
-    user_input = input("Enter command: ")
-    result = process_user_input(user_input)
-    print(f"Result: {result}")
-    
-    # Calculate total
-    items = [
-        {'name': 'item1', 'price': 10, 'quantity': 2},
-        {'name': 'item2', 'price': 20, 'quantity': 1}
-    ]
-    total = calculate_total(items)
-    print(f"Total: {total}")
-    
-    # Save data
-    data = {'result': result, 'total': total}
-    save_data(data, 'output.json')
+    from .utils import run_demo_main
+    run_demo_main()
 
 if __name__ == "__main__":
     main()

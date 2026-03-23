@@ -1,6 +1,6 @@
-# vallm/flow | 259 func | 12 pipelines | 4 hub-types | 2026-03-23
+# vallm/flow | 297 func | 12 pipelines | 9 hub-types | 2026-03-23
 
-PIPELINES[12] (Analysis:2, Core:3, IO:2, NLP:2, Unknown:3):
+PIPELINES[12] (Analysis:2, Core:3, Export:1, IO:1, NLP:2, Unknown:3):
   Src [Analysis]: Proposal → Optional[Language]
               → validate(proposal:Proposal, context:dict) → ValidationResult CC=2    mutation ▶
               → _check_lizard(code:str, language:str, filename:str | None) → tuple[float, list[Issue], dict] CC=12   mutation
@@ -8,12 +8,12 @@ PIPELINES[12] (Analysis:2, Core:3, IO:2, NLP:2, Unknown:3):
               → from_path(cls, path:str | Path) → Optional[Language] CC=1    pure ■
               PURITY: 2/4 pure  BOTTLENECK: _check_lizard(CC=12)
 
-  Src [Unknown]: Proposal → str
+  Src [Unknown]: Proposal → Optional[int]
               → validate(proposal:Proposal, context:dict) → ValidationResult CC=2    pure ▶
-              → _call_llm(prompt:str) → str             CC=3    pure
-              → _call_ollama(prompt:str) → str          CC=2    pure
-              → _call_http(prompt:str) → str            CC=1    IO ■
-              PURITY: 3/4 pure  BOTTLENECK: _call_llm(CC=3)
+              → _parse_response(response_text:str) → ValidationResult CC=4    IO
+              → _parse_issues(data:dict) → list         CC=3    mutation
+              → _parse_line_number(line) → Optional[int] CC=4    pure ■
+              PURITY: 2/4 pure  BOTTLENECK: _parse_response(CC=4)
 
   Src [Core]: Proposal → ?
               → validate(proposal:Proposal, context:dict) → ValidationResult CC=2    pure ▶
@@ -29,19 +29,19 @@ PIPELINES[12] (Analysis:2, Core:3, IO:2, NLP:2, Unknown:3):
               → _pattern_to_regex(pattern:str) → str    CC=11   mutation ■
               PURITY: 3/4 pure  BOTTLENECK: _pattern_to_regex(CC=11)
 
+  Src [Export]: list[Path] → None
+              → process_batch(paths:list[Path], recursive:bool, include:Optional[str], exclude:Optional[str], use_gitignore:bool, settings:VallmSettings, output_format:str, fail_fast:bool, verbose:bool, show_issues:bool) → tuple[dict, list, int] CC=2    pure ▶
+              → _process_files(filtered_files:list[Path], settings:VallmSettings, output_format:str, fail_fast:bool, verbose:bool, show_issues:bool) → tuple[dict, list, int] CC=18   IO  !!
+              → output_validate_result(result:ValidationResult, output_format:str, verbose:bool) → None CC=3    pure
+              → output_rich(result:ValidationResult, verbose:bool) → None CC=6    IO ■
+              PURITY: 2/4 pure  BOTTLENECK: _process_files(CC=18)
+
   Src [Core]: ? → ?
               → main()                                  CC=9    IO ▶
               → diff_python_code(before_code:str, after_code:str) → GraphDiffResult CC=1    pure
               → diff_graphs(before:CodeGraph, after:CodeGraph) → GraphDiffResult CC=5    pure
-              → _diff_list(before, after, added:bool)   CC=6    pure ■
+              → _diff_list(before, after, added:bool)   CC=9    pure ■
               PURITY: 3/4 pure  BOTTLENECK: main(CC=9)
-
-  Examples [Unknown]: ? → ?
-              → main()                                  CC=5    IO ▶
-              → run_simple_workflow(code_path:Path, max_iterations:int) CC=9    IO
-              → run_simple_test(code:str) → Dict        CC=2    IO
-              → log_step(step:int, description:str)     CC=1    IO ■
-              PURITY: 0/4 pure  BOTTLENECK: run_simple_workflow(CC=9)
 
   Examples [Unknown]: ? → ?
               → main()                                  CC=4    IO ▶
@@ -50,19 +50,19 @@ PIPELINES[12] (Analysis:2, Core:3, IO:2, NLP:2, Unknown:3):
               → create_basic_tests(code_path:Path, test_file:Path) CC=7    IO ■
               PURITY: 0/4 pure  BOTTLENECK: run_autonomous_workflow(CC=9)
 
+  Examples [Unknown]: ? → ?
+              → main()                                  CC=5    IO ▶
+              → run_simple_workflow(code_path:Path, max_iterations:int) CC=9    IO
+              → run_simple_test(code:str) → Dict        CC=2    IO
+              → log_step(step:int, description:str)     CC=1    IO ■
+              PURITY: 0/4 pure  BOTTLENECK: run_simple_workflow(CC=9)
+
   Examples [NLP]: ? → Optional[Language]
               → main()                                  CC=11   IO ▶
               → test_language_detection()               CC=4    IO
               → detect_language(source:str | Path) → Optional[Language] CC=5    pure
               → from_path(cls, path:str | Path) → Optional[Language] CC=1    pure ■
               PURITY: 2/4 pure  BOTTLENECK: main(CC=11)
-
-  Examples [IO]: ? → Optional[Language]
-              → main()                                  CC=2    IO ▶
-              → analyze_with_code2llm(project_path:Path) → dict CC=8    IO
-              → detect_language(source:str | Path) → Optional[Language] CC=5    pure
-              → from_path(cls, path:str | Path) → Optional[Language] CC=1    pure ■
-              PURITY: 2/4 pure  BOTTLENECK: analyze_with_code2llm(CC=8)
 
   Examples [Analysis]: ? → ?
               → main()                                  CC=3    IO ▶
@@ -71,37 +71,37 @@ PIPELINES[12] (Analysis:2, Core:3, IO:2, NLP:2, Unknown:3):
               → log_step(step:int, description:str)     CC=1    IO ■
               PURITY: 0/4 pure  BOTTLENECK: analyze_with_code2llm(CC=9)
 
-  Src [NLP]: Optional[str] → Optional[Language]
-              → validate(code:Optional[str], file:Optional[Path], language:Optional[str], reference:Optional[Path], config:Optional[Path], enable_semantic:bool, enable_security:bool, model:Optional[str], output_format:str, verbose:bool) CC=18   IO  !! ▶
-              → get_language_for_validation(source:str | Path, explicit:Optional[str]) → str CC=4    pure
+  Examples [IO]: ? → Optional[Language]
+              → main()                                  CC=2    IO ▶
+              → analyze_with_code2llm(project_path:Path) → dict CC=8    IO
               → detect_language(source:str | Path) → Optional[Language] CC=5    pure
               → from_path(cls, path:str | Path) → Optional[Language] CC=1    pure ■
-              PURITY: 3/4 pure  BOTTLENECK: validate(CC=18)
+              PURITY: 2/4 pure  BOTTLENECK: analyze_with_code2llm(CC=8)
 
-  Src [IO]: list[Path] → ?
-              → batch(paths:list[Path], recursive:bool, include:Optional[str], exclude:Optional[str], use_gitignore:bool, output_format:str, fail_fast:bool, enable_semantic:bool, enable_security:bool, model:Optional[str], verbose:bool, show_issues:bool) CC=3    pure ▶
-              → _process_files(filtered_files:list[Path], settings, output_format:str, fail_fast:bool, verbose:bool, show_issues:bool) CC=12   IO
-              → _handle_validation_result(file_path:Path, result, lang_name:str, output_format:str, verbose:bool, show_issues:bool) CC=8    IO
-              → _show_file_details(result, show_issues:bool) CC=15   IO  !! ■
-              PURITY: 1/4 pure  BOTTLENECK: _show_file_details(CC=15)
+  Src [NLP]: Optional[str] → Optional[Language]
+              → validate_command(code:Optional[str], file:Optional[Path], language:Optional[str], reference:Optional[Path], config:Optional[Path], enable_semantic:bool, enable_security:bool, model:Optional[str], output_format:str, verbose:bool, exit_on_verdict:bool) → None CC=2    pure ▶
+              → _detect_and_log_language(file:Optional[Path], language:Optional[str]) → str CC=3    IO
+              → detect_language(source:str | Path) → Optional[Language] CC=5    pure
+              → from_path(cls, path:str | Path) → Optional[Language] CC=1    pure ■
+              PURITY: 3/4 pure  BOTTLENECK: detect_language(CC=5)
 
 
 TRANSFORMS (fan-out ≥10):
-  validate(code:Optional[str], file:Optional[Path], language:Optional[str], reference:Optional[Path], config:Optional[Path], enable_semantic:bool, enable_security:bool, model:Optional[str], output_format:str, verbose:bool) fan=21   !! side-effects
   run_autonomous_workflow(code_path:Path, max_iterations:int) fan=19   fan=19
-  _parse_response(response_text:str) → ValidationResult   fan=17   PIPELINE:SemanticValidator.entry
   analyze_with_code2llm(code_path:Path) → Dict            fan=17   fan=17
   analyze_with_code2llm(code_path:Path) → dict            fan=16   fan=16
   run_mcp_workflow(code_path:Path, max_iterations:int)    fan=16   fan=16
   run_simple_workflow(code_path:Path, max_iterations:int) fan=15   fan=15
-  analyze_with_code2llm(code_path:Path) → Dict            fan=13   fan=13
+  extract_imports(code:str) → List[Dict[str, Any]]        fan=14   PIPELINE:JavaScriptImportValidator.entry
+  extract_imports(code:str) → List[Dict[str, Any]]        fan=13   PIPELINE:GoImportValidator.entry
+  extract_imports(code:str) → List[Dict[str, Any]]        fan=13   PIPELINE:RustImportValidator.entry
   main()                                                  fan=13   !! script-in-disguise
-  check(file:Path, language:Optional[str])                fan=13   fan=13
+  analyze_with_code2llm(code_path:Path) → Dict            fan=13   fan=13
   main()                                                  fan=12   !! script-in-disguise
   main()                                                  fan=12   !! script-in-disguise
-  batch(paths:list[Path], recursive:bool, include:Optional[str], exclude:Optional[str], use_gitignore:bool, output_format:str, fail_fast:bool, enable_semantic:bool, enable_security:bool, model:Optional[str], verbose:bool, show_issues:bool) fan=12   fan=12
   main()                                                  fan=11   !! script-in-disguise
-  _run_docker(code:str, language:str) → ExecutionResult   fan=11   PIPELINE:SandboxRunner.entry
+  _parse_response(response_text:str) → ValidationResult   fan=11   PIPELINE:SemanticValidator.entry
+  _process_files(filtered_files:list[Path], settings:VallmSettings, output_format:str, fail_fast:bool, verbose:bool, show_issues:bool) → tuple[dict, list, int] fan=11   PIPELINE:BatchProcessor.entry
 
 CONTRACTS:
   Pipeline: Src
@@ -131,18 +131,19 @@ CONTRACTS:
       OUT: ValidationResult
       INVARIANT: raises on invalid input
 
-    _call_llm(prompt:str) → str
-      IN:  prompt:str
-      OUT: str
+    _parse_response(response_text:str) → ValidationResult
+      IN:  response_text:str
+      OUT: ValidationResult
+      SIDE-EFFECT: IO(loads)
 
-    _call_ollama(prompt:str) → str
-      IN:  prompt:str
-      OUT: str
+    _parse_issues(data:dict) → list
+      IN:  data:dict
+      OUT: list
+      SIDE-EFFECT: pure
 
-    _call_http(prompt:str) → str
-      IN:  prompt:str
-      OUT: str
-      SIDE-EFFECT: IO(loads, dumps, read)
+    _parse_line_number(line) → Optional[int]
+      IN:  line
+      OUT: Optional[int]
 
   Pipeline: Src
     validate(proposal:Proposal, context:dict) → ValidationResult
@@ -184,6 +185,27 @@ CONTRACTS:
       SIDE-EFFECT: pure
 
   Pipeline: Src
+    process_batch(paths:list[Path], recursive:bool, include:Optional[str], exclude:Optional[str], use_gitignore:bool, settings:VallmSettings, output_format:str, fail_fast:bool, verbose:bool, show_issues:bool) → tuple[dict, list, int]
+      IN:  paths:list[Path], recursive:bool, include:Optional[str], exclude:Optional[str], use_gitignore:bool, settings:VallmSettings, output_format:str, fail_fast:bool, verbose:bool, show_issues:bool
+      OUT: tuple[dict, list, int]
+
+    _process_files(filtered_files:list[Path], settings:VallmSettings, output_format:str, fail_fast:bool, verbose:bool, show_issues:bool) → tuple[dict, list, int]
+      IN:  filtered_files:list[Path], settings:VallmSettings, output_format:str, fail_fast:bool, verbose:bool, show_issues:bool
+      OUT: tuple[dict, list, int]
+      SIDE-EFFECT: IO(print, read_text, print)
+      SMELL: CC=18 → split
+
+    output_validate_result(result:ValidationResult, output_format:str, verbose:bool) → None
+      IN:  result:ValidationResult, output_format:str, verbose:bool
+      OUT: None
+      INVARIANT: raises on invalid input
+
+    output_rich(result:ValidationResult, verbose:bool) → None
+      IN:  result:ValidationResult, verbose:bool
+      OUT: None
+      SIDE-EFFECT: IO(print, print, print)
+
+  Pipeline: Src
     main()
       IN:  ()
       OUT: None
@@ -200,27 +222,6 @@ CONTRACTS:
     _diff_list(before, after, added:bool)
       IN:  before, after, added:bool
       OUT: None
-
-  Pipeline: Examples
-    main()
-      IN:  ()
-      OUT: None
-      SIDE-EFFECT: IO(print, print, print)
-
-    run_simple_workflow(code_path:Path, max_iterations:int)
-      IN:  code_path:Path, max_iterations:int
-      OUT: None
-      SIDE-EFFECT: IO(read_text, print, print)
-
-    run_simple_test(code:str) → Dict
-      IN:  code:str
-      OUT: Dict
-      SIDE-EFFECT: IO(print, print)
-
-    log_step(step:int, description:str)
-      IN:  step:int, description:str
-      OUT: None
-      SIDE-EFFECT: IO(print)
 
   Pipeline: Examples
     main()
@@ -249,18 +250,20 @@ CONTRACTS:
       OUT: None
       SIDE-EFFECT: IO(print, print, print)
 
-    test_language_detection()
-      IN:  ()
+    run_simple_workflow(code_path:Path, max_iterations:int)
+      IN:  code_path:Path, max_iterations:int
       OUT: None
-      SIDE-EFFECT: IO(print, print, print)
+      SIDE-EFFECT: IO(read_text, print, print)
 
-    detect_language(source:str | Path) → Optional[Language]
-      IN:  source:str | Path
-      OUT: Optional[Language]
+    run_simple_test(code:str) → Dict
+      IN:  code:str
+      OUT: Dict
+      SIDE-EFFECT: IO(print, print)
 
-    from_path(cls, path:str | Path) → Optional[Language]
-      IN:  cls, path:str | Path
-      OUT: Optional[Language]
+    log_step(step:int, description:str)
+      IN:  step:int, description:str
+      OUT: None
+      SIDE-EFFECT: IO(print)
 
   Pipeline: Examples
     main()
@@ -268,9 +271,9 @@ CONTRACTS:
       OUT: None
       SIDE-EFFECT: IO(print, print, print)
 
-    analyze_with_code2llm(project_path:Path) → dict
-      IN:  project_path:Path
-      OUT: dict
+    test_language_detection()
+      IN:  ()
+      OUT: None
       SIDE-EFFECT: IO(print, print, print)
 
     detect_language(source:str | Path) → Optional[Language]
@@ -302,17 +305,16 @@ CONTRACTS:
       OUT: None
       SIDE-EFFECT: IO(print)
 
-  Pipeline: Src
-    validate(code:Optional[str], file:Optional[Path], language:Optional[str], reference:Optional[Path], config:Optional[Path], enable_semantic:bool, enable_security:bool, model:Optional[str], output_format:str, verbose:bool)
-      IN:  code:Optional[str], file:Optional[Path], language:Optional[str], reference:Optional[Path], config:Optional[Path], enable_semantic:bool, enable_security:bool, model:Optional[str], output_format:str, verbose:bool
+  Pipeline: Examples
+    main()
+      IN:  ()
       OUT: None
-      SIDE-EFFECT: IO(read_text, read_text, print)
-      INVARIANT: raises on invalid input
-      SMELL: CC=18 → split
+      SIDE-EFFECT: IO(print, print, print)
 
-    get_language_for_validation(source:str | Path, explicit:Optional[str]) → str
-      IN:  source:str | Path, explicit:Optional[str]
-      OUT: str
+    analyze_with_code2llm(project_path:Path) → dict
+      IN:  project_path:Path
+      OUT: dict
+      SIDE-EFFECT: IO(print, print, print)
 
     detect_language(source:str | Path) → Optional[Language]
       IN:  source:str | Path
@@ -323,74 +325,82 @@ CONTRACTS:
       OUT: Optional[Language]
 
   Pipeline: Src
-    batch(paths:list[Path], recursive:bool, include:Optional[str], exclude:Optional[str], use_gitignore:bool, output_format:str, fail_fast:bool, enable_semantic:bool, enable_security:bool, model:Optional[str], verbose:bool, show_issues:bool)
-      IN:  paths:list[Path], recursive:bool, include:Optional[str], exclude:Optional[str], use_gitignore:bool, output_format:str, fail_fast:bool, enable_semantic:bool, enable_security:bool, model:Optional[str], verbose:bool, show_issues:bool
+    validate_command(code:Optional[str], file:Optional[Path], language:Optional[str], reference:Optional[Path], config:Optional[Path], enable_semantic:bool, enable_security:bool, model:Optional[str], output_format:str, verbose:bool, exit_on_verdict:bool) → None
+      IN:  code:Optional[str], file:Optional[Path], language:Optional[str], reference:Optional[Path], config:Optional[Path], enable_semantic:bool, enable_security:bool, model:Optional[str], output_format:str, verbose:bool, exit_on_verdict:bool
       OUT: None
+      INVARIANT: raises on invalid input
 
-    _process_files(filtered_files:list[Path], settings, output_format:str, fail_fast:bool, verbose:bool, show_issues:bool)
-      IN:  filtered_files:list[Path], settings, output_format:str, fail_fast:bool, verbose:bool, show_issues:bool
-      OUT: None
-      SIDE-EFFECT: IO(read_text, print)
-
-    _handle_validation_result(file_path:Path, result, lang_name:str, output_format:str, verbose:bool, show_issues:bool)
-      IN:  file_path:Path, result, lang_name:str, output_format:str, verbose:bool, show_issues:bool
-      OUT: None
+    _detect_and_log_language(file:Optional[Path], language:Optional[str]) → str
+      IN:  file:Optional[Path], language:Optional[str]
+      OUT: str
       SIDE-EFFECT: IO(print, print, print)
 
-    _show_file_details(result, show_issues:bool)
-      IN:  result, show_issues:bool
-      OUT: None
-      SIDE-EFFECT: IO(print, print, print)
-      SMELL: CC=15 → split
+    detect_language(source:str | Path) → Optional[Language]
+      IN:  source:str | Path
+      OUT: Optional[Language]
+
+    from_path(cls, path:str | Path) → Optional[Language]
+      IN:  cls, path:str | Path
+      OUT: Optional[Language]
 
 
-DATA_TYPES (by cross-function usage) [164 annotated, 7 inferred / 259 functions]:
-  str                  consumed:128 produced:23   !! HUB-TYPE → split interface
-  bool                 consumed:32  produced:7    !! HUB-TYPE → split interface
-  dict                 consumed:22  produced:10   !! HUB-TYPE → split interface
-  Path                 consumed:25  produced:0    !! HUB-TYPE → split interface
+DATA_TYPES (by cross-function usage) [225 annotated, 0 inferred / 297 functions]:
+  str                  consumed:172 produced:37   !! HUB-TYPE → split interface
+  dict                 consumed:32  produced:14   !! HUB-TYPE → split interface
+  bool                 consumed:30  produced:16   !! HUB-TYPE → split interface
+  Path                 consumed:33  produced:0    !! HUB-TYPE → split interface
+  int                  consumed:22  produced:4    !! HUB-TYPE → split interface
+  str, Any             consumed:12  produced:13   !! HUB-TYPE → split interface
+  list                 consumed:17  produced:4    !! HUB-TYPE → split interface
+  ValidationResult     consumed:4   produced:15 
+  Proposal             consumed:14  produced:1    !! HUB-TYPE → split interface
   Dict                 consumed:7   produced:6  
-  str, Any             consumed:8   produced:4  
-  VallmSettings        consumed:9   produced:3  
-  int                  consumed:9   produced:3  
-  float                consumed:4   produced:6  
-  Proposal             consumed:9   produced:0    input-heavy (read-only flow)
+  VallmSettings        consumed:11  produced:2    !! HUB-TYPE → split interface
+  float                consumed:4   produced:7  
   list[Path]           consumed:6   produced:2  
-  list                 consumed:4   produced:3  
-  ValidationResult     consumed:0   produced:7    output-heavy
   Language             consumed:0   produced:4    narrow scope
-  list[str]            consumed:2   produced:1    narrow scope
-  ExecutionResult      consumed:0   produced:3    narrow scope
-  str | Path           consumed:3   produced:0    narrow scope
   GitignoreParser      consumed:1   produced:2    narrow scope
+  str | Path           consumed:3   produced:0    narrow scope
+  list[str]            consumed:2   produced:1    narrow scope
   list[Issue]          consumed:0   produced:3    narrow scope
-  tuple[float, list[Issue], dict] consumed:0   produced:2    narrow scope
+  ExecutionResult      consumed:0   produced:3    narrow scope
+  str | None           consumed:1   produced:1    narrow scope
 
   HUB TYPES (consumed ≥10):
-    str → 128 consumers → split into:
+    str → 172 consumers → split into:
       - (analyze consumers to suggest sub-interfaces)
-    bool → 32 consumers → split into:
-      - (analyze consumers to suggest sub-interfaces)
-    dict → 22 consumers → split into:
+    dict → 32 consumers → split into:
       - replace with typed alternatives (dataclass/TypedDict)
-    Path → 25 consumers → split into:
+    bool → 30 consumers → split into:
+      - (analyze consumers to suggest sub-interfaces)
+    Path → 33 consumers → split into:
+      - (analyze consumers to suggest sub-interfaces)
+    int → 22 consumers → split into:
+      - (analyze consumers to suggest sub-interfaces)
+    str, Any → 12 consumers → split into:
+      - (analyze consumers to suggest sub-interfaces)
+    list → 17 consumers → split into:
+      - (analyze consumers to suggest sub-interfaces)
+    Proposal → 14 consumers → split into:
+      - (analyze consumers to suggest sub-interfaces)
+    VallmSettings → 11 consumers → split into:
       - (analyze consumers to suggest sub-interfaces)
 
 SIDE_EFFECTS:
-  IO:        main, SecurityValidator._try_bandit, SemanticValidator._call_http, SemanticValidator._parse_response, normalize_python_ast, GitignoreParser.__init__, SandboxRunner._run_subprocess, SandboxRunner._run_docker, save_analysis_data, main
+  IO:        main, SecurityValidator._try_bandit, SemanticValidator._call_http, SemanticValidator._parse_response, normalize_python_ast, GitignoreParser.__init__, output_batch_empty, output_json, output_text, output_rich
   Mutation:  _initialize_validators, _run_validation_pipeline, _get_default_validators, ComplexityValidator.__init__, ComplexityValidator.validate, ComplexityValidator._check_python_complexity, ComplexityValidator._check_lizard, SecurityValidator.validate, SecurityValidator._check_patterns, SecurityValidator._check_python_ast
   Pure:      bump_version, VallmSpec.validate_proposal, VallmSpec.get_validator_name, VallmSpec.get_validator_tier, Issue.__str__, compute_verdict, validate, _initialize_settings, _initialize_context, BaseValidator.validate
 
   PIPELINE PURITY:
     Src             ██░░ 50% pure
+    Src             ██░░ 50% pure
+    Src             ██░░ 50% pure
     Src             ███░ 75% pure
     Src             ██░░ 50% pure
     Src             ███░ 75% pure
-    Src             ███░ 75% pure
     Examples        ░░░░ 0% pure
     Examples        ░░░░ 0% pure
     Examples        ██░░ 50% pure
-    Examples        ██░░ 50% pure
     Examples        ░░░░ 0% pure
+    Examples        ██░░ 50% pure
     Src             ███░ 75% pure
-    Src             █░░░ 25% pure

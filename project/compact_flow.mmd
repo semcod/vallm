@@ -1,35 +1,46 @@
 flowchart TD
-    examples_01_basic_validation["examples.01_basic_validation<br/>2 funcs"]
-    examples_02_ast_comparison["examples.02_ast_comparison<br/>2 funcs"]
-    examples_03_security_check["examples.03_security_check<br/>2 funcs"]
-    examples_04_graph_analysis["examples.04_graph_analysis<br/>2 funcs"]
-    examples_05_llm_semantic_review["examples.05_llm_semantic_review<br/>4 funcs"]
-    examples_06_multilang_validation["examples.06_multilang_validation<br/>3 funcs"]
+    examples_01_basic_validation["examples.01_basic_validation<br/>1 funcs"]
+    examples_02_ast_comparison["examples.02_ast_comparison<br/>1 funcs"]
+    examples_03_security_check["examples.03_security_check<br/>1 funcs"]
+    examples_04_graph_analysis["examples.04_graph_analysis<br/>1 funcs"]
+    examples_05_llm_semantic_review["examples.05_llm_semantic_review<br/>2 funcs"]
+    examples_06_multilang_validation["examples.06_multilang_validation<br/>2 funcs"]
     examples_07_multi_language["examples.07_multi_language<br/>6 funcs"]
     examples_08_code2llm_integration["examples.08_code2llm_integration<br/>5 funcs"]
     examples_09_code2logic_integration["examples.09_code2logic_integration<br/>6 funcs"]
-    examples_10_mcp_ollama_demo["examples.10_mcp_ollama_demo<br/>43 funcs"]
-    examples_11_claude_code_autonomous["examples.11_claude_code_autonomous<br/>34 funcs"]
-    examples_12_ollama_simple_demo["examples.12_ollama_simple_demo<br/>35 funcs"]
+    examples_10_mcp_ollama_demo["examples.10_mcp_ollama_demo<br/>42 funcs"]
+    examples_11_claude_code_autonomous["examples.11_claude_code_autonomous<br/>33 funcs"]
+    examples_12_ollama_simple_demo["examples.12_ollama_simple_demo<br/>36 funcs"]
+    examples_utils["examples.utils<br/>13 funcs"]
     publish_env_lib["publish-env.lib<br/>11744 funcs"]
     scripts_bump_version["scripts.bump_version<br/>2 funcs"]
-    src_vallm["src.vallm<br/>112 funcs"]
-    src_vallm ==>|76| publish_env_lib
-    examples_12_ollama_simple_demo ==>|76| publish_env_lib
+    src_vallm["src.vallm<br/>145 funcs"]
+    examples_utils ==>|81| publish_env_lib
+    src_vallm ==>|79| publish_env_lib
     examples_11_claude_code_autonomous ==>|76| publish_env_lib
-    examples_05_llm_semantic_review ==>|53| publish_env_lib
+    examples_12_ollama_simple_demo ==>|72| publish_env_lib
     examples_10_mcp_ollama_demo ==>|53| publish_env_lib
     examples_09_code2logic_integration ==>|40| publish_env_lib
-    examples_06_multilang_validation ==>|40| publish_env_lib
-    examples_04_graph_analysis ==>|35| publish_env_lib
-    examples_01_basic_validation ==>|31| publish_env_lib
+    examples_04_graph_analysis ==>|33| publish_env_lib
     examples_07_multi_language ==>|30| publish_env_lib
     examples_08_code2llm_integration ==>|26| publish_env_lib
-    examples_02_ast_comparison ==>|23| publish_env_lib
-    examples_03_security_check ==>|19| publish_env_lib
+    examples_05_llm_semantic_review ==>|21| publish_env_lib
+    examples_02_ast_comparison ==>|21| publish_env_lib
+    examples_03_security_check ==>|17| publish_env_lib
+    examples_06_multilang_validation ==>|10| publish_env_lib
     scripts_bump_version ==>|6| publish_env_lib
     examples_02_ast_comparison ==>|6| src_vallm
     publish_env_lib -->|2| scripts_bump_version
+    examples_05_llm_semantic_review -->|2| examples_utils
+    examples_01_basic_validation -->|2| examples_utils
+    examples_06_multilang_validation -->|2| examples_utils
+    examples_10_mcp_ollama_demo -->|2| examples_utils
     examples_04_graph_analysis -->|1| src_vallm
+    examples_04_graph_analysis -->|1| examples_utils
+    examples_11_claude_code_autonomous -->|1| examples_utils
+    examples_12_ollama_simple_demo -->|1| examples_utils
+    examples_01_basic_validation -->|1| publish_env_lib
+    examples_02_ast_comparison -->|1| examples_utils
+    examples_03_security_check -->|1| examples_utils
     examples_07_multi_language -->|1| src_vallm
     examples_08_code2llm_integration -->|1| src_vallm

@@ -18,26 +18,17 @@ _KNOWN_RUST_MODULES = {
 class RustImportValidator(BaseImportValidator):
     """Rust import validator."""
     
-    def validate(self, proposal: Proposal, context: dict) -> ValidationResult:
-        """Validate Rust imports using tree-sitter."""
-        issues = []
-        imports = self.extract_imports(proposal.code)
-        
-        for import_info in imports:
-            module_name = import_info["module"]
-            line = import_info["line"]
-            
-            if not self.module_exists(module_name):
-                issues.append(Issue(
-                    message=f"Crate '{module_name}' not found",
-                    severity=Severity.WARNING,
-                    line=line,
-                    rule="rust.import.resolvable"
-                ))
-        
-        return self.create_validation_result(
-            issues, len(imports), len(imports) - len(issues), "rust"
-        )
+    def get_language(self) -> str:
+        """Get language identifier."""
+        return "rust"
+    
+    def _get_error_message(self, module_name: str) -> str:
+        """Get error message for missing crate."""
+        return f"Crate '{module_name}' not found"
+    
+    def _get_rule_name(self) -> str:
+        """Get rule name for validation errors."""
+        return "rust.import.resolvable"
     
     def extract_imports(self, code: str) -> List[Dict[str, Any]]:
         """Extract use statements from Rust using tree-sitter."""

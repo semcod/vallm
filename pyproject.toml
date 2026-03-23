@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "vallm"
-version = "0.1.10"
+version = "0.1.11"
 description = "A complete toolkit for validating LLM-generated code"
 readme = "README.md"
 license = "Apache-2.0"
@@ -85,3 +85,15 @@ line-length = 100
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+addopts = [
+    "-v",
+    "--strict-markers",
+    "--strict-config",
+    "--tb=short",
+    "-m", "not slow and not integration",
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
+]

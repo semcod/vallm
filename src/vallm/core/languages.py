@@ -93,6 +93,13 @@ class Language(Enum):
     SWAY = ("sway", ".sw", "Sway")
     
     def __init__(self, tree_sitter_id: str, extension: str, display_name: str):
+        """Initialize a Language enum member.
+        
+        Args:
+            tree_sitter_id: Identifier for tree-sitter parser
+            extension: File extension (with dot)
+            display_name: Human-readable language name
+        """
         self.tree_sitter_id = tree_sitter_id
         self.extension = extension
         self.display_name = display_name

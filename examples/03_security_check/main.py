@@ -5,6 +5,8 @@ Demonstrates: pattern-based security checks and AST-based detection.
 
 import json
 from pathlib import Path
+
+from examples.utils import save_analysis_data
 from vallm import Proposal, VallmSettings
 from vallm.validators.security import SecurityValidator
 
@@ -58,19 +60,6 @@ def process_user_input(data: str) -> dict:
 
     return {"result": result.stdout, "config": config}
 """
-
-
-def save_analysis_data(example_name: str, result_data: dict):
-    """Save analysis data to .vallm folder."""
-    vallm_dir = Path(".vallm")
-    vallm_dir.mkdir(exist_ok=True)
-    
-    # Save result summary
-    summary_file = vallm_dir / f"{example_name}_summary.json"
-    with open(summary_file, 'w') as f:
-        json.dump(result_data, f, indent=2, default=str)
-    
-    print(f"Analysis data saved to {summary_file}")
 
 
 def main():

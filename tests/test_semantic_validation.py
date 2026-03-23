@@ -217,6 +217,7 @@ def calculate_sum(a, b):
         assert 0.0 <= result.score <= 1.0
 
 
+@pytest.mark.slow
 class TestLLMIntegration:
     """Test LLM integration functionality."""
     
@@ -265,6 +266,7 @@ class TestLLMIntegration:
         assert settings.llm_model == "qwen2.5-coder:7b"
 
 
+@pytest.mark.integration
 class TestCLIWithSemantic:
     """Test CLI commands with semantic validation."""
     

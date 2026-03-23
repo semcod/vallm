@@ -18,26 +18,17 @@ _KNOWN_JAVA_MODULES = {
 class JavaImportValidator(BaseImportValidator):
     """Java import validator."""
     
-    def validate(self, proposal: Proposal, context: dict) -> ValidationResult:
-        """Validate Java imports using tree-sitter."""
-        issues = []
-        imports = self.extract_imports(proposal.code)
-        
-        for import_info in imports:
-            module_name = import_info["module"]
-            line = import_info["line"]
-            
-            if not self.module_exists(module_name):
-                issues.append(Issue(
-                    message=f"Package '{module_name}' not found",
-                    severity=Severity.WARNING,
-                    line=line,
-                    rule="java.import.resolvable"
-                ))
-        
-        return self.create_validation_result(
-            issues, len(imports), len(imports) - len(issues), "java"
-        )
+    def get_language(self) -> str:
+        """Get language identifier."""
+        return "java"
+    
+    def _get_error_message(self, module_name: str) -> str:
+        """Get error message for missing package."""
+        return f"Package '{module_name}' not found"
+    
+    def _get_rule_name(self) -> str:
+        """Get rule name for validation errors."""
+        return "java.import.resolvable"
     
     def extract_imports(self, code: str) -> List[Dict[str, Any]]:
         """Extract import statements from Java using tree-sitter."""

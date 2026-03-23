@@ -13,5 +13,6 @@ rm project/analysis.yaml
 
 .venv/bin/pip install code2docs --upgrade
 .venv/bin/code2docs ./ --readme-only
-.venv/bin/redup scan . --format toon --output ./project  --parallel --functions-only --incremental --min-lines 5
+.venv/bin/redup scan . --format toon --output ./project
+#  --parallel --functions-only --incremental --min-lines 5
 #.venv/bin/redup scan . --format toon --output ./project --parallel --incremental --functions-only

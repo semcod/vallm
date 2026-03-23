@@ -104,3 +104,15 @@ class JavaScriptImportValidator(BaseImportValidator):
         if module_name.startswith("@"):
             return True
         return False
+    
+    def get_language(self) -> str:
+        """Get the language identifier."""
+        return self.language
+    
+    def _get_error_message(self, module_name: str) -> str:
+        """Get error message for missing module."""
+        return f"Module '{module_name}' not found"
+    
+    def _get_rule_name(self) -> str:
+        """Get rule name for validation errors."""
+        return "js.import.resolvable"

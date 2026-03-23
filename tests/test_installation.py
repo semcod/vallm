@@ -10,6 +10,7 @@ from typing import List
 import pytest
 
 
+@pytest.mark.slow
 class InstallationTester:
     """Helper class for testing installation methods."""
     
@@ -70,6 +71,7 @@ def validate_path(path: str) -> bool:
         return test_dir
 
 
+@pytest.mark.slow
 class TestPipInstallation:
     """Test pip installation methods."""
     
@@ -168,6 +170,7 @@ class TestPipInstallation:
             assert "vallm Configuration" in result.stdout
 
 
+@pytest.mark.slow
 class TestPipxInstallation:
     """Test pipx installation methods."""
     
@@ -210,6 +213,7 @@ class TestPipxInstallation:
             subprocess.run(["pipx", "uninstall", "vallm"], check=False)
 
 
+@pytest.mark.slow
 class TestPostInstallation:
     """Test functionality after installation."""
     

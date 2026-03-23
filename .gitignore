@@ -1,5 +1,6 @@
 releases
 vendor/
+publish-env
 .tar.gz
 package-lock.json
 pnpm-lock.yaml

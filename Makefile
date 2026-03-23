@@ -67,7 +67,23 @@ dev-install:
 # =============================================================================
 
 test:
-	$(PYTHON) -m pytest tests/ -v --tb=short 2>/dev/null || echo "No tests yet - create tests/ directory"
+	python3 -m pytest tests/ -v --tb=short
+
+# Fast tests - exclude slow and integration tests
+test-fast:
+	python3 -m pytest -m "not slow and not integration" -v --tb=short
+
+# Slow tests only
+test-slow:
+	python3 -m pytest -m "slow" -v --tb=short
+
+# Integration tests only  
+test-integration:
+	python3 -m pytest -m "integration" -v --tb=short
+
+# Unit tests only
+test-unit:
+	python3 -m pytest -m "unit" -v --tb=short
 
 test-cov:
 	$(PYTHON) -m pytest tests/ --cov=code2llm --cov-report=html --cov-report=term 2>/dev/null || echo "No tests yet"

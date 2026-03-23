@@ -10,11 +10,12 @@ from typing import List
 import pytest
 
 
+@pytest.mark.integration
 class VallmCLI:
     """Helper class for running vallm CLI commands."""
     
     def __init__(self):
-        self.vallm_cmd = "python -m vallm"
+        self.vallm_cmd = "python3 -m vallm"
     
     def run(self, args: List[str], check: bool = True) -> subprocess.CompletedProcess:
         """Run vallm command with given arguments."""
@@ -129,6 +130,7 @@ venv/
         yield project_dir
 
 
+@pytest.mark.integration
 class TestCLICommands:
     """Test suite for CLI commands."""
     
@@ -266,6 +268,7 @@ class TestCLICommands:
         assert "Provide --code or --file" in result.stdout
 
 
+@pytest.mark.integration
 class TestMultiLanguage:
     """Test multi-language support."""
     
@@ -300,6 +303,7 @@ class TestMultiLanguage:
         assert "Detected language: JavaScript" in result.stdout
 
 
+@pytest.mark.integration
 class TestConfiguration:
     """Test configuration options."""
     

@@ -79,8 +79,26 @@ def diff_python_code(before_code: str, after_code: str) -> GraphDiffResult:
 
 
 def _diff_list(before, after, added: bool):
-    set_before = set(before) if not isinstance(before[0] if before else "", tuple) else set(before)
-    set_after = set(after) if not isinstance(after[0] if after else "", tuple) else set(after)
+    """Compare two lists and return differences."""
+    if not before and not after:
+        return []
+    
+    # Handle empty lists safely
+    if not before:
+        return sorted(after) if added else []
+    if not after:
+        return [] if added else sorted(before)
+    
+    # Check if items are tuples for proper set comparison
+    is_tuple = isinstance(before[0], tuple)
+    
+    if is_tuple:
+        set_before = set(before)
+        set_after = set(after)
+    else:
+        set_before = set(before)
+        set_after = set(after)
+    
     if added:
         return sorted(set_after - set_before)
     return sorted(set_before - set_after)

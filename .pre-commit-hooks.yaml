@@ -1,0 +1,22 @@
+- id: vallm-validate
+  name: vallm validate
+  description: Validate Python files with vallm
+  entry: vallm validate
+  language: system
+  files: \.py$
+  args: [--file]
+
+- id: vallm-check
+  name: vallm check
+  description: Quick syntax check with vallm
+  entry: vallm check
+  language: system
+  files: \.py$
+
+- id: vallm-batch
+  name: vallm batch
+  description: Batch validate staged files
+  entry: vallm batch
+  language: system
+  files: \.py$
+  args: [--format, text]
