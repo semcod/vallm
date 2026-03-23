@@ -3,11 +3,11 @@ project:
   name: vallm
   repo: /home/tom/github/semcod/vallm
   language: python
-  analyzed_at: '2026-03-23T20:50:50Z'
+  analyzed_at: '2026-03-23T20:57:08Z'
   tool: code2llm
   stats:
     files: 30
-    lines: 7436
+    lines: 7452
     functions: 175
     classes: 31
 health:
@@ -24,7 +24,7 @@ health:
     severity: critical
   - type: cc_exceeded
     target: BatchProcessor._process_files
-    value: 23
+    value: 24
     limit: 15
     severity: error
   - type: cc_exceeded
@@ -109,18 +109,18 @@ modules:
     type: function
     cc: 14
 - path: src/vallm/cli/batch_processor.py
-  lines: 301
+  lines: 317
   classes: 1
   methods: 12
-  cc_max: 23
+  cc_max: 24
   inbound_deps: 0
   exports:
   - name: BatchProcessor
     type: class
-    cc_avg: 5.2
+    cc_avg: 5.4
     methods:
     - name: _process_files
-      cc: 23
+      cc: 24
       flag: split
       fan_out: 12
 - path: src/vallm/cli/output_formatters.py
@@ -679,7 +679,7 @@ refactoring:
     impact: medium
     effort: low
     module: output_formatters.py
-  - action: Split BatchProcessor._process_files (CC=23 → target CC<10)
+  - action: Split BatchProcessor._process_files (CC=24 → target CC<10)
     impact: medium
     effort: low
     module: batch_processor.py
@@ -692,5 +692,5 @@ evolution:
 - date: '2026-03-23'
   cc_avg: 3.5
   critical: 8
-  lines: 7436
+  lines: 7452
   note: Automated analysis

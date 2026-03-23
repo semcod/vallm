@@ -5,7 +5,7 @@
 - **Project**: vallm
 - **Language**: python
 - **Files**: 30
-- **Lines**: 7436
+- **Lines**: 7452
 - **Functions**: 175
 - **Classes**: 31
 - **Avg CC**: 3.5
@@ -29,9 +29,9 @@
 - `__init__.py` — 19L, 0 methods, CC↑0
 - `__main__.py` — 5L, 0 methods, CC↑0
 
-### src/vallm/cli/ (4 files, 1058L, 39 functions)
+### src/vallm/cli/ (4 files, 1074L, 39 functions)
 
-- `batch_processor.py` — 301L, 12 methods, CC↑23
+- `batch_processor.py` — 317L, 12 methods, CC↑24
 - `output_formatters.py` — 421L, 16 methods, CC↑17
 - `command_handlers.py` — 293L, 11 methods, CC↑4
 - `__init__.py` — 43L, 0 methods, CC↑0
@@ -71,8 +71,8 @@
 ## Key Exports
 
 - **walk** (function, CC=27) ⚠ split
-- **BatchProcessor** (class, CC̄=5.2)
-  - `_process_files` CC=23 ⚠ split
+- **BatchProcessor** (class, CC̄=5.4)
+  - `_process_files` CC=24 ⚠ split
 - **output_batch_toon** (function, CC=17) ⚠ split
 - **ComplexityValidator** (class, CC̄=6.8)
 - **GitignoreParser** (class, CC̄=5.7)
@@ -99,7 +99,7 @@ Ret
 |---|--------|--------|--------|
 | 1 | Split walk (CC=27 → target CC<10) | high | low |
 | 2 | Split output_batch_toon (CC=17 → target CC<10) | medium | low |
-| 3 | Split BatchProcessor._process_files (CC=23 → target CC<10) | medium | low |
+| 3 | Split BatchProcessor._process_files (CC=24 → target CC<10) | medium | low |
 
 ## Context for LLM
 

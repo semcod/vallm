@@ -1,4 +1,4 @@
-# vallm | 1418f 10119L | python:72,shell:8
+# vallm | 1418f 10135L | python:72,shell:8
 # Keys: M=modules, D=details, i=imports, c=classes, f=functions, m=methods
 M[80]:
   examples/__init__.py,1
@@ -47,7 +47,7 @@ M[80]:
   src/vallm/__init__.py,19
   src/vallm/__main__.py,5
   src/vallm/cli/__init__.py,43
-  src/vallm/cli/batch_processor.py,301
+  src/vallm/cli/batch_processor.py,317
   src/vallm/cli/command_handlers.py,293
   src/vallm/cli/output_formatters.py,421
   src/vallm/config.py,58
@@ -88,7 +88,7 @@ D:
     validate_import_path(import_path;source_file;project_root;known_modules;stdlib_modules)
   src/vallm/cli/batch_processor.py:
     e: BatchProcessor
-    BatchProcessor: __init__(1),process_batch(10),output_batch_results(4),_load_gitignore_parser(1),_build_file_list(2),_filter_files(5),_parse_filter_patterns(2),_should_exclude_file(2),_matches_include_pattern(2),_handle_no_files_found(1),_show_validation_start(2),_process_files(6)  # Handles batch validation of multiple files...
+    BatchProcessor: __init__(1),process_batch(10),output_batch_results(5),_load_gitignore_parser(1),_build_file_list(2),_filter_files(5),_parse_filter_patterns(2),_should_exclude_file(2),_matches_include_pattern(2),_handle_no_files_found(1),_show_validation_start(2),_process_files(6)  # Handles batch validation of multiple files...
   src/vallm/cli/output_formatters.py:
     e: output_validate_result,output_batch_results,output_batch_empty,output_json,output_text,output_rich,output_batch_rich,output_batch_text,format_error_message,build_files_data,build_failed_files_data,output_batch_json,output_batch_yaml,output_batch_toon,print_summary_header,build_results_table
     output_validate_result(result;output_format;verbose)
@@ -125,6 +125,12 @@ D:
     generate_feedback_prompt(current_code;validation;test_results;analysis)
     run_autonomous_workflow(code_path;max_iterations)
     main()
+  examples/utils/__init__.py:
+    e: save_analysis_data,run_validation_examples,validate_code_example,print_summary
+    save_analysis_data(example_name;result_data)
+    run_validation_examples(example_name;good_code;bad_code;complex_code;settings)
+    validate_code_example(name;code;settings;all_results;include_issue_details)
+    print_summary(all_results)
   examples/10_mcp_ollama_demo/mcp_demo.py:
     e: Colors,log_section,log_step,log_code,analyze_with_code2llm,validate_with_vallm,call_ollama,generate_refactoring_prompt,run_mcp_workflow,main
     Colors:
@@ -140,12 +146,6 @@ D:
   examples/utils/validation_runner.py:
     e: run_validation_examples
     run_validation_examples(example_name;good_code;bad_code;complex_code;settings)
-  examples/utils/__init__.py:
-    e: save_analysis_data,run_validation_examples,validate_code_example,print_summary
-    save_analysis_data(example_name;result_data)
-    run_validation_examples(example_name;good_code;bad_code;complex_code;settings)
-    validate_code_example(name;code;settings;all_results;include_issue_details)
-    print_summary(all_results)
   src/vallm/core/gitignore.py:
     e: GitignoreParser,load_gitignore,get_default_excludes,create_default_gitignore_parser,should_exclude
     GitignoreParser: __init__(1),_parse(1),matches(1),_match_pattern(3),_fnmatch(2),_pattern_to_regex(1)  # Parse .gitignore files and match paths against patterns...
@@ -258,10 +258,6 @@ D:
     e: extract_code_from_response,extract_json_from_response
     extract_code_from_response(response;language)
     extract_json_from_response(response)
-  src/vallm/validators/logical.py:
-    e: LogicalErrorValidator,create_validator
-    LogicalErrorValidator: __init__(1),validate(2),_check_pyflakes(1),_parse_pyflakes_line(1)  # Validator for logical errors using pyflakes...
-    create_validator(settings)
   src/vallm/scoring.py:
     e: Verdict,Severity,Issue,ValidationResult,PipelineResult,compute_verdict,validate,_initialize_settings,_initialize_context,_initialize_validators,_run_validation_pipeline,_get_default_validators
     Verdict(Enum):
@@ -276,6 +272,10 @@ D:
     _initialize_validators(validators;settings)
     _run_validation_pipeline(proposal;validators;context;settings)
     _get_default_validators(settings)
+  src/vallm/validators/logical.py:
+    e: LogicalErrorValidator,create_validator
+    LogicalErrorValidator: __init__(1),validate(2),_check_pyflakes(1),_parse_pyflakes_line(1)  # Validator for logical errors using pyflakes...
+    create_validator(settings)
   src/vallm/core/languages.py:
     e: Language,detect_language,get_language_for_validation
     Language(Enum): __init__(3),from_extension(1),from_path(1),from_string(1)  # Supported programming languages with their tree-sitter ident...
@@ -299,12 +299,6 @@ D:
   src/vallm/validators/imports/c_imports.py:
     e: CImportValidator
     CImportValidator(BaseImportValidator): __init__(1),validate(2),extract_imports(1),module_exists(1)  # C/C++ import validator...
-  examples/12_ollama_simple_demo/best_version.py:
-    e: load_config,save_data,calculate_total,main
-    load_config()
-    save_data(data;filename)
-    calculate_total(items)
-    main()
   examples/03_security_check/main.py:
     e: main
     main()
@@ -392,6 +386,9 @@ D:
   examples/12_ollama_simple_demo/iteration_1.py:
     e: main
     main()
+  examples/12_ollama_simple_demo/best_version.py:
+    e: main
+    main()
   examples/12_ollama_simple_demo/iteration_2.py:
     e: main
     main()
@@ -426,6 +423,7 @@ Attributes:
   examples/run.sh:
     e: run_example
     run_example()
+  examples/11_claude_code_autonomous/docker-entrypoint.sh:
   examples/11_claude_code_autonomous/run.sh:
     e: print_section,print_step,print_success,print_warning,print_error
     print_section()
@@ -433,9 +431,9 @@ Attributes:
     print_success()
     print_warning()
     print_error()
-  examples/11_claude_code_autonomous/docker-entrypoint.sh:
   examples/12_ollama_simple_demo/run.sh:
   examples/12_ollama_simple_demo/docker-entrypoint.sh:
+  examples/10_mcp_ollama_demo/docker-entrypoint.sh:
   examples/10_mcp_ollama_demo/run.sh:
     e: print_section,print_step,print_success,print_warning,print_error,print,print,print,print
     print_section()
@@ -447,4 +445,3 @@ Attributes:
     print()
     print()
     print()
-  examples/10_mcp_ollama_demo/docker-entrypoint.sh:

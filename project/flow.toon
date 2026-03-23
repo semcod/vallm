@@ -1,4 +1,4 @@
-# vallm/flow | 319 func | 12 pipelines | 8 hub-types | 2026-03-23
+# vallm/flow | 316 func | 12 pipelines | 8 hub-types | 2026-03-23
 
 PIPELINES[12] (Analysis:2, Core:3, Export:2, IO:1, NLP:1, Unknown:3):
   Src [Analysis]: Proposal → Optional[Language]
@@ -38,10 +38,10 @@ PIPELINES[12] (Analysis:2, Core:3, Export:2, IO:1, NLP:1, Unknown:3):
 
   Src [Export]: list[Path] → None
               → process_batch(paths:list[Path], recursive:bool, include:Optional[str], exclude:Optional[str], use_gitignore:bool, settings:VallmSettings, output_format:str, fail_fast:bool, verbose:bool, show_issues:bool) → tuple[dict, list, int] CC=2    pure ▶
-              → _process_files(filtered_files:list[Path], settings:VallmSettings, output_format:str, fail_fast:bool, verbose:bool, show_issues:bool) → tuple[dict, list, int] CC=23   IO  !!
+              → _process_files(filtered_files:list[Path], settings:VallmSettings, output_format:str, fail_fast:bool, verbose:bool, show_issues:bool) → tuple[dict, list, int, list] CC=24   IO  !!
               → output_validate_result(result:ValidationResult, output_format:str, verbose:bool) → None CC=3    pure
               → output_rich(result:ValidationResult, verbose:bool) → None CC=6    IO ■
-              PURITY: 2/4 pure  BOTTLENECK: _process_files(CC=23)
+              PURITY: 2/4 pure  BOTTLENECK: _process_files(CC=24)
 
   Src [Core]: ? → ?
               → main()                                  CC=9    IO ▶
@@ -98,7 +98,7 @@ TRANSFORMS (fan-out ≥10):
   main()                                                  fan=13   !! script-in-disguise
   analyze_with_code2llm(code_path:Path) → Dict            fan=13   fan=13
   _parse_ruff_text(output:str) → List[Issue]              fan=12   PIPELINE:LintValidator.entry
-  _process_files(filtered_files:list[Path], settings:VallmSettings, output_format:str, fail_fast:bool, verbose:bool, show_issues:bool) → tuple[dict, list, int] fan=12   PIPELINE:BatchProcessor.entry
+  _process_files(filtered_files:list[Path], settings:VallmSettings, output_format:str, fail_fast:bool, verbose:bool, show_issues:bool) → tuple[dict, list, int, list] fan=12   PIPELINE:BatchProcessor.entry
   main()                                                  fan=12   !! script-in-disguise
   main()                                                  fan=12   !! script-in-disguise
   main()                                                  fan=11   !! script-in-disguise
@@ -209,11 +209,11 @@ CONTRACTS:
       IN:  paths:list[Path], recursive:bool, include:Optional[str], exclude:Optional[str], use_gitignore:bool, settings:VallmSettings, output_format:str, fail_fast:bool, verbose:bool, show_issues:bool
       OUT: tuple[dict, list, int]
 
-    _process_files(filtered_files:list[Path], settings:VallmSettings, output_format:str, fail_fast:bool, verbose:bool, show_issues:bool) → tuple[dict, list, int]
+    _process_files(filtered_files:list[Path], settings:VallmSettings, output_format:str, fail_fast:bool, verbose:bool, show_issues:bool) → tuple[dict, list, int, list]
       IN:  filtered_files:list[Path], settings:VallmSettings, output_format:str, fail_fast:bool, verbose:bool, show_issues:bool
-      OUT: tuple[dict, list, int]
+      OUT: tuple[dict, list, int, list]
       SIDE-EFFECT: IO(print, read_text, print)
-      SMELL: CC=23 → split
+      SMELL: CC=24 → split
 
     output_validate_result(result:ValidationResult, output_format:str, verbose:bool) → None
       IN:  result:ValidationResult, output_format:str, verbose:bool
@@ -345,30 +345,30 @@ CONTRACTS:
       OUT: Optional[Language]
 
 
-DATA_TYPES (by cross-function usage) [242 annotated, 1 inferred / 319 functions]:
-  str                  consumed:186 produced:45   !! HUB-TYPE → split interface
+DATA_TYPES (by cross-function usage) [242 annotated, 0 inferred / 316 functions]:
+  str                  consumed:185 produced:45   !! HUB-TYPE → split interface
   dict                 consumed:36  produced:14   !! HUB-TYPE → split interface
   bool                 consumed:33  produced:16   !! HUB-TYPE → split interface
   Path                 consumed:34  produced:0    !! HUB-TYPE → split interface
   int                  consumed:22  produced:4    !! HUB-TYPE → split interface
-  list                 consumed:18  produced:6    !! HUB-TYPE → split interface
+  list                 consumed:19  produced:6    !! HUB-TYPE → split interface
   ValidationResult     consumed:5   produced:18 
   Proposal             consumed:16  produced:1    !! HUB-TYPE → split interface
   str, Any             consumed:6   produced:10 
-  VallmSettings        consumed:11  produced:2    !! HUB-TYPE → split interface
   Dict                 consumed:7   produced:6  
+  VallmSettings        consumed:11  produced:2    !! HUB-TYPE → split interface
   list[Path]           consumed:6   produced:2  
   float                consumed:4   produced:4  
   Issue                consumed:1   produced:4  
   Language             consumed:0   produced:4    narrow scope
+  GitignoreParser      consumed:1   produced:2    narrow scope
+  list[Issue]          consumed:0   produced:3    narrow scope
   list[str]            consumed:2   produced:1    narrow scope
   str | Path           consumed:3   produced:0    narrow scope
   ExecutionResult      consumed:0   produced:3    narrow scope
-  GitignoreParser      consumed:1   produced:2    narrow scope
-  list[Issue]          consumed:0   produced:3    narrow scope
 
   HUB TYPES (consumed ≥10):
-    str → 186 consumers → split into:
+    str → 185 consumers → split into:
       - (analyze consumers to suggest sub-interfaces)
     dict → 36 consumers → split into:
       - replace with typed alternatives (dataclass/TypedDict)
@@ -378,7 +378,7 @@ DATA_TYPES (by cross-function usage) [242 annotated, 1 inferred / 319 functions]
       - (analyze consumers to suggest sub-interfaces)
     int → 22 consumers → split into:
       - (analyze consumers to suggest sub-interfaces)
-    list → 18 consumers → split into:
+    list → 19 consumers → split into:
       - (analyze consumers to suggest sub-interfaces)
     Proposal → 16 consumers → split into:
       - (analyze consumers to suggest sub-interfaces)
@@ -386,10 +386,10 @@ DATA_TYPES (by cross-function usage) [242 annotated, 1 inferred / 319 functions]
       - (analyze consumers to suggest sub-interfaces)
 
 SIDE_EFFECTS:
-  IO:        main, LogicalErrorValidator._check_pyflakes, SecurityValidator._try_bandit, SemanticCache.__init__, SemanticCache.get, SemanticCache.set, SemanticCache.clear, SemanticValidator._call_http, SemanticValidator._parse_response, LintValidator._check_ruff
+  IO:        main, LogicalErrorValidator._check_pyflakes, SemanticCache.__init__, SemanticCache.get, SemanticCache.set, SemanticCache.clear, SecurityValidator._try_bandit, LintValidator._check_ruff, SemanticValidator._call_http, SemanticValidator._parse_response
   Cache:     SemanticCache.get_cache_stats, get_semantic_cache, clear_semantic_cache, SemanticValidator.__init__, SemanticValidator.validate
-  Mutation:  ComplexityValidator.__init__, ComplexityValidator.validate, ComplexityValidator._check_python_complexity, ComplexityValidator._check_lizard, LogicalErrorValidator.__init__, _initialize_validators, _run_validation_pipeline, _get_default_validators, SecurityValidator.validate, SecurityValidator._check_patterns
-  Pure:      bump_version, VallmSpec.validate_proposal, VallmSpec.get_validator_name, VallmSpec.get_validator_tier, BaseValidator.validate, LogicalErrorValidator.validate, LogicalErrorValidator._parse_pyflakes_line, create_validator, Issue.__str__, compute_verdict
+  Mutation:  _initialize_validators, _run_validation_pipeline, _get_default_validators, ComplexityValidator.__init__, ComplexityValidator.validate, ComplexityValidator._check_python_complexity, ComplexityValidator._check_lizard, LogicalErrorValidator.__init__, SecurityValidator.validate, SecurityValidator._check_patterns
+  Pure:      bump_version, VallmSpec.validate_proposal, VallmSpec.get_validator_name, VallmSpec.get_validator_tier, Issue.__str__, compute_verdict, validate, _initialize_settings, _initialize_context, BaseValidator.validate
 
   PIPELINE PURITY:
     Src             ██░░ 50% pure
