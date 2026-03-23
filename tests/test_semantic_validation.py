@@ -196,9 +196,9 @@ def invalid_syntax(
         """Test semantic validation with reference code."""
         from vallm.validators.semantic import SemanticValidator
         from vallm.core.proposal import Proposal
+        from unittest.mock import patch
         
         validator = SemanticValidator()
-        validator.llm_provider = mock_llm
         
         original_code = """
 def calculate_sum(a, b):
@@ -218,7 +218,20 @@ def calculate_sum(a, b):
             language="python",
             reference_code=original_code
         )
-        result = validator.validate(proposal, {})
+        
+        # Mock the _call_llm method to return a valid JSON response
+        mock_response = '''```json
+{
+    "correctness": 5,
+    "style": 4,
+    "security": 5,
+    "completeness": 5,
+    "issues": [],
+    "summary": "Improved code with validation"
+}
+```'''
+        with patch.object(validator, '_call_llm', return_value=mock_response):
+            result = validator.validate(proposal, {})
         
         assert result.validator == "semantic"
         assert result.score >= 0.6  # Should be good improvement

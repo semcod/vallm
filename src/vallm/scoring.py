@@ -67,6 +67,7 @@ class PipelineResult:
 
     results: list[ValidationResult] = field(default_factory=list)
     verdict: Verdict = Verdict.FAIL
+    filename: Optional[str] = None
 
     @property
     def weighted_score(self) -> float:
@@ -96,12 +97,13 @@ class PipelineResult:
 def compute_verdict(
     results: list[ValidationResult],
     settings: Optional[VallmSettings] = None,
+    filename: Optional[str] = None,
 ) -> PipelineResult:
     """Compute the aggregate verdict from a list of validation results."""
     if settings is None:
         settings = VallmSettings()
 
-    pipeline = PipelineResult(results=results)
+    pipeline = PipelineResult(results=results, filename=filename)
 
     # Hard gate: any error-severity issue → FAIL
     if any(r.has_errors for r in results):
@@ -141,7 +143,7 @@ def validate(
     validators = _initialize_validators(validators, settings)
     
     results = _run_validation_pipeline(proposal, validators, context, settings)
-    return compute_verdict(results, settings)
+    return compute_verdict(results, settings, proposal.filename)
 
 
 def _initialize_settings(settings: Optional[VallmSettings]) -> VallmSettings:
