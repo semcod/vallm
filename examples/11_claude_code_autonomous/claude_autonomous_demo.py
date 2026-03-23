@@ -417,10 +417,10 @@ OUTPUT REQUIREMENTS:
 
 REFACTORED CODE:
 ```python
-"""
-Refactored version with improved architecture, security, and maintainability.
-"""
-"""
+# Refactored version with improved architecture, security, and maintainability.
+```
+
+Please provide the complete refactored code above."""
     
     return prompt
 
@@ -479,10 +479,10 @@ REQUIREMENTS:
 
 CORRECTED CODE:
 ```python
-"""
-Fixed and improved version addressing all validation and test failures.
-"""
-"""
+# Fixed and improved version addressing all validation and test failures.
+```
+
+Please provide the complete corrected code above."""
     
     return prompt
 

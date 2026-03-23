@@ -154,87 +154,19 @@ class SemanticValidator(BaseValidator):
 
     def _parse_response(self, response_text: str) -> ValidationResult:
         """Parse LLM JSON response into a ValidationResult."""
-        # Extract JSON from response (handle markdown code blocks)
-        json_match = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", response_text, re.DOTALL)
-        if json_match:
-            json_str = json_match.group(1)
-        else:
-            # Try to find raw JSON
-            json_match = re.search(r"\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}", response_text, re.DOTALL)
-            if json_match:
-                json_str = json_match.group(0)
-            else:
-                return ValidationResult(
-                    validator=self.name,
-                    score=0.5,
-                    weight=self.weight,
-                    confidence=0.3,
-                    issues=[
-                        Issue(
-                            message="Could not parse LLM response as JSON",
-                            severity=Severity.INFO,
-                            rule="semantic.parse_error",
-                        )
-                    ],
-                    details={"raw_response": response_text[:500]},
-                )
-
+        json_str = self._extract_json_from_response(response_text)
+        if json_str is None:
+            return self._create_parse_error_result(response_text)
+        
         try:
             data = json.loads(json_str)
         except json.JSONDecodeError:
-            return ValidationResult(
-                validator=self.name,
-                score=0.5,
-                weight=self.weight,
-                confidence=0.3,
-                issues=[
-                    Issue(
-                        message="Invalid JSON in LLM response",
-                        severity=Severity.INFO,
-                        rule="semantic.json_error",
-                    )
-                ],
-                details={"raw_response": response_text[:500]},
-            )
-
-        # Convert 1-5 scores to 0.0-1.0
-        scores = {}
-        for key in ("correctness", "style", "security", "completeness"):
-            val = data.get(key, 3)
-            if isinstance(val, (int, float)):
-                scores[key] = max(0.0, min(1.0, (val - 1) / 4))
-            else:
-                scores[key] = 0.5
-
+            return self._create_json_error_result(response_text)
+        
+        scores = self._parse_scores(data)
+        issues = self._parse_issues(data)
         avg_score = sum(scores.values()) / len(scores) if scores else 0.5
-
-        # Parse issues
-        issues = []
-        for item in data.get("issues", []):
-            if isinstance(item, dict):
-                sev_str = item.get("severity", "info").lower()
-                severity = {
-                    "error": Severity.ERROR,
-                    "warning": Severity.WARNING,
-                    "info": Severity.INFO,
-                }.get(sev_str, Severity.INFO)
-
-                line = item.get("line")
-                if isinstance(line, str):
-                    try:
-                        line = int(line)
-                    except (ValueError, TypeError):
-                        line = None
-
-                issues.append(
-                    Issue(
-                        message=item.get("message", "Unknown issue"),
-                        severity=severity,
-                        line=line if isinstance(line, int) else None,
-                        rule="semantic.llm_judge",
-                    )
-                )
-
+        
         return ValidationResult(
             validator=self.name,
             score=avg_score,
@@ -247,3 +179,104 @@ class SemanticValidator(BaseValidator):
                 "model": self.model,
             },
         )
+    
+    def _extract_json_from_response(self, response_text: str) -> Optional[str]:
+        """Extract JSON from response (handle markdown code blocks)."""
+        # Try to find JSON in markdown code blocks
+        json_match = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", response_text, re.DOTALL)
+        if json_match:
+            return json_match.group(1)
+        
+        # Try to find raw JSON
+        json_match = re.search(r"\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}", response_text, re.DOTALL)
+        if json_match:
+            return json_match.group(0)
+        
+        return None
+    
+    def _create_parse_error_result(self, response_text: str) -> ValidationResult:
+        """Create result for when JSON cannot be parsed from response."""
+        return ValidationResult(
+            validator=self.name,
+            score=0.5,
+            weight=self.weight,
+            confidence=0.3,
+            issues=[
+                Issue(
+                    message="Could not parse LLM response as JSON",
+                    severity=Severity.INFO,
+                    rule="semantic.parse_error",
+                )
+            ],
+            details={"raw_response": response_text[:500]},
+        )
+    
+    def _create_json_error_result(self, response_text: str) -> ValidationResult:
+        """Create result for when JSON is invalid."""
+        return ValidationResult(
+            validator=self.name,
+            score=0.5,
+            weight=self.weight,
+            confidence=0.3,
+            issues=[
+                Issue(
+                    message="Invalid JSON in LLM response",
+                    severity=Severity.INFO,
+                    rule="semantic.json_error",
+                )
+            ],
+            details={"raw_response": response_text[:500]},
+        )
+    
+    def _parse_scores(self, data: dict) -> dict:
+        """Parse and normalize scores from LLM response."""
+        scores = {}
+        for key in ("correctness", "style", "security", "completeness"):
+            val = data.get(key, 3)
+            if isinstance(val, (int, float)):
+                scores[key] = max(0.0, min(1.0, (val - 1) / 4))
+            else:
+                scores[key] = 0.5
+        return scores
+    
+    def _parse_issues(self, data: dict) -> list:
+        """Parse issues from LLM response."""
+        issues = []
+        for item in data.get("issues", []):
+            if not isinstance(item, dict):
+                continue
+                
+            severity = self._parse_severity(item.get("severity", "info"))
+            line = self._parse_line_number(item.get("line"))
+            
+            issues.append(
+                Issue(
+                    message=item.get("message", "Unknown issue"),
+                    severity=severity,
+                    line=line,
+                    rule="semantic.llm_judge",
+                )
+            )
+        return issues
+    
+    def _parse_severity(self, severity_str: str) -> Severity:
+        """Parse severity string into Severity enum."""
+        severity_map = {
+            "error": Severity.ERROR,
+            "warning": Severity.WARNING,
+            "info": Severity.INFO,
+        }
+        return severity_map.get(severity_str.lower(), Severity.INFO)
+    
+    def _parse_line_number(self, line) -> Optional[int]:
+        """Parse line number from various formats."""
+        if isinstance(line, int):
+            return line
+        
+        if isinstance(line, str):
+            try:
+                return int(line)
+            except (ValueError, TypeError):
+                return None
+        
+        return None

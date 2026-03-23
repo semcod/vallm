@@ -1,6 +1,6 @@
-# vallm | 1388f 7803L | python:42,shell:8
+# vallm | 1389f 8378L | python:43,shell:8
 # Keys: M=modules, D=details, i=imports, c=classes, f=functions, m=methods
-M[50]:
+M[51]:
   examples/01_basic_validation/main.py,150
   examples/02_ast_comparison/main.py,126
   examples/03_security_check/main.py,126
@@ -17,6 +17,7 @@ M[50]:
   examples/10_mcp_ollama_demo/mcp_demo.py,420
   examples/10_mcp_ollama_demo/refactored_output.py,127
   examples/10_mcp_ollama_demo/run.sh,260
+  examples/11_claude_code_autonomous/claude_autonomous_demo.py,668
   examples/11_claude_code_autonomous/docker-entrypoint.sh,30
   examples/11_claude_code_autonomous/legacy_code/data_processor.py,224
   examples/11_claude_code_autonomous/run.sh,232
@@ -28,11 +29,11 @@ M[50]:
   examples/12_ollama_simple_demo/ollama_simple_demo.py,357
   examples/12_ollama_simple_demo/run.sh,201
   examples/run.sh,133
-  project.sh,14
+  project.sh,16
   scripts/bump_version.py,78
   src/vallm/__init__.py,19
   src/vallm/__main__.py,5
-  src/vallm/cli.py,401
+  src/vallm/cli.py,895
   src/vallm/config.py,58
   src/vallm/core/__init__.py,3
   src/vallm/core/ast_compare.py,135
@@ -43,23 +44,44 @@ M[50]:
   src/vallm/hookspecs.py,33
   src/vallm/sandbox/__init__.py,1
   src/vallm/sandbox/runner.py,144
-  src/vallm/scoring.py,191
+  src/vallm/scoring.py,211
   src/vallm/validators/__init__.py,1
   src/vallm/validators/base.py,21
   src/vallm/validators/complexity.py,183
-  src/vallm/validators/imports.py,653
+  src/vallm/validators/imports.py,11
   src/vallm/validators/security.py,253
-  src/vallm/validators/semantic.py,249
+  src/vallm/validators/semantic.py,282
   src/vallm/validators/syntax.py,96
 D:
   src/vallm/cli.py:
-    e: validate,check,batch,info,_check_dep,_output_rich,_output_json,_output_text
+    e: validate,check,batch,_load_batch_settings,_load_gitignore_parser,_build_file_list,_filter_files,_handle_no_files_found,_show_validation_start,_process_files,_handle_validation_result,_output_batch_results,info,_build_settings,_load_gitignore_parser,_discover_files,_filter_files,_validate_single_file,_aggregate_results,_output_rich,_show_file_details,_output_batch_rich,_output_batch_text,_output_batch_json,_output_batch_yaml,_output_batch_toon,_output_batch_empty,_output_json,_output_text
     validate(code;file;language;reference;config;enable_semantic;enable_security;model;output_format;verbose)
     check(file;language)
-    batch(paths;recursive;include;exclude;use_gitignore;output_format;fail_fast)
+    batch(paths;recursive;include;exclude;use_gitignore;output_format;fail_fast;enable_semantic;enable_security;model;verbose;show_issues)
+    _load_batch_settings(enable_semantic;enable_security;model;verbose)
+    _load_gitignore_parser(use_gitignore;console)
+    _build_file_list(paths;recursive)
+    _filter_files(files;include_patterns;exclude_patterns;gitignore_parser;use_gitignore)
+    _handle_no_files_found(output_format)
+    _show_validation_start(filtered_files;output_format)
+    _process_files(filtered_files;settings;output_format;fail_fast;verbose;show_issues)
+    _handle_validation_result(file_path;result;lang_name;output_format;verbose;show_issues)
+    _output_batch_results(results_by_language;filtered_files;passed_count;failed_files;output_format)
     info()
-    _check_dep(module;label)
+    _build_settings(enable_semantic;enable_security;model;verbose)
+    _load_gitignore_parser(use_gitignore;console)
+    _discover_files(paths;recursive)
+    _filter_files(files;include_patterns;exclude_patterns;gitignore_parser;use_gitignore)
+    _validate_single_file(file_path;settings;console;verbose;show_issues;output_format)
+    _aggregate_results(results)
     _output_rich(result;verbose)
+    _show_file_details(result;show_issues)
+    _output_batch_rich(results_by_language;filtered_files;passed_count;failed_files)
+    _output_batch_text(results_by_language;filtered_files;passed_count;failed_files)
+    _output_batch_json(results_by_language;filtered_files;passed_count;failed_files)
+    _output_batch_yaml(results_by_language;filtered_files;passed_count;failed_files)
+    _output_batch_toon(results_by_language;filtered_files;passed_count;failed_files)
+    _output_batch_empty(output_format)
     _output_json(result)
     _output_text(result)
   src/vallm/validators/complexity.py:
@@ -71,6 +93,22 @@ D:
   examples/05_llm_semantic_review/main_template.py:
     e: save_analysis_data,main
     save_analysis_data(example_name;result_data)
+    main()
+  examples/11_claude_code_autonomous/claude_autonomous_demo.py:
+    e: Colors,log_section,log_step,log_code,analyze_with_code2llm,call_claude_code,validate_with_vallm,run_runtime_tests,create_basic_tests,generate_claude_prompt,generate_feedback_prompt,run_autonomous_workflow,extract_code_from_response,main
+    Colors:
+    log_section(title)
+    log_step(step;description)
+    log_code(label;code;max_lines)
+    analyze_with_code2llm(code_path)
+    call_claude_code(prompt;model;temperature)
+    validate_with_vallm(code;description)
+    run_runtime_tests(code_path;test_file)
+    create_basic_tests(code_path;test_file)
+    generate_claude_prompt(code;analysis;iteration)
+    generate_feedback_prompt(current_code;validation;test_results;analysis)
+    run_autonomous_workflow(code_path;max_iterations)
+    extract_code_from_response(response)
     main()
   examples/01_basic_validation/main.py:
     e: save_analysis_data,main
@@ -189,7 +227,7 @@ D:
     unused_function()
     main()
   src/vallm/scoring.py:
-    e: Verdict,Severity,Issue,ValidationResult,PipelineResult,compute_verdict,validate,_get_default_validators
+    e: Verdict,Severity,Issue,ValidationResult,PipelineResult,compute_verdict,validate,_initialize_settings,_initialize_context,_initialize_validators,_run_validation_pipeline,_get_default_validators
     Verdict(Enum):
     Severity(Enum):
     Issue: __str__(0)  # A single issue found during validation...
@@ -197,6 +235,10 @@ D:
     PipelineResult:  # Aggregated result from all validators...
     compute_verdict(results;settings)
     validate(proposal;settings;validators;context)
+    _initialize_settings(settings)
+    _initialize_context(context)
+    _initialize_validators(validators;settings)
+    _run_validation_pipeline(proposal;validators;context;settings)
     _get_default_validators(settings)
   src/vallm/core/graph_diff.py:
     e: GraphDiffResult,diff_graphs,diff_python_code,_diff_list
@@ -285,9 +327,6 @@ Attributes:
   examples/run.sh:
     e: run_example
     run_example()
-  examples/11_claude_code_autonomous/docker-entrypoint.sh:
-  examples/12_ollama_simple_demo/run.sh:
-  examples/12_ollama_simple_demo/docker-entrypoint.sh:
   examples/11_claude_code_autonomous/run.sh:
     e: print_section,print_step,print_success,print_warning,print_error
     print_section()
@@ -295,7 +334,8 @@ Attributes:
     print_success()
     print_warning()
     print_error()
-  examples/10_mcp_ollama_demo/docker-entrypoint.sh:
+  examples/11_claude_code_autonomous/docker-entrypoint.sh:
+  examples/12_ollama_simple_demo/docker-entrypoint.sh:
   examples/10_mcp_ollama_demo/run.sh:
     e: print_section,print_step,print_success,print_warning,print_error,print,print,print,print
     print_section()
@@ -307,3 +347,5 @@ Attributes:
     print()
     print()
     print()
+  examples/12_ollama_simple_demo/run.sh:
+  examples/10_mcp_ollama_demo/docker-entrypoint.sh:

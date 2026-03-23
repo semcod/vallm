@@ -5,26 +5,26 @@
 - **Project**: vallm
 - **Language**: python
 - **Files**: 16
-- **Lines**: 4170
-- **Functions**: 91
+- **Lines**: 6522
+- **Functions**: 114
 - **Classes**: 19
-- **Avg CC**: 4.3
-- **Critical (CC≥10)**: 8
+- **Avg CC**: 4.6
+- **Critical (CC≥10)**: 16
 
 ## Architecture
 
-### root/ (1 files, 14L, 0 functions)
+### root/ (1 files, 16L, 0 functions)
 
-- `project.sh` — 14L, 0 methods, CC↑0
+- `project.sh` — 16L, 0 methods, CC↑0
 
 ### scripts/ (1 files, 78L, 2 functions)
 
 - `bump_version.py` — 78L, 2 methods, CC↑5
 
-### src/vallm/ (6 files, 707L, 16 functions)
+### src/vallm/ (6 files, 1221L, 39 functions)
 
-- `cli.py` — 401L, 8 methods, CC↑42
-- `scoring.py` — 191L, 4 methods, CC↑7
+- `cli.py` — 895L, 27 methods, CC↑18
+- `scoring.py` — 211L, 8 methods, CC↑6
 - `config.py` — 58L, 1 methods, CC↑3
 - `hookspecs.py` — 33L, 3 methods, CC↑1
 - `__init__.py` — 19L, 0 methods, CC↑0
@@ -44,11 +44,11 @@
 - `runner.py` — 144L, 4 methods, CC↑4
 - `__init__.py` — 1L, 0 methods, CC↑0
 
-### src/vallm/validators/ (7 files, 1456L, 43 functions)
+### src/vallm/validators/ (7 files, 847L, 43 functions)
 
 - `complexity.py` — 183L, 4 methods, CC↑12
-- `semantic.py` — 249L, 8 methods, CC↑12
-- `imports.py` — 653L, 22 methods, CC↑10
+- `semantic.py` — 282L, 8 methods, CC↑12
+- `imports.py` — 11L, 22 methods, CC↑10
 - `security.py` — 253L, 5 methods, CC↑9
 - `syntax.py` — 96L, 3 methods, CC↑4
 - _2 more files_
@@ -56,30 +56,29 @@
 ## Key Exports
 
 - **validate** (function, CC=18) ⚠ split
-- **batch** (function, CC=42) ⚠ split
 - **ComplexityValidator** (class, CC̄=6.8)
 - **GitignoreParser** (class, CC̄=5.7)
 - **SecurityValidator** (class, CC̄=5.4)
 
 ## Hotspots (High Fan-Out)
 
-- **batch** — fan-out=34: Validate multiple files with auto-detected languages.
-- **validate** — fan-out=20: Validate a code proposal through the vallm pipeline.
+- **validate** — fan-out=21: Validate a code proposal through the vallm pipeline.
 - **SemanticValidator._parse_response** — fan-out=17: Parse LLM JSON response into a ValidationResult.
-- **check** — fan-out=12: Quick syntax check only (tier 1).
+- **check** — fan-out=13: Quick syntax check only (tier 1).
+- **batch** — fan-out=12: Validate multiple files with auto-detected languages.
 - **main** — fan-out=11: Orchestrates 11 calls
 - **SandboxRunner._run_docker** — fan-out=11: Run code in a Docker container (requires docker package).
-- **info** — fan-out=10: Show vallm configuration and available validators.
+- **SecurityValidator._try_bandit** — fan-out=10: Try to run bandit if installed.
 
 ## Refactoring Priorities
 
 | # | Action | Impact | Effort |
 |---|--------|--------|--------|
-| 1 | Split batch (CC=42 → target CC<10) | high | low |
-| 2 | Split god module src/vallm/validators/imports.py (653L, 1 classes) | high | high |
-| 3 | Split validate (CC=18 → target CC<10) | medium | low |
-| 4 | Reduce batch fan-out (currently 34) | medium | medium |
-| 5 | Reduce validate fan-out (currently 20) | medium | medium |
+| 1 | Split god module src/vallm/cli.py (895L, 0 classes) | high | high |
+| 2 | Split validate (CC=18 → target CC<10) | medium | low |
+| 3 | Split _show_file_details (CC=15 → target CC<10) | medium | low |
+| 4 | Split _output_batch_rich (CC=18 → target CC<10) | medium | low |
+| 5 | Reduce validate fan-out (currently 21) | medium | medium |
 | 6 | Reduce SemanticValidator._parse_response fan-out (currently 17) | medium | medium |
 
 ## Context for LLM

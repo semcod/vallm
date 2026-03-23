@@ -90,7 +90,7 @@ class TestPipInstallation:
                 pip_path = venv_dir / "Scripts" / "pip.exe"
             
             # Install vallm in editable mode
-            project_root = Path(__file__).parent.parent.parent
+            project_root = Path(__file__).parent.parent
             subprocess.run([str(pip_path), "install", "-e", str(project_root)], check=True)
             
             # Test installation
@@ -119,7 +119,7 @@ class TestPipInstallation:
                 python_path = venv_dir / "Scripts" / "python.exe"
             
             # Create a wheel and install
-            project_root = Path(__file__).parent.parent.parent
+            project_root = Path(__file__).parent.parent
             subprocess.run([str(pip_path), "wheel", str(project_root), 
                           "--wheel-dir", tmpdir], check=True)
             
@@ -150,7 +150,7 @@ class TestPipInstallation:
                 python_path = venv_dir / "Scripts" / "python.exe"
             
             # Install with all extras
-            project_root = Path(__file__).parent.parent.parent
+            project_root = Path(__file__).parent.parent
             subprocess.run([str(pip_path), "install", "-e", f"{project_root}[all]"], check=True)
             
             # Test that optional dependencies are available
@@ -174,7 +174,7 @@ class TestPipxInstallation:
     @pytest.mark.skipif(shutil.which("pipx") is None, reason="pipx not available")
     def test_pipx_install_editable(self):
         """Test pipx editable installation."""
-        project_root = Path(__file__).parent.parent.parent
+        project_root = Path(__file__).parent.parent
         
         # Install with pipx
         subprocess.run(["pipx", "install", "--editable", str(project_root)], check=True)
@@ -195,7 +195,7 @@ class TestPipxInstallation:
     @pytest.mark.skipif(shutil.which("pipx") is None, reason="pipx not available")
     def test_pipx_install_with_extras(self):
         """Test pipx installation with extras."""
-        project_root = Path(__file__).parent.parent.parent
+        project_root = Path(__file__).parent.parent
         
         # Install with pipx and extras
         subprocess.run(["pipx", "install", "--editable", f"{project_root}[llm,security]"], check=True)
@@ -230,7 +230,7 @@ class TestPostInstallation:
                 vallm_cmd = [str(python_path), "-m", "vallm"]
             
             # Install vallm
-            project_root = Path(__file__).parent.parent.parent
+            project_root = Path(__file__).parent.parent
             subprocess.run([str(python_path), "-m", "pip", "install", "-e", str(project_root)], check=True)
             
             # Create test project
@@ -277,7 +277,7 @@ class TestPostInstallation:
                 vallm_cmd = [str(python_path), "-m", "vallm"]
             
             # Install vallm
-            project_root = Path(__file__).parent.parent.parent
+            project_root = Path(__file__).parent.parent
             subprocess.run([str(python_path), "-m", "pip", "install", "-e", str(project_root)], check=True)
             
             # Test different languages

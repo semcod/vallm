@@ -31,4 +31,4 @@ def test_non_python_skipped():
     proposal = Proposal(code=code, language="javascript")
     result = ImportValidator().validate(proposal, {})
     assert result.score == 1.0
-    assert result.details.get("skipped") == "non-python"
+    assert result.details.get("language") == "javascript"

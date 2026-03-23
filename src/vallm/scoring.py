@@ -136,17 +136,37 @@ def validate(
     Returns:
         PipelineResult with verdict and all validation results.
     """
-    if settings is None:
-        settings = VallmSettings()
-    if context is None:
-        context = {}
+    settings = _initialize_settings(settings)
+    context = _initialize_context(context)
+    validators = _initialize_validators(validators, settings)
+    
+    results = _run_validation_pipeline(proposal, validators, context, settings)
+    return compute_verdict(results, settings)
 
+
+def _initialize_settings(settings: Optional[VallmSettings]) -> VallmSettings:
+    """Initialize settings with defaults if not provided."""
+    return settings if settings is not None else VallmSettings()
+
+
+def _initialize_context(context: Optional[dict]) -> dict:
+    """Initialize context with empty dict if not provided."""
+    return context if context is not None else {}
+
+
+def _initialize_validators(validators: Optional[list], settings: VallmSettings) -> list:
+    """Initialize validators with defaults if not provided and sort by tier."""
     if validators is None:
         validators = _get_default_validators(settings)
-
+    
     # Sort validators by tier for fail-fast behavior
     validators.sort(key=lambda v: v.tier)
+    return validators
 
+
+def _run_validation_pipeline(proposal: Proposal, validators: list, 
+                            context: dict, settings: VallmSettings) -> list:
+    """Run the validation pipeline and collect results."""
     results = []
     for validator in validators:
         result = validator.validate(proposal, context)
@@ -154,9 +174,9 @@ def validate(
 
         # Fail fast on errors in tier 1
         if result.has_errors and validator.tier == 1:
-            return compute_verdict(results, settings)
-
-    return compute_verdict(results, settings)
+            return results
+    
+    return results
 
 
 def _get_default_validators(settings: VallmSettings) -> list:

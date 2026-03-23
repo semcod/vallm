@@ -3,33 +3,23 @@ project:
   name: vallm
   repo: /home/tom/github/semcod/vallm
   language: python
-  analyzed_at: '2026-03-22T14:21:25Z'
+  analyzed_at: '2026-03-23T17:59:32Z'
   tool: code2llm
   stats:
     files: 16
-    lines: 4170
-    functions: 91
+    lines: 6522
+    functions: 114
     classes: 19
 health:
-  cc_avg: 4.3
-  critical_count: 8
+  cc_avg: 4.6
+  critical_count: 16
   critical_limit: 10
   duplicates: 0
   cycles: 0
   alerts:
-  - type: cc_exceeded
-    target: batch
-    value: 42
-    limit: 15
-    severity: critical
-  - type: high_fan_out
-    target: batch
-    value: 34
-    limit: 10
-    severity: critical
   - type: high_fan_out
     target: validate
-    value: 20
+    value: 21
     limit: 10
     severity: critical
   - type: high_fan_out
@@ -42,8 +32,23 @@ health:
     value: 18
     limit: 15
     severity: warning
+  - type: cc_exceeded
+    target: _output_batch_rich
+    value: 18
+    limit: 15
+    severity: warning
+  - type: cc_exceeded
+    target: _show_file_details
+    value: 15
+    limit: 15
+    severity: warning
   - type: high_fan_out
     target: check
+    value: 13
+    limit: 10
+    severity: warning
+  - type: high_fan_out
+    target: batch
     value: 12
     limit: 10
     severity: warning
@@ -58,37 +63,36 @@ health:
     limit: 10
     severity: warning
   - type: high_fan_out
-    target: info
+    target: SecurityValidator._try_bandit
     value: 10
     limit: 10
     severity: warning
   - type: high_fan_out
-    target: SecurityValidator._try_bandit
+    target: info
     value: 10
     limit: 10
     severity: warning
 modules:
 - path: src/vallm/cli.py
-  lines: 401
+  lines: 895
   classes: 0
-  methods: 8
-  cc_max: 42
+  methods: 27
+  cc_max: 18
   inbound_deps: 0
   exports:
   - name: validate
     type: function
     cc: 18
     flag: split
-    fan_out: 20
+    fan_out: 21
   - name: check
     type: function
     cc: 8
-    fan_out: 12
+    fan_out: 13
   - name: batch
     type: function
-    cc: 42
-    flag: split
-    fan_out: 34
+    cc: 3
+    fan_out: 12
   - name: info
     type: function
     cc: 2
@@ -109,7 +113,7 @@ modules:
     - name: _check_lizard
       cc: 12
 - path: src/vallm/validators/semantic.py
-  lines: 249
+  lines: 282
   classes: 1
   methods: 8
   cc_max: 12
@@ -148,7 +152,7 @@ modules:
     type: function
     cc: 4
 - path: src/vallm/validators/imports.py
-  lines: 653
+  lines: 11
   classes: 1
   methods: 22
   cc_max: 10
@@ -174,34 +178,6 @@ modules:
     - name: _try_bandit
       cc: 5
       fan_out: 10
-- path: src/vallm/scoring.py
-  lines: 191
-  classes: 5
-  methods: 4
-  cc_max: 7
-  inbound_deps: 0
-  exports:
-  - name: Verdict
-    type: class
-    cc_avg: 0.0
-  - name: Severity
-    type: class
-    cc_avg: 0.0
-  - name: Issue
-    type: class
-    cc_avg: 3.0
-  - name: ValidationResult
-    type: class
-    cc_avg: 0.0
-  - name: PipelineResult
-    type: class
-    cc_avg: 0.0
-  - name: compute_verdict
-    type: function
-    cc: 6
-  - name: validate
-    type: function
-    cc: 7
 - path: src/vallm/core/graph_diff.py
   lines: 86
   classes: 1
@@ -234,6 +210,34 @@ modules:
   - name: get_language_for_validation
     type: function
     cc: 4
+- path: src/vallm/scoring.py
+  lines: 211
+  classes: 5
+  methods: 8
+  cc_max: 6
+  inbound_deps: 0
+  exports:
+  - name: Verdict
+    type: class
+    cc_avg: 0.0
+  - name: Severity
+    type: class
+    cc_avg: 0.0
+  - name: Issue
+    type: class
+    cc_avg: 3.0
+  - name: ValidationResult
+    type: class
+    cc_avg: 0.0
+  - name: PipelineResult
+    type: class
+    cc_avg: 0.0
+  - name: compute_verdict
+    type: function
+    cc: 6
+  - name: validate
+    type: function
+    cc: 1
 - path: scripts/bump_version.py
   lines: 78
   classes: 0
@@ -334,7 +338,7 @@ modules:
     type: class
     cc_avg: 1.0
 - path: project.sh
-  lines: 14
+  lines: 16
   classes: 0
   methods: 0
   cc_max: 0
@@ -380,47 +384,48 @@ modules:
   cc_max: 0
   inbound_deps: 0
 hotspots:
-- name: batch
-  fan_out: 34
-  note: Validate multiple files with auto-detected languages.
 - name: validate
-  fan_out: 20
+  fan_out: 21
   note: Validate a code proposal through the vallm pipeline.
 - name: SemanticValidator._parse_response
   fan_out: 17
   note: Parse LLM JSON response into a ValidationResult.
 - name: check
-  fan_out: 12
+  fan_out: 13
   note: Quick syntax check only (tier 1).
+- name: batch
+  fan_out: 12
+  note: Validate multiple files with auto-detected languages.
 - name: main
   fan_out: 11
   note: Orchestrates 11 calls
 - name: SandboxRunner._run_docker
   fan_out: 11
   note: Run code in a Docker container (requires docker package).
-- name: info
-  fan_out: 10
-  note: Show vallm configuration and available validators.
 - name: SecurityValidator._try_bandit
   fan_out: 10
   note: Try to run bandit if installed.
+- name: info
+  fan_out: 10
+  note: Show vallm configuration and available validators.
 refactoring:
   priorities:
-  - action: Split batch (CC=42 → target CC<10)
-    impact: high
-    effort: low
-    module: cli.py
-  - action: Split god module src/vallm/validators/imports.py (653L, 1 classes)
+  - action: Split god module src/vallm/cli.py (895L, 0 classes)
     impact: high
     effort: high
   - action: Split validate (CC=18 → target CC<10)
     impact: medium
     effort: low
     module: cli.py
-  - action: Reduce batch fan-out (currently 34)
+  - action: Split _show_file_details (CC=15 → target CC<10)
     impact: medium
-    effort: medium
-  - action: Reduce validate fan-out (currently 20)
+    effort: low
+    module: cli.py
+  - action: Split _output_batch_rich (CC=18 → target CC<10)
+    impact: medium
+    effort: low
+    module: cli.py
+  - action: Reduce validate fan-out (currently 21)
     impact: medium
     effort: medium
   - action: Reduce SemanticValidator._parse_response fan-out (currently 17)
@@ -430,5 +435,10 @@ evolution:
 - date: '2026-03-22'
   cc_avg: 4.3
   critical: 8
-  lines: 4170
+  lines: 5299
+  note: Automated analysis
+- date: '2026-03-23'
+  cc_avg: 4.6
+  critical: 16
+  lines: 6522
   note: Automated analysis

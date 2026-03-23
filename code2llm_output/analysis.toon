@@ -1,0 +1,303 @@
+# code2llm | 31f 4182L | python:31 | 2026-03-23
+# CC̄=3.9 | critical:13/151 | dups:0 | cycles:0
+
+HEALTH[3]:
+  🟡 CC    _filter_files CC=16 (limit:15)
+  🟡 CC    _show_file_details CC=15 (limit:15)
+  🟡 CC    _output_batch_rich CC=18 (limit:15)
+
+REFACTOR[1]:
+  1. split 3 high-CC methods  (CC>15)
+
+COUPLING:
+                    core         cli  validators      config
+        core          ──          ←5          ←3              hub
+         cli           5          ──                       1
+  validators           3                      ──            
+      config                      ←1                      ──
+  CYCLES: none
+  HUB: core/ (fan-in=8)
+
+LAYERS:
+  ./                              CC̄=5.5    ←in:0  →out:0
+  │ !! cli                        780L  0C   31m  CC=18     ←0
+  │ scoring                    211L  5C    8m  CC=6      ←0
+  │ config                      58L  1C    1m  CC=3      ←1
+  │ hookspecs                   33L  1C    3m  CC=1      ←0
+  │ __init__                    19L  0C    0m  CC=0.0    ←0
+  │ __main__                     5L  0C    0m  CC=0.0    ←0
+  │
+  core/                           CC̄=3.4    ←in:8  →out:0
+  │ !  gitignore                  272L  1C   10m  CC=11     ←1
+  │ languages                  220L  1C    6m  CC=6      ←2
+  │ ast_compare                135L  0C    7m  CC=4      ←1
+  │ graph_diff                  86L  1C    3m  CC=6      ←0
+  │ proposal                    37L  1C    0m  CC=0.0    ←0
+  │ __init__                     3L  0C    0m  CC=0.0    ←0
+  │
+  validators/                     CC̄=3.2    ←in:0  →out:3
+  │ !! imports_original           653L  1C   22m  CC=10     ←0
+  │ semantic                   282L  1C   15m  CC=4      ←0
+  │ security                   253L  1C    5m  CC=9      ←0
+  │ !  complexity                 183L  1C    4m  CC=12     ←0
+  │ javascript_imports         106L  1C    4m  CC=5      ←0
+  │ python_imports             101L  1C    3m  CC=7      ←0
+  │ syntax                      96L  1C    3m  CC=4      ←0
+  │ go_imports                  93L  1C    3m  CC=5      ←0
+  │ c_imports                   88L  1C    4m  CC=5      ←0
+  │ rust_imports                87L  1C    3m  CC=3      ←0
+  │ java_imports                77L  1C    3m  CC=7      ←0
+  │ factory                     43L  1C    3m  CC=2      ←1
+  │ base                        39L  1C    4m  CC=1      ←0
+  │ wrapper                     30L  1C    1m  CC=2      ←0
+  │ __init__                    25L  0C    0m  CC=0.0    ←0
+  │ base                        21L  1C    1m  CC=1      ←0
+  │ __init__                     1L  0C    0m  CC=0.0    ←0
+  │
+  sandbox/                        CC̄=3.0    ←in:0  →out:0
+  │ runner                     144L  2C    4m  CC=4      ←0
+  │ __init__                     1L  0C    0m  CC=0.0    ←0
+  │
+
+DUPLICATES[0]: none
+
+FUNCTIONS (CC≥10, 13 of 151):
+   18.0  _output_batch_rich                          9n   1exit  loops+cond  !! split
+   16.0  _filter_files                              12n   2exit  loops+cond+ret  !! split
+   15.0  _show_file_details                          9n   1exit  loops+cond  !! split
+   14.0  _output_batch_json                          5n   1exit  loops
+   14.0  _output_batch_toon                          7n   1exit  loops+cond
+   13.0  _output_batch_yaml                          7n   1exit  loops+cond
+   12.0  ComplexityValidator._check_lizard          10n   3exit  cond+ret
+   12.0  _process_files                              4n   2exit  loops+ret
+   12.0  _output_batch_text                          7n   1exit  loops+cond
+   11.0  ComplexityValidator._check_python_complexity    6n   3exit  cond+ret
+   11.0  GitignoreParser._pattern_to_regex          12n   2exit  loops+cond+ret
+   11.0  _output_rich                               11n   1exit  loops+cond
+   10.0  ImportValidator._validate_python           13n   2exit  loops+cond+ret
+
+  summary:
+    critical(≥10): 13 | high(5-10): 25 | medium(2-5): 81 | low(<2): 32
+    9% CC≥10  25% CC≥5
+
+HOTSPOTS:
+  #1  JavaScriptImportValidator.extract_imports  fan=14   "JavaScriptImportValidator method, fan-out=14"
+  #2  GoImportValidator.extract_imports    fan=13   "GoImportValidator method, fan-out=13"
+  #3  RustImportValidator.extract_imports  fan=13   "RustImportValidator method, fan-out=13"
+  #4  check                                fan=13   "calls 13 functions"
+  #5  batch                                fan=12   "calls 12 functions"
+  #6  SemanticValidator._parse_response    fan=11   "SemanticValidator method, fan-out=11"
+  #7  SandboxRunner._run_docker            fan=11   "SandboxRunner method, fan-out=11"
+  #8  validate                             fan=11   "calls 11 functions"
+  #9  SecurityValidator._try_bandit        fan=10   "SecurityValidator method, fan-out=10"
+  #10 info                                 fan=10   "calls 10 functions"
+
+CLASSES:
+  ImportValidator                ████████████████████████  22m  CC̄=3.3   max=10  
+  SemanticValidator              ████████████████          15m  CC̄=2.3   max=4   
+  GitignoreParser                ██████                     6m  CC̄=5.7   max=11  
+  SecurityValidator              █████                      5m  CC̄=5.4   max=9   
+  ComplexityValidator            ████                       4m  CC̄=6.8   max=12  
+  Language                       ████                       4m  CC̄=3.0   max=6   
+  SandboxRunner                  ████                       4m  CC̄=3.0   max=4   
+  BaseImportValidator            ████                       4m  CC̄=1.0   max=1   
+  JavaScriptImportValidator      ████                       4m  CC̄=3.2   max=5   
+  CImportValidator               ████                       4m  CC̄=2.8   max=5   
+  VallmSpec                      ███                        3m  CC̄=1.0   max=1   
+  SyntaxValidator                ███                        3m  CC̄=3.0   max=4   
+  PythonImportValidator          ███                        3m  CC̄=4.7   max=7   
+  GoImportValidator              ███                        3m  CC̄=3.7   max=5   
+  RustImportValidator            ███                        3m  CC̄=2.7   max=3   
+  ImportValidatorFactory         ███                        3m  CC̄=1.3   max=2   
+  JavaImportValidator            ███                        3m  CC̄=4.0   max=7   
+  BaseValidator                  █                          1m  CC̄=1.0   max=1   
+  Issue                          █                          1m  CC̄=3.0   max=3   
+  ImportValidator                █                          1m  CC̄=2.0   max=2   
+  VallmSettings                  █                          1m  CC̄=3.0   max=3   
+  GraphDiffResult                                           0m  CC̄=0.0   max=0.0 
+  Verdict                                                   0m  CC̄=0.0   max=0.0 
+  Severity                                                  0m  CC̄=0.0   max=0.0 
+  ValidationResult                                          0m  CC̄=0.0   max=0.0 
+  PipelineResult                                            0m  CC̄=0.0   max=0.0 
+  Proposal                                                  0m  CC̄=0.0   max=0.0 
+  ExecutionResult                                           0m  CC̄=0.0   max=0.0 
+
+D:
+  cli.py:
+    e: _load_code,_load_reference,_build_validate_settings,_detect_and_log_language,_build_proposal,_output_validate_result,_exit_on_verdict,validate,check,batch,_load_batch_settings,_load_gitignore_parser,_build_file_list,_filter_files,_handle_no_files_found,_show_validation_start,_process_files,_handle_validation_result,_output_batch_results,info,_check_dep,_output_rich,_show_file_details,_output_batch_rich,_output_batch_text,_output_batch_json,_output_batch_yaml,_output_batch_toon,_output_batch_empty,_output_json,_output_text
+    _load_code(file,code)
+    _load_reference(reference)
+    _build_validate_settings(config,enable_semantic,enable_security,model,verbose)
+    _detect_and_log_language(file,language)
+    _build_proposal(code_str,detected_language,ref_code,file)
+    _output_validate_result(result,output_format,verbose)
+    _exit_on_verdict(result)
+    validate(code,file,language,reference,config,enable_semantic,enable_security,model,output_format,verbose)
+    check(file,language)
+    batch(paths,recursive,include,exclude,use_gitignore,output_format,fail_fast,enable_semantic,enable_security,model,verbose,show_issues)
+    _load_batch_settings(enable_semantic,enable_security,model,verbose)
+    _load_gitignore_parser(use_gitignore)
+    _build_file_list(paths,recursive)
+    _filter_files(files,include,exclude,gitignore_parser,use_gitignore)
+    _handle_no_files_found(output_format)
+    _show_validation_start(filtered_files,output_format)
+    _process_files(filtered_files,settings,output_format,fail_fast,verbose,show_issues)
+    _handle_validation_result(file_path,result,lang_name,output_format,verbose,show_issues)
+    _output_batch_results(results_by_language,filtered_files,passed_count,failed_files,output_format)
+    info()
+    _check_dep(module,label)
+    _output_rich(result,verbose)
+    _show_file_details(result,show_issues)
+    _output_batch_rich(results_by_language,filtered_files,passed_count,failed_files)
+    _output_batch_text(results_by_language,filtered_files,passed_count,failed_files)
+    _output_batch_json(results_by_language,filtered_files,passed_count,failed_files)
+    _output_batch_yaml(results_by_language,filtered_files,passed_count,failed_files)
+    _output_batch_toon(results_by_language,filtered_files,passed_count,failed_files)
+    _output_batch_empty(output_format)
+    _output_json(result)
+    _output_text(result)
+  validators/complexity.py:
+    e: ComplexityValidator
+    ComplexityValidator  # Tier 2: Cyclomatic complexity, maintainability index, and fu...
+      __init__(1)  CC=2.0
+  core/gitignore.py:
+    e: GitignoreParser,load_gitignore,get_default_excludes,create_default_gitignore_parser,should_exclude
+    GitignoreParser  # Parse .gitignore files and match paths against patterns....
+      __init__(1)  CC=4.0
+        → _parse(1)  CC=6.0
+    load_gitignore(path)
+    get_default_excludes()
+    create_default_gitignore_parser()
+    should_exclude(path,gitignore_parser,use_defaults)
+  validators/imports_original.py:
+    e: ImportValidator
+    ImportValidator  # Tier 1: Validate that imports are resolvable....
+      validate(2)  CC=2.0
+  validators/security.py:
+    e: SecurityValidator
+    SecurityValidator  # Tier 2: Security analysis using built-in patterns and option...
+      validate(2)  CC=9.0
+        → _check_patterns(2)  CC=4.0
+        → _check_python_ast(1)  CC=6.0
+        → _get_func_name(0)  CC=3.0
+        → _try_bandit(0)  CC=5.0
+  validators/imports/python_imports.py:
+    e: PythonImportValidator
+    PythonImportValidator  # Python-specific import validator....
+      validate(2)  CC=4.0
+        → extract_imports(1)  CC=7.0
+        → module_exists(1)  CC=3.0
+  validators/imports/java_imports.py:
+    e: JavaImportValidator
+    JavaImportValidator  # Java import validator....
+      validate(2)  CC=3.0
+        → extract_imports(1)  CC=2.0
+        → module_exists(1)  CC=7.0
+  core/graph_diff.py:
+    e: GraphDiffResult,diff_graphs,diff_python_code,_diff_list
+    GraphDiffResult  # Result of comparing two code graphs....
+    diff_graphs(before,after)
+    diff_python_code(before_code,after_code)
+    _diff_list(before,after,added)
+  scoring.py:
+    e: Verdict,Severity,Issue,ValidationResult,PipelineResult,compute_verdict,validate,_initialize_settings,_initialize_context,_initialize_validators,_run_validation_pipeline,_get_default_validators
+    Verdict
+    Severity
+    Issue  # A single issue found during validation....
+      __str__(0)  CC=3.0
+    ValidationResult  # Result from a single validator....
+    PipelineResult  # Aggregated result from all validators....
+    compute_verdict(results,settings)
+    validate(proposal,settings,validators,context)
+    _initialize_settings(settings)
+    _initialize_context(context)
+    _initialize_validators(validators,settings)
+    _run_validation_pipeline(proposal,validators,context,settings)
+    _get_default_validators(settings)
+  core/languages.py:
+    e: Language,detect_language,get_language_for_validation
+    Language  # Supported programming languages with their tree-sitter ident...
+      __init__(3)  CC=1.0
+    detect_language(source)
+    get_language_for_validation(source,explicit)
+  validators/imports/javascript_imports.py:
+    e: JavaScriptImportValidator
+    JavaScriptImportValidator  # JavaScript/TypeScript import validator....
+      __init__(1)  CC=1.0
+  validators/imports/go_imports.py:
+    e: GoImportValidator
+    GoImportValidator  # Go import validator....
+      validate(2)  CC=3.0
+        → extract_imports(1)  CC=3.0
+        → module_exists(1)  CC=5.0
+  validators/imports/c_imports.py:
+    e: CImportValidator
+    CImportValidator  # C/C++ import validator....
+      __init__(1)  CC=1.0
+  validators/semantic.py:
+    e: SemanticValidator
+    SemanticValidator  # Tier 3: LLM-as-judge semantic code review....
+      __init__(1)  CC=2.0
+  validators/syntax.py:
+    e: SyntaxValidator
+    SyntaxValidator  # Tier 1: Fast syntax validation....
+      validate(2)  CC=2.0
+        → _validate_python(1)  CC=4.0
+        → _validate_treesitter(2)  CC=3.0
+  sandbox/runner.py:
+    e: ExecutionResult,SandboxRunner
+    ExecutionResult  # Result of sandboxed code execution....
+    SandboxRunner  # Unified interface for running code in a sandbox....
+      __init__(1)  CC=2.0
+  core/ast_compare.py:
+    e: parse_code,parse_python_ast,normalize_python_ast,python_ast_similarity,tree_sitter_node_count,tree_sitter_error_count,structural_diff_summary
+    parse_code(code,language)
+    parse_python_ast(code)
+    normalize_python_ast(tree)
+    python_ast_similarity(code1,code2)
+    tree_sitter_node_count(code,language)
+    tree_sitter_error_count(code,language)
+    structural_diff_summary(code1,code2,language)
+  validators/imports/rust_imports.py:
+    e: RustImportValidator
+    RustImportValidator  # Rust import validator....
+      validate(2)  CC=3.0
+        → extract_imports(1)  CC=3.0
+        → module_exists(1)  CC=2.0
+  config.py:
+    e: VallmSettings
+    VallmSettings  # vallm configuration with layered sources: defaults → TOML → ...
+      from_toml(1)  CC=3.0
+  validators/imports/wrapper.py:
+    e: ImportValidator
+    ImportValidator  # Backward compatibility wrapper for the refactored import val...
+      validate(2)  CC=2.0
+        → validate(2)  CC=2.0
+  validators/imports/factory.py:
+    e: ImportValidatorFactory
+    ImportValidatorFactory  # Factory for creating language-specific import validators....
+      create_validator(1)  CC=2.0
+  hookspecs.py:
+    e: VallmSpec
+    VallmSpec  # Hook specifications that validators must implement....
+      validate_proposal(2)  CC=1.0
+  validators/base.py:
+    e: BaseValidator
+    BaseValidator  # Base class for all vallm validators....
+      validate(2)  CC=1.0
+  validators/imports/base.py:
+    e: BaseImportValidator
+    BaseImportValidator  # Base class for all import validators....
+      validate(2)  CC=1.0
+  __init__.py:
+  __main__.py:
+  validators/__init__.py:
+  validators/imports/__init__.py:
+  core/__init__.py:
+  core/proposal.py:
+    e: Proposal
+    Proposal  # A code proposal to be validated.
+
+Attributes:
+    code: The ...
+  sandbox/__init__.py:

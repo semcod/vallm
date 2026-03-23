@@ -115,10 +115,18 @@ print(f"Score: {result.weighted_score:.2f}")
 vallm batch . --recursive --semantic --model qwen2.5-coder:7b
 vallm batch src/ --recursive --include "*.py,*.js" --exclude "*/test/*"
 vallm batch . --recursive --format json --fail-fast
+vallm batch . --recursive --verbose --show-issues  # Detailed per-file results
+
+# Output formats for batch results
+vallm batch . --recursive --format json   # Machine-readable JSON
+vallm batch . --recursive --format yaml   # YAML format
+vallm batch . --recursive --format toon   # Compact TOON format
+vallm batch . --recursive --format text   # Plain text
 
 # Single file validation
 vallm validate --file mycode.py --semantic --model qwen2.5-coder:7b
 vallm validate --file app.js --security
+vallm validate --file mycode.py --format json  # JSON output
 
 # Quick syntax check only
 vallm check mycode.py
@@ -127,6 +135,22 @@ vallm check src/main.go
 # Configuration and info
 vallm info
 ```
+
+### Batch Command Options
+
+| Option | Short | Description |
+|--------|-------|-------------|
+| `--recursive` | `-r` | Recurse into subdirectories |
+| `--include` | | File patterns to include (e.g., "*.py,*.js") |
+| `--exclude` | | File patterns to exclude |
+| `--use-gitignore` | | Respect .gitignore patterns (default: true) |
+| `--format` | `-f` | Output format: `rich`, `json`, `yaml`, `toon`, `text` |
+| `--fail-fast` | `-x` | Stop on first failure |
+| `--semantic` | | Enable LLM-as-judge semantic review |
+| `--security` | | Enable security checks |
+| `--model` | `-m` | LLM model for semantic review |
+| `--verbose` | `-v` | Show detailed validation results for each file |
+| `--show-issues` | `-i` | Show issues for failed files |
 
 ### With Ollama (LLM-as-judge)
 

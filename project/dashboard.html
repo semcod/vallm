@@ -58,19 +58,19 @@
   vallm — Good
 </h1>
 <p style="color:var(--muted);font-size:.85rem;">
-  Analyzed 2026-03-22 by code2llm
+  Analyzed 2026-03-23 by code2llm
   &nbsp;·&nbsp; Primary language: <strong>python</strong>
   &nbsp;·&nbsp; Python: 22, Shell: 1
 </p>
 
 <div class="grid">
-  <div class="card"><div class="value">91</div><div class="label">Functions</div></div>
+  <div class="card"><div class="value">114</div><div class="label">Functions</div></div>
   <div class="card"><div class="value">19</div><div class="label">Classes</div></div>
   <div class="card"><div class="value">16</div><div class="label">Files</div></div>
-  <div class="card"><div class="value">4,170</div><div class="label">Lines</div></div>
+  <div class="card"><div class="value">6,522</div><div class="label">Lines</div></div>
   <div class="card"><div class="value">2</div><div class="label">Languages</div></div>
-  <div class="card"><div class="value">4.3</div><div class="label">Avg CC</div></div>
-  <div class="card"><div class="value">8</div><div class="label">Critical (CC≥10)</div></div>
+  <div class="card"><div class="value">4.6</div><div class="label">Avg CC</div></div>
+  <div class="card"><div class="value">16</div><div class="label">Critical (CC≥10)</div></div>
   <div class="card"><div class="value">0</div><div class="label">Duplicates</div></div>
   <div class="card"><div class="value">0</div><div class="label">Cycles</div></div>
 </div>
@@ -92,11 +92,11 @@
 
 <div class="two-col">
   <div class="chart-container">
-    <h2 style="border:none;margin:0 0 .5rem;">Evolution (2026-03-22)</h2>
+    <h2 style="border:none;margin:0 0 .5rem;">Evolution (2026-03-23)</h2>
     <div class="evo-cards">
-      <div class="card"><div class="value">4.3</div><div class="label">CC̄ →</div></div>
-      <div class="card"><div class="value">8</div><div class="label">Critical →</div></div>
-      <div class="card"><div class="value">4170</div><div class="label">Lines</div></div>
+      <div class="card"><div class="value">4.6</div><div class="label">CC̄ ↑</div></div>
+      <div class="card"><div class="value">16</div><div class="label">Critical ↑</div></div>
+      <div class="card"><div class="value">6522</div><div class="label">Lines</div></div>
     </div>
     <p class="trend" style="margin-top:.5rem;">Run analysis multiple times to build a trend chart (≥3 data points needed).</p>
   </div>
@@ -107,20 +107,20 @@
       <thead><tr><th>Module</th><th>Path</th><th style="text-align:right">Lines</th><th style="text-align:right">Funcs</th><th style="text-align:right">Classes</th><th style="text-align:right">CC max</th></tr></thead>
       <tbody>
             <tr>
-                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>imports.py</td>
-                <td style="color:var(--muted);font-size:.75rem">src/vallm/validators</td>
-                <td style="text-align:right">653</td>
-                <td style="text-align:right">22</td>
-                <td style="text-align:right">1</td>
-                <td style="text-align:right">10</td>
-            </tr>
-            <tr>
                 <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>cli.py</td>
                 <td style="color:var(--muted);font-size:.75rem">src/vallm</td>
-                <td style="text-align:right">401</td>
-                <td style="text-align:right">8</td>
+                <td style="text-align:right">895</td>
+                <td style="text-align:right">27</td>
                 <td style="text-align:right">0</td>
-                <td style="text-align:right">42</td>
+                <td style="text-align:right">18</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>semantic.py</td>
+                <td style="color:var(--muted);font-size:.75rem">src/vallm/validators</td>
+                <td style="text-align:right">282</td>
+                <td style="text-align:right">8</td>
+                <td style="text-align:right">1</td>
+                <td style="text-align:right">12</td>
             </tr>
             <tr>
                 <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>gitignore.py</td>
@@ -139,14 +139,6 @@
                 <td style="text-align:right">9</td>
             </tr>
             <tr>
-                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>semantic.py</td>
-                <td style="color:var(--muted);font-size:.75rem">src/vallm/validators</td>
-                <td style="text-align:right">249</td>
-                <td style="text-align:right">8</td>
-                <td style="text-align:right">1</td>
-                <td style="text-align:right">12</td>
-            </tr>
-            <tr>
                 <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>languages.py</td>
                 <td style="color:var(--muted);font-size:.75rem">src/vallm/core</td>
                 <td style="text-align:right">220</td>
@@ -157,10 +149,10 @@
             <tr>
                 <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>scoring.py</td>
                 <td style="color:var(--muted);font-size:.75rem">src/vallm</td>
-                <td style="text-align:right">191</td>
-                <td style="text-align:right">4</td>
+                <td style="text-align:right">211</td>
+                <td style="text-align:right">8</td>
                 <td style="text-align:right">5</td>
-                <td style="text-align:right">7</td>
+                <td style="text-align:right">6</td>
             </tr>
             <tr>
                 <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>complexity.py</td>
@@ -253,10 +245,18 @@
             <tr>
                 <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#89e051;margin-right:6px"></span>project.sh</td>
                 <td style="color:var(--muted);font-size:.75rem">.</td>
-                <td style="text-align:right">14</td>
+                <td style="text-align:right">16</td>
                 <td style="text-align:right">0</td>
                 <td style="text-align:right">0</td>
                 <td style="text-align:right">0</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>imports.py</td>
+                <td style="color:var(--muted);font-size:.75rem">src/vallm/validators</td>
+                <td style="text-align:right">11</td>
+                <td style="text-align:right">22</td>
+                <td style="text-align:right">1</td>
+                <td style="text-align:right">10</td>
             </tr>
             <tr>
                 <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>__main__.py</td>
@@ -271,30 +271,16 @@
   </div>
 </div>
 
-<h2>Alerts (10)</h2>
+<h2>Alerts (11)</h2>
 <div class="card"><div class="table-wrap">
 <table>
   <thead><tr><th>Severity</th><th>Target</th><th>Type</th><th>Value</th><th>Limit</th></tr></thead>
   <tbody>
             <tr class="critical">
                 <td><span class="badge critical">critical</span></td>
-                <td>batch</td>
-                <td>cc_exceeded</td>
-                <td>42</td>
-                <td>15</td>
-            </tr>
-            <tr class="critical">
-                <td><span class="badge critical">critical</span></td>
-                <td>batch</td>
-                <td>high_fan_out</td>
-                <td>34</td>
-                <td>10</td>
-            </tr>
-            <tr class="critical">
-                <td><span class="badge critical">critical</span></td>
                 <td>validate</td>
                 <td>high_fan_out</td>
-                <td>20</td>
+                <td>21</td>
                 <td>10</td>
             </tr>
             <tr class="error">
@@ -313,7 +299,28 @@
             </tr>
             <tr class="warning">
                 <td><span class="badge warning">warning</span></td>
+                <td>_output_batch_rich</td>
+                <td>cc_exceeded</td>
+                <td>18</td>
+                <td>15</td>
+            </tr>
+            <tr class="warning">
+                <td><span class="badge warning">warning</span></td>
+                <td>_show_file_details</td>
+                <td>cc_exceeded</td>
+                <td>15</td>
+                <td>15</td>
+            </tr>
+            <tr class="warning">
+                <td><span class="badge warning">warning</span></td>
                 <td>check</td>
+                <td>high_fan_out</td>
+                <td>13</td>
+                <td>10</td>
+            </tr>
+            <tr class="warning">
+                <td><span class="badge warning">warning</span></td>
+                <td>batch</td>
                 <td>high_fan_out</td>
                 <td>12</td>
                 <td>10</td>
@@ -334,14 +341,14 @@
             </tr>
             <tr class="warning">
                 <td><span class="badge warning">warning</span></td>
-                <td>info</td>
+                <td>SecurityValidator._try_bandit</td>
                 <td>high_fan_out</td>
                 <td>10</td>
                 <td>10</td>
             </tr>
             <tr class="warning">
                 <td><span class="badge warning">warning</span></td>
-                <td>SecurityValidator._try_bandit</td>
+                <td>info</td>
                 <td>high_fan_out</td>
                 <td>10</td>
                 <td>10</td>
@@ -357,13 +364,8 @@
   <thead><tr><th>Function</th><th>Fan-out</th><th>Note</th></tr></thead>
   <tbody>
             <tr>
-                <td><strong>batch</strong></td>
-                <td>34</td>
-                <td>Validate multiple files with auto-detected languages.</td>
-            </tr>
-            <tr>
                 <td><strong>validate</strong></td>
-                <td>20</td>
+                <td>21</td>
                 <td>Validate a code proposal through the vallm pipeline.</td>
             </tr>
             <tr>
@@ -373,8 +375,13 @@
             </tr>
             <tr>
                 <td><strong>check</strong></td>
-                <td>12</td>
+                <td>13</td>
                 <td>Quick syntax check only (tier 1).</td>
+            </tr>
+            <tr>
+                <td><strong>batch</strong></td>
+                <td>12</td>
+                <td>Validate multiple files with auto-detected languages.</td>
             </tr>
             <tr>
                 <td><strong>main</strong></td>
@@ -387,14 +394,14 @@
                 <td>Run code in a Docker container (requires docker package).</td>
             </tr>
             <tr>
-                <td><strong>info</strong></td>
-                <td>10</td>
-                <td>Show vallm configuration and available validators.</td>
-            </tr>
-            <tr>
                 <td><strong>SecurityValidator._try_bandit</strong></td>
                 <td>10</td>
                 <td>Try to run bandit if installed.</td>
+            </tr>
+            <tr>
+                <td><strong>info</strong></td>
+                <td>10</td>
+                <td>Show vallm configuration and available validators.</td>
             </tr></tbody>
 </table>
 </div></div>
@@ -408,31 +415,31 @@
   <tbody>
             <tr>
                 <td>1</td>
-                <td>Split batch (CC=42 → target CC<10)</td>
-                <td><span class="badge high">high</span></td>
-                <td>low</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Split god module src/vallm/validators/imports.py (653L, 1 classes)</td>
+                <td>Split god module src/vallm/cli.py (895L, 0 classes)</td>
                 <td><span class="badge high">high</span></td>
                 <td>high</td>
             </tr>
             <tr>
-                <td>3</td>
+                <td>2</td>
                 <td>Split validate (CC=18 → target CC<10)</td>
                 <td><span class="badge medium">medium</span></td>
                 <td>low</td>
             </tr>
             <tr>
-                <td>4</td>
-                <td>Reduce batch fan-out (currently 34)</td>
+                <td>3</td>
+                <td>Split _show_file_details (CC=15 → target CC<10)</td>
                 <td><span class="badge medium">medium</span></td>
-                <td>medium</td>
+                <td>low</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Split _output_batch_rich (CC=18 → target CC<10)</td>
+                <td><span class="badge medium">medium</span></td>
+                <td>low</td>
             </tr>
             <tr>
                 <td>5</td>
-                <td>Reduce validate fan-out (currently 20)</td>
+                <td>Reduce validate fan-out (currently 21)</td>
                 <td><span class="badge medium">medium</span></td>
                 <td>medium</td>
             </tr>
@@ -447,7 +454,7 @@
 </div>
 </div>
 
-<footer>Generated by code2llm on 2026-03-22 14:21</footer>
+<footer>Generated by code2llm on 2026-03-23 17:59</footer>
 
 <script>
 // Evolution chart disabled — fewer than 3 data points
@@ -477,8 +484,8 @@ const modLinesCtx = document.getElementById('modLinesChart').getContext('2d');
 new Chart(modLinesCtx, {
   type: 'bar',
   data: {
-    labels: ['imports.py', 'cli.py', 'gitignore.py', 'security.py', 'semantic.py', 'languages.py', 'scoring.py', 'complexity.py', 'runner.py', 'ast_compare.py', 'syntax.py', 'graph_diff.py', 'bump_version.py', 'config.py', 'proposal.py'],
-    datasets: [{ label: 'Lines', data: [653, 401, 272, 253, 249, 220, 191, 183, 144, 135, 96, 86, 78, 58, 37],
+    labels: ['cli.py', 'semantic.py', 'gitignore.py', 'security.py', 'languages.py', 'scoring.py', 'complexity.py', 'runner.py', 'ast_compare.py', 'syntax.py', 'graph_diff.py', 'bump_version.py', 'config.py', 'proposal.py', 'hookspecs.py'],
+    datasets: [{ label: 'Lines', data: [895, 282, 272, 253, 220, 211, 183, 144, 135, 96, 86, 78, 58, 37, 33],
       backgroundColor: '#3b82f6'
     }]
   },
@@ -497,8 +504,8 @@ const modFuncsCtx = document.getElementById('modFuncsChart').getContext('2d');
 new Chart(modFuncsCtx, {
   type: 'bar',
   data: {
-    labels: ['imports.py', 'gitignore.py', 'cli.py', 'semantic.py', 'ast_compare.py', 'languages.py', 'security.py', 'complexity.py', 'scoring.py', 'runner.py', 'graph_diff.py', 'syntax.py', 'hookspecs.py', 'bump_version.py', 'config.py'],
-    datasets: [{ label: 'Functions', data: [22, 10, 8, 8, 7, 6, 5, 4, 4, 4, 3, 3, 3, 2, 1],
+    labels: ['cli.py', 'imports.py', 'gitignore.py', 'semantic.py', 'scoring.py', 'ast_compare.py', 'languages.py', 'security.py', 'complexity.py', 'runner.py', 'graph_diff.py', 'syntax.py', 'hookspecs.py', 'bump_version.py', 'config.py'],
+    datasets: [{ label: 'Functions', data: [27, 22, 10, 8, 8, 7, 6, 5, 4, 4, 3, 3, 3, 2, 1],
       backgroundColor: '#22c55e'
     }]
   },

@@ -2,10 +2,15 @@
 
 ### Summary
 
-docs: comprehensive documentation update with code health metrics and refactoring roadmap
+docs: comprehensive documentation update with code health metrics and CLI improvements
+
+### Added (CLI)
+- **Detailed batch output** — show reasons for failures with validator scores and issues
+- **New CLI options for batch**: `--verbose` (-v), `--show-issues` (-i) for detailed per-file results
+- **New output formats**: `json`, `yaml`, `toon` for batch results (was: rich, text only)
+- **Failed files summary** — list of failed files with scores, issues, and semantic validator summaries
 
 ### Docs
-
 - docs: add code health metrics section to README (CC̄=3.5, max-CC=42, god modules=2)
 - docs: document critical functions requiring refactoring (batch CC=42, validate CC=18)
 - docs: add god modules inventory (imports.py 653L, cli.py 401L)
@@ -14,7 +19,6 @@ docs: comprehensive documentation update with code health metrics and refactorin
 - docs: update example list in README (12 examples including MCP and Ollama demos)
 
 ### Analysis
-
 - analysis: generate code2llm analysis files (analysis.toon, evolution.toon, context.md)
 - metrics: 91 functions, 19 classes, 56 modules, 8 critical functions (CC≥10)
 
@@ -109,7 +113,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - TOML config loading, `[tool.vallm]` support
 - Pre-commit hook integration
 - GitHub Actions CI/CD pipeline
-- CONTRIBUTING.md
 
 ### Added (Multi-Language Support)
 - **Language enum** — 30+ programming languages with metadata (compiled/scripting/web)
@@ -120,6 +123,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Lizard integration** — complexity analysis for 16+ languages (Go, Rust, Java, C/C++, etc.)
 - **Tree-sitter for all** — syntax validation for 165+ languages
 - **Example 07** — comprehensive multi-language demo with 8 languages
+
+## [0.1.10] - 2026-03-23
+
+### Docs
+- Update CHANGELOG.md
+- Update README.md
+- Update code2llm_output/README.md
+- Update code2llm_output/context.md
+- Update docs/README.md
+- Update project/README.md
+- Update project/context.md
+
+### Test
+- Update tests/test_cli_e2e.py
+- Update tests/test_imports.py
+- Update tests/test_installation.py
+- Update tests/test_semantic_validation.py
+
+### Other
+- Update code2llm_output/analysis.toon
+- Update examples/11_claude_code_autonomous/claude_autonomous_demo.py
+- Update project.sh
+- Update project/analysis.toon
+- Update project/calls.mmd
+- Update project/calls.png
+- Update project/compact_flow.mmd
+- Update project/compact_flow.png
+- Update project/dashboard.html
+- Update project/duplication.toon
+- ... and 10 more files
 
 ## [0.1.9] - 2026-03-22
 

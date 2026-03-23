@@ -9,12 +9,14 @@ flowchart TD
     examples_08_code2llm_integration["examples.08_code2llm_integration<br/>5 funcs"]
     examples_09_code2logic_integration["examples.09_code2logic_integration<br/>6 funcs"]
     examples_10_mcp_ollama_demo["examples.10_mcp_ollama_demo<br/>43 funcs"]
-    examples_11_claude_code_autonomous["examples.11_claude_code_autonomous<br/>21 funcs"]
+    examples_11_claude_code_autonomous["examples.11_claude_code_autonomous<br/>34 funcs"]
     examples_12_ollama_simple_demo["examples.12_ollama_simple_demo<br/>35 funcs"]
     publish_env_lib["publish-env.lib<br/>11744 funcs"]
     scripts_bump_version["scripts.bump_version<br/>2 funcs"]
-    src_vallm["src.vallm<br/>89 funcs"]
+    src_vallm["src.vallm<br/>112 funcs"]
+    src_vallm ==>|76| publish_env_lib
     examples_12_ollama_simple_demo ==>|76| publish_env_lib
+    examples_11_claude_code_autonomous ==>|76| publish_env_lib
     examples_05_llm_semantic_review ==>|53| publish_env_lib
     examples_10_mcp_ollama_demo ==>|53| publish_env_lib
     examples_09_code2logic_integration ==>|40| publish_env_lib
@@ -24,11 +26,9 @@ flowchart TD
     examples_07_multi_language ==>|30| publish_env_lib
     examples_08_code2llm_integration ==>|26| publish_env_lib
     examples_02_ast_comparison ==>|23| publish_env_lib
-    src_vallm ==>|20| publish_env_lib
     examples_03_security_check ==>|19| publish_env_lib
     scripts_bump_version ==>|6| publish_env_lib
     examples_02_ast_comparison ==>|6| src_vallm
-    examples_11_claude_code_autonomous ==>|6| publish_env_lib
     publish_env_lib -->|2| scripts_bump_version
     examples_04_graph_analysis -->|1| src_vallm
     examples_07_multi_language -->|1| src_vallm

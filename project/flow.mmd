@@ -22,9 +22,9 @@ flowchart TD
         examples__05_llm_semantic_review__main__main("main CC=11")
     end
     subgraph examples_06_multilang_validation
-        examples__06_multilang_validation__main__main["main"]
         examples__save_analysis_data["save_analysis_data"]
         examples__main("main CC=12")
+        examples__06_multilang_validation__main__main["main"]
     end
     subgraph examples_07_multi_language
         examples__test_language_detection["test_language_detection"]
@@ -95,6 +95,19 @@ flowchart TD
         examples__10_mcp_ollama_demo__run__print["print"]
     end
     subgraph examples_11_claude_code_autonomous
+        examples__log_section["log_section"]
+        examples__log_step["log_step"]
+        examples__log_code["log_code"]
+        examples__analyze_with_code2llm("analyze_with_code2llm CC=10")
+        examples__call_claude_code["call_claude_code"]
+        examples__validate_with_vallm("validate_with_vallm CC=12")
+        examples__run_runtime_tests("run_runtime_tests CC=8")
+        examples__create_basic_tests["create_basic_tests"]
+        examples__generate_claude_prompt["generate_claude_prompt"]
+        examples__generate_feedback_prompt["generate_feedback_prompt"]
+        examples__run_autonomous_workflow("run_autonomous_workflow CC=9")
+        examples__extract_code_from_response["extract_code_from_response"]
+        examples__main["main"]
         examples__load_config["load_config"]
         examples__init_database["init_database"]
         examples____init__["__init__"]
@@ -118,6 +131,16 @@ flowchart TD
         examples__print_error["print_error"]
     end
     subgraph examples_12_ollama_simple_demo
+        examples__log_section["log_section"]
+        examples__log_step["log_step"]
+        examples__analyze_with_code2llm["analyze_with_code2llm"]
+        examples__call_ollama["call_ollama"]
+        examples__validate_with_vallm["validate_with_vallm"]
+        examples__run_simple_test["run_simple_test"]
+        examples__generate_ollama_prompt["generate_ollama_prompt"]
+        examples__extract_code_from_response["extract_code_from_response"]
+        examples__run_simple_workflow("run_simple_workflow CC=9")
+        examples__main["main"]
         examples__process_user_input["process_user_input"]
         examples__load_config["load_config"]
         examples__save_data["save_data"]
@@ -133,16 +156,6 @@ flowchart TD
         examples__save_data["save_data"]
         examples__calculate_total["calculate_total"]
         examples__12_ollama_simple_demo__iteration_2__main["main"]
-        examples__log_section["log_section"]
-        examples__log_step["log_step"]
-        examples__analyze_with_code2llm["analyze_with_code2llm"]
-        examples__call_ollama["call_ollama"]
-        examples__validate_with_vallm["validate_with_vallm"]
-        examples__run_simple_test["run_simple_test"]
-        examples__generate_ollama_prompt["generate_ollama_prompt"]
-        examples__extract_code_from_response["extract_code_from_response"]
-        examples__run_simple_workflow("run_simple_workflow CC=9")
-        examples__main["main"]
         examples__process_user_input["process_user_input"]
         examples__load_config["load_config"]
         examples__save_data["save_data"]
@@ -158,14 +171,6 @@ flowchart TD
         examples__run__run_example["run_example"]
     end
     subgraph publish_env_lib
-        publish_env____init__["__init__"]
-        publish_env____init__["__init__"]
-        publish_env__merge_paths["merge_paths"]
-        publish_env____init__["__init__"]
-        publish_env____init__["__init__"]
-        publish_env____init__["__init__"]
-        publish_env____init__["__init__"]
-        publish_env____init__["__init__"]
         publish_env____init__["__init__"]
         publish_env____init__["__init__"]
         publish_env____init__["__init__"]
@@ -186,6 +191,14 @@ flowchart TD
         publish_env__decrypt["decrypt"]
         publish_env__decrypt_at_time["decrypt_at_time"]
         publish_env__extract_timestamp["extract_timestamp"]
+        publish_env__merge_paths["merge_paths"]
+        publish_env____init__["__init__"]
+        publish_env____init__["__init__"]
+        publish_env____init__["__init__"]
+        publish_env____init__["__init__"]
+        publish_env____init__["__init__"]
+        publish_env____init__["__init__"]
+        publish_env____init__["__init__"]
         publish_env__uri_reference["uri_reference"]
         publish_env__iri_reference["iri_reference"]
         publish_env__is_valid_uri["is_valid_uri"]
@@ -227,24 +240,19 @@ flowchart TD
         src__validate_proposal["validate_proposal"]
         src__get_validator_name["get_validator_name"]
         src__get_validator_tier["get_validator_tier"]
-        src__vallm__config__VallmSettings__from_toml["from_toml"]
-        src__vallm__cli__validate{{validate CC=18}}
-        src__vallm__cli__check("check CC=8")
-        src__vallm__cli__batch{{batch CC=42}}
-        src__vallm__cli__info["info"]
-        src__vallm__cli___check_dep["_check_dep"]
-        src__vallm__cli___output_rich("_output_rich CC=11")
-        src__vallm__cli___output_json["_output_json"]
-        src__vallm__cli___output_text["_output_text"]
         src__vallm__scoring__Issue____str__["__str__"]
         src__vallm__scoring__compute_verdict["compute_verdict"]
         src__vallm__scoring__validate["validate"]
+        src__vallm__scoring___initialize_settings["_initialize_settings"]
+        src__vallm__scoring___initialize_context["_initialize_context"]
+        src__vallm__scoring___initialize_validators["_initialize_validators"]
+        src__vallm__scoring___run_validation_pipeline["_run_validation_pipeline"]
         src__vallm__scoring___get_default_validators["_get_default_validators"]
-        src__validate["validate"]
         src____init__["__init__"]
         src__validate["validate"]
         src___check_python_complexity("_check_python_complexity CC=11")
         src___check_lizard("_check_lizard CC=12")
+        src__validate["validate"]
         src__validate("validate CC=9")
         src___check_patterns["_check_patterns"]
         src___check_python_ast["_check_python_ast"]
@@ -264,13 +272,6 @@ flowchart TD
         src__vallm__core__graph_diff__diff_graphs["diff_graphs"]
         src__vallm__core__graph_diff__diff_python_code["diff_python_code"]
         src__vallm__core__graph_diff___diff_list["_diff_list"]
-        src__vallm__core__ast_compare__parse_code["parse_code"]
-        src__vallm__core__ast_compare__parse_python_ast["parse_python_ast"]
-        src__normalize_python_ast["normalize_python_ast"]
-        src__python_ast_similarity["python_ast_similarity"]
-        src__tree_sitter_node_count["tree_sitter_node_count"]
-        src__tree_sitter_error_count["tree_sitter_error_count"]
-        src__structural_diff_summary["structural_diff_summary"]
         src__validate["validate"]
         src___validate_python("_validate_python CC=10")
         src___validate_javascript["_validate_javascript"]
@@ -284,18 +285,30 @@ flowchart TD
         src___validate_c_cpp["_validate_c_cpp"]
         src___extract_js_imports["_extract_js_imports"]
         src___extract_go_imports["_extract_go_imports"]
+        src___extract_rust_imports["_extract_rust_imports"]
+        src___extract_java_imports["_extract_java_imports"]
+        src___extract_c_includes["_extract_c_includes"]
+        src___python_module_exists["_python_module_exists"]
+        src___js_module_exists["_js_module_exists"]
+        src___go_module_exists["_go_module_exists"]
+        src___rust_module_exists["_rust_module_exists"]
+        src___java_module_exists["_java_module_exists"]
+        src___c_header_exists["_c_header_exists"]
+        src__vallm__core__ast_compare__parse_code["parse_code"]
+        src__vallm__core__ast_compare__parse_python_ast["parse_python_ast"]
+        src__normalize_python_ast["normalize_python_ast"]
     end
-    scripts__bump_version__bump_version --> publish_env__map
-    scripts__bump_version__main --> scripts__bump_version__bump_version
-    scripts__bump_version__main --> publish_env__print
-    publish_env____init__ --> publish_env__to_str
-    publish_env____init__ --> publish_env__list
-    publish_env____init__ --> publish_env__unsplit
     publish_env___encrypt_from_parts --> publish_env___check_bytes
     publish_env__decrypt --> publish_env___get_unverified_token_data
     publish_env__decrypt_at_time --> publish_env___get_unverified_token_data
     publish_env__extract_timestamp --> publish_env___get_unverified_token_data
+    publish_env____init__ --> publish_env__list
     publish_env__rotate --> publish_env___get_unverified_token_data
+    publish_env____init__ --> publish_env__to_str
+    publish_env____init__ --> publish_env__unsplit
+    scripts__bump_version__bump_version --> publish_env__map
+    scripts__bump_version__main --> scripts__bump_version__bump_version
+    scripts__bump_version__main --> publish_env__print
     publish_env__uri_reference --> publish_env__from_string
     publish_env__iri_reference --> publish_env__from_string
     publish_env__is_valid_uri --> publish_env__from_string
@@ -351,10 +364,6 @@ flowchart TD
     publish_env__normalize --> publish_env__normalize_fragment
     publish_env__from_string --> publish_env__to_str
     publish_env__from_string --> publish_env__encode_component
-    publish_env__encode --> publish_env__to_str
-    publish_env__encode --> publish_env__encode_component
-    publish_env__skipToken --> publish_env__rule
-    publish_env__parse --> publish_env__rule
     publish_env___generate_authority --> publish_env__normalize_authority
     publish_env___generate_authority --> publish_env__to_str
     publish_env__from_parts --> publish_env__authority_from
@@ -366,12 +375,17 @@ flowchart TD
     publish_env__copy_with --> publish_env__hasattr
     publish_env__copy_with --> publish_env__to_str
     publish_env__authority_from --> publish_env__split_authority
+    publish_env__skipToken --> publish_env__rule
+    publish_env__parse --> publish_env__rule
+    publish_env__encode --> publish_env__to_str
+    publish_env__encode --> publish_env__encode_component
     publish_env__renderAttrs --> publish_env__escapeHtml
     publish_env__code_inline --> publish_env__escapeHtml
     publish_env__code_block --> publish_env__escapeHtml
     publish_env__fence --> publish_env__escapeHtml
     publish_env__fence --> publish_env__unescapeAll
     publish_env__text --> publish_env__escapeHtml
+    publish_env____init__ --> publish_env__cast
     publish_env__to_unicode --> publish_env__map_domain
     publish_env__to_unicode --> publish_env__decode
     publish_env__to_ascii --> publish_env__map_domain
@@ -384,10 +398,13 @@ flowchart TD
     publish_env____repr__ --> publish_env__type
     publish_env___add_child --> publish_env__type
     publish_env___set_children_from_tokens --> publish_env__list
-    publish_env____init__ --> publish_env__cast
     publish_env__info --> publish_env___implementation
     publish_env__main --> publish_env__print
     publish_env__main --> publish_env__info
+    publish_env____post_init__ --> publish_env__convert_attrs
+    publish_env__attrIndex --> publish_env__list
+    publish_env__attrItems --> publish_env__list
+    publish_env__as_dict --> publish_env__filter
     publish_env____init__ --> publish_env__urlparse
     publish_env__get_host --> publish_env__urlparse
     publish_env__get_full_url --> publish_env__to_native_string
@@ -407,6 +424,8 @@ flowchart TD
     publish_env__morsel_to_cookie --> publish_env__create_cookie
     publish_env__cookiejar_from_dict --> publish_env__create_cookie
     publish_env__merge_cookies --> publish_env__cookiejar_from_dict
+    publish_env___check_cryptography --> publish_env__list
+    publish_env___check_cryptography --> publish_env__map
     publish_env___urllib3_request_context --> publish_env__urlparse
     publish_env__proxy_manager_for --> publish_env__get_auth_from_url
     publish_env__proxy_manager_for --> publish_env__proxy_from_url
@@ -426,8 +445,21 @@ flowchart TD
     publish_env__request_url --> publish_env__urldefragauth
     publish_env__proxy_headers --> publish_env__get_auth_from_url
     publish_env__proxy_headers --> publish_env___basic_auth_str
-    publish_env___check_cryptography --> publish_env__list
-    publish_env___check_cryptography --> publish_env__map
+    publish_env__get --> publish_env__request
+    publish_env__options --> publish_env__request
+    publish_env__head --> publish_env__request
+    publish_env__post --> publish_env__request
+    publish_env__put --> publish_env__request
+    publish_env__patch --> publish_env__request
+    publish_env__delete --> publish_env__request
+    publish_env__dispatch_hook --> publish_env__hasattr
+    publish_env___basic_auth_str --> publish_env__to_native_string
+    publish_env___basic_auth_str --> publish_env__type
+    publish_env____call__ --> publish_env___basic_auth_str
+    publish_env__init_per_thread_state --> publish_env__hasattr
+    publish_env__build_digest_header --> publish_env__urlparse
+    publish_env__handle_401 --> publish_env__parse_dict_header
+    publish_env__handle_401 --> publish_env__extract_cookies_to_jar
     publish_env__merge_setting --> publish_env__to_key_val_list
     publish_env__merge_hooks --> publish_env__merge_setting
     publish_env__get_redirect_target --> publish_env__to_native_string
@@ -454,53 +486,6 @@ flowchart TD
     publish_env__send --> publish_env__resolve_proxies
     publish_env__merge_environment_settings --> publish_env__merge_setting
     publish_env__merge_environment_settings --> publish_env__get_environ_proxies
-    publish_env__get --> publish_env__request
-    publish_env__options --> publish_env__request
-    publish_env__head --> publish_env__request
-    publish_env__post --> publish_env__request
-    publish_env__put --> publish_env__request
-    publish_env__patch --> publish_env__request
-    publish_env__delete --> publish_env__request
-    publish_env__dispatch_hook --> publish_env__hasattr
-    publish_env___basic_auth_str --> publish_env__to_native_string
-    publish_env___basic_auth_str --> publish_env__type
-    publish_env____call__ --> publish_env___basic_auth_str
-    publish_env__init_per_thread_state --> publish_env__hasattr
-    publish_env__build_digest_header --> publish_env__urlparse
-    publish_env__handle_401 --> publish_env__parse_dict_header
-    publish_env__handle_401 --> publish_env__extract_cookies_to_jar
-    publish_env____post_init__ --> publish_env__convert_attrs
-    publish_env__attrIndex --> publish_env__list
-    publish_env__attrItems --> publish_env__list
-    publish_env__as_dict --> publish_env__filter
-    publish_env___encode_params --> publish_env__hasattr
-    publish_env___encode_params --> publish_env__to_key_val_list
-    publish_env___encode_params --> publish_env__urlencode
-    publish_env___encode_files --> publish_env__to_key_val_list
-    publish_env___encode_files --> publish_env__encode_multipart_formdata
-    publish_env___encode_files --> publish_env__hasattr
-    publish_env__register_hook --> publish_env__hasattr
-    publish_env__copy --> publish_env___copy_cookie_jar
-    publish_env__prepare_method --> publish_env__to_native_string
-    publish_env__prepare_url --> publish_env__requote_uri
-    publish_env__prepare_url --> publish_env__parse_url
-    publish_env__prepare_url --> publish_env__unicode_is_ascii
-    publish_env__prepare_url --> publish_env__to_native_string
-    publish_env__prepare_headers --> publish_env__check_header_validity
-    publish_env__prepare_headers --> publish_env__to_native_string
-    publish_env__prepare_body --> publish_env__hasattr
-    publish_env__prepare_body --> publish_env__super_len
-    publish_env__prepare_content_length --> publish_env__super_len
-    publish_env__prepare_auth --> publish_env__get_auth_from_url
-    publish_env__prepare_cookies --> publish_env__get_cookie_header
-    publish_env__prepare_cookies --> publish_env__cookiejar_from_dict
-    publish_env__iter_content --> publish_env__iter_slices
-    publish_env__iter_content --> publish_env__generate
-    publish_env__iter_content --> publish_env__hasattr
-    publish_env__iter_content --> publish_env__stream_decode_response_unicode
-    publish_env__iter_content --> publish_env__type
-    publish_env__json --> publish_env__guess_json_utf
-    publish_env__close --> publish_env__release_conn
     publish_env__dict_to_sequence --> publish_env__hasattr
     publish_env__super_len --> publish_env__hasattr
     publish_env__get_netrc_auth --> publish_env__urlparse
@@ -529,6 +514,34 @@ flowchart TD
     publish_env__check_header_validity --> publish_env___validate_header_part
     publish_env___validate_header_part --> publish_env__type
     publish_env__urldefragauth --> publish_env__urlparse
+    publish_env___encode_params --> publish_env__hasattr
+    publish_env___encode_params --> publish_env__to_key_val_list
+    publish_env___encode_params --> publish_env__urlencode
+    publish_env___encode_files --> publish_env__to_key_val_list
+    publish_env___encode_files --> publish_env__encode_multipart_formdata
+    publish_env___encode_files --> publish_env__hasattr
+    publish_env__register_hook --> publish_env__hasattr
+    publish_env__copy --> publish_env___copy_cookie_jar
+    publish_env__prepare_method --> publish_env__to_native_string
+    publish_env__prepare_url --> publish_env__requote_uri
+    publish_env__prepare_url --> publish_env__parse_url
+    publish_env__prepare_url --> publish_env__unicode_is_ascii
+    publish_env__prepare_url --> publish_env__to_native_string
+    publish_env__prepare_headers --> publish_env__check_header_validity
+    publish_env__prepare_headers --> publish_env__to_native_string
+    publish_env__prepare_body --> publish_env__hasattr
+    publish_env__prepare_body --> publish_env__super_len
+    publish_env__prepare_content_length --> publish_env__super_len
+    publish_env__prepare_auth --> publish_env__get_auth_from_url
+    publish_env__prepare_cookies --> publish_env__get_cookie_header
+    publish_env__prepare_cookies --> publish_env__cookiejar_from_dict
+    publish_env__iter_content --> publish_env__iter_slices
+    publish_env__iter_content --> publish_env__generate
+    publish_env__iter_content --> publish_env__hasattr
+    publish_env__iter_content --> publish_env__stream_decode_response_unicode
+    publish_env__iter_content --> publish_env__type
+    publish_env__json --> publish_env__guess_json_utf
+    publish_env__close --> publish_env__release_conn
     publish_env__parse_requirement --> publish_env___parse_requirement
     publish_env___parse_requirement --> publish_env___parse_extras
     publish_env___parse_requirement --> publish_env___parse_requirement_details
@@ -551,6 +564,7 @@ flowchart TD
     publish_env____hash__ --> publish_env__hash
     publish_env____hash__ --> publish_env__canonicalize_name
     publish_env____eq__ --> publish_env__canonicalize_name
+    publish_env____init__ --> publish_env__bytes
     publish_env___parse_elf --> publish_env__open
     publish_env___is_linux_armhf --> publish_env___parse_elf
     publish_env___is_linux_i686 --> publish_env___parse_elf
@@ -566,8 +580,6 @@ flowchart TD
     publish_env__platform_tags --> publish_env__set
     publish_env__platform_tags --> publish_env___get_glibc_version
     publish_env__platform_tags --> publish_env___is_compatible
-    publish_env____init__ --> publish_env__bytes
-    publish_env____init__ --> publish_env__hasattr
     publish_env__parse_email --> publish_env___get_payload
     publish_env__parse_email --> publish_env__cast
     publish_env____get__ --> publish_env__cast
@@ -576,23 +588,6 @@ flowchart TD
     publish_env___process_dynamic --> publish_env__map
     publish_env___process_dynamic --> publish_env__list
     publish_env__from_email --> publish_env__parse_email
-    publish_env___get_spec_version --> publish_env___coerce_version
-    publish_env___compare_compatible --> publish_env___version_join
-    publish_env___compare_compatible --> publish_env__list
-    publish_env___compare_compatible --> publish_env___version_split
-    publish_env___compare_equal --> publish_env__canonicalize_version
-    publish_env___compare_equal --> publish_env___version_split
-    publish_env___compare_equal --> publish_env___pad_version
-    publish_env___compare_equal --> publish_env___public_version
-    publish_env___compare_less_than_equal --> publish_env___public_version
-    publish_env___compare_greater_than_equal --> publish_env___public_version
-    publish_env___compare_less_than --> publish_env___base_version
-    publish_env___compare_greater_than --> publish_env___base_version
-    publish_env__contains --> publish_env__list
-    publish_env__filter --> publish_env___coerce_version
-    publish_env___pad_version --> publish_env__list
-    publish_env____init__ --> publish_env__map
-    publish_env__contains --> publish_env___coerce_version
     publish_env___toml_dict_factory --> publish_env___toml_key
     publish_env___toml_dict_factory --> publish_env___toml_value
     publish_env___get --> publish_env__type
@@ -615,11 +610,29 @@ flowchart TD
     publish_env___from_dict --> publish_env___get_object
     publish_env___from_dict --> publish_env___get_sequence_as
     publish_env___from_dict --> publish_env___get_required_sequence_of_objects
+    publish_env____init__ --> publish_env__hasattr
     publish_env__canonicalize_name --> publish_env__cast
     publish_env__parse_wheel_filename --> publish_env__canonicalize_name
     publish_env__parse_wheel_filename --> publish_env__parse_tag
     publish_env__parse_wheel_filename --> publish_env__cast
     publish_env__parse_sdist_filename --> publish_env__canonicalize_name
+    publish_env___get_spec_version --> publish_env___coerce_version
+    publish_env___compare_compatible --> publish_env___version_join
+    publish_env___compare_compatible --> publish_env__list
+    publish_env___compare_compatible --> publish_env___version_split
+    publish_env___compare_equal --> publish_env__canonicalize_version
+    publish_env___compare_equal --> publish_env___version_split
+    publish_env___compare_equal --> publish_env___pad_version
+    publish_env___compare_equal --> publish_env___public_version
+    publish_env___compare_less_than_equal --> publish_env___public_version
+    publish_env___compare_greater_than_equal --> publish_env___public_version
+    publish_env___compare_less_than --> publish_env___base_version
+    publish_env___compare_greater_than --> publish_env___base_version
+    publish_env__contains --> publish_env__list
+    publish_env__filter --> publish_env___coerce_version
+    publish_env___pad_version --> publish_env__list
+    publish_env____init__ --> publish_env__map
+    publish_env__contains --> publish_env___coerce_version
     publish_env___get_musl_version --> publish_env___parse_musl_version
     publish_env___get_musl_version --> publish_env__open
     publish_env__platform_tags --> publish_env___get_musl_version
@@ -700,6 +713,31 @@ flowchart TD
     publish_env___loaded_gen_enum --> publish_env__type
     publish_env___loaded_gen_macro --> publish_env__type
     publish_env___loaded_gen_variable --> publish_env__type
+    publish_env__as_field_python_expr --> publish_env__format_four_bytes
+    publish_env__as_python_expr --> publish_env__format_four_bytes
+    publish_env__collect_step_tables --> publish_env__set
+    publish_env___rel_readlines --> publish_env__open
+    publish_env___struct_ctx --> publish_env__list
+    publish_env___add_missing_struct_unions --> publish_env__list
+    publish_env___print_string_literal_in_array --> publish_env__type
+    publish_env___print_string_literal_in_array --> publish_env__map
+    publish_env___is_file_like --> publish_env__hasattr
+    publish_env___make_c_or_py_source --> publish_env___is_file_like
+    publish_env___make_c_or_py_source --> publish_env__print
+    publish_env___make_c_or_py_source --> publish_env__open
+    publish_env__make_c_source --> publish_env___make_c_or_py_source
+    publish_env__make_py_source --> publish_env___make_c_or_py_source
+    publish_env___patch_for_embedding --> publish_env___patch_meth
+    publish_env___patch_for_embedding --> publish_env__list
+    publish_env___patch_for_target --> publish_env___patch_meth
+    publish_env__recompile --> publish_env__make_c_source
+    publish_env__recompile --> publish_env__make_py_source
+    publish_env__recompile --> publish_env___is_file_like
+    publish_env__recompile --> publish_env___modname_to_file
+    publish_env__recompile --> publish_env__get_extension
+    publish_env__recompile --> publish_env__compile
+    publish_env__flags_from_pkgconfig --> publish_env__call
+    publish_env__flags_from_pkgconfig --> publish_env__merge_flags
     publish_env____init__ --> publish_env__get_typecache
     publish_env__dlopen --> publish_env___make_ffi_library
     publish_env__dlclose --> publish_env__type
@@ -725,33 +763,14 @@ flowchart TD
     publish_env__compile --> publish_env__hasattr
     publish_env__embedding_init_code --> publish_env__compile
     publish_env___make_ffi_library --> publish_env___load_backend_lib
-    publish_env__flags_from_pkgconfig --> publish_env__call
-    publish_env__flags_from_pkgconfig --> publish_env__merge_flags
-    publish_env__as_field_python_expr --> publish_env__format_four_bytes
-    publish_env__as_python_expr --> publish_env__format_four_bytes
-    publish_env__collect_step_tables --> publish_env__set
-    publish_env___rel_readlines --> publish_env__open
-    publish_env___struct_ctx --> publish_env__list
-    publish_env___add_missing_struct_unions --> publish_env__list
-    publish_env___print_string_literal_in_array --> publish_env__type
-    publish_env___print_string_literal_in_array --> publish_env__map
-    publish_env___is_file_like --> publish_env__hasattr
-    publish_env___make_c_or_py_source --> publish_env___is_file_like
-    publish_env___make_c_or_py_source --> publish_env__print
-    publish_env___make_c_or_py_source --> publish_env__open
-    publish_env__make_c_source --> publish_env___make_c_or_py_source
-    publish_env__make_py_source --> publish_env___make_c_or_py_source
-    publish_env___patch_for_embedding --> publish_env___patch_meth
-    publish_env___patch_for_embedding --> publish_env__list
-    publish_env___patch_for_target --> publish_env___patch_meth
-    publish_env__recompile --> publish_env__make_c_source
-    publish_env__recompile --> publish_env__make_py_source
-    publish_env__recompile --> publish_env___is_file_like
-    publish_env__recompile --> publish_env___modname_to_file
-    publish_env__recompile --> publish_env__get_extension
-    publish_env__recompile --> publish_env__compile
     publish_env__compile --> publish_env___build
     publish_env__flatten --> publish_env___flatten
+    publish_env__load_library --> publish_env__list
+    publish_env__load_library --> publish_env__hasattr
+    publish_env__load_library --> publish_env__map
+    publish_env___generate_cpy_function_decl --> publish_env__set
+    publish_env___loaded_cpy_variable --> publish_env__delattr
+    publish_env___loaded_cpy_variable --> publish_env__type
     publish_env___cast_from --> publish_env__type
     publish_env___to_ctypes --> publish_env__type
     publish_env___convert_to_address --> publish_env___convert_to_address
@@ -763,22 +782,20 @@ flowchart TD
     publish_env__gcp --> publish_env__hash
     publish_env__typeoffsetof --> publish_env__type
     publish_env__rawaddressof --> publish_env__type
-    publish_env__load_library --> publish_env__list
-    publish_env__load_library --> publish_env__hasattr
-    publish_env__load_library --> publish_env__map
-    publish_env___generate_cpy_function_decl --> publish_env__set
-    publish_env___loaded_cpy_variable --> publish_env__delattr
-    publish_env___loaded_cpy_variable --> publish_env__type
-    publish_env___validate_local --> publish_env___parse_local_version
-    publish_env____init__ --> publish_env___parse_letter_version
-    publish_env____init__ --> publish_env___parse_local_version
-    publish_env____replace__ --> publish_env___validate_epoch
-    publish_env____replace__ --> publish_env___validate_release
-    publish_env____replace__ --> publish_env___validate_pre
-    publish_env____replace__ --> publish_env___validate_post
-    publish_env____replace__ --> publish_env___validate_dev
-    publish_env____replace__ --> publish_env___validate_local
-    publish_env____str__ --> publish_env__map
+    publish_env____init__ --> publish_env___locate_engine_class
+    publish_env____init__ --> publish_env__flatten
+    publish_env____init__ --> publish_env___get_so_suffixes
+    publish_env____init__ --> publish_env___caller_dir_pycache
+    publish_env__get_module_name --> publish_env__hasattr
+    publish_env__get_extension --> publish_env__maybe_relative_path
+    publish_env__get_extension --> publish_env__get_extension
+    publish_env___locate_module --> publish_env___get_so_suffixes
+    publish_env___write_source --> publish_env___ensure_dir
+    publish_env___write_source --> publish_env__open
+    publish_env___compile_module --> publish_env__compile
+    publish_env___compile_module --> publish_env___ensure_dir
+    publish_env__cleanup_tmpdir --> publish_env___caller_dir_pycache
+    publish_env__cleanup_tmpdir --> publish_env___get_so_suffixes
     publish_env___preprocess --> publish_env___remove_line_directives
     publish_env___preprocess --> publish_env___preprocess_extern_python
     publish_env___preprocess --> publish_env___warn_for_string_literal
@@ -801,25 +818,11 @@ flowchart TD
     publish_env__get_typecache --> publish_env__type
     publish_env__pointer_cache --> publish_env__global_cache
     publish_env__attach_exception_info --> publish_env__type
-    publish_env__as_python_bytes --> publish_env__format_four_bytes
     publish_env__html_parts --> publish_env__publish_parts
     publish_env__html_body --> publish_env__html_parts
+    publish_env__as_python_bytes --> publish_env__format_four_bytes
     publish_env__get_transforms --> publish_env__list
     publish_env__main --> publish_env__publish_cmdline
-    publish_env____init__ --> publish_env___locate_engine_class
-    publish_env____init__ --> publish_env__flatten
-    publish_env____init__ --> publish_env___get_so_suffixes
-    publish_env____init__ --> publish_env___caller_dir_pycache
-    publish_env__get_module_name --> publish_env__hasattr
-    publish_env__get_extension --> publish_env__maybe_relative_path
-    publish_env__get_extension --> publish_env__get_extension
-    publish_env___locate_module --> publish_env___get_so_suffixes
-    publish_env___write_source --> publish_env___ensure_dir
-    publish_env___write_source --> publish_env__open
-    publish_env___compile_module --> publish_env__compile
-    publish_env___compile_module --> publish_env___ensure_dir
-    publish_env__cleanup_tmpdir --> publish_env___caller_dir_pycache
-    publish_env__cleanup_tmpdir --> publish_env___get_so_suffixes
     publish_env__decode --> publish_env__error_string
     publish_env____init__ --> publish_env__open
     publish_env____init__ --> publish_env__check_encoding
@@ -827,43 +830,6 @@ flowchart TD
     publish_env____init__ --> publish_env__print
     publish_env__write --> publish_env__check_encoding
     publish_env__write --> publish_env__error_string
-    publish_env____init__ --> publish_env__get_reader_class
-    publish_env____init__ --> publish_env__get_writer_class
-    publish_env____init__ --> publish_env__get_parser_class
-    publish_env__set_reader --> publish_env__get_reader_class
-    publish_env__set_writer --> publish_env__get_writer_class
-    publish_env__debugging_dumps --> publish_env__print
-    publish_env__prompt --> publish_env__print
-    publish_env__report_Exception --> publish_env__print
-    publish_env__report_Exception --> publish_env__error_string
-    publish_env__report_SystemMessage --> publish_env__print
-    publish_env__report_UnicodeError --> publish_env__error_string
-    publish_env__publish_cmdline --> publish_env___name_arg_warning
-    publish_env__publish_file --> publish_env___name_arg_warning
-    publish_env__publish_file --> publish_env__publish_programmatically
-    publish_env__publish_string --> publish_env___name_arg_warning
-    publish_env__publish_string --> publish_env__publish_programmatically
-    publish_env__publish_parts --> publish_env___name_arg_warning
-    publish_env__publish_parts --> publish_env__publish_programmatically
-    publish_env__publish_doctree --> publish_env___name_arg_warning
-    publish_env__publish_doctree --> publish_env__publish_programmatically
-    publish_env__publish_from_doctree --> publish_env___name_arg_warning
-    publish_env__rst2something --> publish_env__publish_cmdline
-    publish_env__rst2html --> publish_env__rst2something
-    publish_env__rst2html4 --> publish_env__rst2something
-    publish_env__rst2html5 --> publish_env__rst2something
-    publish_env__rst2latex --> publish_env__rst2something
-    publish_env__rst2man --> publish_env__rst2something
-    publish_env__rst2odt --> publish_env__rst2something
-    publish_env__rst2pseudoxml --> publish_env__rst2something
-    publish_env__rst2s5 --> publish_env__rst2something
-    publish_env__rst2xetex --> publish_env__rst2something
-    publish_env__rst2xml --> publish_env__rst2something
-    publish_env__fix_switch_cases --> publish_env___extract_nested_case
-    publish_env___extract_nested_case --> publish_env__cast
-    publish_env__fix_atomic_specifiers --> publish_env___fix_atomic_specifiers_once
-    publish_env___fix_atomic_specifiers_once --> publish_env__cast
-    publish_env__parse_file --> publish_env__preprocess_file
     publish_env__run --> publish_env__print
     publish_env__get_state --> publish_env__print
     publish_env__check_line --> publish_env__print
@@ -873,6 +839,21 @@ flowchart TD
     publish_env__add_initial_transitions --> publish_env__add_initial_transitions
     publish_env__pprint --> publish_env__print
     publish_env__get_2D_block --> publish_env__column_indices
+    publish_env___validate_local --> publish_env___parse_local_version
+    publish_env____init__ --> publish_env___parse_letter_version
+    publish_env____init__ --> publish_env___parse_local_version
+    publish_env____replace__ --> publish_env___validate_epoch
+    publish_env____replace__ --> publish_env___validate_release
+    publish_env____replace__ --> publish_env___validate_pre
+    publish_env____replace__ --> publish_env___validate_post
+    publish_env____replace__ --> publish_env___validate_dev
+    publish_env____replace__ --> publish_env___validate_local
+    publish_env____str__ --> publish_env__map
+    publish_env__fix_switch_cases --> publish_env___extract_nested_case
+    publish_env___extract_nested_case --> publish_env__cast
+    publish_env__fix_atomic_specifiers --> publish_env___fix_atomic_specifiers_once
+    publish_env___fix_atomic_specifiers_once --> publish_env__cast
+    publish_env__parse_file --> publish_env__preprocess_file
     publish_env__parse_cfgfile --> publish_env__open
     publish_env__traverse --> publish_env__list
     publish_env__next_node --> publish_env__next
@@ -885,8 +866,40 @@ flowchart TD
     publish_env__set_id --> publish_env__make_id
     publish_env__set_duplicate_name_id --> publish_env__dupname
     publish_env__note_substitution_def --> publish_env__whitespace_normalize_name
+    publish_env__note_substitution_def --> publish_env__dupname
+    publish_env__note_substitution_def --> publish_env__fully_normalize_name
+    publish_env__note_substitution_ref --> publish_env__whitespace_normalize_name
+    publish_env__propwidth --> publish_env__validate_colwidth
+    publish_env____init__ --> publish_env__paragraph
+    publish_env__astext --> publish_env__astext
+    publish_env__pformat --> publish_env__pformat
+    publish_env__validate_identifier --> publish_env__make_id
+    publish_env__validate_identifier_list --> publish_env__validate_identifier
+    publish_env__validate_measure --> publish_env__parse_measure
+    publish_env__validate_colwidth --> publish_env__parse_measure
+    publish_env__validate_NMTOKENS --> publish_env__validate_NMTOKEN
+    publish_env__validate_refname_list --> publish_env__split_name_list
+    publish_env__validate_refname_list --> publish_env__whitespace_normalize_name
+    publish_env__validate_encoding_and_error_handler --> publish_env__validate_encoding
+    publish_env__validate_encoding_and_error_handler --> publish_env__validate_encoding_error_handler
+    publish_env__validate_strip_class --> publish_env__validate_comma_separated_list
+    publish_env__validate_strip_class --> publish_env__make_id
+    publish_env__validate_smartquotes_locales --> publish_env__validate_comma_separated_list
+    publish_env__filter_settings_spec --> publish_env__list
+    publish_env__update --> publish_env__hasattr
+    publish_env__process --> publish_env__error_string
+    publish_env__get_config_file_settings --> publish_env__set
+    publish_env__get_config_file_settings --> publish_env__make_paths_absolute
+    publish_env__check_values --> publish_env__make_paths_absolute
+    publish_env__validate_settings --> publish_env__error_string
+    publish_env___build_declarations --> publish_env__fix_atomic_specifiers
+    publish_env___build_declarations --> publish_env__cast
+    publish_env___parse_type_name --> publish_env__cast
+    publish_env___parse_selection_statement --> publish_env__fix_switch_cases
+    publish_env__timer --> publish_env__print
+    publish_env____rich_console__ --> publish_env__loop_last
 
     classDef highCC fill:#ff6b6b,stroke:#c92a2a,color:#fff
     classDef medCC fill:#ffd43b,stroke:#f08c00,color:#000
-    class publish_env__renderToken,publish_env__send,publish_env__resolve_redirects,publish_env__build_digest_header,publish_env___encode_files,publish_env__prepare_url,publish_env__prepare_body,publish_env__super_len,publish_env__should_bypass_proxies,publish_env__parse_email,publish_env__filter,publish_env___cpython_abis,publish_env__cpython_tags,publish_env__mac_platforms,publish_env__collect_type_table,publish_env__write_c_source_to_f,publish_env___generate_cpy_function_decl,publish_env___struct_ctx,publish_env__recompile,publish_env__complete_struct_or_union,publish_env___generate_cpy_function_decl,publish_env___internal_parse,publish_env___parse_decl,publish_env___get_type_and_quals,publish_env___parse_function_type,publish_env___get_struct_union_enum_type,publish_env___parse_constant,publish_env__finish_backend_type,publish_env__run,publish_env__get_indented highCC
-    class publish_env__remove_dot_segments,publish_env__validate,publish_env__resolve_with,publish_env__tokenize,publish_env__encode,publish_env__tokenize,publish_env__split_authority,publish_env____compile__,publish_env__fence,publish_env__configure,publish_env__pretty,publish_env__remove_cookie_by_name,publish_env___find_no_duplicates,publish_env__cert_verify,publish_env__check_compatibility,publish_env__merge_setting,publish_env__should_strip_auth,publish_env__send,publish_env__merge_environment_settings,publish_env__as_dict,publish_env___encode_params,publish_env__iter_lines,publish_env__json,publish_env__get_netrc_auth,publish_env__extract_zipped_paths,publish_env__guess_json_utf,publish_env___is_compatible,publish_env__platform_tags,publish_env__from_raw,publish_env___write_metadata medCC
+    class publish_env__renderToken,publish_env__send,publish_env__build_digest_header,publish_env__resolve_redirects,publish_env__super_len,publish_env__should_bypass_proxies,publish_env___encode_files,publish_env__prepare_url,publish_env__prepare_body,publish_env__parse_email,publish_env__filter,publish_env___cpython_abis,publish_env__cpython_tags,publish_env__mac_platforms,publish_env__collect_type_table,publish_env__write_c_source_to_f,publish_env___generate_cpy_function_decl,publish_env___struct_ctx,publish_env__recompile,publish_env___generate_cpy_function_decl,publish_env__complete_struct_or_union,publish_env___internal_parse,publish_env___parse_decl,publish_env___get_type_and_quals,publish_env___parse_function_type,publish_env___get_struct_union_enum_type,publish_env___parse_constant,publish_env__finish_backend_type,publish_env__run,publish_env__get_indented highCC
+    class publish_env__remove_dot_segments,publish_env__validate,publish_env__resolve_with,publish_env__tokenize,publish_env__split_authority,publish_env__tokenize,publish_env__encode,publish_env__fence,publish_env____compile__,publish_env__configure,publish_env__pretty,publish_env__as_dict,publish_env__remove_cookie_by_name,publish_env___find_no_duplicates,publish_env__check_compatibility,publish_env__cert_verify,publish_env__merge_setting,publish_env__should_strip_auth,publish_env__send,publish_env__merge_environment_settings,publish_env__get_netrc_auth,publish_env__extract_zipped_paths,publish_env__guess_json_utf,publish_env___encode_params,publish_env__iter_lines,publish_env__json,publish_env___is_compatible,publish_env__platform_tags,publish_env__from_raw,publish_env___write_metadata medCC

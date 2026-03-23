@@ -1,0 +1,93 @@
+"""Go import validation."""
+
+from typing import List, Dict, Any
+from vallm.core.proposal import Proposal
+from vallm.scoring import Issue, Severity, ValidationResult
+from .base import BaseImportValidator
+
+# Common Go standard library packages
+_KNOWN_GO_MODULES = {
+    "fmt", "os", "io", "strings", "strconv", "math", "time", "net",
+    "http", "json", "log", "errors", "context", "sync", "bufio", "filepath",
+    "runtime", "reflect", "sort", "bytes", "regexp", "encoding", "base64",
+    "hex", "binary", "json", "xml", "gob", "csv", "syscall", "unsafe",
+    "testing", "template", "html", "database", "sql", "crypto", "hash",
+    "md5", "sha1", "sha256", "sha512", "aes", "cipher", "rand", "rsa",
+}
+
+
+class GoImportValidator(BaseImportValidator):
+    """Go import validator."""
+    
+    def validate(self, proposal: Proposal, context: dict) -> ValidationResult:
+        """Validate Go imports using tree-sitter."""
+        issues = []
+        imports = self.extract_imports(proposal.code)
+        
+        for import_info in imports:
+            module_name = import_info["module"]
+            line = import_info["line"]
+            
+            if not self.module_exists(module_name):
+                issues.append(Issue(
+                    message=f"Package '{module_name}' not found",
+                    severity=Severity.WARNING,
+                    line=line,
+                    rule="go.import.resolvable"
+                ))
+        
+        return self.create_validation_result(
+            issues, len(imports), len(imports) - len(issues), "go"
+        )
+    
+    def extract_imports(self, code: str) -> List[Dict[str, Any]]:
+        """Extract import statements from Go using tree-sitter."""
+        imports = []
+        try:
+            from tree_sitter_language_pack import get_parser
+            parser = get_parser("go")
+            tree = parser.parse(code.encode("utf-8"))
+
+            def walk(node):
+                if node.type == "import_declaration":
+                    for child in node.children:
+                        if child.type == "import_spec":
+                            path_node = child.child_by_field_name("path")
+                            if path_node:
+                                path = path_node.text.decode("utf-8").strip('"')
+                                imports.append({"module": path, "line": node.start_point[0] + 1})
+                        elif child.type == "import_spec_list":
+                            for spec in child.children:
+                                if spec.type == "import_spec":
+                                    path_node = spec.child_by_field_name("path")
+                                    if path_node:
+                                        path = path_node.text.decode("utf-8").strip('"')
+                                        imports.append({"module": path, "line": node.start_point[0] + 1})
+
+                for child in node.children:
+                    walk(child)
+
+            walk(tree.root_node)
+        except Exception:
+            # Fallback: simple regex-based extraction
+            import re
+            pattern = r"import\s*\(?\s*\"([^\"]+)\""
+            for match in re.finditer(pattern, code):
+                imports.append({"module": match.group(1), "line": code[:match.start()].count('\n') + 1})
+
+        return imports
+    
+    def module_exists(self, module_name: str) -> bool:
+        """Check if a Go package is known."""
+        # Standard library
+        top_level = module_name.split("/")[0]
+        if top_level in _KNOWN_GO_MODULES:
+            return True
+        # Common external packages (GitHub, etc.)
+        if module_name.startswith("github.com/"):
+            return True
+        if module_name.startswith("golang.org/"):
+            return True
+        if module_name.startswith("google.golang.org/"):
+            return True
+        return False
