@@ -124,6 +124,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Tree-sitter for all** — syntax validation for 165+ languages
 - **Example 07** — comprehensive multi-language demo with 8 languages
 
+## [0.1.46] - 2026-03-23
+
+### Other
+- Update project/calls.png
+- Update project/compact_flow.mmd
+- Update project/compact_flow.png
+
 ## [0.1.45] - 2026-03-23
 
 ### Other
