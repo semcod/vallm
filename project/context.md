@@ -5,17 +5,17 @@
 - **Project**: vallm
 - **Language**: python
 - **Files**: 30
-- **Lines**: 7323
-- **Functions**: 172
+- **Lines**: 7402
+- **Functions**: 175
 - **Classes**: 31
-- **Avg CC**: 3.4
+- **Avg CC**: 3.5
 - **Critical (CC≥10)**: 8
 
 ## Architecture
 
-### root/ (1 files, 22L, 0 functions)
+### root/ (1 files, 21L, 0 functions)
 
-- `project.sh` — 22L, 0 methods, CC↑0
+- `project.sh` — 21L, 0 methods, CC↑0
 
 ### scripts/ (1 files, 78L, 2 functions)
 
@@ -29,10 +29,10 @@
 - `__init__.py` — 19L, 0 methods, CC↑0
 - `__main__.py` — 5L, 0 methods, CC↑0
 
-### src/vallm/cli/ (4 files, 950L, 36 functions)
+### src/vallm/cli/ (4 files, 1028L, 39 functions)
 
 - `batch_processor.py` — 271L, 12 methods, CC↑23
-- `output_formatters.py` — 343L, 13 methods, CC↑12
+- `output_formatters.py` — 421L, 16 methods, CC↑17
 - `command_handlers.py` — 293L, 11 methods, CC↑4
 - `__init__.py` — 43L, 0 methods, CC↑0
 
@@ -50,11 +50,11 @@
 - `runner.py` — 144L, 4 methods, CC↑4
 - `__init__.py` — 1L, 0 methods, CC↑0
 
-### src/vallm/validators/ (9 files, 1361L, 47 functions)
+### src/vallm/validators/ (9 files, 1363L, 47 functions)
 
 - `complexity.py` — 183L, 4 methods, CC↑12
 - `lint.py` — 182L, 6 methods, CC↑9
-- `security.py` — 253L, 5 methods, CC↑9
+- `security.py` — 255L, 5 methods, CC↑9
 - `logical.py` — 142L, 5 methods, CC↑6
 - `semantic_cache.py` — 187L, 8 methods, CC↑5
 - _4 more files_
@@ -73,6 +73,7 @@
 - **walk** (function, CC=27) ⚠ split
 - **BatchProcessor** (class, CC̄=5.2)
   - `_process_files` CC=23 ⚠ split
+- **output_batch_toon** (function, CC=17) ⚠ split
 - **ComplexityValidator** (class, CC̄=6.8)
 - **GitignoreParser** (class, CC̄=5.7)
 - **SecurityValidator** (class, CC̄=5.4)
@@ -97,7 +98,8 @@ Ret
 | # | Action | Impact | Effort |
 |---|--------|--------|--------|
 | 1 | Split walk (CC=27 → target CC<10) | high | low |
-| 2 | Split BatchProcessor._process_files (CC=23 → target CC<10) | medium | low |
+| 2 | Split output_batch_toon (CC=17 → target CC<10) | medium | low |
+| 3 | Split BatchProcessor._process_files (CC=23 → target CC<10) | medium | low |
 
 ## Context for LLM
 

@@ -3,15 +3,15 @@ project:
   name: vallm
   repo: /home/tom/github/semcod/vallm
   language: python
-  analyzed_at: '2026-03-23T19:57:51Z'
+  analyzed_at: '2026-03-23T20:31:11Z'
   tool: code2llm
   stats:
     files: 30
-    lines: 7323
-    functions: 172
+    lines: 7402
+    functions: 175
     classes: 31
 health:
-  cc_avg: 3.4
+  cc_avg: 3.5
   critical_count: 8
   critical_limit: 10
   duplicates: 0
@@ -27,6 +27,11 @@ health:
     value: 23
     limit: 15
     severity: error
+  - type: cc_exceeded
+    target: output_batch_toon
+    value: 17
+    limit: 15
+    severity: warning
   - type: high_fan_out
     target: JavaScriptImportValidator.extract_imports
     value: 14
@@ -119,10 +124,10 @@ modules:
       flag: split
       fan_out: 12
 - path: src/vallm/cli/output_formatters.py
-  lines: 343
+  lines: 421
   classes: 0
-  methods: 13
-  cc_max: 12
+  methods: 16
+  cc_max: 17
   inbound_deps: 2
   exports:
   - name: output_validate_result
@@ -149,15 +154,25 @@ modules:
   - name: output_batch_text
     type: function
     cc: 7
+  - name: format_error_message
+    type: function
+    cc: 3
+  - name: build_files_data
+    type: function
+    cc: 8
+  - name: build_failed_files_data
+    type: function
+    cc: 2
   - name: output_batch_json
     type: function
-    cc: 6
+    cc: 2
   - name: output_batch_yaml
     type: function
-    cc: 11
+    cc: 10
   - name: output_batch_toon
     type: function
-    cc: 12
+    cc: 17
+    flag: split
   - name: print_summary_header
     type: function
     cc: 1
@@ -238,7 +253,7 @@ modules:
     type: function
     cc: 1
 - path: src/vallm/validators/security.py
-  lines: 253
+  lines: 255
   classes: 1
   methods: 5
   cc_max: 9
@@ -564,7 +579,7 @@ modules:
     type: class
     cc_avg: 1.0
 - path: project.sh
-  lines: 22
+  lines: 21
   classes: 0
   methods: 0
   cc_max: 0
@@ -660,6 +675,10 @@ refactoring:
     impact: high
     effort: low
     module: utils.py
+  - action: Split output_batch_toon (CC=17 → target CC<10)
+    impact: medium
+    effort: low
+    module: output_formatters.py
   - action: Split BatchProcessor._process_files (CC=23 → target CC<10)
     impact: medium
     effort: low
@@ -671,7 +690,7 @@ evolution:
   lines: 5299
   note: Automated analysis
 - date: '2026-03-23'
-  cc_avg: 3.4
+  cc_avg: 3.5
   critical: 8
-  lines: 7323
+  lines: 7402
   note: Automated analysis
