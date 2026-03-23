@@ -1,17 +1,17 @@
-# redup/duplication | 15 groups | 64f 9169L | 2026-03-23
+# redup/duplication | 15 groups | 64f 9173L | 2026-03-23
 
 SUMMARY:
   files_scanned: 64
-  total_lines:   9169
+  total_lines:   9173
   dup_groups:    15
   dup_fragments: 38
-  saved_lines:   202
-  scan_ms:       1840
+  saved_lines:   196
+  scan_ms:       1985
 
 DUPLICATES[15] (ranked by impact):
-  [c9458bf93f705b4b] ! STRU  module_exists  L=14 N=4 saved=42 sim=1.00
-      src/vallm/validators/imports/go_imports.py:71-84  (module_exists)
+  [c9458bf93f705b4b] ! STRU  module_exists  L=12 N=4 saved=36 sim=1.00
       src/vallm/validators/imports/javascript_imports.py:95-106  (module_exists)
+      src/vallm/validators/imports/go_imports.py:71-84  (module_exists)
       src/vallm/validators/imports/rust_imports.py:71-78  (module_exists)
       src/vallm/validators/imports/java_imports.py:58-68  (module_exists)
   [4cc03a1a56378e08] ! STRU  validate  L=32 N=2 saved=32 sim=1.00
@@ -30,19 +30,19 @@ DUPLICATES[15] (ranked by impact):
       examples/10_mcp_ollama_demo/mcp_demo.py:60-71  (log_code)
       examples/11_claude_code_autonomous/claude_autonomous_demo.py:64-75  (log_code)
   [05ee27d24d1ef1ca]   STRU  _get_error_message  L=3 N=4 saved=9 sim=1.00
-      src/vallm/validators/imports/go_imports.py:26-28  (_get_error_message)
       src/vallm/validators/imports/javascript_imports.py:112-114  (_get_error_message)
+      src/vallm/validators/imports/go_imports.py:26-28  (_get_error_message)
       src/vallm/validators/imports/rust_imports.py:25-27  (_get_error_message)
       src/vallm/validators/imports/java_imports.py:25-27  (_get_error_message)
   [832093a05c629e45]   STRU  _get_rule_name  L=3 N=4 saved=9 sim=1.00
-      src/vallm/validators/imports/go_imports.py:30-32  (_get_rule_name)
       src/vallm/validators/imports/javascript_imports.py:116-118  (_get_rule_name)
+      src/vallm/validators/imports/go_imports.py:30-32  (_get_rule_name)
       src/vallm/validators/imports/rust_imports.py:29-31  (_get_rule_name)
       src/vallm/validators/imports/java_imports.py:29-31  (_get_rule_name)
   [41aa6f04f7f1893f]   EXAC  main  L=4 N=3 saved=8 sim=1.00
       examples/12_ollama_simple_demo/iteration_1.py:16-19  (main)
-      examples/12_ollama_simple_demo/best_version.py:16-19  (main)
       examples/12_ollama_simple_demo/iteration_2.py:16-19  (main)
+      examples/12_ollama_simple_demo/best_version.py:16-19  (main)
   [cb5445721e37217d]   STRU  get_language  L=3 N=3 saved=6 sim=1.00
       src/vallm/validators/imports/go_imports.py:22-24  (get_language)
       src/vallm/validators/imports/rust_imports.py:21-23  (get_language)
@@ -65,7 +65,7 @@ DUPLICATES[15] (ranked by impact):
 
 REFACTOR[15] (ranked by priority):
   [1] ○ extract_function   → src/vallm/validators/imports/utils/module_exists.py
-      WHY: 4 occurrences of 14-line block across 4 files — saves 42 lines
+      WHY: 4 occurrences of 12-line block across 4 files — saves 36 lines
       FILES: src/vallm/validators/imports/go_imports.py, src/vallm/validators/imports/java_imports.py, src/vallm/validators/imports/javascript_imports.py, src/vallm/validators/imports/rust_imports.py
   [2] ◐ extract_function   → src/vallm/validators/utils/validate.py
       WHY: 2 occurrences of 32-line block across 2 files — saves 32 lines
@@ -112,4 +112,4 @@ REFACTOR[15] (ranked by priority):
 
 METRICS-TARGET:
   dup_groups:  15 → 0
-  saved_lines: 202 lines recoverable
+  saved_lines: 196 lines recoverable

@@ -5,13 +5,13 @@ NEXT[4] (ranked by impact):
       WHY: 650L, 1 classes, max CC=12
       EFFORT: ~4h  IMPACT: 7800
 
-  [2] !! SPLIT-FUNC      walk  CC=27  fan=11
+  [2] !! SPLIT-FUNC      BatchProcessor._process_files  CC=26  fan=12
+      WHY: CC=26 exceeds 15
+      EFFORT: ~1h  IMPACT: 312
+
+  [3] !! SPLIT-FUNC      walk  CC=27  fan=11
       WHY: CC=27 exceeds 15
       EFFORT: ~1h  IMPACT: 297
-
-  [3] !  SPLIT-FUNC      BatchProcessor._process_files  CC=24  fan=12
-      WHY: CC=24 exceeds 15
-      EFFORT: ~1h  IMPACT: 288
 
   [4] !  SPLIT-FUNC      output_batch_toon  CC=17  fan=5
       WHY: CC=17 exceeds 15
@@ -29,4 +29,4 @@ METRICS-TARGET:
   hub-types:   0 → ≤0
 
 HISTORY:
-  prev CC̄=3.3 → now CC̄=3.4
+  prev CC̄=3.4 → now CC̄=3.4
