@@ -3,16 +3,16 @@ project:
   name: vallm
   repo: /home/tom/github/semcod/vallm
   language: python
-  analyzed_at: '2026-03-23T19:37:37Z'
+  analyzed_at: '2026-03-23T19:48:30Z'
   tool: code2llm
   stats:
     files: 30
-    lines: 7313
+    lines: 7325
     functions: 172
     classes: 31
 health:
   cc_avg: 3.4
-  critical_count: 7
+  critical_count: 8
   critical_limit: 10
   duplicates: 0
   cycles: 0
@@ -24,9 +24,9 @@ health:
     severity: critical
   - type: cc_exceeded
     target: BatchProcessor._process_files
-    value: 18
+    value: 23
     limit: 15
-    severity: warning
+    severity: error
   - type: high_fan_out
     target: JavaScriptImportValidator.extract_imports
     value: 14
@@ -48,17 +48,17 @@ health:
     limit: 10
     severity: warning
   - type: high_fan_out
+    target: BatchProcessor._process_files
+    value: 12
+    limit: 10
+    severity: warning
+  - type: high_fan_out
     target: main
     value: 11
     limit: 10
     severity: warning
   - type: high_fan_out
     target: SemanticValidator._parse_response
-    value: 11
-    limit: 10
-    severity: warning
-  - type: high_fan_out
-    target: BatchProcessor._process_files
     value: 11
     limit: 10
     severity: warning
@@ -107,17 +107,17 @@ modules:
   lines: 271
   classes: 1
   methods: 12
-  cc_max: 18
+  cc_max: 23
   inbound_deps: 0
   exports:
   - name: BatchProcessor
     type: class
-    cc_avg: 4.8
+    cc_avg: 5.2
     methods:
     - name: _process_files
-      cc: 18
+      cc: 23
       flag: split
-      fan_out: 11
+      fan_out: 12
 - path: src/vallm/validators/complexity.py
   lines: 183
   classes: 1
@@ -172,7 +172,7 @@ modules:
     cc: 11
   - name: output_batch_toon
     type: function
-    cc: 7
+    cc: 11
   - name: print_summary_header
     type: function
     cc: 1
@@ -401,7 +401,7 @@ modules:
     type: function
     cc: 2
 - path: src/vallm/cli/command_handlers.py
-  lines: 297
+  lines: 299
   classes: 0
   methods: 11
   cc_max: 4
@@ -564,7 +564,7 @@ modules:
     type: class
     cc_avg: 1.0
 - path: project.sh
-  lines: 18
+  lines: 20
   classes: 0
   methods: 0
   cc_max: 0
@@ -635,15 +635,15 @@ hotspots:
   fan_out: 12
   note: "Parse ruff text output as fallback.\n\nArgs:\n    output: Ruff text output\n\
     \    \nRet"
+- name: BatchProcessor._process_files
+  fan_out: 12
+  note: Analysis pipeline, 12 stages
 - name: main
   fan_out: 11
   note: Orchestrates 11 calls
 - name: SemanticValidator._parse_response
   fan_out: 11
   note: Parse LLM JSON response into a ValidationResult.
-- name: BatchProcessor._process_files
-  fan_out: 11
-  note: Analysis pipeline, 11 stages
 - name: SandboxRunner._run_docker
   fan_out: 11
   note: Run code in a Docker container (requires docker package).
@@ -660,7 +660,7 @@ refactoring:
     impact: high
     effort: low
     module: utils.py
-  - action: Split BatchProcessor._process_files (CC=18 → target CC<10)
+  - action: Split BatchProcessor._process_files (CC=23 → target CC<10)
     impact: medium
     effort: low
     module: batch_processor.py
@@ -672,6 +672,6 @@ evolution:
   note: Automated analysis
 - date: '2026-03-23'
   cc_avg: 3.4
-  critical: 7
-  lines: 7313
+  critical: 8
+  lines: 7325
   note: Automated analysis

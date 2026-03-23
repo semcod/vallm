@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 clear
+.venv/bin/pip install -e .
 .venv/bin/pip install redup --upgrade
 .venv/bin/pip install glon --upgrade
 .venv/bin/pip install goal --upgrade
@@ -16,3 +17,5 @@ rm project/analysis.yaml
 .venv/bin/redup scan . --format toon --output ./project
 #  --parallel --functions-only --incremental --min-lines 5
 #.venv/bin/redup scan . --format toon --output ./project --parallel --incremental --functions-only
+.venv/bin/vallm batch . --recursive --output toon > ./project/validation.toon
+#.venv/bin/vallm batch . --recursive --no-imports --no-complexity

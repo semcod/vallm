@@ -107,16 +107,10 @@ def batch_command(
     fail_fast: bool = typer.Option(False, "--fail-fast", help="Stop on first failure"),
     verbose: bool = typer.Option(False, "--verbose", "-v", help="Show detailed validation results for each file"),
     show_issues: bool = typer.Option(False, "--show-issues", "-i", help="Show issues for failed files"),
-    parallel: bool = typer.Option(False, "--parallel", help="Enable parallel processing for faster validation"),
 ) -> None:
     """Validate multiple files with auto-detected languages."""
-    # Use optimized processor for parallel processing
-    if parallel:
-        from vallm.cli.optimized_batch_processor import create_optimized_batch_processor
-        processor = create_optimized_batch_processor(console)
-    else:
-        from vallm.cli.batch_processor import BatchProcessor
-        processor = BatchProcessor(console)
+    from vallm.cli.batch_processor import BatchProcessor
+    processor = BatchProcessor(console)
     
     settings = build_batch_settings(enable_semantic, enable_security, model, verbose, no_imports, no_complexity)
     

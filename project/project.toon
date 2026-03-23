@@ -1,4 +1,4 @@
-# vallm | 95f 11931L | python:95
+# vallm | 95f 11937L | python:95
 # Keys: M=modules, D=details, i=imports, c=classes, f=functions, m=methods
 M[95]:
   examples/01_basic_validation/main.py,63
@@ -41,9 +41,9 @@ M[95]:
   src/vallm/cli.py,5
   src/vallm/cli/__init__.py,33
   src/vallm/cli/batch_processor.py,208
-  src/vallm/cli/command_handlers.py,207
-  src/vallm/cli/output_formatters.py,284
-  src/vallm/cli/settings_builders.py,40
+  src/vallm/cli/command_handlers.py,204
+  src/vallm/cli/output_formatters.py,285
+  src/vallm/cli/settings_builders.py,44
   src/vallm/config.py,37
   src/vallm/core/__init__.py,2
   src/vallm/core/ast_compare.py,98
@@ -87,7 +87,7 @@ M[95]:
   tests/test_imports.py,25
   tests/test_installation.py,206
   tests/test_languages.py,204
-  tests/test_performance.py,146
+  tests/test_performance.py,148
   tests/test_pipeline.py,39
   tests/test_plugins.py,116
   tests/test_sandbox.py,93
@@ -340,7 +340,7 @@ D:
     i: pathlib.Path,typing.Optional,vallm.config.VallmSettings
     e: build_validate_settings,build_batch_settings
     build_validate_settings(config:Optional[Path];enable_semantic:bool;enable_security:bool;model:Optional[str];verbose:bool)->VallmSettings
-    build_batch_settings(enable_semantic:bool;enable_security:bool;model:Optional[str];verbose:bool)->VallmSettings
+    build_batch_settings(enable_semantic:bool;enable_security:bool;model:Optional[str];verbose:bool;no_imports:bool=False;no_complexity:bool=False)->VallmSettings
   src/vallm/config.py:
     i: pathlib.Path,pydantic.Field,pydantic_settings.{BaseSettings,SettingsConfigDict},typing.Optional
     e: VallmSettings

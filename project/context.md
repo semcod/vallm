@@ -5,17 +5,17 @@
 - **Project**: vallm
 - **Language**: python
 - **Files**: 30
-- **Lines**: 7313
+- **Lines**: 7325
 - **Functions**: 172
 - **Classes**: 31
 - **Avg CC**: 3.4
-- **Critical (CC≥10)**: 7
+- **Critical (CC≥10)**: 8
 
 ## Architecture
 
-### root/ (1 files, 18L, 0 functions)
+### root/ (1 files, 20L, 0 functions)
 
-- `project.sh` — 18L, 0 methods, CC↑0
+- `project.sh` — 20L, 0 methods, CC↑0
 
 ### scripts/ (1 files, 78L, 2 functions)
 
@@ -29,11 +29,11 @@
 - `__init__.py` — 19L, 0 methods, CC↑0
 - `__main__.py` — 5L, 0 methods, CC↑0
 
-### src/vallm/cli/ (4 files, 952L, 36 functions)
+### src/vallm/cli/ (4 files, 954L, 36 functions)
 
-- `batch_processor.py` — 271L, 12 methods, CC↑18
+- `batch_processor.py` — 271L, 12 methods, CC↑23
 - `output_formatters.py` — 341L, 13 methods, CC↑11
-- `command_handlers.py` — 297L, 11 methods, CC↑4
+- `command_handlers.py` — 299L, 11 methods, CC↑4
 - `__init__.py` — 43L, 0 methods, CC↑0
 
 ### src/vallm/core/ (6 files, 778L, 26 functions)
@@ -71,8 +71,8 @@
 ## Key Exports
 
 - **walk** (function, CC=27) ⚠ split
-- **BatchProcessor** (class, CC̄=4.8)
-  - `_process_files` CC=18 ⚠ split
+- **BatchProcessor** (class, CC̄=5.2)
+  - `_process_files` CC=23 ⚠ split
 - **ComplexityValidator** (class, CC̄=6.8)
 - **GitignoreParser** (class, CC̄=5.7)
 - **SecurityValidator** (class, CC̄=5.4)
@@ -88,16 +88,16 @@ Args:
     output: Ruff text output
     
 Ret
+- **BatchProcessor._process_files** — fan-out=12: Analysis pipeline, 12 stages
 - **main** — fan-out=11: Orchestrates 11 calls
 - **SemanticValidator._parse_response** — fan-out=11: Parse LLM JSON response into a ValidationResult.
-- **BatchProcessor._process_files** — fan-out=11: Analysis pipeline, 11 stages
 
 ## Refactoring Priorities
 
 | # | Action | Impact | Effort |
 |---|--------|--------|--------|
 | 1 | Split walk (CC=27 → target CC<10) | high | low |
-| 2 | Split BatchProcessor._process_files (CC=18 → target CC<10) | medium | low |
+| 2 | Split BatchProcessor._process_files (CC=23 → target CC<10) | medium | low |
 
 ## Context for LLM
 

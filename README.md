@@ -136,26 +136,63 @@ vallm check src/main.go
 vallm info
 ```
 
+### Fast Validation Options
+
+When validating large projects (100+ files), use these options to speed up validation:
+
+```bash
+# Fastest - syntax only (skip imports and complexity)
+vallm batch . --recursive --no-imports --no-complexity
+
+# Fast - skip import validation (often the slowest)
+vallm batch . --recursive --no-imports
+
+# Parallel processing for multi-core speedup
+vallm batch . --recursive --parallel
+
+# Combine for maximum speed
+vallm batch . --recursive --parallel --no-imports --no-complexity
+
+# Quick syntax check only (single files)
+vallm check src/proxym/config.py
+```
+
+| Option | Speed Impact | Description |
+|--------|--------------|-------------|
+| `--no-imports` | **High** | Skip import resolution (slowest validator) |
+| `--no-complexity` | **Medium** | Skip complexity analysis (radon/lizard) |
+| `--parallel` | **High** | Process files in parallel (multi-core) |
+| `--security` | **Low** | Add security checks (fast pattern matching) |
+
+**Recommendation for CI/CD:**
+```bash
+# Fast validation for quick feedback
+vallm batch src/ --recursive --no-imports --parallel
+
+# Full validation before merge (slower but thorough)
+vallm batch src/ --recursive --parallel
+```
+
 ### Generate Validation Summary File
 
 ```bash
 # JSON summary for entire project (with per-file details and issues)
-vallm batch . --recursive --format json > validation-summary.json
+vallm batch . --recursive --output json > validation-summary.json
 
 # YAML summary for src/ directory (with per-file details and issues)
-vallm batch src/ --recursive --format yaml > validation-summary.yaml
+vallm batch src/ --recursive --output yaml > validation-summary.yaml
 
 # TOON format (compact, human-readable) with per-file details
-vallm batch . --recursive --format toon > validation-summary.toon
+vallm batch . --recursive --output toon > validation-summary.toon
 
 # Text format with security checks
-vallm batch . --recursive --format text --security > validation-report.txt
+vallm batch . --recursive --output text --security > validation-report.txt
 
 # Full validation with semantic review - save to file
-vallm batch . --recursive --semantic --model qwen2.5-coder:7b --format json > full-validation.json
+vallm batch . --recursive --semantic --model qwen2.5-coder:7b --output json > full-validation.json
 
 # Tee output to both console and file
-vallm batch . --recursive --format json | tee validation-summary.json
+vallm batch . --recursive --output json | tee validation-summary.json
 ```
 
 **Output Structure (JSON/YAML/TOON formats now include per-file details):**

@@ -74,7 +74,7 @@ def output_json(result: "ValidationResult") -> None:
         "score": result.weighted_score,
         "issues": [
             {
-                "validator": issue.validator,
+                "rule": issue.rule,
                 "severity": issue.severity.value,
                 "message": issue.message,
                 "line": issue.line,
@@ -150,7 +150,7 @@ def output_batch_rich(
     if failed_files:
         console.print("\n[red]Failed Files:[/red]")
         for file_path, error in failed_files:
-            console.print(f"  [red]•[/{red}] {file_path}: {error}")
+            console.print(f"  [red]•[/red] {file_path}: {error}")
 
 
 def output_batch_text(
@@ -202,7 +202,7 @@ def output_batch_json(
                 "score": r.weighted_score,
                 "issues": [
                     {
-                        "validator": issue.validator,
+                        "rule": issue.rule,
                         "severity": issue.severity.value,
                         "message": issue.message,
                         "line": issue.line,
@@ -260,7 +260,7 @@ def output_batch_yaml(
                     for issue in r.all_issues:
                         line_info = f", line: {issue.line}" if issue.line else ""
                         col_info = f", column: {issue.column}" if issue.column else ""
-                        print(f"      - validator: {issue.validator}")
+                        print(f"      - rule: {issue.rule}")
                         print(f"        severity: {issue.severity.value}")
                         print(f"        message: \"{issue.message}\"{line_info}{col_info}")
         print()
@@ -302,7 +302,9 @@ def output_batch_toon(
                     print(f"      issues: {len(r.all_issues)}")
                     for issue in r.all_issues:
                         location = f"@{issue.line}" if issue.line else ""
-                        print(f"        [{issue.severity.value}] {issue.validator}: {issue.message}{location}")
+                        # Use rule instead of validator since Issue doesn't have validator attribute
+                        validator_name = issue.rule or "unknown"
+                        print(f"        [{issue.severity.value}] {validator_name}: {issue.message}{location}")
         print()
 
     if failed_files:

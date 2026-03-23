@@ -1,4 +1,4 @@
-# vallm | 1418f 10098L | python:72,shell:8
+# vallm | 1418f 10102L | python:72,shell:8
 # Keys: M=modules, D=details, i=imports, c=classes, f=functions, m=methods
 M[80]:
   examples/__init__.py,1
@@ -42,13 +42,13 @@ M[80]:
   examples/utils/logging_utils.py,89
   examples/utils/save_analysis_data.py,25
   examples/utils/validation_runner.py,104
-  project.sh,18
+  project.sh,20
   scripts/bump_version.py,78
   src/vallm/__init__.py,19
   src/vallm/__main__.py,5
   src/vallm/cli/__init__.py,43
   src/vallm/cli/batch_processor.py,271
-  src/vallm/cli/command_handlers.py,297
+  src/vallm/cli/command_handlers.py,299
   src/vallm/cli/output_formatters.py,341
   src/vallm/config.py,58
   src/vallm/core/__init__.py,3
@@ -317,12 +317,12 @@ D:
   examples/03_security_check/main.py:
     e: main
     main()
-  src/vallm/validators/semantic.py:
-    e: SemanticValidator
-    SemanticValidator(BaseValidator): __init__(1),validate(2),_build_prompt(1),_call_llm(1),_call_ollama(1),_call_litellm(1),_call_http(1),_parse_response(1),_extract_json_from_response(1),_create_parse_error_result(1),_create_json_error_result(1),_parse_scores(1),_parse_issues(1),_parse_severity(1),_parse_line_number(1)  # Tier 3: LLM-as-judge semantic code review...
   src/vallm/validators/syntax.py:
     e: SyntaxValidator
     SyntaxValidator(BaseValidator): validate(2),_validate_python(1),_validate_treesitter(2)  # Tier 1: Fast syntax validation...
+  src/vallm/validators/semantic.py:
+    e: SemanticValidator
+    SemanticValidator(BaseValidator): __init__(1),validate(2),_build_prompt(1),_call_llm(1),_call_ollama(1),_call_litellm(1),_call_http(1),_parse_response(1),_extract_json_from_response(1),_create_parse_error_result(1),_create_json_error_result(1),_parse_scores(1),_parse_issues(1),_parse_severity(1),_parse_line_number(1)  # Tier 3: LLM-as-judge semantic code review...
   src/vallm/core/ast_compare.py:
     e: parse_code,parse_python_ast,normalize_python_ast,python_ast_similarity,tree_sitter_node_count,tree_sitter_error_count,structural_diff_summary
     parse_code(code;language)
@@ -343,7 +343,7 @@ D:
     e: validate_command,check_command,batch_command,info_command,_load_code,_load_reference,_detect_and_log_language,_build_proposal,_exit_on_verdict,_show_language_info,_show_general_info
     validate_command(code;file;language;reference;config;enable_semantic;enable_security;model;output_format;verbose;exit_on_verdict)
     check_command(code;file;language;output_format)
-    batch_command(paths;recursive;include;exclude;use_gitignore;enable_semantic;enable_security;model;output_format;fail_fast;verbose;show_issues;parallel)
+    batch_command(paths;recursive;include;exclude;use_gitignore;enable_semantic;enable_security;no_imports;no_complexity;model;output_format;fail_fast;verbose;show_issues;parallel)
     info_command(language;clear_cache)
     _load_code(file;code)
     _load_reference(reference)
@@ -358,15 +358,15 @@ D:
   src/vallm/validators/imports/rust_imports.py:
     e: RustImportValidator
     RustImportValidator(BaseImportValidator): get_language(0),_get_error_message(1),_get_rule_name(0),extract_imports(1),module_exists(1)  # Rust import validator...
-  src/vallm/config.py:
-    e: VallmSettings
-    VallmSettings(BaseSettings): from_toml(1)  # vallm configuration with layered sources: defaults → TOML → ...
   examples/utils/extract_code_from_response.py:
     e: extract_code_from_response
     extract_code_from_response(response)
   examples/12_ollama_simple_demo/utils/calculate_total.py:
     e: calculate_total
     calculate_total(items)
+  src/vallm/config.py:
+    e: VallmSettings
+    VallmSettings(BaseSettings): from_toml(1)  # vallm configuration with layered sources: defaults → TOML → ...
   src/vallm/validators/imports/wrapper.py:
     e: ImportValidator
     ImportValidator(BaseValidator): validate(2)  # Backward compatibility wrapper for the refactored import val...
@@ -439,6 +439,7 @@ Attributes:
   examples/11_claude_code_autonomous/docker-entrypoint.sh:
   examples/12_ollama_simple_demo/run.sh:
   examples/12_ollama_simple_demo/docker-entrypoint.sh:
+  examples/10_mcp_ollama_demo/docker-entrypoint.sh:
   examples/10_mcp_ollama_demo/run.sh:
     e: print_section,print_step,print_success,print_warning,print_error,print,print,print,print
     print_section()
@@ -450,4 +451,3 @@ Attributes:
     print()
     print()
     print()
-  examples/10_mcp_ollama_demo/docker-entrypoint.sh:

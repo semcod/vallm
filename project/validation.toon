@@ -1,0 +1,1278 @@
+Using .gitignore from .
+Excluded 29479 files by .gitignore
+# vallm batch | 0f | 83✓ 841✗
+
+SUMMARY:
+  total: 0
+  passed: 83
+  failed: 841
+
+FILES:
+  [yaml]
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+  [toml]
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+  [bash]
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+  [python]
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 0.98
+      issues: 1
+        [warning] complexity.maintainability: Low maintainability index: 7.5 (threshold: 20)
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✗ unknown
+      verdict: fail
+      score: 0.91
+      issues: 2
+        [error] python.import.resolvable: Module 'bandit.core.manager' not found@219
+        [error] python.import.resolvable: Module 'bandit.core.config' not found@220
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✗ unknown
+      verdict: fail
+      score: 0.57
+      issues: 1
+        [error] python.import.resolvable: Module 'imports' not found@8
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 0.97
+      issues: 2
+        [warning] complexity.cyclomatic: _process_files has cyclomatic complexity 23 (max: 15)@186
+        [warning] complexity.lizard_cc: _process_files: CC=23 exceeds limit 15@186
+    ✗ unknown
+      verdict: fail
+      score: 0.95
+      issues: 1
+        [error] python.import.resolvable: Module 'docker' not found@104
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✗ unknown
+      verdict: fail
+      score: 0.93
+      issues: 1
+        [error] python.import.resolvable: Module 'base' not found@6
+    ✗ unknown
+      verdict: fail
+      score: 0.93
+      issues: 1
+        [error] python.import.resolvable: Module 'base' not found@8
+    ✗ unknown
+      verdict: fail
+      score: 0.93
+      issues: 1
+        [error] python.import.resolvable: Module 'base' not found@6
+    ✗ unknown
+      verdict: fail
+      score: 0.89
+      issues: 1
+        [error] python.import.resolvable: Module 'base' not found@6
+    ✗ unknown
+      verdict: fail
+      score: 0.57
+      issues: 9
+        [error] python.import.resolvable: Module 'base' not found@3
+        [error] python.import.resolvable: Module 'factory' not found@4
+        [error] python.import.resolvable: Module 'python_imports' not found@5
+        [error] python.import.resolvable: Module 'javascript_imports' not found@6
+        [error] python.import.resolvable: Module 'go_imports' not found@7
+        [error] python.import.resolvable: Module 'rust_imports' not found@8
+        [error] python.import.resolvable: Module 'java_imports' not found@9
+        [error] python.import.resolvable: Module 'c_imports' not found@10
+        [error] python.import.resolvable: Module 'wrapper' not found@13
+    ✗ unknown
+      verdict: fail
+      score: 0.93
+      issues: 1
+        [error] python.import.resolvable: Module 'base' not found@6
+    ✓ unknown
+      verdict: pass
+      score: 0.97
+      issues: 2
+        [warning] complexity.cyclomatic: walk has cyclomatic complexity 27 (max: 15)@8
+        [warning] complexity.lizard_cc: walk: CC=27 exceeds limit 15@8
+    ✗ unknown
+      verdict: fail
+      score: 0.91
+      issues: 1
+        [error] python.import.resolvable: Module 'factory' not found@7
+    ✗ unknown
+      verdict: fail
+      score: 0.62
+      issues: 7
+        [error] python.import.resolvable: Module 'base' not found@4
+        [error] python.import.resolvable: Module 'python_imports' not found@5
+        [error] python.import.resolvable: Module 'javascript_imports' not found@6
+        [error] python.import.resolvable: Module 'go_imports' not found@7
+        [error] python.import.resolvable: Module 'rust_imports' not found@8
+        [error] python.import.resolvable: Module 'java_imports' not found@9
+        [error] python.import.resolvable: Module 'c_imports' not found@10
+    ✗ unknown
+      verdict: fail
+      score: 0.89
+      issues: 1
+        [error] python.import.resolvable: Module 'base' not found@6
+    ✗ unknown
+      verdict: fail
+      score: 0.91
+      issues: 1
+        [error] python.import.resolvable: Module 'examples.utils' not found@58
+    ✗ unknown
+      verdict: fail
+      score: 0.89
+      issues: 1
+        [error] python.import.resolvable: Module 'examples.utils' not found@14
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✗ unknown
+      verdict: fail
+      score: 0.97
+      issues: 1
+        [error] python.import.resolvable: Module 'examples.utils' not found@22
+    ✗ unknown
+      verdict: fail
+      score: 0.91
+      issues: 1
+        [error] python.import.resolvable: Module 'examples.utils' not found@9
+    ✗ unknown
+      verdict: fail
+      score: 0.97
+      issues: 1
+        [error] python.import.resolvable: Module 'examples.utils' not found@19
+    ✗ unknown
+      verdict: fail
+      score: 0.89
+      issues: 1
+        [error] python.import.resolvable: Module 'utils' not found@48
+    ✗ unknown
+      verdict: fail
+      score: 0.89
+      issues: 1
+        [error] python.import.resolvable: Module 'utils' not found@48
+    ✗ unknown
+      verdict: fail
+      score: 0.89
+      issues: 1
+        [error] python.import.resolvable: Module 'utils' not found@48
+    ✗ unknown
+      verdict: fail
+      score: 0.94
+      issues: 1
+        [error] python.import.resolvable: Module 'examples.utils' not found@61
+    ✗ unknown
+      verdict: fail
+      score: 0.89
+      issues: 1
+        [error] python.import.resolvable: Module 'examples.utils' not found@9
+    ✗ unknown
+      verdict: fail
+      score: 0.91
+      issues: 1
+        [error] python.import.resolvable: Module 'examples.utils' not found@9
+    ✗ unknown
+      verdict: fail
+      score: 0.91
+      issues: 1
+        [error] python.import.resolvable: Module 'examples.utils' not found@58
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✗ unknown
+      verdict: fail
+      score: 0.96
+      issues: 1
+        [error] python.import.resolvable: Module 'examples.utils' not found@22
+    ✗ unknown
+      verdict: fail
+      score: 0.95
+      issues: 1
+        [error] python.import.resolvable: Module 'extract_code_from_response' not found@12
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✗ unknown
+      verdict: fail
+      score: 0.64
+      issues: 5
+        [error] python.import.resolvable: Module 'calculate_total' not found@5
+        [error] python.import.resolvable: Module 'load_config' not found@6
+        [error] python.import.resolvable: Module 'main' not found@7
+        [error] python.import.resolvable: Module 'process_user_input' not found@8
+        [error] python.import.resolvable: Module 'save_data' not found@9
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✗ unknown
+      verdict: fail
+      score: 0.71
+      issues: 4
+        [error] python.import.resolvable: Module 'load_config' not found@10
+        [error] python.import.resolvable: Module 'process_user_input' not found@11
+        [error] python.import.resolvable: Module 'calculate_total' not found@12
+        [error] python.import.resolvable: Module 'save_data' not found@13
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+  [powershell]
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+  [json]
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+
+FAILED:
+  ✗ CONTRIBUTING.md: Error: 'NoneType' object has no attribute 'value'
+  ✗ project.toon: Error: 'NoneType' object has no attribute 'value'
+  ✗ Makefile: Error: 'NoneType' object has no attribute 'value'
+  ✗ VERSION: Error: 'NoneType' object has no attribute 'value'
+  ✗ TICKET: Error: 'NoneType' object has no attribute 'value'
+  ✗ LICENSE: Error: 'NoneType' object has no attribute 'value'
+  ✗ TODO.md: Error: 'NoneType' object has no attribute 'value'
+  ✗ Dockerfile.test: Error: 'NoneType' object has no attribute 'value'
+  ✗ .gitignore: Error: 'NoneType' object has no attribute 'value'
+  ✗ CHANGELOG.md: Error: 'NoneType' object has no attribute 'value'
+  ✗ README.md: Error: 'NoneType' object has no attribute 'value'
+  ✗ docs/README.md: Error: 'NoneType' object has no attribute 'value'
+  ✗ docs/TESTING.md: Error: 'NoneType' object has no attribute 'value'
+  ✗ code2llm_output/context.md: Error: 'NoneType' object has no attribute 'value'
+  ✗ code2llm_output/README.md: Error: 'NoneType' object has no attribute 'value'
+  ✗ code2llm_output/analysis.toon: Error: 'NoneType' object has no attribute 'value'
+  ✗ project2/duplication.toon: Error: 'NoneType' object has no attribute 'value'
+  ✗ examples/README.md: Error: 'NoneType' object has no attribute 'value'
+  ✗ publish-env/pyvenv.cfg: Error: 'NoneType' object has no attribute 'value'
+  ✗ publish-env/.gitignore: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/index: Unable to read file (binary?)
+  ✗ .git/packed-refs: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/config: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/COMMIT_EDITMSG: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/HEAD: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/description: Error: 'NoneType' object has no attribute 'value'
+  ✗ project/validation.toon: Error: 'NoneType' object has no attribute 'value'
+  ✗ project/project.toon: Error: 'NoneType' object has no attribute 'value'
+  ✗ project/compact_flow.mmd: Error: 'NoneType' object has no attribute 'value'
+  ✗ project/map.toon: Error: 'NoneType' object has no attribute 'value'
+  ✗ project/calls.mmd: Error: 'NoneType' object has no attribute 'value'
+  ✗ project/index.html: Error: 'NoneType' object has no attribute 'value'
+  ✗ project/flow.toon: Error: 'NoneType' object has no attribute 'value'
+  ✗ project/context.md: Error: 'NoneType' object has no attribute 'value'
+  ✗ project/prompt.txt: Error: 'NoneType' object has no attribute 'value'
+  ✗ project/evolution.toon: Error: 'NoneType' object has no attribute 'value'
+  ✗ project/flow.png: Unable to read file (binary?)
+  ✗ project/calls.png: Unable to read file (binary?)
+  ✗ project/flow.mmd: Error: 'NoneType' object has no attribute 'value'
+  ✗ project/dashboard.html: Error: 'NoneType' object has no attribute 'value'
+  ✗ project/compact_flow.png: Unable to read file (binary?)
+  ✗ project/README.md: Error: 'NoneType' object has no attribute 'value'
+  ✗ project/analysis.toon: Error: 'NoneType' object has no attribute 'value'
+  ✗ project/duplication.toon: Error: 'NoneType' object has no attribute 'value'
+  ✗ .ruff_cache/CACHEDIR.TAG: Error: 'NoneType' object has no attribute 'value'
+  ✗ .ruff_cache/.gitignore: Error: 'NoneType' object has no attribute 'value'
+  ✗ .github/workflows/publish.yml: Error: 'NoneType' object has no attribute 'value'
+  ✗ .github/workflows/comprehensive-tests.yml: Error: 'NoneType' object has no attribute 'value'
+  ✗ .github/workflows/ci.yml: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/hooks/post-update.sample: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/hooks/pre-applypatch.sample: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/hooks/push-to-checkout.sample: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/hooks/pre-commit.sample: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/hooks/pre-receive.sample: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/hooks/applypatch-msg.sample: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/hooks/commit-msg.sample: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/hooks/pre-push.sample: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/hooks/prepare-commit-msg.sample: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/hooks/pre-merge-commit.sample: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/hooks/pre-rebase.sample: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/hooks/update.sample: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/hooks/sendemail-validate.sample: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/hooks/fsmonitor-watchman.sample: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/info/exclude: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/objects/72/d49e01609dd15012e22d7e4124194c43f7d873: Unable to read file (binary?)
+  ✗ .git/objects/72/1300d55e4d44da47b3f70f957becbbe1b239d5: Unable to read file (binary?)
+  ✗ .git/objects/48/f8733821db87ba901337a2deb849650f335e76: Unable to read file (binary?)
+  ✗ .git/objects/48/2f634ea40c823a88b7bd6f3d3350282baab049: Unable to read file (binary?)
+  ✗ .git/objects/23/1f07729753dc46a7d251ca7a38bc8cebc335df: Unable to read file (binary?)
+  ✗ .git/objects/23/0c31d73f8b44790d4b74ba4848dd97c6230c36: Unable to read file (binary?)
+  ✗ .git/objects/23/65fdc7a0a0fd0e36a5f5ef01c2dfdccea7a8ed: Unable to read file (binary?)
+  ✗ .git/objects/23/5fbee1b95d34ac5e4863d2364146ab7f1ba977: Unable to read file (binary?)
+  ✗ .git/objects/e8/e277f2fab09359482bc93312975016553c59ff: Unable to read file (binary?)
+  ✗ .git/objects/e8/dff3cacf82193fbe5b5f40ad01247b416024d3: Unable to read file (binary?)
+  ✗ .git/objects/e8/2dab5c1fe28d9c1a0089a6cef6415a25667cbe: Unable to read file (binary?)
+  ✗ .git/objects/63/0634abe97d39aaef437291279689cfd9a907a2: Unable to read file (binary?)
+  ✗ .git/objects/63/8c9d454915c779c23fc40a8cc729e0012fb2cf: Unable to read file (binary?)
+  ✗ .git/objects/88/14b6fd019a89329a75eb00fd1280ef68a0b3fd: Unable to read file (binary?)
+  ✗ .git/objects/88/5eee2ca572482edabde176369a0573d2197dac: Unable to read file (binary?)
+  ✗ .git/objects/64/b60751e531c0b018f0b6acf48c6d59c8d7ddd5: Unable to read file (binary?)
+  ✗ .git/objects/64/7a41363bea42492865d7c5d74ebbaf9039807c: Unable to read file (binary?)
+  ✗ .git/objects/64/7718645fc28556e536f7780ad18ede2525948f: Unable to read file (binary?)
+  ✗ .git/objects/5e/630c66b37a53f348b7db82c173987c15594423: Unable to read file (binary?)
+  ✗ .git/objects/ee/edddaaeb854b1560cc33e2108647b8a1cbad52: Unable to read file (binary?)
+  ✗ .git/objects/ee/3a532d638c425640ef01f8999c0738e0be5df4: Unable to read file (binary?)
+  ✗ .git/objects/ee/b9a95f60fb3251915c8a8ddd593312f511c983: Unable to read file (binary?)
+  ✗ .git/objects/ee/39bde8feb21217480f13d88635eb025b7e8ea2: Unable to read file (binary?)
+  ✗ .git/objects/a9/40e10790f6365a482074b7b1fe43146d00f1bd: Unable to read file (binary?)
+  ✗ .git/objects/10/5de053674eda4dca00b2cffc06a147f32ed28f: Unable to read file (binary?)
+  ✗ .git/objects/10/cb549ae0309a1099d97ccf702f702ccfe3a832: Unable to read file (binary?)
+  ✗ .git/objects/10/4880d6fab829521e641d58331047c3967454de: Unable to read file (binary?)
+  ✗ .git/objects/10/9294df37c57b8bfa47879b73b9922694b1b23d: Unable to read file (binary?)
+  ✗ .git/objects/10/50a87ad621ddc9fb29d60ba066b4fbf81f1b32: Unable to read file (binary?)
+  ✗ .git/objects/26/a4c33b61df3edd2e23c1de287b477483bed021: Unable to read file (binary?)
+  ✗ .git/objects/26/07aa31215702723d17ad298078237729d00ace: Unable to read file (binary?)
+  ✗ .git/objects/26/08a54a5292c72713c904909c08e97f34d9bf1f: Unable to read file (binary?)
+  ✗ .git/objects/76/b51516ddf33da2e5012c8b5e3071a809647c56: Unable to read file (binary?)
+  ✗ .git/objects/76/38c902c8437b6d8f8402e83835564b3762ad9b: Unable to read file (binary?)
+  ✗ .git/objects/76/697d0cb5ac0d85b2ca4bfa400229921b282740: Unable to read file (binary?)
+  ✗ .git/objects/dd/8998b5af15360fc3c1cdebad346eeb1660c244: Unable to read file (binary?)
+  ✗ .git/objects/dd/c734ac5dbf738f5f5f1a42f9d84c83610a9908: Unable to read file (binary?)
+  ✗ .git/objects/96/3bf217d0d7db027e29253aede76120173d15fc: Unable to read file (binary?)
+  ✗ .git/objects/96/2d57a587007690ea29dc56daf963a53f9b370e: Unable to read file (binary?)
+  ✗ .git/objects/8c/240262920d1dcea75a6b72e9ab5542e4d5baf1: Unable to read file (binary?)
+  ✗ .git/objects/8c/85ce1d32a1955242f5a153531db5e5def56de8: Unable to read file (binary?)
+  ✗ .git/objects/8c/e935a13532501322f441add9543e7f06e45c10: Unable to read file (binary?)
+  ✗ .git/objects/8c/9bba41d1800270f7bf8e74d68b21924fbf778e: Unable to read file (binary?)
+  ✗ .git/objects/8c/017c3e8f6e4954af99975cd190db0af614b18d: Unable to read file (binary?)
+  ✗ .git/objects/d3/ef1dc4c85b605eb5b48578aed26a9900c5af62: Unable to read file (binary?)
+  ✗ .git/objects/d3/5cc2d6194c05d9e3d54533988f09ca0b22b699: Unable to read file (binary?)
+  ✗ .git/objects/d3/8a500e25a2ff1deec96a176b17c7b89b50f461: Unable to read file (binary?)
+  ✗ .git/objects/d3/bda75ad0b127715f1e9c99e1876a95a568e6ca: Unable to read file (binary?)
+  ✗ .git/objects/d3/6410da050c4d0abdc88059eab045f1d21bc40a: Unable to read file (binary?)
+  ✗ .git/objects/d3/006ee6040fab0f7c266500acf105d1b07cd8d5: Unable to read file (binary?)
+  ✗ .git/objects/4f/b77872f3e312b1da2f7443a197be2c7de7b641: Unable to read file (binary?)
+  ✗ .git/objects/95/5d5628d11972c213a70edd4e74065e9b455162: Unable to read file (binary?)
+  ✗ .git/objects/95/3d3b508e680cbbe0af91cfd63d45e198f7a90b: Unable to read file (binary?)
+  ✗ .git/objects/11/d1cccdb94b51e9ad69f5e4a0081491f466713a: Unable to read file (binary?)
+  ✗ .git/objects/11/a0d9ff7324aa68391c8f15c3e72e25b508daff: Unable to read file (binary?)
+  ✗ .git/objects/11/c641303b9db0b37fa530d67938c5993bf47506: Unable to read file (binary?)
+  ✗ .git/objects/11/808190d4b90b20fe074a2dad43af6c0c1427ee: Unable to read file (binary?)
+  ✗ .git/objects/78/5f26419f89582194a4313e5dd9f15dbd45b40f: Unable to read file (binary?)
+  ✗ .git/objects/78/059c9dfb2da7db8209c0d0c978d61715711671: Unable to read file (binary?)
+  ✗ .git/objects/78/d15a8ce49061eec6853ec6b910e964bb38c201: Unable to read file (binary?)
+  ✗ .git/objects/78/3690fd2cfeba0d25fb62c9ea2c73c73ed1e6cc: Unable to read file (binary?)
+  ✗ .git/objects/78/1dcc7f22b6c1d08ad51455c8b64b00fd59ec09: Unable to read file (binary?)
+  ✗ .git/objects/78/b045e8f8eff3a9badd98691dff29846a2e2d54: Unable to read file (binary?)
+  ✗ .git/objects/78/56319c5465559a573dca9bf9ded99ca5993964: Unable to read file (binary?)
+  ✗ .git/objects/70/05224e5b798ca8b57916055112285305b6a568: Unable to read file (binary?)
+  ✗ .git/objects/70/e82560e87426a295b4fecbbb8f6fae3142bf93: Unable to read file (binary?)
+  ✗ .git/objects/09/94cb5e115b8462d26db58f9fede853a09a810d: Unable to read file (binary?)
+  ✗ .git/objects/09/ca7a667178703e976e49dab54dc03e9c7bd5ca: Unable to read file (binary?)
+  ✗ .git/objects/da/ca691995d799d9dd94ebfaf00442920f040fc2: Unable to read file (binary?)
+  ✗ .git/objects/da/c7f32d0e5cd6310df639a47868e08017467fe4: Unable to read file (binary?)
+  ✗ .git/objects/da/9f2601fe3ddd9f594ed8ede389d041625a4ebd: Unable to read file (binary?)
+  ✗ .git/objects/89/1959dc3895d2cfe33b09732a7b6adb32c6eef9: Unable to read file (binary?)
+  ✗ .git/objects/89/e6f4ff2aba7b3774671f77162a7478d9dfed8b: Unable to read file (binary?)
+  ✗ .git/objects/89/c182af7fd0a741614d37f224f61c3ccf61ec39: Unable to read file (binary?)
+  ✗ .git/objects/89/b50cbeab51f74bc9634b24415461b6d272c272: Unable to read file (binary?)
+  ✗ .git/objects/89/d269e877732a2da452a2eb27f73b0f9ad360ca: Unable to read file (binary?)
+  ✗ .git/objects/89/67218ecc336ac690c3ab7bd0a9560ce646267e: Unable to read file (binary?)
+  ✗ .git/objects/e0/986c35e22cce37338c90164db847f4d691abf8: Unable to read file (binary?)
+  ✗ .git/objects/e0/49e8613d5cc1c58297ec057970b01b26e35f10: Unable to read file (binary?)
+  ✗ .git/objects/e0/7b205e4292c889ff9c4c23813417d10d270df1: Unable to read file (binary?)
+  ✗ .git/objects/3e/507d9d76d9710cc4d6227540399b762f7810db: Unable to read file (binary?)
+  ✗ .git/objects/3e/a8a55e0f9d0d54b76e2523784c2f62455ac02a: Unable to read file (binary?)
+  ✗ .git/objects/3e/38cf3e044a909ae023cdc2f4a9eae0418b1cd2: Unable to read file (binary?)
+  ✗ .git/objects/3e/68752c8a6331f4ab5b143f744a98de7ead673b: Unable to read file (binary?)
+  ✗ .git/objects/3e/c514237b162cec105c7db8ebd75f80fcdba2ee: Unable to read file (binary?)
+  ✗ .git/objects/0d/dbdbbffcfc7a23e4dffd0e4f0e626338222ee0: Unable to read file (binary?)
+  ✗ .git/objects/0d/1983574dc90a7d9a5f947e549f1b9af319dac4: Unable to read file (binary?)
+  ✗ .git/objects/0d/9813ae42cc928db5d3ce548af5507a2807df7f: Unable to read file (binary?)
+  ✗ .git/objects/54/d244eb15014c05178c8e3c3f24546427344daa: Unable to read file (binary?)
+  ✗ .git/objects/54/a3631f154b6024fb964c09a33244b48309c01a: Unable to read file (binary?)
+  ✗ .git/objects/e9/a055b9e6799bd15beacd8c956f59c5e398643a: Unable to read file (binary?)
+  ✗ .git/objects/e9/70c7bfd75177059b6cef7786ae11f8caff31e3: Unable to read file (binary?)
+  ✗ .git/objects/7e/fad6197539157975514b5ca3238e1320f4ab94: Unable to read file (binary?)
+  ✗ .git/objects/7e/8c03e5ed329b6da5533adb124f5713fa2abff1: Unable to read file (binary?)
+  ✗ .git/objects/31/d25a4c49f03e610ddc7c39e3cc37ffd04edd16: Unable to read file (binary?)
+  ✗ .git/objects/17/1b45a29d44936c674354e0cf985b08282e17da: Unable to read file (binary?)
+  ✗ .git/objects/17/b24e3f0a74b57f9affeaae75309fd3450c4261: Unable to read file (binary?)
+  ✗ .git/objects/17/e51c385ea382d4f2ef124b7032c1604845622d: Unable to read file (binary?)
+  ✗ .git/objects/85/033b84fb51c33e4612f77207f85bcce611da1a: Unable to read file (binary?)
+  ✗ .git/objects/85/fb3e59931427ffcfa1be8dc786ea509eda7151: Unable to read file (binary?)
+  ✗ .git/objects/85/3cdc1d28ad0418f537fed48011b9236f14246c: Unable to read file (binary?)
+  ✗ .git/objects/81/499f866406abc7ca8402d5f7a0422dad48a1e3: Unable to read file (binary?)
+  ✗ .git/objects/81/c2248acbb00929b5ef81604ab199419fa2a49a: Unable to read file (binary?)
+  ✗ .git/objects/97/9dac6dd55509fc66c1b8973d30a609f7df4455: Unable to read file (binary?)
+  ✗ .git/objects/97/67cc98e703f4737237d027574606624901a114: Unable to read file (binary?)
+  ✗ .git/objects/97/072903fbda5c0c9f5bc066085a8fcef937dbe9: Unable to read file (binary?)
+  ✗ .git/objects/03/c6d24754197096d92ae934027bf54ff895377e: Unable to read file (binary?)
+  ✗ .git/objects/03/87396afc47fc683a5c17f0c364a61facb60daa: Unable to read file (binary?)
+  ✗ .git/objects/21/b1afd80947dbdfd66e3d6cb4061dad09754e62: Unable to read file (binary?)
+  ✗ .git/objects/21/68bff08924a662e770d8367b99ef5e80e0f82b: Unable to read file (binary?)
+  ✗ .git/objects/21/00e6d027010d93b3a3a1659c552467bdffba64: Unable to read file (binary?)
+  ✗ .git/objects/21/bd98c21ede088839537b4fc2828b15ba83c927: Unable to read file (binary?)
+  ✗ .git/objects/21/69df9f0355f457a7ff8e9a62f92ed58430042a: Unable to read file (binary?)
+  ✗ .git/objects/21/f57e38b480fb07d821b24f1c923e363dd4c2cb: Unable to read file (binary?)
+  ✗ .git/objects/f0/00bf9c4956ced223daf4055914a230f4e0904c: Unable to read file (binary?)
+  ✗ .git/objects/f0/b04505f8e72d1e089cb81858363b7d0b0f706e: Unable to read file (binary?)
+  ✗ .git/objects/f0/e41fa088e0170e2be0f872fb5ef2ce3e67b411: Unable to read file (binary?)
+  ✗ .git/objects/f0/dcb08a90f44b97b1937f9b532eae316531f385: Unable to read file (binary?)
+  ✗ .git/objects/f0/2ba0a38e09a4e5225363c76c8c8b186027b6e3: Unable to read file (binary?)
+  ✗ .git/objects/a6/4c09742b223eed7839702fd1566f02984d53a9: Unable to read file (binary?)
+  ✗ .git/objects/a6/8d72a4d8d4b68a74a4b030a448bb7e2a51d3d4: Unable to read file (binary?)
+  ✗ .git/objects/a6/04980e7539328c42ea758f48023374675319be: Unable to read file (binary?)
+  ✗ .git/objects/a6/993cc02d5c827614aa2bc9fcd1e6fa23c1e9eb: Unable to read file (binary?)
+  ✗ .git/objects/fe/fc81b8574c46f34756e4c7d309016624e26822: Unable to read file (binary?)
+  ✗ .git/objects/a4/0ff5832cdd8f14312e9ac4a4dec56e6449b9ac: Unable to read file (binary?)
+  ✗ .git/objects/a4/09c1f864274301690f56382a429e7a090009ab: Unable to read file (binary?)
+  ✗ .git/objects/a4/ec3bae97f5973946f6c982db9e0d763ef2aa8c: Unable to read file (binary?)
+  ✗ .git/objects/a4/a3d18de204bd58cf16debc3e9f2b9e6568a391: Unable to read file (binary?)
+  ✗ .git/objects/a4/ecdfa9d906e09c454c38d5d813195d0a659f40: Unable to read file (binary?)
+  ✗ .git/objects/2a/ecbf99b6dee0fd854961c8d3c9a387f3bcf7c7: Unable to read file (binary?)
+  ✗ .git/objects/28/6f446fc1660f14a6ad8aaf6527ee52b303c715: Unable to read file (binary?)
+  ✗ .git/objects/28/b3183bf3901b25bc11c22b79192e7cfeffc8c9: Unable to read file (binary?)
+  ✗ .git/objects/00/97b483a52c857596c5bafee5bd53a95802300f: Unable to read file (binary?)
+  ✗ .git/objects/00/7cdfc508949c5d296ae8d37abb1eae84c16598: Unable to read file (binary?)
+  ✗ .git/objects/00/b7e4da31fc5bbe38388f8e503a332e3e2364ea: Unable to read file (binary?)
+  ✗ .git/objects/00/e42cc90ef880e9ecaf00b75ccc99848cdedac2: Unable to read file (binary?)
+  ✗ .git/objects/db/123e30831bf42ab4e2261e52838711a2b56708: Unable to read file (binary?)
+  ✗ .git/objects/db/8c941d2311b0be97becfbed062ba624040b87e: Unable to read file (binary?)
+  ✗ .git/objects/db/658611bb43d27147b3ff0f7f1d1351d51c8c47: Unable to read file (binary?)
+  ✗ .git/objects/2f/7359b54e142caa1056e0b3a0facfe49d828756: Unable to read file (binary?)
+  ✗ .git/objects/2f/87959c086ff561534e36bcb16ea73976817738: Unable to read file (binary?)
+  ✗ .git/objects/50/66fb054f548fe2ffe2bb13deef5297bf9ade58: Unable to read file (binary?)
+  ✗ .git/objects/50/5736300f978d6becda6ffad54ccf163509d2ef: Unable to read file (binary?)
+  ✗ .git/objects/50/6c5797f6a0db4a7938f9cea8a7c952f20389e7: Unable to read file (binary?)
+  ✗ .git/objects/f6/0ca85f7526b8e238373c66e0457fbe64ab24d3: Unable to read file (binary?)
+  ✗ .git/objects/f6/53a4aaad666fbe749ce65fa9d9277ad4676bb2: Unable to read file (binary?)
+  ✗ .git/objects/f6/437fffdd94de7e20cd9049575bb1e14581d5f8: Unable to read file (binary?)
+  ✗ .git/objects/f6/83694519d47a9924b81366787c1981e8b7f933: Unable to read file (binary?)
+  ✗ .git/objects/f6/38cb3235851b2bd2c17ca086863a9e663d7585: Unable to read file (binary?)
+  ✗ .git/objects/f6/cf10536d6d8bd58174fb488ccb133e706e44b4: Unable to read file (binary?)
+  ✗ .git/objects/f6/3b6ba9cb92b16efdf854229226937ef2ca8e8c: Unable to read file (binary?)
+  ✗ .git/objects/07/07df5b78ae017aa392651d29646eb9f6172db3: Unable to read file (binary?)
+  ✗ .git/objects/07/a795a9ced7f49679c0209b01c7646125b68c7b: Unable to read file (binary?)
+  ✗ .git/objects/07/4dff7e5e76df7e1ca45500ab8976daa772a69f: Unable to read file (binary?)
+  ✗ .git/objects/07/8b4b8c1e2f3b28531f89536a70c309a98698a7: Unable to read file (binary?)
+  ✗ .git/objects/07/302a4d9e28db8f70c9eda413d6169390c71512: Unable to read file (binary?)
+  ✗ .git/objects/25/ddf22b17964b6f91ff95f69e3d505dfb6abf4b: Unable to read file (binary?)
+  ✗ .git/objects/25/ba50f4cced787a81a33bb3d95114e7cb63d3e8: Unable to read file (binary?)
+  ✗ .git/objects/c9/46ee6160c206cd4cb88cda26cb6e6b6aa6ff52: Unable to read file (binary?)
+  ✗ .git/objects/c9/fd4fa3a07219837306e7b429bf93b57aaed186: Unable to read file (binary?)
+  ✗ .git/objects/c9/d724299c824257d9e0d55905c75864cf742b61: Unable to read file (binary?)
+  ✗ .git/objects/c9/73df8137049cb379edea30268d5db252a2dcf7: Unable to read file (binary?)
+  ✗ .git/objects/c9/fe1104cf02d6d712248dc75080c4582ca0a48b: Unable to read file (binary?)
+  ✗ .git/objects/c9/984ffa47e10fe2942d4db01565cf12300e5fab: Unable to read file (binary?)
+  ✗ .git/objects/a2/fc740504662dfde8b502c9d9bd6c251dd39596: Unable to read file (binary?)
+  ✗ .git/objects/fb/ecc18f5e957903efdb62993a093dd1f0e5357a: Unable to read file (binary?)
+  ✗ .git/objects/fb/81f71ae50b77eac93fd66b9bfcd3e0204c5853: Unable to read file (binary?)
+  ✗ .git/objects/e5/38ef83e9578be9b435b90bb9517e8c02adbddf: Unable to read file (binary?)
+  ✗ .git/objects/e5/93e3655405420a2af2d313eaaebe4c5c349fcb: Unable to read file (binary?)
+  ✗ .git/objects/e5/41f304b3225ecb5158573344d711517550e4b2: Unable to read file (binary?)
+  ✗ .git/objects/b3/cf7343e3fd39dcc7c826613e6497ae99a7ff53: Unable to read file (binary?)
+  ✗ .git/objects/06/1ed0b9cde010ca54250b87f7c85c89d1db4bfe: Unable to read file (binary?)
+  ✗ .git/objects/06/b10ed7036d846868577106a0e5a84b1d84ba90: Unable to read file (binary?)
+  ✗ .git/objects/06/5aa60f829d5258defd3ce447da6560a92fdf6d: Unable to read file (binary?)
+  ✗ .git/objects/06/1cfed098917d5041f906e9a3c9615f17c8df35: Unable to read file (binary?)
+  ✗ .git/objects/b0/7838de6679d72d811655c9f49a7b98a24cf801: Unable to read file (binary?)
+  ✗ .git/objects/b0/6d96f0d97ff158816a27b16c0dc25bcd00c20a: Unable to read file (binary?)
+  ✗ .git/objects/b0/b17f75c66ba36ec2056bc20c42e205a09b8914: Unable to read file (binary?)
+  ✗ .git/objects/66/9285e89fd31055b3db22376a189e5fffffedfb: Unable to read file (binary?)
+  ✗ .git/objects/66/985ed29023a05c8fed0bd8b3ad9bcae87fa5d9: Unable to read file (binary?)
+  ✗ .git/objects/66/984009d1c565b3027426b47ee367f247039af6: Unable to read file (binary?)
+  ✗ .git/objects/66/98010c00e8f094c7f46a8811e094cfecd7018c: Unable to read file (binary?)
+  ✗ .git/objects/66/0f64a3e53028c949d32f41ba935197779bebed: Unable to read file (binary?)
+  ✗ .git/objects/d2/51b3c92c0898f8dbb31eee96f29e142243ce46: Unable to read file (binary?)
+  ✗ .git/objects/d2/14d44604ae2950f4ea33cf45e70cf9aba99f3f: Unable to read file (binary?)
+  ✗ .git/objects/d2/986e1343241cf4814542af2461d39aa5828058: Unable to read file (binary?)
+  ✗ .git/objects/ae/3e860f067341a840278d915001ad2f5b69d7fc: Unable to read file (binary?)
+  ✗ .git/objects/ae/9a009c4b55d71661ffb739901a5fe01323b2dc: Unable to read file (binary?)
+  ✗ .git/objects/ae/d20a4ca1f1aa1241515aed17eb397bebcc5b50: Unable to read file (binary?)
+  ✗ .git/objects/77/9b3dcca22b8ba41b9fe656e418f52f654d6848: Unable to read file (binary?)
+  ✗ .git/objects/77/bc4abc9573b4cb97086aa406f788d0cdfe33b7: Unable to read file (binary?)
+  ✗ .git/objects/82/bfff747b7b0d260c9e0546d06409fcb31644fb: Unable to read file (binary?)
+  ✗ .git/objects/82/5cfa43b5055a691bbd47ddf5763ce85c6504c2: Unable to read file (binary?)
+  ✗ .git/objects/82/f69c34aa2151a8bf506666612a34d57ef9741f: Unable to read file (binary?)
+  ✗ .git/objects/82/bab4bdc2cdbdd23a85ee173a521e723e58b88f: Unable to read file (binary?)
+  ✗ .git/objects/91/296e29565a15e7b78c6bd6386678781a89a8b3: Unable to read file (binary?)
+  ✗ .git/objects/91/7d1ab976d1ed208111a45e68f0a67266f83546: Unable to read file (binary?)
+  ✗ .git/objects/fc/a14f1927913444b0ce1ba617040df7633ef81f: Unable to read file (binary?)
+  ✗ .git/objects/fc/b0a15684c462972adb42d5d42053934c1a0a6d: Unable to read file (binary?)
+  ✗ .git/objects/fc/92b9fee77fee38baa87f55d55c87d8bede3710: Unable to read file (binary?)
+  ✗ .git/objects/fc/de4efa809d7ce9e29ee8507be220ba41ff4728: Unable to read file (binary?)
+  ✗ .git/objects/fc/6f19d6bc7a764c20f7254e2b07173860968736: Unable to read file (binary?)
+  ✗ .git/objects/fc/575fd3a4b4d951c4cbad1a419c4e8d9433b623: Unable to read file (binary?)
+  ✗ .git/objects/fc/470494672f9739ab1b1353b33bd7b8958a099b: Unable to read file (binary?)
+  ✗ .git/objects/fc/9ed9d52e4502c338e963877dfab08db12b6777: Unable to read file (binary?)
+  ✗ .git/objects/2b/3f6ce73bcbf943708e60b71d95257d89307091: Unable to read file (binary?)
+  ✗ .git/objects/02/db2647eb53ff7a52e6ab035f371fc7518cb675: Unable to read file (binary?)
+  ✗ .git/objects/02/c76a7394f74d11785160af00a407dbcf5bbccf: Unable to read file (binary?)
+  ✗ .git/objects/ec/9af06c593773669f3e33b93adcedf99d1af320: Unable to read file (binary?)
+  ✗ .git/objects/0a/01fa6ab22a2a568383d308cf1e5b30965f6e77: Unable to read file (binary?)
+  ✗ .git/objects/cc/a8fccbc0481a2d602b808e2c4962082f23d067: Unable to read file (binary?)
+  ✗ .git/objects/52/2505a6494b1f6a15510bb0a9953ce5d804c969: Unable to read file (binary?)
+  ✗ .git/objects/52/fcf962525f005a4613a6e011eec75dc544a532: Unable to read file (binary?)
+  ✗ .git/objects/52/f4d744af4e9b786c07d42a1200ba7c75eb40ec: Unable to read file (binary?)
+  ✗ .git/objects/52/ae906205d57c43efd2a4253c442ab7752c2412: Unable to read file (binary?)
+  ✗ .git/objects/52/b134ffb9601931d6d374e72434d1202393844f: Unable to read file (binary?)
+  ✗ .git/objects/5a/baac62d6f06fb85b70d3c22a05866a4662ea3f: Unable to read file (binary?)
+  ✗ .git/objects/5a/8c63f2323d9e8ebb2c3e71d9ad1412f60a2401: Unable to read file (binary?)
+  ✗ .git/objects/5a/b48ecca8ad08630cae3f5ccd1a20c7f848cc0f: Unable to read file (binary?)
+  ✗ .git/objects/5a/96483fcf6a34136b7f208d4f25898cdda92644: Unable to read file (binary?)
+  ✗ .git/objects/5a/1bfc282cb6c4f5c3936b23727a5417c564b0ab: Unable to read file (binary?)
+  ✗ .git/objects/5a/8add43daeb14bd56636e4ea1f0e4a39dd93c07: Unable to read file (binary?)
+  ✗ .git/objects/86/51ecfbc594f19d5a2a9497ed206bdcb49ea79f: Unable to read file (binary?)
+  ✗ .git/objects/86/e69fe3622a3decfb746d152b77fba4c9ed054c: Unable to read file (binary?)
+  ✗ .git/objects/86/566e21a2f1a13670e7e62a0aac5deb38c2c6ce: Unable to read file (binary?)
+  ✗ .git/objects/86/af5c645e52ce3b8e52785b69a1868e9aa2305d: Unable to read file (binary?)
+  ✗ .git/objects/42/f1552e98e13c684863d9d477e416bead9c1bd8: Unable to read file (binary?)
+  ✗ .git/objects/42/efcb595ba695dc419944fd5bc6364c3d422323: Unable to read file (binary?)
+  ✗ .git/objects/42/30a1832275c4d776dd827d999d0d37d1c333db: Unable to read file (binary?)
+  ✗ .git/objects/42/8ff93868363f37faea3e566934268a22dfad31: Unable to read file (binary?)
+  ✗ .git/objects/42/374ae805f08e1dcead94739cc640073e4a0f60: Unable to read file (binary?)
+  ✗ .git/objects/71/7604e35c7240af27a604468ce50d5414b26fa3: Unable to read file (binary?)
+  ✗ .git/objects/71/d6a66eda4c751cd57798e19de8b770703abdd6: Unable to read file (binary?)
+  ✗ .git/objects/71/2e588839124352c9cc703d96cbb083bb906ae7: Unable to read file (binary?)
+  ✗ .git/objects/71/e1bd03a425b09b358c7bbad741f249bcedca5c: Unable to read file (binary?)
+  ✗ .git/objects/22/de4d8da735ac90a4f07a5428056707f45e8bc3: Unable to read file (binary?)
+  ✗ .git/objects/22/4adc0ecf6285defe5ddbda6871fccc1581ec73: Unable to read file (binary?)
+  ✗ .git/objects/22/77dac329db742d44e0fa645d1e043275d74fb2: Unable to read file (binary?)
+  ✗ .git/objects/b8/781feb4dfba15a51706123375b093da38a7002: Unable to read file (binary?)
+  ✗ .git/objects/b8/e7ed43de86687024541e27e494c0e4189a20dc: Unable to read file (binary?)
+  ✗ .git/objects/b8/e516f00edf5d26d9e06e1974fa3e249e95a45e: Unable to read file (binary?)
+  ✗ .git/objects/c1/88a17eb5495a6c540193e1315d489464055058: Unable to read file (binary?)
+  ✗ .git/objects/c1/9ed26dd483691d521a837dd459c086ecbada90: Unable to read file (binary?)
+  ✗ .git/objects/c1/e8622b0cef309d32b4dea8597b101ce67d5279: Unable to read file (binary?)
+  ✗ .git/objects/d9/f993df09ea013d352e5ccb5ebabf5a98465008: Unable to read file (binary?)
+  ✗ .git/objects/d9/1afd229fc3f34c588a62bb33608be7d28bbdaf: Unable to read file (binary?)
+  ✗ .git/objects/d9/e23dcd6e95d5bfd4d61d96e3b95d1a3ca77904: Unable to read file (binary?)
+  ✗ .git/objects/d9/0ed1ceb913b243a2efc38800f1514165899a68: Unable to read file (binary?)
+  ✗ .git/objects/a8/180ff58a3cae36d556e910da2b8701ed3ad1bc: Unable to read file (binary?)
+  ✗ .git/objects/a8/f5cb66bd44b043ed2a98a336a86139c4bd4100: Unable to read file (binary?)
+  ✗ .git/objects/a8/33fb761e0211f3a00efc1c1c11d177c4e53712: Unable to read file (binary?)
+  ✗ .git/objects/73/175678e13c4c930e34f232e0e1d4bae2dba367: Unable to read file (binary?)
+  ✗ .git/objects/73/48754c9078d24e9f5c9194c765448dde55b579: Unable to read file (binary?)
+  ✗ .git/objects/73/7f822a91f58552b53bef3435c305f6ca8d43d1: Unable to read file (binary?)
+  ✗ .git/objects/73/1a9f9035bc543693fb511bf62f695070f48300: Unable to read file (binary?)
+  ✗ .git/objects/cf/4cf7d32b7e909424472544e96d4343d18a4aad: Unable to read file (binary?)
+  ✗ .git/objects/cf/1e6df48ff612e9fe75d349979d6fe3c2914c40: Unable to read file (binary?)
+  ✗ .git/objects/cf/5c3a8a55cbf4c3378589078fe518203256cb4b: Unable to read file (binary?)
+  ✗ .git/objects/74/efd20416cbf30bc885b69a7bc2a853ea1a40c9: Unable to read file (binary?)
+  ✗ .git/objects/74/404f491a2bb71ff42fdd8db56f5ee09cb94820: Unable to read file (binary?)
+  ✗ .git/objects/7b/0c9b036400278f9c96af3528c1f14f168cf377: Unable to read file (binary?)
+  ✗ .git/objects/7b/0ab6e3ee3d7043e417addcf5f5ce78f5097ebe: Unable to read file (binary?)
+  ✗ .git/objects/eb/414f85ef87c93696830d4684fb111240646b97: Unable to read file (binary?)
+  ✗ .git/objects/eb/e26903adebfed1aeba5eceb325468a4ad39a36: Unable to read file (binary?)
+  ✗ .git/objects/eb/146e4e173a878bc7a9eecbdc9c6916bf6f0340: Unable to read file (binary?)
+  ✗ .git/objects/eb/22ca0a5328b3a3efe74dbc6d83579d21788214: Unable to read file (binary?)
+  ✗ .git/objects/eb/52c3c81f4cc9dfc674a5fbf6eec46f86836554: Unable to read file (binary?)
+  ✗ .git/objects/30/5846433589b8eb931c57744566216c093f8e92: Unable to read file (binary?)
+  ✗ .git/objects/30/22358fe71374500c40ed3326c0ab3fd1cb46b0: Unable to read file (binary?)
+  ✗ .git/objects/30/870c49281cc302f7f8058759aa8dc33b82ec81: Unable to read file (binary?)
+  ✗ .git/objects/5b/09c67c2066cc1cf4b56a66f4f9875115b9f4ad: Unable to read file (binary?)
+  ✗ .git/objects/32/d78504d66e41961336c9e793c1e973567d2fb6: Unable to read file (binary?)
+  ✗ .git/objects/32/f56a73ca43799dc325a6ec7be8de0bbe49ddf7: Unable to read file (binary?)
+  ✗ .git/objects/32/165657655c33c98b3a00440315a0a1edf390cd: Unable to read file (binary?)
+  ✗ .git/objects/5f/9da9bf12ad656c1261a8efa28d7ae85569f036: Unable to read file (binary?)
+  ✗ .git/objects/f1/26d3c926fed7d5fb97e99aeddc30ba4fc889a1: Unable to read file (binary?)
+  ✗ .git/objects/f1/20c4a722e5c2df5ae36dc86852f6968d6921ef: Unable to read file (binary?)
+  ✗ .git/objects/f1/e00372bc6a8d0c4394167bdd0d6d6459d184ed: Unable to read file (binary?)
+  ✗ .git/objects/f1/8458ce862ac3b13addb0ea55fbca9790cfdfd6: Unable to read file (binary?)
+  ✗ .git/objects/55/f7115a9b2b3b0b45a7aef7b3d7e16e69062a33: Unable to read file (binary?)
+  ✗ .git/objects/55/596b26b46ece3ba45890e5e65cddf404f3e8da: Unable to read file (binary?)
+  ✗ .git/objects/8d/6ddd8dc35a8332e2c39e3a46ffdc222bb532eb: Unable to read file (binary?)
+  ✗ .git/objects/8d/e8b7d4c7023156b176e8d3d5b55b05138df30e: Unable to read file (binary?)
+  ✗ .git/objects/8d/059b1ddf6f31ee8e9bae97d94464736e182e63: Unable to read file (binary?)
+  ✗ .git/objects/8d/f1dfe68a1a34339100c9091cb541b6aefcdf36: Unable to read file (binary?)
+  ✗ .git/objects/8d/7759d662e72e39bf85095cb736f58869123b02: Unable to read file (binary?)
+  ✗ .git/objects/8d/ddc1ea99b4a35f8e1261f411573d6a31f603c5: Unable to read file (binary?)
+  ✗ .git/objects/8d/67837476a2dbbd554dacaa2f862f246e3b66ae: Unable to read file (binary?)
+  ✗ .git/objects/8d/fe2b3f1f2f5e3fd4fbf29d345e80228f49a3c9: Unable to read file (binary?)
+  ✗ .git/objects/7a/373f5f2451bc52c236cb2c5ec0cb4b26494ca5: Unable to read file (binary?)
+  ✗ .git/objects/7a/5ea1dd59612176da6f2b2aa1b613dff9093db9: Unable to read file (binary?)
+  ✗ .git/objects/7a/7377d9fc8aa9e4c67400a93bc222374f99da99: Unable to read file (binary?)
+  ✗ .git/objects/7a/c4e5e38f1e39e79557565a854f377c71d12766: Unable to read file (binary?)
+  ✗ .git/objects/ff/a1d8b2dc27234c4ced976d264c55c6d9bef000: Unable to read file (binary?)
+  ✗ .git/objects/f7/16466d2e466160394d17639b9ca5533db8b803: Unable to read file (binary?)
+  ✗ .git/objects/b1/e80bb2480a6db3c4b252661ac61ed945409b32: Unable to read file (binary?)
+  ✗ .git/objects/1a/e2824c8840fef6fbad2bc9adb4eb3218666759: Unable to read file (binary?)
+  ✗ .git/objects/1a/d8a9bfa988674ee2b2faf58820765416ca3f05: Unable to read file (binary?)
+  ✗ .git/objects/1a/d2a1d352d04d9175133a6f2f673329ff4ba09b: Unable to read file (binary?)
+  ✗ .git/objects/1a/030947e832763db761663d9f3e5acb42a7bff8: Unable to read file (binary?)
+  ✗ .git/objects/1a/3f70fa1cb84463772154ed643753e645f9c2db: Unable to read file (binary?)
+  ✗ .git/objects/67/fee2b7efb1a793f4d11abc1f80519dabc91e67: Unable to read file (binary?)
+  ✗ .git/objects/57/1b3ccabe225849eae7fbcb461edddb9a0aa3ce: Unable to read file (binary?)
+  ✗ .git/objects/57/10a83a506467db7f46cac64976c5e54b65c4fe: Unable to read file (binary?)
+  ✗ .git/objects/57/1795bd24ce46bd7f7efce8bd2a8a271e87e4c8: Unable to read file (binary?)
+  ✗ .git/objects/b9/d253092df93a143d4e30b9969f6b4cc2b9d939: Unable to read file (binary?)
+  ✗ .git/objects/b9/3b4ee8f2cf62122176b7dcfba95fd2caa0e865: Unable to read file (binary?)
+  ✗ .git/objects/9c/7c44258c19489507712cbb104c071df02a67b7: Unable to read file (binary?)
+  ✗ .git/objects/9c/50e61cc90604c07a907120b6350668a05db1e4: Unable to read file (binary?)
+  ✗ .git/objects/ca/4b0a9e1d864b0d40b0bdb6a6e1f77831f01001: Unable to read file (binary?)
+  ✗ .git/objects/62/34a1e4504faa37b093a9cd2e6cafddeda4adbf: Unable to read file (binary?)
+  ✗ .git/objects/62/b58446da738fa4af19a2ae3f9501172901c459: Unable to read file (binary?)
+  ✗ .git/objects/62/119b9f55de6696fc9ac89954e107788c34a2e6: Unable to read file (binary?)
+  ✗ .git/objects/62/c0fd9f55aea09e83c09e3df273708e996eb0f7: Unable to read file (binary?)
+  ✗ .git/objects/62/f789984b946209c78786a7682b7f7d14740b8c: Unable to read file (binary?)
+  ✗ .git/objects/aa/1a02a0d1810bb8ba85e070ab4469c669701e99: Unable to read file (binary?)
+  ✗ .git/objects/aa/dcaae69098ce7eac72b1ae97c5f3fc6991d48e: Unable to read file (binary?)
+  ✗ .git/objects/60/b5849e2e3a6b59ea81da8eccd4b2050d1655c1: Unable to read file (binary?)
+  ✗ .git/objects/60/a2f9676cfcb8377d9fd4dea80f737a01b00e5e: Unable to read file (binary?)
+  ✗ .git/objects/60/5015c8d9ee07a3427b2d767216501371d07b42: Unable to read file (binary?)
+  ✗ .git/objects/60/33a329225fdecfe9c7f1240e86c2f0f21b2678: Unable to read file (binary?)
+  ✗ .git/objects/4a/c32f0ccfadb567ef464663fd7a8f8d316d58e1: Unable to read file (binary?)
+  ✗ .git/objects/4a/e2d58cfa9e212f3a270233cc249dc50638e128: Unable to read file (binary?)
+  ✗ .git/objects/4a/8ed76796e0245346459412b0130fddfcaf7255: Unable to read file (binary?)
+  ✗ .git/objects/4a/9cf218c4e1a63d5a19ebee2ef3fe4822aaeb2e: Unable to read file (binary?)
+  ✗ .git/objects/e7/351cb5521eeefbf1c6bb5db93fa385ba40b8a5: Unable to read file (binary?)
+  ✗ .git/objects/e7/b7d133450a2f138c391ab93fe113cf759397dc: Unable to read file (binary?)
+  ✗ .git/objects/56/412539223a0b9c40e9eb469d80afb36a328a4c: Unable to read file (binary?)
+  ✗ .git/objects/56/e24fc11f6b680e89cb8766b0bce0eaf7954bd5: Unable to read file (binary?)
+  ✗ .git/objects/56/934cbe290a6ac10ac01e130ccaa3043250697e: Unable to read file (binary?)
+  ✗ .git/objects/56/8bb0ebc759095a407c14cd4903020fcb8a0cc2: Unable to read file (binary?)
+  ✗ .git/objects/56/e0b8c02babfe626df8ede0db3a4a9c65ddbc18: Unable to read file (binary?)
+  ✗ .git/objects/2e/e0b6707875b6d39ee70203c579b203984cfca3: Unable to read file (binary?)
+  ✗ .git/objects/2e/58598d4392171f1cb0c8227f2d8a274f6b5bff: Unable to read file (binary?)
+  ✗ .git/objects/29/07eabd55dc68dfa60071458c65d2091de14328: Unable to read file (binary?)
+  ✗ .git/objects/e3/a368ab42b2ce883726ef3838157446ebfd1bf1: Unable to read file (binary?)
+  ✗ .git/objects/e3/d49497b1a868dcb7443a5b24f8c53ea774ee11: Unable to read file (binary?)
+  ✗ .git/objects/e3/fdefcb8f7350b90fa389bf07a93b63a97b0bb4: Unable to read file (binary?)
+  ✗ .git/objects/e3/b443459be0fcc3e9ce55beaf1b5c50d150fbb9: Unable to read file (binary?)
+  ✗ .git/objects/08/2ecf8c414c2c23569cbd8a57b254f10d8e3c5a: Unable to read file (binary?)
+  ✗ .git/objects/08/d8b2c3f096d40a3c91b15e20125a786751ae2c: Unable to read file (binary?)
+  ✗ .git/objects/90/cfe028ea93f3019e04d87b85a05ab6f70e3bb9: Unable to read file (binary?)
+  ✗ .git/objects/90/d5a700f3314b553bdf14f9695cd62afabdbedd: Unable to read file (binary?)
+  ✗ .git/objects/90/d13ea32acfcdc0a3b6de24fc39a89beff7d229: Unable to read file (binary?)
+  ✗ .git/objects/90/9d0cc5fdbdbefc40d7c1a3355cfdcf3c4cca1a: Unable to read file (binary?)
+  ✗ .git/objects/79/2141d896220798bd29b221c51d442027dceae8: Unable to read file (binary?)
+  ✗ .git/objects/79/58d78d1f1a745f72d02458bbc97a1f2a6df689: Unable to read file (binary?)
+  ✗ .git/objects/c5/1ef3948b2a3594ac56b235d68d33b3e520e400: Unable to read file (binary?)
+  ✗ .git/objects/c5/f86dde3f387d647d4a4472503ccd1cce50ea0c: Unable to read file (binary?)
+  ✗ .git/objects/c5/51b795685dd1fed3665f5eac69b0c120f2f9b3: Unable to read file (binary?)
+  ✗ .git/objects/c5/44453947eabd079bad3c904d1ed7403d9d44ee: Unable to read file (binary?)
+  ✗ .git/objects/4d/48dba8dc4c1157bd2c462ea69f946763a9563c: Unable to read file (binary?)
+  ✗ .git/objects/4d/3621a9f9826e15105680345ea7327d53f13811: Unable to read file (binary?)
+  ✗ .git/objects/4d/ef87fdb55dd70b3ad601d1fea0ebbd3b73d30c: Unable to read file (binary?)
+  ✗ .git/objects/61/ec9ccd52b9a030a651e09d523c2931021e506f: Unable to read file (binary?)
+  ✗ .git/objects/61/a4fc03faae69fcebeb6d86efe402b2c6c7b10a: Unable to read file (binary?)
+  ✗ .git/objects/61/0733930c5cf151c43952ab0a4d40b4e8b0744e: Unable to read file (binary?)
+  ✗ .git/objects/fd/5a702b6ef68799cbc530cb1c077c9840f3d4c1: Unable to read file (binary?)
+  ✗ .git/objects/fd/81ba2671a13da3eb95eb6d057b0627827453aa: Unable to read file (binary?)
+  ✗ .git/objects/cd/2c3dd38ea0bf7d88ee6dedf6b3ca21d398d4a8: Unable to read file (binary?)
+  ✗ .git/objects/cd/1520f310588db698ee9ab96d80423e95f29f2f: Unable to read file (binary?)
+  ✗ .git/objects/7d/e8f610e782ec161316ffdf1e962780b6bbcb48: Unable to read file (binary?)
+  ✗ .git/objects/7d/797adc03bd039ecf4398e38b4042924578d0b1: Unable to read file (binary?)
+  ✗ .git/objects/7d/1ea132d18ee8f4e45a982485db29ad6e685429: Unable to read file (binary?)
+  ✗ .git/objects/6b/62d84e0336a93c9872d260d8ceb4990fc38992: Unable to read file (binary?)
+  ✗ .git/objects/6b/713f221acb8d3425c24e8910eddee83163c22a: Unable to read file (binary?)
+  ✗ .git/objects/6b/49744e2217b22ac15f8fb7d70a85e76ac15f90: Unable to read file (binary?)
+  ✗ .git/objects/6b/3f43937fbcd24bab0467a7c79b5b19dfca0f6f: Unable to read file (binary?)
+  ✗ .git/objects/6b/5a08e000811ae6952b906d11014321a3242c65: Unable to read file (binary?)
+  ✗ .git/objects/af/931d0fec413cc6141c6818f2a5faf44c9e0f72: Unable to read file (binary?)
+  ✗ .git/objects/af/52731b4a5c16e039148a5d05dcefa0883dec4e: Unable to read file (binary?)
+  ✗ .git/objects/38/98fdd3126f68b04dcb8244b248b2e8e11d2ad4: Unable to read file (binary?)
+  ✗ .git/objects/ea/04c451057fa0cc0ccbf0d399fc2855475aeecf: Unable to read file (binary?)
+  ✗ .git/objects/ea/f52f3077e1e8ab07c75b93c0d40df0f919c338: Unable to read file (binary?)
+  ✗ .git/objects/a5/659f3f10328ce3c7805d19c278e70c4b927d87: Unable to read file (binary?)
+  ✗ .git/objects/a5/2a218620c3775334bfb2ab43ce2bb9cf19b227: Unable to read file (binary?)
+  ✗ .git/objects/99/46ba9940e3664be84a3b3ccbbddf974a0a888c: Unable to read file (binary?)
+  ✗ .git/objects/1e/2a1c42402c0da513a0a027b867d9c90c3c5fa9: Unable to read file (binary?)
+  ✗ .git/objects/1e/f8856d76c493480e94df4ac289dab46f5cdaad: Unable to read file (binary?)
+  ✗ .git/objects/de/f11900796b98bbdbce708872f0c0399778dee1: Unable to read file (binary?)
+  ✗ .git/objects/de/89fb20fa84bbd31b9f92ace3def57d0b30d8df: Unable to read file (binary?)
+  ✗ .git/objects/de/45b9fc26530342d50cfe7b622b11936640bf79: Unable to read file (binary?)
+  ✗ .git/objects/5c/8903c587f8d9ccd97ca884d69b09cef38f862a: Unable to read file (binary?)
+  ✗ .git/objects/8a/7de18e374e6505de08f5512c4268958ec7e9c7: Unable to read file (binary?)
+  ✗ .git/objects/87/aee1413006b26c8e0c40bfca79f758aa091580: Unable to read file (binary?)
+  ✗ .git/objects/87/f7da16e846bededb032864c1b7fa2b02c97088: Unable to read file (binary?)
+  ✗ .git/objects/47/c4023fdedae07c13fb51bae39497b7c7e7e2b5: Unable to read file (binary?)
+  ✗ .git/objects/47/c8984c30a671f2f97b0ae35aae7443511c52a1: Unable to read file (binary?)
+  ✗ .git/objects/47/c49ba7821503eb0700da8678ddb33c00cc8ec5: Unable to read file (binary?)
+  ✗ .git/objects/47/996a092974317e152b81fe5b4939216d585b81: Unable to read file (binary?)
+  ✗ .git/objects/6c/711f4682e9cb2369971e6ed0867eb906a32770: Unable to read file (binary?)
+  ✗ .git/objects/f8/2456f66dc1ac59cb0dae919257f7de8aa59333: Unable to read file (binary?)
+  ✗ .git/objects/f8/8119cbab7de04d9ab2b2889ebe755c49cc23a0: Unable to read file (binary?)
+  ✗ .git/objects/f8/4d68985eb0c155037647664a001c1e1d790b0d: Unable to read file (binary?)
+  ✗ .git/objects/f8/60a03fb447b11eed84fa562b6f3e159cbcb07b: Unable to read file (binary?)
+  ✗ .git/objects/f8/b1f1c3357a095781d01f79ac68dbbca967b59d: Unable to read file (binary?)
+  ✗ .git/objects/53/bcd98adc921e653f91c61cc5e1156f870f9c09: Unable to read file (binary?)
+  ✗ .git/objects/53/56d7ba22033fb20496db09688407188c249bb7: Unable to read file (binary?)
+  ✗ .git/objects/53/46bd184d3727a2b83874abddf7b527eca7ceb0: Unable to read file (binary?)
+  ✗ .git/objects/13/5d2b50f3b4240622d5eddbd12ebc34d7ef1fd2: Unable to read file (binary?)
+  ✗ .git/objects/c3/b07842c6cbf0463cdffb33cb86d1ce016ecb9f: Unable to read file (binary?)
+  ✗ .git/objects/c3/0fbfdb78a799872e5df22bb1dc3e9b0e79c3f0: Unable to read file (binary?)
+  ✗ .git/objects/c3/e8b1c38c14b587c69ad7cd163de3fa0260b511: Unable to read file (binary?)
+  ✗ .git/objects/c3/4958a4711ded00fa63cf08feba742975cb3fed: Unable to read file (binary?)
+  ✗ .git/objects/d4/54f4104a8f60227295c8fded3451fa612901ed: Unable to read file (binary?)
+  ✗ .git/objects/d4/29c120189d0b1026b5f29c2fa088a04ded514e: Unable to read file (binary?)
+  ✗ .git/objects/ab/e6fea44ccc40cb5b4d4ce36e41492e9e29cf00: Unable to read file (binary?)
+  ✗ .git/objects/a3/498a1d6104c7a491a01ce581f17fb3d2edd4c6: Unable to read file (binary?)
+  ✗ .git/objects/a3/43bb563714c8294475a1133cb81f7d0936e41e: Unable to read file (binary?)
+  ✗ .git/objects/a3/67a8544d05390c46d7037135ac0e7e3549d55d: Unable to read file (binary?)
+  ✗ .git/objects/a3/5394d0249a995823bde36a9017d08b9e904b11: Unable to read file (binary?)
+  ✗ .git/objects/a3/1a8991d3a66ca5bc76154b83b806d7855447b1: Unable to read file (binary?)
+  ✗ .git/objects/a3/9c338887020419dbb724583d489bc37d3e05ad: Unable to read file (binary?)
+  ✗ .git/objects/b2/557faec33baab183904e47dbb5eba0a21a66bc: Unable to read file (binary?)
+  ✗ .git/objects/b2/4a0cdc0e5b0cf70460fe84e487bcfd347d9e8d: Unable to read file (binary?)
+  ✗ .git/objects/b2/aed1826d435718a06a2e51e9d324c82138b306: Unable to read file (binary?)
+  ✗ .git/objects/b2/25677e5b0ce86b030fc90a6dfd1bf421c0e89d: Unable to read file (binary?)
+  ✗ .git/objects/c2/3f619988e352dca85b4af4a7ac89efea5e76d8: Unable to read file (binary?)
+  ✗ .git/objects/c2/ff42da93215dcac44242a9d575bf17d017d844: Unable to read file (binary?)
+  ✗ .git/objects/c2/9769e0d9b77f9f7771462731a7ae3de0ef0804: Unable to read file (binary?)
+  ✗ .git/objects/c2/f2d175d093620e5df96fe66937daacfbb0b78d: Unable to read file (binary?)
+  ✗ .git/objects/04/51b57841544c580504cf0d60a7fd02f3bf2166: Unable to read file (binary?)
+  ✗ .git/objects/04/95f3c50cd99f4a1bbbd54d9d88a381f34a5e84: Unable to read file (binary?)
+  ✗ .git/objects/3a/852e4584e42c74583dcc509309413bbf3df058: Unable to read file (binary?)
+  ✗ .git/objects/3a/817a8f7d4989cf5d9beb4266225fcf8162e918: Unable to read file (binary?)
+  ✗ .git/objects/3a/6a44914688ad6d0d616b0016a35bc271b87aef: Unable to read file (binary?)
+  ✗ .git/objects/3a/254a815158fcf5c12237804b40d434da51f84c: Unable to read file (binary?)
+  ✗ .git/objects/75/716bf09f71fb6b3891b287b9fcc1c40a114dbd: Unable to read file (binary?)
+  ✗ .git/objects/58/b55330afbf889646e3dcf2402129c7516d56df: Unable to read file (binary?)
+  ✗ .git/objects/58/13a3835af6fdf0efe2abe9dea52249db35d001: Unable to read file (binary?)
+  ✗ .git/objects/58/8e5a62440541eb74074f5629c2921cac57baec: Unable to read file (binary?)
+  ✗ .git/objects/58/41a1b1279da79f500c1291ddf86bef8bc4d77a: Unable to read file (binary?)
+  ✗ .git/objects/58/d8fd9a1d4f4d020e949441246951db6b8c590f: Unable to read file (binary?)
+  ✗ .git/objects/d6/d678f3980d4be7fd987c952bddb230c80f70ea: Unable to read file (binary?)
+  ✗ .git/objects/d6/59cfd0ff5f9f4355448b793545f992d6c775ba: Unable to read file (binary?)
+  ✗ .git/objects/2d/d16e08b4ac649a7cef1f9901d6535b6495f9de: Unable to read file (binary?)
+  ✗ .git/objects/2d/a11220867db0d6190a0cbfcdcbc8901ff08137: Unable to read file (binary?)
+  ✗ .git/objects/bc/358c86d03d644e2035d766d202282540b32676: Unable to read file (binary?)
+  ✗ .git/objects/bc/6dfeff094fef60ba4358ab7d6e89204855a41a: Unable to read file (binary?)
+  ✗ .git/objects/8b/0fe8dd1c3387e2d8ecbf2b754d1c02c02ee857: Unable to read file (binary?)
+  ✗ .git/objects/8b/f0e304196b7fba2a5e380bfdb608f8d5bff489: Unable to read file (binary?)
+  ✗ .git/objects/8b/d2869bb482cea1eb2a042b60d0f1580a16df60: Unable to read file (binary?)
+  ✗ .git/objects/8b/e9339e2b9836bc4b78ed72820ccbf47c03c2e5: Unable to read file (binary?)
+  ✗ .git/objects/ef/f4163e1e461de73821cc0a64720dab4553e17a: Unable to read file (binary?)
+  ✗ .git/objects/ef/44ec01e86b522ebc2e4cdbc8dd2ab00ae48893: Unable to read file (binary?)
+  ✗ .git/objects/ef/13cbcd65f78e812eff3aafecf84a14dbfbf84e: Unable to read file (binary?)
+  ✗ .git/objects/ef/b0c9bf718958bda3fb6ebb10a936081419218c: Unable to read file (binary?)
+  ✗ .git/objects/59/e285fd5804e84d3b4401b20da16856c4264f88: Unable to read file (binary?)
+  ✗ .git/objects/9d/8a3adb6ec02698ce10ec986133289919e3fc35: Unable to read file (binary?)
+  ✗ .git/objects/9d/6a43564d297f55dc1a5d40670e3831fae2590f: Unable to read file (binary?)
+  ✗ .git/objects/9d/06422bdd271f42cb4a5b791565a0b88855e56a: Unable to read file (binary?)
+  ✗ .git/objects/9d/04d7a3c6fe0cd0fb67a074c7c25db3e215f69f: Unable to read file (binary?)
+  ✗ .git/objects/35/ad0cce22fddde8d0cb723d04a41b2c67bb4d81: Unable to read file (binary?)
+  ✗ .git/objects/35/edf5bd2efcadff4b7966fe81d49a0f17cd2016: Unable to read file (binary?)
+  ✗ .git/objects/35/84aaba94e268be21ca333938d94791aa2aa007: Unable to read file (binary?)
+  ✗ .git/objects/35/04549b40b99c1f008da097229ee20f920908ac: Unable to read file (binary?)
+  ✗ .git/objects/43/fa0fab7e523ae79f00df94d29173d169acbd32: Unable to read file (binary?)
+  ✗ .git/objects/pack/pack-90b6d61b43620faf124fd2f5defbac0ce2cfbb71.idx: Unable to read file (binary?)
+  ✗ .git/objects/pack/pack-90b6d61b43620faf124fd2f5defbac0ce2cfbb71.pack: Unable to read file (binary?)
+  ✗ .git/objects/pack/pack-90b6d61b43620faf124fd2f5defbac0ce2cfbb71.rev: Unable to read file (binary?)
+  ✗ .git/objects/f2/4df48637d7ede8e7cff839b6a98374d9b7ff09: Unable to read file (binary?)
+  ✗ .git/objects/0f/4940eaef00b12f26afc4bfffb9cb7bb0343f75: Unable to read file (binary?)
+  ✗ .git/objects/0f/e11263588b57a8b13634a75cf3e88e7aae600f: Unable to read file (binary?)
+  ✗ .git/objects/1c/8b4d5a3c2c23602307fcb2b90ca87399972702: Unable to read file (binary?)
+  ✗ .git/objects/b4/1174e746f0d8c1a7a1c0d92fdec6286b15eea7: Unable to read file (binary?)
+  ✗ .git/objects/b4/e2cf2a03697728ae8bf8e24ebf2e594123f2f8: Unable to read file (binary?)
+  ✗ .git/objects/e1/13c1e2f7b9c67add32f29f19d7ebe4c60429ab: Unable to read file (binary?)
+  ✗ .git/objects/e1/b078dd808bd5b6033d0cbf0fb3816790acdbd6: Unable to read file (binary?)
+  ✗ .git/objects/e1/c932621a7e29784c8b927a24b4268c913059d5: Unable to read file (binary?)
+  ✗ .git/objects/e1/20d7b8efc7dc8367a971bf9e7ad62a8844bd15: Unable to read file (binary?)
+  ✗ .git/objects/3f/fee6c732e4aade9c0529c8c2f8342608cef9da: Unable to read file (binary?)
+  ✗ .git/objects/3f/4d5d0f2e13d288328c463826b265678441a3fe: Unable to read file (binary?)
+  ✗ .git/objects/3f/686ac1020eb0d94a771f39d8fd84679213478a: Unable to read file (binary?)
+  ✗ .git/objects/3f/08f31e5b82dfa50e0d8c87cf28fc9df16fbbd8: Unable to read file (binary?)
+  ✗ .git/objects/3f/3d7681f9e54e1bc3fc1064745c50675445b42e: Unable to read file (binary?)
+  ✗ .git/objects/ad/94890b455a08be803df2389c17dca8b75190cf: Unable to read file (binary?)
+  ✗ .git/objects/ad/cd283b5dd2152144fad354100aa42e2f507318: Unable to read file (binary?)
+  ✗ .git/objects/ad/f977f96072d3ad4cb7c7cc24f09feeaa77947d: Unable to read file (binary?)
+  ✗ .git/objects/dc/39b9ca3a3db572bca937e955839df0d0481904: Unable to read file (binary?)
+  ✗ .git/objects/dc/da7322a60ea0a64f405dcab1679464225bf5db: Unable to read file (binary?)
+  ✗ .git/objects/05/ea643036a3bb6483f98cf2c152d6427a02c74f: Unable to read file (binary?)
+  ✗ .git/objects/05/7793cde3e13974a0820234fc2a60b4b62cdc93: Unable to read file (binary?)
+  ✗ .git/objects/05/6dbd48212e3b48fe29e87d3e16ab665cfca386: Unable to read file (binary?)
+  ✗ .git/objects/05/cd44482c61a695da03ba91cf35211608affc03: Unable to read file (binary?)
+  ✗ .git/objects/05/412ede440a53b49397327c34fcffe2f8076702: Unable to read file (binary?)
+  ✗ .git/objects/df/3e0c0892e547fc78d89f159273507e410f268a: Unable to read file (binary?)
+  ✗ .git/objects/df/ba18d2ea7207352798e9bb7f58ac2ecddc03f8: Unable to read file (binary?)
+  ✗ .git/objects/19/b7e1394db2d790c1c56dcb467c9506cab9e8ed: Unable to read file (binary?)
+  ✗ .git/objects/19/a79f22cc65ff257cc9d054f07e064f70e496e7: Unable to read file (binary?)
+  ✗ .git/objects/8e/7d3f5365596896760b2c06fb130f2f4c02307c: Unable to read file (binary?)
+  ✗ .git/objects/8e/da057b134612cc642aca12ba6f7f30edf38348: Unable to read file (binary?)
+  ✗ .git/objects/8e/a8a71147b299981dcd7f0d6a55ca753692b761: Unable to read file (binary?)
+  ✗ .git/objects/24/092e393bdf60c30dbf7ad774d6e5b80bb9594b: Unable to read file (binary?)
+  ✗ .git/objects/6f/8af5b936914949982e8aecbab71143de5d6e36: Unable to read file (binary?)
+  ✗ .git/objects/cb/2e23f1c127b7363c15b03a4b978d168ac5fce6: Unable to read file (binary?)
+  ✗ .git/objects/cb/bbcd4ad36e024a657d738224615ed7a94f3fd2: Unable to read file (binary?)
+  ✗ .git/objects/cb/34a7800d8ae26ca177db185a84c154edf315e1: Unable to read file (binary?)
+  ✗ .git/objects/cb/4c2517d3ac1f25c031c8389615e518312dd93e: Unable to read file (binary?)
+  ✗ .git/objects/ce/2edf62723b2763e9d5b902d0f079bf7a0f2461: Unable to read file (binary?)
+  ✗ .git/objects/ce/1dca787bb6e3336ec0694d6ba6133179f5ec6c: Unable to read file (binary?)
+  ✗ .git/objects/ce/3e2cc7b3e15f2a359bb98e1fd52836832f6eb8: Unable to read file (binary?)
+  ✗ .git/objects/ce/2e2ffefbe236b0256cf3f28772a75efa075df1: Unable to read file (binary?)
+  ✗ .git/objects/ce/607c36d53325f6959d70019fc663c637a784e7: Unable to read file (binary?)
+  ✗ .git/objects/ce/79c0602b2d05f289b44d20a22f4424ff3aed7c: Unable to read file (binary?)
+  ✗ .git/objects/a7/7c2cfde5e2f640dc0e1769f51d3338b5cad979: Unable to read file (binary?)
+  ✗ .git/objects/98/46d9dc7312c52ada4f1ee496b5fa47cad1209a: Unable to read file (binary?)
+  ✗ .git/objects/98/8732af29469d7cdade19853656afd5e9b417a0: Unable to read file (binary?)
+  ✗ .git/objects/98/688f6e5c75f39b07670c5bc5cd985f8f3dcbb1: Unable to read file (binary?)
+  ✗ .git/objects/98/1358efc54389058495e9cff556b41dd6f604fa: Unable to read file (binary?)
+  ✗ .git/objects/4e/fd576fbe70f4bd08d13dff69ec768fbe8bb08d: Unable to read file (binary?)
+  ✗ .git/objects/4e/81faa21b6eabb83f0eb4d2fd597aa6e7582d37: Unable to read file (binary?)
+  ✗ .git/objects/39/ee3282f2b80f5fa3430598ec6ecce256f14816: Unable to read file (binary?)
+  ✗ .git/objects/39/de9bb423a094f09a5617ec765527c9a3d2a962: Unable to read file (binary?)
+  ✗ .git/objects/39/b21e0cf0c011921f394cb4855a42801e557309: Unable to read file (binary?)
+  ✗ .git/objects/39/0b3ab913688bb40e364cba45d5e41fcb1a63c7: Unable to read file (binary?)
+  ✗ .git/objects/5d/17e2cf8600564965281ac567c32fcd499af641: Unable to read file (binary?)
+  ✗ .git/objects/5d/3aeb835f4aebbfb67c0efcd71c7accae8e37f2: Unable to read file (binary?)
+  ✗ .git/objects/5d/fa9d5507beefb07f05cee6a8c7d4b547ac58c8: Unable to read file (binary?)
+  ✗ .git/objects/c6/4f58a30343142f1d26f3003d86a4418b2ad39d: Unable to read file (binary?)
+  ✗ .git/objects/c6/c39078b7a64fc65f0172a312d9ad0a4bd116ea: Unable to read file (binary?)
+  ✗ .git/objects/1d/4afae0d413558dc8c334437802ca6613e9ceba: Unable to read file (binary?)
+  ✗ .git/objects/1d/3dc42858d01d78d1cfdeb4a214121e94f5d04a: Unable to read file (binary?)
+  ✗ .git/objects/4b/ec0249d2b42836e68f9bbd9a22cddef02ca853: Unable to read file (binary?)
+  ✗ .git/objects/4b/bd6ecd113d97cacca1e29c602e495e351c0280: Unable to read file (binary?)
+  ✗ .git/objects/4b/7848b290ded8bc2028998210497bba9806a71b: Unable to read file (binary?)
+  ✗ .git/objects/d8/51506262ebf9ac52bd05bb15b49564c15979fa: Unable to read file (binary?)
+  ✗ .git/objects/d8/7f0ae68d2a78d3fcb49a98797f08fa7e7f7067: Unable to read file (binary?)
+  ✗ .git/objects/d8/e02d05afbc9d6b9c1ab038ecf411be7e651532: Unable to read file (binary?)
+  ✗ .git/objects/d8/33a7832cc2cc08881fed0c35a5eec0a1fb7f30: Unable to read file (binary?)
+  ✗ .git/objects/bf/5b7f3292b7a1f0fdfa0c396bb9f52fc297f1bc: Unable to read file (binary?)
+  ✗ .git/objects/f5/98aeee4c525b776073f44e4e5876c57e405cdf: Unable to read file (binary?)
+  ✗ .git/objects/b5/b22f02ec69b03f1bcc35d74fa76435f36c37e9: Unable to read file (binary?)
+  ✗ .git/objects/b5/6f40687bd14c9ec4fc6802eb5d5035a930cdb4: Unable to read file (binary?)
+  ✗ .git/objects/3c/4926024473d67d8c122211d57dc4f28f143cb0: Unable to read file (binary?)
+  ✗ .git/objects/33/5d337840a09c6009ea59ce62ba135a0a90a0d6: Unable to read file (binary?)
+  ✗ .git/objects/33/22bd4cb16113936d8b81f6ff81f0413fa0adb7: Unable to read file (binary?)
+  ✗ .git/objects/33/9b78344f6eadc77ac8702b6ce75c9f2b8f3374: Unable to read file (binary?)
+  ✗ .git/objects/33/ef061033dcd1c48fe34c39a6d875c61e8b7f05: Unable to read file (binary?)
+  ✗ .git/objects/33/19dd13563fc4755ae44c629df8105e8b88a62e: Unable to read file (binary?)
+  ✗ .git/objects/33/b7a2e4c5b0493d1c8778748b95b7180d831ebc: Unable to read file (binary?)
+  ✗ .git/objects/33/f035ff74d5e91e864de49698fd54d894987aee: Unable to read file (binary?)
+  ✗ .git/objects/ed/3ba7ac8cdd1748d3a222d19fb253fce1dcd3a1: Unable to read file (binary?)
+  ✗ .git/objects/ac/394bca368e604b13f94edd63e8fe7732a0ca6f: Unable to read file (binary?)
+  ✗ .git/objects/ac/0254fedd4d02fb40944ff144082b74111529b2: Unable to read file (binary?)
+  ✗ .git/objects/ac/ef82f4336ea15108af1aa14ce9624de74e7aac: Unable to read file (binary?)
+  ✗ .git/objects/ac/fcf6110f0f8d6a92d624c29038bd624d043422: Unable to read file (binary?)
+  ✗ .git/objects/b7/76c075f625a2414b4ec743b4ecc39e70d9b388: Unable to read file (binary?)
+  ✗ .git/objects/b7/4304babbffac361fad14a6c8284fb8e62b806a: Unable to read file (binary?)
+  ✗ .git/objects/be/d68ec9b063a593859ac9d22b4a6d8d237667bb: Unable to read file (binary?)
+  ✗ .git/objects/be/4d3d26f00f7ae9bf9b41ba46bc886b05be18d4: Unable to read file (binary?)
+  ✗ .git/objects/be/3e31c0f2b8195bc163cab9cde12d2be5ca3c4e: Unable to read file (binary?)
+  ✗ .git/objects/be/59a96b8a141b2c8e22717412d9daf6cb511459: Unable to read file (binary?)
+  ✗ .git/objects/34/d096db096e51a8c654aa61f22de37711ad1919: Unable to read file (binary?)
+  ✗ .git/objects/34/1a00e82f134c7f64c19252daaa925a57b5864c: Unable to read file (binary?)
+  ✗ .git/objects/41/1d7a365c84661d76a2eefe58716469534501f6: Unable to read file (binary?)
+  ✗ .git/objects/41/2061aeaebbeedd3c08ee2599c51bd72ead06a7: Unable to read file (binary?)
+  ✗ .git/objects/80/ebb83d7f480fec86b4f97f3b0b2e83a7279c59: Unable to read file (binary?)
+  ✗ .git/objects/80/a2ae3ca6867f83b0bf7524ee1be78436063325: Unable to read file (binary?)
+  ✗ .git/objects/80/bef38be7290a1f71350acd6cee0b786cb9656a: Unable to read file (binary?)
+  ✗ .git/objects/14/2272d2aff0d636ae098d479ade2dcd81bb8614: Unable to read file (binary?)
+  ✗ .git/objects/14/452905d77e3ec54b486a02498137db87e33332: Unable to read file (binary?)
+  ✗ .git/objects/14/d143d71f00767e76525da1bbfeda25239ae133: Unable to read file (binary?)
+  ✗ .git/objects/14/c0936c22f60b2819d5ae4b61799d0a40d37ad1: Unable to read file (binary?)
+  ✗ .git/objects/bd/713d51c253672ab1e6c4a9aec3f0f676ae2dea: Unable to read file (binary?)
+  ✗ .git/objects/bd/7c98317af50a3cd8fb307cc018dea93d9f4bdb: Unable to read file (binary?)
+  ✗ .git/objects/bd/e7f0b107345b33debf31f9b60be92b0741a5c6: Unable to read file (binary?)
+  ✗ .git/objects/bd/352e1d43645605b0a783827af14357fe9381b4: Unable to read file (binary?)
+  ✗ .git/objects/93/0edf588162dc0635dd78932605b6f837c09191: Unable to read file (binary?)
+  ✗ .git/objects/c4/912c50348234e449df02a6d107046ed469649d: Unable to read file (binary?)
+  ✗ .git/objects/c4/b970a55d30529c279f401f17b6ff51935c1e27: Unable to read file (binary?)
+  ✗ .git/objects/c4/5969315de0c0c63554d27415cec3b7a329c71f: Unable to read file (binary?)
+  ✗ .git/objects/49/8a90180c943cb1fc6782abc1cbaa68f6056442: Unable to read file (binary?)
+  ✗ .git/objects/49/08a0fe38079fe4a93059390dbbb6bb09555051: Unable to read file (binary?)
+  ✗ .git/objects/49/c01c46b116bd3deb44bb7eff355c5dc6fb18ae: Unable to read file (binary?)
+  ✗ .git/objects/49/8b870e1c662dc42ec8ce1fd3dd1b562b592850: Unable to read file (binary?)
+  ✗ .git/objects/49/379c41fd10aad1e8352ca8c03265c4072e754b: Unable to read file (binary?)
+  ✗ .git/objects/49/c5dcb3684ffa46768b28c832cc524a9e2cdc14: Unable to read file (binary?)
+  ✗ .git/objects/94/190690e92b3ddc9eeb46c2e00f3ad94f35d583: Unable to read file (binary?)
+  ✗ .git/objects/69/d06e0e48fa9010f13cc63fbdb12775a0730060: Unable to read file (binary?)
+  ✗ .git/objects/69/9c6c6d4e07f86a8d38c36dd55684a10554df8b: Unable to read file (binary?)
+  ✗ .git/objects/69/245881ca0b986d5067caf065f978e27d0d89f6: Unable to read file (binary?)
+  ✗ .git/objects/69/8e922b9bbe6396715280bfccd53f12a91de87f: Unable to read file (binary?)
+  ✗ .git/objects/69/a1d7b3861ba1716f672f105b8ca9812a8dee72: Unable to read file (binary?)
+  ✗ .git/objects/18/6428088d2d0e22b0b743f3df3d0a30df54f58e: Unable to read file (binary?)
+  ✗ .git/objects/18/848761a303b3fb399d1663e8d007f7c60b09a7: Unable to read file (binary?)
+  ✗ .git/objects/18/8a7a15fe24d0a9098b3dfc5afe1af5e7f53a06: Unable to read file (binary?)
+  ✗ .git/objects/0e/233f16953dfb42d0e96425a1b892c15f9095f0: Unable to read file (binary?)
+  ✗ .git/objects/0e/24a92ffa1ffd7aafabe715b03c964cb7661632: Unable to read file (binary?)
+  ✗ .git/objects/0e/a98c6f7f614ffa8551af882317c9f53ac5f38f: Unable to read file (binary?)
+  ✗ .git/objects/0e/9b94c1e2d63f84e34d65e912d8c57907c162e9: Unable to read file (binary?)
+  ✗ .git/objects/84/5639eef26c0e95586203ae78369f67552ccb17: Unable to read file (binary?)
+  ✗ .git/objects/c0/ad22e977d2a03a3cacff87a80009f798950e0b: Unable to read file (binary?)
+  ✗ .git/objects/c0/23ce90295878cf58f715ecd0c30166adb4cdb6: Unable to read file (binary?)
+  ✗ .git/objects/c0/df6e33b3160cdb97bdca75e560ddd622696e88: Unable to read file (binary?)
+  ✗ .git/objects/51/7472a4183e31c2ab42387a1ccc7adf952f2c7a: Unable to read file (binary?)
+  ✗ .git/objects/51/9f4a60b2d15d00acae88fd8d113f471617afd5: Unable to read file (binary?)
+  ✗ .git/objects/68/e2343becb0bbe1a0c283e1a020ef31cad20363: Unable to read file (binary?)
+  ✗ .git/objects/68/e8c58470cfbe4f822d723952d3098e89413911: Unable to read file (binary?)
+  ✗ .git/objects/44/a00eff06a7adac28d6a634025add67ef59d3f5: Unable to read file (binary?)
+  ✗ .git/objects/44/1824d8222b87355bbf6ff13e2e50ee124db73d: Unable to read file (binary?)
+  ✗ .git/objects/44/dabeb529acac629dd2ce6a76c0300a0c1946b9: Unable to read file (binary?)
+  ✗ .git/objects/44/ac1c395c947b699faf494662e247afb8778edd: Unable to read file (binary?)
+  ✗ .git/objects/65/8e9ad9bfb465063a952e4d7016552b67b61f1f: Unable to read file (binary?)
+  ✗ .git/objects/65/3ea081135fb2ae642c0138a4d576ec5ff5e67b: Unable to read file (binary?)
+  ✗ .git/objects/12/6e51abe048f34732b9f53b985a2a92c7b7325d: Unable to read file (binary?)
+  ✗ .git/objects/12/b37598bc0922fca5dd1ecce3f74129d811ab1f: Unable to read file (binary?)
+  ✗ .git/objects/12/98bc0c0eaf04151a53a5c825d9b9c4249379d1: Unable to read file (binary?)
+  ✗ .git/objects/12/60dfbc4751267fcb003d0ee6f54ea8bf2f3667: Unable to read file (binary?)
+  ✗ .git/objects/0b/b5e86f1a45c2a930b6084fc2c6f0bf2d19a3a8: Unable to read file (binary?)
+  ✗ .git/objects/0b/136d5d5153ba64102d897bfd8d7fcb2a626c44: Unable to read file (binary?)
+  ✗ .git/objects/e6/9de29bb2d1d6434b8b29ae775ad8c2e48c5391: Unable to read file (binary?)
+  ✗ .git/objects/e6/a0852d14dd45d1b65fa1e266658837420327c9: Unable to read file (binary?)
+  ✗ .git/objects/c7/2cb04c51841939a21ee73134fbcfcb57d347fc: Unable to read file (binary?)
+  ✗ .git/objects/c7/7a37bb4ea5d70056b7c4a5b7ce7abe790fb493: Unable to read file (binary?)
+  ✗ .git/objects/6a/8d6226d1e504e17050d3e761cc1b901356c5f8: Unable to read file (binary?)
+  ✗ .git/objects/6a/767bc9111bd93f8b7e8f4051ebbd21a6cd69e2: Unable to read file (binary?)
+  ✗ .git/objects/6a/d0b13ae49ccee5f06a2ab18ff38ce82aea712f: Unable to read file (binary?)
+  ✗ .git/objects/6a/3156e9cf9635a47478bcaeb2a382d7cf68583c: Unable to read file (binary?)
+  ✗ .git/objects/27/4b8d32ad5492b4f0e3265a8e60b6efe5e63b4f: Unable to read file (binary?)
+  ✗ .git/objects/9f/aa1b7a7339db85692f91ad4b922554624a3ef7: Unable to read file (binary?)
+  ✗ .git/objects/f9/146236e748393b6549bbd8ed987664df00d29f: Unable to read file (binary?)
+  ✗ .git/objects/f9/ae1aa60ae95256a4bf4a28a3c5efe1c5778f11: Unable to read file (binary?)
+  ✗ .git/objects/f9/39fb11ae22252aafbdb81c844479eef727dcde: Unable to read file (binary?)
+  ✗ .git/objects/f9/103ef74625212e6938da52622e461126be572a: Unable to read file (binary?)
+  ✗ .git/objects/f9/3a4af5c3c6ae1d95ae437381178ffc64b5d120: Unable to read file (binary?)
+  ✗ .git/objects/f9/a4c2ed8c03ca48fbb13eafc2d3e72e13f24f4a: Unable to read file (binary?)
+  ✗ .git/objects/16/0826db07f4ea01380aa297ad0d601a65937e5f: Unable to read file (binary?)
+  ✗ .git/objects/16/1cc152f4e90a3b18df781ae3e9f5613e2a40b7: Unable to read file (binary?)
+  ✗ .git/objects/16/b92e91561458a7959ac52eab6c49f27d04ad4f: Unable to read file (binary?)
+  ✗ .git/objects/16/bf06cea9ff343a91154defde4fff8cd726025b: Unable to read file (binary?)
+  ✗ .git/objects/7f/80bffbd184e6ddbf2acd68c3f1e53e3462f0cb: Unable to read file (binary?)
+  ✗ .git/objects/7f/e7fb6c811e4a7f9f26abb1b80e973818ebfef1: Unable to read file (binary?)
+  ✗ .git/objects/3d/c5bee22b8a7622ff4d59c24618f9b10bced363: Unable to read file (binary?)
+  ✗ .git/objects/6d/ece343a0497196b0dd977de259c5c8a5ed0af3: Unable to read file (binary?)
+  ✗ .git/objects/6d/631ad439bc64abea042e986670aee8d04c084e: Unable to read file (binary?)
+  ✗ .git/objects/6d/74e2bea139af06361f3ce023e03b1c08ae36a0: Unable to read file (binary?)
+  ✗ .git/objects/bb/4df511e712c529f14503d272cfa38a5e3e4c44: Unable to read file (binary?)
+  ✗ .git/objects/bb/c640b1ecd3b574ddbb62795e518db7ec74409f: Unable to read file (binary?)
+  ✗ .git/objects/f4/127e2543b9e221f66829b1055643685000e13e: Unable to read file (binary?)
+  ✗ .git/objects/f4/9cd377716c3f02d2ef17e68866ccc92b78703f: Unable to read file (binary?)
+  ✗ .git/objects/f4/3fe09868e87513ccf86fade5578ba3f44b8801: Unable to read file (binary?)
+  ✗ .git/objects/f4/bb422e273225fd125a2978ffab08c7200b75e4: Unable to read file (binary?)
+  ✗ .git/objects/f4/5c060c8e3926e35fb0f5eab690a79ec608e1bb: Unable to read file (binary?)
+  ✗ .git/objects/3b/d6a81a5692d28395b04bbcbed7735b3cc2f019: Unable to read file (binary?)
+  ✗ .git/objects/45/e284c48fcb386b41be2358acc985468a2dc25e: Unable to read file (binary?)
+  ✗ .git/objects/45/a0c1e3ea48bc099a775b9775eb2c5af3fa6bc7: Unable to read file (binary?)
+  ✗ .git/objects/45/a171063177621f4133b31fcce6b49743c74979: Unable to read file (binary?)
+  ✗ .git/objects/e4/73784d3ca4d9b87afeb864957aad961c92aa60: Unable to read file (binary?)
+  ✗ .git/objects/a1/842c9c064b4e6e13a5dac6192096d918473664: Unable to read file (binary?)
+  ✗ .git/objects/e2/83223fd830e55cc056d664a1dc8bc5aef8fc3f: Unable to read file (binary?)
+  ✗ .git/objects/d7/f5f2cd059e317654701fc6cba3d6fb41cc9fea: Unable to read file (binary?)
+  ✗ .git/objects/d7/2d8fec0cafc0e23608edd0fcf27f3a465f2c75: Unable to read file (binary?)
+  ✗ .git/objects/d7/61227a3e96d15c4c00beaaa86c1a9462527722: Unable to read file (binary?)
+  ✗ .git/objects/b6/3720c8b9f3df938ae2e7b863c70ea2cdd61e48: Unable to read file (binary?)
+  ✗ .git/objects/b6/4d866f000546881f6ddb61bcf6db43b1654b63: Unable to read file (binary?)
+  ✗ .git/objects/b6/c896f4f7d516e16832d77cbb47e1b3fd195353: Unable to read file (binary?)
+  ✗ .git/objects/b6/cade35ba94d409e451a3957d9031238ce7f5c2: Unable to read file (binary?)
+  ✗ .git/objects/9b/3dc937ea7e1232132fcf1abab9ded98465b6ac: Unable to read file (binary?)
+  ✗ .git/objects/4c/9e5c26c3aa39031698c7b411303f24889d21a7: Unable to read file (binary?)
+  ✗ .git/objects/4c/ebd049fb104262b49b067d23b0c110e77c0181: Unable to read file (binary?)
+  ✗ .git/objects/1f/609a766cfb303a08868985b435d3d415ab2e55: Unable to read file (binary?)
+  ✗ .git/objects/1f/a7ff21cbf2be185f8e1b5afa6349b80629689b: Unable to read file (binary?)
+  ✗ .git/objects/37/08cd85c1f4f3c2b2a6dab42529f5937ae3d055: Unable to read file (binary?)
+  ✗ .git/objects/37/bafaddc1c862cf5cbc2020a51b2512ddba4ca1: Unable to read file (binary?)
+  ✗ .git/objects/6e/9647f94751cf46c6e334a86fcb1bb808e42465: Unable to read file (binary?)
+  ✗ .git/objects/6e/036f3bf9611cbc5398e06f45ed4148838ab292: Unable to read file (binary?)
+  ✗ .git/objects/6e/bbd9e1208cd5b90697f49ddf959dd65170783d: Unable to read file (binary?)
+  ✗ .git/objects/6e/11231e9f9cd808efbe69dad648a6b0c9c8cd74: Unable to read file (binary?)
+  ✗ .git/objects/6e/7638337f6f4e58caae1ce89384ead06277ef5b: Unable to read file (binary?)
+  ✗ .git/objects/fa/512c0c9fa014043c852fdbf7e497a5e17a4c9e: Unable to read file (binary?)
+  ✗ .git/objects/fa/ea11198ffda7ab72908dd77cb6d49c6a2a6fe7: Unable to read file (binary?)
+  ✗ .git/objects/c8/1f4e4939a8f0073ad18e95bf435e223767dfae: Unable to read file (binary?)
+  ✗ .git/objects/c8/67640b40f1bf725ef61463118e23712bc6e1ca: Unable to read file (binary?)
+  ✗ .git/objects/d1/2c16dd2015c4fdc9be0606b392a239fcf9b82d: Unable to read file (binary?)
+  ✗ .git/objects/0c/7856dd70ecb75a7fec98d780d9e8ac3c379848: Unable to read file (binary?)
+  ✗ .git/objects/0c/1143eac649c05149b20b30b2e9a924ad7a6775: Unable to read file (binary?)
+  ✗ .git/objects/0c/ca485c02a3e01cdc17836c752f00c2b231aa28: Unable to read file (binary?)
+  ✗ .git/objects/0c/1b2798d623b60db42317f1ab7ffae255afa51f: Unable to read file (binary?)
+  ✗ .git/objects/d5/60a99fdd5cb0ab00f9b82e3eee595770aa5461: Unable to read file (binary?)
+  ✗ .git/objects/d5/97b251b1b74da08c9db2f823f192cfdfd282a9: Unable to read file (binary?)
+  ✗ .git/objects/d5/dbb9be6ad971f24ea20c1073e9f5290719edec: Unable to read file (binary?)
+  ✗ .git/objects/7c/c325979317963cfd9ee1b564579e8b59dfdd76: Unable to read file (binary?)
+  ✗ .git/objects/7c/3b99c676e62b45689c29cbefdf699f9d8590b7: Unable to read file (binary?)
+  ✗ .git/objects/20/eceb7ad713aad33330b46366c6502226eb69a2: Unable to read file (binary?)
+  ✗ .git/objects/20/38b4ac82db9f3940640226aaa602a66fa92d08: Unable to read file (binary?)
+  ✗ .git/objects/20/225524d44761e3cab2717df1848fa2de325890: Unable to read file (binary?)
+  ✗ .git/objects/20/bce7b300a41c93b9c474ce003d71678ffa9d4c: Unable to read file (binary?)
+  ✗ .git/objects/20/f49513e15fe8c9e59ec1b906021854bd91aea8: Unable to read file (binary?)
+  ✗ .git/refs/tags/v0.1.12: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/refs/tags/v0.1.7: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/refs/tags/v0.1.4: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/refs/tags/v0.1.14: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/refs/tags/v0.1.11: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/refs/tags/v0.1.9: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/refs/tags/v0.1.1: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/refs/tags/v0.1.16: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/refs/tags/v0.1.13: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/refs/tags/v0.1.3: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/refs/tags/v0.1.5: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/refs/tags/v0.1.6: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/refs/tags/v0.1.8: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/refs/tags/v0.1.10: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/refs/tags/v0.1.15: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/refs/heads/main: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/refs/remotes/origin/main: Error: 'NoneType' object has no attribute 'value'
+  ✗ .git/refs/remotes/origin/HEAD: Error: 'NoneType' object has no attribute 'value'
+  ✗ publish-env/bin/rst2html4: Error: 'NoneType' object has no attribute 'value'
+  ✗ publish-env/bin/pip3.13: Error: 'NoneType' object has no attribute 'value'
+  ✗ publish-env/bin/rst2latex: Error: 'NoneType' object has no attribute 'value'
+  ✗ publish-env/bin/rst2html5: Error: 'NoneType' object has no attribute 'value'
+  ✗ publish-env/bin/activate.fish: Error: 'NoneType' object has no attribute 'value'
+  ✗ publish-env/bin/rst2s5: Error: 'NoneType' object has no attribute 'value'
+  ✗ publish-env/bin/rst2xetex: Error: 'NoneType' object has no attribute 'value'
+  ✗ publish-env/bin/python3.13: Unable to read file (binary?)
+  ✗ publish-env/bin/activate: Error: 'NoneType' object has no attribute 'value'
+  ✗ publish-env/bin/normalizer: Error: 'NoneType' object has no attribute 'value'
+  ✗ publish-env/bin/pygmentize: Error: 'NoneType' object has no attribute 'value'
+  ✗ publish-env/bin/docutils: Error: 'NoneType' object has no attribute 'value'
+  ✗ publish-env/bin/markdown-it: Error: 'NoneType' object has no attribute 'value'
+  ✗ publish-env/bin/rst2html: Error: 'NoneType' object has no attribute 'value'
+  ✗ publish-env/bin/rst2pseudoxml: Error: 'NoneType' object has no attribute 'value'
+  ✗ publish-env/bin/rst2xml: Error: 'NoneType' object has no attribute 'value'
+  ✗ publish-env/bin/python3: Unable to read file (binary?)
+  ✗ publish-env/bin/pip: Error: 'NoneType' object has no attribute 'value'
+  ✗ publish-env/bin/rst2man: Error: 'NoneType' object has no attribute 'value'
+  ✗ publish-env/bin/rst2odt: Error: 'NoneType' object has no attribute 'value'
+  ✗ publish-env/bin/pip3: Error: 'NoneType' object has no attribute 'value'
+  ✗ publish-env/bin/python: Unable to read file (binary?)
+  ✗ publish-env/bin/keyring: Error: 'NoneType' object has no attribute 'value'
+  ✗ publish-env/bin/activate.csh: Error: 'NoneType' object has no attribute 'value'
+  ✗ publish-env/bin/twine: Error: 'NoneType' object has no attribute 'value'
+  ✗ src/vallm/py.typed: Error: 'NoneType' object has no attribute 'value'
+  ✗ src/vallm/validators/security.py: Validation fail
+  ✗ src/vallm/validators/imports.py: Validation fail
+  ✗ src/vallm/sandbox/runner.py: Validation fail
+  ✗ src/vallm/validators/imports/javascript_imports.py: Validation fail
+  ✗ src/vallm/validators/imports/python_imports.py: Validation fail
+  ✗ src/vallm/validators/imports/go_imports.py: Validation fail
+  ✗ src/vallm/validators/imports/c_imports.py: Validation fail
+  ✗ src/vallm/validators/imports/__init__.py: Validation fail
+  ✗ src/vallm/validators/imports/rust_imports.py: Validation fail
+  ✗ src/vallm/validators/imports/wrapper.py: Validation fail
+  ✗ src/vallm/validators/imports/factory.py: Validation fail
+  ✗ src/vallm/validators/imports/java_imports.py: Validation fail
+  ✗ examples/05_llm_semantic_review/main_template.py: Validation fail
+  ✗ examples/05_llm_semantic_review/main.py: Validation fail
+  ✗ examples/05_llm_semantic_review/README.md: Error: 'NoneType' object has no attribute 'value'
+  ✗ examples/09_code2logic_integration/README.md: Error: 'NoneType' object has no attribute 'value'
+  ✗ examples/11_claude_code_autonomous/requirements.txt: Error: 'NoneType' object has no attribute 'value'
+  ✗ examples/11_claude_code_autonomous/claude_autonomous_demo.py: Validation fail
+  ✗ examples/11_claude_code_autonomous/Dockerfile: Error: 'NoneType' object has no attribute 'value'
+  ✗ examples/11_claude_code_autonomous/README.md: Error: 'NoneType' object has no attribute 'value'
+  ✗ examples/04_graph_analysis/main.py: Validation fail
+  ✗ examples/04_graph_analysis/README.md: Error: 'NoneType' object has no attribute 'value'
+  ✗ examples/12_ollama_simple_demo/ollama_simple_demo.py: Validation fail
+  ✗ examples/12_ollama_simple_demo/iteration_1.py: Validation fail
+  ✗ examples/12_ollama_simple_demo/requirements.txt: Error: 'NoneType' object has no attribute 'value'
+  ✗ examples/12_ollama_simple_demo/best_version.py: Validation fail
+  ✗ examples/12_ollama_simple_demo/Dockerfile: Error: 'NoneType' object has no attribute 'value'
+  ✗ examples/12_ollama_simple_demo/iteration_2.py: Validation fail
+  ✗ examples/01_basic_validation/main.py: Validation fail
+  ✗ examples/01_basic_validation/README.md: Error: 'NoneType' object has no attribute 'value'
+  ✗ examples/02_ast_comparison/main.py: Validation fail
+  ✗ examples/02_ast_comparison/README.md: Error: 'NoneType' object has no attribute 'value'
+  ✗ examples/03_security_check/main.py: Validation fail
+  ✗ examples/03_security_check/README.md: Error: 'NoneType' object has no attribute 'value'
+  ✗ examples/06_multilang_validation/main_template.py: Validation fail
+  ✗ examples/06_multilang_validation/README.md: Error: 'NoneType' object has no attribute 'value'
+  ✗ examples/07_multi_language/README.md: Error: 'NoneType' object has no attribute 'value'
+  ✗ examples/10_mcp_ollama_demo/requirements.txt: Error: 'NoneType' object has no attribute 'value'
+  ✗ examples/10_mcp_ollama_demo/mcp_demo.py: Validation fail
+  ✗ examples/10_mcp_ollama_demo/Dockerfile: Error: 'NoneType' object has no attribute 'value'
+  ✗ examples/10_mcp_ollama_demo/README.md: Error: 'NoneType' object has no attribute 'value'
+  ✗ examples/utils/__init__.py: Validation fail
+  ✗ examples/08_code2llm_integration/README.md: Error: 'NoneType' object has no attribute 'value'
+  ✗ examples/12_ollama_simple_demo/utils/__init__.py: Validation fail
+  ✗ examples/12_ollama_simple_demo/utils/main.py: Validation fail

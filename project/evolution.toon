@@ -9,9 +9,9 @@ NEXT[3] (ranked by impact):
       WHY: CC=27 exceeds 15
       EFFORT: ~1h  IMPACT: 297
 
-  [3] !  SPLIT-FUNC      BatchProcessor._process_files  CC=18  fan=11
-      WHY: CC=18 exceeds 15
-      EFFORT: ~1h  IMPACT: 198
+  [3] !  SPLIT-FUNC      BatchProcessor._process_files  CC=23  fan=12
+      WHY: CC=23 exceeds 15
+      EFFORT: ~1h  IMPACT: 276
 
 
 RISKS[1]:
@@ -25,4 +25,4 @@ METRICS-TARGET:
   hub-types:   0 → ≤0
 
 HISTORY:
-  prev CC̄=3.4 → now CC̄=3.3
+  prev CC̄=3.3 → now CC̄=3.3
