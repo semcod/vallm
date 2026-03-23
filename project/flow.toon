@@ -44,18 +44,18 @@ PIPELINES[12] (Analysis:2, Core:3, Export:1, IO:1, NLP:2, Unknown:3):
               PURITY: 3/4 pure  BOTTLENECK: main(CC=9)
 
   Examples [Unknown]: ? → ?
-              → main()                                  CC=4    IO ▶
-              → run_autonomous_workflow(code_path:Path, max_iterations:int) CC=9    IO
-              → run_runtime_tests(code_path:Path, test_file:Optional[Path]) → Dict CC=8    IO
-              → create_basic_tests(code_path:Path, test_file:Path) CC=7    IO ■
-              PURITY: 0/4 pure  BOTTLENECK: run_autonomous_workflow(CC=9)
-
-  Examples [Unknown]: ? → ?
               → main()                                  CC=5    IO ▶
               → run_simple_workflow(code_path:Path, max_iterations:int) CC=9    IO
               → run_simple_test(code:str) → Dict        CC=2    IO
               → log_step(step:int, description:str)     CC=1    IO ■
               PURITY: 0/4 pure  BOTTLENECK: run_simple_workflow(CC=9)
+
+  Examples [Unknown]: ? → ?
+              → main()                                  CC=4    IO ▶
+              → run_autonomous_workflow(code_path:Path, max_iterations:int) CC=9    IO
+              → run_runtime_tests(code_path:Path, test_file:Optional[Path]) → Dict CC=8    IO
+              → create_basic_tests(code_path:Path, test_file:Path) CC=7    IO ■
+              PURITY: 0/4 pure  BOTTLENECK: run_autonomous_workflow(CC=9)
 
   Examples [NLP]: ? → Optional[Language]
               → main()                                  CC=11   IO ▶
@@ -95,8 +95,8 @@ TRANSFORMS (fan-out ≥10):
   extract_imports(code:str) → List[Dict[str, Any]]        fan=14   PIPELINE:JavaScriptImportValidator.entry
   extract_imports(code:str) → List[Dict[str, Any]]        fan=13   PIPELINE:GoImportValidator.entry
   extract_imports(code:str) → List[Dict[str, Any]]        fan=13   PIPELINE:RustImportValidator.entry
-  main()                                                  fan=13   !! script-in-disguise
   analyze_with_code2llm(code_path:Path) → Dict            fan=13   fan=13
+  main()                                                  fan=13   !! script-in-disguise
   _parse_ruff_text(output:str) → List[Issue]              fan=12   PIPELINE:LintValidator.entry
   _process_files(filtered_files:list[Path], settings:VallmSettings, output_format:str, fail_fast:bool, verbose:bool, show_issues:bool) → tuple[dict, list, int] fan=12   PIPELINE:BatchProcessor.entry
   main()                                                  fan=12   !! script-in-disguise
@@ -230,27 +230,6 @@ CONTRACTS:
       OUT: None
       SIDE-EFFECT: IO(print, print, print)
 
-    run_autonomous_workflow(code_path:Path, max_iterations:int)
-      IN:  code_path:Path, max_iterations:int
-      OUT: None
-      SIDE-EFFECT: IO(read_text, print, print)
-
-    run_runtime_tests(code_path:Path, test_file:Optional[Path]) → Dict
-      IN:  code_path:Path, test_file:Optional[Path]
-      OUT: Dict
-      SIDE-EFFECT: IO(print, print, print)
-
-    create_basic_tests(code_path:Path, test_file:Path)
-      IN:  code_path:Path, test_file:Path
-      OUT: None
-      SIDE-EFFECT: IO(read_text, write_text, print)
-
-  Pipeline: Examples
-    main()
-      IN:  ()
-      OUT: None
-      SIDE-EFFECT: IO(print, print, print)
-
     run_simple_workflow(code_path:Path, max_iterations:int)
       IN:  code_path:Path, max_iterations:int
       OUT: None
@@ -265,6 +244,27 @@ CONTRACTS:
       IN:  step:int, description:str
       OUT: None
       SIDE-EFFECT: IO(print)
+
+  Pipeline: Examples
+    main()
+      IN:  ()
+      OUT: None
+      SIDE-EFFECT: IO(print, print, print)
+
+    run_autonomous_workflow(code_path:Path, max_iterations:int)
+      IN:  code_path:Path, max_iterations:int
+      OUT: None
+      SIDE-EFFECT: IO(read_text, print, print)
+
+    run_runtime_tests(code_path:Path, test_file:Optional[Path]) → Dict
+      IN:  code_path:Path, test_file:Optional[Path]
+      OUT: Dict
+      SIDE-EFFECT: IO(print, print, print)
+
+    create_basic_tests(code_path:Path, test_file:Path)
+      IN:  code_path:Path, test_file:Path
+      OUT: None
+      SIDE-EFFECT: IO(read_text, write_text, print)
 
   Pipeline: Examples
     main()
@@ -347,7 +347,7 @@ CONTRACTS:
 
 DATA_TYPES (by cross-function usage) [248 annotated, 0 inferred / 322 functions]:
   str                  consumed:187 produced:44   !! HUB-TYPE → split interface
-  bool                 consumed:34  produced:16   !! HUB-TYPE → split interface
+  bool                 consumed:33  produced:16   !! HUB-TYPE → split interface
   dict                 consumed:35  produced:14   !! HUB-TYPE → split interface
   Path                 consumed:34  produced:0    !! HUB-TYPE → split interface
   int                  consumed:22  produced:4    !! HUB-TYPE → split interface
@@ -355,22 +355,22 @@ DATA_TYPES (by cross-function usage) [248 annotated, 0 inferred / 322 functions]
   ValidationResult     consumed:5   produced:18 
   list                 consumed:17  produced:4    !! HUB-TYPE → split interface
   Proposal             consumed:16  produced:1    !! HUB-TYPE → split interface
-  VallmSettings        consumed:11  produced:2    !! HUB-TYPE → split interface
   Dict                 consumed:7   produced:6  
+  VallmSettings        consumed:11  produced:2    !! HUB-TYPE → split interface
   float                consumed:4   produced:7  
   list[Path]           consumed:6   produced:2  
   Issue                consumed:1   produced:4  
   Language             consumed:0   produced:4    narrow scope
-  GitignoreParser      consumed:1   produced:2    narrow scope
-  list[Issue]          consumed:0   produced:3    narrow scope
-  ExecutionResult      consumed:0   produced:3    narrow scope
   str | Path           consumed:3   produced:0    narrow scope
   list[str]            consumed:2   produced:1    narrow scope
+  list[Issue]          consumed:0   produced:3    narrow scope
+  ExecutionResult      consumed:0   produced:3    narrow scope
+  GitignoreParser      consumed:1   produced:2    narrow scope
 
   HUB TYPES (consumed ≥10):
     str → 187 consumers → split into:
       - (analyze consumers to suggest sub-interfaces)
-    bool → 34 consumers → split into:
+    bool → 33 consumers → split into:
       - (analyze consumers to suggest sub-interfaces)
     dict → 35 consumers → split into:
       - replace with typed alternatives (dataclass/TypedDict)
@@ -388,9 +388,9 @@ DATA_TYPES (by cross-function usage) [248 annotated, 0 inferred / 322 functions]
       - (analyze consumers to suggest sub-interfaces)
 
 SIDE_EFFECTS:
-  IO:        main, LogicalErrorValidator._check_pyflakes, SemanticCache.__init__, SemanticCache.get, SemanticCache.set, SemanticCache.clear, SecurityValidator._try_bandit, SemanticValidator._call_http, SemanticValidator._parse_response, LintValidator._check_ruff
+  IO:        main, LogicalErrorValidator._check_pyflakes, SecurityValidator._try_bandit, SemanticCache.__init__, SemanticCache.get, SemanticCache.set, SemanticCache.clear, SemanticValidator._call_http, SemanticValidator._parse_response, LintValidator._check_ruff
   Cache:     SemanticCache.get_cache_stats, get_semantic_cache, clear_semantic_cache, SemanticValidator.__init__, SemanticValidator.validate
-  Mutation:  _initialize_validators, _run_validation_pipeline, _get_default_validators, LogicalErrorValidator.__init__, ComplexityValidator.__init__, ComplexityValidator.validate, ComplexityValidator._check_python_complexity, ComplexityValidator._check_lizard, SecurityValidator.validate, SecurityValidator._check_patterns
+  Mutation:  _initialize_validators, _run_validation_pipeline, _get_default_validators, ComplexityValidator.__init__, ComplexityValidator.validate, ComplexityValidator._check_python_complexity, ComplexityValidator._check_lizard, LogicalErrorValidator.__init__, SecurityValidator.validate, SecurityValidator._check_patterns
   Pure:      bump_version, VallmSpec.validate_proposal, VallmSpec.get_validator_name, VallmSpec.get_validator_tier, Issue.__str__, compute_verdict, validate, _initialize_settings, _initialize_context, BaseValidator.validate
 
   PIPELINE PURITY:

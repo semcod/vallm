@@ -3,11 +3,11 @@ project:
   name: vallm
   repo: /home/tom/github/semcod/vallm
   language: python
-  analyzed_at: '2026-03-23T19:48:30Z'
+  analyzed_at: '2026-03-23T19:57:51Z'
   tool: code2llm
   stats:
     files: 30
-    lines: 7325
+    lines: 7323
     functions: 172
     classes: 31
 health:
@@ -118,26 +118,11 @@ modules:
       cc: 23
       flag: split
       fan_out: 12
-- path: src/vallm/validators/complexity.py
-  lines: 183
-  classes: 1
-  methods: 4
-  cc_max: 12
-  inbound_deps: 0
-  exports:
-  - name: ComplexityValidator
-    type: class
-    cc_avg: 6.8
-    methods:
-    - name: _check_python_complexity
-      cc: 11
-    - name: _check_lizard
-      cc: 12
 - path: src/vallm/cli/output_formatters.py
-  lines: 341
+  lines: 343
   classes: 0
   methods: 13
-  cc_max: 11
+  cc_max: 12
   inbound_deps: 2
   exports:
   - name: output_validate_result
@@ -172,13 +157,28 @@ modules:
     cc: 11
   - name: output_batch_toon
     type: function
-    cc: 11
+    cc: 12
   - name: print_summary_header
     type: function
     cc: 1
   - name: build_results_table
     type: function
     cc: 6
+- path: src/vallm/validators/complexity.py
+  lines: 183
+  classes: 1
+  methods: 4
+  cc_max: 12
+  inbound_deps: 0
+  exports:
+  - name: ComplexityValidator
+    type: class
+    cc_avg: 6.8
+    methods:
+    - name: _check_python_complexity
+      cc: 11
+    - name: _check_lizard
+      cc: 12
 - path: src/vallm/core/gitignore.py
   lines: 272
   classes: 1
@@ -401,7 +401,7 @@ modules:
     type: function
     cc: 2
 - path: src/vallm/cli/command_handlers.py
-  lines: 299
+  lines: 293
   classes: 0
   methods: 11
   cc_max: 4
@@ -415,7 +415,7 @@ modules:
     cc: 1
   - name: batch_command
     type: function
-    cc: 3
+    cc: 2
   - name: info_command
     type: function
     cc: 4
@@ -564,7 +564,7 @@ modules:
     type: class
     cc_avg: 1.0
 - path: project.sh
-  lines: 20
+  lines: 22
   classes: 0
   methods: 0
   cc_max: 0
@@ -673,5 +673,5 @@ evolution:
 - date: '2026-03-23'
   cc_avg: 3.4
   critical: 8
-  lines: 7325
+  lines: 7323
   note: Automated analysis

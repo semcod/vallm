@@ -279,12 +279,23 @@ def output_batch_toon(
     failed_files: list,
 ) -> None:
     """Output TOON format batch summary with detailed per-file results."""
-    print(f"# vallm batch | {len(filtered_files)}f | {passed_count}✓ {len(failed_files)}✗")
+    total_files = len(filtered_files)
+    failed_count = len(failed_files)
+    
+    # Header with better spacing and alignment
+    print(f"# vallm batch | {total_files}f | {passed_count}✓ {failed_count}✗")
     print()
+    
+    # Summary section
     print("SUMMARY:")
-    print(f"  total: {len(filtered_files)}")
+    print(f"  total: {total_files}")
     print(f"  passed: {passed_count}")
-    print(f"  failed: {len(failed_files)}")
+    print(f"  failed: {failed_count}")
+    
+    # Success rate
+    if total_files > 0:
+        success_rate = (passed_count / total_files) * 100
+        print(f"  success: {success_rate:.1f}%")
     print()
 
     # Detailed per-file results
@@ -295,22 +306,47 @@ def output_batch_toon(
             for r in results:
                 filename = getattr(r, 'filename', None) or 'unknown'
                 status_icon = "✓" if r.verdict.value == "pass" else "✗"
+                
+                # Format filename with proper indentation
                 print(f"    {status_icon} {filename}")
                 print(f"      verdict: {r.verdict.value}")
                 print(f"      score: {r.weighted_score:.2f}")
+                
+                # Format issues with better structure
                 if r.all_issues:
-                    print(f"      issues: {len(r.all_issues)}")
-                    for issue in r.all_issues:
+                    issues_count = len(r.all_issues)
+                    print(f"      issues: {issues_count}")
+                    
+                    # Group issues by severity for better readability
+                    error_issues = [i for i in r.all_issues if i.severity.value == "error"]
+                    warning_issues = [i for i in r.all_issues if i.severity.value == "warning"]
+                    
+                    # Print errors first
+                    for issue in error_issues:
                         location = f"@{issue.line}" if issue.line else ""
-                        # Use rule instead of validator since Issue doesn't have validator attribute
                         validator_name = issue.rule or "unknown"
-                        print(f"        [{issue.severity.value}] {validator_name}: {issue.message}{location}")
-        print()
+                        print(f"        [error] {validator_name}: {issue.message}{location}")
+                    
+                    # Then warnings
+                    for issue in warning_issues:
+                        location = f"@{issue.line}" if issue.line else ""
+                        validator_name = issue.rule or "unknown"
+                        print(f"        [warning] {validator_name}: {issue.message}{location}")
+            print()
 
+    # Failed files section with better formatting
     if failed_files:
         print("FAILED:")
         for file_path, error in failed_files:
-            print(f"  ✗ {file_path}: {error}")
+            # Handle different error types gracefully
+            if "NoneType" in str(error):
+                formatted_error = "Unable to process file (unsupported format or binary)"
+            elif "binary" in str(error).lower():
+                formatted_error = "Binary file (skipped)"
+            else:
+                formatted_error = str(error)
+            
+            print(f"  ✗ {file_path}: {formatted_error}")
 
 
 def print_summary_header() -> None:

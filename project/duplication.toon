@@ -1,12 +1,12 @@
-# redup/duplication | 17 groups | 76f 9350L | 2026-03-23
+# redup/duplication | 17 groups | 76f 9386L | 2026-03-23
 
 SUMMARY:
   files_scanned: 76
-  total_lines:   9350
+  total_lines:   9386
   dup_groups:    17
   dup_fragments: 48
   saved_lines:   176
-  scan_ms:       1041
+  scan_ms:       868
 
 DUPLICATES[17] (ranked by impact):
   [5f6584a6684277cb]   EXAC  calculate_total  L=12 N=3 saved=24 sim=1.00

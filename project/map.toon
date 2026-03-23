@@ -1,4 +1,4 @@
-# vallm | 1418f 10102L | python:72,shell:8
+# vallm | 1418f 10100L | python:72,shell:8
 # Keys: M=modules, D=details, i=imports, c=classes, f=functions, m=methods
 M[80]:
   examples/__init__.py,1
@@ -42,14 +42,14 @@ M[80]:
   examples/utils/logging_utils.py,89
   examples/utils/save_analysis_data.py,25
   examples/utils/validation_runner.py,104
-  project.sh,20
+  project.sh,22
   scripts/bump_version.py,78
   src/vallm/__init__.py,19
   src/vallm/__main__.py,5
   src/vallm/cli/__init__.py,43
   src/vallm/cli/batch_processor.py,271
-  src/vallm/cli/command_handlers.py,299
-  src/vallm/cli/output_formatters.py,341
+  src/vallm/cli/command_handlers.py,293
+  src/vallm/cli/output_formatters.py,343
   src/vallm/config.py,58
   src/vallm/core/__init__.py,3
   src/vallm/core/ast_compare.py,135
@@ -92,49 +92,6 @@ D:
   src/vallm/validators/complexity.py:
     e: ComplexityValidator
     ComplexityValidator(BaseValidator): __init__(1),validate(2),_check_python_complexity(1),_check_lizard(3)  # Tier 2: Cyclomatic complexity, maintainability index, and fu...
-  examples/11_claude_code_autonomous/claude_autonomous_demo.py:
-    e: Colors,log_section,log_step,log_code,analyze_with_code2llm,call_claude_code,validate_with_vallm,run_runtime_tests,create_basic_tests,generate_claude_prompt,generate_feedback_prompt,run_autonomous_workflow,main
-    Colors:
-    log_section(title)
-    log_step(step;description)
-    log_code(label;code;max_lines)
-    analyze_with_code2llm(code_path)
-    call_claude_code(prompt;model;temperature)
-    validate_with_vallm(code;description)
-    run_runtime_tests(code_path;test_file)
-    create_basic_tests(code_path;test_file)
-    generate_claude_prompt(code;analysis;iteration)
-    generate_feedback_prompt(current_code;validation;test_results;analysis)
-    run_autonomous_workflow(code_path;max_iterations)
-    main()
-  examples/10_mcp_ollama_demo/mcp_demo.py:
-    e: Colors,log_section,log_step,log_code,analyze_with_code2llm,validate_with_vallm,call_ollama,generate_refactoring_prompt,run_mcp_workflow,main
-    Colors:
-    log_section(title)
-    log_step(step;description)
-    log_code(label;code;max_lines)
-    analyze_with_code2llm(code_path)
-    validate_with_vallm(code;description)
-    call_ollama(prompt;model;temperature)
-    generate_refactoring_prompt(code;analysis)
-    run_mcp_workflow(code_path;max_iterations)
-    main()
-  examples/utils/__init__.py:
-    e: save_analysis_data,run_validation_examples,validate_code_example,print_summary
-    save_analysis_data(example_name;result_data)
-    run_validation_examples(example_name;good_code;bad_code;complex_code;settings)
-    validate_code_example(name;code;settings;all_results;include_issue_details)
-    print_summary(all_results)
-  examples/utils/validation_runner.py:
-    e: run_validation_examples
-    run_validation_examples(example_name;good_code;bad_code;complex_code;settings)
-  src/vallm/core/gitignore.py:
-    e: GitignoreParser,load_gitignore,get_default_excludes,create_default_gitignore_parser,should_exclude
-    GitignoreParser: __init__(1),_parse(1),matches(1),_match_pattern(3),_fnmatch(2),_pattern_to_regex(1)  # Parse .gitignore files and match paths against patterns...
-    load_gitignore(path)
-    get_default_excludes()
-    create_default_gitignore_parser()
-    should_exclude(path;gitignore_parser;use_defaults)
   src/vallm/cli/output_formatters.py:
     e: output_validate_result,output_batch_results,output_batch_empty,output_json,output_text,output_rich,output_batch_rich,output_batch_text,output_batch_json,output_batch_yaml,output_batch_toon,print_summary_header,build_results_table
     output_validate_result(result;output_format;verbose)
@@ -150,6 +107,49 @@ D:
     output_batch_toon(results_by_language;filtered_files;passed_count;failed_files)
     print_summary_header()
     build_results_table(results_by_language)
+  examples/11_claude_code_autonomous/claude_autonomous_demo.py:
+    e: Colors,log_section,log_step,log_code,analyze_with_code2llm,call_claude_code,validate_with_vallm,run_runtime_tests,create_basic_tests,generate_claude_prompt,generate_feedback_prompt,run_autonomous_workflow,main
+    Colors:
+    log_section(title)
+    log_step(step;description)
+    log_code(label;code;max_lines)
+    analyze_with_code2llm(code_path)
+    call_claude_code(prompt;model;temperature)
+    validate_with_vallm(code;description)
+    run_runtime_tests(code_path;test_file)
+    create_basic_tests(code_path;test_file)
+    generate_claude_prompt(code;analysis;iteration)
+    generate_feedback_prompt(current_code;validation;test_results;analysis)
+    run_autonomous_workflow(code_path;max_iterations)
+    main()
+  examples/utils/__init__.py:
+    e: save_analysis_data,run_validation_examples,validate_code_example,print_summary
+    save_analysis_data(example_name;result_data)
+    run_validation_examples(example_name;good_code;bad_code;complex_code;settings)
+    validate_code_example(name;code;settings;all_results;include_issue_details)
+    print_summary(all_results)
+  examples/10_mcp_ollama_demo/mcp_demo.py:
+    e: Colors,log_section,log_step,log_code,analyze_with_code2llm,validate_with_vallm,call_ollama,generate_refactoring_prompt,run_mcp_workflow,main
+    Colors:
+    log_section(title)
+    log_step(step;description)
+    log_code(label;code;max_lines)
+    analyze_with_code2llm(code_path)
+    validate_with_vallm(code;description)
+    call_ollama(prompt;model;temperature)
+    generate_refactoring_prompt(code;analysis)
+    run_mcp_workflow(code_path;max_iterations)
+    main()
+  examples/utils/validation_runner.py:
+    e: run_validation_examples
+    run_validation_examples(example_name;good_code;bad_code;complex_code;settings)
+  src/vallm/core/gitignore.py:
+    e: GitignoreParser,load_gitignore,get_default_excludes,create_default_gitignore_parser,should_exclude
+    GitignoreParser: __init__(1),_parse(1),matches(1),_match_pattern(3),_fnmatch(2),_pattern_to_regex(1)  # Parse .gitignore files and match paths against patterns...
+    load_gitignore(path)
+    get_default_excludes()
+    create_default_gitignore_parser()
+    should_exclude(path;gitignore_parser;use_defaults)
   examples/05_llm_semantic_review/main.py:
     e: main
     main()
@@ -227,13 +227,6 @@ D:
   examples/12_ollama_simple_demo/utils/process_user_input.py:
     e: process_user_input
     process_user_input(user_input)
-  examples/08_code2llm_integration/main.py:
-    e: create_sample_project,analyze_with_code2llm,validate_with_vallm,generate_report,main
-    create_sample_project(base_path)
-    analyze_with_code2llm(project_path)
-    validate_with_vallm(project_path)
-    generate_report(code2llm_result;vallm_result;output_path)
-    main()
   examples/12_ollama_simple_demo/legacy_code/simple_buggy.py:
     e: BadClass,process_user_input,load_config,save_data,calculate_total,duplicate_function,duplicate_function,unused_function,main
     BadClass: __init__(0),process_data(1),another_method(0)  # Class with multiple issues...
@@ -244,6 +237,13 @@ D:
     duplicate_function()
     duplicate_function()
     unused_function()
+    main()
+  examples/08_code2llm_integration/main.py:
+    e: create_sample_project,analyze_with_code2llm,validate_with_vallm,generate_report,main
+    create_sample_project(base_path)
+    analyze_with_code2llm(project_path)
+    validate_with_vallm(project_path)
+    generate_report(code2llm_result;vallm_result;output_path)
     main()
   src/vallm/validators/imports/python_imports.py:
     e: PythonImportValidator
@@ -343,7 +343,7 @@ D:
     e: validate_command,check_command,batch_command,info_command,_load_code,_load_reference,_detect_and_log_language,_build_proposal,_exit_on_verdict,_show_language_info,_show_general_info
     validate_command(code;file;language;reference;config;enable_semantic;enable_security;model;output_format;verbose;exit_on_verdict)
     check_command(code;file;language;output_format)
-    batch_command(paths;recursive;include;exclude;use_gitignore;enable_semantic;enable_security;no_imports;no_complexity;model;output_format;fail_fast;verbose;show_issues;parallel)
+    batch_command(paths;recursive;include;exclude;use_gitignore;enable_semantic;enable_security;no_imports;no_complexity;model;output_format;fail_fast;verbose;show_issues)
     info_command(language;clear_cache)
     _load_code(file;code)
     _load_reference(reference)
@@ -361,12 +361,12 @@ D:
   examples/utils/extract_code_from_response.py:
     e: extract_code_from_response
     extract_code_from_response(response)
-  examples/12_ollama_simple_demo/utils/calculate_total.py:
-    e: calculate_total
-    calculate_total(items)
   src/vallm/config.py:
     e: VallmSettings
     VallmSettings(BaseSettings): from_toml(1)  # vallm configuration with layered sources: defaults → TOML → ...
+  examples/12_ollama_simple_demo/utils/calculate_total.py:
+    e: calculate_total
+    calculate_total(items)
   src/vallm/validators/imports/wrapper.py:
     e: ImportValidator
     ImportValidator(BaseValidator): validate(2)  # Backward compatibility wrapper for the refactored import val...
@@ -426,6 +426,7 @@ Attributes:
   src/vallm/sandbox/__init__.py:
   examples/12_ollama_simple_demo/utils/__init__.py:
   project.sh:
+  examples/11_claude_code_autonomous/docker-entrypoint.sh:
   examples/run.sh:
     e: run_example
     run_example()
@@ -436,10 +437,9 @@ Attributes:
     print_success()
     print_warning()
     print_error()
-  examples/11_claude_code_autonomous/docker-entrypoint.sh:
-  examples/12_ollama_simple_demo/run.sh:
   examples/12_ollama_simple_demo/docker-entrypoint.sh:
   examples/10_mcp_ollama_demo/docker-entrypoint.sh:
+  examples/12_ollama_simple_demo/run.sh:
   examples/10_mcp_ollama_demo/run.sh:
     e: print_section,print_step,print_success,print_warning,print_error,print,print,print,print
     print_section()

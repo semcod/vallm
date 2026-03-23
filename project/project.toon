@@ -1,4 +1,4 @@
-# vallm | 95f 11937L | python:95
+# vallm | 95f 11973L | python:95
 # Keys: M=modules, D=details, i=imports, c=classes, f=functions, m=methods
 M[95]:
   examples/01_basic_validation/main.py,63
@@ -42,7 +42,7 @@ M[95]:
   src/vallm/cli/__init__.py,33
   src/vallm/cli/batch_processor.py,208
   src/vallm/cli/command_handlers.py,204
-  src/vallm/cli/output_formatters.py,285
+  src/vallm/cli/output_formatters.py,303
   src/vallm/cli/settings_builders.py,44
   src/vallm/config.py,37
   src/vallm/core/__init__.py,2

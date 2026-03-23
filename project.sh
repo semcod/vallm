@@ -19,3 +19,4 @@ rm project/analysis.yaml
 #.venv/bin/redup scan . --format toon --output ./project --parallel --incremental --functions-only
 .venv/bin/vallm batch . --recursive --output toon > ./project/validation.toon
 #.venv/bin/vallm batch . --recursive --no-imports --no-complexity
+#vallm batch . --recursive --no-imports --no-complexity --output toon > ./project/validation.toon
