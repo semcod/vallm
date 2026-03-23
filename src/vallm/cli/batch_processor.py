@@ -47,7 +47,7 @@ class BatchProcessor:
         
         if not filtered_files:
             self._handle_no_files_found(output_format)
-            return {}, [], 0
+            return {}, [], 0, []
         
         self._show_validation_start(filtered_files, output_format)
         
@@ -55,7 +55,7 @@ class BatchProcessor:
             filtered_files, settings, output_format, fail_fast, verbose, show_issues
         )
         
-        return results_by_language, failed_files, passed_count
+        return results_by_language, failed_files, passed_count, filtered_files
     
     def output_batch_results(
         self,
@@ -63,10 +63,11 @@ class BatchProcessor:
         passed_count: int,
         failed_files: list,
         output_format: str,
+        filtered_files: list,
     ) -> None:
         """Output batch validation results."""
         output_batch_results(
-            results_by_language, [], passed_count, failed_files, output_format
+            results_by_language, filtered_files, passed_count, failed_files, output_format
         )
     
     def _load_gitignore_parser(self, use_gitignore: bool):
@@ -231,7 +232,7 @@ class BatchProcessor:
         fail_fast: bool,
         verbose: bool,
         show_issues: bool,
-    ) -> tuple[dict, list, int]:
+    ) -> tuple[dict, list, int, list]:
         """Process all files for validation."""
         results_by_language = {}
         failed_files = []
@@ -252,7 +253,12 @@ class BatchProcessor:
                 
                 # Detect language
                 lang_obj = detect_language(file_path)
-                language = lang_obj.value[0]  # tree-sitter identifier
+                if lang_obj is None:
+                    # Skip unsupported file types
+                    failed_files.append((file_path, "Unsupported file type"))
+                    continue
+                    
+                language = lang_obj.tree_sitter_id  # tree-sitter identifier
                 
                 # Create proposal
                 proposal = Proposal(
@@ -280,7 +286,7 @@ class BatchProcessor:
                         for issue in result.all_issues:
                             location = f" (line {issue.line})" if issue.line else ""
                             severity_color = {"error": "red", "warning": "yellow", "info": "blue"}.get(issue.severity.value, "white")
-                            self.console.print(f"  [{severity_color}]• {issue.validator}: {issue.message}{location}[/{severity_color}]")
+                            self.console.print(f"  [{severity_color}]• {issue.rule}: {issue.message}{location}[/{severity_color}]")
                     elif output_format == "rich":
                         self.console.print(f"[red]✗[/red] {file_path} ({lang_obj.display_name}) - {result.verdict.value}")
                 
@@ -308,4 +314,4 @@ class BatchProcessor:
                         self.console.print(f"[red]Stopping early due to error: {file_path}[/red]")
                     break
         
-        return results_by_language, failed_files, passed_count
+        return results_by_language, failed_files, passed_count, filtered_files

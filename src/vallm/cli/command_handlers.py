@@ -114,7 +114,7 @@ def batch_command(
     
     settings = build_batch_settings(enable_semantic, enable_security, model, verbose, no_imports, no_complexity)
     
-    results_by_language, failed_files, passed_count = processor.process_batch(
+    results_by_language, failed_files, passed_count, filtered_files = processor.process_batch(
         paths=paths,
         recursive=recursive,
         include=include,
@@ -128,7 +128,7 @@ def batch_command(
     )
     
     processor.output_batch_results(
-        results_by_language, passed_count, failed_files, output_format
+        results_by_language, passed_count, failed_files, output_format, filtered_files
     )
     
     if failed_files:

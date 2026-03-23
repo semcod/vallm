@@ -1,1 +1,527 @@
 Using .gitignore from .
+Excluded 30347 files by .gitignore
+# vallm batch | 0f | 83✓ 79✗
+
+SUMMARY:
+  total: 0
+  passed: 83
+  failed: 79
+  success: 0.0%
+
+FILES:
+  [yaml]
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+  [toml]
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+  [bash]
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+  [python]
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 0.98
+      issues: 1
+        [warning] complexity.maintainability: Low maintainability index: 7.5 (threshold: 20)
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✗ unknown
+      verdict: fail
+      score: 0.91
+      issues: 2
+        [error] python.import.resolvable: Module 'bandit.core.manager' not found@223
+        [error] python.import.resolvable: Module 'bandit.core.config' not found@224
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✗ unknown
+      verdict: fail
+      score: 0.57
+      issues: 1
+        [error] python.import.resolvable: Module 'imports.wrapper' not found@8
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 0.97
+      issues: 2
+        [warning] complexity.cyclomatic: output_batch_toon has cyclomatic complexity 17 (max: 15)@323
+        [warning] complexity.lizard_cc: output_batch_toon: CC=17 exceeds limit 15@323
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 0.97
+      issues: 2
+        [warning] complexity.cyclomatic: _process_files has cyclomatic complexity 24 (max: 15)@227
+        [warning] complexity.lizard_cc: _process_files: CC=24 exceeds limit 15@227
+    ✗ unknown
+      verdict: fail
+      score: 0.95
+      issues: 1
+        [error] python.import.resolvable: Module 'docker' not found@104
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✗ unknown
+      verdict: fail
+      score: 0.93
+      issues: 1
+        [error] python.import.resolvable: Module 'base' not found@6
+    ✗ unknown
+      verdict: fail
+      score: 0.93
+      issues: 1
+        [error] python.import.resolvable: Module 'base' not found@8
+    ✗ unknown
+      verdict: fail
+      score: 0.93
+      issues: 1
+        [error] python.import.resolvable: Module 'base' not found@6
+    ✗ unknown
+      verdict: fail
+      score: 0.89
+      issues: 1
+        [error] python.import.resolvable: Module 'base' not found@6
+    ✗ unknown
+      verdict: fail
+      score: 0.57
+      issues: 9
+        [error] python.import.resolvable: Module 'base' not found@3
+        [error] python.import.resolvable: Module 'factory' not found@4
+        [error] python.import.resolvable: Module 'python_imports' not found@5
+        [error] python.import.resolvable: Module 'javascript_imports' not found@6
+        [error] python.import.resolvable: Module 'go_imports' not found@7
+        [error] python.import.resolvable: Module 'rust_imports' not found@8
+        [error] python.import.resolvable: Module 'java_imports' not found@9
+        [error] python.import.resolvable: Module 'c_imports' not found@10
+        [error] python.import.resolvable: Module 'wrapper' not found@13
+    ✗ unknown
+      verdict: fail
+      score: 0.93
+      issues: 1
+        [error] python.import.resolvable: Module 'base' not found@6
+    ✓ unknown
+      verdict: pass
+      score: 0.97
+      issues: 2
+        [warning] complexity.cyclomatic: walk has cyclomatic complexity 27 (max: 15)@8
+        [warning] complexity.lizard_cc: walk: CC=27 exceeds limit 15@8
+    ✗ unknown
+      verdict: fail
+      score: 0.91
+      issues: 1
+        [error] python.import.resolvable: Module 'factory' not found@7
+    ✗ unknown
+      verdict: fail
+      score: 0.62
+      issues: 7
+        [error] python.import.resolvable: Module 'base' not found@4
+        [error] python.import.resolvable: Module 'python_imports' not found@5
+        [error] python.import.resolvable: Module 'javascript_imports' not found@6
+        [error] python.import.resolvable: Module 'go_imports' not found@7
+        [error] python.import.resolvable: Module 'rust_imports' not found@8
+        [error] python.import.resolvable: Module 'java_imports' not found@9
+        [error] python.import.resolvable: Module 'c_imports' not found@10
+    ✗ unknown
+      verdict: fail
+      score: 0.89
+      issues: 1
+        [error] python.import.resolvable: Module 'base' not found@6
+    ✗ unknown
+      verdict: fail
+      score: 0.91
+      issues: 1
+        [error] python.import.resolvable: Module 'examples.utils' not found@58
+    ✗ unknown
+      verdict: fail
+      score: 0.89
+      issues: 1
+        [error] python.import.resolvable: Module 'examples.utils' not found@14
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✗ unknown
+      verdict: fail
+      score: 0.97
+      issues: 1
+        [error] python.import.resolvable: Module 'examples.utils' not found@22
+    ✗ unknown
+      verdict: fail
+      score: 0.91
+      issues: 1
+        [error] python.import.resolvable: Module 'examples.utils' not found@9
+    ✗ unknown
+      verdict: fail
+      score: 0.97
+      issues: 1
+        [error] python.import.resolvable: Module 'examples.utils' not found@19
+    ✗ unknown
+      verdict: fail
+      score: 0.83
+      issues: 2
+        [error] python.import.resolvable: Module 'utils' not found@13
+        [error] python.import.resolvable: Module 'utils' not found@18
+    ✗ unknown
+      verdict: fail
+      score: 0.83
+      issues: 2
+        [error] python.import.resolvable: Module 'utils' not found@13
+        [error] python.import.resolvable: Module 'utils' not found@18
+    ✗ unknown
+      verdict: fail
+      score: 0.83
+      issues: 2
+        [error] python.import.resolvable: Module 'utils' not found@13
+        [error] python.import.resolvable: Module 'utils' not found@18
+    ✗ unknown
+      verdict: fail
+      score: 0.94
+      issues: 1
+        [error] python.import.resolvable: Module 'examples.utils' not found@61
+    ✗ unknown
+      verdict: fail
+      score: 0.89
+      issues: 1
+        [error] python.import.resolvable: Module 'examples.utils' not found@9
+    ✗ unknown
+      verdict: fail
+      score: 0.91
+      issues: 1
+        [error] python.import.resolvable: Module 'examples.utils' not found@9
+    ✗ unknown
+      verdict: fail
+      score: 0.91
+      issues: 1
+        [error] python.import.resolvable: Module 'examples.utils' not found@58
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✗ unknown
+      verdict: fail
+      score: 0.96
+      issues: 1
+        [error] python.import.resolvable: Module 'examples.utils' not found@22
+    ✗ unknown
+      verdict: fail
+      score: 0.95
+      issues: 1
+        [error] python.import.resolvable: Module 'extract_code_from_response' not found@12
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✗ unknown
+      verdict: fail
+      score: 0.64
+      issues: 5
+        [error] python.import.resolvable: Module 'calculate_total' not found@5
+        [error] python.import.resolvable: Module 'load_config' not found@6
+        [error] python.import.resolvable: Module 'main' not found@7
+        [error] python.import.resolvable: Module 'process_user_input' not found@8
+        [error] python.import.resolvable: Module 'save_data' not found@9
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✗ unknown
+      verdict: fail
+      score: 0.71
+      issues: 4
+        [error] python.import.resolvable: Module 'load_config' not found@10
+        [error] python.import.resolvable: Module 'process_user_input' not found@11
+        [error] python.import.resolvable: Module 'calculate_total' not found@12
+        [error] python.import.resolvable: Module 'save_data' not found@13
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+  [json]
+    ✗ unknown
+      verdict: fail
+      score: 0.00
+      issues: 1
+        [error] syntax.tree_sitter: tree-sitter found 4 parse error(s) in json
+    ✓ unknown
+      verdict: pass
+      score: 1.00
+
+FAILED:
+  ✗ CONTRIBUTING.md: Unable to process file (unsupported format or binary)
+  ✗ project.toon: Unable to process file (unsupported format or binary)
+  ✗ Makefile: Unable to process file (unsupported format or binary)
+  ✗ VERSION: Unable to process file (unsupported format or binary)
+  ✗ TICKET: Unable to process file (unsupported format or binary)
+  ✗ LICENSE: Unable to process file (unsupported format or binary)
+  ✗ TODO.md: Unable to process file (unsupported format or binary)
+  ✗ Dockerfile.test: Unable to process file (unsupported format or binary)
+  ✗ CHANGELOG.md: Unable to process file (unsupported format or binary)
+  ✗ README.md: Unable to process file (unsupported format or binary)
+  ✗ docs/README.md: Unable to process file (unsupported format or binary)
+  ✗ docs/TESTING.md: Unable to process file (unsupported format or binary)
+  ✗ code2llm_output/context.md: Unable to process file (unsupported format or binary)
+  ✗ code2llm_output/README.md: Unable to process file (unsupported format or binary)
+  ✗ code2llm_output/analysis.toon: Unable to process file (unsupported format or binary)
+  ✗ project2/duplication.toon: Unable to process file (unsupported format or binary)
+  ✗ examples/README.md: Unable to process file (unsupported format or binary)
+  ✗ project/validation.toon: Unable to process file (unsupported format or binary)
+  ✗ project/project.toon: Unable to process file (unsupported format or binary)
+  ✗ project/compact_flow.mmd: Unable to process file (unsupported format or binary)
+  ✗ project/map.toon: Unable to process file (unsupported format or binary)
+  ✗ project/validation.json: Validation fail
+  ✗ project/calls.mmd: Unable to process file (unsupported format or binary)
+  ✗ project/index.html: Unable to process file (unsupported format or binary)
+  ✗ project/flow.toon: Unable to process file (unsupported format or binary)
+  ✗ project/context.md: Unable to process file (unsupported format or binary)
+  ✗ project/prompt.txt: Unable to process file (unsupported format or binary)
+  ✗ project/evolution.toon: Unable to process file (unsupported format or binary)
+  ✗ project/flow.mmd: Unable to process file (unsupported format or binary)
+  ✗ project/dashboard.html: Unable to process file (unsupported format or binary)
+  ✗ project/README.md: Unable to process file (unsupported format or binary)
+  ✗ project/analysis.toon: Unable to process file (unsupported format or binary)
+  ✗ project/duplication.toon: Unable to process file (unsupported format or binary)
+  ✗ src/vallm/py.typed: Unable to process file (unsupported format or binary)
+  ✗ src/vallm/validators/security.py: Validation fail
+  ✗ src/vallm/validators/imports.py: Validation fail
+  ✗ src/vallm/sandbox/runner.py: Validation fail
+  ✗ src/vallm/validators/imports/javascript_imports.py: Validation fail
+  ✗ src/vallm/validators/imports/python_imports.py: Validation fail
+  ✗ src/vallm/validators/imports/go_imports.py: Validation fail
+  ✗ src/vallm/validators/imports/c_imports.py: Validation fail
+  ✗ src/vallm/validators/imports/__init__.py: Validation fail
+  ✗ src/vallm/validators/imports/rust_imports.py: Validation fail
+  ✗ src/vallm/validators/imports/wrapper.py: Validation fail
+  ✗ src/vallm/validators/imports/factory.py: Validation fail
+  ✗ src/vallm/validators/imports/java_imports.py: Validation fail
+  ✗ examples/05_llm_semantic_review/main_template.py: Validation fail
+  ✗ examples/05_llm_semantic_review/main.py: Validation fail
+  ✗ examples/05_llm_semantic_review/README.md: Unable to process file (unsupported format or binary)
+  ✗ examples/09_code2logic_integration/README.md: Unable to process file (unsupported format or binary)
+  ✗ examples/11_claude_code_autonomous/requirements.txt: Unable to process file (unsupported format or binary)
+  ✗ examples/11_claude_code_autonomous/claude_autonomous_demo.py: Validation fail
+  ✗ examples/11_claude_code_autonomous/Dockerfile: Unable to process file (unsupported format or binary)
+  ✗ examples/11_claude_code_autonomous/README.md: Unable to process file (unsupported format or binary)
+  ✗ examples/04_graph_analysis/main.py: Validation fail
+  ✗ examples/04_graph_analysis/README.md: Unable to process file (unsupported format or binary)
+  ✗ examples/12_ollama_simple_demo/ollama_simple_demo.py: Validation fail
+  ✗ examples/12_ollama_simple_demo/iteration_1.py: Validation fail
+  ✗ examples/12_ollama_simple_demo/requirements.txt: Unable to process file (unsupported format or binary)
+  ✗ examples/12_ollama_simple_demo/best_version.py: Validation fail
+  ✗ examples/12_ollama_simple_demo/Dockerfile: Unable to process file (unsupported format or binary)
+  ✗ examples/12_ollama_simple_demo/iteration_2.py: Validation fail
+  ✗ examples/01_basic_validation/main.py: Validation fail
+  ✗ examples/01_basic_validation/README.md: Unable to process file (unsupported format or binary)
+  ✗ examples/02_ast_comparison/main.py: Validation fail
+  ✗ examples/02_ast_comparison/README.md: Unable to process file (unsupported format or binary)
+  ✗ examples/03_security_check/main.py: Validation fail
+  ✗ examples/03_security_check/README.md: Unable to process file (unsupported format or binary)
+  ✗ examples/06_multilang_validation/main_template.py: Validation fail
+  ✗ examples/06_multilang_validation/README.md: Unable to process file (unsupported format or binary)
+  ✗ examples/07_multi_language/README.md: Unable to process file (unsupported format or binary)
+  ✗ examples/10_mcp_ollama_demo/requirements.txt: Unable to process file (unsupported format or binary)
+  ✗ examples/10_mcp_ollama_demo/mcp_demo.py: Validation fail
+  ✗ examples/10_mcp_ollama_demo/Dockerfile: Unable to process file (unsupported format or binary)
+  ✗ examples/10_mcp_ollama_demo/README.md: Unable to process file (unsupported format or binary)
+  ✗ examples/utils/__init__.py: Validation fail
+  ✗ examples/08_code2llm_integration/README.md: Unable to process file (unsupported format or binary)
+  ✗ examples/12_ollama_simple_demo/utils/__init__.py: Validation fail
+  ✗ examples/12_ollama_simple_demo/utils/main.py: Validation fail

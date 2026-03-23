@@ -17,5 +17,5 @@ rm project/analysis.yaml
 .venv/bin/redup scan . --format toon --output ./project
 #  --parallel --functions-only --incremental --min-lines 5
 #.venv/bin/redup scan . --format toon --output ./project --parallel --incremental --functions-only
-.venv/bin/vallm batch . --recursive --output toon --output ./project
+.venv/bin/vallm batch . --recursive --no-imports --no-complexity --output toon > ./project/validation.toon
 #vallm batch . --recursive --no-imports --no-complexity --output toon > ./project/validation.toon
