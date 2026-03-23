@@ -240,7 +240,7 @@ class BatchProcessor:
         
         for i, file_path in enumerate(filtered_files, 1):
             try:
-                # Show progress for rich output
+                # Show progress for rich output only
                 if output_format == "rich" and not verbose:
                     self.console.print(f"[dim]Processing {i}/{len(filtered_files)}: {file_path}[/dim]")
                 
@@ -280,7 +280,7 @@ class BatchProcessor:
                     passed_count += 1
                 else:
                     failed_files.append((file_path, f"Validation {result.verdict.value}"))
-                    # Show failed file details in rich format (even without verbose)
+                    # Show failed file details in rich format only
                     if output_format == "rich" and result.all_issues:
                         self.console.print(f"\n[red]✗ {file_path} ({lang_obj.display_name}) - {result.verdict.value}[/red]")
                         for issue in result.all_issues:
