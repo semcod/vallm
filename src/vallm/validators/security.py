@@ -216,10 +216,12 @@ class SecurityValidator(BaseValidator):
     def _try_bandit(code: str) -> list[Issue]:
         """Try to run bandit if installed."""
         try:
-            from bandit.core.manager import BanditManager
-            from bandit.core.config import BanditConfig
             import tempfile
             import os
+            
+            # Import bandit modules inside the try block
+            from bandit.core.manager import BanditManager
+            from bandit.core.config import BanditConfig
 
             with tempfile.NamedTemporaryFile(mode="w", suffix=".py", delete=False) as f:
                 f.write(code)

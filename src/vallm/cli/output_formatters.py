@@ -182,6 +182,59 @@ def output_batch_text(
             print(f"  {file_path}: {error}")
 
 
+def format_error_message(error: str) -> str:
+    """Format error messages consistently across all output formats."""
+    if "NoneType" in str(error):
+        return "Unable to process file (unsupported format or binary)"
+    elif "binary" in str(error).lower():
+        return "Binary file (skipped)"
+    else:
+        return str(error)
+
+
+def build_files_data(results_by_language: dict) -> list:
+    """Build standardized files data structure for all output formats."""
+    files_details = []
+    for lang, results in results_by_language.items():
+        for r in results:
+            filename = getattr(r, 'filename', None) or 'unknown'
+            
+            # Build issues list with consistent structure
+            issues = []
+            for issue in r.all_issues:
+                issue_data = {
+                    "rule": issue.rule or "unknown",
+                    "severity": issue.severity.value,
+                    "message": issue.message,
+                }
+                if issue.line is not None:
+                    issue_data["line"] = issue.line
+                if issue.column is not None:
+                    issue_data["column"] = issue.column
+                issues.append(issue_data)
+            
+            files_details.append({
+                "path": filename,
+                "language": lang,
+                "verdict": r.verdict.value,
+                "score": round(r.weighted_score, 2),
+                "issues": issues,
+                "issues_count": len(issues),
+            })
+    return files_details
+
+
+def build_failed_files_data(failed_files: list) -> list:
+    """Build standardized failed files data structure for all output formats."""
+    return [
+        {
+            "path": str(file_path),
+            "error": format_error_message(error)
+        }
+        for file_path, error in failed_files
+    ]
+
+
 def output_batch_json(
     results_by_language: dict,
     filtered_files: list,
@@ -189,41 +242,25 @@ def output_batch_json(
     failed_files: list,
 ) -> None:
     """Output JSON batch summary with detailed per-file results."""
-    # Build detailed files list with path and full details
-    files_details = []
-    for lang, results in results_by_language.items():
-        for r in results:
-            # Get filename from result if available
-            filename = getattr(r, 'filename', None) or 'unknown'
-            files_details.append({
-                "path": filename,
-                "language": lang,
-                "verdict": r.verdict.value,
-                "score": r.weighted_score,
-                "issues": [
-                    {
-                        "rule": issue.rule,
-                        "severity": issue.severity.value,
-                        "message": issue.message,
-                        "line": issue.line,
-                        "column": issue.column,
-                    }
-                    for issue in r.all_issues
-                ],
-                "issues_count": len(r.all_issues),
-            })
-
+    total_files = len(filtered_files)
+    failed_count = len(failed_files)
+    
+    # Build standardized data structures
+    files_details = build_files_data(results_by_language)
+    failed_files_data = build_failed_files_data(failed_files)
+    
+    # Calculate success rate
+    success_rate = round((passed_count / total_files) * 100, 1) if total_files > 0 else 0.0
+    
     data = {
         "summary": {
-            "total_files": len(filtered_files),
+            "total_files": total_files,
             "passed": passed_count,
-            "failed": len(failed_files),
+            "failed": failed_count,
+            "success_rate": success_rate,
         },
         "files": files_details,
-        "failed_files": [
-            {"path": str(file_path), "error": error}
-            for file_path, error in failed_files
-        ],
+        "failed_files": failed_files_data,
     }
 
     print(json.dumps(data, indent=2))
@@ -236,40 +273,51 @@ def output_batch_yaml(
     failed_files: list,
 ) -> None:
     """Output YAML batch summary with detailed per-file results."""
+    total_files = len(filtered_files)
+    failed_count = len(failed_files)
+    
+    # Build standardized data structures
+    files_details = build_files_data(results_by_language)
+    failed_files_data = build_failed_files_data(failed_files)
+    
+    # Calculate success rate
+    success_rate = round((passed_count / total_files) * 100, 1) if total_files > 0 else 0.0
+    
     print("# vallm batch validation results")
     print("---")
     print(f"summary:")
-    print(f"  total_files: {len(filtered_files)}")
+    print(f"  total_files: {total_files}")
     print(f"  passed: {passed_count}")
-    print(f"  failed: {len(failed_files)}")
+    print(f"  failed: {failed_count}")
+    print(f"  success_rate: {success_rate}%")
     print()
 
     # Detailed per-file results
-    if results_by_language:
+    if files_details:
         print("files:")
-        for lang, results in results_by_language.items():
-            for r in results:
-                filename = getattr(r, 'filename', None) or 'unknown'
-                print(f"  - path: {filename}")
-                print(f"    language: {lang}")
-                print(f"    verdict: {r.verdict.value}")
-                print(f"    score: {r.weighted_score:.2f}")
-                print(f"    issues_count: {len(r.all_issues)}")
-                if r.all_issues:
-                    print(f"    issues:")
-                    for issue in r.all_issues:
-                        line_info = f", line: {issue.line}" if issue.line else ""
-                        col_info = f", column: {issue.column}" if issue.column else ""
-                        print(f"      - rule: {issue.rule}")
-                        print(f"        severity: {issue.severity.value}")
-                        print(f"        message: \"{issue.message}\"{line_info}{col_info}")
+        for file_data in files_details:
+            print(f"  - path: {file_data['path']}")
+            print(f"    language: {file_data['language']}")
+            print(f"    verdict: {file_data['verdict']}")
+            print(f"    score: {file_data['score']:.2f}")
+            print(f"    issues_count: {file_data['issues_count']}")
+            if file_data['issues']:
+                print(f"    issues:")
+                for issue in file_data['issues']:
+                    print(f"      - rule: {issue['rule']}")
+                    print(f"        severity: {issue['severity']}")
+                    print(f"        message: \"{issue['message']}\"")
+                    if 'line' in issue:
+                        print(f"        line: {issue['line']}")
+                    if 'column' in issue:
+                        print(f"        column: {issue['column']}")
         print()
 
-    if failed_files:
+    if failed_files_data:
         print("failed_files:")
-        for file_path, error in failed_files:
-            print(f"  - path: {file_path}")
-            print(f"    error: {error}")
+        for file_data in failed_files_data:
+            print(f"  - path: {file_data['path']}")
+            print(f"    error: {file_data['error']}")
 
 
 def output_batch_toon(
@@ -282,6 +330,13 @@ def output_batch_toon(
     total_files = len(filtered_files)
     failed_count = len(failed_files)
     
+    # Build standardized data structures
+    files_details = build_files_data(results_by_language)
+    failed_files_data = build_failed_files_data(failed_files)
+    
+    # Calculate success rate
+    success_rate = round((passed_count / total_files) * 100, 1) if total_files > 0 else 0.0
+    
     # Header with better spacing and alignment
     print(f"# vallm batch | {total_files}f | {passed_count}✓ {failed_count}✗")
     print()
@@ -291,62 +346,49 @@ def output_batch_toon(
     print(f"  total: {total_files}")
     print(f"  passed: {passed_count}")
     print(f"  failed: {failed_count}")
-    
-    # Success rate
-    if total_files > 0:
-        success_rate = (passed_count / total_files) * 100
-        print(f"  success: {success_rate:.1f}%")
+    print(f"  success: {success_rate}%")
     print()
 
     # Detailed per-file results
-    if results_by_language:
+    if files_details:
         print("FILES:")
-        for lang, results in results_by_language.items():
-            print(f"  [{lang}]")
-            for r in results:
-                filename = getattr(r, 'filename', None) or 'unknown'
-                status_icon = "✓" if r.verdict.value == "pass" else "✗"
+        current_lang = None
+        for file_data in files_details:
+            # Group by language
+            if file_data['language'] != current_lang:
+                current_lang = file_data['language']
+                print(f"  [{current_lang}]")
+            
+            status_icon = "✓" if file_data['verdict'] == "pass" else "✗"
+            print(f"    {status_icon} {file_data['path']}")
+            print(f"      verdict: {file_data['verdict']}")
+            print(f"      score: {file_data['score']:.2f}")
+            
+            # Format issues with better structure
+            if file_data['issues']:
+                issues_count = file_data['issues_count']
+                print(f"      issues: {issues_count}")
                 
-                # Format filename with proper indentation
-                print(f"    {status_icon} {filename}")
-                print(f"      verdict: {r.verdict.value}")
-                print(f"      score: {r.weighted_score:.2f}")
+                # Group issues by severity for better readability
+                error_issues = [i for i in file_data['issues'] if i['severity'] == "error"]
+                warning_issues = [i for i in file_data['issues'] if i['severity'] == "warning"]
                 
-                # Format issues with better structure
-                if r.all_issues:
-                    issues_count = len(r.all_issues)
-                    print(f"      issues: {issues_count}")
-                    
-                    # Group issues by severity for better readability
-                    error_issues = [i for i in r.all_issues if i.severity.value == "error"]
-                    warning_issues = [i for i in r.all_issues if i.severity.value == "warning"]
-                    
-                    # Print errors first
-                    for issue in error_issues:
-                        location = f"@{issue.line}" if issue.line else ""
-                        validator_name = issue.rule or "unknown"
-                        print(f"        [error] {validator_name}: {issue.message}{location}")
-                    
-                    # Then warnings
-                    for issue in warning_issues:
-                        location = f"@{issue.line}" if issue.line else ""
-                        validator_name = issue.rule or "unknown"
-                        print(f"        [warning] {validator_name}: {issue.message}{location}")
-            print()
+                # Print errors first
+                for issue in error_issues:
+                    location = f"@{issue['line']}" if 'line' in issue else ""
+                    print(f"        [error] {issue['rule']}: {issue['message']}{location}")
+                
+                # Then warnings
+                for issue in warning_issues:
+                    location = f"@{issue['line']}" if 'line' in issue else ""
+                    print(f"        [warning] {issue['rule']}: {issue['message']}{location}")
+        print()
 
     # Failed files section with better formatting
-    if failed_files:
+    if failed_files_data:
         print("FAILED:")
-        for file_path, error in failed_files:
-            # Handle different error types gracefully
-            if "NoneType" in str(error):
-                formatted_error = "Unable to process file (unsupported format or binary)"
-            elif "binary" in str(error).lower():
-                formatted_error = "Binary file (skipped)"
-            else:
-                formatted_error = str(error)
-            
-            print(f"  ✗ {file_path}: {formatted_error}")
+        for file_data in failed_files_data:
+            print(f"  ✗ {file_data['path']}: {file_data['error']}")
 
 
 def print_summary_header() -> None:

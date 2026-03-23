@@ -1,11 +1,12 @@
 Using .gitignore from .
-Excluded 30246 files by .gitignore
+Excluded 30281 files by .gitignore
 # vallm batch | 0f | 83✓ 114✗
 
 SUMMARY:
   total: 0
   passed: 83
   failed: 114
+  success: 0.0%
 
 FILES:
   [yaml]
@@ -21,12 +22,10 @@ FILES:
     ✓ unknown
       verdict: pass
       score: 1.00
-
   [toml]
     ✓ unknown
       verdict: pass
       score: 1.00
-
   [bash]
     ✓ unknown
       verdict: pass
@@ -55,7 +54,6 @@ FILES:
     ✓ unknown
       verdict: pass
       score: 1.00
-
   [python]
     ✓ unknown
       verdict: pass
@@ -153,8 +151,8 @@ FILES:
       verdict: fail
       score: 0.91
       issues: 2
-        [error] python.import.resolvable: Module 'bandit.core.manager' not found@219
-        [error] python.import.resolvable: Module 'bandit.core.config' not found@220
+        [error] python.import.resolvable: Module 'bandit.core.manager' not found@223
+        [error] python.import.resolvable: Module 'bandit.core.config' not found@224
     ✓ unknown
       verdict: pass
       score: 1.00
@@ -174,7 +172,7 @@ FILES:
       verdict: fail
       score: 0.57
       issues: 1
-        [error] python.import.resolvable: Module 'imports' not found@8
+        [error] python.import.resolvable: Module 'imports.wrapper' not found@8
     ✓ unknown
       verdict: pass
       score: 1.00
@@ -200,8 +198,8 @@ FILES:
       verdict: pass
       score: 0.97
       issues: 2
-        [warning] complexity.cyclomatic: output_batch_toon has cyclomatic complexity 22 (max: 15)@275
-        [warning] complexity.lizard_cc: output_batch_toon: CC=22 exceeds limit 15@275
+        [warning] complexity.cyclomatic: output_batch_toon has cyclomatic complexity 17 (max: 15)@323
+        [warning] complexity.lizard_cc: output_batch_toon: CC=17 exceeds limit 15@323
     ✓ unknown
       verdict: pass
       score: 1.00
@@ -431,12 +429,10 @@ FILES:
     ✓ unknown
       verdict: pass
       score: 1.00
-
   [powershell]
     ✓ unknown
       verdict: pass
       score: 1.00
-
   [json]
     ✓ unknown
       verdict: pass

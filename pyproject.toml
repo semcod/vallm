@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "vallm"
-version = "0.1.18"
+version = "0.1.19"
 description = "A complete toolkit for validating LLM-generated code"
 readme = "README.md"
 license = "Apache-2.0"
@@ -50,8 +50,9 @@ llm = [
 graph = [
     "networkx>=3.0",
 ]
+docker = ["docker>=6.0"]
 all = [
-    "vallm[security,semantic,llm,graph]",
+    "vallm[security,semantic,llm,graph,docker]",
 ]
 dev = [
     "pytest>=8.0",
