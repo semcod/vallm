@@ -1,7 +1,7 @@
 <!-- code2docs:start --># vallm
 
 ![version](https://img.shields.io/badge/version-0.1.0-blue) ![python](https://img.shields.io/badge/python-%3E%3D3.10-blue) ![coverage](https://img.shields.io/badge/coverage-unknown-lightgrey) ![functions](https://img.shields.io/badge/functions-322-green)
-> **322** functions | **40** classes | **82** files | CC̄ = 3.4
+> **322** functions | **40** classes | **82** files | CC̄ = 3.5
 
 > Auto-generated project documentation from source code analysis.
 
@@ -151,7 +151,7 @@ Content outside the markers is preserved when regenerating. Enable this with `sy
 
 ```
 vallm/
-├── examples/        ├── cli/        ├── hookspecs    ├── vallm/        ├── __main__    ├── bump_version            ├── base            ├── complexity            ├── logical        ├── validators/            ├── semantic_cache            ├── security            ├── syntax            ├── lint            ├── imports/            ├── semantic            ├── graph_diff        ├── core/            ├── ast_compare            ├── proposal            ├── gitignore        ├── scoring            ├── output_formatters            ├── batch_processor            ├── languages        ├── sandbox/                ├── base                ├── javascript_imports                ├── python_imports                ├── go_imports                ├── c_imports                ├── rust_imports                ├── utils                ├── wrapper                ├── factory                ├── java_imports        ├── main_template        ├── main        ├── main        ├── claude_autonomous_demo        ├── main        ├── ollama_simple_demo        ├── iteration_1        ├── best_version        ├── iteration_2        ├── main        ├── main        ├── main        ├── main_template        ├── main        ├── main        ├── refactored_output            ├── runner    ├── utils/        ├── mcp_demo        ├── extraction        ├── save_analysis_data        ├── extract_code_from_response        ├── logging_utils        ├── validation_runner            ├── order_processor        ├── main            ├── process_user_input            ├── load_config            ├── simple_buggy        ├── utils/            ├── calculate_total            ├── main            ├── save_data├── project    ├── run        ├── run        ├── docker-entrypoint        ├── run        ├── docker-entrypoint        ├── run        ├── docker-entrypoint            ├── data_processor        ├── config            ├── command_handlers```
+    ├── bump_version        ├── cli/├── examples/        ├── hookspecs    ├── vallm/        ├── __main__            ├── base            ├── logical            ├── complexity        ├── validators/            ├── security            ├── semantic_cache            ├── syntax            ├── lint            ├── semantic            ├── imports/            ├── graph_diff        ├── core/            ├── ast_compare            ├── proposal            ├── gitignore        ├── scoring            ├── output_formatters            ├── batch_processor            ├── languages        ├── sandbox/                ├── base                ├── javascript_imports                ├── python_imports                ├── go_imports                ├── c_imports                ├── rust_imports                ├── utils                ├── wrapper                ├── factory                ├── java_imports        ├── main_template        ├── main        ├── main        ├── claude_autonomous_demo        ├── main        ├── ollama_simple_demo        ├── iteration_1        ├── best_version        ├── iteration_2        ├── main        ├── main        ├── main        ├── main_template        ├── main        ├── main        ├── refactored_output        ├── mcp_demo            ├── runner    ├── utils/        ├── save_analysis_data        ├── extraction        ├── extract_code_from_response        ├── logging_utils        ├── validation_runner            ├── order_processor        ├── main            ├── simple_buggy            ├── load_config        ├── utils/            ├── process_user_input            ├── calculate_total            ├── main            ├── save_data├── project    ├── run        ├── run        ├── docker-entrypoint        ├── run        ├── docker-entrypoint        ├── run        ├── docker-entrypoint            ├── data_processor        ├── config            ├── command_handlers```
 
 ## API Overview
 
@@ -159,10 +159,10 @@ vallm/
 
 - **`VallmSpec`** — Hook specifications that validators must implement.
 - **`BaseValidator`** — Base class for all vallm validators.
-- **`ComplexityValidator`** — Tier 2: Cyclomatic complexity, maintainability index, and function metrics.
 - **`LogicalErrorValidator`** — Validator for logical errors using pyflakes.
-- **`SemanticCache`** — Cache for semantic validation results to improve performance.
+- **`ComplexityValidator`** — Tier 2: Cyclomatic complexity, maintainability index, and function metrics.
 - **`SecurityValidator`** — Tier 2: Security analysis using built-in patterns and optionally bandit.
+- **`SemanticCache`** — Cache for semantic validation results to improve performance.
 - **`SyntaxValidator`** — Tier 1: Fast syntax validation.
 - **`LintValidator`** — Validator for linting issues using ruff.
 - **`SemanticValidator`** — Tier 3: LLM-as-judge semantic code review.
@@ -188,9 +188,9 @@ vallm/
 - **`Colors`** — —
 - **`Colors`** — —
 - **`OrderManager`** — Class with single responsibility - adheres to SOLID principles.
+- **`Colors`** — —
 - **`ExecutionResult`** — Result of sandboxed code execution.
 - **`SandboxRunner`** — Unified interface for running code in a sandbox.
-- **`Colors`** — —
 - **`Colors`** — ANSI color codes for terminal output.
 - **`OrderManager`** — Class with mixed responsibilities - SOLID violation.
 - **`BadClass`** — Class with multiple issues.
@@ -229,9 +229,9 @@ vallm/
 - `output_rich(result, verbose)` — Output rich formatted validation result.
 - `output_batch_rich(results_by_language, filtered_files, passed_count, failed_files)` — Output rich formatted batch summary.
 - `output_batch_text(results_by_language, filtered_files, passed_count, failed_files)` — Output plain text batch summary.
-- `output_batch_json(results_by_language, filtered_files, passed_count, failed_files)` — Output JSON batch summary.
-- `output_batch_yaml(results_by_language, filtered_files, passed_count, failed_files)` — Output YAML batch summary.
-- `output_batch_toon(results_by_language, filtered_files, passed_count, failed_files)` — Output TOON format batch summary.
+- `output_batch_json(results_by_language, filtered_files, passed_count, failed_files)` — Output JSON batch summary with detailed per-file results.
+- `output_batch_yaml(results_by_language, filtered_files, passed_count, failed_files)` — Output YAML batch summary with detailed per-file results.
+- `output_batch_toon(results_by_language, filtered_files, passed_count, failed_files)` — Output TOON format batch summary with detailed per-file results.
 - `print_summary_header()` — Print summary header for batch results.
 - `build_results_table(results_by_language)` — Build results table for rich output.
 - `detect_language(source)` — Auto-detect language from file path, extension, or name.
@@ -297,10 +297,6 @@ vallm/
 - `save_data(data, filename)` — Save data safely using json.dump.
 - `process_order(data)` — Process order data with proper error handling and validation.
 - `main()` — —
-- `save_analysis_data(example_name, result_data)` — Save analysis data to .vallm folder.
-- `run_validation_examples(example_name, good_code, bad_code, complex_code)` — Run standard validation examples (good, bad, complex code).
-- `validate_code_example(name, code, settings, all_results)` — Validate a code example and store results.
-- `print_summary(all_results)` — Print summary of all validation results.
 - `log_section(title)` — Print a section header.
 - `log_step(step, description)` — Print a step.
 - `log_code(label, code, max_lines)` — Log code with label.
@@ -310,9 +306,13 @@ vallm/
 - `generate_refactoring_prompt(code, analysis)` — Generate prompt for LLM to refactor code.
 - `run_mcp_workflow(code_path, max_iterations)` — Run the complete MCP workflow.
 - `main()` — Main entry point.
+- `save_analysis_data(example_name, result_data)` — Save analysis data to .vallm folder.
+- `run_validation_examples(example_name, good_code, bad_code, complex_code)` — Run standard validation examples (good, bad, complex code).
+- `validate_code_example(name, code, settings, all_results)` — Validate a code example and store results.
+- `print_summary(all_results)` — Print summary of all validation results.
+- `save_analysis_data(example_name, result_data)` — Save analysis data to JSON file.
 - `extract_code_from_response(response, language)` — Extract code from LLM response.
 - `extract_json_from_response(response)` — Extract JSON object from LLM response.
-- `save_analysis_data(example_name, result_data)` — Save analysis data to JSON file.
 - `extract_code_from_response(response)` — Extract Python code from LLM response.
 - `log_section(title)` — Print a section header.
 - `log_step(step, description)` — Print a step indicator.
@@ -332,8 +332,6 @@ vallm/
 - `validate_with_vallm(project_path)` — Validate all Python files with vallm.
 - `generate_report(code2llm_result, vallm_result, output_path)` — Generate combined analysis report.
 - `main()` — Main example function.
-- `process_user_input(user_input)` — Process user input with standard logic.
-- `load_config()` — Load configuration with default values.
 - `process_user_input(user_input)` — Process user input with security issues.
 - `load_config()` — Load configuration with eval.
 - `save_data(data, filename)` — Save data without validation.
@@ -341,6 +339,8 @@ vallm/
 - `duplicate_function()` — Another duplicate function.
 - `unused_function()` — This function is never used.
 - `main()` — Main function with problems.
+- `load_config()` — Load configuration with default values.
+- `process_user_input(user_input)` — Process user input with standard logic.
 - `calculate_total(items)` — Calculate total price from items list.
 - `run_demo_main()` — Run the standard demo main function pattern.
 - `save_data(data, filename)` — Save data to JSON file.
