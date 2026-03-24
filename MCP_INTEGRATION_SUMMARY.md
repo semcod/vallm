@@ -20,6 +20,12 @@ The MCP (Model Context Protocol) integration for vallm has been successfully imp
 - `README.md` - Updated with MCP integration section
 - `mcp/README.md` - Updated with quick start guide
 
+### Docker Test Infrastructure
+- `mcp/tests/Dockerfile.test` - Docker image for the container-side e2e runner
+- `mcp/tests/Dockerfile.client` - Legacy client image kept for reference only
+- `mcp/tests/docker-compose.yml` - Single-service Docker Compose configuration
+- `mcp/tests/run_e2e.sh` - Complete test runner script for build + run automation
+
 ## 🛠 Available MCP Tools
 
 | Tool | Description | Status |
@@ -115,6 +121,41 @@ Consistent JSON responses with:
 - Efficient import resolution
 - Pattern-based security scanning
 - Configurable validation pipeline
+
+## 🐳 Docker Testing Infrastructure
+
+The MCP integration includes comprehensive Docker-based testing.
+
+The default flow uses a single container-side runner, so no separate server/client compose split is required.
+
+### Quick Tests
+```bash
+# Fast local validation
+python3 mcp/tests/quick_test.py
+```
+
+### Full Docker E2E Tests
+```bash
+# Complete test suite with Docker
+bash mcp/tests/run_e2e.sh
+
+# With single-service docker-compose
+bash mcp/tests/run_e2e.sh --compose
+```
+
+### Test Components
+- **Container Tests**: Full MCP protocol validation in isolated environment
+- **Build Tests**: Verify Docker image creation and dependencies
+- **Integration Tests**: Client-server communication validation
+- **Protocol Tests**: JSON-RPC compliance and error handling
+
+### Test Coverage
+- ✅ MCP server startup and initialization
+- ✅ All 4 validation tools via MCP protocol
+- ✅ Error handling and invalid requests
+- ✅ Multi-language validation support
+- ✅ Docker container isolation
+- ✅ JSON-RPC protocol compliance
 
 ## 🎯 Next Steps
 

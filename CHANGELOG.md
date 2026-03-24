@@ -124,6 +124,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Tree-sitter for all** — syntax validation for 165+ languages
 - **Example 07** — comprehensive multi-language demo with 8 languages
 
+## [0.1.54] - 2026-03-24
+
+### Docs
+- Update CHANGELOG.md
+- Update MCP_INTEGRATION_SUMMARY.md
+- Update README.md
+- Update docs/README.md
+- Update mcp/README.md
+- Update project/context.md
+
+### Other
+- Update project/analysis.toon
+- Update project/calls.mmd
+- Update project/calls.png
+- Update project/compact_flow.mmd
+- Update project/compact_flow.png
+- Update project/dashboard.html
+- Update project/duplication.toon
+- Update project/flow.mmd
+- Update project/flow.png
+- Update project/flow.toon
+- ... and 6 more files
+
 ## [0.1.53] - 2026-03-24
 
 ### Docs
@@ -630,4 +653,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-Last updated: 2026-03-23
+Last updated: 2026-03-24

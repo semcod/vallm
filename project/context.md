@@ -5,7 +5,7 @@
 - **Project**: vallm
 - **Language**: python
 - **Files**: 33
-- **Lines**: 9772
+- **Lines**: 10012
 - **Functions**: 198
 - **Classes**: 32
 - **Avg CC**: 3.6
@@ -17,15 +17,15 @@
 
 - `__init__.py` — 1L, 0 methods, CC↑0
 
-### mcp/server/ (3 files, 692L, 13 functions)
+### mcp/server/ (3 files, 694L, 13 functions)
 
 - `_tools_vallm.py` — 508L, 8 methods, CC↑22
-- `self_server.py` — 183L, 5 methods, CC↑6
+- `self_server.py` — 185L, 5 methods, CC↑6
 - `__init__.py` — 1L, 0 methods, CC↑0
 
-### root/ (2 files, 58L, 0 functions)
+### root/ (2 files, 49L, 0 functions)
 
-- `mcp_server.py` — 37L, 0 methods, CC↑0
+- `mcp_server.py` — 28L, 0 methods, CC↑0
 - `project.sh` — 21L, 0 methods, CC↑0
 
 ### scripts/ (1 files, 78L, 2 functions)

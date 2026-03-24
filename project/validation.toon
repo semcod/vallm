@@ -1,10 +1,10 @@
-# vallm batch | 182f | 126✓ 56✗
+# vallm batch | 183f | 127✓ 56✗
 
 SUMMARY:
-  total: 182
-  passed: 126
+  total: 183
+  passed: 127
   failed: 56
-  success: 69.2%
+  success: 69.4%
 
 FILES:
   [python]
@@ -84,6 +84,9 @@ FILES:
       verdict: pass
       score: 1.00
     ✓ mcp/__init__.py
+      verdict: pass
+      score: 1.00
+    ✓ mcp/tests/container_e2e.py
       verdict: pass
       score: 1.00
     ✓ mcp/tests/quick_test.py

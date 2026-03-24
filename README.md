@@ -595,11 +595,20 @@ Add to your `claude_desktop_config.json`:
 # Test all MCP tools
 python3 test_mcp.py
 
+# Quick validation tests
+python3 mcp/tests/quick_test.py
+
 # Test individual tools
 PYTHONPATH=src python3 -c "from mcp.server._tools_vallm import validate_syntax; print(validate_syntax('print(\"hello\")', 'python')['verdict'])"
 
-# Run the Docker e2e flow
+# Run the complete Docker e2e flow (host build + container-side runner)
 bash mcp/tests/run_e2e.sh
+
+# Run the same e2e flow via single-service docker-compose
+bash mcp/tests/run_e2e.sh --compose
+
+# Run examples
+python3 examples/mcp_demo.py
 ```
 
 ### Response Format

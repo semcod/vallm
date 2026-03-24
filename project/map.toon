@@ -1,4 +1,4 @@
-# vallm | 1425f 11392L | python:79,shell:8
+# vallm | 1425f 11388L | python:79,shell:8
 # Keys: M=modules, D=details, i=imports, c=classes, f=functions, m=methods
 M[87]:
   examples/__init__.py,1
@@ -35,7 +35,7 @@ M[87]:
   examples/12_ollama_simple_demo/utils/main.py,32
   examples/12_ollama_simple_demo/utils/process_user_input.py,45
   examples/12_ollama_simple_demo/utils/save_data.py,20
-  examples/mcp_demo.py,203
+  examples/mcp_demo.py,206
   examples/run.sh,133
   examples/utils/__init__.py,195
   examples/utils/extract_code_from_response.py,32
@@ -46,8 +46,8 @@ M[87]:
   mcp/__init__.py,1
   mcp/server/__init__.py,1
   mcp/server/_tools_vallm.py,508
-  mcp/server/self_server.py,183
-  mcp_server.py,37
+  mcp/server/self_server.py,185
+  mcp_server.py,28
   project.sh,21
   scripts/bump_version.py,78
   src/vallm/__init__.py,19
@@ -148,9 +148,6 @@ D:
     run_validation_examples(example_name;good_code;bad_code;complex_code;settings)
     validate_code_example(name;code;settings;all_results;include_issue_details)
     print_summary(all_results)
-  examples/utils/validation_runner.py:
-    e: run_validation_examples
-    run_validation_examples(example_name;good_code;bad_code;complex_code;settings)
   examples/10_mcp_ollama_demo/mcp_demo.py:
     e: Colors,log_section,log_step,log_code,analyze_with_code2llm,validate_with_vallm,call_ollama,generate_refactoring_prompt,run_mcp_workflow,main
     Colors:
@@ -163,6 +160,9 @@ D:
     generate_refactoring_prompt(code;analysis)
     run_mcp_workflow(code_path;max_iterations)
     main()
+  examples/utils/validation_runner.py:
+    e: run_validation_examples
+    run_validation_examples(example_name;good_code;bad_code;complex_code;settings)
   src/vallm/core/gitignore.py:
     e: GitignoreParser,load_gitignore,get_default_excludes,create_default_gitignore_parser,should_exclude
     GitignoreParser: __init__(1),_parse(1),matches(1),_match_pattern(3),_fnmatch(2),_pattern_to_regex(1)  # Parse .gitignore files and match paths against patterns...
@@ -333,12 +333,12 @@ D:
   src/vallm/validators/imports/javascript_imports.py:
     e: JavaScriptImportValidator
     JavaScriptImportValidator(BaseImportValidator): __init__(1),validate(2),extract_imports(1),module_exists(1),get_language(0),_get_error_message(1),_get_rule_name(0)  # JavaScript/TypeScript import validator...
-  src/vallm/validators/imports/go_imports.py:
-    e: GoImportValidator
-    GoImportValidator(BaseImportValidator): get_language(0),_get_error_message(1),_get_rule_name(0),extract_imports(1),module_exists(1)  # Go import validator...
   src/vallm/validators/imports/c_imports.py:
     e: CImportValidator
     CImportValidator(BaseImportValidator): __init__(1),validate(2),extract_imports(1),module_exists(1)  # C/C++ import validator...
+  src/vallm/validators/imports/go_imports.py:
+    e: GoImportValidator
+    GoImportValidator(BaseImportValidator): get_language(0),_get_error_message(1),_get_rule_name(0),extract_imports(1),module_exists(1)  # Go import validator...
   examples/03_security_check/main.py:
     e: main
     main()
@@ -438,10 +438,10 @@ D:
   examples/12_ollama_simple_demo/utils/save_data.py:
     e: save_data
     save_data(data;filename)
-  mcp_server.py:
+  examples/__init__.py:
   mcp/__init__.py:
   mcp/server/__init__.py:
-  examples/__init__.py:
+  mcp_server.py:
   src/vallm/cli/__init__.py:
   src/vallm/__init__.py:
   src/vallm/__main__.py:
@@ -457,6 +457,10 @@ Attributes:
   src/vallm/sandbox/__init__.py:
   examples/12_ollama_simple_demo/utils/__init__.py:
   project.sh:
+  examples/run.sh:
+    e: run_example
+    run_example()
+  examples/11_claude_code_autonomous/docker-entrypoint.sh:
   examples/11_claude_code_autonomous/run.sh:
     e: print_section,print_step,print_success,print_warning,print_error
     print_section()
@@ -464,12 +468,8 @@ Attributes:
     print_success()
     print_warning()
     print_error()
-  examples/run.sh:
-    e: run_example
-    run_example()
-  examples/11_claude_code_autonomous/docker-entrypoint.sh:
-  examples/12_ollama_simple_demo/docker-entrypoint.sh:
   examples/12_ollama_simple_demo/run.sh:
+  examples/12_ollama_simple_demo/docker-entrypoint.sh:
   examples/10_mcp_ollama_demo/docker-entrypoint.sh:
   examples/10_mcp_ollama_demo/run.sh:
     e: print_section,print_step,print_success,print_warning,print_error,print,print,print,print

@@ -1,6 +1,6 @@
-# vallm | 108f 14409L | python:108
+# vallm | 109f 14669L | python:109
 # Keys: M=modules, D=details, i=imports, c=classes, f=functions, m=methods
-M[108]:
+M[109]:
   examples/01_basic_validation/main.py,63
   examples/02_ast_comparison/main.py,87
   examples/03_security_check/main.py,74
@@ -29,7 +29,7 @@ M[108]:
   examples/12_ollama_simple_demo/utils/process_user_input.py,33
   examples/12_ollama_simple_demo/utils/save_data.py,15
   examples/__init__.py,1
-  examples/mcp_demo.py,156
+  examples/mcp_demo.py,158
   examples/utils/__init__.py,155
   examples/utils/extract_code_from_response.py,19
   examples/utils/extraction.py,55
@@ -41,9 +41,10 @@ M[108]:
   mcp/server/_tools_vallm.py,447
   mcp/server/self_server.py,154
   mcp/tests/__init__.py,1
-  mcp/tests/quick_test.py,97
-  mcp/tests/test_client_integration.py,228
-  mcp/tests/test_e2e.py,167
+  mcp/tests/container_e2e.py,193
+  mcp/tests/quick_test.py,99
+  mcp/tests/test_client_integration.py,242
+  mcp/tests/test_e2e.py,162
   mcp_server.py,22
   scripts/bump_version.py,54
   src/vallm/__init__.py,16
@@ -88,7 +89,7 @@ M[108]:
   src/vallm/validators/semantic.py,243
   src/vallm/validators/semantic_cache.py,136
   src/vallm/validators/syntax.py,80
-  test_mcp.py,121
+  test_mcp.py,123
   tests/__init__.py,0
   tests/conftest.py,66
   tests/test_ast_compare.py,42
@@ -278,8 +279,8 @@ D:
     e: save_data
     save_data(data:Dict[str;Any];filename:str)->None
   examples/mcp_demo.py:
-    i: json,sys,os,_tools_vallm.{validate_code,validate_imports,validate_security,validate_syntax}
-    e: example_syntax_validation,example_security_validation,example_full_pipeline,example_selective_validation,main
+    i: json,sys,mcp.server._tools_vallm.{validate_code,validate_imports,validate_security,validate_syntax},pathlib.Path
+    e: PROJECT_ROOT,SRC_DIR,example_syntax_validation,example_security_validation,example_full_pipeline,example_selective_validation,main
     example_syntax_validation()
     example_security_validation()
     example_full_pipeline()
@@ -336,17 +337,29 @@ D:
     handle_tools_call(request_id:Any;params:Dict[str;Any])->Dict[str, Any]
     handle_request(request:Dict[str;Any])->Dict[str, Any]
     main()
+  mcp/tests/container_e2e.py:
+    i: json,os,select,subprocess,sys,pathlib.Path,typing.{Any,Dict,Optional}
+    e: PROJECT_ROOT,SRC_DIR,MCPServerSession,unwrap_tool_result,test_initialize,test_tools_list,test_validate_syntax,test_validate_imports
+    MCPServerSession: __init__(0),request(3),close(0),_read_stderr(0)  # Manage a running MCP server subproces...
+    unwrap_tool_result(response:Dict[str;Any])->Dict[str, Any]
+    test_initialize(session:MCPServerSession)->None
+    test_tools_list(session:MCPServerSession)->None
+    test_validate_syntax(session:MCPServerSession)->None
+    test_validate_imports(session:MCPServerSession)->None
+    test_validate_security(session:MCPServerSession)->None
+    test_validate_code(session:MCPServerSession)->None
+    test_invalid_tool(session:MCPServerSession)->None
   mcp/tests/quick_test.py:
-    i: sys,os
-    e: test_imports,test_syntax_validation,test_security_validation,test_tool_schema,main
+    i: sys,pathlib.Path
+    e: PROJECT_ROOT,SRC_DIR,test_imports,test_syntax_validation,test_security_validation,test_tool_schema,main
     test_imports()
     test_syntax_validation()
     test_security_validation()
     test_tool_schema()
     main()
   mcp/tests/test_client_integration.py:
-    i: json,socket,subprocess,sys,time,typing.{Any,Dict}
-    e: MCPClient,test_mcp_initialization,test_tools_list,test_syntax_tool,test_security_tool,test_full_pipeline_tool,test_error_handling,wait_for_server
+    i: json,os,socket,subprocess,sys,time,pathlib.Path,typing.{Any,Dict}
+    e: PROJECT_ROOT,SRC_DIR,MCPClient,test_mcp_initialization,test_tools_list,test_syntax_tool,test_security_tool,test_full_pipeline_tool
     MCPClient: __init__(2),send_request(1)  # Simple MCP client for testing.
     test_mcp_initialization()
     test_tools_list()
@@ -357,8 +370,8 @@ D:
     wait_for_server(host:str='localhost';port:int=8080;timeout:int=30)
     main()
   mcp/tests/test_e2e.py:
-    i: json,subprocess,sys,time,pathlib.Path
-    e: run_command,test_mcp_server_startup,test_syntax_validation,test_security_validation,test_full_pipeline,test_docker_build,test_docker_run,main
+    i: json,subprocess,sys,pathlib.Path
+    e: PROJECT_ROOT,SRC_DIR,run_command,test_mcp_server_startup,test_syntax_validation,test_security_validation,test_full_pipeline,test_docker_build
     run_command(cmd;cwd=None;timeout=30)
     test_mcp_server_startup()
     test_syntax_validation()
@@ -555,8 +568,8 @@ D:
     e: SyntaxValidator
     SyntaxValidator: validate(2),_validate_python(1),_validate_treesitter(2)  # Tier 1: Fast syntax validation.
   test_mcp.py:
-    i: json,sys,os,_tools_vallm.{validate_code,validate_imports,validate_security,validate_syntax}
-    e: test_validate_syntax,test_validate_imports,test_validate_security,test_validate_code,main
+    i: json,sys,mcp.server._tools_vallm.{validate_code,validate_imports,validate_security,validate_syntax},pathlib.Path
+    e: PROJECT_ROOT,SRC_DIR,test_validate_syntax,test_validate_imports,test_validate_security,test_validate_code,main
     test_validate_syntax()
     test_validate_imports()
     test_validate_security()

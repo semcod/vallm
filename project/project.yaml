@@ -3,11 +3,11 @@ project:
   name: vallm
   repo: /home/tom/github/semcod/vallm
   language: python
-  analyzed_at: '2026-03-24T16:10:18Z'
+  analyzed_at: '2026-03-24T17:05:35Z'
   tool: code2llm
   stats:
     files: 33
-    lines: 9772
+    lines: 10012
     functions: 198
     classes: 32
 health:
@@ -373,7 +373,7 @@ modules:
     type: class
     cc_avg: 2.8
 - path: mcp/server/self_server.py
-  lines: 183
+  lines: 185
   classes: 0
   methods: 5
   cc_max: 6
@@ -453,7 +453,7 @@ modules:
   classes: 0
   methods: 2
   cc_max: 5
-  inbound_deps: 0
+  inbound_deps: 2
   exports:
   - name: bump_version
     type: function
@@ -672,7 +672,7 @@ modules:
   cc_max: 0
   inbound_deps: 0
 - path: mcp_server.py
-  lines: 37
+  lines: 28
   classes: 0
   methods: 0
   cc_max: 0
@@ -804,5 +804,5 @@ evolution:
 - date: '2026-03-24'
   cc_avg: 3.6
   critical: 9
-  lines: 9772
+  lines: 10012
   note: Automated analysis

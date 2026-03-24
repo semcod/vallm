@@ -5,17 +5,28 @@ This directory contains the MCP (Model Context Protocol) integration for vallm, 
 ## Quick Start
 
 ```bash
-# Start the MCP server from project root
+# Run the single-service docker-compose e2e flow from project root
+bash mcp/tests/run_e2e.sh --compose
+
+# Or start the MCP server directly
 python3 mcp_server.py
 
-# Or start the packaged server directly
 python3 -m mcp.server.self_server
 
 # Test the integration
 python3 test_mcp.py
 
+# Quick validation tests
+python3 mcp/tests/quick_test.py
+
+# Run examples
+python3 examples/mcp_demo.py
+
 # Run the Docker e2e workflow
 bash mcp/tests/run_e2e.sh
+
+# With single-service docker-compose
+bash mcp/tests/run_e2e.sh --compose
 ```
 
 ## Files
@@ -143,8 +154,12 @@ All tools return a consistent response format:
 
 ## Testing
 
+### Quick Tests
 ```bash
-# Test syntax validation
+# Fast local validation
+python3 mcp/tests/quick_test.py
+
+# Test individual tools
 PYTHONPATH=src python3 -c "from mcp.server._tools_vallm import validate_syntax; print(validate_syntax('print(\"hello\")', 'python')['verdict'])"
 
 # Test security validation
@@ -152,7 +167,22 @@ PYTHONPATH=src python3 -c "from mcp.server._tools_vallm import validate_security
 
 # Test full pipeline
 PYTHONPATH=src python3 -c "from mcp.server._tools_vallm import validate_code; code = 'def test(): eval(\"1+1\")'; result = validate_code(code, 'python'); print(result['verdict'], result['score'])"
+```
 
-# Run the Docker container-side E2E runner locally
+### Docker E2E Tests
+```bash
+# Complete Docker test suite
+bash mcp/tests/run_e2e.sh
+
+# With single-service docker-compose
+bash mcp/tests/run_e2e.sh --compose
+
+# Run container-side tests directly
 python3 mcp/tests/container_e2e.py
 ```
+
+### Test Infrastructure
+- **Quick Tests**: Fast validation without Docker overhead
+- **Container Tests**: Full MCP protocol validation in isolated environment
+- **E2E Tests**: Complete build, run, and integration validation
+- **Docker Compose**: Single-service container-side runner
