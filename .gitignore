@@ -99,3 +99,4 @@ htmlcov/
 # Backup files
 *.bak
 *.backup
+.aider*

@@ -141,7 +141,7 @@ def validate(
     settings = _initialize_settings(settings)
     context = _initialize_context(context)
     validators = _initialize_validators(validators, settings)
-    
+
     results = _run_validation_pipeline(proposal, validators, context, settings)
     return compute_verdict(results, settings, proposal.filename)
 
@@ -160,14 +160,14 @@ def _initialize_validators(validators: Optional[list], settings: VallmSettings) 
     """Initialize validators with defaults if not provided and sort by tier."""
     if validators is None:
         validators = _get_default_validators(settings)
-    
+
     # Sort validators by tier for fail-fast behavior
     validators.sort(key=lambda v: v.tier)
     return validators
 
 
-def _run_validation_pipeline(proposal: Proposal, validators: list, 
-                            context: dict, settings: VallmSettings) -> list:
+def _run_validation_pipeline(proposal: Proposal, validators: list,
+                              context: dict, settings: VallmSettings) -> list:
     """Run the validation pipeline and collect results."""
     results = []
     for validator in validators:
@@ -177,7 +177,7 @@ def _run_validation_pipeline(proposal: Proposal, validators: list,
         # Fail fast on errors in tier 1
         if result.has_errors and validator.tier == 1:
             return results
-    
+
     return results
 
 
@@ -204,6 +204,11 @@ def _get_default_validators(settings: VallmSettings) -> list:
         from vallm.validators.security import SecurityValidator
 
         validators.append(SecurityValidator())
+
+    if getattr(settings, "enable_regression", False):
+        from vallm.validators.regression import RegressionValidator
+
+        validators.append(RegressionValidator())
 
     if settings.enable_semantic:
         from vallm.validators.semantic import SemanticValidator

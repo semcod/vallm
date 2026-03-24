@@ -124,6 +124,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Tree-sitter for all** — syntax validation for 165+ languages
 - **Example 07** — comprehensive multi-language demo with 8 languages
 
+## [0.1.52] - 2026-03-24
+
+### Test
+- Update tests/conftest.py
+- Update tests/test_pipeline.py
+- Update tests/test_regression_validator.py
+
+### Other
+- Update .gitignore
+
 ## [0.1.51] - 2026-03-23
 
 ### Docs

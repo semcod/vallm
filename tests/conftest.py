@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """Shared pytest configuration and fixtures."""
 
+import sys
+import types
+
 import pytest
 import tempfile
 from pathlib import Path
@@ -44,10 +47,27 @@ def mock_llm_provider():
 @pytest.fixture(autouse=True)
 def disable_external_calls():
     """Automatically disable external API calls in tests."""
-    with patch('requests.post'), \
-         patch('ollama.Client'), \
-         patch('litellm.completion'):
-        yield
+    created_ollama_stub = False
+    if 'ollama' not in sys.modules:
+        ollama_stub = types.ModuleType('ollama')
+
+        class Client:  # noqa: D401 - lightweight stub for tests
+            """Fallback ollama client stub used when the package is absent."""
+
+            pass
+
+        ollama_stub.Client = Client
+        sys.modules['ollama'] = ollama_stub
+        created_ollama_stub = True
+
+    try:
+        with patch('requests.post'), \
+             patch('ollama.Client'), \
+             patch('litellm.completion'):
+            yield
+    finally:
+        if created_ollama_stub:
+            sys.modules.pop('ollama', None)
 
 
 # Add markers to pytest

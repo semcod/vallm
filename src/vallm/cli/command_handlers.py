@@ -15,6 +15,7 @@ from vallm.core.languages import detect_language
 from vallm.core.proposal import Proposal
 
 console = Console()
+OUTPUT_FORMAT_HELP = "Output format"
 
 
 def validate_command(
@@ -25,8 +26,9 @@ def validate_command(
     config: Optional[Path] = typer.Option(None, "--config", help="Path to vallm.toml"),
     enable_semantic: bool = typer.Option(False, "--semantic", help="Enable LLM-as-judge"),
     enable_security: bool = typer.Option(False, "--security", help="Enable security checks"),
+    enable_regression: bool = typer.Option(False, "--regression", help="Enable regression tests"),
     model: Optional[str] = typer.Option(None, "--model", "-m", help="LLM model for semantic"),
-    output_format: str = typer.Option("rich", "--output", "-o", help="Output format"),
+    output_format: str = typer.Option("rich", "--output", "-o", help=OUTPUT_FORMAT_HELP),
     verbose: bool = typer.Option(False, "--verbose", "-v", help="Show detailed results"),
     exit_on_verdict: bool = typer.Option(False, "--exit", help="Exit with non-zero on fail/review"),
 ) -> None:
@@ -41,7 +43,14 @@ def validate_command(
     detected_language = _detect_and_log_language(file, language)
     
     # Build settings
-    settings = build_validate_settings(config, enable_semantic, enable_security, model, verbose)
+    settings = build_validate_settings(
+        config,
+        enable_semantic,
+        enable_security,
+        enable_regression,
+        model,
+        verbose,
+    )
     
     # Create proposal
     proposal = _build_proposal(code_str, detected_language, ref_code, file)
@@ -79,7 +88,7 @@ def check_command(
     from vallm.scoring import validate
     
     # Only enable syntax validator
-    settings = build_validate_settings(None, False, False, None, False)
+    settings = build_validate_settings(None, False, False, False, None, False)
     settings.enable_syntax = True
     settings.enable_imports = False
     settings.enable_complexity = False
@@ -100,10 +109,11 @@ def batch_command(
     use_gitignore: bool = typer.Option(True, "--gitignore/--no-gitignore", help="Respect .gitignore"),
     enable_semantic: bool = typer.Option(False, "--semantic", help="Enable LLM-as-judge"),
     enable_security: bool = typer.Option(False, "--security", help="Enable security checks"),
+    enable_regression: bool = typer.Option(False, "--regression", help="Enable regression tests"),
     no_imports: bool = typer.Option(False, "--no-imports", help="Skip import validation (faster)"),
     no_complexity: bool = typer.Option(False, "--no-complexity", help="Skip complexity analysis (faster)"),
     model: Optional[str] = typer.Option(None, "--model", "-m", help="LLM model for semantic"),
-    format: str = typer.Option("rich", "--format", "-f", help="Output format"),
+    format: str = typer.Option("rich", "--format", "-f", help=OUTPUT_FORMAT_HELP),
     output: Optional[Path] = typer.Option(None, "--output", "-o", help="Output directory"),
     fail_fast: bool = typer.Option(False, "--fail-fast", help="Stop on first failure"),
     verbose: bool = typer.Option(False, "--verbose", "-v", help="Show detailed validation results for each file"),
@@ -113,7 +123,15 @@ def batch_command(
     from vallm.cli.batch_processor import BatchProcessor
     processor = BatchProcessor(console)
     
-    settings = build_batch_settings(enable_semantic, enable_security, model, verbose, no_imports, no_complexity)
+    settings = build_batch_settings(
+        enable_semantic,
+        enable_security,
+        enable_regression,
+        model,
+        verbose,
+        no_imports,
+        no_complexity,
+    )
     
     results_by_language, failed_files, passed_count, filtered_files = processor.process_batch(
         paths=paths,
@@ -309,13 +327,14 @@ def _show_general_info() -> None:
     console.print("  2. Import validation - Module resolution checking")
     console.print("  3. Complexity analysis - Cyclomatic complexity metrics")
     console.print("  4. Security analysis - Security pattern detection")
-    console.print("  5. Semantic analysis - LLM-powered code review")
+    console.print("  5. Regression testing - Pytest-based regression checks")
+    console.print("  6. Semantic analysis - LLM-powered code review")
     
     # Show cache stats
     cache_stats = get_semantic_cache().get_cache_stats()
-    console.print(f"\n[bold]Semantic Cache:[/bold]")
+    console.print("\n[bold]Semantic Cache:[/bold]")
     console.print(f"  Cached entries: {cache_stats['total_entries']}")
-    console.print(f"  Use 'vallm info --clear-cache' to clear cache")
+    console.print("  Use 'vallm info --clear-cache' to clear cache")
     
     console.print("\n[bold]Import Validation Languages:[/bold]")
     factory = ImportValidatorFactory()

@@ -25,6 +25,7 @@ class VallmSettings(BaseSettings):
     enable_imports: bool = True
     enable_complexity: bool = True
     enable_security: bool = False
+    enable_regression: bool = False
     enable_semantic: bool = False
 
     # Complexity limits
