@@ -1,65 +1,32 @@
-# vallm batch | 162f | 111✓ 51✗
+# vallm batch | 182f | 126✓ 56✗
 
 SUMMARY:
-  total: 162
-  passed: 111
-  failed: 51
-  success: 68.5%
+  total: 182
+  passed: 126
+  failed: 56
+  success: 69.2%
 
 FILES:
-  [yaml]
-    ✓ goal.yaml
-      verdict: pass
-      score: 1.00
-    ✓ .pre-commit-hooks.yaml
-      verdict: pass
-      score: 1.00
-    ✓ .pre-commit-config.yaml
-      verdict: pass
-      score: 1.00
-    ✓ project/project.yaml
-      verdict: pass
-      score: 1.00
-  [toml]
-    ✓ pyproject.toml
-      verdict: pass
-      score: 1.00
-  [bash]
-    ✓ project.sh
-      verdict: pass
-      score: 1.00
-    ✓ examples/run.sh
-      verdict: pass
-      score: 1.00
-    ✓ scripts/test_docker_installation.sh
-      verdict: pass
-      score: 1.00
-    ✓ examples/11_claude_code_autonomous/run.sh
-      verdict: pass
-      score: 1.00
-    ✓ examples/11_claude_code_autonomous/docker-entrypoint.sh
-      verdict: pass
-      score: 1.00
-    ✓ examples/12_ollama_simple_demo/run.sh
-      verdict: pass
-      score: 1.00
-    ✓ examples/12_ollama_simple_demo/docker-entrypoint.sh
-      verdict: pass
-      score: 1.00
-    ✓ examples/10_mcp_ollama_demo/run.sh
-      verdict: pass
-      score: 1.00
-    ✓ examples/10_mcp_ollama_demo/docker-entrypoint.sh
-      verdict: pass
-      score: 1.00
   [python]
+    ✓ test_mcp.py
+      verdict: pass
+      score: 1.00
+    ✓ mcp_server.py
+      verdict: pass
+      score: 1.00
     ✓ examples/__init__.py
+      verdict: pass
+      score: 1.00
+    ✓ examples/mcp_demo.py
       verdict: pass
       score: 1.00
     ✓ tests/test_performance.py
       verdict: pass
       score: 1.00
     ✓ tests/test_security.py
+      verdict: pass
+      score: 1.00
+    ✓ tests/test_regression_validator.py
       verdict: pass
       score: 1.00
     ✓ tests/conftest.py
@@ -116,6 +83,30 @@ FILES:
     ✓ scripts/bump_version.py
       verdict: pass
       score: 1.00
+    ✓ mcp/__init__.py
+      verdict: pass
+      score: 1.00
+    ✓ mcp/tests/quick_test.py
+      verdict: pass
+      score: 1.00
+    ✓ mcp/tests/__init__.py
+      verdict: pass
+      score: 1.00
+    ✓ mcp/tests/test_e2e.py
+      verdict: pass
+      score: 1.00
+    ✓ mcp/tests/test_client_integration.py
+      verdict: pass
+      score: 1.00
+    ✓ mcp/server/__init__.py
+      verdict: pass
+      score: 1.00
+    ✓ mcp/server/self_server.py
+      verdict: pass
+      score: 1.00
+    ✓ mcp/server/_tools_vallm.py
+      verdict: pass
+      score: 1.00
     ✓ src/vallm/hookspecs.py
       verdict: pass
       score: 1.00
@@ -141,6 +132,9 @@ FILES:
       verdict: pass
       score: 1.00
     ✓ src/vallm/validators/logical.py
+      verdict: pass
+      score: 1.00
+    ✓ src/vallm/validators/regression.py
       verdict: pass
       score: 1.00
     ✓ src/vallm/validators/security.py
@@ -338,7 +332,58 @@ FILES:
     ✓ examples/11_claude_code_autonomous/legacy_code/data_processor.py
       verdict: pass
       score: 1.00
+  [yaml]
+    ✓ goal.yaml
+      verdict: pass
+      score: 1.00
+    ✓ .pre-commit-hooks.yaml
+      verdict: pass
+      score: 1.00
+    ✓ .pre-commit-config.yaml
+      verdict: pass
+      score: 1.00
+    ✓ project/project.yaml
+      verdict: pass
+      score: 1.00
+  [toml]
+    ✓ pyproject.toml
+      verdict: pass
+      score: 1.00
+  [bash]
+    ✓ project.sh
+      verdict: pass
+      score: 1.00
+    ✓ examples/run.sh
+      verdict: pass
+      score: 1.00
+    ✓ scripts/test_docker_installation.sh
+      verdict: pass
+      score: 1.00
+    ✓ mcp/tests/run_e2e.sh
+      verdict: pass
+      score: 1.00
+    ✓ examples/11_claude_code_autonomous/run.sh
+      verdict: pass
+      score: 1.00
+    ✓ examples/11_claude_code_autonomous/docker-entrypoint.sh
+      verdict: pass
+      score: 1.00
+    ✓ examples/12_ollama_simple_demo/run.sh
+      verdict: pass
+      score: 1.00
+    ✓ examples/12_ollama_simple_demo/docker-entrypoint.sh
+      verdict: pass
+      score: 1.00
+    ✓ examples/10_mcp_ollama_demo/run.sh
+      verdict: pass
+      score: 1.00
+    ✓ examples/10_mcp_ollama_demo/docker-entrypoint.sh
+      verdict: pass
+      score: 1.00
   [json]
+    ✓ .claude/settings.local.json
+      verdict: pass
+      score: 1.00
     ✓ project/validation.json
       verdict: pass
       score: 1.00
@@ -354,6 +399,7 @@ FAILED:
   ✗ TICKET: Unsupported file type
   ✗ LICENSE: Unsupported file type
   ✗ TODO.md: Unsupported file type
+  ✗ MCP_INTEGRATION_SUMMARY.md: Unsupported file type
   ✗ Dockerfile.test: Unsupported file type
   ✗ CHANGELOG.md: Unsupported file type
   ✗ README.md: Unsupported file type
@@ -380,6 +426,10 @@ FAILED:
   ✗ project/analysis.toon: Unsupported file type
   ✗ project/duplication.toon: Unsupported file type
   ✗ toon/validation.txt: Unsupported file type
+  ✗ mcp/README.md: Unsupported file type
+  ✗ mcp/tests/docker-compose.yml: Unsupported file type
+  ✗ mcp/tests/Dockerfile.client: Unsupported file type
+  ✗ mcp/tests/Dockerfile.test: Unsupported file type
   ✗ src/vallm/py.typed: Unsupported file type
   ✗ examples/05_llm_semantic_review/README.md: Unsupported file type
   ✗ examples/09_code2logic_integration/README.md: Unsupported file type

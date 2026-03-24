@@ -4,36 +4,47 @@
 
 - **Project**: vallm
 - **Language**: python
-- **Files**: 30
-- **Lines**: 7523
-- **Functions**: 175
-- **Classes**: 31
-- **Avg CC**: 3.5
-- **Critical (CC≥10)**: 8
+- **Files**: 33
+- **Lines**: 9772
+- **Functions**: 198
+- **Classes**: 32
+- **Avg CC**: 3.6
+- **Critical (CC≥10)**: 9
 
 ## Architecture
 
-### root/ (1 files, 21L, 0 functions)
+### mcp/ (1 files, 1L, 0 functions)
 
+- `__init__.py` — 1L, 0 methods, CC↑0
+
+### mcp/server/ (3 files, 692L, 13 functions)
+
+- `_tools_vallm.py` — 508L, 8 methods, CC↑22
+- `self_server.py` — 183L, 5 methods, CC↑6
+- `__init__.py` — 1L, 0 methods, CC↑0
+
+### root/ (2 files, 58L, 0 functions)
+
+- `mcp_server.py` — 37L, 0 methods, CC↑0
 - `project.sh` — 21L, 0 methods, CC↑0
 
 ### scripts/ (1 files, 78L, 2 functions)
 
 - `bump_version.py` — 78L, 2 methods, CC↑5
 
-### src/vallm/ (5 files, 328L, 12 functions)
+### src/vallm/ (5 files, 334L, 12 functions)
 
-- `scoring.py` — 213L, 8 methods, CC↑6
-- `config.py` — 58L, 1 methods, CC↑3
+- `scoring.py` — 218L, 8 methods, CC↑7
+- `config.py` — 59L, 1 methods, CC↑3
 - `hookspecs.py` — 33L, 3 methods, CC↑1
 - `__init__.py` — 19L, 0 methods, CC↑0
 - `__main__.py` — 5L, 0 methods, CC↑0
 
-### src/vallm/cli/ (4 files, 1106L, 39 functions)
+### src/vallm/cli/ (4 files, 1125L, 39 functions)
 
 - `batch_processor.py` — 319L, 12 methods, CC↑26
 - `output_formatters.py` — 421L, 16 methods, CC↑17
-- `command_handlers.py` — 323L, 11 methods, CC↑6
+- `command_handlers.py` — 342L, 11 methods, CC↑6
 - `__init__.py` — 43L, 0 methods, CC↑0
 
 ### src/vallm/core/ (6 files, 778L, 26 functions)
@@ -50,14 +61,14 @@
 - `runner.py` — 144L, 4 methods, CC↑4
 - `__init__.py` — 1L, 0 methods, CC↑0
 
-### src/vallm/validators/ (9 files, 1363L, 47 functions)
+### src/vallm/validators/ (10 files, 1628L, 57 functions)
 
 - `complexity.py` — 183L, 4 methods, CC↑12
 - `lint.py` — 182L, 6 methods, CC↑9
 - `security.py` — 255L, 5 methods, CC↑9
+- `regression.py` — 265L, 10 methods, CC↑7
 - `logical.py` — 142L, 5 methods, CC↑6
-- `semantic_cache.py` — 187L, 8 methods, CC↑5
-- _4 more files_
+- _5 more files_
 
 ### src/vallm/validators/imports/ (11 files, 867L, 45 functions)
 
@@ -73,6 +84,7 @@
 - **walk** (function, CC=27) ⚠ split
 - **BatchProcessor** (class, CC̄=5.6)
   - `_process_files` CC=26 ⚠ split
+- **validate_code** (function, CC=22) ⚠ split
 - **output_batch_toon** (function, CC=17) ⚠ split
 - **ComplexityValidator** (class, CC̄=6.8)
 - **GitignoreParser** (class, CC̄=5.7)
@@ -83,6 +95,10 @@
 - **JavaScriptImportValidator.extract_imports** — fan-out=14: Extract import statements from JavaScript/TypeScript using tree-sitter.
 - **GoImportValidator.extract_imports** — fan-out=13: Extract import statements from Go using tree-sitter.
 - **RustImportValidator.extract_imports** — fan-out=13: Extract use statements from Rust using tree-sitter.
+- **validate_code** — fan-out=12: Full pipeline validation combining multiple validators.
+
+Args:
+    code: Source 
 - **LintValidator._parse_ruff_text** — fan-out=12: Parse ruff text output as fallback.
 
 Args:
@@ -91,7 +107,6 @@ Args:
 Ret
 - **BatchProcessor._process_files** — fan-out=12: Analysis pipeline, 12 stages
 - **main** — fan-out=11: Orchestrates 11 calls
-- **SemanticValidator._parse_response** — fan-out=11: Parse LLM JSON response into a ValidationResult.
 
 ## Refactoring Priorities
 
@@ -99,7 +114,9 @@ Ret
 |---|--------|--------|--------|
 | 1 | Split BatchProcessor._process_files (CC=26 → target CC<10) | high | low |
 | 2 | Split walk (CC=27 → target CC<10) | high | low |
-| 3 | Split output_batch_toon (CC=17 → target CC<10) | medium | low |
+| 3 | Split god module mcp/server/_tools_vallm.py (508L, 0 classes) | high | high |
+| 4 | Split validate_code (CC=22 → target CC<10) | medium | low |
+| 5 | Split output_batch_toon (CC=17 → target CC<10) | medium | low |
 
 ## Context for LLM
 

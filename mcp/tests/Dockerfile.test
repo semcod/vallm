@@ -1,0 +1,26 @@
+# Docker E2E Test for MCP Vallm Integration
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    gcc \
+    g++ \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy project metadata and source tree
+COPY pyproject.toml .
+COPY README.md .
+COPY src/ ./src/
+COPY mcp/ ./mcp/
+
+# Install vallm and dependencies
+RUN pip install --no-cache-dir -e .
+
+# Make test executable
+RUN chmod +x mcp/tests/container_e2e.py
+
+# Run container-side e2e tests
+CMD ["python3", "mcp/tests/container_e2e.py"]

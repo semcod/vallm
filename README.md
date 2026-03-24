@@ -37,6 +37,7 @@ vallm validates code proposals through a **four-tier pipeline** — from millise
 - **AST similarity scoring** with normalized fingerprinting
 - **Pluggy-based plugin system** for custom validators
 - **Rich CLI** with JSON/text output formats
+- **MCP integration** — Model Context Protocol server for LLM tool calling
 
 ## Supported Languages
 
@@ -514,6 +515,116 @@ max_cyclomatic_complexity = 15
 enable_semantic = true
 llm_provider = "ollama"
 llm_model = "qwen2.5-coder:7b"
+```
+
+## MCP Integration
+
+vallm provides **Model Context Protocol (MCP)** server integration, exposing validation tools as MCP endpoints for LLM tool calling.
+
+### Starting the MCP Server
+
+```bash
+# Start the MCP server from project root
+python3 mcp_server.py
+
+# Or start the packaged module directly
+python3 -m mcp.server.self_server
+```
+
+### Claude Desktop Configuration
+
+Add to your `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "vallm": {
+      "command": "python3",
+      "args": ["/path/to/vallm/mcp_server.py"],
+      "env": {
+        "PYTHONPATH": "/path/to/vallm/src"
+      }
+    }
+  }
+}
+```
+
+### Available MCP Tools
+
+| Tool | Description | Parameters |
+|------|-------------|------------|
+| `validate_syntax` | Multi-language syntax checking | `code`, `language`, `filename` |
+| `validate_imports` | Import resolution validation | `code`, `language`, `filename` |
+| `validate_security` | Security issue detection | `code`, `language`, `filename` |
+| `validate_code` | Full pipeline validation | `code`, `language`, `filename`, `reference_code`, `enable_*` flags |
+
+### Example Tool Calls
+
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "validate_security",
+    "arguments": {
+      "code": "eval('1+1')",
+      "language": "python"
+    }
+  }
+}
+```
+
+```json
+{
+  "method": "tools/call", 
+  "params": {
+    "name": "validate_code",
+    "arguments": {
+      "code": "def test(): pass",
+      "language": "python",
+      "enable_syntax": true,
+      "enable_security": true,
+      "enable_complexity": false
+    }
+  }
+}
+```
+
+### Testing MCP Integration
+
+```bash
+# Test all MCP tools
+python3 test_mcp.py
+
+# Test individual tools
+PYTHONPATH=src python3 -c "from mcp.server._tools_vallm import validate_syntax; print(validate_syntax('print(\"hello\")', 'python')['verdict'])"
+
+# Run the Docker e2e flow
+bash mcp/tests/run_e2e.sh
+```
+
+### Response Format
+
+All MCP tools return a consistent JSON response:
+
+```json
+{
+  "success": true,
+  "validator": "security",
+  "score": 0.3,
+  "weight": 1.5,
+  "confidence": 0.9,
+  "verdict": "fail",
+  "issues": [
+    {
+      "message": "Use of eval() detected",
+      "severity": "warning",
+      "line": 1,
+      "column": 0,
+      "rule": "security.eval"
+    }
+  ],
+  "details": {}
+}
 ```
 
 ## Plugin System

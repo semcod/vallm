@@ -124,6 +124,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Tree-sitter for all** — syntax validation for 165+ languages
 - **Example 07** — comprehensive multi-language demo with 8 languages
 
+## [0.1.53] - 2026-03-24
+
+### Docs
+- Update MCP_INTEGRATION_SUMMARY.md
+- Update README.md
+- Update docs/README.md
+- Update mcp/README.md
+- Update project/README.md
+- Update project/context.md
+
+### Test
+- Update test_mcp.py
+
+### Other
+- Update examples/mcp_demo.py
+- Update mcp/__init__.py
+- Update mcp/server/__init__.py
+- Update mcp/server/_tools_vallm.py
+- Update mcp/server/self_server.py
+- Update mcp/tests/Dockerfile.client
+- Update mcp/tests/Dockerfile.test
+- Update mcp/tests/__init__.py
+- Update mcp/tests/container_e2e.py
+- Update mcp/tests/docker-compose.yml
+- ... and 22 more files
+
 ## [0.1.52] - 2026-03-24
 
 ### Test

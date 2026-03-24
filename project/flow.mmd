@@ -124,6 +124,7 @@ flowchart TD
     subgraph examples_12_ollama_simple_demo
         examples__12_ollama_simple_demo__iteration_1__main["main"]
         examples__main["main"]
+        examples__12_ollama_simple_demo__iteration_2__main["main"]
         examples__log_section["log_section"]
         examples__log_step["log_step"]
         examples__analyze_with_code2llm["analyze_with_code2llm"]
@@ -133,8 +134,6 @@ flowchart TD
         examples__generate_ollama_prompt["generate_ollama_prompt"]
         examples__run_simple_workflow("run_simple_workflow CC=9")
         examples__main["main"]
-        examples__12_ollama_simple_demo__iteration_2__main["main"]
-        examples__process_user_input("process_user_input CC=9")
         examples__process_user_input["process_user_input"]
         examples__load_config["load_config"]
         examples__save_data["save_data"]
@@ -146,9 +145,17 @@ flowchart TD
         examples__another_method["another_method"]
         examples__main["main"]
         examples__load_config["load_config"]
+        examples__process_user_input("process_user_input CC=9")
         examples__calculate_total["calculate_total"]
-        examples__save_data["save_data"]
         examples__run_demo_main["run_demo_main"]
+        examples__save_data["save_data"]
+    end
+    subgraph examples_mcp_demo
+        examples__mcp_demo__example_syntax_validation["example_syntax_validation"]
+        examples__mcp_demo__example_security_validation["example_security_validation"]
+        examples__mcp_demo__example_full_pipeline["example_full_pipeline"]
+        examples__mcp_demo__example_selective_validation["example_selective_validation"]
+        examples__mcp_demo__main["main"]
     end
     subgraph examples_run
         examples__run__run_example["run_example"]
@@ -168,17 +175,25 @@ flowchart TD
         examples__utils__logging_utils__log_code["log_code"]
         examples__utils__logging_utils__log_result["log_result"]
     end
+    subgraph mcp_server
+        mcp__server__self_server__handle_initialize["handle_initialize"]
+        mcp__server__self_server__handle_tools_list["handle_tools_list"]
+        mcp__server__self_server__handle_tools_call["handle_tools_call"]
+        mcp__server__self_server__handle_request["handle_request"]
+        mcp__server__self_server__main["main"]
+        mcp__server___tools_vallm__validate_syntax["validate_syntax"]
+        mcp__server___tools_vallm__validate_imports["validate_imports"]
+        mcp__server___tools_vallm__validate_security["validate_security"]
+        mcp__server___tools_vallm__validate_code{{validate_code CC=22}}
+        mcp__server___tools_vallm__handle_validate_syntax["handle_validate_syntax"]
+        mcp__server___tools_vallm__handle_validate_imports["handle_validate_imports"]
+        mcp__handle_validate_security["handle_validate_security"]
+        mcp__server___tools_vallm__handle_validate_code["handle_validate_code"]
+    end
     subgraph publish_env_lib
         publish_env____init__["__init__"]
         publish_env____init__["__init__"]
         publish_env__merge_paths["merge_paths"]
-        publish_env____init__["__init__"]
-        publish_env____init__["__init__"]
-        publish_env____init__["__init__"]
-        publish_env____init__["__init__"]
-        publish_env____init__["__init__"]
-        publish_env____init__["__init__"]
-        publish_env____init__["__init__"]
         publish_env____init__["__init__"]
         publish_env__generate_key["generate_key"]
         publish_env__encrypt["encrypt"]
@@ -197,6 +212,13 @@ flowchart TD
         publish_env__decrypt["decrypt"]
         publish_env__decrypt_at_time["decrypt_at_time"]
         publish_env__extract_timestamp["extract_timestamp"]
+        publish_env____init__["__init__"]
+        publish_env____init__["__init__"]
+        publish_env____init__["__init__"]
+        publish_env____init__["__init__"]
+        publish_env____init__["__init__"]
+        publish_env____init__["__init__"]
+        publish_env____init__["__init__"]
         publish_env__uri_reference["uri_reference"]
         publish_env__iri_reference["iri_reference"]
         publish_env__is_valid_uri["is_valid_uri"]
@@ -257,6 +279,16 @@ flowchart TD
         src___check_python_complexity("_check_python_complexity CC=11")
         src___check_lizard("_check_lizard CC=12")
         src____init__["__init__"]
+        src__validate["validate"]
+        src___resolve_test_dir["_resolve_test_dir"]
+        src___write_code["_write_code"]
+        src___build_pytest_cmd["_build_pytest_cmd"]
+        src___run_pytest["_run_pytest"]
+        src___interpret["_interpret"]
+        src___parse_failures["_parse_failures"]
+        src___timeout_result["_timeout_result"]
+        src___exception_result["_exception_result"]
+        src____init__["__init__"]
         src___get_cache_key["_get_cache_key"]
         src__get["get"]
         src__set["set"]
@@ -285,28 +317,40 @@ flowchart TD
         src___create_json_error_result["_create_json_error_result"]
         src___parse_scores["_parse_scores"]
         src___parse_issues["_parse_issues"]
-        src___parse_severity["_parse_severity"]
-        src___parse_line_number["_parse_line_number"]
-        src____init__["__init__"]
-        src__validate["validate"]
-        src___check_ruff["_check_ruff"]
-        src___parse_ruff_result["_parse_ruff_result"]
-        src___parse_ruff_text("_parse_ruff_text CC=9")
-        src__vallm__validators__lint__create_validator["create_validator"]
-        src__vallm__core__graph_diff__diff_graphs["diff_graphs"]
-        src__vallm__core__graph_diff__diff_python_code["diff_python_code"]
     end
+    examples__mcp_demo__example_syntax_validation --> publish_env__print
+    examples__mcp_demo__example_syntax_validation --> mcp__server___tools_vallm__validate_syntax
+    examples__mcp_demo__example_security_validation --> publish_env__print
+    examples__mcp_demo__example_security_validation --> mcp__server___tools_vallm__validate_security
+    examples__mcp_demo__example_full_pipeline --> publish_env__print
+    examples__mcp_demo__example_full_pipeline --> mcp__server___tools_vallm__validate_code
+    examples__mcp_demo__example_selective_validation --> publish_env__print
+    examples__mcp_demo__example_selective_validation --> mcp__server___tools_vallm__validate_code
+    examples__mcp_demo__main --> publish_env__print
+    examples__mcp_demo__main --> examples__mcp_demo__example_syntax_validation
+    examples__mcp_demo__main --> examples__mcp_demo__example_security_validation
+    examples__mcp_demo__main --> examples__mcp_demo__example_full_pipeline
+    examples__mcp_demo__main --> examples__mcp_demo__example_selective_validation
     scripts__bump_version__bump_version --> publish_env__map
     scripts__bump_version__main --> scripts__bump_version__bump_version
     scripts__bump_version__main --> publish_env__print
-    publish_env____init__ --> publish_env__to_str
-    publish_env____init__ --> publish_env__list
-    publish_env____init__ --> publish_env__unsplit
+    mcp__server__self_server__handle_request --> mcp__server__self_server__handle_initialize
+    mcp__server__self_server__handle_request --> mcp__server__self_server__handle_tools_list
+    mcp__server__self_server__handle_request --> mcp__server__self_server__handle_tools_call
+    mcp__server__self_server__main --> publish_env__print
+    mcp__server__self_server__main --> mcp__server__self_server__handle_request
+    mcp__server___tools_vallm__handle_validate_syntax --> mcp__server___tools_vallm__validate_syntax
+    mcp__server___tools_vallm__handle_validate_imports --> mcp__server___tools_vallm__validate_imports
+    mcp__handle_validate_security --> mcp__server___tools_vallm__validate_security
+    mcp__server___tools_vallm__handle_validate_code --> mcp__server___tools_vallm__validate_code
     publish_env___encrypt_from_parts --> publish_env___check_bytes
     publish_env__decrypt --> publish_env___get_unverified_token_data
     publish_env__decrypt_at_time --> publish_env___get_unverified_token_data
     publish_env__extract_timestamp --> publish_env___get_unverified_token_data
+    publish_env____init__ --> publish_env__list
     publish_env__rotate --> publish_env___get_unverified_token_data
+    publish_env____init__ --> publish_env__to_str
+    publish_env____init__ --> publish_env__unsplit
     publish_env__uri_reference --> publish_env__from_string
     publish_env__iri_reference --> publish_env__from_string
     publish_env__is_valid_uri --> publish_env__from_string
@@ -364,8 +408,6 @@ flowchart TD
     publish_env__from_string --> publish_env__encode_component
     publish_env__encode --> publish_env__to_str
     publish_env__encode --> publish_env__encode_component
-    publish_env__skipToken --> publish_env__rule
-    publish_env__parse --> publish_env__rule
     publish_env___generate_authority --> publish_env__normalize_authority
     publish_env___generate_authority --> publish_env__to_str
     publish_env__from_parts --> publish_env__authority_from
@@ -377,6 +419,8 @@ flowchart TD
     publish_env__copy_with --> publish_env__hasattr
     publish_env__copy_with --> publish_env__to_str
     publish_env__authority_from --> publish_env__split_authority
+    publish_env__skipToken --> publish_env__rule
+    publish_env__parse --> publish_env__rule
     publish_env__renderAttrs --> publish_env__escapeHtml
     publish_env__code_inline --> publish_env__escapeHtml
     publish_env__code_block --> publish_env__escapeHtml
@@ -465,13 +509,6 @@ flowchart TD
     publish_env__send --> publish_env__resolve_proxies
     publish_env__merge_environment_settings --> publish_env__merge_setting
     publish_env__merge_environment_settings --> publish_env__get_environ_proxies
-    publish_env__get --> publish_env__request
-    publish_env__options --> publish_env__request
-    publish_env__head --> publish_env__request
-    publish_env__post --> publish_env__request
-    publish_env__put --> publish_env__request
-    publish_env__patch --> publish_env__request
-    publish_env__delete --> publish_env__request
     publish_env___basic_auth_str --> publish_env__to_native_string
     publish_env___basic_auth_str --> publish_env__type
     publish_env____call__ --> publish_env___basic_auth_str
@@ -479,6 +516,13 @@ flowchart TD
     publish_env__build_digest_header --> publish_env__urlparse
     publish_env__handle_401 --> publish_env__parse_dict_header
     publish_env__handle_401 --> publish_env__extract_cookies_to_jar
+    publish_env__get --> publish_env__request
+    publish_env__options --> publish_env__request
+    publish_env__head --> publish_env__request
+    publish_env__post --> publish_env__request
+    publish_env__put --> publish_env__request
+    publish_env__patch --> publish_env__request
+    publish_env__delete --> publish_env__request
     publish_env__dispatch_hook --> publish_env__hasattr
     publish_env____post_init__ --> publish_env__convert_attrs
     publish_env__attrIndex --> publish_env__list
@@ -578,6 +622,7 @@ flowchart TD
     publish_env__platform_tags --> publish_env___get_glibc_version
     publish_env__platform_tags --> publish_env___is_compatible
     publish_env____init__ --> publish_env__bytes
+    publish_env____init__ --> publish_env__hasattr
     publish_env__parse_email --> publish_env___get_payload
     publish_env__parse_email --> publish_env__cast
     publish_env____get__ --> publish_env__cast
@@ -586,7 +631,6 @@ flowchart TD
     publish_env___process_dynamic --> publish_env__map
     publish_env___process_dynamic --> publish_env__list
     publish_env__from_email --> publish_env__parse_email
-    publish_env____init__ --> publish_env__hasattr
     publish_env__canonicalize_name --> publish_env__cast
     publish_env__parse_wheel_filename --> publish_env__canonicalize_name
     publish_env__parse_wheel_filename --> publish_env__parse_tag
@@ -614,6 +658,20 @@ flowchart TD
     publish_env___from_dict --> publish_env___get_object
     publish_env___from_dict --> publish_env___get_sequence_as
     publish_env___from_dict --> publish_env___get_required_sequence_of_objects
+    publish_env___normalize_extras --> publish_env__canonicalize_name
+    publish_env___normalize_extra_values --> publish_env___normalize_extras
+    publish_env___normalize --> publish_env__canonicalize_name
+    publish_env___evaluate_markers --> publish_env___normalize
+    publish_env___evaluate_markers --> publish_env___eval_op
+    publish_env__default_environment --> publish_env__format_full_version
+    publish_env____init__ --> publish_env___parse_marker
+    publish_env____str__ --> publish_env___format_marker
+    publish_env__evaluate --> publish_env__cast
+    publish_env__evaluate --> publish_env___evaluate_markers
+    publish_env__evaluate --> publish_env__default_environment
+    publish_env__evaluate --> publish_env___repair_python_full_version
+    publish_env__evaluate --> publish_env__canonicalize_name
+    publish_env___repair_python_full_version --> publish_env__cast
     publish_env___get_spec_version --> publish_env___coerce_version
     publish_env___compare_compatible --> publish_env___version_join
     publish_env___compare_compatible --> publish_env__list
@@ -631,20 +689,6 @@ flowchart TD
     publish_env___pad_version --> publish_env__list
     publish_env____init__ --> publish_env__map
     publish_env__contains --> publish_env___coerce_version
-    publish_env___normalize_extras --> publish_env__canonicalize_name
-    publish_env___normalize_extra_values --> publish_env___normalize_extras
-    publish_env___normalize --> publish_env__canonicalize_name
-    publish_env___evaluate_markers --> publish_env___normalize
-    publish_env___evaluate_markers --> publish_env___eval_op
-    publish_env__default_environment --> publish_env__format_full_version
-    publish_env____init__ --> publish_env___parse_marker
-    publish_env____str__ --> publish_env___format_marker
-    publish_env__evaluate --> publish_env__cast
-    publish_env__evaluate --> publish_env___evaluate_markers
-    publish_env__evaluate --> publish_env__default_environment
-    publish_env__evaluate --> publish_env___repair_python_full_version
-    publish_env__evaluate --> publish_env__canonicalize_name
-    publish_env___repair_python_full_version --> publish_env__cast
     publish_env___get_musl_version --> publish_env___parse_musl_version
     publish_env___get_musl_version --> publish_env__open
     publish_env__platform_tags --> publish_env___get_musl_version
@@ -761,6 +805,8 @@ flowchart TD
     publish_env__recompile --> publish_env___modname_to_file
     publish_env__recompile --> publish_env__get_extension
     publish_env__recompile --> publish_env__compile
+    publish_env__compile --> publish_env___build
+    publish_env__flatten --> publish_env___flatten
     publish_env___cast_from --> publish_env__type
     publish_env___to_ctypes --> publish_env__type
     publish_env___convert_to_address --> publish_env___convert_to_address
@@ -772,14 +818,23 @@ flowchart TD
     publish_env__gcp --> publish_env__hash
     publish_env__typeoffsetof --> publish_env__type
     publish_env__rawaddressof --> publish_env__type
-    publish_env__compile --> publish_env___build
-    publish_env__flatten --> publish_env___flatten
     publish_env__load_library --> publish_env__list
     publish_env__load_library --> publish_env__hasattr
     publish_env__load_library --> publish_env__map
     publish_env___generate_cpy_function_decl --> publish_env__set
     publish_env___loaded_cpy_variable --> publish_env__delattr
     publish_env___loaded_cpy_variable --> publish_env__type
+    publish_env__get_c_name --> publish_env__qualify
+    publish_env__build_backend_type --> publish_env__global_cache
+    publish_env____init__ --> publish_env__qualify
+    publish_env____init__ --> publish_env____init__
+    publish_env__finish_backend_type --> publish_env__list
+    publish_env__force_the_name --> publish_env__force_the_name
+    publish_env__get_typecache --> publish_env__hasattr
+    publish_env__get_typecache --> publish_env__type
+    publish_env__pointer_cache --> publish_env__global_cache
+    publish_env__attach_exception_info --> publish_env__type
+    publish_env__as_python_bytes --> publish_env__format_four_bytes
     publish_env____init__ --> publish_env___locate_engine_class
     publish_env____init__ --> publish_env__flatten
     publish_env____init__ --> publish_env___get_so_suffixes
@@ -794,17 +849,6 @@ flowchart TD
     publish_env___compile_module --> publish_env___ensure_dir
     publish_env__cleanup_tmpdir --> publish_env___caller_dir_pycache
     publish_env__cleanup_tmpdir --> publish_env___get_so_suffixes
-    publish_env__get_c_name --> publish_env__qualify
-    publish_env__build_backend_type --> publish_env__global_cache
-    publish_env____init__ --> publish_env__qualify
-    publish_env____init__ --> publish_env____init__
-    publish_env__finish_backend_type --> publish_env__list
-    publish_env__force_the_name --> publish_env__force_the_name
-    publish_env__get_typecache --> publish_env__hasattr
-    publish_env__get_typecache --> publish_env__type
-    publish_env__pointer_cache --> publish_env__global_cache
-    publish_env__attach_exception_info --> publish_env__type
-    publish_env__as_python_bytes --> publish_env__format_four_bytes
     publish_env__html_parts --> publish_env__publish_parts
     publish_env__html_body --> publish_env__html_parts
     publish_env___preprocess --> publish_env___remove_line_directives
@@ -820,6 +864,7 @@ flowchart TD
     publish_env___get_unknown_type --> publish_env__unknown_type
     publish_env___get_unknown_ptr_type --> publish_env__unknown_ptr_type
     publish_env__get_transforms --> publish_env__list
+    publish_env__main --> publish_env__publish_cmdline
     publish_env__decode --> publish_env__error_string
     publish_env____init__ --> publish_env__open
     publish_env____init__ --> publish_env__check_encoding
@@ -827,16 +872,6 @@ flowchart TD
     publish_env____init__ --> publish_env__print
     publish_env__write --> publish_env__check_encoding
     publish_env__write --> publish_env__error_string
-    publish_env__main --> publish_env__publish_cmdline
-    publish_env__run --> publish_env__print
-    publish_env__get_state --> publish_env__print
-    publish_env__check_line --> publish_env__print
-    publish_env__error --> publish_env___exception_data
-    publish_env__error --> publish_env__print
-    publish_env__make_transition --> publish_env__hasattr
-    publish_env__add_initial_transitions --> publish_env__add_initial_transitions
-    publish_env__pprint --> publish_env__print
-    publish_env__get_2D_block --> publish_env__column_indices
     publish_env___validate_local --> publish_env___parse_local_version
     publish_env____init__ --> publish_env___parse_letter_version
     publish_env____init__ --> publish_env___parse_local_version
@@ -847,6 +882,15 @@ flowchart TD
     publish_env____replace__ --> publish_env___validate_dev
     publish_env____replace__ --> publish_env___validate_local
     publish_env____str__ --> publish_env__map
+    publish_env__run --> publish_env__print
+    publish_env__get_state --> publish_env__print
+    publish_env__check_line --> publish_env__print
+    publish_env__error --> publish_env___exception_data
+    publish_env__error --> publish_env__print
+    publish_env__make_transition --> publish_env__hasattr
+    publish_env__add_initial_transitions --> publish_env__add_initial_transitions
+    publish_env__pprint --> publish_env__print
+    publish_env__get_2D_block --> publish_env__column_indices
     publish_env__fix_switch_cases --> publish_env___extract_nested_case
     publish_env___extract_nested_case --> publish_env__cast
     publish_env__fix_atomic_specifiers --> publish_env___fix_atomic_specifiers_once
@@ -874,30 +918,8 @@ flowchart TD
     publish_env__validate_identifier --> publish_env__make_id
     publish_env__validate_identifier_list --> publish_env__validate_identifier
     publish_env__validate_measure --> publish_env__parse_measure
-    publish_env__validate_colwidth --> publish_env__parse_measure
-    publish_env__validate_NMTOKENS --> publish_env__validate_NMTOKEN
-    publish_env__validate_refname_list --> publish_env__split_name_list
-    publish_env__validate_refname_list --> publish_env__whitespace_normalize_name
-    publish_env__validate_encoding_and_error_handler --> publish_env__validate_encoding
-    publish_env__validate_encoding_and_error_handler --> publish_env__validate_encoding_error_handler
-    publish_env__validate_strip_class --> publish_env__validate_comma_separated_list
-    publish_env__validate_strip_class --> publish_env__make_id
-    publish_env__validate_smartquotes_locales --> publish_env__validate_comma_separated_list
-    publish_env__filter_settings_spec --> publish_env__list
-    publish_env__update --> publish_env__hasattr
-    publish_env__process --> publish_env__error_string
-    publish_env__get_config_file_settings --> publish_env__set
-    publish_env__get_config_file_settings --> publish_env__make_paths_absolute
-    publish_env__check_values --> publish_env__make_paths_absolute
-    publish_env__validate_settings --> publish_env__error_string
-    publish_env__timer --> publish_env__print
-    publish_env____rich_console__ --> publish_env__loop_last
-    publish_env___get_pulse_segments --> publish_env__blend_rgb
-    publish_env___get_pulse_segments --> publish_env__append
-    publish_env___get_pulse_segments --> publish_env__from_triplet
-    publish_env___build_declarations --> publish_env__fix_atomic_specifiers
 
     classDef highCC fill:#ff6b6b,stroke:#c92a2a,color:#fff
     classDef medCC fill:#ffd43b,stroke:#f08c00,color:#000
-    class publish_env__renderToken,publish_env__send,publish_env__resolve_redirects,publish_env__build_digest_header,publish_env__super_len,publish_env__should_bypass_proxies,publish_env___encode_files,publish_env__prepare_url,publish_env__prepare_body,publish_env__parse_email,publish_env__filter,publish_env___cpython_abis,publish_env__cpython_tags,publish_env__mac_platforms,publish_env__collect_type_table,publish_env__write_c_source_to_f,publish_env___generate_cpy_function_decl,publish_env___struct_ctx,publish_env__recompile,publish_env__complete_struct_or_union,publish_env___generate_cpy_function_decl,publish_env__finish_backend_type,publish_env___internal_parse,publish_env___parse_decl,publish_env___get_type_and_quals,publish_env___parse_function_type,publish_env___get_struct_union_enum_type,publish_env___parse_constant,publish_env__run,publish_env__get_indented highCC
-    class publish_env__remove_dot_segments,publish_env__validate,publish_env__resolve_with,publish_env__tokenize,publish_env__encode,publish_env__tokenize,publish_env__split_authority,publish_env__fence,publish_env____compile__,publish_env__configure,publish_env__pretty,publish_env__remove_cookie_by_name,publish_env___find_no_duplicates,publish_env__cert_verify,publish_env__check_compatibility,publish_env__merge_setting,publish_env__should_strip_auth,publish_env__send,publish_env__merge_environment_settings,publish_env__as_dict,publish_env__get_netrc_auth,publish_env__extract_zipped_paths,publish_env__guess_json_utf,publish_env___encode_params,publish_env__iter_lines,publish_env__json,publish_env___is_compatible,publish_env__platform_tags,publish_env__from_raw,publish_env___write_metadata medCC
+    class mcp__server___tools_vallm__validate_code,publish_env__renderToken,publish_env__send,publish_env__resolve_redirects,publish_env__build_digest_header,publish_env__super_len,publish_env__should_bypass_proxies,publish_env___encode_files,publish_env__prepare_url,publish_env__prepare_body,publish_env__parse_email,publish_env__filter,publish_env___cpython_abis,publish_env__cpython_tags,publish_env__mac_platforms,publish_env__collect_type_table,publish_env__write_c_source_to_f,publish_env___generate_cpy_function_decl,publish_env___struct_ctx,publish_env__recompile,publish_env__complete_struct_or_union,publish_env___generate_cpy_function_decl,publish_env__finish_backend_type,publish_env___internal_parse,publish_env___parse_decl,publish_env___get_type_and_quals,publish_env___parse_function_type,publish_env___get_struct_union_enum_type,publish_env___parse_constant,publish_env__run highCC
+    class publish_env__remove_dot_segments,publish_env__validate,publish_env__resolve_with,publish_env__tokenize,publish_env__encode,publish_env__split_authority,publish_env__tokenize,publish_env__fence,publish_env____compile__,publish_env__configure,publish_env__pretty,publish_env__remove_cookie_by_name,publish_env___find_no_duplicates,publish_env__cert_verify,publish_env__check_compatibility,publish_env__merge_setting,publish_env__should_strip_auth,publish_env__send,publish_env__merge_environment_settings,publish_env__as_dict,publish_env__get_netrc_auth,publish_env__extract_zipped_paths,publish_env__guess_json_utf,publish_env___encode_params,publish_env__iter_lines,publish_env__json,publish_env___is_compatible,publish_env__platform_tags,publish_env__from_raw,publish_env___write_metadata medCC

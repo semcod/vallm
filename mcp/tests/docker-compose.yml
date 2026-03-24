@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  vallm-mcp-e2e:
+    build:
+      context: ../..
+      dockerfile: mcp/tests/Dockerfile.test
+    container_name: vallm-mcp-e2e
+    environment:
+      - PYTHONPATH=/app/src
+    command: ["python3", "mcp/tests/container_e2e.py"]

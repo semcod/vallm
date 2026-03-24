@@ -1,6 +1,6 @@
-# vallm | 95f 12048L | python:95
+# vallm | 108f 14409L | python:108
 # Keys: M=modules, D=details, i=imports, c=classes, f=functions, m=methods
-M[95]:
+M[108]:
   examples/01_basic_validation/main.py,63
   examples/02_ast_comparison/main.py,87
   examples/03_security_check/main.py,74
@@ -29,22 +29,32 @@ M[95]:
   examples/12_ollama_simple_demo/utils/process_user_input.py,33
   examples/12_ollama_simple_demo/utils/save_data.py,15
   examples/__init__.py,1
+  examples/mcp_demo.py,156
   examples/utils/__init__.py,155
   examples/utils/extract_code_from_response.py,19
   examples/utils/extraction.py,55
   examples/utils/logging_utils.py,71
   examples/utils/save_analysis_data.py,17
   examples/utils/validation_runner.py,84
+  mcp/__init__.py,1
+  mcp/server/__init__.py,1
+  mcp/server/_tools_vallm.py,447
+  mcp/server/self_server.py,154
+  mcp/tests/__init__.py,1
+  mcp/tests/quick_test.py,97
+  mcp/tests/test_client_integration.py,228
+  mcp/tests/test_e2e.py,167
+  mcp_server.py,22
   scripts/bump_version.py,54
   src/vallm/__init__.py,16
   src/vallm/__main__.py,3
   src/vallm/cli.py,5
   src/vallm/cli/__init__.py,33
   src/vallm/cli/batch_processor.py,235
-  src/vallm/cli/command_handlers.py,228
+  src/vallm/cli/command_handlers.py,247
   src/vallm/cli/output_formatters.py,329
-  src/vallm/cli/settings_builders.py,40
-  src/vallm/config.py,37
+  src/vallm/cli/settings_builders.py,49
+  src/vallm/config.py,38
   src/vallm/core/__init__.py,2
   src/vallm/core/ast_compare.py,98
   src/vallm/core/gitignore.py,194
@@ -55,7 +65,7 @@ M[95]:
   src/vallm/hookspecs.py,23
   src/vallm/sandbox/__init__.py,1
   src/vallm/sandbox/runner.py,119
-  src/vallm/scoring.py,152
+  src/vallm/scoring.py,155
   src/vallm/validators/__init__.py,1
   src/vallm/validators/base.py,14
   src/vallm/validators/complexity.py,153
@@ -73,12 +83,14 @@ M[95]:
   src/vallm/validators/imports/wrapper.py,24
   src/vallm/validators/lint.py,138
   src/vallm/validators/logical.py,103
+  src/vallm/validators/regression.py,209
   src/vallm/validators/security.py,211
   src/vallm/validators/semantic.py,243
   src/vallm/validators/semantic_cache.py,136
   src/vallm/validators/syntax.py,80
+  test_mcp.py,121
   tests/__init__.py,0
-  tests/conftest.py,51
+  tests/conftest.py,66
   tests/test_ast_compare.py,42
   tests/test_cli_e2e.py,263
   tests/test_complexity.py,40
@@ -88,8 +100,9 @@ M[95]:
   tests/test_installation.py,206
   tests/test_languages.py,204
   tests/test_performance.py,148
-  tests/test_pipeline.py,39
+  tests/test_pipeline.py,60
   tests/test_plugins.py,116
+  tests/test_regression_validator.py,187
   tests/test_sandbox.py,95
   tests/test_scoring.py,53
   tests/test_security.py,25
@@ -264,6 +277,14 @@ D:
     i: json,pathlib.Path,typing.{Any,Dict}
     e: save_data
     save_data(data:Dict[str;Any];filename:str)->None
+  examples/mcp_demo.py:
+    i: json,sys,os,_tools_vallm.{validate_code,validate_imports,validate_security,validate_syntax}
+    e: example_syntax_validation,example_security_validation,example_full_pipeline,example_selective_validation,main
+    example_syntax_validation()
+    example_security_validation()
+    example_full_pipeline()
+    example_selective_validation()
+    main()
   examples/utils/__init__.py:
     i: json,os,extract_code_from_response,pathlib.Path,typing.Any,vallm.config.VallmSettings,vallm.core.proposal.Proposal,vallm.scoring.validate
     e: save_analysis_data,run_validation_examples,validate_code_example,print_summary
@@ -296,6 +317,56 @@ D:
     i: typing.{Any,Dict},vallm.config.VallmSettings,vallm.core.proposal.Proposal,vallm.scoring.validate
     e: run_validation_examples
     run_validation_examples(example_name:str;good_code:str;bad_code:str;complex_code:str;settings:Any=None)->Dict[str, Any]
+  mcp/server/_tools_vallm.py:
+    i: json,typing.{Any,Dict,List,Optional},vallm.core.proposal.Proposal,vallm.validators.complexity.ComplexityValidator,vallm.validators.imports.wrapper.ImportValidator,vallm.validators.security.SecurityValidator,vallm.validators.syntax.SyntaxValidator
+    e: validate_syntax,validate_imports,validate_security,validate_code,handle_validate_syntax,handle_validate_imports,handle_validate_security,handle_validate_code
+    validate_syntax(code:str;language:str='python';filename:Optional[str]=None)->Dict[str, Any]
+    validate_imports(code:str;language:str='python';filename:Optional[str]=None)->Dict[str, Any]
+    validate_security(code:str;language:str='python';filename:Optional[str]=None)->Dict[str, Any]
+    validate_code(code:str;language:str='python';filename:Optional[str]=None;reference_code:Optional[str]=None;enable_syntax:bool=True;enable_imports:bool=True;...+1)->Dict[str, Any]
+    handle_validate_syntax(params:Dict[str;Any])->Dict[str, Any]
+    handle_validate_imports(params:Dict[str;Any])->Dict[str, Any]
+    handle_validate_security(params:Dict[str;Any])->Dict[str, Any]
+    handle_validate_code(params:Dict[str;Any])->Dict[str, Any]
+  mcp/server/self_server.py:
+    i: json,sys,mcp.server._tools_vallm.{MCP_HANDLERS,TOOL_SCHEMA_VALLM},pathlib.Path,typing.{Any,Dict}
+    e: PROJECT_ROOT,SRC_DIR,handle_initialize,handle_tools_list,handle_tools_call,handle_request,main
+    handle_initialize(request_id:Any)->Dict[str, Any]
+    handle_tools_list(request_id:Any)->Dict[str, Any]
+    handle_tools_call(request_id:Any;params:Dict[str;Any])->Dict[str, Any]
+    handle_request(request:Dict[str;Any])->Dict[str, Any]
+    main()
+  mcp/tests/quick_test.py:
+    i: sys,os
+    e: test_imports,test_syntax_validation,test_security_validation,test_tool_schema,main
+    test_imports()
+    test_syntax_validation()
+    test_security_validation()
+    test_tool_schema()
+    main()
+  mcp/tests/test_client_integration.py:
+    i: json,socket,subprocess,sys,time,typing.{Any,Dict}
+    e: MCPClient,test_mcp_initialization,test_tools_list,test_syntax_tool,test_security_tool,test_full_pipeline_tool,test_error_handling,wait_for_server
+    MCPClient: __init__(2),send_request(1)  # Simple MCP client for testing.
+    test_mcp_initialization()
+    test_tools_list()
+    test_syntax_tool()
+    test_security_tool()
+    test_full_pipeline_tool()
+    test_error_handling()
+    wait_for_server(host:str='localhost';port:int=8080;timeout:int=30)
+    main()
+  mcp/tests/test_e2e.py:
+    i: json,subprocess,sys,time,pathlib.Path
+    e: run_command,test_mcp_server_startup,test_syntax_validation,test_security_validation,test_full_pipeline,test_docker_build,test_docker_run,main
+    run_command(cmd;cwd=None;timeout=30)
+    test_mcp_server_startup()
+    test_syntax_validation()
+    test_security_validation()
+    test_full_pipeline()
+    test_docker_build()
+    test_docker_run()
+    main()
   scripts/bump_version.py:
     i: sys,re,pathlib.Path
     e: bump_version,main
@@ -307,7 +378,7 @@ D:
     BatchProcessor: __init__(1),process_batch(7),output_batch_results(5),_load_gitignore_parser(1),_build_file_list(2)  # Handles batch validation of multiple...
   src/vallm/cli/command_handlers.py:
     i: typer,pathlib.Path,rich.console.Console,typing.Optional,vallm.cli.batch_processor.BatchProcessor,vallm.cli.output_formatters.output_validate_result,vallm.cli.settings_builders.{build_batch_settings,build_validate_settings},vallm.core.languages.detect_language,vallm.core.proposal.Proposal
-    e: validate_command,check_command,batch_command,info_command
+    e: OUTPUT_FORMAT_HELP,validate_command,check_command,batch_command,info_command
     validate_command(code:Optional[str]=typer.Option(None; '--code'; '-c'; help='Code string to validate');file:Optional[Path]=typer.Option(None; '--file'; '-f'; help='File to validate');language:Optional[str]=typer.Option(None; '--lang'; '-l'; help='Programming language');reference:Optional[Path]=typer.Option(None; '--ref'; '-r'; help='Reference code file');config:Optional[Path]=typer.Option(None; '--config'; help='Path to vallm.toml');enable_semantic:bool=typer.Option(False; '--semantic'; help='Enable LLM-as-judge');...+1)->None
     check_command(code:Optional[str]=typer.Option(None; '--code'; '-c'; help='Code string to validate');file:Optional[Path]=typer.Option(None; '--file'; '-f'; help='File to validate');language:Optional[str]=typer.Option(None; '--lang'; '-l'; help='Programming language');output_format:str=typer.Option('rich'; '--output'; '-o'; help='Output format'))->None
     batch_command(paths:list[Path]=typer.Argument(...; help='Files or directories to validate');recursive:bool=typer.Option(False; '--recursive'; '-r'; help='Search directories recursively');include:Optional[str]=typer.Option(None; '--include'; help='Include pattern (glob)');exclude:Optional[str]=typer.Option(None; '--exclude'; help='Exclude pattern (glob)');use_gitignore:bool=typer.Option(True; '--gitignore/--no-gitignore'; help='Respect .gitignore');enable_semantic:bool=typer.Option(False; '--semantic'; help='Enable LLM-as-judge');...+1)->None
@@ -330,8 +401,8 @@ D:
   src/vallm/cli/settings_builders.py:
     i: pathlib.Path,typing.Optional,vallm.config.VallmSettings
     e: build_validate_settings,build_batch_settings
-    build_validate_settings(config:Optional[Path];enable_semantic:bool;enable_security:bool;model:Optional[str];verbose:bool)->VallmSettings
-    build_batch_settings(enable_semantic:bool;enable_security:bool;model:Optional[str];verbose:bool)->VallmSettings
+    build_validate_settings(config:Optional[Path];enable_semantic:bool;enable_security:bool;enable_regression:bool;model:Optional[str];verbose:bool)->VallmSettings
+    build_batch_settings(enable_semantic:bool;enable_security:bool;enable_regression:bool;model:Optional[str];verbose:bool;no_imports:bool;...+1)->VallmSettings
   src/vallm/config.py:
     i: pathlib.Path,pydantic.Field,pydantic_settings.{BaseSettings,SettingsConfigDict},typing.Optional
     e: VallmSettings
@@ -461,6 +532,10 @@ D:
     e: LogicalErrorValidator,create_validator
     LogicalErrorValidator: __init__(1),validate(2),_check_pyflakes(1),_parse_pyflakes_line(1)  # Validator for logical errors using py...
     create_validator(settings=None)->LogicalErrorValidator
+  src/vallm/validators/regression.py:
+    i: subprocess,sys,tempfile,textwrap,pathlib.Path,typing.Optional,vallm.core.proposal.Proposal,vallm.scoring.{Issue,Severity,ValidationResult}
+    e: RegressionValidator
+    RegressionValidator: __init__(3),validate(2),_resolve_test_dir(1),_write_code(2),_build_pytest_cmd(2)  # Tier 2: Run pytest against proposed c...
   src/vallm/validators/security.py:
     i: ast,re,vallm.core.proposal.Proposal,vallm.scoring.{Issue,Severity,ValidationResult},vallm.validators.base.BaseValidator
     e: _PYTHON_PATTERNS,_JS_PATTERNS,_GO_PATTERNS,_RUST_PATTERNS,_JAVA_PATTERNS,_C_CPP_PATTERNS,_UNIVERSAL_PATTERNS,_LANGUAGE_PATTERNS
@@ -479,8 +554,16 @@ D:
     i: ast,vallm.core.ast_compare.tree_sitter_error_count,vallm.core.proposal.Proposal,vallm.scoring.{Issue,Severity,ValidationResult},vallm.validators.base.BaseValidator
     e: SyntaxValidator
     SyntaxValidator: validate(2),_validate_python(1),_validate_treesitter(2)  # Tier 1: Fast syntax validation.
+  test_mcp.py:
+    i: json,sys,os,_tools_vallm.{validate_code,validate_imports,validate_security,validate_syntax}
+    e: test_validate_syntax,test_validate_imports,test_validate_security,test_validate_code,main
+    test_validate_syntax()
+    test_validate_imports()
+    test_validate_security()
+    test_validate_code()
+    main()
   tests/conftest.py:
-    i: pytest,tempfile,pathlib.Path,unittest.mock.{Mock,patch}
+    i: sys,types,pytest,tempfile,pathlib.Path,unittest.mock.{Mock,patch}
     e: temp_python_file,mock_llm_provider,disable_external_calls,pytest_configure
     temp_python_file()
     mock_llm_provider()
@@ -557,16 +640,27 @@ D:
     e: TestPerformanceOptimizations
     TestPerformanceOptimizations: test_parallel_vs_sequential_performance(0),test_semantic_cache_performance(0),test_cache_key_generation(0),test_cache_persistence(0),test_max_workers_limiting(0)  # Test performance optimizations.
   tests/test_pipeline.py:
-    i: vallm.{Proposal,VallmSettings,validate},vallm.scoring.Verdict
-    e: test_pipeline_good_code,test_pipeline_syntax_error,test_pipeline_missing_import
+    i: vallm.{Proposal,VallmSettings,validate},vallm.scoring.{ValidationResult,Verdict}
+    e: test_pipeline_good_code,test_pipeline_syntax_error,test_pipeline_missing_import,test_pipeline_includes_regression_validator
     test_pipeline_good_code()
     test_pipeline_syntax_error()
     test_pipeline_missing_import()
+    test_pipeline_includes_regression_validator(monkeypatch)
   tests/test_plugins.py:
     i: pluggy,pytest,unittest.mock.Mock,vallm.core.proposal.Proposal,vallm.hookspecs.{VallmSpec,hookimpl},vallm.scoring.{Issue,Severity,ValidationResult}
     e: MockValidator,TestPluginSystem
     MockValidator: validate_proposal(2),get_validator_name(0),get_validator_tier(0)  # Mock validator for testing plugin sys...
     TestPluginSystem: test_plugin_manager_creation(0),test_register_validator(0),test_validate_proposal_hook(0),test_multiple_validators(0),test_get_validator_info_hooks(0)  # Test cases for plugin system.
+  tests/test_regression_validator.py:
+    i: subprocess,sys,pytest,pathlib.Path,typing.Optional,unittest.mock.{MagicMock,patch},vallm.core.proposal.Proposal,vallm.scoring.{Severity,ValidationResult}
+    e: TestInterpret,TestParseFailures,TestResolveTestDir,TestErrorHelpers,TestValidate
+    TestInterpret: setup_method(0),test_all_tests_pass(0),test_no_tests_collected(0),test_tests_failed_with_failed_lines(0),test_tests_failed_no_failed_lines(0)  # Tests for RegressionValidator._interp...
+    TestParseFailures: setup_method(0),test_parses_multiple_failed_lines(0),test_ignores_non_failed_lines(0),test_empty_stdout(0)
+    TestResolveTestDir: test_constructor_arg_wins(1),test_metadata_used_when_no_constructor_arg(1),test_falls_back_to_cwd_tests(2),test_returns_none_when_nothing_found(2)
+    TestErrorHelpers: setup_method(0),test_timeout_result(0),test_exception_result(0)
+    TestValidate: test_validate_passes(2),test_validate_fails(2),test_validate_no_tests(2),test_validate_timeout(2),test_cmd_includes_extra_args(2)  # Tests for the full validate() path wi...
+    _make_proposal(code:str='x = 1';filename:Optional[str]='proposed.py';metadata:Optional[dict]=None)->Proposal
+    _completed(returncode:int;stdout:str='';stderr:str='')->subprocess.CompletedProcess
   tests/test_sandbox.py:
     i: tempfile,pytest,pathlib.Path,unittest.mock.{Mock,patch},vallm.config.VallmSettings,vallm.sandbox.runner.SandboxRunner
     e: TestSandboxRunner

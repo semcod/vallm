@@ -3,16 +3,16 @@ project:
   name: vallm
   repo: /home/tom/github/semcod/vallm
   language: python
-  analyzed_at: '2026-03-23T21:11:02Z'
+  analyzed_at: '2026-03-24T16:10:18Z'
   tool: code2llm
   stats:
-    files: 30
-    lines: 7523
-    functions: 175
-    classes: 31
+    files: 33
+    lines: 9772
+    functions: 198
+    classes: 32
 health:
-  cc_avg: 3.5
-  critical_count: 8
+  cc_avg: 3.6
+  critical_count: 9
   critical_limit: 10
   duplicates: 0
   cycles: 0
@@ -27,6 +27,11 @@ health:
     value: 26
     limit: 15
     severity: critical
+  - type: cc_exceeded
+    target: validate_code
+    value: 22
+    limit: 15
+    severity: error
   - type: cc_exceeded
     target: output_batch_toon
     value: 17
@@ -45,6 +50,11 @@ health:
   - type: high_fan_out
     target: RustImportValidator.extract_imports
     value: 13
+    limit: 10
+    severity: warning
+  - type: high_fan_out
+    target: validate_code
+    value: 12
     limit: 10
     severity: warning
   - type: high_fan_out
@@ -128,6 +138,39 @@ modules:
       cc: 26
       flag: split
       fan_out: 12
+- path: mcp/server/_tools_vallm.py
+  lines: 508
+  classes: 0
+  methods: 8
+  cc_max: 22
+  inbound_deps: 1
+  exports:
+  - name: validate_syntax
+    type: function
+    cc: 6
+  - name: validate_imports
+    type: function
+    cc: 6
+  - name: validate_security
+    type: function
+    cc: 6
+  - name: validate_code
+    type: function
+    cc: 22
+    flag: split
+    fan_out: 12
+  - name: handle_validate_syntax
+    type: function
+    cc: 1
+  - name: handle_validate_imports
+    type: function
+    cc: 1
+  - name: handle_validate_security
+    type: function
+    cc: 1
+  - name: handle_validate_code
+    type: function
+    cc: 1
 - path: src/vallm/cli/output_formatters.py
   lines: 421
   classes: 0
@@ -271,6 +314,34 @@ modules:
     - name: _try_bandit
       cc: 5
       fan_out: 10
+- path: src/vallm/scoring.py
+  lines: 218
+  classes: 5
+  methods: 8
+  cc_max: 7
+  inbound_deps: 0
+  exports:
+  - name: Verdict
+    type: class
+    cc_avg: 0.0
+  - name: Severity
+    type: class
+    cc_avg: 0.0
+  - name: Issue
+    type: class
+    cc_avg: 3.0
+  - name: ValidationResult
+    type: class
+    cc_avg: 0.0
+  - name: PipelineResult
+    type: class
+    cc_avg: 0.0
+  - name: compute_verdict
+    type: function
+    cc: 6
+  - name: validate
+    type: function
+    cc: 1
 - path: src/vallm/validators/imports/java_imports.py
   lines: 68
   classes: 1
@@ -291,8 +362,40 @@ modules:
   - name: PythonImportValidator
     type: class
     cc_avg: 2.8
+- path: src/vallm/validators/regression.py
+  lines: 265
+  classes: 1
+  methods: 10
+  cc_max: 7
+  inbound_deps: 0
+  exports:
+  - name: RegressionValidator
+    type: class
+    cc_avg: 2.8
+- path: mcp/server/self_server.py
+  lines: 183
+  classes: 0
+  methods: 5
+  cc_max: 6
+  inbound_deps: 0
+  exports:
+  - name: handle_initialize
+    type: function
+    cc: 1
+  - name: handle_tools_list
+    type: function
+    cc: 2
+  - name: handle_tools_call
+    type: function
+    cc: 3
+  - name: handle_request
+    type: function
+    cc: 4
+  - name: main
+    type: function
+    cc: 6
 - path: src/vallm/cli/command_handlers.py
-  lines: 323
+  lines: 342
   classes: 0
   methods: 11
   cc_max: 6
@@ -328,34 +431,6 @@ modules:
   - name: get_language_for_validation
     type: function
     cc: 4
-- path: src/vallm/scoring.py
-  lines: 213
-  classes: 5
-  methods: 8
-  cc_max: 6
-  inbound_deps: 0
-  exports:
-  - name: Verdict
-    type: class
-    cc_avg: 0.0
-  - name: Severity
-    type: class
-    cc_avg: 0.0
-  - name: Issue
-    type: class
-    cc_avg: 3.0
-  - name: ValidationResult
-    type: class
-    cc_avg: 0.0
-  - name: PipelineResult
-    type: class
-    cc_avg: 0.0
-  - name: compute_verdict
-    type: function
-    cc: 6
-  - name: validate
-    type: function
-    cc: 1
 - path: src/vallm/validators/logical.py
   lines: 142
   classes: 1
@@ -378,7 +453,7 @@ modules:
   classes: 0
   methods: 2
   cc_max: 5
-  inbound_deps: 2
+  inbound_deps: 0
   exports:
   - name: bump_version
     type: function
@@ -511,7 +586,7 @@ modules:
     type: class
     cc_avg: 3.0
 - path: src/vallm/config.py
-  lines: 58
+  lines: 59
   classes: 1
   methods: 1
   cc_max: 3
@@ -584,6 +659,24 @@ modules:
   - name: BaseValidator
     type: class
     cc_avg: 1.0
+- path: mcp/__init__.py
+  lines: 1
+  classes: 0
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+- path: mcp/server/__init__.py
+  lines: 1
+  classes: 0
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+- path: mcp_server.py
+  lines: 37
+  classes: 0
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
 - path: project.sh
   lines: 21
   classes: 0
@@ -652,6 +745,10 @@ hotspots:
 - name: RustImportValidator.extract_imports
   fan_out: 13
   note: Extract use statements from Rust using tree-sitter.
+- name: validate_code
+  fan_out: 12
+  note: "Full pipeline validation combining multiple validators.\n\nArgs:\n    code:\
+    \ Source "
 - name: LintValidator._parse_ruff_text
   fan_out: 12
   note: "Parse ruff text output as fallback.\n\nArgs:\n    output: Ruff text output\n\
@@ -672,9 +769,6 @@ hotspots:
   fan_out: 11
   note: "Walk directory tree yielding Python files.\n\nArgs:\n    root: Root directory\
     \ to st"
-- name: batch_command
-  fan_out: 11
-  note: Validate multiple files with auto-detected languages.
 refactoring:
   priorities:
   - action: Split BatchProcessor._process_files (CC=26 → target CC<10)
@@ -685,6 +779,13 @@ refactoring:
     impact: high
     effort: low
     module: utils.py
+  - action: Split god module mcp/server/_tools_vallm.py (508L, 0 classes)
+    impact: high
+    effort: high
+  - action: Split validate_code (CC=22 → target CC<10)
+    impact: medium
+    effort: low
+    module: _tools_vallm.py
   - action: Split output_batch_toon (CC=17 → target CC<10)
     impact: medium
     effort: low
@@ -699,4 +800,9 @@ evolution:
   cc_avg: 3.5
   critical: 8
   lines: 7523
+  note: Automated analysis
+- date: '2026-03-24'
+  cc_avg: 3.6
+  critical: 9
+  lines: 9772
   note: Automated analysis
