@@ -26,16 +26,16 @@ HEALTH[20]:
 REFACTOR[1]:
   1. split 20 high-CC methods  (CC>15)
 
-PIPELINES[8384]:
-  [1] Src [handle_validate_syntax]: handle_validate_syntax → validate_syntax
+PIPELINES[8385]:
+  [1] Src [__init__]: __init__
       PURITY: 100% pure
-  [2] Src [handle_validate_imports]: handle_validate_imports → validate_imports
+  [2] Src [__init__]: __init__
       PURITY: 100% pure
-  [3] Src [handle_validate_security]: handle_validate_security → validate_security
+  [3] Src [handle_validate_syntax]: handle_validate_syntax → validate_syntax
       PURITY: 100% pure
-  [4] Src [handle_validate_code]: handle_validate_code → validate_code
+  [4] Src [handle_validate_imports]: handle_validate_imports → validate_imports
       PURITY: 100% pure
-  [5] Src [__init__]: __init__
+  [5] Src [handle_validate_security]: handle_validate_security → validate_security
       PURITY: 100% pure
 
 LAYERS:
