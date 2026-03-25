@@ -2,9 +2,9 @@ format: toon-v2-yaml
 timestamp: '2026-03-25'
 header:
   files: 45
-  lines: 5699
-  functions: 12147
-  avg_cc: 3.6
+  lines: 5763
+  functions: 12152
+  avg_cc: 3.5
   critical_count: 4
   duplicates: 0
   cycles: 0
@@ -23,10 +23,16 @@ health:
     message: send CC=19 (limit:15)
   - severity: yellow
     code: CC
+    message: resolve_redirects CC=15 (limit:15)
+  - severity: yellow
+    code: CC
     message: build_digest_header CC=19 (limit:15)
   - severity: yellow
     code: CC
-    message: resolve_redirects CC=15 (limit:15)
+    message: super_len CC=18 (limit:15)
+  - severity: yellow
+    code: CC
+    message: should_bypass_proxies CC=17 (limit:15)
   - severity: yellow
     code: CC
     message: _encode_files CC=21 (limit:15)
@@ -36,12 +42,6 @@ health:
   - severity: yellow
     code: CC
     message: prepare_body CC=17 (limit:15)
-  - severity: yellow
-    code: CC
-    message: super_len CC=18 (limit:15)
-  - severity: yellow
-    code: CC
-    message: should_bypass_proxies CC=17 (limit:15)
   - severity: yellow
     code: CC
     message: filter CC=16 (limit:15)
@@ -59,6 +59,9 @@ health:
     message: mac_platforms CC=15 (limit:15)
   - severity: yellow
     code: CC
+    message: complete_struct_or_union CC=18 (limit:15)
+  - severity: yellow
+    code: CC
     message: collect_type_table CC=21 (limit:15)
   - severity: yellow
     code: CC
@@ -69,9 +72,6 @@ health:
   - severity: yellow
     code: CC
     message: _struct_ctx CC=24 (limit:15)
-  - severity: yellow
-    code: CC
-    message: recompile CC=19 (limit:15)
 refactor:
   steps:
   - action: split_methods

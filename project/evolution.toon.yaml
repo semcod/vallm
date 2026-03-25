@@ -1,7 +1,7 @@
 format: evolution-toon-yaml
 timestamp: '2026-03-25'
 stats:
-  total_funcs: 196
+  total_funcs: 201
   total_files: 32
   avg_cc: 3.5
   max_cc: 27

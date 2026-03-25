@@ -6,10 +6,10 @@
 - **Primary Language**: python
 - **Languages**: python: 1410, shell: 9, cpp: 4, javascript: 2
 - **Analysis Mode**: static
-- **Total Functions**: 12147
+- **Total Functions**: 12152
 - **Total Classes**: 3039
 - **Modules**: 1425
-- **Entry Points**: 10379
+- **Entry Points**: 10381
 
 ## Architecture by Module
 
@@ -531,19 +531,25 @@ This is a partial replacement of the standard library's
 > Process input string and push block tokens into `outTokens`.
 - **Output to**: StateBlock, self.tokenize
 
-### publish-env.lib.python3.13.site-packages.rfc3986.parseresult.ParseResult.encode
-> Convert to an instance of ParseResultBytes.
-- **Output to**: dict, ParseResultBytes, zip, publish-env.lib.python3.13.site-packages.docutils.nodes.Element.hasattr, attr.encode
-
-### publish-env.lib.python3.13.site-packages.markdown_it.parser_inline.ParserInline.parse
-> Process input string and push inline tokens into `tokens`
-- **Output to**: StateInline, self.tokenize, self.ruler2.getRules, publish-env.lib.python3.13.site-packages.rich.console.Console.rule
-
 ### publish-env.lib.python3.13.site-packages.rfc3986.iri.IRIReference.encode
 > Encode an IRIReference into a URIReference instance.
 
 If the ``idna`` module is installed or the ``r
 - **Output to**: uri.URIReference, None.join, exceptions.MissingDependencyError, any, str
+
+### publish-env.lib.python3.13.site-packages.markdown_it.parser_inline.ParserInline.parse
+> Process input string and push inline tokens into `tokens`
+- **Output to**: StateInline, self.tokenize, self.ruler2.getRules, publish-env.lib.python3.13.site-packages.rich.console.Console.rule
+
+### publish-env.lib.python3.13.site-packages.rfc3986.parseresult.ParseResult.encode
+> Convert to an instance of ParseResultBytes.
+- **Output to**: dict, ParseResultBytes, zip, publish-env.lib.python3.13.site-packages.docutils.nodes.Element.hasattr, attr.encode
+
+### publish-env.lib.python3.13.site-packages.markdown_it._punycode.encode
+- **Output to**: None.decode, codecs.encode
+
+### publish-env.lib.python3.13.site-packages.markdown_it._punycode.decode
+- **Output to**: codecs.decode
 
 ### publish-env.lib.python3.13.site-packages.markdown_it.main.MarkdownIt.parse
 > Parse the source string to a token stream
@@ -565,32 +571,29 @@ If the ``idna`` module is installed or the ``r
 This validator can prohibit more than really needed 
 - **Output to**: normalize_url.validateLink
 
-### publish-env.lib.python3.13.site-packages.markdown_it._punycode.encode
-- **Output to**: None.decode, codecs.encode
-
-### publish-env.lib.python3.13.site-packages.markdown_it._punycode.decode
-- **Output to**: codecs.decode
-
 ### publish-env.lib.python3.13.site-packages.markdown_it.token.convert_attrs
 > Convert Token.attrs set as ``None`` or ``[[key, value], ...]`` to a dict.
 
 This improves compatibili
 - **Output to**: isinstance, dict
 
-### publish-env.lib.python3.13.site-packages.requests.models.RequestEncodingMixin._encode_params
-> Encode parameters in a piece of data.
+### publish-env.lib.python3.13.site-packages.requests.utils.parse_list_header
+> Parse lists as described by RFC 2068 Section 2.
 
-Will successfully encode parameters when passed as a dict or 
-- **Output to**: isinstance, publish-env.lib.python3.13.site-packages.docutils.nodes.Element.hasattr, publish-env.lib.python3.13.site-packages.docutils.nodes.Element.hasattr, publish-env.lib.python3.13.site-packages.requests.utils.to_key_val_list, publish-env.lib.python3.13.site-packages.requests_toolbelt.utils.formdata.urlencode
+In particular, parse comma-separated lists where th
+- **Output to**: _parse_list_header, result.append, publish-env.lib.python3.13.site-packages.requests.utils.unquote_header_value
 
-### publish-env.lib.python3.13.site-packages.requests.models.RequestEncodingMixin._encode_files
-> Build the body for a multipart/form-data request.
+### publish-env.lib.python3.13.site-packages.requests.utils.parse_dict_header
+> Parse lists of key, value pairs as described by RFC 2068 Section 2 and
+convert them into a python di
+- **Output to**: _parse_list_header, item.split, publish-env.lib.python3.13.site-packages.requests.utils.unquote_header_value
 
-Will successfully encode files when passed as a d
-- **Output to**: publish-env.lib.python3.13.site-packages.requests.utils.to_key_val_list, publish-env.lib.python3.13.site-packages.requests.utils.to_key_val_list, publish-env.lib.python3.13.site-packages.urllib3.filepost.encode_multipart_formdata, ValueError, isinstance
+### publish-env.lib.python3.13.site-packages.requests.utils._parse_content_type_header
+> Returns content type and parameters from given header
 
-### publish-env.lib.python3.13.site-packages.requests.models.PreparedRequest._get_idna_encoded_host
-- **Output to**: None.decode, idna.encode
+:param header: string
+:return: tuple containi
+- **Output to**: header.split, None.strip, param.strip, param.find, None.strip
 
 ## Behavioral Patterns
 

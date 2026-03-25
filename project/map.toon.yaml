@@ -3,8 +3,8 @@ project: vallm
 timestamp: '2026-03-25'
 stats:
   files: 45
-  lines: 5699
-  functions: 198
+  lines: 5763
+  functions: 203
   languages:
     python: 44
     shell: 1
@@ -209,7 +209,7 @@ modules:
       arity: 6
   functions: []
 - path: src/vallm/cli/command_handlers.py
-  lines: 342
+  lines: 344
   imports: []
   exports:
   - type: function
@@ -271,7 +271,7 @@ modules:
     - no_imports
     - no_complexity
     - model
-    - format
+    - format_
     - output
     - fail_fast
     - verbose
@@ -438,11 +438,21 @@ modules:
     - results_by_language
     returns: null
 - path: src/vallm/config.py
-  lines: 59
+  lines: 121
   imports: []
   exports:
   - type: class
     name: VallmSettings
+  - type: function
+    name: get_settings
+  - type: function
+    name: reload_settings
+  - type: function
+    name: get_default_filenames
+  - type: function
+    name: get_default_output_format
+  - type: function
+    name: get_default_language
   classes:
   - name: VallmSettings
     bases:
@@ -450,7 +460,22 @@ modules:
     methods:
     - name: from_toml
       arity: 1
-  functions: []
+  functions:
+  - name: get_settings
+    args: []
+    returns: null
+  - name: reload_settings
+    args: []
+    returns: null
+  - name: get_default_filenames
+    args: []
+    returns: null
+  - name: get_default_output_format
+    args: []
+    returns: null
+  - name: get_default_language
+    args: []
+    returns: null
 - path: src/vallm/core/__init__.py
   lines: 3
   imports: []
