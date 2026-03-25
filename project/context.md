@@ -9,7 +9,7 @@
 - **Total Functions**: 12152
 - **Total Classes**: 3039
 - **Modules**: 1425
-- **Entry Points**: 10382
+- **Entry Points**: 10381
 
 ## Architecture by Module
 
@@ -531,10 +531,6 @@ This is a partial replacement of the standard library's
 > Process input string and push block tokens into `outTokens`.
 - **Output to**: StateBlock, self.tokenize
 
-### publish-env.lib.python3.13.site-packages.rfc3986.parseresult.ParseResult.encode
-> Convert to an instance of ParseResultBytes.
-- **Output to**: dict, ParseResultBytes, zip, publish-env.lib.python3.13.site-packages.docutils.nodes.Element.hasattr, attr.encode
-
 ### publish-env.lib.python3.13.site-packages.rfc3986.iri.IRIReference.encode
 > Encode an IRIReference into a URIReference instance.
 
@@ -544,6 +540,16 @@ If the ``idna`` module is installed or the ``r
 ### publish-env.lib.python3.13.site-packages.markdown_it.parser_inline.ParserInline.parse
 > Process input string and push inline tokens into `tokens`
 - **Output to**: StateInline, self.tokenize, self.ruler2.getRules, publish-env.lib.python3.13.site-packages.rich.console.Console.rule
+
+### publish-env.lib.python3.13.site-packages.rfc3986.parseresult.ParseResult.encode
+> Convert to an instance of ParseResultBytes.
+- **Output to**: dict, ParseResultBytes, zip, publish-env.lib.python3.13.site-packages.docutils.nodes.Element.hasattr, attr.encode
+
+### publish-env.lib.python3.13.site-packages.markdown_it._punycode.encode
+- **Output to**: None.decode, codecs.encode
+
+### publish-env.lib.python3.13.site-packages.markdown_it._punycode.decode
+- **Output to**: codecs.decode
 
 ### publish-env.lib.python3.13.site-packages.markdown_it.main.MarkdownIt.parse
 > Parse the source string to a token stream
@@ -564,12 +570,6 @@ If the ``idna`` module is installed or the ``r
 
 This validator can prohibit more than really needed 
 - **Output to**: normalize_url.validateLink
-
-### publish-env.lib.python3.13.site-packages.markdown_it._punycode.encode
-- **Output to**: None.decode, codecs.encode
-
-### publish-env.lib.python3.13.site-packages.markdown_it._punycode.decode
-- **Output to**: codecs.decode
 
 ### publish-env.lib.python3.13.site-packages.markdown_it.token.convert_attrs
 > Convert Token.attrs set as ``None`` or ``[[key, value], ...]`` to a dict.
@@ -652,15 +652,15 @@ convert them into a python di
 - **Confidence**: 0.90
 - **Functions**: publish-env.lib.python3.13.site-packages.pygments.regexopt.regex_opt_inner
 
-### recursion_code_from_xml
-- **Type**: recursion
-- **Confidence**: 0.90
-- **Functions**: publish-env.lib.python3.13.site-packages.jeepney.bindgen.code_from_xml
-
 ### recursion_parse_signature
 - **Type**: recursion
 - **Confidence**: 0.90
 - **Functions**: publish-env.lib.python3.13.site-packages.jeepney.low_level.parse_signature
+
+### recursion_code_from_xml
+- **Type**: recursion
+- **Confidence**: 0.90
+- **Functions**: publish-env.lib.python3.13.site-packages.jeepney.bindgen.code_from_xml
 
 ### recursion_wait_for_socket
 - **Type**: recursion

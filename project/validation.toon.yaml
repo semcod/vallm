@@ -1,10 +1,10 @@
-# vallm batch | 188f | 130✓ 58✗
+# vallm batch | 191f | 130✓ 61✗
 
 SUMMARY:
-  total: 188
+  total: 191
   passed: 130
-  failed: 58
-  success: 69.1%
+  failed: 61
+  success: 68.1%
 
 FILES:
   [python]
@@ -345,6 +345,21 @@ FILES:
     ✓ .pre-commit-config.yaml
       verdict: pass
       score: 1.00
+    ✗ project/toon.yaml
+      verdict: fail
+      score: 0.00
+      issues: 1
+        [error] syntax.tree_sitter: tree-sitter found 1 parse error(s) in yaml
+    ✗ project/duplication.toon.yaml
+      verdict: fail
+      score: 0.00
+      issues: 1
+        [error] syntax.tree_sitter: tree-sitter found 1 parse error(s) in yaml
+    ✗ project/evolution.yaml
+      verdict: fail
+      score: 0.00
+      issues: 1
+        [error] syntax.tree_sitter: tree-sitter found 1 parse error(s) in yaml
     ✗ project/validation.toon.yaml
       verdict: fail
       score: 0.00
@@ -353,6 +368,11 @@ FILES:
     ✓ project/project.yaml
       verdict: pass
       score: 1.00
+    ✗ project/map.yaml
+      verdict: fail
+      score: 0.00
+      issues: 1
+        [error] syntax.tree_sitter: tree-sitter found 16 parse error(s) in yaml
     ✓ project/map.toon.yaml
       verdict: pass
       score: 1.00
@@ -430,15 +450,18 @@ FAILED:
   ✗ project/validation.toon: Unsupported file type
   ✗ project/project.toon: Unsupported file type
   ✗ project/compact_flow.mmd: Unsupported file type
+  ✗ project/toon.yaml: Validation fail
   ✗ project/map.toon: Unsupported file type
   ✗ project/calls.mmd: Unsupported file type
   ✗ project/index.html: Unsupported file type
   ✗ project/flow.toon: Unsupported file type
+  ✗ project/duplication.toon.yaml: Validation fail
   ✗ project/context.md: Unsupported file type
   ✗ project/prompt.txt: Unsupported file type
-  ✗ project/duplication.toon.toon: Unsupported file type
+  ✗ project/evolution.yaml: Validation fail
   ✗ project/evolution.toon: Unsupported file type
   ✗ project/validation.toon.yaml: Validation fail
+  ✗ project/map.yaml: Validation fail
   ✗ project/flow.mmd: Unsupported file type
   ✗ project/dashboard.html: Unsupported file type
   ✗ project/README.md: Unsupported file type
