@@ -1,67 +1,60 @@
-format: evolution-toon-yaml
-timestamp: '2026-03-25'
-stats:
-  total_funcs: 201
-  total_files: 32
-  avg_cc: 3.5
-  max_cc: 27
-  high_cc_count: 4
-  critical_count: 9
-refactoring:
-  action_count: 5
-  actions:
-  - priority: critical
-    action: SPLIT-FUNC
-    target: BatchProcessor._process_files
-    cc: 26
-    fan_out: 12
-    reason: CC=26 exceeds 15
-    effort: ~1h
-  - priority: critical
-    action: SPLIT-FUNC
-    target: walk
-    cc: 27
-    fan_out: 11
-    reason: CC=27 exceeds 15
-    effort: ~1h
-  - priority: high
-    action: SPLIT
-    target: mcp/server/_tools_vallm.py
-    reason: 508L, 0 classes, max CC=22
-    effort: ~4h
-  - priority: high
-    action: SPLIT-FUNC
-    target: validate_code
-    cc: 22
-    fan_out: 12
-    reason: CC=22 exceeds 15
-    effort: ~1h
-  - priority: high
-    action: SPLIT-FUNC
-    target: output_batch_toon
-    cc: 17
-    fan_out: 5
-    reason: CC=17 exceeds 15
-    effort: ~1h
-risks:
-  count: 1
-  items:
-  - type: breaking_imports
-    target: mcp/server/_tools_vallm.py
-    impact: may break 8 import paths
-metrics_target:
-  avg_cc:
-    current: 3.5
-    target: 2.4
-  max_cc:
-    current: 27
-    target: 13
-  god_modules:
-    current: 1
-    target: 0
-  high_cc:
-    current: 4
-    target: 2
-  hub_types:
-    current: 0
-    target: 0
+# code2llm/evolution | 201 func | 32f | 2026-03-25
+
+NEXT[5] (ranked by impact):
+  [1] !! SPLIT           mcp/server/_tools_vallm.py
+      WHY: 508L, 0 classes, max CC=22
+      EFFORT: ~4h  IMPACT: 11176
+
+  [2] !! SPLIT-FUNC      BatchProcessor._process_files  CC=26  fan=12
+      WHY: CC=26 exceeds 15
+      EFFORT: ~1h  IMPACT: 312
+
+  [3] !! SPLIT-FUNC      walk  CC=27  fan=11
+      WHY: CC=27 exceeds 15
+      EFFORT: ~1h  IMPACT: 297
+
+  [4] !  SPLIT-FUNC      validate_code  CC=22  fan=12
+      WHY: CC=22 exceeds 15
+      EFFORT: ~1h  IMPACT: 264
+
+  [5] !  SPLIT-FUNC      output_batch_toon  CC=17  fan=5
+      WHY: CC=17 exceeds 15
+      EFFORT: ~1h  IMPACT: 85
+
+
+RISKS[1]:
+  ⚠ Splitting mcp/server/_tools_vallm.py may break 8 import paths
+
+METRICS-TARGET:
+  CC̄:          3.5 → ≤2.4
+  max-CC:      27 → ≤13
+  god-modules: 1 → 0
+  high-CC(≥15): 4 → ≤2
+  hub-types:   0 → ≤0
+
+PATTERNS (language parser shared logic):
+  _extract_declarations() in base.py — unified extraction for:
+    - TypeScript: interfaces, types, classes, functions, arrow funcs
+    - PHP: namespaces, traits, classes, functions, includes
+    - Ruby: modules, classes, methods, requires
+    - C++: classes, structs, functions, #includes
+    - C#: classes, interfaces, methods, usings
+    - Java: classes, interfaces, methods, imports
+    - Go: packages, functions, structs
+    - Rust: modules, functions, traits, use statements
+
+  Shared regex patterns per language:
+    - import: language-specific import/require/using patterns
+    - class: class/struct/trait declarations with inheritance
+    - function: function/method signatures with visibility
+    - brace_tracking: for C-family languages ({ })
+    - end_keyword_tracking: for Ruby (module/class/def...end)
+
+  Benefits:
+    - Consistent extraction logic across all languages
+    - Reduced code duplication (~70% reduction in parser LOC)
+    - Easier maintenance: fix once, apply everywhere
+    - Standardized FunctionInfo/ClassInfo models
+
+HISTORY:
+  previous evolution.toon.yaml found but no metrics parsed
