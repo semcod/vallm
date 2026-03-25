@@ -9,7 +9,7 @@
 - **Total Functions**: 12152
 - **Total Classes**: 3039
 - **Modules**: 1425
-- **Entry Points**: 10382
+- **Entry Points**: 10381
 
 ## Architecture by Module
 
@@ -158,11 +158,11 @@ the raw
 > Load private key from OpenSSH custom encoding.
 - **Calls**: utils._check_byteslike, _PEM_RC.search, m.start, m.end, binascii.a2b_base64, publish-env.lib.python3.13.site-packages.cryptography.hazmat.primitives.serialization.ssh._get_sshstr, publish-env.lib.python3.13.site-packages.cryptography.hazmat.primitives.serialization.ssh._get_sshstr, publish-env.lib.python3.13.site-packages.cryptography.hazmat.primitives.serialization.ssh._get_sshstr
 
-### publish-env.lib.python3.13.site-packages.cffi.backend_ctypes.CTypesBackend.new_array_type
-- **Calls**: CTypesArray._fix_class, getbtype, BItem._get_c_name, model.PrimitiveType, __slots__.append, self._ctype, isinstance, ctypes.POINTER
-
 ### publish-env.lib.python3.13.site-packages.cffi.vengine_cpy.VCPythonEngine.write_source_to_f
 - **Calls**: self.collect_types, prnt, prnt, prnt, prnt, self._generate, self._generate_setup_custom, prnt
+
+### publish-env.lib.python3.13.site-packages.cffi.backend_ctypes.CTypesBackend.new_array_type
+- **Calls**: CTypesArray._fix_class, getbtype, BItem._get_c_name, model.PrimitiveType, __slots__.append, self._ctype, isinstance, ctypes.POINTER
 
 ### publish-env.lib.python3.13.site-packages.rich.table.Table._render
 - **Calls**: console.get_style, publish-env.lib.python3.13.site-packages.docutils.writers.s5_html.themes.default.slides.list, Segment.line, enumerate, console.get_style, self._get_cells, zip, self.box.substitute
@@ -199,11 +199,11 @@ Args:
 ### publish-env.lib.python3.13.site-packages.cffi._cffi_include.messy
 - **Calls**: publish-env.lib.python3.13.site-packages.cffi._cffi_include.defined, publish-env.lib.python3.13.site-packages.cffi._cffi_include.alloca, publish-env.lib.python3.13.site-packages.cffi._cffi_include.__attribute__, publish-env.lib.python3.13.site-packages.cffi._cffi_include._cffi_from_c_int, publish-env.lib.python3.13.site-packages.cffi._cffi_include.sizeof, publish-env.lib.python3.13.site-packages.cffi._cffi_include.PyInt_FromLong, publish-env.lib.python3.13.site-packages.cffi._cffi_include.PyLong_FromUnsignedLong, publish-env.lib.python3.13.site-packages.cffi._cffi_include.PyLong_FromUnsignedLongLong
 
-### publish-env.lib.python3.13.site-packages.cffi.backend_ctypes.CTypesBackend.new_function_type
-- **Calls**: None.join, CTypesFunctionPtr._fix_class, BArg._get_c_name, nameargs.append, ctypes.CFUNCTYPE, BResult._get_c_name, getattr, issubclass
-
 ### publish-env.lib.python3.13.site-packages.cffi.vengine_cpy.VCPythonEngine._generate_cpy_function_decl
 - **Calls**: isinstance, len, prnt, prnt, prnt, enumerate, publish-env.lib.python3.13.site-packages.markdown_it.main.MarkdownIt.set, publish-env.lib.python3.13.site-packages.markdown_it.main.MarkdownIt.set
+
+### publish-env.lib.python3.13.site-packages.cffi.backend_ctypes.CTypesBackend.new_function_type
+- **Calls**: None.join, CTypesFunctionPtr._fix_class, BArg._get_c_name, nameargs.append, ctypes.CFUNCTYPE, BResult._get_c_name, getattr, issubclass
 
 ### publish-env.lib.python3.13.site-packages.rich.traceback.Traceback.__rich_console__
 - **Calls**: theme.get_background_style, Theme, ReprHighlighter, publish-env.lib.python3.13.site-packages.rich.console.group, publish-env.lib.python3.13.site-packages.rich._loop.loop_last, reversed, token_style, token_style
@@ -545,6 +545,18 @@ If the ``idna`` module is installed or the ``r
 > Process input string and push inline tokens into `tokens`
 - **Output to**: StateInline, self.tokenize, self.ruler2.getRules, publish-env.lib.python3.13.site-packages.rich.console.Console.rule
 
+### publish-env.lib.python3.13.site-packages.markdown_it.token.convert_attrs
+> Convert Token.attrs set as ``None`` or ``[[key, value], ...]`` to a dict.
+
+This improves compatibili
+- **Output to**: isinstance, dict
+
+### publish-env.lib.python3.13.site-packages.markdown_it._punycode.encode
+- **Output to**: None.decode, codecs.encode
+
+### publish-env.lib.python3.13.site-packages.markdown_it._punycode.decode
+- **Output to**: codecs.decode
+
 ### publish-env.lib.python3.13.site-packages.markdown_it.main.MarkdownIt.parse
 > Parse the source string to a token stream
 
@@ -564,18 +576,6 @@ If the ``idna`` module is installed or the ``r
 
 This validator can prohibit more than really needed 
 - **Output to**: normalize_url.validateLink
-
-### publish-env.lib.python3.13.site-packages.markdown_it._punycode.encode
-- **Output to**: None.decode, codecs.encode
-
-### publish-env.lib.python3.13.site-packages.markdown_it._punycode.decode
-- **Output to**: codecs.decode
-
-### publish-env.lib.python3.13.site-packages.markdown_it.token.convert_attrs
-> Convert Token.attrs set as ``None`` or ``[[key, value], ...]`` to a dict.
-
-This improves compatibili
-- **Output to**: isinstance, dict
 
 ### publish-env.lib.python3.13.site-packages.requests.utils.parse_list_header
 > Parse lists as described by RFC 2068 Section 2.
@@ -691,8 +691,8 @@ Functions exposed as public API (no underscore prefix):
 - `publish-env.lib.python3.13.site-packages.pip._vendor.urllib3.connectionpool.HTTPConnectionPool.urlopen` - 59 calls
 - `publish-env.lib.python3.13.site-packages.pip._internal.commands.install.InstallCommand.add_options` - 59 calls
 - `publish-env.lib.python3.13.site-packages.cryptography.hazmat.primitives.serialization.ssh.load_ssh_private_key` - 59 calls
-- `publish-env.lib.python3.13.site-packages.cffi.backend_ctypes.CTypesBackend.new_array_type` - 58 calls
 - `publish-env.lib.python3.13.site-packages.cffi.vengine_cpy.VCPythonEngine.write_source_to_f` - 58 calls
+- `publish-env.lib.python3.13.site-packages.cffi.backend_ctypes.CTypesBackend.new_array_type` - 58 calls
 - `publish-env.lib.python3.13.site-packages.pip._internal.req.req_uninstall.UninstallPathSet.from_dist` - 58 calls
 - `publish-env.lib.python3.13.site-packages.markdown_it.rules_block.table.table` - 57 calls
 - `publish-env.lib.python3.13.site-packages.cffi.backend_ctypes.CTypesBackend.new_primitive_type` - 56 calls
