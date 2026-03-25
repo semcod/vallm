@@ -23,10 +23,10 @@ health:
     message: send CC=19 (limit:15)
   - severity: yellow
     code: CC
-    message: resolve_redirects CC=15 (limit:15)
+    message: build_digest_header CC=19 (limit:15)
   - severity: yellow
     code: CC
-    message: build_digest_header CC=19 (limit:15)
+    message: resolve_redirects CC=15 (limit:15)
   - severity: yellow
     code: CC
     message: super_len CC=18 (limit:15)
@@ -44,10 +44,10 @@ health:
     message: prepare_body CC=17 (limit:15)
   - severity: yellow
     code: CC
-    message: filter CC=16 (limit:15)
+    message: parse_email CC=26 (limit:15)
   - severity: yellow
     code: CC
-    message: parse_email CC=26 (limit:15)
+    message: filter CC=16 (limit:15)
   - severity: yellow
     code: CC
     message: _cpython_abis CC=15 (limit:15)
@@ -57,9 +57,6 @@ health:
   - severity: yellow
     code: CC
     message: mac_platforms CC=15 (limit:15)
-  - severity: yellow
-    code: CC
-    message: complete_struct_or_union CC=18 (limit:15)
   - severity: yellow
     code: CC
     message: collect_type_table CC=21 (limit:15)
@@ -72,6 +69,9 @@ health:
   - severity: yellow
     code: CC
     message: _struct_ctx CC=24 (limit:15)
+  - severity: yellow
+    code: CC
+    message: recompile CC=19 (limit:15)
 refactor:
   steps:
   - action: split_methods

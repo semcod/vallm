@@ -211,12 +211,6 @@ Args:
 ### publish-env.lib.python3.13.site-packages.pip._vendor.rich.traceback.Traceback.__rich_console__
 - **Calls**: theme.get_background_style, Theme, ReprHighlighter, publish-env.lib.python3.13.site-packages.rich.console.group, publish-env.lib.python3.13.site-packages.rich._loop.loop_last, reversed, token_style, token_style
 
-### publish-env.lib.python3.13.site-packages.urllib3.connectionpool.HTTPConnectionPool.urlopen
-> Get a connection from the pool and perform an HTTP request. This is the
-lowest level call for making a request, so you'll need to specify all
-the raw 
-- **Calls**: publish-env.lib.python3.13.site-packages.urllib3.util.url.parse_url, url.startswith, publish-env.lib.python3.13.site-packages.urllib3.util.proxy.connection_requires_http_tunnel, publish-env.lib.python3.13.site-packages.urllib3.util.request.set_file_position, bool, retries.is_retry, isinstance, Retry.from_int
-
 ### publish-env.lib.python3.13.site-packages.rich.markdown.Markdown.__rich_console__
 > Render markdown to the console.
 - **Calls**: console.get_style, options.update, MarkdownContext, Segment.line, self._flatten_tokens, context.on_text, context.on_text, context.on_text
@@ -228,6 +222,14 @@ Args:
     markup (str): A string containing console markup.
     style: (Union[str, Style]): The style to
 - **Calls**: Text, publish-env.lib.python3.13.site-packages.rich.markup._parse, len, sorted, Text, enumerate, KeyError, style_stack.pop
+
+### publish-env.lib.python3.13.site-packages.pip._vendor.rich.markup.render
+> Render console markup in to a Text instance.
+
+Args:
+    markup (str): A string containing console markup.
+    style: (Union[str, Style]): The style to
+- **Calls**: Text, publish-env.lib.python3.13.site-packages.pip._vendor.rich.markup._parse, len, sorted, Text, enumerate, KeyError, style_stack.pop
 
 ## Process Flows
 
