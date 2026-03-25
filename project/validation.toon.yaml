@@ -1,10 +1,10 @@
-# vallm batch | 187f | 130✓ 57✗
+# vallm batch | 188f | 130✓ 58✗
 
 SUMMARY:
-  total: 187
+  total: 188
   passed: 130
-  failed: 57
-  success: 69.5%
+  failed: 58
+  success: 69.1%
 
 FILES:
   [python]
@@ -345,6 +345,11 @@ FILES:
     ✓ .pre-commit-config.yaml
       verdict: pass
       score: 1.00
+    ✗ project/validation.toon.yaml
+      verdict: fail
+      score: 0.00
+      issues: 1
+        [error] syntax.tree_sitter: tree-sitter found 1 parse error(s) in yaml
     ✓ project/project.yaml
       verdict: pass
       score: 1.00
@@ -433,6 +438,7 @@ FAILED:
   ✗ project/prompt.txt: Unsupported file type
   ✗ project/duplication.toon.toon: Unsupported file type
   ✗ project/evolution.toon: Unsupported file type
+  ✗ project/validation.toon.yaml: Validation fail
   ✗ project/flow.mmd: Unsupported file type
   ✗ project/dashboard.html: Unsupported file type
   ✗ project/README.md: Unsupported file type

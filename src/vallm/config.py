@@ -20,6 +20,7 @@ class VallmSettings(BaseSettings):
         env_prefix="VALLM_",
         env_file=".env",
         env_file_encoding="utf-8",
+        extra="ignore",
     )
 
     # Scoring thresholds

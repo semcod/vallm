@@ -9,7 +9,7 @@
 - **Total Functions**: 12152
 - **Total Classes**: 3039
 - **Modules**: 1425
-- **Entry Points**: 10381
+- **Entry Points**: 10382
 
 ## Architecture by Module
 
@@ -211,6 +211,12 @@ Args:
 ### publish-env.lib.python3.13.site-packages.pip._vendor.rich.traceback.Traceback.__rich_console__
 - **Calls**: theme.get_background_style, Theme, ReprHighlighter, publish-env.lib.python3.13.site-packages.rich.console.group, publish-env.lib.python3.13.site-packages.rich._loop.loop_last, reversed, token_style, token_style
 
+### publish-env.lib.python3.13.site-packages.urllib3.connectionpool.HTTPConnectionPool.urlopen
+> Get a connection from the pool and perform an HTTP request. This is the
+lowest level call for making a request, so you'll need to specify all
+the raw 
+- **Calls**: publish-env.lib.python3.13.site-packages.urllib3.util.url.parse_url, url.startswith, publish-env.lib.python3.13.site-packages.urllib3.util.proxy.connection_requires_http_tunnel, publish-env.lib.python3.13.site-packages.urllib3.util.request.set_file_position, bool, retries.is_retry, isinstance, Retry.from_int
+
 ### publish-env.lib.python3.13.site-packages.rich.markdown.Markdown.__rich_console__
 > Render markdown to the console.
 - **Calls**: console.get_style, options.update, MarkdownContext, Segment.line, self._flatten_tokens, context.on_text, context.on_text, context.on_text
@@ -222,14 +228,6 @@ Args:
     markup (str): A string containing console markup.
     style: (Union[str, Style]): The style to
 - **Calls**: Text, publish-env.lib.python3.13.site-packages.rich.markup._parse, len, sorted, Text, enumerate, KeyError, style_stack.pop
-
-### publish-env.lib.python3.13.site-packages.pip._vendor.rich.markup.render
-> Render console markup in to a Text instance.
-
-Args:
-    markup (str): A string containing console markup.
-    style: (Union[str, Style]): The style to
-- **Calls**: Text, publish-env.lib.python3.13.site-packages.pip._vendor.rich.markup._parse, len, sorted, Text, enumerate, KeyError, style_stack.pop
 
 ## Process Flows
 
@@ -533,6 +531,10 @@ This is a partial replacement of the standard library's
 > Process input string and push block tokens into `outTokens`.
 - **Output to**: StateBlock, self.tokenize
 
+### publish-env.lib.python3.13.site-packages.rfc3986.parseresult.ParseResult.encode
+> Convert to an instance of ParseResultBytes.
+- **Output to**: dict, ParseResultBytes, zip, publish-env.lib.python3.13.site-packages.docutils.nodes.Element.hasattr, attr.encode
+
 ### publish-env.lib.python3.13.site-packages.rfc3986.iri.IRIReference.encode
 > Encode an IRIReference into a URIReference instance.
 
@@ -542,16 +544,6 @@ If the ``idna`` module is installed or the ``r
 ### publish-env.lib.python3.13.site-packages.markdown_it.parser_inline.ParserInline.parse
 > Process input string and push inline tokens into `tokens`
 - **Output to**: StateInline, self.tokenize, self.ruler2.getRules, publish-env.lib.python3.13.site-packages.rich.console.Console.rule
-
-### publish-env.lib.python3.13.site-packages.rfc3986.parseresult.ParseResult.encode
-> Convert to an instance of ParseResultBytes.
-- **Output to**: dict, ParseResultBytes, zip, publish-env.lib.python3.13.site-packages.docutils.nodes.Element.hasattr, attr.encode
-
-### publish-env.lib.python3.13.site-packages.markdown_it._punycode.encode
-- **Output to**: None.decode, codecs.encode
-
-### publish-env.lib.python3.13.site-packages.markdown_it._punycode.decode
-- **Output to**: codecs.decode
 
 ### publish-env.lib.python3.13.site-packages.markdown_it.main.MarkdownIt.parse
 > Parse the source string to a token stream
@@ -572,6 +564,12 @@ If the ``idna`` module is installed or the ``r
 
 This validator can prohibit more than really needed 
 - **Output to**: normalize_url.validateLink
+
+### publish-env.lib.python3.13.site-packages.markdown_it._punycode.encode
+- **Output to**: None.decode, codecs.encode
+
+### publish-env.lib.python3.13.site-packages.markdown_it._punycode.decode
+- **Output to**: codecs.decode
 
 ### publish-env.lib.python3.13.site-packages.markdown_it.token.convert_attrs
 > Convert Token.attrs set as ``None`` or ``[[key, value], ...]`` to a dict.

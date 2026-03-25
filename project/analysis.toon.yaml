@@ -23,10 +23,10 @@ health:
     message: send CC=19 (limit:15)
   - severity: yellow
     code: CC
-    message: build_digest_header CC=19 (limit:15)
+    message: resolve_redirects CC=15 (limit:15)
   - severity: yellow
     code: CC
-    message: resolve_redirects CC=15 (limit:15)
+    message: build_digest_header CC=19 (limit:15)
   - severity: yellow
     code: CC
     message: super_len CC=18 (limit:15)
