@@ -152,7 +152,7 @@ Content outside the markers is preserved when regenerating. Enable this with `sy
 
 ```
 vallm/
-├── mcp_server├── mcp/    ├── server/    ├── bump_version        ├── _tools_vallm        ├── hookspecs├── examples/        ├── cli/    ├── mcp_demo    ├── vallm/        ├── __main__        ├── self_server            ├── base            ├── logical            ├── complexity            ├── regression        ├── validators/            ├── security            ├── semantic_cache            ├── syntax            ├── semantic            ├── imports/            ├── lint            ├── graph_diff        ├── core/            ├── proposal            ├── gitignore            ├── ast_compare            ├── output_formatters        ├── scoring            ├── batch_processor            ├── languages        ├── sandbox/            ├── runner                ├── base                ├── python_imports                ├── javascript_imports                ├── go_imports                ├── c_imports                ├── rust_imports                ├── wrapper                ├── factory                ├── utils        ├── main_template                ├── java_imports        ├── main        ├── main        ├── main        ├── ollama_simple_demo        ├── claude_autonomous_demo        ├── iteration_1        ├── iteration_2        ├── best_version        ├── main        ├── main        ├── main        ├── main_template        ├── main        ├── refactored_output        ├── main    ├── utils/        ├── mcp_demo        ├── extraction        ├── save_analysis_data        ├── extract_code_from_response        ├── validation_runner        ├── logging_utils        ├── main            ├── order_processor            ├── process_user_input            ├── simple_buggy            ├── load_config        ├── utils/            ├── calculate_total            ├── save_data            ├── main├── project    ├── run        ├── run        ├── docker-entrypoint        ├── run        ├── docker-entrypoint        ├── run        ├── docker-entrypoint            ├── data_processor        ├── config            ├── command_handlers```
+├── examples/├── mcp/    ├── server/    ├── bump_version├── mcp_server        ├── hookspecs        ├── _tools_vallm        ├── cli/    ├── mcp_demo    ├── vallm/        ├── __main__        ├── self_server            ├── base            ├── logical            ├── complexity            ├── regression        ├── validators/            ├── security            ├── semantic_cache            ├── syntax            ├── semantic            ├── imports/            ├── lint            ├── graph_diff        ├── core/            ├── proposal            ├── gitignore            ├── ast_compare            ├── output_formatters        ├── scoring            ├── batch_processor            ├── runner        ├── sandbox/                ├── base                ├── javascript_imports                ├── python_imports            ├── languages                ├── go_imports                ├── c_imports                ├── rust_imports                ├── utils                ├── wrapper                ├── factory                ├── java_imports        ├── main_template        ├── main        ├── main        ├── main        ├── claude_autonomous_demo        ├── iteration_1        ├── best_version        ├── iteration_2        ├── main        ├── main        ├── ollama_simple_demo        ├── main        ├── main_template        ├── main        ├── refactored_output        ├── main    ├── utils/        ├── mcp_demo        ├── save_analysis_data        ├── extraction        ├── extract_code_from_response        ├── logging_utils        ├── validation_runner            ├── order_processor        ├── main            ├── process_user_input            ├── load_config        ├── utils/            ├── simple_buggy            ├── calculate_total            ├── main            ├── save_data├── project    ├── run        ├── run        ├── docker-entrypoint        ├── run        ├── docker-entrypoint        ├── run        ├── docker-entrypoint            ├── data_processor        ├── config            ├── command_handlers```
 
 ## API Overview
 
@@ -177,12 +177,12 @@ vallm/
 - **`ValidationResult`** — Result from a single validator.
 - **`PipelineResult`** — Aggregated result from all validators.
 - **`BatchProcessor`** — Handles batch validation of multiple files.
-- **`Language`** — Supported programming languages with their tree-sitter identifiers.
 - **`ExecutionResult`** — Result of sandboxed code execution.
 - **`SandboxRunner`** — Unified interface for running code in a sandbox.
 - **`BaseImportValidator`** — Base class for all import validators.
-- **`PythonImportValidator`** — Python-specific import validator.
 - **`JavaScriptImportValidator`** — JavaScript/TypeScript import validator.
+- **`PythonImportValidator`** — Python-specific import validator.
+- **`Language`** — Supported programming languages with their tree-sitter identifiers.
 - **`GoImportValidator`** — Go import validator.
 - **`CImportValidator`** — C/C++ import validator.
 - **`RustImportValidator`** — Rust import validator.
@@ -270,15 +270,6 @@ vallm/
 - `visualize_flow(code, output_path)` — Generate control flow visualization.
 - `main()` — Main example function.
 - `main()` — —
-- `log_section(title)` — —
-- `log_step(step, description)` — —
-- `analyze_with_code2llm(code_path)` — Simple code2llm analysis.
-- `call_ollama(prompt, model)` — Call Ollama API.
-- `validate_with_vallm(code)` — Simple vallm validation.
-- `run_simple_test(code)` — Simple syntax test.
-- `generate_ollama_prompt(code, analysis)` — Generate simple prompt for Ollama.
-- `run_simple_workflow(code_path, max_iterations)` — Run simple refactoring workflow.
-- `main()` — Main function.
 - `log_section(title)` — Print a section header.
 - `log_step(step, description)` — Print a step.
 - `log_code(label, code, max_lines)` — Log code with label.
@@ -296,6 +287,15 @@ vallm/
 - `main()` — Main function with improvements.
 - `main()` — —
 - `main()` — —
+- `log_section(title)` — —
+- `log_step(step, description)` — —
+- `analyze_with_code2llm(code_path)` — Simple code2llm analysis.
+- `call_ollama(prompt, model)` — Call Ollama API.
+- `validate_with_vallm(code)` — Simple vallm validation.
+- `run_simple_test(code)` — Simple syntax test.
+- `generate_ollama_prompt(code, analysis)` — Generate simple prompt for Ollama.
+- `run_simple_workflow(code_path, max_iterations)` — Run simple refactoring workflow.
+- `main()` — Main function.
 - `main()` — —
 - `main()` — —
 - `main()` — —
@@ -324,20 +324,15 @@ vallm/
 - `generate_refactoring_prompt(code, analysis)` — Generate prompt for LLM to refactor code.
 - `run_mcp_workflow(code_path, max_iterations)` — Run the complete MCP workflow.
 - `main()` — Main entry point.
+- `save_analysis_data(example_name, result_data)` — Save analysis data to JSON file.
 - `extract_code_from_response(response, language)` — Extract code from LLM response.
 - `extract_json_from_response(response)` — Extract JSON object from LLM response.
-- `save_analysis_data(example_name, result_data)` — Save analysis data to JSON file.
 - `extract_code_from_response(response)` — Extract Python code from LLM response.
-- `run_validation_examples(example_name, good_code, bad_code, complex_code)` — Run standard validation examples (good, bad, complex code).
 - `log_section(title)` — Print a section header.
 - `log_step(step, description)` — Print a step indicator.
 - `log_code(label, code, max_lines)` — Log code with label and truncation.
 - `log_result(status, message)` — Log a result with appropriate color.
-- `create_sample_project(base_path)` — Create a sample project for analysis.
-- `analyze_with_code2llm(project_path)` — Analyze project structure using code2llm.
-- `validate_with_vallm(project_path)` — Validate all Python files with vallm.
-- `generate_report(code2llm_result, vallm_result, output_path)` — Generate combined analysis report.
-- `main()` — Main example function.
+- `run_validation_examples(example_name, good_code, bad_code, complex_code)` — Run standard validation examples (good, bad, complex code).
 - `process_order(data)` — Process order data - has multiple issues.
 - `load_config()` — Load config - security issue with eval.
 - `save_data(data, filename)` — Save data - uses pickle without validation.
@@ -346,7 +341,13 @@ vallm/
 - `validate_email_2(email)` — Email validation - same logic, different function.
 - `calculate_shipping(weight)` — Calculate shipping with magic numbers.
 - `dead_code()` — Function that's never called.
+- `create_sample_project(base_path)` — Create a sample project for analysis.
+- `analyze_with_code2llm(project_path)` — Analyze project structure using code2llm.
+- `validate_with_vallm(project_path)` — Validate all Python files with vallm.
+- `generate_report(code2llm_result, vallm_result, output_path)` — Generate combined analysis report.
+- `main()` — Main example function.
 - `process_user_input(user_input)` — Process user input with standard logic.
+- `load_config()` — Load configuration with default values.
 - `process_user_input(user_input)` — Process user input with security issues.
 - `load_config()` — Load configuration with eval.
 - `save_data(data, filename)` — Save data without validation.
@@ -354,10 +355,9 @@ vallm/
 - `duplicate_function()` — Another duplicate function.
 - `unused_function()` — This function is never used.
 - `main()` — Main function with problems.
-- `load_config()` — Load configuration with default values.
 - `calculate_total(items)` — Calculate total price from items list.
-- `save_data(data, filename)` — Save data to JSON file.
 - `run_demo_main()` — Run the standard demo main function pattern.
+- `save_data(data, filename)` — Save data to JSON file.
 - `run_example()` — —
 - `print_section()` — —
 - `print_step()` — —

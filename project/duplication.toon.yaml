@@ -5,125 +5,125 @@ SUMMARY:
   total_lines:   10432
   dup_groups:    17
   dup_fragments: 44
-  saved_lines:   222
-  scan_ms:       3270
+  saved_lines:   220
+  scan_ms:       3253
 
 DUPLICATES[17] (ranked by impact):
   [03347be86de10edb] ! STRU  validate_syntax  L=50 N=3 saved=100 sim=1.00
       mcp/server/_tools_vallm.py:28-77  (validate_syntax)
       mcp/server/_tools_vallm.py:80-129  (validate_imports)
       mcp/server/_tools_vallm.py:132-182  (validate_security)
+  [89fc1994f60671bd]   STRU  main  L=14 N=2 saved=14 sim=1.00
+      examples/05_llm_semantic_review/main_template.py:57-70  (main)
+      examples/06_multilang_validation/main_template.py:57-70  (main)
   [d52db5e4bcf63c82]   STRU  handle_validate_syntax  L=7 N=3 saved=14 sim=1.00
       mcp/server/_tools_vallm.py:335-341  (handle_validate_syntax)
       mcp/server/_tools_vallm.py:344-350  (handle_validate_imports)
       mcp/server/_tools_vallm.py:353-359  (handle_validate_security)
-  [89fc1994f60671bd]   STRU  main  L=14 N=2 saved=14 sim=1.00
-      examples/05_llm_semantic_review/main_template.py:57-70  (main)
-      examples/06_multilang_validation/main_template.py:57-70  (main)
   [59ced74b35b023bb]   EXAC  log_code  L=12 N=2 saved=12 sim=1.00
-      examples/11_claude_code_autonomous/claude_autonomous_demo.py:64-75  (log_code)
       examples/10_mcp_ollama_demo/mcp_demo.py:60-71  (log_code)
-  [27dda1031a29e18a]   EXAC  load_config  L=5 N=3 saved=10 sim=1.00
-      examples/10_mcp_ollama_demo/legacy_code/order_processor.py:34-38  (load_config)
-      examples/12_ollama_simple_demo/legacy_code/simple_buggy.py:29-32  (load_config)
-      examples/11_claude_code_autonomous/legacy_code/data_processor.py:19-22  (load_config)
+      examples/11_claude_code_autonomous/claude_autonomous_demo.py:64-75  (log_code)
   [b5b5f8db44e6f338]   STRU  create_validator  L=10 N=2 saved=10 sim=1.00
-      src/vallm/validators/logical.py:133-142  (create_validator)
       src/vallm/validators/lint.py:173-182  (create_validator)
+      src/vallm/validators/logical.py:133-142  (create_validator)
   [7c6fc4484a4bfb49]   STRU  _get_error_message  L=3 N=4 saved=9 sim=1.00
-      src/vallm/validators/imports/javascript_imports.py:112-114  (_get_error_message)
-      src/vallm/validators/imports/rust_imports.py:25-27  (_get_error_message)
-      src/vallm/validators/imports/go_imports.py:26-28  (_get_error_message)
       src/vallm/validators/imports/java_imports.py:25-27  (_get_error_message)
+      src/vallm/validators/imports/go_imports.py:26-28  (_get_error_message)
+      src/vallm/validators/imports/rust_imports.py:25-27  (_get_error_message)
+      src/vallm/validators/imports/javascript_imports.py:112-114  (_get_error_message)
   [d96fbe45dd774d8b]   STRU  _get_rule_name  L=3 N=4 saved=9 sim=1.00
-      src/vallm/validators/imports/javascript_imports.py:116-118  (_get_rule_name)
-      src/vallm/validators/imports/rust_imports.py:29-31  (_get_rule_name)
-      src/vallm/validators/imports/go_imports.py:30-32  (_get_rule_name)
       src/vallm/validators/imports/java_imports.py:29-31  (_get_rule_name)
+      src/vallm/validators/imports/go_imports.py:30-32  (_get_rule_name)
+      src/vallm/validators/imports/rust_imports.py:29-31  (_get_rule_name)
+      src/vallm/validators/imports/javascript_imports.py:116-118  (_get_rule_name)
   [bf795f20b1fc2037]   EXAC  main  L=4 N=3 saved=8 sim=1.00
-      examples/12_ollama_simple_demo/iteration_1.py:16-19  (main)
       examples/12_ollama_simple_demo/best_version.py:16-19  (main)
       examples/12_ollama_simple_demo/iteration_2.py:16-19  (main)
+      examples/12_ollama_simple_demo/iteration_1.py:16-19  (main)
+  [27dda1031a29e18a]   EXAC  load_config  L=4 N=3 saved=8 sim=1.00
+      examples/12_ollama_simple_demo/legacy_code/simple_buggy.py:29-32  (load_config)
+      examples/10_mcp_ollama_demo/legacy_code/order_processor.py:34-38  (load_config)
+      examples/11_claude_code_autonomous/legacy_code/data_processor.py:19-22  (load_config)
   [de3da32194b04163]   EXAC  log_step  L=3 N=3 saved=6 sim=1.00
       examples/12_ollama_simple_demo/ollama_simple_demo.py:48-50  (log_step)
-      examples/11_claude_code_autonomous/claude_autonomous_demo.py:58-61  (log_step)
       examples/10_mcp_ollama_demo/mcp_demo.py:54-57  (log_step)
+      examples/11_claude_code_autonomous/claude_autonomous_demo.py:58-61  (log_step)
   [29507c36c8dbf2ce]   STRU  get_language  L=3 N=3 saved=6 sim=1.00
-      src/vallm/validators/imports/rust_imports.py:21-23  (get_language)
-      src/vallm/validators/imports/go_imports.py:22-24  (get_language)
       src/vallm/validators/imports/java_imports.py:21-23  (get_language)
-  [66567bb8d261469b]   STRU  log_section  L=6 N=2 saved=6 sim=1.00
-      examples/11_claude_code_autonomous/claude_autonomous_demo.py:50-55  (log_section)
-      examples/10_mcp_ollama_demo/mcp_demo.py:46-51  (log_section)
+      src/vallm/validators/imports/go_imports.py:22-24  (get_language)
+      src/vallm/validators/imports/rust_imports.py:21-23  (get_language)
   [56128c82fc8ac665]   STRU  validate_email_1  L=6 N=2 saved=6 sim=1.00
       examples/10_mcp_ollama_demo/legacy_code/order_processor.py:102-107  (validate_email_1)
       examples/10_mcp_ollama_demo/legacy_code/order_processor.py:109-114  (validate_email_2)
+  [66567bb8d261469b]   STRU  log_section  L=6 N=2 saved=6 sim=1.00
+      examples/10_mcp_ollama_demo/mcp_demo.py:46-51  (log_section)
+      examples/11_claude_code_autonomous/claude_autonomous_demo.py:50-55  (log_section)
   [bd60d2849a7474ac]   EXAC  __init__  L=3 N=2 saved=3 sim=1.00
-      src/vallm/validators/logical.py:20-22  (__init__)
       src/vallm/validators/lint.py:21-23  (__init__)
+      src/vallm/validators/logical.py:20-22  (__init__)
   [5b16f6e563d5953d]   STRU  get_default_output_format  L=3 N=2 saved=3 sim=1.00
       src/vallm/config.py:115-117  (get_default_output_format)
       src/vallm/config.py:120-122  (get_default_language)
-  [94370ae67a066c9c]   STRU  dead_code  L=3 N=2 saved=3 sim=1.00
-      examples/10_mcp_ollama_demo/legacy_code/order_processor.py:129-131  (dead_code)
-      examples/12_ollama_simple_demo/legacy_code/simple_buggy.py:60-62  (unused_function)
   [a426fd0921369b9c]   STRU  duplicate_function  L=3 N=2 saved=3 sim=1.00
       examples/12_ollama_simple_demo/legacy_code/simple_buggy.py:52-54  (duplicate_function)
       examples/12_ollama_simple_demo/legacy_code/simple_buggy.py:56-58  (duplicate_function)
+  [94370ae67a066c9c]   STRU  unused_function  L=3 N=2 saved=3 sim=1.00
+      examples/12_ollama_simple_demo/legacy_code/simple_buggy.py:60-62  (unused_function)
+      examples/10_mcp_ollama_demo/legacy_code/order_processor.py:129-131  (dead_code)
 
 REFACTOR[17] (ranked by priority):
   [1] ○ extract_function   → mcp/server/utils/validate_syntax.py
       WHY: 3 occurrences of 50-line block across 1 files — saves 100 lines
       FILES: mcp/server/_tools_vallm.py
-  [2] ○ extract_function   → mcp/server/utils/handle_validate_syntax.py
-      WHY: 3 occurrences of 7-line block across 1 files — saves 14 lines
-      FILES: mcp/server/_tools_vallm.py
-  [3] ○ extract_function   → examples/utils/main.py
+  [2] ○ extract_function   → examples/utils/main.py
       WHY: 2 occurrences of 14-line block across 2 files — saves 14 lines
       FILES: examples/05_llm_semantic_review/main_template.py, examples/06_multilang_validation/main_template.py
+  [3] ○ extract_function   → mcp/server/utils/handle_validate_syntax.py
+      WHY: 3 occurrences of 7-line block across 1 files — saves 14 lines
+      FILES: mcp/server/_tools_vallm.py
   [4] ○ extract_function   → examples/utils/log_code.py
       WHY: 2 occurrences of 12-line block across 2 files — saves 12 lines
       FILES: examples/10_mcp_ollama_demo/mcp_demo.py, examples/11_claude_code_autonomous/claude_autonomous_demo.py
-  [5] ○ extract_function   → examples/utils/load_config.py
-      WHY: 3 occurrences of 5-line block across 3 files — saves 10 lines
-      FILES: examples/10_mcp_ollama_demo/legacy_code/order_processor.py, examples/11_claude_code_autonomous/legacy_code/data_processor.py, examples/12_ollama_simple_demo/legacy_code/simple_buggy.py
-  [6] ○ extract_function   → src/vallm/validators/utils/create_validator.py
+  [5] ○ extract_function   → src/vallm/validators/utils/create_validator.py
       WHY: 2 occurrences of 10-line block across 2 files — saves 10 lines
       FILES: src/vallm/validators/lint.py, src/vallm/validators/logical.py
-  [7] ○ extract_function   → src/vallm/validators/imports/utils/_get_error_message.py
+  [6] ○ extract_function   → src/vallm/validators/imports/utils/_get_error_message.py
       WHY: 4 occurrences of 3-line block across 4 files — saves 9 lines
       FILES: src/vallm/validators/imports/go_imports.py, src/vallm/validators/imports/java_imports.py, src/vallm/validators/imports/javascript_imports.py, src/vallm/validators/imports/rust_imports.py
-  [8] ○ extract_function   → src/vallm/validators/imports/utils/_get_rule_name.py
+  [7] ○ extract_function   → src/vallm/validators/imports/utils/_get_rule_name.py
       WHY: 4 occurrences of 3-line block across 4 files — saves 9 lines
       FILES: src/vallm/validators/imports/go_imports.py, src/vallm/validators/imports/java_imports.py, src/vallm/validators/imports/javascript_imports.py, src/vallm/validators/imports/rust_imports.py
-  [9] ○ extract_function   → examples/12_ollama_simple_demo/utils/main.py
+  [8] ○ extract_function   → examples/12_ollama_simple_demo/utils/main.py
       WHY: 3 occurrences of 4-line block across 3 files — saves 8 lines
       FILES: examples/12_ollama_simple_demo/best_version.py, examples/12_ollama_simple_demo/iteration_1.py, examples/12_ollama_simple_demo/iteration_2.py
+  [9] ○ extract_function   → examples/utils/load_config.py
+      WHY: 3 occurrences of 4-line block across 3 files — saves 8 lines
+      FILES: examples/10_mcp_ollama_demo/legacy_code/order_processor.py, examples/11_claude_code_autonomous/legacy_code/data_processor.py, examples/12_ollama_simple_demo/legacy_code/simple_buggy.py
   [10] ○ extract_function   → examples/utils/log_step.py
       WHY: 3 occurrences of 3-line block across 3 files — saves 6 lines
       FILES: examples/10_mcp_ollama_demo/mcp_demo.py, examples/11_claude_code_autonomous/claude_autonomous_demo.py, examples/12_ollama_simple_demo/ollama_simple_demo.py
   [11] ○ extract_function   → src/vallm/validators/imports/utils/get_language.py
       WHY: 3 occurrences of 3-line block across 3 files — saves 6 lines
       FILES: src/vallm/validators/imports/go_imports.py, src/vallm/validators/imports/java_imports.py, src/vallm/validators/imports/rust_imports.py
-  [12] ○ extract_function   → examples/utils/log_section.py
-      WHY: 2 occurrences of 6-line block across 2 files — saves 6 lines
-      FILES: examples/10_mcp_ollama_demo/mcp_demo.py, examples/11_claude_code_autonomous/claude_autonomous_demo.py
-  [13] ○ extract_function   → examples/10_mcp_ollama_demo/legacy_code/utils/validate_email_1.py
+  [12] ○ extract_function   → examples/10_mcp_ollama_demo/legacy_code/utils/validate_email_1.py
       WHY: 2 occurrences of 6-line block across 1 files — saves 6 lines
       FILES: examples/10_mcp_ollama_demo/legacy_code/order_processor.py
+  [13] ○ extract_function   → examples/utils/log_section.py
+      WHY: 2 occurrences of 6-line block across 2 files — saves 6 lines
+      FILES: examples/10_mcp_ollama_demo/mcp_demo.py, examples/11_claude_code_autonomous/claude_autonomous_demo.py
   [14] ○ extract_function   → src/vallm/validators/utils/__init__.py
       WHY: 2 occurrences of 3-line block across 2 files — saves 3 lines
       FILES: src/vallm/validators/lint.py, src/vallm/validators/logical.py
   [15] ○ extract_function   → src/vallm/utils/get_default_output_format.py
       WHY: 2 occurrences of 3-line block across 1 files — saves 3 lines
       FILES: src/vallm/config.py
-  [16] ○ extract_function   → examples/utils/dead_code.py
-      WHY: 2 occurrences of 3-line block across 2 files — saves 3 lines
-      FILES: examples/10_mcp_ollama_demo/legacy_code/order_processor.py, examples/12_ollama_simple_demo/legacy_code/simple_buggy.py
-  [17] ○ extract_function   → examples/12_ollama_simple_demo/legacy_code/utils/duplicate_function.py
+  [16] ○ extract_function   → examples/12_ollama_simple_demo/legacy_code/utils/duplicate_function.py
       WHY: 2 occurrences of 3-line block across 1 files — saves 3 lines
       FILES: examples/12_ollama_simple_demo/legacy_code/simple_buggy.py
+  [17] ○ extract_function   → examples/utils/unused_function.py
+      WHY: 2 occurrences of 3-line block across 2 files — saves 3 lines
+      FILES: examples/10_mcp_ollama_demo/legacy_code/order_processor.py, examples/12_ollama_simple_demo/legacy_code/simple_buggy.py
 
 METRICS-TARGET:
   dup_groups:  17 → 0
-  saved_lines: 222 lines recoverable
+  saved_lines: 220 lines recoverable
