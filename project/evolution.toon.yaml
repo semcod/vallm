@@ -1,0 +1,67 @@
+format: evolution-toon-yaml
+timestamp: '2026-03-25'
+stats:
+  total_funcs: 196
+  total_files: 32
+  avg_cc: 3.5
+  max_cc: 27
+  high_cc_count: 4
+  critical_count: 9
+refactoring:
+  action_count: 5
+  actions:
+  - priority: critical
+    action: SPLIT-FUNC
+    target: BatchProcessor._process_files
+    cc: 26
+    fan_out: 12
+    reason: CC=26 exceeds 15
+    effort: ~1h
+  - priority: critical
+    action: SPLIT-FUNC
+    target: walk
+    cc: 27
+    fan_out: 11
+    reason: CC=27 exceeds 15
+    effort: ~1h
+  - priority: high
+    action: SPLIT
+    target: mcp/server/_tools_vallm.py
+    reason: 508L, 0 classes, max CC=22
+    effort: ~4h
+  - priority: high
+    action: SPLIT-FUNC
+    target: validate_code
+    cc: 22
+    fan_out: 12
+    reason: CC=22 exceeds 15
+    effort: ~1h
+  - priority: high
+    action: SPLIT-FUNC
+    target: output_batch_toon
+    cc: 17
+    fan_out: 5
+    reason: CC=17 exceeds 15
+    effort: ~1h
+risks:
+  count: 1
+  items:
+  - type: breaking_imports
+    target: mcp/server/_tools_vallm.py
+    impact: may break 8 import paths
+metrics_target:
+  avg_cc:
+    current: 3.5
+    target: 2.4
+  max_cc:
+    current: 27
+    target: 13
+  god_modules:
+    current: 1
+    target: 0
+  high_cc:
+    current: 4
+    target: 2
+  hub_types:
+    current: 0
+    target: 0

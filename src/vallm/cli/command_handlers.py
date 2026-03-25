@@ -11,6 +11,7 @@ from rich.console import Console
 from vallm.cli.batch_processor import BatchProcessor
 from vallm.cli.settings_builders import build_validate_settings, build_batch_settings
 from vallm.cli.output_formatters import output_validate_result
+from vallm.config import get_default_filenames, get_default_language, get_default_output_format
 from vallm.core.languages import detect_language
 from vallm.core.proposal import Proposal
 
@@ -28,7 +29,7 @@ def validate_command(
     enable_security: bool = typer.Option(False, "--security", help="Enable security checks"),
     enable_regression: bool = typer.Option(False, "--regression", help="Enable regression tests"),
     model: Optional[str] = typer.Option(None, "--model", "-m", help="LLM model for semantic"),
-    output_format: str = typer.Option("rich", "--output", "-o", help=OUTPUT_FORMAT_HELP),
+    output_format: str = typer.Option(get_default_output_format(), "--output", "-o", help=OUTPUT_FORMAT_HELP),
     verbose: bool = typer.Option(False, "--verbose", "-v", help="Show detailed results"),
     exit_on_verdict: bool = typer.Option(False, "--exit", help="Exit with non-zero on fail/review"),
 ) -> None:
@@ -72,7 +73,7 @@ def check_command(
     code: Optional[str] = typer.Option(None, "--code", "-c", help="Code string to validate"),
     file: Optional[Path] = typer.Option(None, "--file", "-f", help="File to validate"),
     language: Optional[str] = typer.Option(None, "--lang", "-l", help="Programming language"),
-    output_format: str = typer.Option("rich", "--output", "-o", help="Output format"),
+    output_format: str = typer.Option(get_default_output_format(), "--output", "-o", help="Output format"),
 ) -> None:
     """Quick syntax check only (tier 1)."""
     # Load code
@@ -113,7 +114,7 @@ def batch_command(
     no_imports: bool = typer.Option(False, "--no-imports", help="Skip import validation (faster)"),
     no_complexity: bool = typer.Option(False, "--no-complexity", help="Skip complexity analysis (faster)"),
     model: Optional[str] = typer.Option(None, "--model", "-m", help="LLM model for semantic"),
-    format_: str = typer.Option("rich", "--format", help=OUTPUT_FORMAT_HELP),
+    format_: str = typer.Option(get_default_output_format(), "--format", "-f", help=OUTPUT_FORMAT_HELP),
     output: Optional[Path] = typer.Option(None, "--output", "-o", help="Output directory"),
     fail_fast: bool = typer.Option(False, "--fail-fast", help="Stop on first failure"),
     verbose: bool = typer.Option(False, "--verbose", "-v", help="Show detailed validation results for each file"),
@@ -152,14 +153,15 @@ def batch_command(
         output_dir.mkdir(parents=True, exist_ok=True)
         
         # Generate filename based on format
+        default_filenames = get_default_filenames()
         if format_ == "toon":
-            output_file = output_dir / "validation.toon"
+            output_file = output_dir / default_filenames["toon"]
         elif format_ == "json":
-            output_file = output_dir / "validation.json"
+            output_file = output_dir / default_filenames["json"]
         elif format_ == "yaml":
-            output_file = output_dir / "validation.yaml"
+            output_file = output_dir / default_filenames["yaml"]
         else:
-            output_file = output_dir / "validation.txt"
+            output_file = output_dir / default_filenames["txt"]
         
         # Redirect output to file
         import sys
@@ -247,7 +249,7 @@ def _detect_and_log_language(file: Optional[Path], language: Optional[str]) -> s
         detected_language = lang_obj.value[0]  # tree-sitter identifier
         console.print(f"[dim]Detected language: {detected_language}[/dim]")
     else:
-        detected_language = "python"  # default for string input
+        detected_language = get_default_language()  # default for string input
         console.print(f"[dim]Using default language: {detected_language}[/dim]")
     
     return detected_language

@@ -9,11 +9,17 @@ from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
+# Global settings instance
+_settings: Optional[VallmSettings] = None
+
+
 class VallmSettings(BaseSettings):
     """vallm configuration with layered sources: defaults → TOML → env → CLI."""
 
     model_config = SettingsConfigDict(
         env_prefix="VALLM_",
+        env_file=".env",
+        env_file_encoding="utf-8",
     )
 
     # Scoring thresholds
@@ -51,9 +57,65 @@ class VallmSettings(BaseSettings):
     # Language detection
     default_language: str = "python"
 
+    # Output file configurations
+    default_toon_filename: str = Field(default="validation.toon.yaml", description="Default filename for toon format output")
+    default_json_filename: str = Field(default="validation.json", description="Default filename for JSON format output")
+    default_yaml_filename: str = Field(default="validation.yaml", description="Default filename for YAML format output")
+    default_txt_filename: str = Field(default="validation.txt", description="Default filename for text format output")
+
+    # Cache settings
+    semantic_cache_enabled: bool = Field(default=True, description="Enable semantic validation cache")
+    semantic_cache_ttl: int = Field(default=3600, description="Semantic cache TTL in seconds")
+
+    # Performance settings
+    max_concurrent_validations: int = Field(default=4, description="Maximum concurrent validation tasks")
+    timeout_seconds: int = Field(default=300, description="Timeout for validation operations")
+
     @classmethod
     def from_toml(cls, path: Optional[Path] = None) -> VallmSettings:
         """Load settings, optionally from a specific TOML file."""
         if path and path.exists():
             return cls(_toml_file=str(path))
         return cls()
+
+
+def get_settings() -> VallmSettings:
+    """Get global settings instance, loading from .env if available."""
+    global _settings
+    if _settings is None:
+        # Check for local .env file first
+        env_file = Path.cwd() / ".env"
+        if env_file.exists():
+            _settings = VallmSettings(_env_file=str(env_file))
+        else:
+            _settings = VallmSettings()
+    return _settings
+
+
+def reload_settings() -> VallmSettings:
+    """Reload settings from environment variables."""
+    global _settings
+    _settings = None
+    return get_settings()
+
+
+# Convenience functions for common settings
+def get_default_filenames() -> dict[str, str]:
+    """Get default output filenames by format."""
+    settings = get_settings()
+    return {
+        "toon": settings.default_toon_filename,
+        "json": settings.default_json_filename,
+        "yaml": settings.default_yaml_filename,
+        "txt": settings.default_txt_filename,
+    }
+
+
+def get_default_output_format() -> str:
+    """Get default output format."""
+    return get_settings().output_format
+
+
+def get_default_language() -> str:
+    """Get default programming language."""
+    return get_settings().default_language

@@ -1,10 +1,10 @@
-# vallm batch | 183f | 127✓ 56✗
+# vallm batch | 185f | 130✓ 55✗
 
 SUMMARY:
-  total: 183
-  passed: 127
-  failed: 56
-  success: 69.4%
+  total: 185
+  passed: 130
+  failed: 55
+  success: 70.3%
 
 FILES:
   [python]
@@ -348,6 +348,15 @@ FILES:
     ✓ project/project.yaml
       verdict: pass
       score: 1.00
+    ✓ project/map.toon.yaml
+      verdict: pass
+      score: 1.00
+    ✓ project/evolution.toon.yaml
+      verdict: pass
+      score: 1.00
+    ✓ project/analysis.toon.yaml
+      verdict: pass
+      score: 1.00
   [toml]
     ✓ pyproject.toml
       verdict: pass
@@ -396,7 +405,6 @@ FILES:
 
 FAILED:
   ✗ CONTRIBUTING.md: Unsupported file type
-  ✗ project.toon: Unsupported file type
   ✗ Makefile: Unsupported file type
   ✗ VERSION: Unsupported file type
   ✗ TICKET: Unsupported file type

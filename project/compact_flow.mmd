@@ -14,7 +14,7 @@ flowchart TD
     examples_mcp_demo["examples.mcp_demo<br/>5 funcs"]
     examples_utils["examples.utils<br/>13 funcs"]
     mcp_server["mcp.server<br/>13 funcs"]
-    publish_env_lib["publish-env.lib<br/>11744 funcs"]
+    publish_env_lib["publish-env.lib<br/>11803 funcs"]
     scripts_bump_version["scripts.bump_version<br/>2 funcs"]
     src_vallm["src.vallm<br/>183 funcs"]
     src_vallm ==>|98| publish_env_lib
@@ -42,11 +42,11 @@ flowchart TD
     examples_10_mcp_ollama_demo -->|2| examples_utils
     examples_04_graph_analysis -->|1| src_vallm
     examples_04_graph_analysis -->|1| examples_utils
-    examples_12_ollama_simple_demo -->|1| examples_utils
     examples_11_claude_code_autonomous -->|1| examples_utils
+    examples_12_ollama_simple_demo -->|1| examples_utils
     examples_01_basic_validation -->|1| publish_env_lib
-    examples_02_ast_comparison -->|1| examples_utils
     examples_03_security_check -->|1| examples_utils
+    examples_02_ast_comparison -->|1| examples_utils
     examples_07_multi_language -->|1| src_vallm
     examples_08_code2llm_integration -->|1| src_vallm
     examples_12_ollama_simple_demo -->|1| examples_10_mcp_ollama_demo
