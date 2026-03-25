@@ -1,0 +1,91 @@
+format: toon-v2-yaml
+timestamp: '2026-03-25'
+header:
+  files: 45
+  lines: 5699
+  functions: 12147
+  avg_cc: 3.6
+  critical_count: 4
+  duplicates: 0
+  cycles: 0
+health:
+  count: 20
+  status: issues_found
+  issues:
+  - severity: yellow
+    code: CC
+    message: validate_code CC=22 (limit:15)
+  - severity: yellow
+    code: CC
+    message: renderToken CC=17 (limit:15)
+  - severity: yellow
+    code: CC
+    message: send CC=19 (limit:15)
+  - severity: yellow
+    code: CC
+    message: build_digest_header CC=19 (limit:15)
+  - severity: yellow
+    code: CC
+    message: resolve_redirects CC=15 (limit:15)
+  - severity: yellow
+    code: CC
+    message: _encode_files CC=21 (limit:15)
+  - severity: yellow
+    code: CC
+    message: prepare_url CC=17 (limit:15)
+  - severity: yellow
+    code: CC
+    message: prepare_body CC=17 (limit:15)
+  - severity: yellow
+    code: CC
+    message: super_len CC=18 (limit:15)
+  - severity: yellow
+    code: CC
+    message: should_bypass_proxies CC=17 (limit:15)
+  - severity: yellow
+    code: CC
+    message: filter CC=16 (limit:15)
+  - severity: yellow
+    code: CC
+    message: parse_email CC=26 (limit:15)
+  - severity: yellow
+    code: CC
+    message: _cpython_abis CC=15 (limit:15)
+  - severity: yellow
+    code: CC
+    message: cpython_tags CC=15 (limit:15)
+  - severity: yellow
+    code: CC
+    message: mac_platforms CC=15 (limit:15)
+  - severity: yellow
+    code: CC
+    message: collect_type_table CC=21 (limit:15)
+  - severity: yellow
+    code: CC
+    message: write_c_source_to_f CC=23 (limit:15)
+  - severity: yellow
+    code: CC
+    message: _generate_cpy_function_decl CC=30 (limit:15)
+  - severity: yellow
+    code: CC
+    message: _struct_ctx CC=24 (limit:15)
+  - severity: yellow
+    code: CC
+    message: recompile CC=19 (limit:15)
+refactor:
+  steps:
+  - action: split_methods
+    count: 20
+    reason: high_cc
+pipelines:
+  count: 0
+  pipelines: []
+layers:
+  count: 0
+  layers: []
+coupling:
+  count: 0
+  packages: []
+external:
+  count: 0
+  libraries: []

@@ -333,12 +333,12 @@ D:
   src/vallm/validators/imports/javascript_imports.py:
     e: JavaScriptImportValidator
     JavaScriptImportValidator(BaseImportValidator): __init__(1),validate(2),extract_imports(1),module_exists(1),get_language(0),_get_error_message(1),_get_rule_name(0)  # JavaScript/TypeScript import validator...
-  src/vallm/validators/imports/c_imports.py:
-    e: CImportValidator
-    CImportValidator(BaseImportValidator): __init__(1),validate(2),extract_imports(1),module_exists(1)  # C/C++ import validator...
   src/vallm/validators/imports/go_imports.py:
     e: GoImportValidator
     GoImportValidator(BaseImportValidator): get_language(0),_get_error_message(1),_get_rule_name(0),extract_imports(1),module_exists(1)  # Go import validator...
+  src/vallm/validators/imports/c_imports.py:
+    e: CImportValidator
+    CImportValidator(BaseImportValidator): __init__(1),validate(2),extract_imports(1),module_exists(1)  # C/C++ import validator...
   examples/03_security_check/main.py:
     e: main
     main()
@@ -380,12 +380,12 @@ D:
   examples/utils/extract_code_from_response.py:
     e: extract_code_from_response
     extract_code_from_response(response)
-  examples/12_ollama_simple_demo/utils/calculate_total.py:
-    e: calculate_total
-    calculate_total(items)
   src/vallm/config.py:
     e: VallmSettings
     VallmSettings(BaseSettings): from_toml(1)  # vallm configuration with layered sources: defaults → TOML → ...
+  examples/12_ollama_simple_demo/utils/calculate_total.py:
+    e: calculate_total
+    calculate_total(items)
   src/vallm/validators/imports/wrapper.py:
     e: ImportValidator
     ImportValidator(BaseValidator): validate(2)  # Backward compatibility wrapper for the refactored import val...
@@ -432,16 +432,16 @@ D:
   examples/12_ollama_simple_demo/utils/load_config.py:
     e: load_config
     load_config()
-  examples/12_ollama_simple_demo/utils/main.py:
-    e: run_demo_main
-    run_demo_main()
   examples/12_ollama_simple_demo/utils/save_data.py:
     e: save_data
     save_data(data;filename)
-  examples/__init__.py:
+  examples/12_ollama_simple_demo/utils/main.py:
+    e: run_demo_main
+    run_demo_main()
+  mcp_server.py:
   mcp/__init__.py:
   mcp/server/__init__.py:
-  mcp_server.py:
+  examples/__init__.py:
   src/vallm/cli/__init__.py:
   src/vallm/__init__.py:
   src/vallm/__main__.py:
@@ -457,10 +457,6 @@ Attributes:
   src/vallm/sandbox/__init__.py:
   examples/12_ollama_simple_demo/utils/__init__.py:
   project.sh:
-  examples/run.sh:
-    e: run_example
-    run_example()
-  examples/11_claude_code_autonomous/docker-entrypoint.sh:
   examples/11_claude_code_autonomous/run.sh:
     e: print_section,print_step,print_success,print_warning,print_error
     print_section()
@@ -468,8 +464,12 @@ Attributes:
     print_success()
     print_warning()
     print_error()
-  examples/12_ollama_simple_demo/run.sh:
+  examples/11_claude_code_autonomous/docker-entrypoint.sh:
+  examples/run.sh:
+    e: run_example
+    run_example()
   examples/12_ollama_simple_demo/docker-entrypoint.sh:
+  examples/12_ollama_simple_demo/run.sh:
   examples/10_mcp_ollama_demo/docker-entrypoint.sh:
   examples/10_mcp_ollama_demo/run.sh:
     e: print_section,print_step,print_success,print_warning,print_error,print,print,print,print

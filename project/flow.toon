@@ -355,16 +355,16 @@ DATA_TYPES (by cross-function usage) [264 annotated, 0 inferred / 344 functions]
   int                  consumed:23  produced:4    !! HUB-TYPE → split interface
   list                 consumed:19  produced:6    !! HUB-TYPE → split interface
   Proposal             consumed:20  produced:1    !! HUB-TYPE → split interface
-  VallmSettings        consumed:11  produced:2    !! HUB-TYPE → split interface
   Dict                 consumed:7   produced:6  
-  float                consumed:4   produced:4  
+  VallmSettings        consumed:11  produced:2    !! HUB-TYPE → split interface
   list[Path]           consumed:6   produced:2  
-  Issue                consumed:1   produced:4  
+  float                consumed:4   produced:4  
   list[str]            consumed:3   produced:2  
-  list[Issue]          consumed:0   produced:4    narrow scope
+  Issue                consumed:1   produced:4  
   Language             consumed:0   produced:4    narrow scope
+  list[Issue]          consumed:0   produced:4    narrow scope
   GitignoreParser      consumed:1   produced:2    narrow scope
-  ExecutionResult      consumed:0   produced:3    narrow scope
+  str | Path           consumed:3   produced:0    narrow scope
   Path | str           consumed:3   produced:0    narrow scope
 
   HUB TYPES (consumed ≥10):
@@ -388,9 +388,9 @@ DATA_TYPES (by cross-function usage) [264 annotated, 0 inferred / 344 functions]
       - (analyze consumers to suggest sub-interfaces)
 
 SIDE_EFFECTS:
-  IO:        main, example_syntax_validation, example_security_validation, example_full_pipeline, example_selective_validation, main, handle_tools_call, main, LogicalErrorValidator._check_pyflakes, RegressionValidator._write_code
+  IO:        main, handle_tools_call, main, example_syntax_validation, example_security_validation, example_full_pipeline, example_selective_validation, main, LogicalErrorValidator._check_pyflakes, RegressionValidator._write_code
   Cache:     SemanticCache.get_cache_stats, get_semantic_cache, clear_semantic_cache, SemanticValidator.__init__, SemanticValidator.validate
-  Mutation:  validate_code, handle_tools_list, _initialize_validators, _run_validation_pipeline, _get_default_validators, LogicalErrorValidator.__init__, ComplexityValidator.__init__, ComplexityValidator.validate, ComplexityValidator._check_python_complexity, ComplexityValidator._check_lizard
+  Mutation:  validate_code, handle_tools_list, _initialize_validators, _run_validation_pipeline, _get_default_validators, ComplexityValidator.__init__, ComplexityValidator.validate, ComplexityValidator._check_python_complexity, ComplexityValidator._check_lizard, LogicalErrorValidator.__init__
   Pure:      bump_version, validate_syntax, validate_imports, validate_security, handle_validate_syntax, handle_validate_imports, handle_validate_security, handle_validate_code, handle_initialize, handle_request
 
   PIPELINE PURITY:

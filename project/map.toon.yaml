@@ -1,0 +1,1236 @@
+format: map-toon-yaml
+project: vallm
+timestamp: '2026-03-25'
+stats:
+  files: 45
+  lines: 5699
+  functions: 198
+  languages:
+    python: 44
+    shell: 1
+modules:
+- path: mcp/__init__.py
+  lines: 1
+  imports: []
+  exports: []
+  classes: []
+  functions: []
+- path: mcp/server/__init__.py
+  lines: 1
+  imports: []
+  exports: []
+  classes: []
+  functions: []
+- path: mcp/server/_tools_vallm.py
+  lines: 508
+  imports: []
+  exports:
+  - type: function
+    name: validate_syntax
+  - type: function
+    name: validate_imports
+  - type: function
+    name: validate_security
+  - type: function
+    name: validate_code
+  - type: function
+    name: handle_validate_syntax
+  - type: function
+    name: handle_validate_imports
+  - type: function
+    name: handle_validate_security
+  - type: function
+    name: handle_validate_code
+  classes: []
+  functions:
+  - name: validate_syntax
+    args:
+    - code
+    - language
+    - filename
+    returns: null
+  - name: validate_imports
+    args:
+    - code
+    - language
+    - filename
+    returns: null
+  - name: validate_security
+    args:
+    - code
+    - language
+    - filename
+    returns: null
+  - name: validate_code
+    args:
+    - code
+    - language
+    - filename
+    - reference_code
+    - enable_syntax
+    - enable_imports
+    - enable_security
+    - enable_complexity
+    - enable_regression
+    returns: null
+  - name: handle_validate_syntax
+    args:
+    - params
+    returns: null
+  - name: handle_validate_imports
+    args:
+    - params
+    returns: null
+  - name: handle_validate_security
+    args:
+    - params
+    returns: null
+  - name: handle_validate_code
+    args:
+    - params
+    returns: null
+- path: mcp/server/self_server.py
+  lines: 185
+  imports: []
+  exports:
+  - type: function
+    name: handle_initialize
+  - type: function
+    name: handle_tools_list
+  - type: function
+    name: handle_tools_call
+  - type: function
+    name: handle_request
+  - type: function
+    name: main
+  classes: []
+  functions:
+  - name: handle_initialize
+    args:
+    - request_id
+    returns: null
+  - name: handle_tools_list
+    args:
+    - request_id
+    returns: null
+  - name: handle_tools_call
+    args:
+    - request_id
+    - params
+    returns: null
+  - name: handle_request
+    args:
+    - request
+    returns: null
+  - name: main
+    args: []
+    returns: null
+- path: mcp_server.py
+  lines: 28
+  imports: []
+  exports: []
+  classes: []
+  functions: []
+- path: project.sh
+  lines: 21
+  imports: []
+  exports: []
+  classes: []
+  functions: []
+- path: scripts/bump_version.py
+  lines: 78
+  imports: []
+  exports:
+  - type: function
+    name: bump_version
+  - type: function
+    name: main
+  classes: []
+  functions:
+  - name: bump_version
+    args:
+    - version_str
+    - bump_type
+    returns: null
+  - name: main
+    args: []
+    returns: null
+- path: src/vallm/__init__.py
+  lines: 19
+  imports: []
+  exports: []
+  classes: []
+  functions: []
+- path: src/vallm/__main__.py
+  lines: 5
+  imports: []
+  exports: []
+  classes: []
+  functions: []
+- path: src/vallm/cli/__init__.py
+  lines: 43
+  imports: []
+  exports: []
+  classes: []
+  functions: []
+- path: src/vallm/cli/batch_processor.py
+  lines: 319
+  imports: []
+  exports:
+  - type: class
+    name: BatchProcessor
+  classes:
+  - name: BatchProcessor
+    bases: []
+    methods:
+    - name: __init__
+      arity: 1
+    - name: process_batch
+      arity: 10
+    - name: output_batch_results
+      arity: 5
+    - name: _load_gitignore_parser
+      arity: 1
+    - name: _build_file_list
+      arity: 2
+    - name: _filter_files
+      arity: 5
+    - name: _parse_filter_patterns
+      arity: 2
+    - name: _should_exclude_file
+      arity: 2
+    - name: _matches_include_pattern
+      arity: 2
+    - name: _handle_no_files_found
+      arity: 1
+    - name: _show_validation_start
+      arity: 2
+    - name: _process_files
+      arity: 6
+  functions: []
+- path: src/vallm/cli/command_handlers.py
+  lines: 342
+  imports: []
+  exports:
+  - type: function
+    name: validate_command
+  - type: function
+    name: check_command
+  - type: function
+    name: batch_command
+  - type: function
+    name: info_command
+  - type: function
+    name: _load_code
+  - type: function
+    name: _load_reference
+  - type: function
+    name: _detect_and_log_language
+  - type: function
+    name: _build_proposal
+  - type: function
+    name: _exit_on_verdict
+  - type: function
+    name: _show_language_info
+  - type: function
+    name: _show_general_info
+  classes: []
+  functions:
+  - name: validate_command
+    args:
+    - code
+    - file
+    - language
+    - reference
+    - config
+    - enable_semantic
+    - enable_security
+    - enable_regression
+    - model
+    - output_format
+    - verbose
+    - exit_on_verdict
+    returns: null
+  - name: check_command
+    args:
+    - code
+    - file
+    - language
+    - output_format
+    returns: null
+  - name: batch_command
+    args:
+    - paths
+    - recursive
+    - include
+    - exclude
+    - no_gitignore
+    - enable_semantic
+    - enable_security
+    - enable_regression
+    - no_imports
+    - no_complexity
+    - model
+    - format
+    - output
+    - fail_fast
+    - verbose
+    - show_issues
+    returns: null
+  - name: info_command
+    args:
+    - language
+    - clear_cache
+    returns: null
+  - name: _load_code
+    args:
+    - file
+    - code
+    returns: null
+  - name: _load_reference
+    args:
+    - reference
+    returns: null
+  - name: _detect_and_log_language
+    args:
+    - file
+    - language
+    returns: null
+  - name: _build_proposal
+    args:
+    - code_str
+    - detected_language
+    - ref_code
+    - file
+    returns: null
+  - name: _exit_on_verdict
+    args:
+    - result
+    returns: null
+  - name: _show_language_info
+    args:
+    - language
+    returns: null
+  - name: _show_general_info
+    args: []
+    returns: null
+- path: src/vallm/cli/output_formatters.py
+  lines: 421
+  imports: []
+  exports:
+  - type: function
+    name: output_validate_result
+  - type: function
+    name: output_batch_results
+  - type: function
+    name: output_batch_empty
+  - type: function
+    name: output_json
+  - type: function
+    name: output_text
+  - type: function
+    name: output_rich
+  - type: function
+    name: output_batch_rich
+  - type: function
+    name: output_batch_text
+  - type: function
+    name: format_error_message
+  - type: function
+    name: build_files_data
+  - type: function
+    name: build_failed_files_data
+  - type: function
+    name: output_batch_json
+  - type: function
+    name: output_batch_yaml
+  - type: function
+    name: output_batch_toon
+  - type: function
+    name: print_summary_header
+  - type: function
+    name: build_results_table
+  classes: []
+  functions:
+  - name: output_validate_result
+    args:
+    - result
+    - output_format
+    - verbose
+    returns: null
+  - name: output_batch_results
+    args:
+    - results_by_language
+    - filtered_files
+    - passed_count
+    - failed_files
+    - output_format
+    returns: null
+  - name: output_batch_empty
+    args:
+    - output_format
+    returns: null
+  - name: output_json
+    args:
+    - result
+    returns: null
+  - name: output_text
+    args:
+    - result
+    returns: null
+  - name: output_rich
+    args:
+    - result
+    - verbose
+    returns: null
+  - name: output_batch_rich
+    args:
+    - results_by_language
+    - filtered_files
+    - passed_count
+    - failed_files
+    returns: null
+  - name: output_batch_text
+    args:
+    - results_by_language
+    - filtered_files
+    - passed_count
+    - failed_files
+    returns: null
+  - name: format_error_message
+    args:
+    - error
+    returns: null
+  - name: build_files_data
+    args:
+    - results_by_language
+    returns: null
+  - name: build_failed_files_data
+    args:
+    - failed_files
+    returns: null
+  - name: output_batch_json
+    args:
+    - results_by_language
+    - filtered_files
+    - passed_count
+    - failed_files
+    returns: null
+  - name: output_batch_yaml
+    args:
+    - results_by_language
+    - filtered_files
+    - passed_count
+    - failed_files
+    returns: null
+  - name: output_batch_toon
+    args:
+    - results_by_language
+    - filtered_files
+    - passed_count
+    - failed_files
+    returns: null
+  - name: print_summary_header
+    args: []
+    returns: null
+  - name: build_results_table
+    args:
+    - results_by_language
+    returns: null
+- path: src/vallm/config.py
+  lines: 59
+  imports: []
+  exports:
+  - type: class
+    name: VallmSettings
+  classes:
+  - name: VallmSettings
+    bases:
+    - BaseSettings
+    methods:
+    - name: from_toml
+      arity: 1
+  functions: []
+- path: src/vallm/core/__init__.py
+  lines: 3
+  imports: []
+  exports: []
+  classes: []
+  functions: []
+- path: src/vallm/core/ast_compare.py
+  lines: 135
+  imports: []
+  exports:
+  - type: function
+    name: parse_code
+  - type: function
+    name: parse_python_ast
+  - type: function
+    name: normalize_python_ast
+  - type: function
+    name: python_ast_similarity
+  - type: function
+    name: tree_sitter_node_count
+  - type: function
+    name: tree_sitter_error_count
+  - type: function
+    name: structural_diff_summary
+  classes: []
+  functions:
+  - name: parse_code
+    args:
+    - code
+    - language
+    returns: null
+  - name: parse_python_ast
+    args:
+    - code
+    returns: null
+  - name: normalize_python_ast
+    args:
+    - tree
+    returns: null
+  - name: python_ast_similarity
+    args:
+    - code1
+    - code2
+    returns: null
+  - name: tree_sitter_node_count
+    args:
+    - code
+    - language
+    returns: null
+  - name: tree_sitter_error_count
+    args:
+    - code
+    - language
+    returns: null
+  - name: structural_diff_summary
+    args:
+    - code1
+    - code2
+    - language
+    returns: null
+- path: src/vallm/core/gitignore.py
+  lines: 272
+  imports: []
+  exports:
+  - type: class
+    name: GitignoreParser
+  - type: function
+    name: load_gitignore
+  - type: function
+    name: get_default_excludes
+  - type: function
+    name: create_default_gitignore_parser
+  - type: function
+    name: should_exclude
+  classes:
+  - name: GitignoreParser
+    bases: []
+    methods:
+    - name: __init__
+      arity: 1
+    - name: _parse
+      arity: 1
+    - name: matches
+      arity: 1
+    - name: _match_pattern
+      arity: 3
+    - name: _fnmatch
+      arity: 2
+    - name: _pattern_to_regex
+      arity: 1
+  functions:
+  - name: load_gitignore
+    args:
+    - path
+    returns: null
+  - name: get_default_excludes
+    args: []
+    returns: null
+  - name: create_default_gitignore_parser
+    args: []
+    returns: null
+  - name: should_exclude
+    args:
+    - path
+    - gitignore_parser
+    - use_defaults
+    returns: null
+- path: src/vallm/core/graph_diff.py
+  lines: 104
+  imports: []
+  exports:
+  - type: class
+    name: GraphDiffResult
+  - type: function
+    name: diff_graphs
+  - type: function
+    name: diff_python_code
+  - type: function
+    name: _diff_list
+  classes:
+  - name: GraphDiffResult
+    bases: []
+    methods: []
+  functions:
+  - name: diff_graphs
+    args:
+    - before
+    - after
+    returns: null
+  - name: diff_python_code
+    args:
+    - before_code
+    - after_code
+    returns: null
+  - name: _diff_list
+    args:
+    - before
+    - after
+    - added
+    returns: null
+- path: src/vallm/core/languages.py
+  lines: 227
+  imports: []
+  exports:
+  - type: class
+    name: Language
+  - type: function
+    name: detect_language
+  - type: function
+    name: get_language_for_validation
+  classes:
+  - name: Language
+    bases:
+    - Enum
+    methods:
+    - name: __init__
+      arity: 3
+    - name: from_extension
+      arity: 1
+    - name: from_path
+      arity: 1
+    - name: from_string
+      arity: 1
+  functions:
+  - name: detect_language
+    args:
+    - source
+    returns: null
+  - name: get_language_for_validation
+    args:
+    - source
+    - explicit
+    returns: null
+- path: src/vallm/core/proposal.py
+  lines: 37
+  imports: []
+  exports:
+  - type: class
+    name: Proposal
+  classes:
+  - name: Proposal
+    bases: []
+    methods: []
+  functions: []
+- path: src/vallm/hookspecs.py
+  lines: 33
+  imports: []
+  exports:
+  - type: class
+    name: VallmSpec
+  classes:
+  - name: VallmSpec
+    bases: []
+    methods:
+    - name: validate_proposal
+      arity: 2
+    - name: get_validator_name
+      arity: 0
+    - name: get_validator_tier
+      arity: 0
+  functions: []
+- path: src/vallm/sandbox/__init__.py
+  lines: 1
+  imports: []
+  exports: []
+  classes: []
+  functions: []
+- path: src/vallm/sandbox/runner.py
+  lines: 144
+  imports: []
+  exports:
+  - type: class
+    name: ExecutionResult
+  - type: class
+    name: SandboxRunner
+  classes:
+  - name: ExecutionResult
+    bases: []
+    methods: []
+  - name: SandboxRunner
+    bases: []
+    methods:
+    - name: __init__
+      arity: 1
+    - name: run
+      arity: 2
+    - name: _run_subprocess
+      arity: 2
+    - name: _run_docker
+      arity: 2
+  functions: []
+- path: src/vallm/scoring.py
+  lines: 218
+  imports: []
+  exports:
+  - type: class
+    name: Verdict
+  - type: class
+    name: Severity
+  - type: class
+    name: Issue
+  - type: class
+    name: ValidationResult
+  - type: class
+    name: PipelineResult
+  - type: function
+    name: compute_verdict
+  - type: function
+    name: validate
+  - type: function
+    name: _initialize_settings
+  - type: function
+    name: _initialize_context
+  - type: function
+    name: _initialize_validators
+  - type: function
+    name: _run_validation_pipeline
+  - type: function
+    name: _get_default_validators
+  classes:
+  - name: Verdict
+    bases:
+    - Enum
+    methods: []
+  - name: Severity
+    bases:
+    - Enum
+    methods: []
+  - name: Issue
+    bases: []
+    methods:
+    - name: __str__
+      arity: 0
+  - name: ValidationResult
+    bases: []
+    methods: []
+  - name: PipelineResult
+    bases: []
+    methods: []
+  functions:
+  - name: compute_verdict
+    args:
+    - results
+    - settings
+    - filename
+    returns: null
+  - name: validate
+    args:
+    - proposal
+    - settings
+    - validators
+    - context
+    returns: null
+  - name: _initialize_settings
+    args:
+    - settings
+    returns: null
+  - name: _initialize_context
+    args:
+    - context
+    returns: null
+  - name: _initialize_validators
+    args:
+    - validators
+    - settings
+    returns: null
+  - name: _run_validation_pipeline
+    args:
+    - proposal
+    - validators
+    - context
+    - settings
+    returns: null
+  - name: _get_default_validators
+    args:
+    - settings
+    returns: null
+- path: src/vallm/validators/__init__.py
+  lines: 1
+  imports: []
+  exports: []
+  classes: []
+  functions: []
+- path: src/vallm/validators/base.py
+  lines: 21
+  imports: []
+  exports:
+  - type: class
+    name: BaseValidator
+  classes:
+  - name: BaseValidator
+    bases:
+    - ABC
+    methods:
+    - name: validate
+      arity: 2
+  functions: []
+- path: src/vallm/validators/complexity.py
+  lines: 183
+  imports: []
+  exports:
+  - type: class
+    name: ComplexityValidator
+  classes:
+  - name: ComplexityValidator
+    bases:
+    - BaseValidator
+    methods:
+    - name: __init__
+      arity: 1
+    - name: validate
+      arity: 2
+    - name: _check_python_complexity
+      arity: 1
+    - name: _check_lizard
+      arity: 3
+  functions: []
+- path: src/vallm/validators/imports/__init__.py
+  lines: 25
+  imports: []
+  exports: []
+  classes: []
+  functions: []
+- path: src/vallm/validators/imports/base.py
+  lines: 70
+  imports: []
+  exports:
+  - type: class
+    name: BaseImportValidator
+  classes:
+  - name: BaseImportValidator
+    bases:
+    - ABC
+    methods:
+    - name: validate
+      arity: 2
+    - name: extract_imports
+      arity: 1
+    - name: module_exists
+      arity: 1
+    - name: get_language
+      arity: 0
+    - name: _get_error_message
+      arity: 1
+    - name: _get_rule_name
+      arity: 0
+    - name: create_validation_result
+      arity: 4
+  functions: []
+- path: src/vallm/validators/imports/c_imports.py
+  lines: 88
+  imports: []
+  exports:
+  - type: class
+    name: CImportValidator
+  classes:
+  - name: CImportValidator
+    bases:
+    - BaseImportValidator
+    methods:
+    - name: __init__
+      arity: 1
+    - name: validate
+      arity: 2
+    - name: extract_imports
+      arity: 1
+    - name: module_exists
+      arity: 1
+  functions: []
+- path: src/vallm/validators/imports/factory.py
+  lines: 43
+  imports: []
+  exports:
+  - type: class
+    name: ImportValidatorFactory
+  classes:
+  - name: ImportValidatorFactory
+    bases: []
+    methods:
+    - name: create_validator
+      arity: 1
+    - name: supported_languages
+      arity: 0
+    - name: register_validator
+      arity: 2
+  functions: []
+- path: src/vallm/validators/imports/go_imports.py
+  lines: 84
+  imports: []
+  exports:
+  - type: class
+    name: GoImportValidator
+  classes:
+  - name: GoImportValidator
+    bases:
+    - BaseImportValidator
+    methods:
+    - name: get_language
+      arity: 0
+    - name: _get_error_message
+      arity: 1
+    - name: _get_rule_name
+      arity: 0
+    - name: extract_imports
+      arity: 1
+    - name: module_exists
+      arity: 1
+  functions: []
+- path: src/vallm/validators/imports/java_imports.py
+  lines: 68
+  imports: []
+  exports:
+  - type: class
+    name: JavaImportValidator
+  classes:
+  - name: JavaImportValidator
+    bases:
+    - BaseImportValidator
+    methods:
+    - name: get_language
+      arity: 0
+    - name: _get_error_message
+      arity: 1
+    - name: _get_rule_name
+      arity: 0
+    - name: extract_imports
+      arity: 1
+    - name: module_exists
+      arity: 1
+  functions: []
+- path: src/vallm/validators/imports/javascript_imports.py
+  lines: 118
+  imports: []
+  exports:
+  - type: class
+    name: JavaScriptImportValidator
+  classes:
+  - name: JavaScriptImportValidator
+    bases:
+    - BaseImportValidator
+    methods:
+    - name: __init__
+      arity: 1
+    - name: validate
+      arity: 2
+    - name: extract_imports
+      arity: 1
+    - name: module_exists
+      arity: 1
+    - name: get_language
+      arity: 0
+    - name: _get_error_message
+      arity: 1
+    - name: _get_rule_name
+      arity: 0
+  functions: []
+- path: src/vallm/validators/imports/python_imports.py
+  lines: 113
+  imports: []
+  exports:
+  - type: class
+    name: PythonImportValidator
+  classes:
+  - name: PythonImportValidator
+    bases:
+    - BaseImportValidator
+    methods:
+    - name: validate
+      arity: 2
+    - name: extract_imports
+      arity: 1
+    - name: module_exists
+      arity: 1
+    - name: get_language
+      arity: 0
+    - name: _get_error_message
+      arity: 1
+    - name: _get_rule_name
+      arity: 0
+  functions: []
+- path: src/vallm/validators/imports/rust_imports.py
+  lines: 78
+  imports: []
+  exports:
+  - type: class
+    name: RustImportValidator
+  classes:
+  - name: RustImportValidator
+    bases:
+    - BaseImportValidator
+    methods:
+    - name: get_language
+      arity: 0
+    - name: _get_error_message
+      arity: 1
+    - name: _get_rule_name
+      arity: 0
+    - name: extract_imports
+      arity: 1
+    - name: module_exists
+      arity: 1
+  functions: []
+- path: src/vallm/validators/imports/utils.py
+  lines: 150
+  imports: []
+  exports:
+  - type: function
+    name: walk
+  - type: function
+    name: validate_import_path
+  classes: []
+  functions:
+  - name: walk
+    args:
+    - root
+    - project_root
+    - gitignore_matcher
+    - skip_tests
+    - skip_hidden
+    - max_depth
+    - current_depth
+    returns: null
+  - name: validate_import_path
+    args:
+    - import_path
+    - source_file
+    - project_root
+    - known_modules
+    - stdlib_modules
+    returns: null
+- path: src/vallm/validators/imports/wrapper.py
+  lines: 30
+  imports: []
+  exports:
+  - type: class
+    name: ImportValidator
+  classes:
+  - name: ImportValidator
+    bases:
+    - BaseValidator
+    methods:
+    - name: validate
+      arity: 2
+  functions: []
+- path: src/vallm/validators/lint.py
+  lines: 182
+  imports: []
+  exports:
+  - type: class
+    name: LintValidator
+  - type: function
+    name: create_validator
+  classes:
+  - name: LintValidator
+    bases: []
+    methods:
+    - name: __init__
+      arity: 1
+    - name: validate
+      arity: 2
+    - name: _check_ruff
+      arity: 1
+    - name: _parse_ruff_result
+      arity: 1
+    - name: _parse_ruff_text
+      arity: 1
+  functions:
+  - name: create_validator
+    args:
+    - settings
+    returns: null
+- path: src/vallm/validators/logical.py
+  lines: 142
+  imports: []
+  exports:
+  - type: class
+    name: LogicalErrorValidator
+  - type: function
+    name: create_validator
+  classes:
+  - name: LogicalErrorValidator
+    bases: []
+    methods:
+    - name: __init__
+      arity: 1
+    - name: validate
+      arity: 2
+    - name: _check_pyflakes
+      arity: 1
+    - name: _parse_pyflakes_line
+      arity: 1
+  functions:
+  - name: create_validator
+    args:
+    - settings
+    returns: null
+- path: src/vallm/validators/regression.py
+  lines: 265
+  imports: []
+  exports:
+  - type: class
+    name: RegressionValidator
+  classes:
+  - name: RegressionValidator
+    bases:
+    - BaseValidator
+    methods:
+    - name: __init__
+      arity: 3
+    - name: validate
+      arity: 2
+    - name: _resolve_test_dir
+      arity: 1
+    - name: _write_code
+      arity: 2
+    - name: _build_pytest_cmd
+      arity: 2
+    - name: _run_pytest
+      arity: 3
+    - name: _interpret
+      arity: 1
+    - name: _parse_failures
+      arity: 1
+    - name: _timeout_result
+      arity: 0
+    - name: _exception_result
+      arity: 1
+  functions: []
+- path: src/vallm/validators/security.py
+  lines: 255
+  imports: []
+  exports:
+  - type: class
+    name: SecurityValidator
+  classes:
+  - name: SecurityValidator
+    bases:
+    - BaseValidator
+    methods:
+    - name: validate
+      arity: 2
+    - name: _check_patterns
+      arity: 2
+    - name: _check_python_ast
+      arity: 1
+    - name: _get_func_name
+      arity: 0
+    - name: _try_bandit
+      arity: 0
+  functions: []
+- path: src/vallm/validators/semantic.py
+  lines: 296
+  imports: []
+  exports:
+  - type: class
+    name: SemanticValidator
+  classes:
+  - name: SemanticValidator
+    bases:
+    - BaseValidator
+    methods:
+    - name: __init__
+      arity: 1
+    - name: validate
+      arity: 2
+    - name: _build_prompt
+      arity: 1
+    - name: _call_llm
+      arity: 1
+    - name: _call_ollama
+      arity: 1
+    - name: _call_litellm
+      arity: 1
+    - name: _call_http
+      arity: 1
+    - name: _parse_response
+      arity: 1
+    - name: _extract_json_from_response
+      arity: 1
+    - name: _create_parse_error_result
+      arity: 1
+    - name: _create_json_error_result
+      arity: 1
+    - name: _parse_scores
+      arity: 1
+    - name: _parse_issues
+      arity: 1
+    - name: _parse_severity
+      arity: 1
+    - name: _parse_line_number
+      arity: 1
+  functions: []
+- path: src/vallm/validators/semantic_cache.py
+  lines: 187
+  imports: []
+  exports:
+  - type: class
+    name: SemanticCache
+  - type: function
+    name: get_semantic_cache
+  - type: function
+    name: clear_semantic_cache
+  classes:
+  - name: SemanticCache
+    bases: []
+    methods:
+    - name: __init__
+      arity: 1
+    - name: _get_cache_key
+      arity: 3
+    - name: get
+      arity: 3
+    - name: set
+      arity: 4
+    - name: clear
+      arity: 0
+    - name: get_cache_stats
+      arity: 0
+  functions:
+  - name: get_semantic_cache
+    args: []
+    returns: null
+  - name: clear_semantic_cache
+    args: []
+    returns: null
+- path: src/vallm/validators/syntax.py
+  lines: 96
+  imports: []
+  exports:
+  - type: class
+    name: SyntaxValidator
+  classes:
+  - name: SyntaxValidator
+    bases:
+    - BaseValidator
+    methods:
+    - name: validate
+      arity: 2
+    - name: _validate_python
+      arity: 1
+    - name: _validate_treesitter
+      arity: 2
+  functions: []

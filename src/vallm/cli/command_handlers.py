@@ -106,14 +106,14 @@ def batch_command(
     recursive: bool = typer.Option(False, "--recursive", "-r", help="Search directories recursively"),
     include: Optional[str] = typer.Option(None, "--include", help="Include pattern (glob)"),
     exclude: Optional[str] = typer.Option(None, "--exclude", help="Exclude pattern (glob)"),
-    use_gitignore: bool = typer.Option(True, "--gitignore/--no-gitignore", help="Respect .gitignore"),
+    no_gitignore: bool = typer.Option(False, "--no-gitignore", help="Do not respect .gitignore"),
     enable_semantic: bool = typer.Option(False, "--semantic", help="Enable LLM-as-judge"),
     enable_security: bool = typer.Option(False, "--security", help="Enable security checks"),
     enable_regression: bool = typer.Option(False, "--regression", help="Enable regression tests"),
     no_imports: bool = typer.Option(False, "--no-imports", help="Skip import validation (faster)"),
     no_complexity: bool = typer.Option(False, "--no-complexity", help="Skip complexity analysis (faster)"),
     model: Optional[str] = typer.Option(None, "--model", "-m", help="LLM model for semantic"),
-    format: str = typer.Option("rich", "--format", "-f", help=OUTPUT_FORMAT_HELP),
+    format_: str = typer.Option("rich", "--format", help=OUTPUT_FORMAT_HELP),
     output: Optional[Path] = typer.Option(None, "--output", "-o", help="Output directory"),
     fail_fast: bool = typer.Option(False, "--fail-fast", help="Stop on first failure"),
     verbose: bool = typer.Option(False, "--verbose", "-v", help="Show detailed validation results for each file"),
@@ -138,9 +138,9 @@ def batch_command(
         recursive=recursive,
         include=include,
         exclude=exclude,
-        use_gitignore=use_gitignore,
+        use_gitignore=not no_gitignore,
         settings=settings,
-        output_format=format,
+        output_format=format_,
         fail_fast=fail_fast,
         verbose=verbose,
         show_issues=show_issues,
@@ -152,11 +152,11 @@ def batch_command(
         output_dir.mkdir(parents=True, exist_ok=True)
         
         # Generate filename based on format
-        if format == "toon":
+        if format_ == "toon":
             output_file = output_dir / "validation.toon"
-        elif format == "json":
+        elif format_ == "json":
             output_file = output_dir / "validation.json"
-        elif format == "yaml":
+        elif format_ == "yaml":
             output_file = output_dir / "validation.yaml"
         else:
             output_file = output_dir / "validation.txt"
@@ -168,7 +168,7 @@ def batch_command(
             with open(output_file, 'w', encoding='utf-8') as f:
                 sys.stdout = f
                 processor.output_batch_results(
-                    results_by_language, passed_count, failed_files, format, filtered_files
+                    results_by_language, passed_count, failed_files, format_, filtered_files
                 )
         finally:
             sys.stdout = original_stdout
@@ -176,7 +176,7 @@ def batch_command(
         console.print(f"[green]✓[/green] Results saved to {output_file}")
     else:
         processor.output_batch_results(
-            results_by_language, passed_count, failed_files, format, filtered_files
+            results_by_language, passed_count, failed_files, format_, filtered_files
         )
     
     if failed_files:
