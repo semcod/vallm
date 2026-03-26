@@ -1,0 +1,110 @@
+import io
+from datetime import date
+from pathlib import Path
+
+from rich.console import Console
+
+from vallm.cli import output_formatters
+from vallm.cli.batch_processor import BatchProcessor
+from vallm.scoring import Issue, PipelineResult, Severity, ValidationResult, Verdict
+
+
+class FixedDate(date):
+    @classmethod
+    def today(cls):
+        return cls(2026, 3, 26)
+
+
+def make_result(filename: str, verdict: Verdict, score: float, issues: list[Issue] | None = None) -> PipelineResult:
+    validation_result = ValidationResult(
+        validator="test",
+        score=score,
+        issues=issues or [],
+    )
+    return PipelineResult(results=[validation_result], verdict=verdict, filename=filename)
+
+
+def test_batch_processor_skips_toon_files():
+    processor = BatchProcessor(Console(file=io.StringIO()))
+
+    assert processor._should_exclude_file(Path("project/validation.toon.yaml"), []) is True
+    assert processor._should_exclude_file(Path("project/validation.toon"), []) is True
+    assert processor._should_exclude_file(Path("project/validation.yaml"), []) is False
+
+
+def test_output_batch_toon_is_compact_and_groups_sections(capsys, monkeypatch):
+    monkeypatch.setattr(output_formatters, "date", FixedDate)
+
+    results_by_language = {
+        "python": [
+            make_result(
+                "src/warn.py",
+                Verdict.PASS,
+                0.97,
+                [
+                    Issue(
+                        message="validate_code CC=22 (max:15)",
+                        severity=Severity.WARNING,
+                        line=185,
+                        rule="complexity.cyclomatic",
+                    ),
+                ],
+            ),
+            make_result("src/pass.py", Verdict.PASS, 1.0),
+            make_result(
+                "src/fail.py",
+                Verdict.FAIL,
+                0.91,
+                [
+                    Issue(
+                        message="Module 'missing.module' not found",
+                        severity=Severity.ERROR,
+                        line=12,
+                        rule="python.import.resolvable",
+                    ),
+                ],
+            ),
+        ]
+    }
+
+    filtered_files = [
+        Path("src/warn.py"),
+        Path("src/pass.py"),
+        Path("src/fail.py"),
+        Path("README.md"),
+        Path("Dockerfile.test"),
+        Path("notes.txt"),
+        Path("config.example"),
+        Path("misc"),
+    ]
+    failed_files = [
+        (Path("README.md"), "Unsupported file type"),
+        (Path("Dockerfile.test"), "Unsupported file type"),
+        (Path("notes.txt"), "Unsupported file type"),
+        (Path("config.example"), "Unsupported file type"),
+        (Path("misc"), "Unsupported file type"),
+    ]
+
+    output_formatters.output_batch_toon(
+        results_by_language,
+        filtered_files,
+        passed_count=2,
+        failed_files=failed_files,
+    )
+
+    output = capsys.readouterr().out
+
+    assert "# vallm batch | 8f | 2✓ 1⚠ 1✗ | 2026-03-26" in output
+    assert "SUMMARY:" in output
+    assert "scanned: 8  passed: 2 (25.0%)  warnings: 1  errors: 1  unsupported: 5" in output
+    assert "WARNINGS[1]:" in output
+    assert "src/warn.py" in output
+    assert "src/pass.py" not in output
+    assert "[warn] complexity.cyclomatic" in output
+    assert "ERRORS[1]:" in output
+    assert "src/fail.py" in output
+    assert "[err] python.import.resolvable" in output
+    assert "UNSUPPORTED[5]:" in output
+    assert "*.md (1)  Dockerfile* (1)  *.txt (1)  *.example (1)  other (1)" in output
+    assert "FILES:" not in output
+    assert "FAILED:" not in output

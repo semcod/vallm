@@ -17,6 +17,8 @@ from vallm.core.languages import detect_language
 from vallm.core.proposal import Proposal
 from vallm.scoring import validate, Verdict
 
+TOON_EXTENSIONS = {".toon.yaml", ".toon"}
+
 
 class BatchProcessor:
     """Handles batch validation of multiple files."""
@@ -187,6 +189,10 @@ class BatchProcessor:
         
         file_str = str(file_path)
         file_name = file_path.name
+        file_str_lower = file_str.lower()
+
+        if any(file_str_lower.endswith(ext) for ext in TOON_EXTENSIONS):
+            return True
         
         for pattern in exclude_patterns:
             # Check full path match

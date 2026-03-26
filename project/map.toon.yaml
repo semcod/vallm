@@ -1,8 +1,8 @@
-# vallm | 45f 5765L | python:44,shell:1 | 2026-03-25
-# stats: 203 func | 0 cls | 45 mod | CC̄=3.5 | critical:4 | cycles:0
-# alerts[5]: CC walk=27; CC BatchProcessor._process_files=26; CC validate_code=22; CC output_batch_toon=17; fan-out JavaScriptImportValidator.extract_imports=14
+# vallm | 45f 5819L | python:44,shell:1 | 2026-03-26
+# stats: 210 func | 0 cls | 45 mod | CC̄=3.5 | critical:3 | cycles:0
+# alerts[5]: CC walk=27; CC BatchProcessor._process_files=26; CC validate_code=22; fan-out JavaScriptImportValidator.extract_imports=14; fan-out GoImportValidator.extract_imports=13
 # hotspots[5]: JavaScriptImportValidator.extract_imports fan=14; GoImportValidator.extract_imports fan=13; RustImportValidator.extract_imports fan=13; batch_command fan=13; validate_code fan=12
-# evolution: baseline
+# evolution: CC̄ 3.5→3.5 (flat 0.0)
 # Keys: M=modules, D=details, i=imports, e=exports, c=classes, f=functions, m=methods
 M[45]:
   mcp/__init__.py,1
@@ -15,9 +15,9 @@ M[45]:
   src/vallm/__init__.py,19
   src/vallm/__main__.py,5
   src/vallm/cli/__init__.py,43
-  src/vallm/cli/batch_processor.py,319
+  src/vallm/cli/batch_processor.py,325
   src/vallm/cli/command_handlers.py,344
-  src/vallm/cli/output_formatters.py,421
+  src/vallm/cli/output_formatters.py,469
   src/vallm/config.py,122
   src/vallm/core/__init__.py,3
   src/vallm/core/ast_compare.py,135
@@ -68,8 +68,18 @@ D:
     handle_validate_imports(params)
     handle_validate_security(params)
     handle_validate_code(params)
+  src/vallm/validators/complexity.py:
+    e: ComplexityValidator
+    ComplexityValidator(BaseValidator): __init__(1),validate(2),_check_python_complexity(1),_check_lizard(3)  # Tier 2: Cyclomatic complexity, maintainability index, and fu...
+  src/vallm/core/gitignore.py:
+    e: GitignoreParser,load_gitignore,get_default_excludes,create_default_gitignore_parser,should_exclude
+    GitignoreParser: __init__(1),_parse(1),matches(1),_match_pattern(3),_fnmatch(2),_pattern_to_regex(1)  # Parse .gitignore files and match paths against patterns...
+    load_gitignore(path)
+    get_default_excludes()
+    create_default_gitignore_parser()
+    should_exclude(path;gitignore_parser;use_defaults)
   src/vallm/cli/output_formatters.py:
-    e: output_validate_result,output_batch_results,output_batch_empty,output_json,output_text,output_rich,output_batch_rich,output_batch_text,format_error_message,build_files_data,build_failed_files_data,output_batch_json,output_batch_yaml,output_batch_toon,print_summary_header,build_results_table
+    e: output_validate_result,output_batch_results,output_batch_empty,output_json,output_text,output_rich,output_batch_rich,output_batch_text,format_error_message,build_files_data,build_failed_files_data,_toon_today,_split_toon_results,_format_toon_issue,_unsupported_bucket,_build_unsupported_summary,_format_unsupported_summary,_print_toon_file_section,output_batch_json,output_batch_yaml,output_batch_toon,print_summary_header,build_results_table
     output_validate_result(result;output_format;verbose)
     output_batch_results(results_by_language;filtered_files;passed_count;failed_files;output_format)
     output_batch_empty(output_format)
@@ -81,34 +91,31 @@ D:
     format_error_message(error)
     build_files_data(results_by_language)
     build_failed_files_data(failed_files)
+    _toon_today()
+    _split_toon_results(files_details)
+    _format_toon_issue(issue)
+    _unsupported_bucket(file_path)
+    _build_unsupported_summary(failed_files)
+    _format_unsupported_summary(unsupported_counts)
+    _print_toon_file_section(title;files)
     output_batch_json(results_by_language;filtered_files;passed_count;failed_files)
     output_batch_yaml(results_by_language;filtered_files;passed_count;failed_files)
     output_batch_toon(results_by_language;filtered_files;passed_count;failed_files)
     print_summary_header()
     build_results_table(results_by_language)
-  src/vallm/validators/complexity.py:
-    e: ComplexityValidator
-    ComplexityValidator(BaseValidator): __init__(1),validate(2),_check_python_complexity(1),_check_lizard(3)  # Tier 2: Cyclomatic complexity, maintainability index, and fu...
-  src/vallm/core/gitignore.py:
-    e: GitignoreParser,load_gitignore,get_default_excludes,create_default_gitignore_parser,should_exclude
-    GitignoreParser: __init__(1),_parse(1),matches(1),_match_pattern(3),_fnmatch(2),_pattern_to_regex(1)  # Parse .gitignore files and match paths against patterns...
-    load_gitignore(path)
-    get_default_excludes()
-    create_default_gitignore_parser()
-    should_exclude(path;gitignore_parser;use_defaults)
   src/vallm/validators/security.py:
     e: SecurityValidator
     SecurityValidator(BaseValidator): validate(2),_check_patterns(2),_check_python_ast(1),_get_func_name(0),_try_bandit(0)  # Tier 2: Security analysis using built-in patterns and option...
+  src/vallm/validators/lint.py:
+    e: LintValidator,create_validator
+    LintValidator: __init__(1),validate(2),_check_ruff(1),_parse_ruff_result(1),_parse_ruff_text(1)  # Validator for linting issues using ruff...
+    create_validator(settings)
   src/vallm/core/graph_diff.py:
     e: GraphDiffResult,diff_graphs,diff_python_code,_diff_list
     GraphDiffResult:  # Result of comparing two code graphs...
     diff_graphs(before;after)
     diff_python_code(before_code;after_code)
     _diff_list(before;after;added)
-  src/vallm/validators/lint.py:
-    e: LintValidator,create_validator
-    LintValidator: __init__(1),validate(2),_check_ruff(1),_parse_ruff_result(1),_parse_ruff_text(1)  # Validator for linting issues using ruff...
-    create_validator(settings)
   src/vallm/scoring.py:
     e: Verdict,Severity,Issue,ValidationResult,PipelineResult,compute_verdict,validate,_initialize_settings,_initialize_context,_initialize_validators,_run_validation_pipeline,_get_default_validators
     Verdict(Enum):
@@ -123,15 +130,15 @@ D:
     _initialize_validators(validators;settings)
     _run_validation_pipeline(proposal;validators;context;settings)
     _get_default_validators(settings)
-  src/vallm/validators/regression.py:
-    e: RegressionValidator
-    RegressionValidator(BaseValidator): __init__(3),validate(2),_resolve_test_dir(1),_write_code(2),_build_pytest_cmd(2),_run_pytest(3),_interpret(1),_parse_failures(1),_timeout_result(0),_exception_result(1)  # Tier 2: Run pytest against proposed code and report pass/fai...
   src/vallm/validators/imports/python_imports.py:
     e: PythonImportValidator
     PythonImportValidator(BaseImportValidator): validate(2),extract_imports(1),module_exists(1),get_language(0),_get_error_message(1),_get_rule_name(0)  # Python-specific import validator...
   src/vallm/validators/imports/java_imports.py:
     e: JavaImportValidator
     JavaImportValidator(BaseImportValidator): get_language(0),_get_error_message(1),_get_rule_name(0),extract_imports(1),module_exists(1)  # Java import validator...
+  src/vallm/validators/regression.py:
+    e: RegressionValidator
+    RegressionValidator(BaseValidator): __init__(3),validate(2),_resolve_test_dir(1),_write_code(2),_build_pytest_cmd(2),_run_pytest(3),_interpret(1),_parse_failures(1),_timeout_result(0),_exception_result(1)  # Tier 2: Run pytest against proposed code and report pass/fai...
   mcp/server/self_server.py:
     e: handle_initialize,handle_tools_list,handle_tools_call,handle_request,main
     handle_initialize(request_id)
@@ -179,12 +186,12 @@ D:
   src/vallm/validators/imports/c_imports.py:
     e: CImportValidator
     CImportValidator(BaseImportValidator): __init__(1),validate(2),extract_imports(1),module_exists(1)  # C/C++ import validator...
-  src/vallm/validators/syntax.py:
-    e: SyntaxValidator
-    SyntaxValidator(BaseValidator): validate(2),_validate_python(1),_validate_treesitter(2)  # Tier 1: Fast syntax validation...
   src/vallm/validators/semantic.py:
     e: SemanticValidator
     SemanticValidator(BaseValidator): __init__(1),validate(2),_build_prompt(1),_call_llm(1),_call_ollama(1),_call_litellm(1),_call_http(1),_parse_response(1),_extract_json_from_response(1),_create_parse_error_result(1),_create_json_error_result(1),_parse_scores(1),_parse_issues(1),_parse_severity(1),_parse_line_number(1)  # Tier 3: LLM-as-judge semantic code review...
+  src/vallm/validators/syntax.py:
+    e: SyntaxValidator
+    SyntaxValidator(BaseValidator): validate(2),_validate_python(1),_validate_treesitter(2)  # Tier 1: Fast syntax validation...
   src/vallm/core/ast_compare.py:
     e: parse_code,parse_python_ast,normalize_python_ast,python_ast_similarity,tree_sitter_node_count,tree_sitter_error_count,structural_diff_summary
     parse_code(code;language)
@@ -224,9 +231,9 @@ D:
   src/vallm/validators/base.py:
     e: BaseValidator
     BaseValidator(ABC): validate(2)  # Base class for all vallm validators...
+  mcp_server.py:
   mcp/__init__.py:
   mcp/server/__init__.py:
-  mcp_server.py:
   src/vallm/cli/__init__.py:
   src/vallm/__init__.py:
   src/vallm/__main__.py:

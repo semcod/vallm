@@ -1,5 +1,5 @@
-# code2llm | 45f 5765L | python:44,shell:1 | 2026-03-25
-# CC̄=3.5 | critical:4/12152 | dups:0 | cycles:0
+# code2llm | 45f 5819L | python:44,shell:1 | 2026-03-26
+# CC̄=3.5 | critical:3/12159 | dups:0 | cycles:0
 
 HEALTH[20]:
   🟡 CC    validate_code CC=22 (limit:15)
@@ -26,16 +26,16 @@ HEALTH[20]:
 REFACTOR[1]:
   1. split 20 high-CC methods  (CC>15)
 
-PIPELINES[8384]:
-  [1] Src [handle_validate_syntax]: handle_validate_syntax → validate_syntax
+PIPELINES[8385]:
+  [1] Src [__init__]: __init__
       PURITY: 100% pure
-  [2] Src [handle_validate_imports]: handle_validate_imports → validate_imports
+  [2] Src [__init__]: __init__
       PURITY: 100% pure
-  [3] Src [handle_validate_security]: handle_validate_security → validate_security
+  [3] Src [handle_validate_syntax]: handle_validate_syntax → validate_syntax
       PURITY: 100% pure
-  [4] Src [handle_validate_code]: handle_validate_code → validate_code
+  [4] Src [handle_validate_imports]: handle_validate_imports → validate_imports
       PURITY: 100% pure
-  [5] Src [__init__]: __init__
+  [5] Src [handle_validate_security]: handle_validate_security → validate_security
       PURITY: 100% pure
 
 LAYERS:
@@ -49,9 +49,9 @@ LAYERS:
   │ __init__                     1L  0C    0m  CC=0.0    ←0
   │
   src/                            CC̄=3.4    ←in:0  →out:0
-  │ !! output_formatters          421L  0C   16m  CC=17     ←2
+  │ output_formatters          469L  0C   23m  CC=10     ←2
   │ command_handlers           344L  0C   11m  CC=6      ←0
-  │ !! batch_processor            319L  1C   12m  CC=26     ←0
+  │ !! batch_processor            325L  1C   12m  CC=26     ←0
   │ semantic                   296L  1C   15m  CC=4      ←0
   │ gitignore                  272L  1C   10m  CC=11     ←1
   │ regression                 265L  1C   10m  CC=7      ←0

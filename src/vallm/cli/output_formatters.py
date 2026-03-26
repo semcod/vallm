@@ -3,6 +3,9 @@
 from __future__ import annotations
 
 import json
+from collections import Counter
+from datetime import date
+from pathlib import Path
 from typing import TYPE_CHECKING
 
 from rich.console import Console
@@ -13,6 +16,13 @@ if TYPE_CHECKING:
     from vallm.scoring import PipelineResult, ValidationResult
 
 console = Console()
+
+TOON_ISSUE_LABELS = {
+    "error": "[err]",
+    "warning": "[warn]",
+    "info": "[info]",
+}
+TOON_UNSUPPORTED_ORDER = ("*.md", "Dockerfile*", "*.txt", "*.yml", "*.example", "other")
 
 
 def output_validate_result(result: "ValidationResult", output_format: str, verbose: bool) -> None:
@@ -56,13 +66,10 @@ def output_batch_empty(output_format: str) -> None:
         print("  failed: 0")
         print("files: []")
     elif output_format == "toon":
-        print("# vallm batch | 0f | 0✓ 0✗")
+        print(f"# vallm batch | 0f | 0✓ 0⚠ 0✗ | {_toon_today()}")
         print()
         print("SUMMARY:")
-        print("  total: 0")
-        print("  passed: 0")
-        print("  failed: 0")
-        print("FILES: []")
+        print("  scanned: 0  passed: 0 (0.0%)  warnings: 0  errors: 0  unsupported: 0")
     else:
         console.print("[yellow]No files found to validate.[/yellow]")
 
@@ -235,6 +242,85 @@ def build_failed_files_data(failed_files: list) -> list:
     ]
 
 
+def _toon_today() -> str:
+    return date.today().isoformat()
+
+
+def _split_toon_results(files_details: list[dict]) -> tuple[list[dict], list[dict]]:
+    warnings = []
+    errors = []
+
+    for file_data in files_details:
+        verdict = file_data["verdict"]
+        score = file_data["score"]
+        if verdict == "review" or (verdict == "pass" and score < 1.0):
+            warnings.append(file_data)
+        elif verdict == "fail":
+            errors.append(file_data)
+
+    warnings.sort(key=lambda item: (item["score"], item["path"]))
+    errors.sort(key=lambda item: (item["score"], item["path"]))
+    return warnings, errors
+
+
+def _format_toon_issue(issue: dict) -> str:
+    severity = issue.get("severity", "info")
+    label = TOON_ISSUE_LABELS.get(severity, f"[{severity}]")
+    location = ""
+    line = issue.get("line")
+    column = issue.get("column")
+    if line is not None:
+        location = f"@{line}"
+        if column is not None:
+            location += f":{column}"
+    return f"    {label} {issue.get('rule', 'unknown')}: {issue.get('message', '')}{location}"
+
+
+def _unsupported_bucket(file_path: str) -> str:
+    name = Path(file_path).name.lower()
+    if name.startswith("dockerfile"):
+        return "Dockerfile*"
+    if name.endswith(".md"):
+        return "*.md"
+    if name.endswith(".txt"):
+        return "*.txt"
+    if name.endswith(".yml"):
+        return "*.yml"
+    if name.endswith(".example"):
+        return "*.example"
+    return "other"
+
+
+def _build_unsupported_summary(failed_files: list) -> Counter[str]:
+    unsupported = Counter()
+    for file_path, error in failed_files:
+        if str(error).startswith("Validation "):
+            continue
+        unsupported[_unsupported_bucket(str(file_path))] += 1
+    return unsupported
+
+
+def _format_unsupported_summary(unsupported_counts: Counter[str]) -> str:
+    ordered: list[str] = []
+    for bucket in TOON_UNSUPPORTED_ORDER:
+        if unsupported_counts.get(bucket):
+            ordered.append(f"{bucket} ({unsupported_counts[bucket]})")
+
+    for bucket in sorted(bucket for bucket in unsupported_counts if bucket not in TOON_UNSUPPORTED_ORDER):
+        ordered.append(f"{bucket} ({unsupported_counts[bucket]})")
+
+    return "  ".join(ordered)
+
+
+def _print_toon_file_section(title: str, files: list[dict]) -> None:
+    print(f"{title}[{len(files)}]:")
+    width = min(max(len(file_data["path"]) for file_data in files), 48)
+    for file_data in files:
+        print(f"  {file_data['path']:<{width}}  {file_data['score']:.2f}")
+        for issue in file_data["issues"]:
+            print(_format_toon_issue(issue))
+
+
 def output_batch_json(
     results_by_language: dict,
     filtered_files: list,
@@ -328,67 +414,29 @@ def output_batch_toon(
 ) -> None:
     """Output TOON format batch summary with detailed per-file results."""
     total_files = len(filtered_files)
-    failed_count = len(failed_files)
-    
-    # Build standardized data structures
     files_details = build_files_data(results_by_language)
-    failed_files_data = build_failed_files_data(failed_files)
-    
-    # Calculate success rate
+    warnings, errors = _split_toon_results(files_details)
+    unsupported_counts = _build_unsupported_summary(failed_files)
+    unsupported_count = sum(unsupported_counts.values())
     success_rate = round((passed_count / total_files) * 100, 1) if total_files > 0 else 0.0
-    
-    # Header with better spacing and alignment
-    print(f"# vallm batch | {total_files}f | {passed_count}✓ {failed_count}✗")
+
+    print(f"# vallm batch | {total_files}f | {passed_count}✓ {len(warnings)}⚠ {len(errors)}✗ | {_toon_today()}")
     print()
-    
-    # Summary section
     print("SUMMARY:")
-    print(f"  total: {total_files}")
-    print(f"  passed: {passed_count}")
-    print(f"  failed: {failed_count}")
-    print(f"  success: {success_rate}%")
+    print(
+        f"  scanned: {total_files}  passed: {passed_count} ({success_rate:.1f}%)  "
+        f"warnings: {len(warnings)}  errors: {len(errors)}  unsupported: {unsupported_count}"
+    )
     print()
-
-    # Detailed per-file results
-    if files_details:
-        print("FILES:")
-        current_lang = None
-        for file_data in files_details:
-            # Group by language
-            if file_data['language'] != current_lang:
-                current_lang = file_data['language']
-                print(f"  [{current_lang}]")
-            
-            status_icon = "✓" if file_data['verdict'] == "pass" else "✗"
-            print(f"    {status_icon} {file_data['path']}")
-            print(f"      verdict: {file_data['verdict']}")
-            print(f"      score: {file_data['score']:.2f}")
-            
-            # Format issues with better structure
-            if file_data['issues']:
-                issues_count = file_data['issues_count']
-                print(f"      issues: {issues_count}")
-                
-                # Group issues by severity for better readability
-                error_issues = [i for i in file_data['issues'] if i['severity'] == "error"]
-                warning_issues = [i for i in file_data['issues'] if i['severity'] == "warning"]
-                
-                # Print errors first
-                for issue in error_issues:
-                    location = f"@{issue['line']}" if 'line' in issue else ""
-                    print(f"        [error] {issue['rule']}: {issue['message']}{location}")
-                
-                # Then warnings
-                for issue in warning_issues:
-                    location = f"@{issue['line']}" if 'line' in issue else ""
-                    print(f"        [warning] {issue['rule']}: {issue['message']}{location}")
+    if warnings:
+        _print_toon_file_section("WARNINGS", warnings)
         print()
-
-    # Failed files section with better formatting
-    if failed_files_data:
-        print("FAILED:")
-        for file_data in failed_files_data:
-            print(f"  ✗ {file_data['path']}: {file_data['error']}")
+    if errors:
+        _print_toon_file_section("ERRORS", errors)
+        print()
+    if unsupported_count:
+        print(f"UNSUPPORTED[{unsupported_count}]:")
+        print(f"  {_format_unsupported_summary(unsupported_counts)}")
 
 
 def print_summary_header() -> None:
