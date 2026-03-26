@@ -97,14 +97,19 @@ def test_output_batch_toon_is_compact_and_groups_sections(capsys, monkeypatch):
     assert "# vallm batch | 8f | 2✓ 1⚠ 1✗ | 2026-03-26" in output
     assert "SUMMARY:" in output
     assert "scanned: 8  passed: 2 (25.0%)  warnings: 1  errors: 1  unsupported: 5" in output
-    assert "WARNINGS[1]:" in output
-    assert "src/warn.py" in output
+    assert "WARNINGS[1]{path,score}:" in output
+    assert "src/warn.py,0.97" in output
     assert "src/pass.py" not in output
-    assert "[warn] complexity.cyclomatic" in output
-    assert "ERRORS[1]:" in output
-    assert "src/fail.py" in output
-    assert "[err] python.import.resolvable" in output
-    assert "UNSUPPORTED[5]:" in output
-    assert "*.md (1)  Dockerfile* (1)  *.txt (1)  *.example (1)  other (1)" in output
+    assert "issues[1]{rule,severity,message,line}:" in output
+    assert "complexity.cyclomatic,warning,validate_code CC=22 (max:15),185" in output
+    assert "ERRORS[1]{path,score}:" in output
+    assert "src/fail.py,0.91" in output
+    assert "python.import.resolvable,error,Module 'missing.module' not found,12" in output
+    assert "UNSUPPORTED[5]{bucket,count}:" in output
+    assert "*.md,1" in output
+    assert "Dockerfile*,1" in output
+    assert "*.txt,1" in output
+    assert "*.example,1" in output
+    assert "other,1" in output
     assert "FILES:" not in output
     assert "FAILED:" not in output

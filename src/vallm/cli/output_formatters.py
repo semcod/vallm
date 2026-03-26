@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import csv
+import io
 import json
 from collections import Counter
 from datetime import date
@@ -16,12 +18,6 @@ if TYPE_CHECKING:
     from vallm.scoring import PipelineResult, ValidationResult
 
 console = Console()
-
-TOON_ISSUE_LABELS = {
-    "error": "[err]",
-    "warning": "[warn]",
-    "info": "[info]",
-}
 TOON_UNSUPPORTED_ORDER = ("*.md", "Dockerfile*", "*.txt", "*.yml", "*.example", "other")
 
 
@@ -246,6 +242,13 @@ def _toon_today() -> str:
     return date.today().isoformat()
 
 
+def _toon_row(values: list[object]) -> str:
+    buffer = io.StringIO()
+    writer = csv.writer(buffer)
+    writer.writerow(["" if value is None else value for value in values])
+    return buffer.getvalue().rstrip("\r\n")
+
+
 def _split_toon_results(files_details: list[dict]) -> tuple[list[dict], list[dict]]:
     warnings = []
     errors = []
@@ -263,17 +266,17 @@ def _split_toon_results(files_details: list[dict]) -> tuple[list[dict], list[dic
     return warnings, errors
 
 
-def _format_toon_issue(issue: dict) -> str:
-    severity = issue.get("severity", "info")
-    label = TOON_ISSUE_LABELS.get(severity, f"[{severity}]")
-    location = ""
-    line = issue.get("line")
-    column = issue.get("column")
-    if line is not None:
-        location = f"@{line}"
-        if column is not None:
-            location += f":{column}"
-    return f"    {label} {issue.get('rule', 'unknown')}: {issue.get('message', '')}{location}"
+def _ordered_unsupported_items(unsupported_counts: Counter[str]) -> list[tuple[str, int]]:
+    ordered: list[tuple[str, int]] = []
+    for bucket in TOON_UNSUPPORTED_ORDER:
+        count = unsupported_counts.get(bucket)
+        if count:
+            ordered.append((bucket, count))
+
+    for bucket in sorted(bucket for bucket in unsupported_counts if bucket not in TOON_UNSUPPORTED_ORDER):
+        ordered.append((bucket, unsupported_counts[bucket]))
+
+    return ordered
 
 
 def _unsupported_bucket(file_path: str) -> str:
@@ -300,25 +303,30 @@ def _build_unsupported_summary(failed_files: list) -> Counter[str]:
     return unsupported
 
 
-def _format_unsupported_summary(unsupported_counts: Counter[str]) -> str:
-    ordered: list[str] = []
-    for bucket in TOON_UNSUPPORTED_ORDER:
-        if unsupported_counts.get(bucket):
-            ordered.append(f"{bucket} ({unsupported_counts[bucket]})")
-
-    for bucket in sorted(bucket for bucket in unsupported_counts if bucket not in TOON_UNSUPPORTED_ORDER):
-        ordered.append(f"{bucket} ({unsupported_counts[bucket]})")
-
-    return "  ".join(ordered)
-
-
 def _print_toon_file_section(title: str, files: list[dict]) -> None:
-    print(f"{title}[{len(files)}]:")
-    width = min(max(len(file_data["path"]) for file_data in files), 48)
+    print(f"{title}[{len(files)}]{{path,score}}:")
     for file_data in files:
-        print(f"  {file_data['path']:<{width}}  {file_data['score']:.2f}")
-        for issue in file_data["issues"]:
-            print(_format_toon_issue(issue))
+        score = f"{file_data['score']:.2f}"
+        print(f"  {_toon_row([file_data['path'], score])}")
+        issues = file_data["issues"]
+        if issues:
+            print(f"    issues[{len(issues)}]{{rule,severity,message,line}}:")
+            for issue in issues:
+                print(
+                    f"      {_toon_row([
+                        issue.get('rule', 'unknown'),
+                        issue.get('severity', 'info'),
+                        issue.get('message', ''),
+                        issue.get('line'),
+                    ])}"
+                )
+
+
+def _print_toon_unsupported_section(unsupported_counts: Counter[str]) -> None:
+    ordered = _ordered_unsupported_items(unsupported_counts)
+    print(f"UNSUPPORTED[{len(ordered)}]{{bucket,count}}:")
+    for bucket, count in ordered:
+        print(f"  {_toon_row([bucket, count])}")
 
 
 def output_batch_json(
@@ -435,8 +443,7 @@ def output_batch_toon(
         _print_toon_file_section("ERRORS", errors)
         print()
     if unsupported_count:
-        print(f"UNSUPPORTED[{unsupported_count}]:")
-        print(f"  {_format_unsupported_summary(unsupported_counts)}")
+        _print_toon_unsupported_section(unsupported_counts)
 
 
 def print_summary_header() -> None:

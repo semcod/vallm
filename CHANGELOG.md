@@ -124,6 +124,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Tree-sitter for all** — syntax validation for 165+ languages
 - **Example 07** — comprehensive multi-language demo with 8 languages
 
+## [0.1.67] - 2026-03-26
+
+### Test
+- Update tests/test_batch_toon_output.py
+
+### Other
+- Update project/validation.toon.yaml
+
 ## [0.1.66] - 2026-03-26
 
 ### Docs
