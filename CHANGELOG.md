@@ -350,6 +350,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Tree-sitter for all** — syntax validation for 165+ languages
 - **Example 07** — comprehensive multi-language demo with 8 languages
 
+## [0.1.70] - 2026-03-31
+
+### Docs
+- Update README.md
+- Update TODO.md
+- Update project/README.md
+- Update project/context.md
+
+### Other
+- Update .pyqual/ruff.json
+- Update VERSION
+- Update project.sh
+- Update project/analysis.toon.yaml
+- Update project/validation.toon.yaml
+- Update project/verify/validation.toon.yaml
+
 ## [0.1.68] - 2026-03-31
 
 ### Docs

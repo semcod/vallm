@@ -1,57 +1,7 @@
-# vallm batch | 43f | 31✓ 0⚠ 11✗ | 2026-03-30
+# vallm batch | 43f | 42✓ 0⚠ 0✗ | 2026-03-31
 
 SUMMARY:
-  scanned: 43  passed: 31 (72.1%)  warnings: 0  errors: 11  unsupported: 1
-
-ERRORS[11]{path,score}:
-  src/vallm/validators/imports.py,0.57
-    issues[1]{rule,severity,message,line}:
-      python.import.resolvable,error,Module 'imports.wrapper' not found,8
-  src/vallm/validators/imports/__init__.py,0.57
-    issues[9]{rule,severity,message,line}:
-      python.import.resolvable,error,Module 'base' not found,3
-      python.import.resolvable,error,Module 'factory' not found,4
-      python.import.resolvable,error,Module 'python_imports' not found,5
-      python.import.resolvable,error,Module 'javascript_imports' not found,6
-      python.import.resolvable,error,Module 'go_imports' not found,7
-      python.import.resolvable,error,Module 'rust_imports' not found,8
-      python.import.resolvable,error,Module 'java_imports' not found,9
-      python.import.resolvable,error,Module 'c_imports' not found,10
-      python.import.resolvable,error,Module 'wrapper' not found,13
-  src/vallm/validators/imports/factory.py,0.62
-    issues[7]{rule,severity,message,line}:
-      python.import.resolvable,error,Module 'base' not found,4
-      python.import.resolvable,error,Module 'python_imports' not found,5
-      python.import.resolvable,error,Module 'javascript_imports' not found,6
-      python.import.resolvable,error,Module 'go_imports' not found,7
-      python.import.resolvable,error,Module 'rust_imports' not found,8
-      python.import.resolvable,error,Module 'java_imports' not found,9
-      python.import.resolvable,error,Module 'c_imports' not found,10
-  src/vallm/validators/imports/c_imports.py,0.89
-    issues[1]{rule,severity,message,line}:
-      python.import.resolvable,error,Module 'base' not found,6
-  src/vallm/validators/imports/java_imports.py,0.89
-    issues[1]{rule,severity,message,line}:
-      python.import.resolvable,error,Module 'base' not found,6
-  src/vallm/validators/imports/wrapper.py,0.91
-    issues[1]{rule,severity,message,line}:
-      python.import.resolvable,error,Module 'factory' not found,7
-  src/vallm/validators/security.py,0.91
-    issues[2]{rule,severity,message,line}:
-      python.import.resolvable,error,Module 'bandit.core.manager' not found,223
-      python.import.resolvable,error,Module 'bandit.core.config' not found,224
-  src/vallm/validators/imports/go_imports.py,0.93
-    issues[1]{rule,severity,message,line}:
-      python.import.resolvable,error,Module 'base' not found,6
-  src/vallm/validators/imports/javascript_imports.py,0.93
-    issues[1]{rule,severity,message,line}:
-      python.import.resolvable,error,Module 'base' not found,6
-  src/vallm/validators/imports/rust_imports.py,0.93
-    issues[1]{rule,severity,message,line}:
-      python.import.resolvable,error,Module 'base' not found,6
-  src/vallm/validators/imports/python_imports.py,0.94
-    issues[1]{rule,severity,message,line}:
-      python.import.resolvable,error,Module 'base' not found,9
+  scanned: 43  passed: 42 (97.7%)  warnings: 0  errors: 0  unsupported: 1
 
 UNSUPPORTED[1]{bucket,count}:
   other,1

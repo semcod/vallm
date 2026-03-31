@@ -1,46 +1,26 @@
-# code2llm | 45f 5875L | python:44,shell:1 | 2026-03-30
-# CC̄=3.4 | critical:0/12172 | dups:0 | cycles:0
+# code2llm | 45f 5897L | python:44,shell:1 | 2026-03-31
+# CC̄=3.4 | critical:0/369 | dups:0 | cycles:2
 
-HEALTH[20]:
-  🟡 CC    renderToken CC=17 (limit:15)
-  🟡 CC    send CC=19 (limit:15)
-  🟡 CC    build_digest_header CC=19 (limit:15)
-  🟡 CC    resolve_redirects CC=15 (limit:15)
-  🟡 CC    super_len CC=18 (limit:15)
-  🟡 CC    should_bypass_proxies CC=17 (limit:15)
-  🟡 CC    _encode_files CC=21 (limit:15)
-  🟡 CC    prepare_url CC=17 (limit:15)
-  🟡 CC    prepare_body CC=17 (limit:15)
-  🟡 CC    filter CC=16 (limit:15)
-  🟡 CC    parse_email CC=26 (limit:15)
-  🟡 CC    _cpython_abis CC=15 (limit:15)
-  🟡 CC    cpython_tags CC=15 (limit:15)
-  🟡 CC    mac_platforms CC=15 (limit:15)
-  🟡 CC    collect_type_table CC=21 (limit:15)
-  🟡 CC    write_c_source_to_f CC=23 (limit:15)
-  🟡 CC    _generate_cpy_function_decl CC=30 (limit:15)
-  🟡 CC    _struct_ctx CC=24 (limit:15)
-  🟡 CC    recompile CC=19 (limit:15)
-  🟡 CC    _generate_cpy_function_decl CC=18 (limit:15)
+HEALTH[0]: ok
 
 REFACTOR[1]:
-  1. split 20 high-CC methods  (CC>15)
+  1. break 2 circular dependencies
 
-PIPELINES[8390]:
-  [1] Src [handle_validate_syntax]: handle_validate_syntax → validate_syntax → _format_issue
+PIPELINES[173]:
+  [1] Src [main]: main → print
       PURITY: 100% pure
-  [2] Src [handle_validate_imports]: handle_validate_imports → validate_imports → _format_issue
+  [2] Src [main]: main → run_validation_examples → print
       PURITY: 100% pure
-  [3] Src [handle_validate_security]: handle_validate_security → validate_security → _format_issue
+  [3] Src [main]: main → print
       PURITY: 100% pure
-  [4] Src [handle_validate_code]: handle_validate_code → validate_code → _run_validators
+  [4] Src [main]: main → print
       PURITY: 100% pure
-  [5] Src [__init__]: __init__
+  [5] Src [__init__]: __init__ → load_config
       PURITY: 100% pure
 
 LAYERS:
   scripts/                        CC̄=5.0    ←in:0  →out:0
-  │ bump_version                78L  0C    2m  CC=5      ←2
+  │ bump_version                78L  0C    2m  CC=5      ←0
   │
   mcp/                            CC̄=4.1    ←in:0  →out:0
   │ _tools_vallm               485L  0C   12m  CC=12     ←1
@@ -51,18 +31,18 @@ LAYERS:
   src/                            CC̄=3.3    ←in:0  →out:0
   │ output_formatters          476L  0C   24m  CC=10     ←2
   │ batch_processor            357L  1C   17m  CC=12     ←0
-  │ command_handlers           344L  0C   11m  CC=6      ←0
-  │ semantic                   296L  1C   15m  CC=4      ←0
+  │ command_handlers           345L  0C   11m  CC=8      ←0
+  │ semantic                   299L  1C   15m  CC=4      ←0
   │ gitignore                  272L  1C   10m  CC=11     ←1
   │ regression                 265L  1C   10m  CC=7      ←0
   │ security                   255L  1C    5m  CC=9      ←0
   │ languages                  227L  1C    6m  CC=6      ←5
   │ scoring                    218L  5C    8m  CC=7      ←0
-  │ semantic_cache             187L  1C    8m  CC=5      ←2
+  │ semantic_cache             187L  1C    8m  CC=5      ←5
   │ complexity                 183L  1C    4m  CC=12     ←0
   │ lint                       182L  1C    6m  CC=9      ←0
-  │ utils                      155L  0C    4m  CC=14     ←0
-  │ python_imports             146L  1C    7m  CC=14     ←0
+  │ utils                      155L  0C    4m  CC=14     ←5
+  │ python_imports             153L  1C    7m  CC=14     ←0
   │ runner                     144L  2C    4m  CC=4      ←0
   │ logical                    142L  1C    5m  CC=6      ←0
   │ ast_compare                135L  0C    7m  CC=4      ←2
@@ -81,7 +61,7 @@ LAYERS:
   │ hookspecs                   33L  1C    3m  CC=1      ←0
   │ wrapper                     30L  1C    1m  CC=2      ←0
   │ __init__                    25L  0C    0m  CC=0.0    ←0
-  │ base                        21L  1C    1m  CC=1      ←0
+  │ base                        21L  1C    1m  CC=1      ←12
   │ __init__                    19L  0C    0m  CC=0.0    ←0
   │ __main__                     5L  0C    0m  CC=0.0    ←0
   │ __init__                     3L  0C    0m  CC=0.0    ←0
@@ -89,8 +69,8 @@ LAYERS:
   │ __init__                     1L  0C    0m  CC=0.0    ←0
   │
   ./                              CC̄=0.0    ←in:0  →out:0
+  │ project.sh                  35L  0C    0m  CC=0.0    ←0
   │ mcp_server                  28L  0C    0m  CC=0.0    ←0
-  │ project.sh                  24L  0C    0m  CC=0.0    ←0
   │
 
 COUPLING: no cross-package imports detected
