@@ -6,10 +6,10 @@
 - **Primary Language**: python
 - **Languages**: python: 1410, shell: 9, cpp: 4, javascript: 2
 - **Analysis Mode**: static
-- **Total Functions**: 12159
+- **Total Functions**: 12172
 - **Total Classes**: 3039
 - **Modules**: 1425
-- **Entry Points**: 10382
+- **Entry Points**: 10387
 
 ## Architecture by Module
 
@@ -158,11 +158,11 @@ the raw
 > Load private key from OpenSSH custom encoding.
 - **Calls**: utils._check_byteslike, _PEM_RC.search, m.start, m.end, binascii.a2b_base64, publish-env.lib.python3.13.site-packages.cryptography.hazmat.primitives.serialization.ssh._get_sshstr, publish-env.lib.python3.13.site-packages.cryptography.hazmat.primitives.serialization.ssh._get_sshstr, publish-env.lib.python3.13.site-packages.cryptography.hazmat.primitives.serialization.ssh._get_sshstr
 
-### publish-env.lib.python3.13.site-packages.cffi.backend_ctypes.CTypesBackend.new_array_type
-- **Calls**: CTypesArray._fix_class, getbtype, BItem._get_c_name, model.PrimitiveType, __slots__.append, self._ctype, isinstance, ctypes.POINTER
-
 ### publish-env.lib.python3.13.site-packages.cffi.vengine_cpy.VCPythonEngine.write_source_to_f
 - **Calls**: self.collect_types, prnt, prnt, prnt, prnt, self._generate, self._generate_setup_custom, prnt
+
+### publish-env.lib.python3.13.site-packages.cffi.backend_ctypes.CTypesBackend.new_array_type
+- **Calls**: CTypesArray._fix_class, getbtype, BItem._get_c_name, model.PrimitiveType, __slots__.append, self._ctype, isinstance, ctypes.POINTER
 
 ### publish-env.lib.python3.13.site-packages.rich.table.Table._render
 - **Calls**: console.get_style, publish-env.lib.python3.13.site-packages.docutils.writers.s5_html.themes.default.slides.list, Segment.line, enumerate, console.get_style, self._get_cells, zip, self.box.substitute
@@ -199,17 +199,23 @@ Args:
 ### publish-env.lib.python3.13.site-packages.cffi._cffi_include.messy
 - **Calls**: publish-env.lib.python3.13.site-packages.cffi._cffi_include.defined, publish-env.lib.python3.13.site-packages.cffi._cffi_include.alloca, publish-env.lib.python3.13.site-packages.cffi._cffi_include.__attribute__, publish-env.lib.python3.13.site-packages.cffi._cffi_include._cffi_from_c_int, publish-env.lib.python3.13.site-packages.cffi._cffi_include.sizeof, publish-env.lib.python3.13.site-packages.cffi._cffi_include.PyInt_FromLong, publish-env.lib.python3.13.site-packages.cffi._cffi_include.PyLong_FromUnsignedLong, publish-env.lib.python3.13.site-packages.cffi._cffi_include.PyLong_FromUnsignedLongLong
 
-### publish-env.lib.python3.13.site-packages.cffi.backend_ctypes.CTypesBackend.new_function_type
-- **Calls**: None.join, CTypesFunctionPtr._fix_class, BArg._get_c_name, nameargs.append, ctypes.CFUNCTYPE, BResult._get_c_name, getattr, issubclass
-
 ### publish-env.lib.python3.13.site-packages.cffi.vengine_cpy.VCPythonEngine._generate_cpy_function_decl
 - **Calls**: isinstance, len, prnt, prnt, prnt, enumerate, publish-env.lib.python3.13.site-packages.markdown_it.main.MarkdownIt.set, publish-env.lib.python3.13.site-packages.markdown_it.main.MarkdownIt.set
+
+### publish-env.lib.python3.13.site-packages.cffi.backend_ctypes.CTypesBackend.new_function_type
+- **Calls**: None.join, CTypesFunctionPtr._fix_class, BArg._get_c_name, nameargs.append, ctypes.CFUNCTYPE, BResult._get_c_name, getattr, issubclass
 
 ### publish-env.lib.python3.13.site-packages.rich.traceback.Traceback.__rich_console__
 - **Calls**: theme.get_background_style, Theme, ReprHighlighter, publish-env.lib.python3.13.site-packages.rich.console.group, publish-env.lib.python3.13.site-packages.rich._loop.loop_last, reversed, token_style, token_style
 
 ### publish-env.lib.python3.13.site-packages.pip._vendor.rich.traceback.Traceback.__rich_console__
 - **Calls**: theme.get_background_style, Theme, ReprHighlighter, publish-env.lib.python3.13.site-packages.rich.console.group, publish-env.lib.python3.13.site-packages.rich._loop.loop_last, reversed, token_style, token_style
+
+### publish-env.lib.python3.13.site-packages.urllib3.connectionpool.HTTPConnectionPool.urlopen
+> Get a connection from the pool and perform an HTTP request. This is the
+lowest level call for making a request, so you'll need to specify all
+the raw 
+- **Calls**: publish-env.lib.python3.13.site-packages.urllib3.util.url.parse_url, url.startswith, publish-env.lib.python3.13.site-packages.urllib3.util.proxy.connection_requires_http_tunnel, publish-env.lib.python3.13.site-packages.urllib3.util.request.set_file_position, bool, retries.is_retry, isinstance, Retry.from_int
 
 ### publish-env.lib.python3.13.site-packages.rich.markdown.Markdown.__rich_console__
 > Render markdown to the console.
@@ -222,14 +228,6 @@ Args:
     markup (str): A string containing console markup.
     style: (Union[str, Style]): The style to
 - **Calls**: Text, publish-env.lib.python3.13.site-packages.rich.markup._parse, len, sorted, Text, enumerate, KeyError, style_stack.pop
-
-### publish-env.lib.python3.13.site-packages.pip._vendor.rich.markup.render
-> Render console markup in to a Text instance.
-
-Args:
-    markup (str): A string containing console markup.
-    style: (Union[str, Style]): The style to
-- **Calls**: Text, publish-env.lib.python3.13.site-packages.pip._vendor.rich.markup._parse, len, sorted, Text, enumerate, KeyError, style_stack.pop
 
 ## Process Flows
 
@@ -462,12 +460,15 @@ Example usage:
 
 Key functions that process and transform data:
 
+### mcp.server._tools_vallm._format_issue
+> Serialize a single Issue to a plain dict.
+
 ### mcp.server._tools_vallm.validate_syntax
 > Multi-language syntax checking using vallm SyntaxValidator.
 
 Args:
     code: Source code to validate
-- **Output to**: Proposal, SyntaxValidator, validator.validate, str
+- **Output to**: Proposal, SyntaxValidator, validator.validate, mcp.server._tools_vallm._format_issue, str
 
 ### mcp.server._tools_vallm.validate_imports
 > Import resolution validation using vallm ImportValidator.
@@ -475,12 +476,12 @@ Args:
 Args:
     code: Source code to validate
  
-- **Output to**: Proposal, ImportValidator, validator.validate, str
+- **Output to**: Proposal, ImportValidator, validator.validate, mcp.server._tools_vallm._format_issue, str
 
 ### mcp.server._tools_vallm.validate_security
 > Security issue detection using vallm SecurityValidator.
 Detects eval, exec, secrets, SQL injection, 
-- **Output to**: Proposal, SecurityValidator, validator.validate, str
+- **Output to**: Proposal, SecurityValidator, validator.validate, mcp.server._tools_vallm._format_issue, str
 
 ### mcp.server._tools_vallm.validate_code
 > Full pipeline validation combining multiple validators.
@@ -488,7 +489,7 @@ Detects eval, exec, secrets, SQL injection,
 Args:
     code: Source code to validate
    
-- **Output to**: Proposal, sum, sum, None.validate, results.append
+- **Output to**: Proposal, mcp.server._tools_vallm._run_validators, sum, mcp.server._tools_vallm._compute_verdict, mcp.server._tools_vallm._build_pipeline_response
 
 ### mcp.server._tools_vallm.handle_validate_syntax
 > MCP handler for validate_syntax tool.
@@ -539,13 +540,19 @@ This is a partial replacement of the standard library's
 If the ``idna`` module is installed or the ``r
 - **Output to**: uri.URIReference, None.join, exceptions.MissingDependencyError, any, str
 
+### publish-env.lib.python3.13.site-packages.rfc3986.parseresult.ParseResult.encode
+> Convert to an instance of ParseResultBytes.
+- **Output to**: dict, ParseResultBytes, zip, publish-env.lib.python3.13.site-packages.docutils.nodes.Element.hasattr, attr.encode
+
 ### publish-env.lib.python3.13.site-packages.markdown_it.parser_inline.ParserInline.parse
 > Process input string and push inline tokens into `tokens`
 - **Output to**: StateInline, self.tokenize, self.ruler2.getRules, publish-env.lib.python3.13.site-packages.rich.console.Console.rule
 
-### publish-env.lib.python3.13.site-packages.rfc3986.parseresult.ParseResult.encode
-> Convert to an instance of ParseResultBytes.
-- **Output to**: dict, ParseResultBytes, zip, publish-env.lib.python3.13.site-packages.docutils.nodes.Element.hasattr, attr.encode
+### publish-env.lib.python3.13.site-packages.markdown_it._punycode.encode
+- **Output to**: None.decode, codecs.encode
+
+### publish-env.lib.python3.13.site-packages.markdown_it._punycode.decode
+- **Output to**: codecs.decode
 
 ### publish-env.lib.python3.13.site-packages.markdown_it.main.MarkdownIt.parse
 > Parse the source string to a token stream
@@ -567,12 +574,6 @@ If the ``idna`` module is installed or the ``r
 This validator can prohibit more than really needed 
 - **Output to**: normalize_url.validateLink
 
-### publish-env.lib.python3.13.site-packages.markdown_it._punycode.encode
-- **Output to**: None.decode, codecs.encode
-
-### publish-env.lib.python3.13.site-packages.markdown_it._punycode.decode
-- **Output to**: codecs.decode
-
 ### publish-env.lib.python3.13.site-packages.markdown_it.token.convert_attrs
 > Convert Token.attrs set as ``None`` or ``[[key, value], ...]`` to a dict.
 
@@ -589,13 +590,6 @@ In particular, parse comma-separated lists where th
 > Parse lists of key, value pairs as described by RFC 2068 Section 2 and
 convert them into a python di
 - **Output to**: _parse_list_header, item.split, publish-env.lib.python3.13.site-packages.requests.utils.unquote_header_value
-
-### publish-env.lib.python3.13.site-packages.requests.utils._parse_content_type_header
-> Returns content type and parameters from given header
-
-:param header: string
-:return: tuple containi
-- **Output to**: header.split, None.strip, param.strip, param.find, None.strip
 
 ## Behavioral Patterns
 
@@ -693,8 +687,8 @@ Functions exposed as public API (no underscore prefix):
 - `publish-env.lib.python3.13.site-packages.pip._vendor.urllib3.connectionpool.HTTPConnectionPool.urlopen` - 59 calls
 - `publish-env.lib.python3.13.site-packages.pip._internal.commands.install.InstallCommand.add_options` - 59 calls
 - `publish-env.lib.python3.13.site-packages.cryptography.hazmat.primitives.serialization.ssh.load_ssh_private_key` - 59 calls
-- `publish-env.lib.python3.13.site-packages.cffi.backend_ctypes.CTypesBackend.new_array_type` - 58 calls
 - `publish-env.lib.python3.13.site-packages.cffi.vengine_cpy.VCPythonEngine.write_source_to_f` - 58 calls
+- `publish-env.lib.python3.13.site-packages.cffi.backend_ctypes.CTypesBackend.new_array_type` - 58 calls
 - `publish-env.lib.python3.13.site-packages.pip._internal.req.req_uninstall.UninstallPathSet.from_dist` - 58 calls
 - `publish-env.lib.python3.13.site-packages.markdown_it.rules_block.table.table` - 57 calls
 - `publish-env.lib.python3.13.site-packages.cffi.backend_ctypes.CTypesBackend.new_primitive_type` - 56 calls

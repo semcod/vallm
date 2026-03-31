@@ -1,612 +1,732 @@
 flowchart LR
-    subgraph examples_mcp_demo
-        examples__mcp_demo__example_syntax_validation["example_syntax_validation"]
-        examples__mcp_demo__main["main"]
-        examples__mcp_demo__example_full_pipeline["example_full_pipeline"]
+    subgraph examples__mcp_demo
         examples__mcp_demo__example_security_validation["example_security_validation"]
+        examples__mcp_demo__main["main"]
         examples__mcp_demo__example_selective_validation["example_selective_validation"]
+        examples__mcp_demo__example_syntax_validation["example_syntax_validation"]
+        examples__mcp_demo__example_full_pipeline["example_full_pipeline"]
     end
-    subgraph mcp_server
-        mcp__server__self_server__handle_initialize["handle_initialize"]
-        mcp__server___tools_vallm__handle_validate_imports["handle_validate_imports"]
-        mcp__server___tools_vallm__handle_validate_security["handle_validate_security"]
-        mcp__server___tools_vallm__handle_validate_code["handle_validate_code"]
-        mcp__server___tools_vallm__handle_validate_syntax["handle_validate_syntax"]
-        mcp__server__self_server__handle_request["handle_request"]
-        mcp__server__self_server__handle_tools_call["handle_tools_call"]
-        mcp__server___tools_vallm__validate_security["validate_security"]
-        mcp__server__self_server__handle_tools_list["handle_tools_list"]
+    subgraph mcp__server
         mcp__server__self_server__main["main"]
-        mcp__server___tools_vallm__validate_code["validate_code"]
-        mcp__server___tools_vallm__validate_imports["validate_imports"]
+        mcp__server___tools_vallm__handle_validate_code["handle_validate_code"]
+        mcp__server___tools_vallm__validate_security["validate_security"]
+        mcp__server___tools_vallm__handle_validate_syntax["handle_validate_syntax"]
         mcp__server___tools_vallm__validate_syntax["validate_syntax"]
+        mcp__server___tools_vallm__validate_code["validate_code"]
+        mcp__server__self_server__handle_tools_call["handle_tools_call"]
+        mcp__server__self_server__handle_tools_list["handle_tools_list"]
+        mcp__server__self_server__handle_initialize["handle_initialize"]
+        mcp__server___tools_vallm__handle_validate_security["handle_validate_security"]
+        mcp__server___tools_vallm__validate_imports["validate_imports"]
+        mcp__server__self_server__handle_request["handle_request"]
+        mcp__server___tools_vallm__handle_validate_imports["handle_validate_imports"]
     end
-    subgraph publish_env_lib
-        publish-env__URIMixin__path_is_valid["path_is_valid"]
-        publish-env__lib__python3__13__site-packages__requests_toolb["map"]
-        publish-env__lib__python3__13__site-packages__packaging__pyl["_get_sequence_as"]
-        publish-env__URIMixin__copy_with["copy_with"]
-        publish-env__lib__python3__13__site-packages__markdown_it__c["escapeHtml"]
-        publish-env__lib__python3__13__site-packages__requests__util["unquote_header_value"]
-        publish-env__lib__python3__13__site-packages__requests__api_["options"]
-        publish-env__Session__merge_environment_settings["merge_environment_settings"]
-        publish-env__PreparedRequest____init__["__init__"]
-        publish-env__lib__python3__13__site-packages__packaging__uti["parse_wheel_filename"]
-        publish-env__HTTPAdapter__build_response["build_response"]
-        publish-env__PreparedRequest__prepare_cookies["prepare_cookies"]
-        publish-env__FFI__cast["cast"]
-        publish-env__lib__python3__13__site-packages__packaging___pa["_parse_requirement"]
-        publish-env__lib__python3__13__site-packages__rfc3986__norma["remove_dot_segments"]
-        publish-env__lib__python3__13__site-packages__packaging__spe["_base_version"]
-        publish-env__lib__python3__13__site-packages__requests___int["to_native_string"]
-        publish-env__lib__python3__13__site-packages__requests__util["get_auth_from_url"]
-        publish-env__lib__python3__13__site-packages__requests__hook["dispatch_hook"]
-        publish-env__HTTPDigestAuth__handle_401["handle_401"]
-        publish-env__lib__python3__13__site-packages__rfc3986__norma["encode_component"]
-        publish-env__lib__python3__13__site-packages__requests__cook["remove_cookie_by_name"]
-        publish-env__lib__python3__13__site-packages__rich__jupyter_["print"]
-        publish-env__ASTCodeGenerator__generate["generate"]
-        publish-env__lib__python3__13__site-packages__packaging__pyl["_toml_dict_factory"]
-        publish-env__UnpermittedComponentError____init__["__init__"]
-        publish-env__lib__python3__13__site-packages__packaging___pa["_parse_marker_var"]
-        publish-env__lib__python3__13__site-packages__requests_toolb["urlencode"]
-        publish-env__Specifier___compare_less_than_equal["_compare_less_than_equal"]
-        publish-env__RequestException____init__["__init__"]
-        publish-env__RequestHooksMixin__register_hook["register_hook"]
-        publish-env__lib__python3__13__site-packages__packaging__tag["parse_tag"]
-        publish-env__RequestsCookieJar__set["set"]
-        publish-env__lib__python3__13__site-packages__rfc3986__compa["to_str"]
-        publish-env__ParserCore__process["process"]
-        publish-env__lib__python3__13__site-packages__requests__util["guess_json_utf"]
-        publish-env__lib__python3__13__site-packages__requests__sess["merge_setting"]
-        publish-env__lib__python3__13__site-packages__packaging___ma["_is_linux_armhf"]
-        publish-env__lib__python3__13__site-packages__rfc3986__valid["is_valid"]
-        publish-env__lib__python3__13__site-packages__requests__api_["request"]
-        publish-env__MultiFernet____init__["__init__"]
-        publish-env__PackageWheel___from_dict["_from_dict"]
-        publish-env__RequestsCookieJar__values["values"]
-        publish-env__ParseResult__from_parts["from_parts"]
-        publish-env__InfinityType____hash__["__hash__"]
-        publish-env__lib__python3__13__site-packages__rfc3986__valid["ensure_one_of"]
-        publish-env__HTTPDigestAuth____eq__["__eq__"]
-        publish-env__lib__python3__13__site-packages__rfc3986__api__["uri_reference"]
-        publish-env__SessionRedirectMixin__get_redirect_target["get_redirect_target"]
-        publish-env__lib__python3__13__site-packages__packaging___mu["_parse_musl_version"]
-        publish-env__HTTPAdapter__get_connection["get_connection"]
-        publish-env__lib__python3__13__site-packages__requests__util["parse_list_header"]
-        publish-env__lib__python3__13__site-packages__rfc3986__api__["is_valid_uri"]
-        publish-env__Fernet__extract_timestamp["extract_timestamp"]
-        publish-env__IRIReference__encode["encode"]
-        publish-env__Session__prepare_request["prepare_request"]
-        publish-env__lib__python3__13__site-packages__requests__help["_implementation"]
-        publish-env__Specifier__filter["filter"]
-        publish-env__lib__python3__13__site-packages__packaging__spe["_public_version"]
-        publish-env__SyntaxTreeNode___add_child["_add_child"]
-        publish-env__MockRequest____init__["__init__"]
-        publish-env__lib__python3__13__site-packages__packaging__spe["_coerce_version"]
-        publish-env__lib__python3__13__site-packages__packaging___mu["_get_musl_version"]
-        publish-env__URIMixin__scheme_is_valid["scheme_is_valid"]
-        publish-env__lib__python3__13__site-packages__requests__util["address_in_network"]
-        publish-env__ParserInline__tokenize["tokenize"]
-        publish-env__MockRequest__get_host["get_host"]
-        publish-env__NegativeInfinityType____hash__["__hash__"]
-        publish-env__SSHCertificateBuilder__type["type"]
-        publish-env__lib__python3__13__site-packages__requests__util["_validate_header_part"]
-        publish-env__lib__python3__13__site-packages__rfc3986__norma["normalize_path"]
-        publish-env__SyntaxTreeNode___set_children_from_tokens["_set_children_from_tokens"]
-        publish-env__HTTPAdapter__cert_verify["cert_verify"]
-        publish-env__HTTPBasicAuth____call__["__call__"]
-        publish-env__lib__python3__13__site-packages__docutils__writ["list"]
-        publish-env__lib__python3__13__site-packages__packaging___ma["_parse_elf"]
-        publish-env__Metadata__from_email["from_email"]
-        publish-env__lib__python3__13__site-packages__requests__util["iter_slices"]
-        publish-env__lib__python3__13__site-packages__rfc3986__parse["split_authority"]
-        publish-env__lib__python3__13__site-packages__packaging___ma["_is_compatible"]
-        publish-env__lib__python3__13__site-packages__markdown_it__c["unescapeAll"]
-        publish-env__lib__python3__13__site-packages__requests__util["dict_to_sequence"]
-        publish-env__HTTPAdapter__build_connection_pool_key_attribut["build_connection_pool_key_attr"]
-        publish-env__RequestsCookieJar__set_cookie["set_cookie"]
-        publish-env__PackageVcs___from_dict["_from_dict"]
-        publish-env__lib__python3__13__site-packages__packaging___pa["_parse_marker"]
-        publish-env__Element__delattr["delattr"]
-        publish-env__lib__python3__13__site-packages__requests__api_["head"]
-        publish-env__lib__python3__13__site-packages__packaging__pyl["_get_required_as"]
-        publish-env__lib__python3__13__site-packages__requests__util["set_environ"]
-        publish-env__FileOutput__open["open"]
-        publish-env__MarkdownIt__validateLink["validateLink"]
-        publish-env__lib__python3__13__site-packages__packaging___ma["_glibc_version_string_confstr"]
-        publish-env__Response__close["close"]
-        publish-env__lib__python3__13__site-packages__rfc3986__valid["check_password"]
-        publish-env__lib__python3__13__site-packages__packaging___ma["_is_linux_i686"]
-        publish-env__lib__python3__13__site-packages__rfc3986__valid["valid_ipv4_host_address"]
-        publish-env__Element__hasattr["hasattr"]
-        publish-env__lib__python3__13__site-packages__urllib3__filep["encode_multipart_formdata"]
-        publish-env__SessionRedirectMixin__resolve_redirects["resolve_redirects"]
-        publish-env__lib__python3__13__site-packages__markdown_it___["map_domain"]
-        publish-env__lib__python3__13__site-packages__requests__cook["get_cookie_header"]
-        publish-env__Response__iter_content["iter_content"]
-        publish-env__lib__python3__13__site-packages__markdown_it___["to_ascii"]
-        publish-env__Token__attrIndex["attrIndex"]
-        publish-env__lib__python3__13__site-packages__packaging___pa["parse_marker"]
-        publish-env__Specifier___compare_compatible["_compare_compatible"]
-        publish-env__lib__python3__13__site-packages__requests__util["select_proxy"]
-        publish-env__URIMixin__resolve_with["resolve_with"]
-        publish-env__lib__python3__13__site-packages__requests__sess["merge_hooks"]
-        publish-env__SessionRedirectMixin__rebuild_auth["rebuild_auth"]
-        publish-env__Specifier__contains["contains"]
-        publish-env__lib__python3__13__site-packages__packaging__uti["canonicalize_name"]
-        publish-env__Pylock___from_dict["_from_dict"]
-        publish-env__Specifier___compare_less_than["_compare_less_than"]
-        publish-env__RendererHTML__text["text"]
-        publish-env__lib__python3__13__site-packages__requests__util["get_netrc_auth"]
-        publish-env__lib__python3__13__site-packages__requests__cook["cookiejar_from_dict"]
-        publish-env__PreparedRequest__prepare_content_length["prepare_content_length"]
-        publish-env__MarkdownIt__parse["parse"]
-        publish-env__Fernet__decrypt_at_time["decrypt_at_time"]
-        publish-env__ParseResultBytes__from_parts["from_parts"]
-        publish-env__lib__python3__13__site-packages__requests__api_["delete"]
-        publish-env__lib__python3__13__site-packages__rfc3986__valid["query_is_valid"]
-        publish-env__lib__python3__13__site-packages__packaging___pa["_parse_marker_op"]
-        publish-env__lib__python3__13__site-packages__requests__util["get_unicode_from_response"]
-        publish-env__PackageDirectory___from_dict["_from_dict"]
-        publish-env__Packer__bytes["bytes"]
-        publish-env__lib__python3__13__site-packages__packaging___ma["_get_glibc_version"]
-        publish-env__lib__python3__13__site-packages__packaging__mar["_normalize_extra_values"]
-        publish-env__URIReference__from_string["from_string"]
-        publish-env__lib__python3__13__site-packages__rfc3986__valid["fragment_is_valid"]
-        publish-env__URIMixin__unsplit["unsplit"]
-        publish-env__lib__python3__13__site-packages__requests__util["prepend_scheme_if_needed"]
-        publish-env__lib__python3__13__site-packages__markdown_it__t["convert_attrs"]
-        publish-env__MockRequest__get_full_url["get_full_url"]
-        publish-env__Specifier___compare_greater_than["_compare_greater_than"]
-        publish-env__HTTPProxyAuth____call__["__call__"]
-        publish-env__lib__python3__13__site-packages__packaging___pa["process_python_str"]
-        publish-env__lib__python3__13__site-packages__urllib3__util_["parse_url"]
-        publish-env__PreparedRequest__prepare_body["prepare_body"]
-        publish-env__BaseSpecifier__filter["filter"]
-        publish-env__lib__python3__13__site-packages__requests__util["stream_decode_response_unicode"]
-        publish-env__PreparedRequest__prepare_headers["prepare_headers"]
-        publish-env__URIMixin__authority_info["authority_info"]
-        publish-env__Fernet__decrypt["decrypt"]
-        publish-env__RendererHTML__code_inline["code_inline"]
-        publish-env__ParseResultBytes__copy_with["copy_with"]
-        publish-env__lib__python3__13__site-packages__requests__cook["create_cookie"]
-        publish-env__RequestsCookieJar__items["items"]
-        publish-env__lib__python3__13__site-packages__packaging___ma["_glibc_version_string"]
-        publish-env__Specifier___get_spec_version["_get_spec_version"]
-        publish-env__Token__as_dict["as_dict"]
-        publish-env__Validator____init__["__init__"]
-        publish-env__Console__rule["rule"]
-        publish-env__lib__python3__13__site-packages__requests__api_["put"]
-        publish-env__lib__python3__13__site-packages__cryptography__["__delattr__"]
-        publish-env__lib__python3__13__site-packages__requests__util["_parse_content_type_header"]
-        publish-env__HTTPDigestAuth__build_digest_header["build_digest_header"]
-        publish-env__lib__python3__13__site-packages__requests__help["main"]
-        publish-env__Requirement____hash__["__hash__"]
-        publish-env__lib__python3__13__site-packages__packaging___pa["_parse_full_marker"]
-        publish-env__HTTPAdapter__request_url["request_url"]
-        publish-env__lib__python3__13__site-packages__requests__util["super_len"]
-        publish-env__lib__python3__13__site-packages__rfc3986__api__["normalize_uri"]
-        publish-env__Specifier____hash__["__hash__"]
-        publish-env__Package___from_dict["_from_dict"]
-        publish-env__Validator__allow_hosts["allow_hosts"]
-        publish-env__ParseResultBytes__from_string["from_string"]
-        publish-env__RendererHTML__renderAttrs["renderAttrs"]
-        publish-env__lib__python3__13__site-packages__requests__help["info"]
-        publish-env__lib__python3__13__site-packages__packaging__met["_get_payload"]
-        publish-env__lib__python3__13__site-packages__rfc3986__api__["iri_reference"]
-        publish-env__ParserInline__skipToken["skipToken"]
-        publish-env__lib__python3__13__site-packages__requests__util["default_user_agent"]
-        publish-env__PackageArchive___from_dict["_from_dict"]
-        publish-env__lib__python3__13__site-packages__requests__util["add_dict_to_cookiejar"]
-        publish-env__ParseResult__from_string["from_string"]
-        publish-env__lib__python3__13__site-packages__requests__cook["_copy_cookie_jar"]
-        publish-env__lib__python3__13__site-packages__packaging__spe["_version_join"]
-        publish-env__lib__python3__13__site-packages__packaging__pyl["_validate_hashes"]
-        publish-env__Fernet___encrypt_from_parts["_encrypt_from_parts"]
-        publish-env__HTTPAdapter__get_connection_with_tls_context["get_connection_with_tls_contex"]
-        publish-env__MarkdownIt__normalizeLink["normalizeLink"]
-        publish-env__Token____post_init__["__post_init__"]
-        publish-env__Response____init__["__init__"]
-        publish-env__URIReference____eq__["__eq__"]
-        publish-env__lib__python3__13__site-packages__markdown_it___["decode"]
-        publish-env__Fernet___get_unverified_token_data["_get_unverified_token_data"]
-        publish-env__Specifier___compare_greater_than_equal["_compare_greater_than_equal"]
-        publish-env__RequestsCookieJar__keys["keys"]
-        publish-env__lib__python3__13__site-packages__packaging___pa["_parse_specifier"]
-        publish-env__lib__python3__13__site-packages__packaging__pyl["_validate_path_url"]
-        publish-env__lib__python3__13__site-packages__requests__util["unquote_unreserved"]
-        publish-env__lib__python3__13__site-packages__packaging___ma["platform_tags"]
-        publish-env__lib__python3__13__site-packages__rfc3986__norma["normalize_query"]
-        publish-env__lib__python3__13__site-packages__packaging___ma["_have_compatible_abi"]
-        publish-env__BaseHTTPResponse__release_conn["release_conn"]
-        publish-env__RendererHTML__code_block["code_block"]
-        publish-env__URIMixin__authority_is_valid["authority_is_valid"]
-        publish-env__lib__python3__13__site-packages__rfc3986__norma["normalize_scheme"]
-        publish-env__lib__python3__13__site-packages__cffi___embeddi["all"]
-        publish-env__lib__python3__13__site-packages__rfc3986__norma["normalize_host"]
-        publish-env__lib__python3__13__site-packages__requests__api_["get"]
-        publish-env__SpecifierSet__contains["contains"]
-        publish-env__SessionRedirectMixin__should_strip_auth["should_strip_auth"]
-        publish-env__ParseResultMixin___generate_authority["_generate_authority"]
-        publish-env__lib__python3__13__site-packages__requests__util["parse_dict_header"]
-        publish-env__Requirement____init__["__init__"]
-        publish-env__RequestsCookieJar____delitem__["__delitem__"]
-        publish-env__URIMixin__is_valid["is_valid"]
-        publish-env__lib__python3__13__site-packages__urllib3__poolm["proxy_from_url"]
-        publish-env__ParserInline__parse["parse"]
-        publish-env__HTTPAdapter__proxy_headers["proxy_headers"]
-        publish-env__PreparedRequest__prepare_url["prepare_url"]
-        publish-env__lib__python3__13__site-packages__requests__adap["_urllib3_request_context"]
-        publish-env__lib__python3__13__site-packages__markdown_it__c["validateLink"]
-        publish-env__lib__python3__13__site-packages__rfc3986__api__["urlparse"]
-        publish-env__lib__python3__13__site-packages__requests__util["dotted_netmask"]
-        publish-env__IRIReference____eq__["__eq__"]
-        publish-env__lib__python3__13__site-packages__packaging__uti["parse_sdist_filename"]
-        publish-env__lib__python3__13__site-packages__requests__util["urldefragauth"]
-        publish-env__lib__python3__13__site-packages__requests__util["extract_zipped_paths"]
-        publish-env__Validator__validate["validate"]
-        publish-env__lib__python3__13__site-packages__packaging__pyl["_get_object"]
-        publish-env__lib__python3__13__site-packages__packaging__pyl["_get_sequence"]
-        publish-env__lib__python3__13__site-packages__packaging___ma["_glibc_version_string_ctypes"]
-        publish-env__SpecifierSet__filter["filter"]
-        publish-env__Response__json["json"]
-        publish-env__lib__python3__13__site-packages__packaging__met["_process_description_content_t"]
-        publish-env__SpecifierSet____hash__["__hash__"]
-        publish-env__RendererHTML__fence["fence"]
-        publish-env__lib__python3__13__site-packages__rfc3986__valid["scheme_is_valid"]
-        publish-env__PasswordForbidden____init__["__init__"]
-        publish-env__Requirement____eq__["__eq__"]
-        publish-env__lib__python3__13__site-packages__packaging__met["parse_email"]
-        publish-env__lib__python3__13__site-packages__rfc3986__valid["ensure_required_components_exi"]
-        publish-env__PreparedRequest__prepare_auth["prepare_auth"]
-        publish-env__lib__python3__13__site-packages__requests__util["get_encoding_from_headers"]
-        publish-env__lib__python3__13__site-packages__packaging__pyl["_validate_normalized_name"]
-        publish-env__HashManager__hash["hash"]
-        publish-env__MarkdownIt__normalizeLinkText["normalizeLinkText"]
-        publish-env__ELFFile____init__["__init__"]
-        publish-env__lib__python3__13__site-packages__requests__hook["default_hooks"]
-        publish-env__lib__python3__13__site-packages__rfc3986__valid["authority_is_valid"]
-        publish-env__SyntaxTreeNode____repr__["__repr__"]
-        publish-env__lib__python3__13__site-packages__requests___che["_check_cryptography"]
-        publish-env__lib__python3__13__site-packages__requests__util["resolve_proxies"]
-        publish-env__lib__python3__13__site-packages__requests__auth["_basic_auth_str"]
-        publish-env__lib__python3__13__site-packages__packaging__pyl["_toml_key"]
-        publish-env__lib__python3__13__site-packages__rfc3986__valid["subauthority_component_is_vali"]
-        publish-env__lib__python3__13__site-packages__packaging__uti["is_normalized_name"]
-        publish-env__lib__python3__13__site-packages__packaging___pa["parse_requirement"]
-        publish-env__lib__python3__13__site-packages__rfc3986__valid["host_is_valid"]
-        publish-env__IRIReference__from_string["from_string"]
-        publish-env__lib__python3__13__site-packages__markdown_it___["encode"]
-        publish-env__PreparedRequest__prepare_method["prepare_method"]
-        publish-env__HTTPAdapter__proxy_manager_for["proxy_manager_for"]
-        publish-env__lib__python3__13__site-packages__packaging__uti["canonicalize_version"]
-        publish-env__lib__python3__13__site-packages__requests__util["should_bypass_proxies"]
-        publish-env__lib__python3__13__site-packages__packaging___ma["_parse_glibc_version"]
-        publish-env__lib__python3__13__site-packages__requests__cook["extract_cookies_to_jar"]
-        publish-env__ParseResult__encode["encode"]
-        publish-env__lib__python3__13__site-packages__packaging___pa["_parse_requirement_details"]
-        publish-env__lib__python3__13__site-packages__requests__util["requote_uri"]
-        publish-env__Session____init__["__init__"]
-        publish-env__lib__python3__13__site-packages__packaging__pyl["_get_as"]
-        publish-env__lib__python3__13__site-packages__cryptography__["_check_bytes"]
-        publish-env__lib__python3__13__site-packages__packaging__spe["_pad_version"]
-        publish-env__RequestEncodingMixin___encode_files["_encode_files"]
-        publish-env__SpecifierSet____init__["__init__"]
-        publish-env__Validator__allow_schemes["allow_schemes"]
-        publish-env__lib__python3__13__site-packages__rfc3986__norma["normalize_authority"]
-        publish-env__PackageSdist___from_dict["_from_dict"]
-        publish-env__lib__python3__13__site-packages__rfc3986__valid["ensure_components_are_valid"]
-        publish-env__lib__python3__13__site-packages__rfc3986__norma["normalize_fragment"]
-        publish-env__lib__python3__13__site-packages__packaging__pyl["_get_sequence_of_objects"]
-        publish-env__Specifier___compare_equal["_compare_equal"]
-        publish-env__lib__python3__13__site-packages__packaging__met["__get__"]
-        publish-env__lib__python3__13__site-packages__requests__util["get_environ_proxies"]
-        publish-env__lib__python3__13__site-packages__packaging___pa["_parse_extras"]
-        publish-env__Token__attrItems["attrItems"]
-        publish-env__lib__python3__13__site-packages__requests__util["default_headers"]
-        publish-env__lib__python3__13__site-packages__packaging___pa["_parse_requirement_marker"]
-        publish-env__lib__python3__13__site-packages__requests__util["to_key_val_list"]
-        publish-env__lib__python3__13__site-packages__packaging__pyl["_toml_value"]
-        publish-env__HTTPBasicAuth____eq__["__eq__"]
-        publish-env__lib__python3__13__site-packages__requests__util["is_valid_cidr"]
-        publish-env__lib__python3__13__site-packages__requests__util["check_header_validity"]
-        publish-env__MarkdownIt__parseInline["parseInline"]
-        publish-env__lib__python3__13__site-packages__packaging___pa["_parse_version_many"]
-        publish-env__lib__python3__13__site-packages__packaging___pa["_parse_marker_atom"]
-        publish-env__PreparedRequest__copy["copy"]
-        publish-env__lib__python3__13__site-packages__packaging__pyl["_get"]
-        publish-env__lib__python3__13__site-packages__markdown_it___["to_unicode"]
-        publish-env__MultiFernet__rotate["rotate"]
-        publish-env__lib__python3__13__site-packages__requests__cook["morsel_to_cookie"]
-        publish-env__URIMixin__query_is_valid["query_is_valid"]
-        publish-env__lib__python3__13__site-packages__packaging___pa["_parse_marker_item"]
-        publish-env__lib__python3__13__site-packages__packaging___pa["_parse_extras_list"]
-        publish-env__lib__python3__13__site-packages__packaging__pyl["_get_required"]
-        publish-env__URIMixin__fragment_is_valid["fragment_is_valid"]
-        publish-env__SessionRedirectMixin__rebuild_proxies["rebuild_proxies"]
-        publish-env__HTTPDigestAuth__init_per_thread_state["init_per_thread_state"]
-        publish-env__MarkdownIt__set["set"]
-        publish-env__lib__python3__13__site-packages__packaging__spe["_version_split"]
-        publish-env__lib__python3__13__site-packages__packaging__met["_process_dynamic"]
-        publish-env__lib__python3__13__site-packages__requests__api_["patch"]
-        publish-env__URIReference__normalize["normalize"]
-        publish-env__lib__python3__13__site-packages__packaging__pyl["_get_required_sequence_of_obje"]
-        publish-env__ParserBlock__tokenize["tokenize"]
-        publish-env__lib__python3__13__site-packages__requests__api_["post"]
-        publish-env__lib__python3__13__site-packages__markdown_it__c["normalizeLinkText"]
-        publish-env__Request____init__["__init__"]
-        publish-env__lib__python3__13__site-packages__rfc3986__norma["normalize_percent_characters"]
-        publish-env__InvalidAuthority____init__["__init__"]
-        publish-env__OptionsDict____init__["__init__"]
-        publish-env__lib__python3__13__site-packages__markdown_it__c["normalizeLink"]
-        publish-env__lib__python3__13__site-packages__requests__util["is_ipv4_address"]
-        publish-env__RequestEncodingMixin___encode_params["_encode_params"]
-        publish-env__lib__python3__13__site-packages__rfc3986__compa["to_bytes"]
-        publish-env__lib__python3__13__site-packages__rfc3986__valid["path_is_valid"]
-        publish-env__lib__python3__13__site-packages__packaging__met["_process_metadata_version"]
-        publish-env__lib__python3__13__site-packages__requests__cook["merge_cookies"]
-        publish-env__lib__python3__13__site-packages__packaging___pa["process_env_var"]
-        publish-env__lib__python3__13__site-packages__rfc3986__parse["authority_from"]
+    subgraph publish_env__lib
+        publish_env__lib__python3__13__site_packages__packaging___manylinux__platform_tags["platform_tags"]
+        publish_env__lib__python3__13__site_packages__requests__models__Response__close["close"]
+        publish_env__lib__python3__13__site_packages__packaging__metadata__Metadata__from_email["from_email"]
+        publish_env__lib__python3__13__site_packages__packaging__specifiers__Specifier__filter["filter"]
+        publish_env__lib__python3__13__site_packages__packaging___elffile__ELFFile____init__["__init__"]
+        publish_env__lib__python3__13__site_packages__rfc3986__api__normalize_uri["normalize_uri"]
+        publish_env__lib__python3__13__site_packages__packaging__specifiers__Specifier___compare_compatible["_compare_compatible"]
+        publish_env__lib__python3__13__site_packages__markdown_it__common__utils__escapeHtml["escapeHtml"]
+        publish_env__lib__python3__13__site_packages__packaging___manylinux___parse_glibc_version["_parse_glibc_version"]
+        publish_env__lib__python3__13__site_packages__rfc3986__uri__URIReference__from_string["from_string"]
+        publish_env__lib__python3__13__site_packages__requests__sessions__Session____init__["__init__"]
+        publish_env__lib__python3__13__site_packages__markdown_it__common__normalize_url__normalizeLinkText["normalizeLinkText"]
+        publish_env__lib__python3__13__site_packages__requests__utils__get_encoding_from_headers["get_encoding_from_headers"]
+        publish_env__lib__python3__13__site_packages__requests__cookies__extract_cookies_to_jar["extract_cookies_to_jar"]
+        publish_env__lib__python3__13__site_packages__markdown_it__renderer__RendererHTML__code_inline["code_inline"]
+        publish_env__lib__python3__13__site_packages__requests__adapters___urllib3_request_context["_urllib3_request_context"]
+        publish_env__lib__python3__13__site_packages__requests__utils__unquote_header_value["unquote_header_value"]
+        publish_env__lib__python3__13__site_packages__packaging__specifiers___version_join["_version_join"]
+        publish_env__lib__python3__13__site_packages__packaging__specifiers__Specifier____hash__["__hash__"]
+        publish_env__lib__python3__13__site_packages__rfc3986__parseresult__ParseResultBytes__from_string["from_string"]
+        publish_env__lib__python3__13__site_packages__urllib3__util__url__parse_url["parse_url"]
+        publish_env__lib__python3__13__site_packages__markdown_it__renderer__RendererHTML__fence["fence"]
+        publish_env__lib__python3__13__site_packages__rfc3986__normalizers__normalize_query["normalize_query"]
+        publish_env__lib__python3__13__site_packages__rfc3986__iri__IRIReference__from_string["from_string"]
+        publish_env__lib__python3__13__site_packages__markdown_it__tree__SyntaxTreeNode___set_children_from_tokens["_set_children_from_tokens"]
+        publish_env__lib__python3__13__site_packages__requests___check_cryptography["_check_cryptography"]
+        publish_env__lib__python3__13__site_packages__packaging__pylock___get["_get"]
+        publish_env__lib__python3__13__site_packages__rich__jupyter__print["print"]
+        publish_env__lib__python3__13__site_packages__requests__auth__HTTPDigestAuth__init_per_thread_state["init_per_thread_state"]
+        publish_env__lib__python3__13__site_packages__markdown_it__renderer__RendererHTML__renderAttrs["renderAttrs"]
+        publish_env__lib__python3__13__site_packages__packaging___parser__process_python_str["process_python_str"]
+        publish_env__lib__python3__13__site_packages__packaging___manylinux___is_compatible["_is_compatible"]
+        publish_env__lib__python3__13__site_packages__packaging___parser___parse_requirement_details["_parse_requirement_details"]
+        publish_env__lib__python3__13__site_packages__packaging___manylinux___is_linux_i686["_is_linux_i686"]
+        publish_env__lib__python3__13__site_packages__requests__cookies__morsel_to_cookie["morsel_to_cookie"]
+        publish_env__lib__python3__13__site_packages__rfc3986__validators__valid_ipv4_host_address["valid_ipv4_host_address"]
+        publish_env__lib__python3__13__site_packages__requests__help__info["info"]
+        publish_env__lib__python3__13__site_packages__markdown_it__main__MarkdownIt__validateLink["validateLink"]
+        publish_env__lib__python3__13__site_packages__docutils__writers__s5_html__themes__default__slides__list["list"]
+        publish_env__lib__python3__13__site_packages__requests__exceptions__RequestException____init__["__init__"]
+        publish_env__lib__python3__13__site_packages__requests__cookies___copy_cookie_jar["_copy_cookie_jar"]
+        publish_env__lib__python3__13__site_packages__requests__models__PreparedRequest__prepare_cookies["prepare_cookies"]
+        publish_env__lib__python3__13__site_packages__docutils__io__FileOutput__open["open"]
+        publish_env__lib__python3__13__site_packages__rfc3986__compat__to_bytes["to_bytes"]
+        publish_env__lib__python3__13__site_packages__requests__cookies__RequestsCookieJar__set_cookie["set_cookie"]
+        publish_env__lib__python3__13__site_packages__packaging___parser___parse_full_marker["_parse_full_marker"]
+        publish_env__lib__python3__13__site_packages__requests__cookies__MockRequest__get_full_url["get_full_url"]
+        publish_env__lib__python3__13__site_packages__requests__utils__dict_to_sequence["dict_to_sequence"]
+        publish_env__lib__python3__13__site_packages__packaging__pylock___toml_dict_factory["_toml_dict_factory"]
+        publish_env__lib__python3__13__site_packages__pycparser___ast_gen__ASTCodeGenerator__generate["generate"]
+        publish_env__lib__python3__13__site_packages__rfc3986__normalizers__normalize_scheme["normalize_scheme"]
+        publish_env__lib__python3__13__site_packages__requests__cookies__merge_cookies["merge_cookies"]
+        publish_env__lib__python3__13__site_packages__requests__models__PreparedRequest__copy["copy"]
+        publish_env__lib__python3__13__site_packages__requests__utils__requote_uri["requote_uri"]
+        publish_env__lib__python3__13__site_packages__packaging___parser___parse_extras["_parse_extras"]
+        publish_env__lib__python3__13__site_packages__packaging__specifiers__SpecifierSet__filter["filter"]
+        publish_env__lib__python3__13__site_packages__rfc3986__normalizers__normalize_fragment["normalize_fragment"]
+        publish_env__lib__python3__13__site_packages__requests__models__Response__iter_content["iter_content"]
+        publish_env__lib__python3__13__site_packages__packaging___parser___parse_requirement_marker["_parse_requirement_marker"]
+        publish_env__lib__python3__13__site_packages__rfc3986__iri__IRIReference__encode["encode"]
+        publish_env__lib__python3__13__site_packages__requests__hooks__default_hooks["default_hooks"]
+        publish_env__lib__python3__13__site_packages__requests__cookies__RequestsCookieJar__values["values"]
+        publish_env__lib__python3__13__site_packages__packaging__pylock___get_required_as["_get_required_as"]
+        publish_env__lib__python3__13__site_packages__rfc3986__api__is_valid_uri["is_valid_uri"]
+        publish_env__lib__python3__13__site_packages__packaging__specifiers___version_split["_version_split"]
+        publish_env__lib__python3__13__site_packages__packaging__specifiers__BaseSpecifier__filter["filter"]
+        publish_env__lib__python3__13__site_packages__rfc3986__validators__check_password["check_password"]
+        publish_env__lib__python3__13__site_packages__urllib3__poolmanager__proxy_from_url["proxy_from_url"]
+        publish_env__lib__python3__13__site_packages__packaging___structures__NegativeInfinityType____hash__["__hash__"]
+        publish_env__lib__python3__13__site_packages__packaging__utils__canonicalize_name["canonicalize_name"]
+        publish_env__lib__python3__13__site_packages__requests__models__RequestEncodingMixin___encode_files["_encode_files"]
+        publish_env__lib__python3__13__site_packages__cryptography__fernet__Fernet__decrypt_at_time["decrypt_at_time"]
+        publish_env__lib__python3__13__site_packages__markdown_it__main__MarkdownIt__normalizeLink["normalizeLink"]
+        publish_env__lib__python3__13__site_packages__requests__models__PreparedRequest__prepare_content_length["prepare_content_length"]
+        publish_env__lib__python3__13__site_packages__markdown_it___punycode__to_unicode["to_unicode"]
+        publish_env__lib__python3__13__site_packages__packaging___parser___parse_specifier["_parse_specifier"]
+        publish_env__lib__python3__13__site_packages__requests__cookies__MockRequest____init__["__init__"]
+        publish_env__lib__python3__13__site_packages__packaging__utils__is_normalized_name["is_normalized_name"]
+        publish_env__lib__python3__13__site_packages__pip___vendor__msgpack__fallback__Packer__bytes["bytes"]
+        publish_env__lib__python3__13__site_packages__packaging__utils__parse_wheel_filename["parse_wheel_filename"]
+        publish_env__lib__python3__13__site_packages__requests__utils__super_len["super_len"]
+        publish_env__lib__python3__13__site_packages__markdown_it__tree__SyntaxTreeNode___add_child["_add_child"]
+        publish_env__lib__python3__13__site_packages__requests__models__PreparedRequest__prepare_body["prepare_body"]
+        publish_env__lib__python3__13__site_packages__rfc3986___mixin__URIMixin__scheme_is_valid["scheme_is_valid"]
+        publish_env__lib__python3__13__site_packages__requests__utils__unquote_unreserved["unquote_unreserved"]
+        publish_env__lib__python3__13__site_packages__requests__api__request["request"]
+        publish_env__lib__python3__13__site_packages__rfc3986__normalizers__encode_component["encode_component"]
+        publish_env__lib__python3__13__site_packages__packaging__specifiers__SpecifierSet__contains["contains"]
+        publish_env__lib__python3__13__site_packages__packaging___parser___parse_marker_item["_parse_marker_item"]
+        publish_env__lib__python3__13__site_packages__requests__utils__resolve_proxies["resolve_proxies"]
+        publish_env__lib__python3__13__site_packages__markdown_it__renderer__RendererHTML__text["text"]
+        publish_env__lib__python3__13__site_packages__packaging__markers___normalize_extra_values["_normalize_extra_values"]
+        publish_env__lib__python3__13__site_packages__requests__utils__urldefragauth["urldefragauth"]
+        publish_env__lib__python3__13__site_packages__packaging__pylock__PackageSdist___from_dict["_from_dict"]
+        publish_env__lib__python3__13__site_packages__rfc3986__validators__authority_is_valid["authority_is_valid"]
+        publish_env__lib__python3__13__site_packages__rfc3986__parseresult__ParseResultBytes__from_parts["from_parts"]
+        publish_env__lib__python3__13__site_packages__rfc3986__uri__URIReference____eq__["__eq__"]
+        publish_env__lib__python3__13__site_packages__packaging__specifiers___coerce_version["_coerce_version"]
+        publish_env__lib__python3__13__site_packages__requests__api__put["put"]
+        publish_env__lib__python3__13__site_packages__rfc3986__validators__ensure_required_components_exist["ensure_required_components_exi"]
+        publish_env__lib__python3__13__site_packages__docutils__nodes__Element__delattr["delattr"]
+        publish_env__lib__python3__13__site_packages__rfc3986___mixin__URIMixin__is_valid["is_valid"]
+        publish_env__lib__python3__13__site_packages__packaging__specifiers__Specifier___compare_less_than_equal["_compare_less_than_equal"]
+        publish_env__lib__python3__13__site_packages__requests__auth__HTTPDigestAuth__handle_401["handle_401"]
+        publish_env__lib__python3__13__site_packages__rfc3986__compat__to_str["to_str"]
+        publish_env__lib__python3__13__site_packages__packaging___manylinux___glibc_version_string_confstr["_glibc_version_string_confstr"]
+        publish_env__lib__python3__13__site_packages__packaging__pylock___get_sequence_as["_get_sequence_as"]
+        publish_env__lib__python3__13__site_packages__rfc3986__iri__IRIReference____eq__["__eq__"]
+        publish_env__lib__python3__13__site_packages__requests__utils__get_auth_from_url["get_auth_from_url"]
+        publish_env__lib__python3__13__site_packages__cryptography__fernet__Fernet___get_unverified_token_data["_get_unverified_token_data"]
+        publish_env__lib__python3__13__site_packages__requests__utils__default_headers["default_headers"]
+        publish_env__lib__python3__13__site_packages__requests__cookies__RequestsCookieJar____delitem__["__delitem__"]
+        publish_env__lib__python3__13__site_packages__cryptography__utils___ModuleWithDeprecations____delattr__["__delattr__"]
+        publish_env__lib__python3__13__site_packages__rfc3986__parseresult__ParseResultMixin___generate_authority["_generate_authority"]
+        publish_env__lib__python3__13__site_packages__rfc3986___mixin__URIMixin__query_is_valid["query_is_valid"]
+        publish_env__lib__python3__13__site_packages__requests__models__RequestEncodingMixin___encode_params["_encode_params"]
+        publish_env__lib__python3__13__site_packages__markdown_it__common__utils__unescapeAll["unescapeAll"]
+        publish_env__lib__python3__13__site_packages__packaging__metadata___Validator___process_description_content_type["_process_description_content_t"]
+        publish_env__lib__python3__13__site_packages__requests__utils__get_environ_proxies["get_environ_proxies"]
+        publish_env__lib__python3__13__site_packages__requests__api__patch["patch"]
+        publish_env__lib__python3__13__site_packages__cryptography__fernet__MultiFernet__rotate["rotate"]
+        publish_env__lib__python3__13__site_packages__rfc3986__validators__host_is_valid["host_is_valid"]
+        publish_env__lib__python3__13__site_packages__requests__utils__is_valid_cidr["is_valid_cidr"]
+        publish_env__lib__python3__13__site_packages__requests__utils___parse_content_type_header["_parse_content_type_header"]
+        publish_env__lib__python3__13__site_packages__packaging__specifiers___pad_version["_pad_version"]
+        publish_env__lib__python3__13__site_packages__cffi__backend_ctypes__CTypesBackend__cast["cast"]
+        publish_env__lib__python3__13__site_packages__markdown_it__main__MarkdownIt__set["set"]
+        publish_env__lib__python3__13__site_packages__requests__adapters__HTTPAdapter__build_response["build_response"]
+        publish_env__lib__python3__13__site_packages__markdown_it__tree__SyntaxTreeNode____repr__["__repr__"]
+        publish_env__lib__python3__13__site_packages__rfc3986___mixin__URIMixin__authority_is_valid["authority_is_valid"]
+        publish_env__lib__python3__13__site_packages__requests__models__Request____init__["__init__"]
+        publish_env__lib__python3__13__site_packages__requests__models__PreparedRequest__prepare_method["prepare_method"]
+        publish_env__lib__python3__13__site_packages__packaging__specifiers__Specifier___compare_greater_than["_compare_greater_than"]
+        publish_env__lib__python3__13__site_packages__requests__utils__select_proxy["select_proxy"]
+        publish_env__lib__python3__13__site_packages__packaging___parser___parse_marker_atom["_parse_marker_atom"]
+        publish_env__lib__python3__13__site_packages__markdown_it__token__Token____post_init__["__post_init__"]
+        publish_env__lib__python3__13__site_packages__packaging___manylinux___glibc_version_string_ctypes["_glibc_version_string_ctypes"]
+        publish_env__lib__python3__13__site_packages__packaging__pylock__Pylock___from_dict["_from_dict"]
+        publish_env__lib__python3__13__site_packages__requests___internal_utils__to_native_string["to_native_string"]
+        publish_env__lib__python3__13__site_packages__packaging___parser___parse_version_many["_parse_version_many"]
+        publish_env__lib__python3__13__site_packages__packaging__pylock___validate_normalized_name["_validate_normalized_name"]
+        publish_env__lib__python3__13__site_packages__requests__sessions__SessionRedirectMixin__get_redirect_target["get_redirect_target"]
+        publish_env__lib__python3__13__site_packages__packaging__requirements__Requirement____init__["__init__"]
+        publish_env__lib__python3__13__site_packages__packaging___parser___parse_marker_op["_parse_marker_op"]
+        publish_env__lib__python3__13__site_packages__requests__utils__default_user_agent["default_user_agent"]
+        publish_env__lib__python3__13__site_packages__rfc3986__api__uri_reference["uri_reference"]
+        publish_env__lib__python3__13__site_packages__markdown_it__parser_core__ParserCore__process["process"]
+        publish_env__lib__python3__13__site_packages__requests__hooks__dispatch_hook["dispatch_hook"]
+        publish_env__lib__python3__13__site_packages__rfc3986__normalizers__remove_dot_segments["remove_dot_segments"]
+        publish_env__lib__python3__13__site_packages__requests__auth___basic_auth_str["_basic_auth_str"]
+        publish_env__lib__python3__13__site_packages__markdown_it__token__Token__as_dict["as_dict"]
+        publish_env__lib__python3__13__site_packages__requests__cookies__remove_cookie_by_name["remove_cookie_by_name"]
+        publish_env__lib__python3__13__site_packages__markdown_it__parser_inline__ParserInline__tokenize["tokenize"]
+        publish_env__lib__python3__13__site_packages__requests__utils__is_ipv4_address["is_ipv4_address"]
+        publish_env__lib__python3__13__site_packages__rfc3986___mixin__URIMixin__resolve_with["resolve_with"]
+        publish_env__lib__python3__13__site_packages__packaging__pylock__PackageDirectory___from_dict["_from_dict"]
+        publish_env__lib__python3__13__site_packages__requests__adapters__HTTPAdapter__get_connection["get_connection"]
+        publish_env__lib__python3__13__site_packages__packaging___parser___parse_marker["_parse_marker"]
+        publish_env__lib__python3__13__site_packages__packaging__pylock__Package___from_dict["_from_dict"]
+        publish_env__lib__python3__13__site_packages__requests__models__PreparedRequest__prepare_url["prepare_url"]
+        publish_env__lib__python3__13__site_packages__rfc3986__exceptions__InvalidAuthority____init__["__init__"]
+        publish_env__lib__python3__13__site_packages__requests__utils__should_bypass_proxies["should_bypass_proxies"]
+        publish_env__lib__python3__13__site_packages__cryptography__utils___check_bytes["_check_bytes"]
+        publish_env__lib__python3__13__site_packages__requests__cookies__RequestsCookieJar__items["items"]
+        publish_env__lib__python3__13__site_packages__requests__utils___validate_header_part["_validate_header_part"]
+        publish_env__lib__python3__13__site_packages__rfc3986__exceptions__UnpermittedComponentError____init__["__init__"]
+        publish_env__lib__python3__13__site_packages__markdown_it___punycode__decode["decode"]
+        publish_env__lib__python3__13__site_packages__urllib3__filepost__encode_multipart_formdata["encode_multipart_formdata"]
+        publish_env__lib__python3__13__site_packages__packaging__specifiers__SpecifierSet____hash__["__hash__"]
+        publish_env__lib__python3__13__site_packages__packaging__utils__canonicalize_version["canonicalize_version"]
+        publish_env__lib__python3__13__site_packages__requests__api__post["post"]
+        publish_env__lib__python3__13__site_packages__requests__utils__get_unicode_from_response["get_unicode_from_response"]
+        publish_env__lib__python3__13__site_packages__cryptography__fernet__Fernet__extract_timestamp["extract_timestamp"]
+        publish_env__lib__python3__13__site_packages__requests__help__main["main"]
+        publish_env__lib__python3__13__site_packages__rich__console__Console__rule["rule"]
+        publish_env__lib__python3__13__site_packages__requests__sessions__merge_setting["merge_setting"]
+        publish_env__lib__python3__13__site_packages__markdown_it__parser_block__ParserBlock__tokenize["tokenize"]
+        publish_env__lib__python3__13__site_packages__packaging__pylock___validate_path_url["_validate_path_url"]
+        publish_env__lib__python3__13__site_packages__markdown_it__renderer__RendererHTML__code_block["code_block"]
+        publish_env__lib__python3__13__site_packages__rfc3986__parseresult__ParseResult__encode["encode"]
+        publish_env__lib__python3__13__site_packages__packaging___parser___parse_requirement["_parse_requirement"]
+        publish_env__lib__python3__13__site_packages__packaging___manylinux___have_compatible_abi["_have_compatible_abi"]
+        publish_env__lib__python3__13__site_packages__packaging__pylock__PackageWheel___from_dict["_from_dict"]
+        publish_env__lib__python3__13__site_packages__requests__models__PreparedRequest__prepare_headers["prepare_headers"]
+        publish_env__lib__python3__13__site_packages__rfc3986__validators__path_is_valid["path_is_valid"]
+        publish_env__lib__python3__13__site_packages__packaging__specifiers__Specifier__contains["contains"]
+        publish_env__lib__python3__13__site_packages__packaging___parser___parse_extras_list["_parse_extras_list"]
+        publish_env__lib__python3__13__site_packages__requests__utils__prepend_scheme_if_needed["prepend_scheme_if_needed"]
+        publish_env__lib__python3__13__site_packages__packaging___manylinux___is_linux_armhf["_is_linux_armhf"]
+        publish_env__lib__python3__13__site_packages__cryptography__hazmat__primitives__serialization__ssh__SSHCertificateBuilder__type["type"]
+        publish_env__lib__python3__13__site_packages__requests__adapters__HTTPAdapter__proxy_headers["proxy_headers"]
+        publish_env__lib__python3__13__site_packages__packaging__metadata___Validator___process_metadata_version["_process_metadata_version"]
+        publish_env__lib__python3__13__site_packages__rfc3986__normalizers__normalize_authority["normalize_authority"]
+        publish_env__lib__python3__13__site_packages__rfc3986__api__iri_reference["iri_reference"]
+        publish_env__lib__python3__13__site_packages__packaging__specifiers__SpecifierSet____init__["__init__"]
+        publish_env__lib__python3__13__site_packages__requests__utils__parse_dict_header["parse_dict_header"]
+        publish_env__lib__python3__13__site_packages__markdown_it__common__normalize_url__validateLink["validateLink"]
+        publish_env__lib__python3__13__site_packages__rfc3986__validators__ensure_one_of["ensure_one_of"]
+        publish_env__lib__python3__13__site_packages__requests__models__Response__json["json"]
+        publish_env__lib__python3__13__site_packages__markdown_it__token__convert_attrs["convert_attrs"]
+        publish_env__lib__python3__13__site_packages__requests__utils__address_in_network["address_in_network"]
+        publish_env__lib__python3__13__site_packages__rfc3986__exceptions__PasswordForbidden____init__["__init__"]
+        publish_env__lib__python3__13__site_packages__requests__api__get["get"]
+        publish_env__lib__python3__13__site_packages__cryptography__fernet__MultiFernet____init__["__init__"]
+        publish_env__lib__python3__13__site_packages__requests__cookies__RequestsCookieJar__set["set"]
+        publish_env__lib__python3__13__site_packages__packaging__pylock___get_as["_get_as"]
+        publish_env__lib__python3__13__site_packages__rfc3986___mixin__URIMixin__copy_with["copy_with"]
+        publish_env__lib__python3__13__site_packages__requests__cookies__RequestsCookieJar__keys["keys"]
+        publish_env__lib__python3__13__site_packages__packaging__metadata__parse_email["parse_email"]
+        publish_env__lib__python3__13__site_packages__markdown_it__parser_inline__ParserInline__skipToken["skipToken"]
+        publish_env__lib__python3__13__site_packages__packaging__requirements__Requirement____eq__["__eq__"]
+        publish_env__lib__python3__13__site_packages__requests__utils__to_key_val_list["to_key_val_list"]
+        publish_env__lib__python3__13__site_packages__packaging__requirements__Requirement____hash__["__hash__"]
+        publish_env__lib__python3__13__site_packages__packaging__pylock___get_object["_get_object"]
+        publish_env__lib__python3__13__site_packages__packaging__tags__parse_tag["parse_tag"]
+        publish_env__lib__python3__13__site_packages__rfc3986__api__urlparse["urlparse"]
+        publish_env__lib__python3__13__site_packages__requests__utils__iter_slices["iter_slices"]
+        publish_env__lib__python3__13__site_packages__docutils__nodes__Element__hasattr["hasattr"]
+        publish_env__lib__python3__13__site_packages__packaging__metadata___get_payload["_get_payload"]
+        publish_env__lib__python3__13__site_packages__packaging__pylock___get_sequence["_get_sequence"]
+        publish_env__lib__python3__13__site_packages__markdown_it__main__MarkdownIt__parse["parse"]
+        publish_env__lib__python3__13__site_packages__cffi___embedding__all["all"]
+        publish_env__lib__python3__13__site_packages__requests__cookies__MockRequest__get_host["get_host"]
+        publish_env__lib__python3__13__site_packages__requests__models__PreparedRequest__prepare_auth["prepare_auth"]
+        publish_env__lib__python3__13__site_packages__cryptography__fernet__Fernet__decrypt["decrypt"]
+        publish_env__lib__python3__13__site_packages__packaging__pylock___validate_hashes["_validate_hashes"]
+        publish_env__lib__python3__13__site_packages__packaging__specifiers___base_version["_base_version"]
+        publish_env__lib__python3__13__site_packages__rfc3986___mixin__URIMixin__authority_info["authority_info"]
+        publish_env__lib__python3__13__site_packages__requests__sessions__merge_hooks["merge_hooks"]
+        publish_env__lib__python3__13__site_packages__requests__adapters__HTTPAdapter__get_connection_with_tls_context["get_connection_with_tls_contex"]
+        publish_env__lib__python3__13__site_packages__requests__utils__parse_list_header["parse_list_header"]
+        publish_env__lib__python3__13__site_packages__packaging___manylinux___get_glibc_version["_get_glibc_version"]
+        publish_env__lib__python3__13__site_packages__requests__models__PreparedRequest____init__["__init__"]
+        publish_env__lib__python3__13__site_packages__markdown_it___punycode__encode["encode"]
+        publish_env__lib__python3__13__site_packages__rfc3986__normalizers__normalize_percent_characters["normalize_percent_characters"]
+        publish_env__lib__python3__13__site_packages__requests__cookies__get_cookie_header["get_cookie_header"]
+        publish_env__lib__python3__13__site_packages__requests__sessions__Session__merge_environment_settings["merge_environment_settings"]
+        publish_env__lib__python3__13__site_packages__requests__adapters__HTTPAdapter__cert_verify["cert_verify"]
+        publish_env__lib__python3__13__site_packages__rfc3986___mixin__URIMixin__fragment_is_valid["fragment_is_valid"]
+        publish_env__lib__python3__13__site_packages__markdown_it__parser_inline__ParserInline__parse["parse"]
+        publish_env__lib__python3__13__site_packages__markdown_it__common__normalize_url__normalizeLink["normalizeLink"]
+        publish_env__lib__python3__13__site_packages__rfc3986__normalizers__normalize_path["normalize_path"]
+        publish_env__lib__python3__13__site_packages__requests__auth__HTTPBasicAuth____call__["__call__"]
+        publish_env__lib__python3__13__site_packages__requests__cookies__create_cookie["create_cookie"]
+        publish_env__lib__python3__13__site_packages__rfc3986__validators__scheme_is_valid["scheme_is_valid"]
+        publish_env__lib__python3__13__site_packages__requests__sessions__Session__prepare_request["prepare_request"]
+        publish_env__lib__python3__13__site_packages__packaging___parser__parse_marker["parse_marker"]
+        publish_env__lib__python3__13__site_packages__rfc3986__parseresult__ParseResult__from_string["from_string"]
+        publish_env__lib__python3__13__site_packages__markdown_it___punycode__to_ascii["to_ascii"]
+        publish_env__lib__python3__13__site_packages__rfc3986__parseresult__split_authority["split_authority"]
+        publish_env__lib__python3__13__site_packages__markdown_it__token__Token__attrItems["attrItems"]
+        publish_env__lib__python3__13__site_packages__requests__models__Response____init__["__init__"]
+        publish_env__lib__python3__13__site_packages__requests_toolbelt__utils__formdata__urlencode["urlencode"]
+        publish_env__lib__python3__13__site_packages__rfc3986__parseresult__ParseResult__from_parts["from_parts"]
+        publish_env__lib__python3__13__site_packages__packaging___parser__parse_requirement["parse_requirement"]
+        publish_env__lib__python3__13__site_packages__packaging__specifiers__Specifier___compare_greater_than_equal["_compare_greater_than_equal"]
+        publish_env__lib__python3__13__site_packages__rfc3986__validators__is_valid["is_valid"]
+        publish_env__lib__python3__13__site_packages__rfc3986__validators__subauthority_component_is_valid["subauthority_component_is_vali"]
+        publish_env__lib__python3__13__site_packages__requests__utils__stream_decode_response_unicode["stream_decode_response_unicode"]
+        publish_env__lib__python3__13__site_packages__rfc3986__validators__fragment_is_valid["fragment_is_valid"]
+        publish_env__lib__python3__13__site_packages__rfc3986___mixin__URIMixin__unsplit["unsplit"]
+        publish_env__lib__python3__13__site_packages__requests__utils__dotted_netmask["dotted_netmask"]
+        publish_env__lib__python3__13__site_packages__requests__utils__set_environ["set_environ"]
+        publish_env__lib__python3__13__site_packages__markdown_it__utils__OptionsDict____init__["__init__"]
+        publish_env__lib__python3__13__site_packages__markdown_it___punycode__map_domain["map_domain"]
+        publish_env__lib__python3__13__site_packages__rfc3986__validators__Validator__allow_hosts["allow_hosts"]
+        publish_env__lib__python3__13__site_packages__packaging__utils__parse_sdist_filename["parse_sdist_filename"]
+        publish_env__lib__python3__13__site_packages__requests_toolbelt__threaded__map["map"]
+        publish_env__lib__python3__13__site_packages__rfc3986___mixin__URIMixin__path_is_valid["path_is_valid"]
+        publish_env__lib__python3__13__site_packages__packaging___parser__process_env_var["process_env_var"]
+        publish_env__lib__python3__13__site_packages__packaging__specifiers__Specifier___get_spec_version["_get_spec_version"]
+        publish_env__lib__python3__13__site_packages__packaging__metadata___Validator____get__["__get__"]
+        publish_env__lib__python3__13__site_packages__packaging__pylock___get_sequence_of_objects["_get_sequence_of_objects"]
+        publish_env__lib__python3__13__site_packages__rfc3986__validators__query_is_valid["query_is_valid"]
+        publish_env__lib__python3__13__site_packages__twine__package__HashManager__hash["hash"]
+        publish_env__lib__python3__13__site_packages__packaging__markers___normalize_extras["_normalize_extras"]
+        publish_env__lib__python3__13__site_packages__requests__utils__extract_zipped_paths["extract_zipped_paths"]
+        publish_env__lib__python3__13__site_packages__packaging__specifiers__Specifier___compare_less_than["_compare_less_than"]
+        publish_env__lib__python3__13__site_packages__rfc3986__validators__Validator____init__["__init__"]
+        publish_env__lib__python3__13__site_packages__requests__api__delete["delete"]
+        publish_env__lib__python3__13__site_packages__packaging__pylock__PackageArchive___from_dict["_from_dict"]
+        publish_env__lib__python3__13__site_packages__requests__auth__HTTPBasicAuth____eq__["__eq__"]
+        publish_env__lib__python3__13__site_packages__packaging__pylock___toml_value["_toml_value"]
+        publish_env__lib__python3__13__site_packages__requests__utils__check_header_validity["check_header_validity"]
+        publish_env__lib__python3__13__site_packages__packaging__pylock___get_required_sequence_of_objects["_get_required_sequence_of_obje"]
+        publish_env__lib__python3__13__site_packages__rfc3986__parseresult__authority_from["authority_from"]
+        publish_env__lib__python3__13__site_packages__cryptography__fernet__Fernet___encrypt_from_parts["_encrypt_from_parts"]
+        publish_env__lib__python3__13__site_packages__markdown_it__token__Token__attrIndex["attrIndex"]
+        publish_env__lib__python3__13__site_packages__requests__api__options["options"]
+        publish_env__lib__python3__13__site_packages__packaging__metadata___Validator___process_dynamic["_process_dynamic"]
+        publish_env__lib__python3__13__site_packages__rfc3986__validators__ensure_components_are_valid["ensure_components_are_valid"]
+        publish_env__lib__python3__13__site_packages__requests__api__head["head"]
+        publish_env__lib__python3__13__site_packages__packaging__pylock__PackageVcs___from_dict["_from_dict"]
+        publish_env__lib__python3__13__site_packages__requests__adapters__HTTPAdapter__proxy_manager_for["proxy_manager_for"]
+        publish_env__lib__python3__13__site_packages__requests__adapters__HTTPAdapter__build_connection_pool_key_attributes["build_connection_pool_key_attr"]
+        publish_env__lib__python3__13__site_packages__requests__sessions__SessionRedirectMixin__rebuild_proxies["rebuild_proxies"]
+        publish_env__lib__python3__13__site_packages__requests__utils__get_netrc_auth["get_netrc_auth"]
+        publish_env__lib__python3__13__site_packages__packaging___manylinux___glibc_version_string["_glibc_version_string"]
+        publish_env__lib__python3__13__site_packages__rfc3986__validators__Validator__validate["validate"]
+        publish_env__lib__python3__13__site_packages__urllib3__response__BaseHTTPResponse__release_conn["release_conn"]
+        publish_env__lib__python3__13__site_packages__rfc3986__normalizers__normalize_host["normalize_host"]
+        publish_env__lib__python3__13__site_packages__packaging___structures__InfinityType____hash__["__hash__"]
+        publish_env__lib__python3__13__site_packages__markdown_it__main__MarkdownIt__parseInline["parseInline"]
+        publish_env__lib__python3__13__site_packages__requests__auth__HTTPProxyAuth____call__["__call__"]
+        publish_env__lib__python3__13__site_packages__packaging__specifiers__Specifier___compare_equal["_compare_equal"]
+        publish_env__lib__python3__13__site_packages__requests__sessions__SessionRedirectMixin__resolve_redirects["resolve_redirects"]
+        publish_env__lib__python3__13__site_packages__requests__utils__guess_json_utf["guess_json_utf"]
+        publish_env__lib__python3__13__site_packages__requests__adapters__HTTPAdapter__request_url["request_url"]
+        publish_env__lib__python3__13__site_packages__requests__sessions__SessionRedirectMixin__rebuild_auth["rebuild_auth"]
+        publish_env__lib__python3__13__site_packages__requests__utils__add_dict_to_cookiejar["add_dict_to_cookiejar"]
+        publish_env__lib__python3__13__site_packages__rfc3986__uri__URIReference__normalize["normalize"]
+        publish_env__lib__python3__13__site_packages__packaging__pylock___toml_key["_toml_key"]
+        publish_env__lib__python3__13__site_packages__requests__cookies__cookiejar_from_dict["cookiejar_from_dict"]
+        publish_env__lib__python3__13__site_packages__requests__models__RequestHooksMixin__register_hook["register_hook"]
+        publish_env__lib__python3__13__site_packages__requests__help___implementation["_implementation"]
+        publish_env__lib__python3__13__site_packages__requests__auth__HTTPDigestAuth____eq__["__eq__"]
+        publish_env__lib__python3__13__site_packages__packaging___parser___parse_marker_var["_parse_marker_var"]
+        publish_env__lib__python3__13__site_packages__packaging___manylinux___parse_elf["_parse_elf"]
+        publish_env__lib__python3__13__site_packages__markdown_it__main__MarkdownIt__normalizeLinkText["normalizeLinkText"]
+        publish_env__lib__python3__13__site_packages__packaging__pylock___get_required["_get_required"]
+        publish_env__lib__python3__13__site_packages__requests__sessions__SessionRedirectMixin__should_strip_auth["should_strip_auth"]
+        publish_env__lib__python3__13__site_packages__packaging__specifiers___public_version["_public_version"]
+        publish_env__lib__python3__13__site_packages__requests__auth__HTTPDigestAuth__build_digest_header["build_digest_header"]
+        publish_env__lib__python3__13__site_packages__rfc3986__parseresult__ParseResultBytes__copy_with["copy_with"]
+        publish_env__lib__python3__13__site_packages__rfc3986__validators__Validator__allow_schemes["allow_schemes"]
     end
-    subgraph scripts_bump_version
-        scripts__bump_version__bump_version["bump_version"]
+    subgraph scripts__bump_version
         scripts__bump_version__main["main"]
+        scripts__bump_version__bump_version["bump_version"]
     end
-    scripts__bump_version__bump_version --> publish-env__lib__python3__13__site-packages__requests_toolb
-    scripts__bump_version__main --> scripts__bump_version__bump_version
-    scripts__bump_version__main --> publish-env__lib__python3__13__site-packages__rich__jupyter_
     mcp__server___tools_vallm__handle_validate_syntax --> mcp__server___tools_vallm__validate_syntax
     mcp__server___tools_vallm__handle_validate_imports --> mcp__server___tools_vallm__validate_imports
     mcp__server___tools_vallm__handle_validate_security --> mcp__server___tools_vallm__validate_security
     mcp__server___tools_vallm__handle_validate_code --> mcp__server___tools_vallm__validate_code
-    publish-env__Fernet___encrypt_from_parts --> publish-env__lib__python3__13__site-packages__cryptography__
-    publish-env__Fernet__decrypt --> publish-env__Fernet___get_unverified_token_data
-    publish-env__Fernet__decrypt_at_time --> publish-env__Fernet___get_unverified_token_data
-    publish-env__Fernet__extract_timestamp --> publish-env__Fernet___get_unverified_token_data
-    publish-env__MultiFernet____init__ --> publish-env__lib__python3__13__site-packages__docutils__writ
-    publish-env__MultiFernet__rotate --> publish-env__Fernet___get_unverified_token_data
-    publish-env__InvalidAuthority____init__ --> publish-env__lib__python3__13__site-packages__rfc3986__compa
-    publish-env__UnpermittedComponentError____init__ --> publish-env__lib__python3__13__site-packages__docutils__writ
-    publish-env__PasswordForbidden____init__ --> publish-env__URIMixin__unsplit
+    scripts__bump_version__bump_version --> publish_env__lib__python3__13__site_packages__requests_toolbelt__threaded__map
+    scripts__bump_version__main --> scripts__bump_version__bump_version
+    scripts__bump_version__main --> publish_env__lib__python3__13__site_packages__rich__jupyter__print
+    publish_env__lib__python3__13__site_packages__cryptography__fernet__Fernet___encrypt_from_parts --> publish_env__lib__python3__13__site_packages__cryptography__utils___check_bytes
+    publish_env__lib__python3__13__site_packages__cryptography__fernet__Fernet__decrypt --> publish_env__lib__python3__13__site_packages__cryptography__fernet__Fernet___get_unverified_token_data
+    publish_env__lib__python3__13__site_packages__cryptography__fernet__Fernet__decrypt_at_time --> publish_env__lib__python3__13__site_packages__cryptography__fernet__Fernet___get_unverified_token_data
+    publish_env__lib__python3__13__site_packages__cryptography__fernet__Fernet__extract_timestamp --> publish_env__lib__python3__13__site_packages__cryptography__fernet__Fernet___get_unverified_token_data
+    publish_env__lib__python3__13__site_packages__cryptography__fernet__MultiFernet____init__ --> publish_env__lib__python3__13__site_packages__docutils__writers__s5_html__themes__default__slides__list
+    publish_env__lib__python3__13__site_packages__cryptography__fernet__MultiFernet__rotate --> publish_env__lib__python3__13__site_packages__cryptography__fernet__Fernet___get_unverified_token_data
+    publish_env__lib__python3__13__site_packages__rfc3986__exceptions__InvalidAuthority____init__ --> publish_env__lib__python3__13__site_packages__rfc3986__compat__to_str
+    publish_env__lib__python3__13__site_packages__rfc3986__exceptions__UnpermittedComponentError____init__ --> publish_env__lib__python3__13__site_packages__docutils__writers__s5_html__themes__default__slides__list
+    publish_env__lib__python3__13__site_packages__rfc3986__exceptions__PasswordForbidden____init__ --> publish_env__lib__python3__13__site_packages__rfc3986___mixin__URIMixin__unsplit
+    publish_env__lib__python3__13__site_packages__cryptography__utils___ModuleWithDeprecations____delattr__ --> publish_env__lib__python3__13__site_packages__docutils__nodes__Element__delattr
+    publish_env__lib__python3__13__site_packages__rfc3986__api__uri_reference --> publish_env__lib__python3__13__site_packages__rfc3986__uri__URIReference__from_string
+    publish_env__lib__python3__13__site_packages__rfc3986__api__iri_reference --> publish_env__lib__python3__13__site_packages__rfc3986__iri__IRIReference__from_string
+    publish_env__lib__python3__13__site_packages__rfc3986__api__is_valid_uri --> publish_env__lib__python3__13__site_packages__rfc3986__uri__URIReference__from_string
+    publish_env__lib__python3__13__site_packages__rfc3986__api__normalize_uri --> publish_env__lib__python3__13__site_packages__rfc3986__uri__URIReference__from_string
+    publish_env__lib__python3__13__site_packages__rfc3986__api__urlparse --> publish_env__lib__python3__13__site_packages__rfc3986__parseresult__ParseResult__from_string
+    publish_env__lib__python3__13__site_packages__rfc3986__normalizers__normalize_authority --> publish_env__lib__python3__13__site_packages__rfc3986__normalizers__normalize_host
+    publish_env__lib__python3__13__site_packages__rfc3986__normalizers__normalize_authority --> publish_env__lib__python3__13__site_packages__rfc3986__normalizers__normalize_percent_characters
+    publish_env__lib__python3__13__site_packages__rfc3986__normalizers__normalize_path --> publish_env__lib__python3__13__site_packages__rfc3986__normalizers__normalize_percent_characters
+    publish_env__lib__python3__13__site_packages__rfc3986__normalizers__normalize_path --> publish_env__lib__python3__13__site_packages__rfc3986__normalizers__remove_dot_segments
+    publish_env__lib__python3__13__site_packages__rfc3986__normalizers__normalize_query --> publish_env__lib__python3__13__site_packages__rfc3986__normalizers__normalize_percent_characters
+    publish_env__lib__python3__13__site_packages__rfc3986__normalizers__normalize_fragment --> publish_env__lib__python3__13__site_packages__rfc3986__normalizers__normalize_percent_characters
+    publish_env__lib__python3__13__site_packages__rfc3986__normalizers__normalize_percent_characters --> publish_env__lib__python3__13__site_packages__markdown_it__main__MarkdownIt__set
+    publish_env__lib__python3__13__site_packages__rfc3986__normalizers__encode_component --> publish_env__lib__python3__13__site_packages__rfc3986__compat__to_bytes
+    publish_env__lib__python3__13__site_packages__rfc3986__validators__Validator____init__ --> publish_env__lib__python3__13__site_packages__markdown_it__main__MarkdownIt__set
+    publish_env__lib__python3__13__site_packages__rfc3986__validators__Validator__allow_schemes --> publish_env__lib__python3__13__site_packages__rfc3986__normalizers__normalize_scheme
+    publish_env__lib__python3__13__site_packages__rfc3986__validators__Validator__allow_hosts --> publish_env__lib__python3__13__site_packages__rfc3986__normalizers__normalize_host
+    publish_env__lib__python3__13__site_packages__rfc3986__validators__Validator__validate --> publish_env__lib__python3__13__site_packages__rfc3986__validators__ensure_one_of
+    publish_env__lib__python3__13__site_packages__rfc3986__validators__Validator__validate --> publish_env__lib__python3__13__site_packages__rfc3986__validators__check_password
+    publish_env__lib__python3__13__site_packages__rfc3986__validators__Validator__validate --> publish_env__lib__python3__13__site_packages__rfc3986__validators__ensure_required_components_exist
+    publish_env__lib__python3__13__site_packages__rfc3986__validators__Validator__validate --> publish_env__lib__python3__13__site_packages__rfc3986__validators__ensure_components_are_valid
+    publish_env__lib__python3__13__site_packages__rfc3986__validators__authority_is_valid --> publish_env__lib__python3__13__site_packages__rfc3986__validators__is_valid
+    publish_env__lib__python3__13__site_packages__rfc3986__validators__authority_is_valid --> publish_env__lib__python3__13__site_packages__rfc3986__validators__host_is_valid
+    publish_env__lib__python3__13__site_packages__rfc3986__validators__host_is_valid --> publish_env__lib__python3__13__site_packages__rfc3986__validators__is_valid
+    publish_env__lib__python3__13__site_packages__rfc3986__validators__host_is_valid --> publish_env__lib__python3__13__site_packages__rfc3986__validators__valid_ipv4_host_address
+    publish_env__lib__python3__13__site_packages__rfc3986__validators__scheme_is_valid --> publish_env__lib__python3__13__site_packages__rfc3986__validators__is_valid
+    publish_env__lib__python3__13__site_packages__rfc3986__validators__path_is_valid --> publish_env__lib__python3__13__site_packages__rfc3986__validators__is_valid
+    publish_env__lib__python3__13__site_packages__rfc3986__validators__query_is_valid --> publish_env__lib__python3__13__site_packages__rfc3986__validators__is_valid
+    publish_env__lib__python3__13__site_packages__rfc3986__validators__fragment_is_valid --> publish_env__lib__python3__13__site_packages__rfc3986__validators__is_valid
+    publish_env__lib__python3__13__site_packages__rfc3986__validators__valid_ipv4_host_address --> publish_env__lib__python3__13__site_packages__cffi___embedding__all
+    publish_env__lib__python3__13__site_packages__rfc3986__validators__subauthority_component_is_valid --> publish_env__lib__python3__13__site_packages__rfc3986__validators__host_is_valid
+    publish_env__lib__python3__13__site_packages__rfc3986__validators__ensure_components_are_valid --> publish_env__lib__python3__13__site_packages__markdown_it__main__MarkdownIt__set
+    publish_env__lib__python3__13__site_packages__rfc3986__validators__ensure_components_are_valid --> publish_env__lib__python3__13__site_packages__rfc3986__validators__subauthority_component_is_valid
     mcp__server__self_server__handle_request --> mcp__server__self_server__handle_initialize
     mcp__server__self_server__handle_request --> mcp__server__self_server__handle_tools_list
     mcp__server__self_server__handle_request --> mcp__server__self_server__handle_tools_call
-    mcp__server__self_server__main --> publish-env__lib__python3__13__site-packages__rich__jupyter_
+    mcp__server__self_server__main --> publish_env__lib__python3__13__site_packages__rich__jupyter__print
     mcp__server__self_server__main --> mcp__server__self_server__handle_request
-    examples__mcp_demo__example_syntax_validation --> publish-env__lib__python3__13__site-packages__rich__jupyter_
+    publish_env__lib__python3__13__site_packages__rfc3986__compat__to_str --> publish_env__lib__python3__13__site_packages__docutils__nodes__Element__hasattr
+    publish_env__lib__python3__13__site_packages__rfc3986__compat__to_bytes --> publish_env__lib__python3__13__site_packages__docutils__nodes__Element__hasattr
+    publish_env__lib__python3__13__site_packages__rfc3986__uri__URIReference____eq__ --> publish_env__lib__python3__13__site_packages__rfc3986__uri__URIReference__from_string
+    publish_env__lib__python3__13__site_packages__rfc3986__uri__URIReference____eq__ --> publish_env__lib__python3__13__site_packages__cryptography__hazmat__primitives__serialization__ssh__SSHCertificateBuilder__type
+    publish_env__lib__python3__13__site_packages__rfc3986__uri__URIReference__normalize --> publish_env__lib__python3__13__site_packages__rfc3986__normalizers__normalize_scheme
+    publish_env__lib__python3__13__site_packages__rfc3986__uri__URIReference__normalize --> publish_env__lib__python3__13__site_packages__rfc3986__normalizers__normalize_authority
+    publish_env__lib__python3__13__site_packages__rfc3986__uri__URIReference__normalize --> publish_env__lib__python3__13__site_packages__rfc3986__normalizers__normalize_path
+    publish_env__lib__python3__13__site_packages__rfc3986__uri__URIReference__normalize --> publish_env__lib__python3__13__site_packages__rfc3986__normalizers__normalize_query
+    publish_env__lib__python3__13__site_packages__rfc3986__uri__URIReference__normalize --> publish_env__lib__python3__13__site_packages__rfc3986__normalizers__normalize_fragment
+    publish_env__lib__python3__13__site_packages__rfc3986__uri__URIReference__from_string --> publish_env__lib__python3__13__site_packages__rfc3986__compat__to_str
+    publish_env__lib__python3__13__site_packages__rfc3986__uri__URIReference__from_string --> publish_env__lib__python3__13__site_packages__rfc3986__normalizers__encode_component
+    publish_env__lib__python3__13__site_packages__rfc3986___mixin__URIMixin__authority_info --> publish_env__lib__python3__13__site_packages__rfc3986__validators__valid_ipv4_host_address
+    publish_env__lib__python3__13__site_packages__rfc3986___mixin__URIMixin__is_valid --> publish_env__lib__python3__13__site_packages__cffi___embedding__all
+    publish_env__lib__python3__13__site_packages__rfc3986___mixin__URIMixin__authority_is_valid --> publish_env__lib__python3__13__site_packages__rfc3986__validators__authority_is_valid
+    publish_env__lib__python3__13__site_packages__rfc3986___mixin__URIMixin__scheme_is_valid --> publish_env__lib__python3__13__site_packages__rfc3986__validators__scheme_is_valid
+    publish_env__lib__python3__13__site_packages__rfc3986___mixin__URIMixin__path_is_valid --> publish_env__lib__python3__13__site_packages__rfc3986__validators__path_is_valid
+    publish_env__lib__python3__13__site_packages__rfc3986___mixin__URIMixin__query_is_valid --> publish_env__lib__python3__13__site_packages__rfc3986__validators__query_is_valid
+    publish_env__lib__python3__13__site_packages__rfc3986___mixin__URIMixin__fragment_is_valid --> publish_env__lib__python3__13__site_packages__rfc3986__validators__fragment_is_valid
+    publish_env__lib__python3__13__site_packages__rfc3986___mixin__URIMixin__resolve_with --> publish_env__lib__python3__13__site_packages__cryptography__hazmat__primitives__serialization__ssh__SSHCertificateBuilder__type
+    publish_env__lib__python3__13__site_packages__rfc3986___mixin__URIMixin__resolve_with --> publish_env__lib__python3__13__site_packages__rfc3986__normalizers__normalize_path
+    publish_env__lib__python3__13__site_packages__rfc3986___mixin__URIMixin__copy_with --> publish_env__lib__python3__13__site_packages__docutils__writers__s5_html__themes__default__slides__list
+    examples__mcp_demo__example_syntax_validation --> publish_env__lib__python3__13__site_packages__rich__jupyter__print
     examples__mcp_demo__example_syntax_validation --> mcp__server___tools_vallm__validate_syntax
-    examples__mcp_demo__example_security_validation --> publish-env__lib__python3__13__site-packages__rich__jupyter_
+    examples__mcp_demo__example_security_validation --> publish_env__lib__python3__13__site_packages__rich__jupyter__print
     examples__mcp_demo__example_security_validation --> mcp__server___tools_vallm__validate_security
-    examples__mcp_demo__example_full_pipeline --> publish-env__lib__python3__13__site-packages__rich__jupyter_
+    examples__mcp_demo__example_full_pipeline --> publish_env__lib__python3__13__site_packages__rich__jupyter__print
     examples__mcp_demo__example_full_pipeline --> mcp__server___tools_vallm__validate_code
-    examples__mcp_demo__example_selective_validation --> publish-env__lib__python3__13__site-packages__rich__jupyter_
+    examples__mcp_demo__example_selective_validation --> publish_env__lib__python3__13__site_packages__rich__jupyter__print
     examples__mcp_demo__example_selective_validation --> mcp__server___tools_vallm__validate_code
-    examples__mcp_demo__main --> publish-env__lib__python3__13__site-packages__rich__jupyter_
+    examples__mcp_demo__main --> publish_env__lib__python3__13__site_packages__rich__jupyter__print
     examples__mcp_demo__main --> examples__mcp_demo__example_syntax_validation
     examples__mcp_demo__main --> examples__mcp_demo__example_security_validation
     examples__mcp_demo__main --> examples__mcp_demo__example_full_pipeline
     examples__mcp_demo__main --> examples__mcp_demo__example_selective_validation
-    publish-env__lib__python3__13__site-packages__rfc3986__api__ --> publish-env__URIReference__from_string
-    publish-env__lib__python3__13__site-packages__rfc3986__api__ --> publish-env__IRIReference__from_string
-    publish-env__lib__python3__13__site-packages__rfc3986__api__ --> publish-env__ParseResult__from_string
-    publish-env__lib__python3__13__site-packages__cryptography__ --> publish-env__Element__delattr
-    publish-env__lib__python3__13__site-packages__rfc3986__norma --> publish-env__lib__python3__13__site-packages__rfc3986__norma
-    publish-env__lib__python3__13__site-packages__rfc3986__norma --> publish-env__MarkdownIt__set
-    publish-env__lib__python3__13__site-packages__rfc3986__norma --> publish-env__lib__python3__13__site-packages__rfc3986__compa
-    publish-env__lib__python3__13__site-packages__rfc3986__compa --> publish-env__Element__hasattr
-    publish-env__Validator____init__ --> publish-env__MarkdownIt__set
-    publish-env__Validator__allow_schemes --> publish-env__lib__python3__13__site-packages__rfc3986__norma
-    publish-env__Validator__allow_hosts --> publish-env__lib__python3__13__site-packages__rfc3986__norma
-    publish-env__Validator__validate --> publish-env__lib__python3__13__site-packages__rfc3986__valid
-    publish-env__lib__python3__13__site-packages__rfc3986__valid --> publish-env__lib__python3__13__site-packages__rfc3986__valid
-    publish-env__lib__python3__13__site-packages__rfc3986__valid --> publish-env__lib__python3__13__site-packages__cffi___embeddi
-    publish-env__lib__python3__13__site-packages__rfc3986__valid --> publish-env__MarkdownIt__set
-    publish-env__URIMixin__authority_info --> publish-env__lib__python3__13__site-packages__rfc3986__valid
-    publish-env__URIMixin__is_valid --> publish-env__lib__python3__13__site-packages__cffi___embeddi
-    publish-env__URIMixin__authority_is_valid --> publish-env__lib__python3__13__site-packages__rfc3986__valid
-    publish-env__URIMixin__scheme_is_valid --> publish-env__lib__python3__13__site-packages__rfc3986__valid
-    publish-env__URIMixin__path_is_valid --> publish-env__lib__python3__13__site-packages__rfc3986__valid
-    publish-env__URIMixin__query_is_valid --> publish-env__lib__python3__13__site-packages__rfc3986__valid
-    publish-env__URIMixin__fragment_is_valid --> publish-env__lib__python3__13__site-packages__rfc3986__valid
-    publish-env__URIMixin__resolve_with --> publish-env__SSHCertificateBuilder__type
-    publish-env__URIMixin__resolve_with --> publish-env__lib__python3__13__site-packages__rfc3986__norma
-    publish-env__URIMixin__copy_with --> publish-env__lib__python3__13__site-packages__docutils__writ
-    publish-env__ParserCore__process --> publish-env__Console__rule
-    publish-env__ParserBlock__tokenize --> publish-env__Console__rule
-    publish-env__URIReference____eq__ --> publish-env__URIReference__from_string
-    publish-env__URIReference____eq__ --> publish-env__SSHCertificateBuilder__type
-    publish-env__URIReference__normalize --> publish-env__lib__python3__13__site-packages__rfc3986__norma
-    publish-env__URIReference__from_string --> publish-env__lib__python3__13__site-packages__rfc3986__compa
-    publish-env__URIReference__from_string --> publish-env__lib__python3__13__site-packages__rfc3986__norma
-    publish-env__IRIReference____eq__ --> publish-env__SSHCertificateBuilder__type
-    publish-env__IRIReference__from_string --> publish-env__lib__python3__13__site-packages__rfc3986__compa
-    publish-env__IRIReference__from_string --> publish-env__lib__python3__13__site-packages__rfc3986__norma
-    publish-env__IRIReference__encode --> publish-env__lib__python3__13__site-packages__rfc3986__compa
-    publish-env__IRIReference__encode --> publish-env__lib__python3__13__site-packages__rfc3986__norma
-    publish-env__ParserInline__skipToken --> publish-env__Console__rule
-    publish-env__ParserInline__tokenize --> publish-env__Console__rule
-    publish-env__ParserInline__parse --> publish-env__Console__rule
-    publish-env__ParseResultMixin___generate_authority --> publish-env__lib__python3__13__site-packages__rfc3986__norma
-    publish-env__ParseResultMixin___generate_authority --> publish-env__lib__python3__13__site-packages__rfc3986__compa
-    publish-env__ParseResult__from_parts --> publish-env__lib__python3__13__site-packages__rfc3986__parse
-    publish-env__ParseResult__from_string --> publish-env__URIReference__from_string
-    publish-env__ParseResult__from_string --> publish-env__lib__python3__13__site-packages__rfc3986__parse
-    publish-env__ParseResult__encode --> publish-env__Element__hasattr
-    publish-env__ParseResultBytes__from_parts --> publish-env__lib__python3__13__site-packages__rfc3986__parse
-    publish-env__ParseResultBytes__from_parts --> publish-env__lib__python3__13__site-packages__rfc3986__compa
-    publish-env__ParseResultBytes__from_string --> publish-env__URIReference__from_string
-    publish-env__ParseResultBytes__from_string --> publish-env__lib__python3__13__site-packages__rfc3986__parse
-    publish-env__ParseResultBytes__from_string --> publish-env__lib__python3__13__site-packages__rfc3986__compa
-    publish-env__ParseResultBytes__copy_with --> publish-env__Element__hasattr
-    publish-env__ParseResultBytes__copy_with --> publish-env__lib__python3__13__site-packages__rfc3986__compa
-    publish-env__lib__python3__13__site-packages__rfc3986__parse --> publish-env__lib__python3__13__site-packages__rfc3986__parse
-    publish-env__OptionsDict____init__ --> publish-env__FFI__cast
-    publish-env__MarkdownIt__parse --> publish-env__SSHCertificateBuilder__type
-    publish-env__MarkdownIt__parseInline --> publish-env__SSHCertificateBuilder__type
-    publish-env__MarkdownIt__validateLink --> publish-env__lib__python3__13__site-packages__markdown_it__c
-    publish-env__MarkdownIt__normalizeLink --> publish-env__lib__python3__13__site-packages__markdown_it__c
-    publish-env__MarkdownIt__normalizeLinkText --> publish-env__lib__python3__13__site-packages__markdown_it__c
-    publish-env__lib__python3__13__site-packages__markdown_it___ --> publish-env__lib__python3__13__site-packages__markdown_it___
-    publish-env__SyntaxTreeNode____repr__ --> publish-env__SSHCertificateBuilder__type
-    publish-env__SyntaxTreeNode___add_child --> publish-env__SSHCertificateBuilder__type
-    publish-env__SyntaxTreeNode___set_children_from_tokens --> publish-env__lib__python3__13__site-packages__docutils__writ
-    publish-env__RendererHTML__renderAttrs --> publish-env__lib__python3__13__site-packages__markdown_it__c
-    publish-env__RendererHTML__code_inline --> publish-env__lib__python3__13__site-packages__markdown_it__c
-    publish-env__RendererHTML__code_block --> publish-env__lib__python3__13__site-packages__markdown_it__c
-    publish-env__RendererHTML__fence --> publish-env__lib__python3__13__site-packages__markdown_it__c
-    publish-env__RendererHTML__text --> publish-env__lib__python3__13__site-packages__markdown_it__c
-    publish-env__lib__python3__13__site-packages__requests__help --> publish-env__lib__python3__13__site-packages__requests__help
-    publish-env__lib__python3__13__site-packages__requests__help --> publish-env__lib__python3__13__site-packages__rich__jupyter_
-    publish-env__MockRequest____init__ --> publish-env__lib__python3__13__site-packages__rfc3986__api__
-    publish-env__MockRequest__get_host --> publish-env__lib__python3__13__site-packages__rfc3986__api__
-    publish-env__MockRequest__get_full_url --> publish-env__lib__python3__13__site-packages__requests___int
-    publish-env__MockRequest__get_full_url --> publish-env__lib__python3__13__site-packages__rfc3986__api__
-    publish-env__lib__python3__13__site-packages__requests__cook --> publish-env__Element__hasattr
-    publish-env__RequestsCookieJar__set --> publish-env__lib__python3__13__site-packages__requests__cook
-    publish-env__RequestsCookieJar__keys --> publish-env__lib__python3__13__site-packages__docutils__writ
-    publish-env__RequestsCookieJar__values --> publish-env__lib__python3__13__site-packages__docutils__writ
-    publish-env__RequestsCookieJar__items --> publish-env__lib__python3__13__site-packages__docutils__writ
-    publish-env__RequestsCookieJar____delitem__ --> publish-env__lib__python3__13__site-packages__requests__cook
-    publish-env__RequestsCookieJar__set_cookie --> publish-env__Element__hasattr
-    publish-env__lib__python3__13__site-packages__requests__cook --> publish-env__MarkdownIt__set
-    publish-env__lib__python3__13__site-packages__requests__cook --> publish-env__lib__python3__13__site-packages__docutils__writ
-    publish-env__lib__python3__13__site-packages__requests__cook --> publish-env__lib__python3__13__site-packages__requests__cook
-    publish-env__lib__python3__13__site-packages__requests__adap --> publish-env__lib__python3__13__site-packages__rfc3986__api__
-    publish-env__HTTPAdapter__proxy_manager_for --> publish-env__lib__python3__13__site-packages__requests__util
-    publish-env__HTTPAdapter__proxy_manager_for --> publish-env__lib__python3__13__site-packages__urllib3__poolm
-    publish-env__HTTPAdapter__cert_verify --> publish-env__lib__python3__13__site-packages__requests__util
-    publish-env__HTTPAdapter__build_response --> publish-env__lib__python3__13__site-packages__requests__util
-    publish-env__HTTPAdapter__build_response --> publish-env__lib__python3__13__site-packages__requests__cook
-    publish-env__HTTPAdapter__build_connection_pool_key_attribut --> publish-env__lib__python3__13__site-packages__requests__adap
-    publish-env__HTTPAdapter__get_connection_with_tls_context --> publish-env__lib__python3__13__site-packages__requests__util
-    publish-env__HTTPAdapter__get_connection_with_tls_context --> publish-env__lib__python3__13__site-packages__urllib3__util_
-    publish-env__HTTPAdapter__get_connection --> publish-env__lib__python3__13__site-packages__requests__util
-    publish-env__HTTPAdapter__get_connection --> publish-env__lib__python3__13__site-packages__urllib3__util_
-    publish-env__HTTPAdapter__get_connection --> publish-env__lib__python3__13__site-packages__rfc3986__api__
-    publish-env__HTTPAdapter__request_url --> publish-env__lib__python3__13__site-packages__requests__util
-    publish-env__HTTPAdapter__request_url --> publish-env__lib__python3__13__site-packages__rfc3986__api__
-    publish-env__HTTPAdapter__proxy_headers --> publish-env__lib__python3__13__site-packages__requests__util
-    publish-env__HTTPAdapter__proxy_headers --> publish-env__lib__python3__13__site-packages__requests__auth
-    publish-env__lib__python3__13__site-packages__requests___che --> publish-env__lib__python3__13__site-packages__docutils__writ
-    publish-env__lib__python3__13__site-packages__requests___che --> publish-env__lib__python3__13__site-packages__requests_toolb
-    publish-env__Token____post_init__ --> publish-env__lib__python3__13__site-packages__markdown_it__t
-    publish-env__Token__attrIndex --> publish-env__lib__python3__13__site-packages__docutils__writ
-    publish-env__Token__attrItems --> publish-env__lib__python3__13__site-packages__docutils__writ
-    publish-env__Token__as_dict --> publish-env__BaseSpecifier__filter
-    publish-env__lib__python3__13__site-packages__requests__api_ --> publish-env__lib__python3__13__site-packages__requests__api_
-    publish-env__lib__python3__13__site-packages__requests__hook --> publish-env__Element__hasattr
-    publish-env__lib__python3__13__site-packages__requests__sess --> publish-env__lib__python3__13__site-packages__requests__util
-    publish-env__lib__python3__13__site-packages__requests__sess --> publish-env__lib__python3__13__site-packages__requests__sess
-    publish-env__SessionRedirectMixin__get_redirect_target --> publish-env__lib__python3__13__site-packages__requests___int
-    publish-env__SessionRedirectMixin__should_strip_auth --> publish-env__lib__python3__13__site-packages__rfc3986__api__
-    publish-env__SessionRedirectMixin__resolve_redirects --> publish-env__lib__python3__13__site-packages__rfc3986__api__
-    publish-env__SessionRedirectMixin__resolve_redirects --> publish-env__lib__python3__13__site-packages__requests___int
-    publish-env__SessionRedirectMixin__rebuild_auth --> publish-env__lib__python3__13__site-packages__requests__util
-    publish-env__SessionRedirectMixin__rebuild_proxies --> publish-env__lib__python3__13__site-packages__requests__util
-    publish-env__SessionRedirectMixin__rebuild_proxies --> publish-env__lib__python3__13__site-packages__rfc3986__api__
-    publish-env__SessionRedirectMixin__rebuild_proxies --> publish-env__lib__python3__13__site-packages__requests__auth
-    publish-env__Session____init__ --> publish-env__lib__python3__13__site-packages__requests__util
-    publish-env__Session____init__ --> publish-env__lib__python3__13__site-packages__requests__hook
-    publish-env__Session____init__ --> publish-env__lib__python3__13__site-packages__requests__cook
-    publish-env__Session__prepare_request --> publish-env__lib__python3__13__site-packages__requests__cook
-    publish-env__Session__prepare_request --> publish-env__lib__python3__13__site-packages__requests__util
-    publish-env__Session__prepare_request --> publish-env__lib__python3__13__site-packages__requests__sess
-    publish-env__Session__merge_environment_settings --> publish-env__lib__python3__13__site-packages__requests__sess
-    publish-env__Session__merge_environment_settings --> publish-env__lib__python3__13__site-packages__requests__util
-    publish-env__HTTPBasicAuth____eq__ --> publish-env__lib__python3__13__site-packages__cffi___embeddi
-    publish-env__HTTPBasicAuth____call__ --> publish-env__lib__python3__13__site-packages__requests__auth
-    publish-env__HTTPProxyAuth____call__ --> publish-env__lib__python3__13__site-packages__requests__auth
-    publish-env__HTTPDigestAuth__init_per_thread_state --> publish-env__Element__hasattr
-    publish-env__HTTPDigestAuth__build_digest_header --> publish-env__lib__python3__13__site-packages__rfc3986__api__
-    publish-env__HTTPDigestAuth__handle_401 --> publish-env__lib__python3__13__site-packages__requests__util
-    publish-env__HTTPDigestAuth__handle_401 --> publish-env__lib__python3__13__site-packages__requests__cook
-    publish-env__HTTPDigestAuth____eq__ --> publish-env__lib__python3__13__site-packages__cffi___embeddi
-    publish-env__lib__python3__13__site-packages__requests__util --> publish-env__Element__hasattr
-    publish-env__lib__python3__13__site-packages__requests__util --> publish-env__lib__python3__13__site-packages__rfc3986__api__
-    publish-env__lib__python3__13__site-packages__requests__util --> publish-env__lib__python3__13__site-packages__docutils__writ
-    publish-env__lib__python3__13__site-packages__requests__util --> publish-env__lib__python3__13__site-packages__requests__util
-    publish-env__lib__python3__13__site-packages__requests__util --> publish-env__lib__python3__13__site-packages__requests__cook
-    publish-env__lib__python3__13__site-packages__requests__util --> publish-env__lib__python3__13__site-packages__urllib3__util_
-    publish-env__lib__python3__13__site-packages__requests__util --> publish-env__SSHCertificateBuilder__type
-    publish-env__RequestEncodingMixin___encode_params --> publish-env__Element__hasattr
-    publish-env__RequestEncodingMixin___encode_params --> publish-env__lib__python3__13__site-packages__requests__util
-    publish-env__RequestEncodingMixin___encode_params --> publish-env__lib__python3__13__site-packages__requests_toolb
-    publish-env__RequestEncodingMixin___encode_files --> publish-env__lib__python3__13__site-packages__requests__util
-    publish-env__RequestEncodingMixin___encode_files --> publish-env__lib__python3__13__site-packages__urllib3__filep
-    publish-env__RequestHooksMixin__register_hook --> publish-env__Element__hasattr
-    publish-env__Request____init__ --> publish-env__lib__python3__13__site-packages__requests__hook
-    publish-env__Request____init__ --> publish-env__lib__python3__13__site-packages__docutils__writ
-    publish-env__PreparedRequest____init__ --> publish-env__lib__python3__13__site-packages__requests__hook
-    publish-env__PreparedRequest__copy --> publish-env__lib__python3__13__site-packages__requests__cook
-    publish-env__PreparedRequest__prepare_method --> publish-env__lib__python3__13__site-packages__requests___int
-    publish-env__PreparedRequest__prepare_url --> publish-env__lib__python3__13__site-packages__requests__util
-    publish-env__PreparedRequest__prepare_url --> publish-env__lib__python3__13__site-packages__urllib3__util_
-    publish-env__PreparedRequest__prepare_headers --> publish-env__lib__python3__13__site-packages__requests__util
-    publish-env__PreparedRequest__prepare_headers --> publish-env__lib__python3__13__site-packages__requests___int
-    publish-env__PreparedRequest__prepare_body --> publish-env__lib__python3__13__site-packages__cffi___embeddi
-    publish-env__PreparedRequest__prepare_body --> publish-env__Element__hasattr
-    publish-env__PreparedRequest__prepare_body --> publish-env__lib__python3__13__site-packages__requests__util
-    publish-env__PreparedRequest__prepare_content_length --> publish-env__lib__python3__13__site-packages__requests__util
-    publish-env__PreparedRequest__prepare_auth --> publish-env__lib__python3__13__site-packages__requests__util
-    publish-env__PreparedRequest__prepare_cookies --> publish-env__lib__python3__13__site-packages__requests__cook
-    publish-env__Response____init__ --> publish-env__lib__python3__13__site-packages__requests__cook
-    publish-env__Response__iter_content --> publish-env__lib__python3__13__site-packages__requests__util
-    publish-env__Response__iter_content --> publish-env__ASTCodeGenerator__generate
-    publish-env__Response__iter_content --> publish-env__Element__hasattr
-    publish-env__Response__json --> publish-env__lib__python3__13__site-packages__requests__util
-    publish-env__Response__close --> publish-env__BaseHTTPResponse__release_conn
-    publish-env__lib__python3__13__site-packages__packaging___pa --> publish-env__lib__python3__13__site-packages__packaging___pa
-    publish-env__Requirement____init__ --> publish-env__MarkdownIt__set
-    publish-env__Requirement____init__ --> publish-env__lib__python3__13__site-packages__packaging___pa
-    publish-env__Requirement____init__ --> publish-env__lib__python3__13__site-packages__packaging__mar
-    publish-env__Requirement____hash__ --> publish-env__HashManager__hash
-    publish-env__Requirement____hash__ --> publish-env__lib__python3__13__site-packages__packaging__uti
-    publish-env__Requirement____eq__ --> publish-env__lib__python3__13__site-packages__packaging__uti
-    publish-env__lib__python3__13__site-packages__packaging___ma --> publish-env__FileOutput__open
-    publish-env__lib__python3__13__site-packages__packaging___ma --> publish-env__lib__python3__13__site-packages__packaging___ma
-    publish-env__lib__python3__13__site-packages__packaging___ma --> publish-env__Element__hasattr
-    publish-env__lib__python3__13__site-packages__packaging___ma --> publish-env__MarkdownIt__set
-    publish-env__InfinityType____hash__ --> publish-env__HashManager__hash
-    publish-env__NegativeInfinityType____hash__ --> publish-env__HashManager__hash
-    publish-env__ELFFile____init__ --> publish-env__Packer__bytes
-    publish-env__lib__python3__13__site-packages__packaging__met --> publish-env__lib__python3__13__site-packages__packaging__met
-    publish-env__lib__python3__13__site-packages__packaging__met --> publish-env__FFI__cast
-    publish-env__lib__python3__13__site-packages__packaging__met --> publish-env__lib__python3__13__site-packages__docutils__writ
-    publish-env__lib__python3__13__site-packages__packaging__met --> publish-env__lib__python3__13__site-packages__requests_toolb
-    publish-env__Metadata__from_email --> publish-env__lib__python3__13__site-packages__packaging__met
-    publish-env__RequestException____init__ --> publish-env__Element__hasattr
-    publish-env__lib__python3__13__site-packages__packaging__uti --> publish-env__FFI__cast
-    publish-env__lib__python3__13__site-packages__packaging__uti --> publish-env__lib__python3__13__site-packages__packaging__uti
-    publish-env__lib__python3__13__site-packages__packaging__uti --> publish-env__lib__python3__13__site-packages__packaging__tag
-    publish-env__Specifier___get_spec_version --> publish-env__lib__python3__13__site-packages__packaging__spe
-    publish-env__Specifier____hash__ --> publish-env__HashManager__hash
-    publish-env__Specifier___compare_compatible --> publish-env__lib__python3__13__site-packages__packaging__spe
-    publish-env__Specifier___compare_compatible --> publish-env__lib__python3__13__site-packages__docutils__writ
-    publish-env__Specifier___compare_equal --> publish-env__lib__python3__13__site-packages__packaging__uti
-    publish-env__Specifier___compare_equal --> publish-env__lib__python3__13__site-packages__packaging__spe
-    publish-env__Specifier___compare_less_than_equal --> publish-env__lib__python3__13__site-packages__packaging__spe
-    publish-env__Specifier___compare_greater_than_equal --> publish-env__lib__python3__13__site-packages__packaging__spe
-    publish-env__Specifier___compare_less_than --> publish-env__lib__python3__13__site-packages__packaging__spe
-    publish-env__Specifier___compare_greater_than --> publish-env__lib__python3__13__site-packages__packaging__spe
-    publish-env__Specifier__contains --> publish-env__lib__python3__13__site-packages__docutils__writ
-    publish-env__Specifier__filter --> publish-env__lib__python3__13__site-packages__packaging__spe
-    publish-env__lib__python3__13__site-packages__packaging__spe --> publish-env__lib__python3__13__site-packages__docutils__writ
-    publish-env__SpecifierSet____init__ --> publish-env__lib__python3__13__site-packages__requests_toolb
-    publish-env__SpecifierSet____hash__ --> publish-env__HashManager__hash
-    publish-env__SpecifierSet__contains --> publish-env__lib__python3__13__site-packages__packaging__spe
-    publish-env__SpecifierSet__contains --> publish-env__lib__python3__13__site-packages__docutils__writ
-    publish-env__SpecifierSet__filter --> publish-env__lib__python3__13__site-packages__packaging__spe
-    publish-env__lib__python3__13__site-packages__packaging__pyl --> publish-env__lib__python3__13__site-packages__packaging__pyl
-    publish-env__lib__python3__13__site-packages__packaging__pyl --> publish-env__SSHCertificateBuilder__type
-    publish-env__lib__python3__13__site-packages__packaging__pyl --> publish-env__lib__python3__13__site-packages__packaging__uti
-    publish-env__lib__python3__13__site-packages__packaging__pyl --> publish-env__lib__python3__13__site-packages__cffi___embeddi
-    publish-env__PackageVcs___from_dict --> publish-env__lib__python3__13__site-packages__packaging__pyl
-    publish-env__PackageDirectory___from_dict --> publish-env__lib__python3__13__site-packages__packaging__pyl
-    publish-env__PackageArchive___from_dict --> publish-env__lib__python3__13__site-packages__packaging__pyl
-    publish-env__PackageSdist___from_dict --> publish-env__lib__python3__13__site-packages__packaging__pyl
-    publish-env__PackageWheel___from_dict --> publish-env__lib__python3__13__site-packages__packaging__pyl
-    publish-env__Package___from_dict --> publish-env__lib__python3__13__site-packages__packaging__pyl
-    publish-env__Pylock___from_dict --> publish-env__lib__python3__13__site-packages__packaging__pyl
-    publish-env__lib__python3__13__site-packages__packaging___mu --> publish-env__lib__python3__13__site-packages__packaging___mu
-    publish-env__lib__python3__13__site-packages__packaging___mu --> publish-env__FileOutput__open
+    publish_env__lib__python3__13__site_packages__markdown_it__parser_core__ParserCore__process --> publish_env__lib__python3__13__site_packages__rich__console__Console__rule
+    publish_env__lib__python3__13__site_packages__markdown_it__parser_block__ParserBlock__tokenize --> publish_env__lib__python3__13__site_packages__rich__console__Console__rule
+    publish_env__lib__python3__13__site_packages__rfc3986__iri__IRIReference____eq__ --> publish_env__lib__python3__13__site_packages__cryptography__hazmat__primitives__serialization__ssh__SSHCertificateBuilder__type
+    publish_env__lib__python3__13__site_packages__rfc3986__iri__IRIReference__from_string --> publish_env__lib__python3__13__site_packages__rfc3986__compat__to_str
+    publish_env__lib__python3__13__site_packages__rfc3986__iri__IRIReference__from_string --> publish_env__lib__python3__13__site_packages__rfc3986__normalizers__encode_component
+    publish_env__lib__python3__13__site_packages__rfc3986__iri__IRIReference__encode --> publish_env__lib__python3__13__site_packages__rfc3986__compat__to_str
+    publish_env__lib__python3__13__site_packages__rfc3986__iri__IRIReference__encode --> publish_env__lib__python3__13__site_packages__rfc3986__normalizers__encode_component
+    publish_env__lib__python3__13__site_packages__markdown_it__parser_inline__ParserInline__skipToken --> publish_env__lib__python3__13__site_packages__rich__console__Console__rule
+    publish_env__lib__python3__13__site_packages__markdown_it__parser_inline__ParserInline__tokenize --> publish_env__lib__python3__13__site_packages__rich__console__Console__rule
+    publish_env__lib__python3__13__site_packages__markdown_it__parser_inline__ParserInline__parse --> publish_env__lib__python3__13__site_packages__rich__console__Console__rule
+    publish_env__lib__python3__13__site_packages__rfc3986__parseresult__ParseResultMixin___generate_authority --> publish_env__lib__python3__13__site_packages__rfc3986__normalizers__normalize_authority
+    publish_env__lib__python3__13__site_packages__rfc3986__parseresult__ParseResultMixin___generate_authority --> publish_env__lib__python3__13__site_packages__rfc3986__compat__to_str
+    publish_env__lib__python3__13__site_packages__rfc3986__parseresult__ParseResult__from_parts --> publish_env__lib__python3__13__site_packages__rfc3986__parseresult__authority_from
+    publish_env__lib__python3__13__site_packages__rfc3986__parseresult__ParseResult__from_string --> publish_env__lib__python3__13__site_packages__rfc3986__uri__URIReference__from_string
+    publish_env__lib__python3__13__site_packages__rfc3986__parseresult__ParseResult__from_string --> publish_env__lib__python3__13__site_packages__rfc3986__parseresult__authority_from
+    publish_env__lib__python3__13__site_packages__rfc3986__parseresult__ParseResult__encode --> publish_env__lib__python3__13__site_packages__docutils__nodes__Element__hasattr
+    publish_env__lib__python3__13__site_packages__rfc3986__parseresult__ParseResultBytes__from_parts --> publish_env__lib__python3__13__site_packages__rfc3986__parseresult__authority_from
+    publish_env__lib__python3__13__site_packages__rfc3986__parseresult__ParseResultBytes__from_parts --> publish_env__lib__python3__13__site_packages__rfc3986__compat__to_bytes
+    publish_env__lib__python3__13__site_packages__rfc3986__parseresult__ParseResultBytes__from_string --> publish_env__lib__python3__13__site_packages__rfc3986__uri__URIReference__from_string
+    publish_env__lib__python3__13__site_packages__rfc3986__parseresult__ParseResultBytes__from_string --> publish_env__lib__python3__13__site_packages__rfc3986__parseresult__authority_from
+    publish_env__lib__python3__13__site_packages__rfc3986__parseresult__ParseResultBytes__from_string --> publish_env__lib__python3__13__site_packages__rfc3986__compat__to_bytes
+    publish_env__lib__python3__13__site_packages__rfc3986__parseresult__ParseResultBytes__copy_with --> publish_env__lib__python3__13__site_packages__docutils__nodes__Element__hasattr
+    publish_env__lib__python3__13__site_packages__rfc3986__parseresult__ParseResultBytes__copy_with --> publish_env__lib__python3__13__site_packages__rfc3986__compat__to_str
+    publish_env__lib__python3__13__site_packages__rfc3986__parseresult__authority_from --> publish_env__lib__python3__13__site_packages__rfc3986__parseresult__split_authority
+    publish_env__lib__python3__13__site_packages__markdown_it__renderer__RendererHTML__renderAttrs --> publish_env__lib__python3__13__site_packages__markdown_it__common__utils__escapeHtml
+    publish_env__lib__python3__13__site_packages__markdown_it__renderer__RendererHTML__code_inline --> publish_env__lib__python3__13__site_packages__markdown_it__common__utils__escapeHtml
+    publish_env__lib__python3__13__site_packages__markdown_it__renderer__RendererHTML__code_block --> publish_env__lib__python3__13__site_packages__markdown_it__common__utils__escapeHtml
+    publish_env__lib__python3__13__site_packages__markdown_it__renderer__RendererHTML__fence --> publish_env__lib__python3__13__site_packages__markdown_it__common__utils__escapeHtml
+    publish_env__lib__python3__13__site_packages__markdown_it__renderer__RendererHTML__fence --> publish_env__lib__python3__13__site_packages__markdown_it__common__utils__unescapeAll
+    publish_env__lib__python3__13__site_packages__markdown_it__renderer__RendererHTML__text --> publish_env__lib__python3__13__site_packages__markdown_it__common__utils__escapeHtml
+    publish_env__lib__python3__13__site_packages__markdown_it__main__MarkdownIt__parse --> publish_env__lib__python3__13__site_packages__cryptography__hazmat__primitives__serialization__ssh__SSHCertificateBuilder__type
+    publish_env__lib__python3__13__site_packages__markdown_it__main__MarkdownIt__parseInline --> publish_env__lib__python3__13__site_packages__cryptography__hazmat__primitives__serialization__ssh__SSHCertificateBuilder__type
+    publish_env__lib__python3__13__site_packages__markdown_it__main__MarkdownIt__validateLink --> publish_env__lib__python3__13__site_packages__markdown_it__common__normalize_url__validateLink
+    publish_env__lib__python3__13__site_packages__markdown_it__main__MarkdownIt__normalizeLink --> publish_env__lib__python3__13__site_packages__markdown_it__common__normalize_url__normalizeLink
+    publish_env__lib__python3__13__site_packages__markdown_it__main__MarkdownIt__normalizeLinkText --> publish_env__lib__python3__13__site_packages__markdown_it__common__normalize_url__normalizeLinkText
+    publish_env__lib__python3__13__site_packages__markdown_it___punycode__to_unicode --> publish_env__lib__python3__13__site_packages__markdown_it___punycode__map_domain
+    publish_env__lib__python3__13__site_packages__markdown_it___punycode__to_unicode --> publish_env__lib__python3__13__site_packages__markdown_it___punycode__decode
+    publish_env__lib__python3__13__site_packages__markdown_it___punycode__to_ascii --> publish_env__lib__python3__13__site_packages__markdown_it___punycode__map_domain
+    publish_env__lib__python3__13__site_packages__markdown_it___punycode__to_ascii --> publish_env__lib__python3__13__site_packages__markdown_it___punycode__encode
+    publish_env__lib__python3__13__site_packages__markdown_it__utils__OptionsDict____init__ --> publish_env__lib__python3__13__site_packages__cffi__backend_ctypes__CTypesBackend__cast
+    publish_env__lib__python3__13__site_packages__markdown_it__tree__SyntaxTreeNode____repr__ --> publish_env__lib__python3__13__site_packages__cryptography__hazmat__primitives__serialization__ssh__SSHCertificateBuilder__type
+    publish_env__lib__python3__13__site_packages__markdown_it__tree__SyntaxTreeNode___add_child --> publish_env__lib__python3__13__site_packages__cryptography__hazmat__primitives__serialization__ssh__SSHCertificateBuilder__type
+    publish_env__lib__python3__13__site_packages__markdown_it__tree__SyntaxTreeNode___set_children_from_tokens --> publish_env__lib__python3__13__site_packages__docutils__writers__s5_html__themes__default__slides__list
+    publish_env__lib__python3__13__site_packages__markdown_it__token__Token____post_init__ --> publish_env__lib__python3__13__site_packages__markdown_it__token__convert_attrs
+    publish_env__lib__python3__13__site_packages__markdown_it__token__Token__attrIndex --> publish_env__lib__python3__13__site_packages__docutils__writers__s5_html__themes__default__slides__list
+    publish_env__lib__python3__13__site_packages__markdown_it__token__Token__attrItems --> publish_env__lib__python3__13__site_packages__docutils__writers__s5_html__themes__default__slides__list
+    publish_env__lib__python3__13__site_packages__markdown_it__token__Token__as_dict --> publish_env__lib__python3__13__site_packages__packaging__specifiers__BaseSpecifier__filter
+    publish_env__lib__python3__13__site_packages__requests__cookies__MockRequest____init__ --> publish_env__lib__python3__13__site_packages__rfc3986__api__urlparse
+    publish_env__lib__python3__13__site_packages__requests__cookies__MockRequest__get_host --> publish_env__lib__python3__13__site_packages__rfc3986__api__urlparse
+    publish_env__lib__python3__13__site_packages__requests__cookies__MockRequest__get_full_url --> publish_env__lib__python3__13__site_packages__requests___internal_utils__to_native_string
+    publish_env__lib__python3__13__site_packages__requests__cookies__MockRequest__get_full_url --> publish_env__lib__python3__13__site_packages__rfc3986__api__urlparse
+    publish_env__lib__python3__13__site_packages__requests__cookies__extract_cookies_to_jar --> publish_env__lib__python3__13__site_packages__docutils__nodes__Element__hasattr
+    publish_env__lib__python3__13__site_packages__requests__cookies__RequestsCookieJar__set --> publish_env__lib__python3__13__site_packages__requests__cookies__remove_cookie_by_name
+    publish_env__lib__python3__13__site_packages__requests__cookies__RequestsCookieJar__set --> publish_env__lib__python3__13__site_packages__requests__cookies__morsel_to_cookie
+    publish_env__lib__python3__13__site_packages__requests__cookies__RequestsCookieJar__set --> publish_env__lib__python3__13__site_packages__requests__cookies__create_cookie
+    publish_env__lib__python3__13__site_packages__requests__cookies__RequestsCookieJar__keys --> publish_env__lib__python3__13__site_packages__docutils__writers__s5_html__themes__default__slides__list
+    publish_env__lib__python3__13__site_packages__requests__cookies__RequestsCookieJar__values --> publish_env__lib__python3__13__site_packages__docutils__writers__s5_html__themes__default__slides__list
+    publish_env__lib__python3__13__site_packages__requests__cookies__RequestsCookieJar__items --> publish_env__lib__python3__13__site_packages__docutils__writers__s5_html__themes__default__slides__list
+    publish_env__lib__python3__13__site_packages__requests__cookies__RequestsCookieJar____delitem__ --> publish_env__lib__python3__13__site_packages__requests__cookies__remove_cookie_by_name
+    publish_env__lib__python3__13__site_packages__requests__cookies__RequestsCookieJar__set_cookie --> publish_env__lib__python3__13__site_packages__docutils__nodes__Element__hasattr
+    publish_env__lib__python3__13__site_packages__requests__cookies___copy_cookie_jar --> publish_env__lib__python3__13__site_packages__docutils__nodes__Element__hasattr
+    publish_env__lib__python3__13__site_packages__requests__cookies__create_cookie --> publish_env__lib__python3__13__site_packages__markdown_it__main__MarkdownIt__set
+    publish_env__lib__python3__13__site_packages__requests__cookies__create_cookie --> publish_env__lib__python3__13__site_packages__docutils__writers__s5_html__themes__default__slides__list
+    publish_env__lib__python3__13__site_packages__requests__cookies__morsel_to_cookie --> publish_env__lib__python3__13__site_packages__requests__cookies__create_cookie
+    publish_env__lib__python3__13__site_packages__requests__cookies__cookiejar_from_dict --> publish_env__lib__python3__13__site_packages__requests__cookies__create_cookie
+    publish_env__lib__python3__13__site_packages__requests__cookies__merge_cookies --> publish_env__lib__python3__13__site_packages__requests__cookies__cookiejar_from_dict
+    publish_env__lib__python3__13__site_packages__requests__help__info --> publish_env__lib__python3__13__site_packages__requests__help___implementation
+    publish_env__lib__python3__13__site_packages__requests__help__main --> publish_env__lib__python3__13__site_packages__rich__jupyter__print
+    publish_env__lib__python3__13__site_packages__requests__help__main --> publish_env__lib__python3__13__site_packages__requests__help__info
+    publish_env__lib__python3__13__site_packages__requests__adapters___urllib3_request_context --> publish_env__lib__python3__13__site_packages__rfc3986__api__urlparse
+    publish_env__lib__python3__13__site_packages__requests__adapters__HTTPAdapter__proxy_manager_for --> publish_env__lib__python3__13__site_packages__requests__utils__get_auth_from_url
+    publish_env__lib__python3__13__site_packages__requests__adapters__HTTPAdapter__proxy_manager_for --> publish_env__lib__python3__13__site_packages__urllib3__poolmanager__proxy_from_url
+    publish_env__lib__python3__13__site_packages__requests__adapters__HTTPAdapter__cert_verify --> publish_env__lib__python3__13__site_packages__requests__utils__extract_zipped_paths
+    publish_env__lib__python3__13__site_packages__requests__adapters__HTTPAdapter__build_response --> publish_env__lib__python3__13__site_packages__requests__utils__get_encoding_from_headers
+    publish_env__lib__python3__13__site_packages__requests__adapters__HTTPAdapter__build_response --> publish_env__lib__python3__13__site_packages__requests__cookies__extract_cookies_to_jar
+    publish_env__lib__python3__13__site_packages__requests__adapters__HTTPAdapter__build_connection_pool_key_attributes --> publish_env__lib__python3__13__site_packages__requests__adapters___urllib3_request_context
+    publish_env__lib__python3__13__site_packages__requests__adapters__HTTPAdapter__get_connection_with_tls_context --> publish_env__lib__python3__13__site_packages__requests__utils__select_proxy
+    publish_env__lib__python3__13__site_packages__requests__adapters__HTTPAdapter__get_connection_with_tls_context --> publish_env__lib__python3__13__site_packages__requests__utils__prepend_scheme_if_needed
+    publish_env__lib__python3__13__site_packages__requests__adapters__HTTPAdapter__get_connection_with_tls_context --> publish_env__lib__python3__13__site_packages__urllib3__util__url__parse_url
+    publish_env__lib__python3__13__site_packages__requests__adapters__HTTPAdapter__get_connection --> publish_env__lib__python3__13__site_packages__requests__utils__select_proxy
+    publish_env__lib__python3__13__site_packages__requests__adapters__HTTPAdapter__get_connection --> publish_env__lib__python3__13__site_packages__requests__utils__prepend_scheme_if_needed
+    publish_env__lib__python3__13__site_packages__requests__adapters__HTTPAdapter__get_connection --> publish_env__lib__python3__13__site_packages__urllib3__util__url__parse_url
+    publish_env__lib__python3__13__site_packages__requests__adapters__HTTPAdapter__get_connection --> publish_env__lib__python3__13__site_packages__rfc3986__api__urlparse
+    publish_env__lib__python3__13__site_packages__requests__adapters__HTTPAdapter__request_url --> publish_env__lib__python3__13__site_packages__requests__utils__select_proxy
+    publish_env__lib__python3__13__site_packages__requests__adapters__HTTPAdapter__request_url --> publish_env__lib__python3__13__site_packages__rfc3986__api__urlparse
+    publish_env__lib__python3__13__site_packages__requests__adapters__HTTPAdapter__request_url --> publish_env__lib__python3__13__site_packages__requests__utils__urldefragauth
+    publish_env__lib__python3__13__site_packages__requests__adapters__HTTPAdapter__proxy_headers --> publish_env__lib__python3__13__site_packages__requests__utils__get_auth_from_url
+    publish_env__lib__python3__13__site_packages__requests__adapters__HTTPAdapter__proxy_headers --> publish_env__lib__python3__13__site_packages__requests__auth___basic_auth_str
+    publish_env__lib__python3__13__site_packages__requests___check_cryptography --> publish_env__lib__python3__13__site_packages__docutils__writers__s5_html__themes__default__slides__list
+    publish_env__lib__python3__13__site_packages__requests___check_cryptography --> publish_env__lib__python3__13__site_packages__requests_toolbelt__threaded__map
+    publish_env__lib__python3__13__site_packages__requests__auth__HTTPBasicAuth____eq__ --> publish_env__lib__python3__13__site_packages__cffi___embedding__all
+    publish_env__lib__python3__13__site_packages__requests__auth__HTTPBasicAuth____call__ --> publish_env__lib__python3__13__site_packages__requests__auth___basic_auth_str
+    publish_env__lib__python3__13__site_packages__requests__auth__HTTPProxyAuth____call__ --> publish_env__lib__python3__13__site_packages__requests__auth___basic_auth_str
+    publish_env__lib__python3__13__site_packages__requests__auth__HTTPDigestAuth__init_per_thread_state --> publish_env__lib__python3__13__site_packages__docutils__nodes__Element__hasattr
+    publish_env__lib__python3__13__site_packages__requests__auth__HTTPDigestAuth__build_digest_header --> publish_env__lib__python3__13__site_packages__rfc3986__api__urlparse
+    publish_env__lib__python3__13__site_packages__requests__auth__HTTPDigestAuth__handle_401 --> publish_env__lib__python3__13__site_packages__requests__utils__parse_dict_header
+    publish_env__lib__python3__13__site_packages__requests__auth__HTTPDigestAuth__handle_401 --> publish_env__lib__python3__13__site_packages__requests__cookies__extract_cookies_to_jar
+    publish_env__lib__python3__13__site_packages__requests__auth__HTTPDigestAuth____eq__ --> publish_env__lib__python3__13__site_packages__cffi___embedding__all
+    publish_env__lib__python3__13__site_packages__requests__api__get --> publish_env__lib__python3__13__site_packages__requests__api__request
+    publish_env__lib__python3__13__site_packages__requests__api__options --> publish_env__lib__python3__13__site_packages__requests__api__request
+    publish_env__lib__python3__13__site_packages__requests__api__head --> publish_env__lib__python3__13__site_packages__requests__api__request
+    publish_env__lib__python3__13__site_packages__requests__api__post --> publish_env__lib__python3__13__site_packages__requests__api__request
+    publish_env__lib__python3__13__site_packages__requests__api__put --> publish_env__lib__python3__13__site_packages__requests__api__request
+    publish_env__lib__python3__13__site_packages__requests__api__patch --> publish_env__lib__python3__13__site_packages__requests__api__request
+    publish_env__lib__python3__13__site_packages__requests__api__delete --> publish_env__lib__python3__13__site_packages__requests__api__request
+    publish_env__lib__python3__13__site_packages__requests__hooks__dispatch_hook --> publish_env__lib__python3__13__site_packages__docutils__nodes__Element__hasattr
+    publish_env__lib__python3__13__site_packages__requests__sessions__merge_setting --> publish_env__lib__python3__13__site_packages__requests__utils__to_key_val_list
+    publish_env__lib__python3__13__site_packages__requests__sessions__merge_hooks --> publish_env__lib__python3__13__site_packages__requests__sessions__merge_setting
+    publish_env__lib__python3__13__site_packages__requests__sessions__SessionRedirectMixin__get_redirect_target --> publish_env__lib__python3__13__site_packages__requests___internal_utils__to_native_string
+    publish_env__lib__python3__13__site_packages__requests__sessions__SessionRedirectMixin__should_strip_auth --> publish_env__lib__python3__13__site_packages__rfc3986__api__urlparse
+    publish_env__lib__python3__13__site_packages__requests__sessions__SessionRedirectMixin__resolve_redirects --> publish_env__lib__python3__13__site_packages__rfc3986__api__urlparse
+    publish_env__lib__python3__13__site_packages__requests__sessions__SessionRedirectMixin__resolve_redirects --> publish_env__lib__python3__13__site_packages__requests___internal_utils__to_native_string
+    publish_env__lib__python3__13__site_packages__requests__sessions__SessionRedirectMixin__rebuild_auth --> publish_env__lib__python3__13__site_packages__requests__utils__get_netrc_auth
+    publish_env__lib__python3__13__site_packages__requests__sessions__SessionRedirectMixin__rebuild_proxies --> publish_env__lib__python3__13__site_packages__requests__utils__resolve_proxies
+    publish_env__lib__python3__13__site_packages__requests__sessions__SessionRedirectMixin__rebuild_proxies --> publish_env__lib__python3__13__site_packages__rfc3986__api__urlparse
+    publish_env__lib__python3__13__site_packages__requests__sessions__SessionRedirectMixin__rebuild_proxies --> publish_env__lib__python3__13__site_packages__requests__utils__get_auth_from_url
+    publish_env__lib__python3__13__site_packages__requests__sessions__SessionRedirectMixin__rebuild_proxies --> publish_env__lib__python3__13__site_packages__requests__auth___basic_auth_str
+    publish_env__lib__python3__13__site_packages__requests__sessions__Session____init__ --> publish_env__lib__python3__13__site_packages__requests__utils__default_headers
+    publish_env__lib__python3__13__site_packages__requests__sessions__Session____init__ --> publish_env__lib__python3__13__site_packages__requests__hooks__default_hooks
+    publish_env__lib__python3__13__site_packages__requests__sessions__Session____init__ --> publish_env__lib__python3__13__site_packages__requests__cookies__cookiejar_from_dict
+    publish_env__lib__python3__13__site_packages__requests__sessions__Session__prepare_request --> publish_env__lib__python3__13__site_packages__requests__cookies__merge_cookies
+    publish_env__lib__python3__13__site_packages__requests__sessions__Session__prepare_request --> publish_env__lib__python3__13__site_packages__requests__cookies__cookiejar_from_dict
+    publish_env__lib__python3__13__site_packages__requests__sessions__Session__prepare_request --> publish_env__lib__python3__13__site_packages__requests__utils__get_netrc_auth
+    publish_env__lib__python3__13__site_packages__requests__sessions__Session__prepare_request --> publish_env__lib__python3__13__site_packages__requests__sessions__merge_setting
+    publish_env__lib__python3__13__site_packages__requests__sessions__Session__merge_environment_settings --> publish_env__lib__python3__13__site_packages__requests__sessions__merge_setting
+    publish_env__lib__python3__13__site_packages__requests__sessions__Session__merge_environment_settings --> publish_env__lib__python3__13__site_packages__requests__utils__get_environ_proxies
+    publish_env__lib__python3__13__site_packages__requests__utils__dict_to_sequence --> publish_env__lib__python3__13__site_packages__docutils__nodes__Element__hasattr
+    publish_env__lib__python3__13__site_packages__requests__utils__super_len --> publish_env__lib__python3__13__site_packages__docutils__nodes__Element__hasattr
+    publish_env__lib__python3__13__site_packages__requests__utils__get_netrc_auth --> publish_env__lib__python3__13__site_packages__rfc3986__api__urlparse
+    publish_env__lib__python3__13__site_packages__requests__utils__to_key_val_list --> publish_env__lib__python3__13__site_packages__docutils__writers__s5_html__themes__default__slides__list
+    publish_env__lib__python3__13__site_packages__requests__utils__parse_list_header --> publish_env__lib__python3__13__site_packages__requests__utils__unquote_header_value
+    publish_env__lib__python3__13__site_packages__requests__utils__parse_dict_header --> publish_env__lib__python3__13__site_packages__requests__utils__unquote_header_value
+    publish_env__lib__python3__13__site_packages__requests__utils__add_dict_to_cookiejar --> publish_env__lib__python3__13__site_packages__requests__cookies__cookiejar_from_dict
+    publish_env__lib__python3__13__site_packages__requests__utils__get_encoding_from_headers --> publish_env__lib__python3__13__site_packages__requests__utils___parse_content_type_header
+    publish_env__lib__python3__13__site_packages__requests__utils__get_unicode_from_response --> publish_env__lib__python3__13__site_packages__requests__utils__get_encoding_from_headers
+    publish_env__lib__python3__13__site_packages__requests__utils__requote_uri --> publish_env__lib__python3__13__site_packages__requests__utils__unquote_unreserved
+    publish_env__lib__python3__13__site_packages__requests__utils__address_in_network --> publish_env__lib__python3__13__site_packages__requests__utils__dotted_netmask
+    publish_env__lib__python3__13__site_packages__requests__utils__should_bypass_proxies --> publish_env__lib__python3__13__site_packages__rfc3986__api__urlparse
+    publish_env__lib__python3__13__site_packages__requests__utils__should_bypass_proxies --> publish_env__lib__python3__13__site_packages__requests__utils__is_ipv4_address
+    publish_env__lib__python3__13__site_packages__requests__utils__should_bypass_proxies --> publish_env__lib__python3__13__site_packages__requests__utils__set_environ
+    publish_env__lib__python3__13__site_packages__requests__utils__should_bypass_proxies --> publish_env__lib__python3__13__site_packages__requests__utils__is_valid_cidr
+    publish_env__lib__python3__13__site_packages__requests__utils__get_environ_proxies --> publish_env__lib__python3__13__site_packages__requests__utils__should_bypass_proxies
+    publish_env__lib__python3__13__site_packages__requests__utils__select_proxy --> publish_env__lib__python3__13__site_packages__rfc3986__api__urlparse
+    publish_env__lib__python3__13__site_packages__requests__utils__resolve_proxies --> publish_env__lib__python3__13__site_packages__rfc3986__api__urlparse
+    publish_env__lib__python3__13__site_packages__requests__utils__resolve_proxies --> publish_env__lib__python3__13__site_packages__requests__utils__get_environ_proxies
+    publish_env__lib__python3__13__site_packages__requests__utils__resolve_proxies --> publish_env__lib__python3__13__site_packages__requests__utils__should_bypass_proxies
+    publish_env__lib__python3__13__site_packages__requests__utils__default_headers --> publish_env__lib__python3__13__site_packages__requests__utils__default_user_agent
+    publish_env__lib__python3__13__site_packages__requests__utils__prepend_scheme_if_needed --> publish_env__lib__python3__13__site_packages__urllib3__util__url__parse_url
+    publish_env__lib__python3__13__site_packages__requests__utils__get_auth_from_url --> publish_env__lib__python3__13__site_packages__rfc3986__api__urlparse
+    publish_env__lib__python3__13__site_packages__requests__utils__check_header_validity --> publish_env__lib__python3__13__site_packages__requests__utils___validate_header_part
+    publish_env__lib__python3__13__site_packages__requests__utils___validate_header_part --> publish_env__lib__python3__13__site_packages__cryptography__hazmat__primitives__serialization__ssh__SSHCertificateBuilder__type
+    publish_env__lib__python3__13__site_packages__requests__utils__urldefragauth --> publish_env__lib__python3__13__site_packages__rfc3986__api__urlparse
+    publish_env__lib__python3__13__site_packages__requests__models__RequestEncodingMixin___encode_params --> publish_env__lib__python3__13__site_packages__docutils__nodes__Element__hasattr
+    publish_env__lib__python3__13__site_packages__requests__models__RequestEncodingMixin___encode_params --> publish_env__lib__python3__13__site_packages__requests__utils__to_key_val_list
+    publish_env__lib__python3__13__site_packages__requests__models__RequestEncodingMixin___encode_params --> publish_env__lib__python3__13__site_packages__requests_toolbelt__utils__formdata__urlencode
+    publish_env__lib__python3__13__site_packages__requests__models__RequestEncodingMixin___encode_files --> publish_env__lib__python3__13__site_packages__requests__utils__to_key_val_list
+    publish_env__lib__python3__13__site_packages__requests__models__RequestEncodingMixin___encode_files --> publish_env__lib__python3__13__site_packages__urllib3__filepost__encode_multipart_formdata
+    publish_env__lib__python3__13__site_packages__requests__models__RequestHooksMixin__register_hook --> publish_env__lib__python3__13__site_packages__docutils__nodes__Element__hasattr
+    publish_env__lib__python3__13__site_packages__requests__models__Request____init__ --> publish_env__lib__python3__13__site_packages__requests__hooks__default_hooks
+    publish_env__lib__python3__13__site_packages__requests__models__Request____init__ --> publish_env__lib__python3__13__site_packages__docutils__writers__s5_html__themes__default__slides__list
+    publish_env__lib__python3__13__site_packages__requests__models__PreparedRequest____init__ --> publish_env__lib__python3__13__site_packages__requests__hooks__default_hooks
+    publish_env__lib__python3__13__site_packages__requests__models__PreparedRequest__copy --> publish_env__lib__python3__13__site_packages__requests__cookies___copy_cookie_jar
+    publish_env__lib__python3__13__site_packages__requests__models__PreparedRequest__prepare_method --> publish_env__lib__python3__13__site_packages__requests___internal_utils__to_native_string
+    publish_env__lib__python3__13__site_packages__requests__models__PreparedRequest__prepare_url --> publish_env__lib__python3__13__site_packages__requests__utils__requote_uri
+    publish_env__lib__python3__13__site_packages__requests__models__PreparedRequest__prepare_url --> publish_env__lib__python3__13__site_packages__urllib3__util__url__parse_url
+    publish_env__lib__python3__13__site_packages__requests__models__PreparedRequest__prepare_headers --> publish_env__lib__python3__13__site_packages__requests__utils__check_header_validity
+    publish_env__lib__python3__13__site_packages__requests__models__PreparedRequest__prepare_headers --> publish_env__lib__python3__13__site_packages__requests___internal_utils__to_native_string
+    publish_env__lib__python3__13__site_packages__requests__models__PreparedRequest__prepare_body --> publish_env__lib__python3__13__site_packages__cffi___embedding__all
+    publish_env__lib__python3__13__site_packages__requests__models__PreparedRequest__prepare_body --> publish_env__lib__python3__13__site_packages__docutils__nodes__Element__hasattr
+    publish_env__lib__python3__13__site_packages__requests__models__PreparedRequest__prepare_body --> publish_env__lib__python3__13__site_packages__requests__utils__super_len
+    publish_env__lib__python3__13__site_packages__requests__models__PreparedRequest__prepare_content_length --> publish_env__lib__python3__13__site_packages__requests__utils__super_len
+    publish_env__lib__python3__13__site_packages__requests__models__PreparedRequest__prepare_auth --> publish_env__lib__python3__13__site_packages__requests__utils__get_auth_from_url
+    publish_env__lib__python3__13__site_packages__requests__models__PreparedRequest__prepare_cookies --> publish_env__lib__python3__13__site_packages__requests__cookies__get_cookie_header
+    publish_env__lib__python3__13__site_packages__requests__models__PreparedRequest__prepare_cookies --> publish_env__lib__python3__13__site_packages__requests__cookies__cookiejar_from_dict
+    publish_env__lib__python3__13__site_packages__requests__models__Response____init__ --> publish_env__lib__python3__13__site_packages__requests__cookies__cookiejar_from_dict
+    publish_env__lib__python3__13__site_packages__requests__models__Response__iter_content --> publish_env__lib__python3__13__site_packages__requests__utils__iter_slices
+    publish_env__lib__python3__13__site_packages__requests__models__Response__iter_content --> publish_env__lib__python3__13__site_packages__pycparser___ast_gen__ASTCodeGenerator__generate
+    publish_env__lib__python3__13__site_packages__requests__models__Response__iter_content --> publish_env__lib__python3__13__site_packages__docutils__nodes__Element__hasattr
+    publish_env__lib__python3__13__site_packages__requests__models__Response__iter_content --> publish_env__lib__python3__13__site_packages__requests__utils__stream_decode_response_unicode
+    publish_env__lib__python3__13__site_packages__requests__models__Response__json --> publish_env__lib__python3__13__site_packages__requests__utils__guess_json_utf
+    publish_env__lib__python3__13__site_packages__requests__models__Response__close --> publish_env__lib__python3__13__site_packages__urllib3__response__BaseHTTPResponse__release_conn
+    publish_env__lib__python3__13__site_packages__packaging___manylinux___parse_elf --> publish_env__lib__python3__13__site_packages__docutils__io__FileOutput__open
+    publish_env__lib__python3__13__site_packages__packaging___manylinux___is_linux_armhf --> publish_env__lib__python3__13__site_packages__packaging___manylinux___parse_elf
+    publish_env__lib__python3__13__site_packages__packaging___manylinux___is_linux_i686 --> publish_env__lib__python3__13__site_packages__packaging___manylinux___parse_elf
+    publish_env__lib__python3__13__site_packages__packaging___manylinux___have_compatible_abi --> publish_env__lib__python3__13__site_packages__packaging___manylinux___is_linux_armhf
+    publish_env__lib__python3__13__site_packages__packaging___manylinux___have_compatible_abi --> publish_env__lib__python3__13__site_packages__packaging___manylinux___is_linux_i686
+    publish_env__lib__python3__13__site_packages__packaging___manylinux___glibc_version_string --> publish_env__lib__python3__13__site_packages__packaging___manylinux___glibc_version_string_confstr
+    publish_env__lib__python3__13__site_packages__packaging___manylinux___glibc_version_string --> publish_env__lib__python3__13__site_packages__packaging___manylinux___glibc_version_string_ctypes
+    publish_env__lib__python3__13__site_packages__packaging___manylinux___get_glibc_version --> publish_env__lib__python3__13__site_packages__packaging___manylinux___glibc_version_string
+    publish_env__lib__python3__13__site_packages__packaging___manylinux___get_glibc_version --> publish_env__lib__python3__13__site_packages__packaging___manylinux___parse_glibc_version
+    publish_env__lib__python3__13__site_packages__packaging___manylinux___is_compatible --> publish_env__lib__python3__13__site_packages__packaging___manylinux___get_glibc_version
+    publish_env__lib__python3__13__site_packages__packaging___manylinux___is_compatible --> publish_env__lib__python3__13__site_packages__docutils__nodes__Element__hasattr
+    publish_env__lib__python3__13__site_packages__packaging___manylinux__platform_tags --> publish_env__lib__python3__13__site_packages__packaging___manylinux___have_compatible_abi
+    publish_env__lib__python3__13__site_packages__packaging___manylinux__platform_tags --> publish_env__lib__python3__13__site_packages__markdown_it__main__MarkdownIt__set
+    publish_env__lib__python3__13__site_packages__packaging___manylinux__platform_tags --> publish_env__lib__python3__13__site_packages__packaging___manylinux___get_glibc_version
+    publish_env__lib__python3__13__site_packages__packaging__requirements__Requirement____init__ --> publish_env__lib__python3__13__site_packages__markdown_it__main__MarkdownIt__set
+    publish_env__lib__python3__13__site_packages__packaging__requirements__Requirement____init__ --> publish_env__lib__python3__13__site_packages__packaging___parser___parse_requirement
+    publish_env__lib__python3__13__site_packages__packaging__requirements__Requirement____init__ --> publish_env__lib__python3__13__site_packages__packaging__markers___normalize_extra_values
+    publish_env__lib__python3__13__site_packages__packaging__requirements__Requirement____hash__ --> publish_env__lib__python3__13__site_packages__twine__package__HashManager__hash
+    publish_env__lib__python3__13__site_packages__packaging__requirements__Requirement____hash__ --> publish_env__lib__python3__13__site_packages__packaging__utils__canonicalize_name
+    publish_env__lib__python3__13__site_packages__packaging__requirements__Requirement____eq__ --> publish_env__lib__python3__13__site_packages__packaging__utils__canonicalize_name
+    publish_env__lib__python3__13__site_packages__packaging___parser__parse_requirement --> publish_env__lib__python3__13__site_packages__packaging___parser___parse_requirement
+    publish_env__lib__python3__13__site_packages__packaging___parser___parse_requirement --> publish_env__lib__python3__13__site_packages__packaging___parser___parse_extras
+    publish_env__lib__python3__13__site_packages__packaging___parser___parse_requirement --> publish_env__lib__python3__13__site_packages__packaging___parser___parse_requirement_details
+    publish_env__lib__python3__13__site_packages__packaging___parser___parse_requirement_details --> publish_env__lib__python3__13__site_packages__packaging___parser___parse_requirement_marker
+    publish_env__lib__python3__13__site_packages__packaging___parser___parse_requirement_details --> publish_env__lib__python3__13__site_packages__packaging___parser___parse_specifier
+    publish_env__lib__python3__13__site_packages__packaging___parser___parse_requirement_marker --> publish_env__lib__python3__13__site_packages__packaging___parser___parse_marker
+    publish_env__lib__python3__13__site_packages__packaging___parser___parse_extras --> publish_env__lib__python3__13__site_packages__packaging___parser___parse_extras_list
+    publish_env__lib__python3__13__site_packages__packaging___parser___parse_specifier --> publish_env__lib__python3__13__site_packages__packaging___parser___parse_version_many
+    publish_env__lib__python3__13__site_packages__packaging___parser__parse_marker --> publish_env__lib__python3__13__site_packages__packaging___parser___parse_full_marker
+    publish_env__lib__python3__13__site_packages__packaging___parser___parse_full_marker --> publish_env__lib__python3__13__site_packages__packaging___parser___parse_marker
+    publish_env__lib__python3__13__site_packages__packaging___parser___parse_marker --> publish_env__lib__python3__13__site_packages__packaging___parser___parse_marker_atom
+    publish_env__lib__python3__13__site_packages__packaging___parser___parse_marker_atom --> publish_env__lib__python3__13__site_packages__packaging___parser___parse_marker_item
+    publish_env__lib__python3__13__site_packages__packaging___parser___parse_marker_atom --> publish_env__lib__python3__13__site_packages__packaging___parser___parse_marker
+    publish_env__lib__python3__13__site_packages__packaging___parser___parse_marker_item --> publish_env__lib__python3__13__site_packages__packaging___parser___parse_marker_var
+    publish_env__lib__python3__13__site_packages__packaging___parser___parse_marker_item --> publish_env__lib__python3__13__site_packages__packaging___parser___parse_marker_op
+    publish_env__lib__python3__13__site_packages__packaging___parser___parse_marker_var --> publish_env__lib__python3__13__site_packages__packaging___parser__process_env_var
+    publish_env__lib__python3__13__site_packages__packaging___parser___parse_marker_var --> publish_env__lib__python3__13__site_packages__packaging___parser__process_python_str
+    publish_env__lib__python3__13__site_packages__packaging___structures__InfinityType____hash__ --> publish_env__lib__python3__13__site_packages__twine__package__HashManager__hash
+    publish_env__lib__python3__13__site_packages__packaging___structures__NegativeInfinityType____hash__ --> publish_env__lib__python3__13__site_packages__twine__package__HashManager__hash
+    publish_env__lib__python3__13__site_packages__packaging___elffile__ELFFile____init__ --> publish_env__lib__python3__13__site_packages__pip___vendor__msgpack__fallback__Packer__bytes
+    publish_env__lib__python3__13__site_packages__packaging__metadata__parse_email --> publish_env__lib__python3__13__site_packages__packaging__metadata___get_payload
+    publish_env__lib__python3__13__site_packages__packaging__metadata__parse_email --> publish_env__lib__python3__13__site_packages__cffi__backend_ctypes__CTypesBackend__cast
+    publish_env__lib__python3__13__site_packages__packaging__metadata___Validator____get__ --> publish_env__lib__python3__13__site_packages__cffi__backend_ctypes__CTypesBackend__cast
+    publish_env__lib__python3__13__site_packages__packaging__metadata___Validator___process_metadata_version --> publish_env__lib__python3__13__site_packages__cffi__backend_ctypes__CTypesBackend__cast
+    publish_env__lib__python3__13__site_packages__packaging__metadata___Validator___process_description_content_type --> publish_env__lib__python3__13__site_packages__docutils__writers__s5_html__themes__default__slides__list
+    publish_env__lib__python3__13__site_packages__packaging__metadata___Validator___process_dynamic --> publish_env__lib__python3__13__site_packages__requests_toolbelt__threaded__map
+    publish_env__lib__python3__13__site_packages__packaging__metadata___Validator___process_dynamic --> publish_env__lib__python3__13__site_packages__docutils__writers__s5_html__themes__default__slides__list
+    publish_env__lib__python3__13__site_packages__packaging__metadata__Metadata__from_email --> publish_env__lib__python3__13__site_packages__packaging__metadata__parse_email
+    publish_env__lib__python3__13__site_packages__requests__exceptions__RequestException____init__ --> publish_env__lib__python3__13__site_packages__docutils__nodes__Element__hasattr
+    publish_env__lib__python3__13__site_packages__packaging__utils__canonicalize_name --> publish_env__lib__python3__13__site_packages__cffi__backend_ctypes__CTypesBackend__cast
+    publish_env__lib__python3__13__site_packages__packaging__utils__parse_wheel_filename --> publish_env__lib__python3__13__site_packages__packaging__utils__canonicalize_name
+    publish_env__lib__python3__13__site_packages__packaging__utils__parse_wheel_filename --> publish_env__lib__python3__13__site_packages__packaging__tags__parse_tag
+    publish_env__lib__python3__13__site_packages__packaging__utils__parse_sdist_filename --> publish_env__lib__python3__13__site_packages__packaging__utils__canonicalize_name
+    publish_env__lib__python3__13__site_packages__packaging__pylock___toml_dict_factory --> publish_env__lib__python3__13__site_packages__packaging__pylock___toml_key
+    publish_env__lib__python3__13__site_packages__packaging__pylock___toml_dict_factory --> publish_env__lib__python3__13__site_packages__packaging__pylock___toml_value
+    publish_env__lib__python3__13__site_packages__packaging__pylock___get --> publish_env__lib__python3__13__site_packages__cryptography__hazmat__primitives__serialization__ssh__SSHCertificateBuilder__type
+    publish_env__lib__python3__13__site_packages__packaging__pylock___get_required --> publish_env__lib__python3__13__site_packages__packaging__pylock___get
+    publish_env__lib__python3__13__site_packages__packaging__pylock___get_sequence --> publish_env__lib__python3__13__site_packages__packaging__pylock___get
+    publish_env__lib__python3__13__site_packages__packaging__pylock___get_sequence --> publish_env__lib__python3__13__site_packages__cryptography__hazmat__primitives__serialization__ssh__SSHCertificateBuilder__type
+    publish_env__lib__python3__13__site_packages__packaging__pylock___get_as --> publish_env__lib__python3__13__site_packages__packaging__pylock___get
+    publish_env__lib__python3__13__site_packages__packaging__pylock___get_required_as --> publish_env__lib__python3__13__site_packages__packaging__pylock___get_as
+    publish_env__lib__python3__13__site_packages__packaging__pylock___get_sequence_as --> publish_env__lib__python3__13__site_packages__packaging__pylock___get_sequence
+    publish_env__lib__python3__13__site_packages__packaging__pylock___get_object --> publish_env__lib__python3__13__site_packages__packaging__pylock___get
+    publish_env__lib__python3__13__site_packages__packaging__pylock___get_sequence_of_objects --> publish_env__lib__python3__13__site_packages__packaging__pylock___get_sequence
+    publish_env__lib__python3__13__site_packages__packaging__pylock___get_required_sequence_of_objects --> publish_env__lib__python3__13__site_packages__packaging__pylock___get_sequence_of_objects
+    publish_env__lib__python3__13__site_packages__packaging__pylock___validate_normalized_name --> publish_env__lib__python3__13__site_packages__packaging__utils__is_normalized_name
+    publish_env__lib__python3__13__site_packages__packaging__pylock___validate_hashes --> publish_env__lib__python3__13__site_packages__cffi___embedding__all
+    publish_env__lib__python3__13__site_packages__packaging__pylock__PackageVcs___from_dict --> publish_env__lib__python3__13__site_packages__packaging__pylock___validate_path_url
+    publish_env__lib__python3__13__site_packages__packaging__pylock__PackageVcs___from_dict --> publish_env__lib__python3__13__site_packages__packaging__pylock___get_required
+    publish_env__lib__python3__13__site_packages__packaging__pylock__PackageVcs___from_dict --> publish_env__lib__python3__13__site_packages__packaging__pylock___get
+    publish_env__lib__python3__13__site_packages__packaging__pylock__PackageDirectory___from_dict --> publish_env__lib__python3__13__site_packages__packaging__pylock___get_required
+    publish_env__lib__python3__13__site_packages__packaging__pylock__PackageDirectory___from_dict --> publish_env__lib__python3__13__site_packages__packaging__pylock___get
+    publish_env__lib__python3__13__site_packages__packaging__pylock__PackageArchive___from_dict --> publish_env__lib__python3__13__site_packages__packaging__pylock___validate_path_url
+    publish_env__lib__python3__13__site_packages__packaging__pylock__PackageArchive___from_dict --> publish_env__lib__python3__13__site_packages__packaging__pylock___get
+    publish_env__lib__python3__13__site_packages__packaging__pylock__PackageArchive___from_dict --> publish_env__lib__python3__13__site_packages__packaging__pylock___get_required_as
+    publish_env__lib__python3__13__site_packages__packaging__pylock__PackageSdist___from_dict --> publish_env__lib__python3__13__site_packages__packaging__pylock___validate_path_url
+    publish_env__lib__python3__13__site_packages__packaging__pylock__PackageSdist___from_dict --> publish_env__lib__python3__13__site_packages__packaging__pylock___get
+    publish_env__lib__python3__13__site_packages__packaging__pylock__PackageSdist___from_dict --> publish_env__lib__python3__13__site_packages__packaging__pylock___get_required_as
+    publish_env__lib__python3__13__site_packages__packaging__pylock__PackageWheel___from_dict --> publish_env__lib__python3__13__site_packages__packaging__pylock___validate_path_url
+    publish_env__lib__python3__13__site_packages__packaging__pylock__PackageWheel___from_dict --> publish_env__lib__python3__13__site_packages__packaging__pylock___get
+    publish_env__lib__python3__13__site_packages__packaging__pylock__PackageWheel___from_dict --> publish_env__lib__python3__13__site_packages__packaging__pylock___get_required_as
+    publish_env__lib__python3__13__site_packages__packaging__pylock__Package___from_dict --> publish_env__lib__python3__13__site_packages__packaging__pylock___get_required_as
+    publish_env__lib__python3__13__site_packages__packaging__pylock__Package___from_dict --> publish_env__lib__python3__13__site_packages__packaging__pylock___get_as
+    publish_env__lib__python3__13__site_packages__packaging__pylock__Pylock___from_dict --> publish_env__lib__python3__13__site_packages__packaging__pylock___get_required_as
+    publish_env__lib__python3__13__site_packages__packaging__pylock__Pylock___from_dict --> publish_env__lib__python3__13__site_packages__packaging__pylock___get_sequence_as
+    publish_env__lib__python3__13__site_packages__packaging__pylock__Pylock___from_dict --> publish_env__lib__python3__13__site_packages__packaging__pylock___get_sequence
+    publish_env__lib__python3__13__site_packages__packaging__pylock__Pylock___from_dict --> publish_env__lib__python3__13__site_packages__packaging__pylock___get_required
+    publish_env__lib__python3__13__site_packages__packaging__specifiers__Specifier___get_spec_version --> publish_env__lib__python3__13__site_packages__packaging__specifiers___coerce_version
+    publish_env__lib__python3__13__site_packages__packaging__specifiers__Specifier____hash__ --> publish_env__lib__python3__13__site_packages__twine__package__HashManager__hash
+    publish_env__lib__python3__13__site_packages__packaging__specifiers__Specifier___compare_compatible --> publish_env__lib__python3__13__site_packages__packaging__specifiers___version_join
+    publish_env__lib__python3__13__site_packages__packaging__specifiers__Specifier___compare_compatible --> publish_env__lib__python3__13__site_packages__docutils__writers__s5_html__themes__default__slides__list
+    publish_env__lib__python3__13__site_packages__packaging__specifiers__Specifier___compare_compatible --> publish_env__lib__python3__13__site_packages__packaging__specifiers___version_split
+    publish_env__lib__python3__13__site_packages__packaging__specifiers__Specifier___compare_equal --> publish_env__lib__python3__13__site_packages__packaging__utils__canonicalize_version
+    publish_env__lib__python3__13__site_packages__packaging__specifiers__Specifier___compare_equal --> publish_env__lib__python3__13__site_packages__packaging__specifiers___version_split
+    publish_env__lib__python3__13__site_packages__packaging__specifiers__Specifier___compare_equal --> publish_env__lib__python3__13__site_packages__packaging__specifiers___pad_version
+    publish_env__lib__python3__13__site_packages__packaging__specifiers__Specifier___compare_equal --> publish_env__lib__python3__13__site_packages__packaging__specifiers___public_version
+    publish_env__lib__python3__13__site_packages__packaging__specifiers__Specifier___compare_less_than_equal --> publish_env__lib__python3__13__site_packages__packaging__specifiers___public_version
+    publish_env__lib__python3__13__site_packages__packaging__specifiers__Specifier___compare_greater_than_equal --> publish_env__lib__python3__13__site_packages__packaging__specifiers___public_version
+    publish_env__lib__python3__13__site_packages__packaging__specifiers__Specifier___compare_less_than --> publish_env__lib__python3__13__site_packages__packaging__specifiers___base_version
+    publish_env__lib__python3__13__site_packages__packaging__specifiers__Specifier___compare_greater_than --> publish_env__lib__python3__13__site_packages__packaging__specifiers___base_version
+    publish_env__lib__python3__13__site_packages__packaging__specifiers__Specifier__contains --> publish_env__lib__python3__13__site_packages__docutils__writers__s5_html__themes__default__slides__list
+    publish_env__lib__python3__13__site_packages__packaging__specifiers__Specifier__filter --> publish_env__lib__python3__13__site_packages__packaging__specifiers___coerce_version
+    publish_env__lib__python3__13__site_packages__packaging__specifiers___pad_version --> publish_env__lib__python3__13__site_packages__docutils__writers__s5_html__themes__default__slides__list
+    publish_env__lib__python3__13__site_packages__packaging__specifiers__SpecifierSet____init__ --> publish_env__lib__python3__13__site_packages__requests_toolbelt__threaded__map
+    publish_env__lib__python3__13__site_packages__packaging__specifiers__SpecifierSet____hash__ --> publish_env__lib__python3__13__site_packages__twine__package__HashManager__hash
+    publish_env__lib__python3__13__site_packages__packaging__specifiers__SpecifierSet__contains --> publish_env__lib__python3__13__site_packages__packaging__specifiers___coerce_version
+    publish_env__lib__python3__13__site_packages__packaging__specifiers__SpecifierSet__contains --> publish_env__lib__python3__13__site_packages__docutils__writers__s5_html__themes__default__slides__list
+    publish_env__lib__python3__13__site_packages__packaging__specifiers__SpecifierSet__filter --> publish_env__lib__python3__13__site_packages__packaging__specifiers___coerce_version
+    publish_env__lib__python3__13__site_packages__packaging__markers___normalize_extras --> publish_env__lib__python3__13__site_packages__packaging__utils__canonicalize_name

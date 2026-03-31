@@ -1,22 +1,24 @@
 #!/usr/bin/env bash
 clear
-.venv/bin/pip install -e .
-.venv/bin/pip install redup --upgrade
-.venv/bin/pip install glon --upgrade
-.venv/bin/pip install goal --upgrade
-.venv/bin/pip install code2logic --upgrade
-.venv/bin/pip install code2llm --upgrade
+pip install -e .
+pip install prefact --upgrade
+pip install vallm --upgrade
+pip install redup --upgrade
+pip install glon --upgrade
+pip install goal --upgrade
+pip install code2logic --upgrade
+pip install code2llm --upgrade
 #code2llm ./ -f toon,evolution,code2logic,project-yaml -o ./project --no-chunk
-.venv/bin/code2llm ./ -f all -o ./project --no-chunk
+code2llm ./ -f all -o ./project --no-chunk
 #code2llm report --format all       # → all views
 rm project/analysis.json
 rm project/analysis.yaml
 
-.venv/bin/pip install code2docs --upgrade
-.venv/bin/code2docs ./ --readme-only
-.venv/bin/redup scan . --format toon --output ./project
-#  --parallel --functions-only --incremental --min-lines 5
-#.venv/bin/redup scan . --format toon --output ./project --parallel --incremental --functions-only
-#.venv/bin/vallm batch . --recursive --no-imports --no-complexity --format toon --output ./project
-.venv/bin/vallm batch . --recursive --format toon --output ./project
-#vallm batch . --recursive --no-imports --no-complexity --output toon > ./project/validation.toon
+pip install code2docs --upgrade
+code2docs ./ --readme-only
+redup scan . --format toon --output ./project
+#redup scan . --functions-only -f toon --output ./project
+#vallm batch ./src --recursive --semantic --model qwen2.5-coder:7b
+#vallm batch --parallel .
+vallm batch . --recursive --format toon --output ./project
+prefact -a

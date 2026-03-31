@@ -1,0 +1,53 @@
+# vallm | 211 func | 33f | 10250L | python | 2026-03-30
+
+HEALTH:
+  CC̄=3.5  critical=8 (limit:10)  dup=0  cycles=0
+
+ALERTS[19]:
+  !!! cc_exceeded      walk = 27 (limit:15)
+  !!! cc_exceeded      BatchProcessor._process_files = 26 (limit:15)
+  !!  cc_exceeded      validate_code = 22 (limit:15)
+  !   high_fan_out     JavaScriptImportValidator.extract_imports = 14 (limit:10)
+  !   high_fan_out     GoImportValidator.extract_imports = 13 (limit:10)
+  !   high_fan_out     RustImportValidator.extract_imports = 13 (limit:10)
+  !   high_fan_out     batch_command = 13 (limit:10)
+  !   high_fan_out     validate_code = 12 (limit:10)
+  !   high_fan_out     LintValidator._parse_ruff_text = 12 (limit:10)
+  !   high_fan_out     BatchProcessor._process_files = 12 (limit:10)
+
+MODULES[45] (top by size):
+  M[mcp/server/_tools_vallm.py] 508L C:0 F:8 CC↑22 D:1 (python)
+  M[src/vallm/cli/output_formatters.py] 476L C:0 F:24 CC↑10 D:2 (python)
+  M[src/vallm/cli/command_handlers.py] 344L C:0 F:11 CC↑6 D:0 (python)
+  M[src/vallm/cli/batch_processor.py] 325L C:1 F:12 CC↑26 D:0 (python)
+  M[src/vallm/validators/semantic.py] 296L C:1 F:15 CC↑4 D:0 (python)
+  M[src/vallm/core/gitignore.py] 272L C:1 F:10 CC↑11 D:1 (python)
+  M[src/vallm/validators/regression.py] 265L C:1 F:10 CC↑7 D:0 (python)
+  M[src/vallm/validators/security.py] 255L C:1 F:5 CC↑9 D:0 (python)
+  M[src/vallm/core/languages.py] 227L C:1 F:6 CC↑6 D:5 (python)
+  M[src/vallm/scoring.py] 218L C:5 F:8 CC↑7 D:0 (python)
+  M[src/vallm/validators/semantic_cache.py] 187L C:1 F:8 CC↑5 D:2 (python)
+  M[mcp/server/self_server.py] 185L C:0 F:5 CC↑6 D:0 (python)
+  M[src/vallm/validators/complexity.py] 183L C:1 F:4 CC↑12 D:0 (python)
+  M[src/vallm/validators/lint.py] 182L C:1 F:6 CC↑9 D:0 (python)
+  M[src/vallm/validators/imports/utils.py] 150L C:0 F:2 CC↑27 D:0 (python)
+  LANGS: python:44/shell:1
+
+HOTSPOTS[10]:
+  ★ JavaScriptImportValidator.extract_imports fan=14  // Extract import statements from JavaScript/TypeScript using tree-sitter.
+  ★ GoImportValidator.extract_imports fan=13  // Extract import statements from Go using tree-sitter.
+  ★ RustImportValidator.extract_imports fan=13  // Extract use statements from Rust using tree-sitter.
+  ★ batch_command fan=13  // Validate multiple files with auto-detected languages.
+  ★ validate_code fan=12  // Full pipeline validation combining multiple validators.
+
+Args:
+    code: Source 
+
+REFACTOR[4]:
+  [1] H/L Split BatchProcessor._process_files (CC=26 → target CC<10)
+  [2] H/L Split walk (CC=27 → target CC<10)
+  [3] H/H Split god module mcp/server/_tools_vallm.py (508L, 0 classes)
+  [4] M/L Split validate_code (CC=22 → target CC<10)
+
+EVOLUTION:
+  2026-03-30 CC̄=3.5 crit=8 10250L // Automated analysis

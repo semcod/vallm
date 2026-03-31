@@ -25,6 +25,102 @@ from vallm.validators.regression import RegressionValidator
 from vallm.scoring import ValidationResult
 
 
+def _format_issue(issue) -> Dict[str, Any]:
+    """Serialize a single Issue to a plain dict."""
+    return {
+        "message": issue.message,
+        "severity": issue.severity.value,
+        "line": issue.line,
+        "column": issue.column,
+        "rule": issue.rule,
+    }
+
+
+def _compute_verdict(overall_score: float, error_count: int) -> str:
+    """Derive pass/review/fail verdict from score and error count."""
+    if overall_score >= 0.8 and error_count == 0:
+        return "pass"
+    if overall_score >= 0.5 and error_count == 0:
+        return "review"
+    return "fail"
+
+
+def _run_validators(
+    proposal: Proposal,
+    enable_syntax: bool,
+    enable_imports: bool,
+    enable_security: bool,
+    enable_complexity: bool,
+    enable_regression: bool,
+    reference_code: Optional[str],
+):
+    """Run enabled validators and return (results, total_score, total_weight, all_issues)."""
+    validators_to_run = []
+    if enable_syntax:
+        validators_to_run.append(SyntaxValidator())
+    if enable_imports:
+        validators_to_run.append(ImportValidator())
+    if enable_security:
+        validators_to_run.append(SecurityValidator())
+    if enable_complexity:
+        validators_to_run.append(ComplexityValidator())
+    if enable_regression and reference_code:
+        validators_to_run.append(RegressionValidator())
+
+    results = []
+    total_score = 0.0
+    total_weight = 0.0
+    all_issues = []
+    for v in validators_to_run:
+        r = v.validate(proposal, {})
+        results.append(r)
+        total_score += r.score * r.weight
+        total_weight += r.weight
+        all_issues.extend(r.issues)
+    return results, total_score, total_weight, all_issues
+
+
+def _build_pipeline_response(
+    results,
+    total_weight: float,
+    verdict: str,
+    all_issues: List,
+) -> Dict[str, Any]:
+    """Build the full-pipeline success response dict."""
+    error_count = sum(1 for i in all_issues if i.severity.value == "error")
+    warning_count = sum(1 for i in all_issues if i.severity.value == "warning")
+    overall_score = sum(r.score * r.weight for r in results) / total_weight if total_weight > 0 else 1.0
+    return {
+        "success": True,
+        "validator": "full_pipeline",
+        "score": overall_score,
+        "weight": total_weight,
+        "verdict": verdict,
+        "summary": {
+            "total_issues": len(all_issues),
+            "error_count": error_count,
+            "warning_count": warning_count,
+            "validators_run": len(results),
+        },
+        "results": [
+            {
+                "validator": r.validator,
+                "score": r.score,
+                "weight": r.weight,
+                "confidence": r.confidence,
+                "issues": [_format_issue(i) for i in r.issues],
+                "details": r.details or {},
+            }
+            for r in results
+        ],
+        "all_issues": [
+            {**_format_issue(i), "validator": r.validator}
+            for r in results
+            for i in r.issues
+        ],
+    }
+
+
 def validate_syntax(code: str, language: str = "python", filename: Optional[str] = None) -> Dict[str, Any]:
     """
     Multi-language syntax checking using vallm SyntaxValidator.
@@ -54,17 +150,8 @@ def validate_syntax(code: str, language: str = "python", filename: Optional[str]
             "weight": result.weight,
             "confidence": result.confidence,
             "verdict": "pass" if result.score >= 0.8 else "review" if result.score >= 0.5 else "fail",
-            "issues": [
-                {
-                    "message": issue.message,
-                    "severity": issue.severity.value,
-                    "line": issue.line,
-                    "column": issue.column,
-                    "rule": issue.rule
-                }
-                for issue in result.issues
-            ],
-            "details": result.details or {}
+            "issues": [_format_issue(i) for i in result.issues],
+            "details": result.details or {},
         }
         
     except Exception as e:
@@ -106,17 +193,8 @@ def validate_imports(code: str, language: str = "python", filename: Optional[str
             "weight": result.weight,
             "confidence": result.confidence,
             "verdict": "pass" if result.score >= 0.8 else "review" if result.score >= 0.5 else "fail",
-            "issues": [
-                {
-                    "message": issue.message,
-                    "severity": issue.severity.value,
-                    "line": issue.line,
-                    "column": issue.column,
-                    "rule": issue.rule
-                }
-                for issue in result.issues
-            ],
-            "details": result.details or {}
+            "issues": [_format_issue(i) for i in result.issues],
+            "details": result.details or {},
         }
         
     except Exception as e:
@@ -159,17 +237,8 @@ def validate_security(code: str, language: str = "python", filename: Optional[st
             "weight": result.weight,
             "confidence": result.confidence,
             "verdict": "pass" if result.score >= 0.8 else "review" if result.score >= 0.5 else "fail",
-            "issues": [
-                {
-                    "message": issue.message,
-                    "severity": issue.severity.value,
-                    "line": issue.line,
-                    "column": issue.column,
-                    "rule": issue.rule
-                }
-                for issue in result.issues
-            ],
-            "details": result.details or {}
+            "issues": [_format_issue(i) for i in result.issues],
+            "details": result.details or {},
         }
         
     except Exception as e:
@@ -215,111 +284,19 @@ def validate_code(
             code=code,
             language=language,
             filename=filename,
-            reference_code=reference_code
+            reference_code=reference_code,
         )
-        
-        results = []
-        total_score = 0.0
-        total_weight = 0.0
-        all_issues = []
-        
-        # Syntax validation
-        if enable_syntax:
-            syntax_result = SyntaxValidator().validate(proposal, {})
-            results.append(syntax_result)
-            total_score += syntax_result.score * syntax_result.weight
-            total_weight += syntax_result.weight
-            all_issues.extend(syntax_result.issues)
-        
-        # Import validation
-        if enable_imports:
-            imports_result = ImportValidator().validate(proposal, {})
-            results.append(imports_result)
-            total_score += imports_result.score * imports_result.weight
-            total_weight += imports_result.weight
-            all_issues.extend(imports_result.issues)
-        
-        # Security validation
-        if enable_security:
-            security_result = SecurityValidator().validate(proposal, {})
-            results.append(security_result)
-            total_score += security_result.score * security_result.weight
-            total_weight += security_result.weight
-            all_issues.extend(security_result.issues)
-        
-        # Complexity validation
-        if enable_complexity:
-            complexity_result = ComplexityValidator().validate(proposal, {})
-            results.append(complexity_result)
-            total_score += complexity_result.score * complexity_result.weight
-            total_weight += complexity_result.weight
-            all_issues.extend(complexity_result.issues)
-        
-        # Regression validation
-        if enable_regression and reference_code:
-            regression_result = RegressionValidator().validate(proposal, {})
-            results.append(regression_result)
-            total_score += regression_result.score * regression_result.weight
-            total_weight += regression_result.weight
-            all_issues.extend(regression_result.issues)
-        
-        # Calculate overall score and verdict
+
+        results, total_score, total_weight, all_issues = _run_validators(
+            proposal, enable_syntax, enable_imports, enable_security,
+            enable_complexity, enable_regression, reference_code,
+        )
+
         overall_score = total_score / total_weight if total_weight > 0 else 1.0
-        error_count = sum(1 for issue in all_issues if issue.severity.value == "error")
-        warning_count = sum(1 for issue in all_issues if issue.severity.value == "warning")
-        
-        if overall_score >= 0.8 and error_count == 0:
-            verdict = "pass"
-        elif overall_score >= 0.5 and error_count == 0:
-            verdict = "review"
-        else:
-            verdict = "fail"
-        
-        return {
-            "success": True,
-            "validator": "full_pipeline",
-            "score": overall_score,
-            "weight": total_weight,
-            "verdict": verdict,
-            "summary": {
-                "total_issues": len(all_issues),
-                "error_count": error_count,
-                "warning_count": warning_count,
-                "validators_run": len(results)
-            },
-            "results": [
-                {
-                    "validator": result.validator,
-                    "score": result.score,
-                    "weight": result.weight,
-                    "confidence": result.confidence,
-                    "issues": [
-                        {
-                            "message": issue.message,
-                            "severity": issue.severity.value,
-                            "line": issue.line,
-                            "column": issue.column,
-                            "rule": issue.rule
-                        }
-                        for issue in result.issues
-                    ],
-                    "details": result.details or {}
-                }
-                for result in results
-            ],
-            "all_issues": [
-                {
-                    "message": issue.message,
-                    "severity": issue.severity.value,
-                    "line": issue.line,
-                    "column": issue.column,
-                    "rule": issue.rule,
-                    "validator": result.validator
-                }
-                for result in results
-                for issue in result.issues
-            ]
-        }
+        error_count = sum(1 for i in all_issues if i.severity.value == "error")
+        verdict = _compute_verdict(overall_score, error_count)
+
+        return _build_pipeline_response(results, total_weight, verdict, all_issues)
         
     except Exception as e:
         return {

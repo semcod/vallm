@@ -2,10 +2,39 @@
 
 import ast
 import importlib.util
-from typing import List, Dict, Any
+from pathlib import Path
+from typing import List, Dict, Any, Set
 from vallm.core.proposal import Proposal
 from vallm.scoring import Issue, Severity, ValidationResult
 from .base import BaseImportValidator
+
+_IMPORT_ERROR_NAMES = frozenset(("ImportError", "ModuleNotFoundError"))
+
+
+def _collect_guarded_lines(tree: ast.AST) -> Set[int]:
+    """Return line numbers of imports guarded by try/except ImportError."""
+    guarded: Set[int] = set()
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Try):
+            continue
+        catches_import_error = any(
+            h.type is None
+            or (isinstance(h.type, ast.Name) and h.type.id in _IMPORT_ERROR_NAMES)
+            or (
+                isinstance(h.type, ast.Tuple)
+                and any(
+                    isinstance(e, ast.Name) and e.id in _IMPORT_ERROR_NAMES
+                    for e in h.type.elts
+                )
+            )
+            for h in node.handlers
+        )
+        if catches_import_error:
+            for stmt in node.body:
+                for n in ast.walk(stmt):
+                    if isinstance(n, (ast.Import, ast.ImportFrom)):
+                        guarded.add(n.lineno)
+    return guarded
 
 # Common stdlib/builtin modules that importlib.util.find_spec may not find
 _KNOWN_PYTHON_MODULES = {
@@ -71,15 +100,20 @@ class PythonImportValidator(BaseImportValidator):
         imports = []
         try:
             tree = ast.parse(code)
-            
+            guarded = _collect_guarded_lines(tree)
+
             for node in ast.walk(tree):
                 if isinstance(node, ast.Import):
+                    if node.lineno in guarded:
+                        continue
                     for alias in node.names:
                         imports.append({
                             "module": alias.name,
                             "line": node.lineno
                         })
                 elif isinstance(node, ast.ImportFrom):
+                    if node.level > 0 or node.lineno in guarded:
+                        continue
                     if node.module:
                         imports.append({
                             "module": node.module,
@@ -87,7 +121,7 @@ class PythonImportValidator(BaseImportValidator):
                         })
         except SyntaxError:
             pass
-        
+
         return imports
     
     def module_exists(self, module_name: str) -> bool:
@@ -96,9 +130,15 @@ class PythonImportValidator(BaseImportValidator):
         if top_level in _KNOWN_PYTHON_MODULES:
             return True
         try:
-            return importlib.util.find_spec(top_level) is not None
+            if importlib.util.find_spec(top_level) is not None:
+                return True
         except (ImportError, ValueError):
-            return False
+            pass
+        cwd = Path.cwd()
+        return (
+            (cwd / top_level / "__init__.py").exists()
+            or (cwd / f"{top_level}.py").exists()
+        )
     
     def get_language(self) -> str:
         """Get the language identifier."""

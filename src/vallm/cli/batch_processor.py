@@ -230,6 +230,68 @@ class BatchProcessor:
         if output_format == "rich":
             self.console.print(f"[bold]Validating {len(filtered_files)} files...[/bold]")
     
+    def _read_file_text(self, file_path: Path) -> Optional[str]:
+        """Read file as text; return None on encoding error."""
+        try:
+            return file_path.read_text(encoding="utf-8")
+        except UnicodeDecodeError:
+            return None
+
+    def _detect_file_language(self, file_path: Path):
+        """Detect language object or return None for unsupported files."""
+        return detect_language(file_path)
+
+    def _show_progress(self, i: int, total: int, file_path: Path, output_format: str) -> None:
+        """Print per-file progress line in rich mode."""
+        if output_format == "rich":
+            self.console.print(f"[dim]Processing {i}/{total}: {file_path}[/dim]")
+
+    def _handle_validation_result(
+        self,
+        result,
+        file_path: Path,
+        lang_obj,
+        output_format: str,
+        show_issues: bool,
+        results_by_language: dict,
+        failed_files: list,
+    ) -> bool:
+        """Record result; return True if the file passed."""
+        language = lang_obj.tree_sitter_id
+        results_by_language.setdefault(language, []).append(result)
+
+        if result.verdict.value == "pass":
+            return True
+
+        failed_files.append((file_path, f"Validation {result.verdict.value}"))
+        if output_format == "rich":
+            if result.all_issues and show_issues:
+                self.console.print(
+                    f"\n[red]✗ {file_path} ({lang_obj.display_name}) - {result.verdict.value}[/red]"
+                )
+                severity_colors = {"error": "red", "warning": "yellow", "info": "blue"}
+                for issue in result.all_issues:
+                    location = f" (line {issue.line})" if issue.line else ""
+                    color = severity_colors.get(issue.severity.value, "white")
+                    self.console.print(
+                        f"  [{color}]• {issue.rule}: {issue.message}{location}[/{color}]"
+                    )
+            else:
+                self.console.print(
+                    f"[red]✗[/red] {file_path} ({lang_obj.display_name}) - {result.verdict.value}"
+                )
+        return False
+
+    def _show_verbose_output(self, file_path: Path, result, show_issues: bool) -> None:
+        """Print verbose per-file details."""
+        self.console.print(f"\n[bold]{file_path}[/bold]")
+        from vallm.cli.output_formatters import output_validate_result
+        output_validate_result(result, "text", True)
+        if show_issues and result.all_issues:
+            for issue in result.all_issues:
+                location = f" (line {issue.line})" if issue.line else ""
+                self.console.print(f"  {issue.severity.value}: {issue.message}{location}")
+
     def _process_files(
         self,
         filtered_files: list[Path],
@@ -240,86 +302,56 @@ class BatchProcessor:
         show_issues: bool,
     ) -> tuple[dict, list, int, list]:
         """Process all files for validation."""
-        results_by_language = {}
-        failed_files = []
+        results_by_language: dict = {}
+        failed_files: list = []
         passed_count = 0
-        
+        total = len(filtered_files)
+
         for i, file_path in enumerate(filtered_files, 1):
             try:
-                # Show progress for rich output only
-                if output_format == "rich" and not verbose:
-                    self.console.print(f"[dim]Processing {i}/{len(filtered_files)}: {file_path}[/dim]")
-                elif output_format == "rich" and verbose:
-                    self.console.print(f"[dim]Processing {i}/{len(filtered_files)}: {file_path}[/dim]")
-                
-                # Read file
-                try:
-                    code = file_path.read_text(encoding='utf-8')
-                except UnicodeDecodeError:
+                self._show_progress(i, total, file_path, output_format)
+
+                code = self._read_file_text(file_path)
+                if code is None:
                     failed_files.append((file_path, "Unable to read file (binary?)"))
                     continue
-                
-                # Detect language
-                lang_obj = detect_language(file_path)
+
+                lang_obj = self._detect_file_language(file_path)
                 if lang_obj is None:
-                    # Skip unsupported file types
                     failed_files.append((file_path, "Unsupported file type"))
                     continue
-                    
-                language = lang_obj.tree_sitter_id  # tree-sitter identifier
-                
-                # Create proposal
+
                 proposal = Proposal(
                     code=code,
-                    language=language,
+                    language=lang_obj.tree_sitter_id,
                     filename=str(file_path),
                 )
-                
-                # Validate
                 result = validate(proposal, settings)
-                
-                # Group by language
-                if language not in results_by_language:
-                    results_by_language[language] = []
-                results_by_language[language].append(result)
-                
-                # Count passed
-                if result.verdict.value == "pass":
+
+                passed = self._handle_validation_result(
+                    result, file_path, lang_obj, output_format,
+                    show_issues, results_by_language, failed_files,
+                )
+                if passed:
                     passed_count += 1
-                else:
-                    failed_files.append((file_path, f"Validation {result.verdict.value}"))
-                    # Show failed file details in rich format only
-                    if output_format == "rich" and result.all_issues:
-                        self.console.print(f"\n[red]✗ {file_path} ({lang_obj.display_name}) - {result.verdict.value}[/red]")
-                        for issue in result.all_issues:
-                            location = f" (line {issue.line})" if issue.line else ""
-                            severity_color = {"error": "red", "warning": "yellow", "info": "blue"}.get(issue.severity.value, "white")
-                            self.console.print(f"  [{severity_color}]• {issue.rule}: {issue.message}{location}[/{severity_color}]")
-                    elif output_format == "rich":
-                        self.console.print(f"[red]✗[/red] {file_path} ({lang_obj.display_name}) - {result.verdict.value}")
-                
-                # Show detailed output if verbose (for all files, not just failed)
+
                 if verbose:
-                    self.console.print(f"\n[bold]{file_path}[/bold]")
-                    from vallm.cli.output_formatters import output_validate_result
-                    output_validate_result(result, "text", True)
-                    
-                    if show_issues and result.all_issues:
-                        for issue in result.all_issues:
-                            location = f" (line {issue.line})" if issue.line else ""
-                            self.console.print(f"  {issue.severity.value}: {issue.message}{location}")
-                
-                # Fail fast if requested
+                    self._show_verbose_output(file_path, result, show_issues)
+
                 if fail_fast and result.verdict.value != "pass":
                     if output_format == "rich":
-                        self.console.print(f"[red]Stopping early due to failure: {file_path}[/red]")
+                        self.console.print(
+                            f"[red]Stopping early due to failure: {file_path}[/red]"
+                        )
                     break
-                    
+
             except Exception as e:
                 failed_files.append((file_path, f"Error: {str(e)}"))
                 if fail_fast:
                     if output_format == "rich":
-                        self.console.print(f"[red]Stopping early due to error: {file_path}[/red]")
+                        self.console.print(
+                            f"[red]Stopping early due to error: {file_path}[/red]"
+                        )
                     break
-        
+
         return results_by_language, failed_files, passed_count, filtered_files

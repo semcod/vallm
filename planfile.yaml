@@ -1,0 +1,2853 @@
+name: Code Quality Improvement
+project_name: ''
+project_type: prefactoring
+domain: dev-tools
+goal: Improve code quality using prefact
+goals:
+- Fix all prefact-detected issues
+- Improve code maintainability
+- Ensure consistent code style
+quality_gates:
+- metric: Prefact Issues
+  threshold: '0'
+sprints:
+- id: sprint-1
+  name: Code Quality Improvements
+  duration: 2 weeks
+  objectives:
+  - Fix code quality issues
+  task_patterns:
+  - id: ticket-ca5db6bd
+    name: Fix smart-return-type issues
+    description: Resolve 1 smart-return-type issues in examples/02_ast_comparison/main.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/02_ast_comparison/main.py
+    rule_id: smart-return-type
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-0ff3c911
+    name: Fix string-concat issues
+    description: Resolve 3 string-concat issues in examples/02_ast_comparison/main.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/02_ast_comparison/main.py
+    rule_id: string-concat
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-a19e92b7
+    name: Fix unused-imports issues
+    description: Resolve 6 unused-imports issues in examples/02_ast_comparison/main.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - examples/02_ast_comparison/main.py
+    rule_id: unused-imports
+    count: 6
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-6d5c7930
+    name: Fix llm-hallucinations issues
+    description: Resolve 1 llm-hallucinations issues in examples/02_ast_comparison/main.py
+    task_type: bugfix
+    priority: critical
+    estimate: 1d
+    files:
+    - examples/02_ast_comparison/main.py
+    rule_id: llm-hallucinations
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-cf0d69ab
+    name: Fix ai-boilerplate issues
+    description: Resolve 2 ai-boilerplate issues in examples/02_ast_comparison/main.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/02_ast_comparison/main.py
+    rule_id: ai-boilerplate
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-943add93
+    name: Fix smart-return-type issues
+    description: Resolve 1 smart-return-type issues in examples/01_basic_validation/main.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/01_basic_validation/main.py
+    rule_id: smart-return-type
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-16ec400a
+    name: Fix unused-imports issues
+    description: Resolve 10 unused-imports issues in examples/01_basic_validation/main.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - examples/01_basic_validation/main.py
+    rule_id: unused-imports
+    count: 10
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-6ede072d
+    name: Fix duplicate-imports issues
+    description: Resolve 1 duplicate-imports issues in examples/01_basic_validation/main.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/01_basic_validation/main.py
+    rule_id: duplicate-imports
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-ab1fe5da
+    name: Fix llm-hallucinations issues
+    description: Resolve 1 llm-hallucinations issues in examples/01_basic_validation/main.py
+    task_type: bugfix
+    priority: critical
+    estimate: 1d
+    files:
+    - examples/01_basic_validation/main.py
+    rule_id: llm-hallucinations
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-5de3d072
+    name: Fix ai-boilerplate issues
+    description: Resolve 2 ai-boilerplate issues in examples/01_basic_validation/main.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/01_basic_validation/main.py
+    rule_id: ai-boilerplate
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-80cf92d8
+    name: Fix smart-return-type issues
+    description: Resolve 1 smart-return-type issues in examples/04_graph_analysis/main.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/04_graph_analysis/main.py
+    rule_id: smart-return-type
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-49ab59ce
+    name: Fix string-concat issues
+    description: Resolve 3 string-concat issues in examples/04_graph_analysis/main.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/04_graph_analysis/main.py
+    rule_id: string-concat
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-1abb34c4
+    name: Fix unused-imports issues
+    description: Resolve 4 unused-imports issues in examples/04_graph_analysis/main.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - examples/04_graph_analysis/main.py
+    rule_id: unused-imports
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-2be9c4b6
+    name: Fix llm-hallucinations issues
+    description: Resolve 1 llm-hallucinations issues in examples/04_graph_analysis/main.py
+    task_type: bugfix
+    priority: critical
+    estimate: 1d
+    files:
+    - examples/04_graph_analysis/main.py
+    rule_id: llm-hallucinations
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-eec23a61
+    name: Fix ai-boilerplate issues
+    description: Resolve 4 ai-boilerplate issues in examples/04_graph_analysis/main.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - examples/04_graph_analysis/main.py
+    rule_id: ai-boilerplate
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-75ac97e5
+    name: Fix smart-return-type issues
+    description: Resolve 1 smart-return-type issues in examples/03_security_check/main.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/03_security_check/main.py
+    rule_id: smart-return-type
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-4bb70532
+    name: Fix string-concat issues
+    description: Resolve 2 string-concat issues in examples/03_security_check/main.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/03_security_check/main.py
+    rule_id: string-concat
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-ba057050
+    name: Fix unused-imports issues
+    description: Resolve 6 unused-imports issues in examples/03_security_check/main.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - examples/03_security_check/main.py
+    rule_id: unused-imports
+    count: 6
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-02beea11
+    name: Fix llm-hallucinations issues
+    description: Resolve 1 llm-hallucinations issues in examples/03_security_check/main.py
+    task_type: bugfix
+    priority: critical
+    estimate: 1d
+    files:
+    - examples/03_security_check/main.py
+    rule_id: llm-hallucinations
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-cc811a49
+    name: Fix ai-boilerplate issues
+    description: Resolve 2 ai-boilerplate issues in examples/03_security_check/main.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/03_security_check/main.py
+    rule_id: ai-boilerplate
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-09d49f27
+    name: Fix smart-return-type issues
+    description: Resolve 1 smart-return-type issues in examples/05_llm_semantic_review/main.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/05_llm_semantic_review/main.py
+    rule_id: smart-return-type
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-2009f842
+    name: Fix string-concat issues
+    description: Resolve 1 string-concat issues in examples/05_llm_semantic_review/main.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/05_llm_semantic_review/main.py
+    rule_id: string-concat
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-b9c1effb
+    name: Fix unused-imports issues
+    description: Resolve 6 unused-imports issues in examples/05_llm_semantic_review/main.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - examples/05_llm_semantic_review/main.py
+    rule_id: unused-imports
+    count: 6
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-127edaa6
+    name: Fix llm-hallucinations issues
+    description: Resolve 1 llm-hallucinations issues in examples/05_llm_semantic_review/main.py
+    task_type: bugfix
+    priority: critical
+    estimate: 1d
+    files:
+    - examples/05_llm_semantic_review/main.py
+    rule_id: llm-hallucinations
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-bd912ad1
+    name: Fix ai-boilerplate issues
+    description: Resolve 2 ai-boilerplate issues in examples/05_llm_semantic_review/main.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/05_llm_semantic_review/main.py
+    rule_id: ai-boilerplate
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-d611dc60
+    name: Fix smart-return-type issues
+    description: Resolve 1 smart-return-type issues in examples/06_multilang_validation/main_template.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/06_multilang_validation/main_template.py
+    rule_id: smart-return-type
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-2a960327
+    name: Fix unused-imports issues
+    description: Resolve 12 unused-imports issues in examples/06_multilang_validation/main_template.py
+    task_type: prefactor
+    priority: high
+    estimate: 3d
+    files:
+    - examples/06_multilang_validation/main_template.py
+    rule_id: unused-imports
+    count: 12
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-21bf2700
+    name: Fix llm-hallucinations issues
+    description: Resolve 1 llm-hallucinations issues in examples/06_multilang_validation/main_template.py
+    task_type: bugfix
+    priority: critical
+    estimate: 1d
+    files:
+    - examples/06_multilang_validation/main_template.py
+    rule_id: llm-hallucinations
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-c3ebfedb
+    name: Fix ai-boilerplate issues
+    description: Resolve 2 ai-boilerplate issues in examples/06_multilang_validation/main_template.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/06_multilang_validation/main_template.py
+    rule_id: ai-boilerplate
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-82745a0d
+    name: Fix smart-return-type issues
+    description: Resolve 1 smart-return-type issues in examples/05_llm_semantic_review/main_template.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/05_llm_semantic_review/main_template.py
+    rule_id: smart-return-type
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-03e676ea
+    name: Fix unused-imports issues
+    description: Resolve 12 unused-imports issues in examples/05_llm_semantic_review/main_template.py
+    task_type: prefactor
+    priority: high
+    estimate: 3d
+    files:
+    - examples/05_llm_semantic_review/main_template.py
+    rule_id: unused-imports
+    count: 12
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-0193eb0e
+    name: Fix llm-hallucinations issues
+    description: Resolve 1 llm-hallucinations issues in examples/05_llm_semantic_review/main_template.py
+    task_type: bugfix
+    priority: critical
+    estimate: 1d
+    files:
+    - examples/05_llm_semantic_review/main_template.py
+    rule_id: llm-hallucinations
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-b27a58ac
+    name: Fix ai-boilerplate issues
+    description: Resolve 2 ai-boilerplate issues in examples/05_llm_semantic_review/main_template.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/05_llm_semantic_review/main_template.py
+    rule_id: ai-boilerplate
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-1365f8ce
+    name: Fix smart-return-type issues
+    description: Resolve 1 smart-return-type issues in examples/06_multilang_validation/main.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/06_multilang_validation/main.py
+    rule_id: smart-return-type
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-9d9c2405
+    name: Fix ai-boilerplate issues
+    description: Resolve 2 ai-boilerplate issues in examples/06_multilang_validation/main.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/06_multilang_validation/main.py
+    rule_id: ai-boilerplate
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-7e2b36e2
+    name: Fix smart-return-type issues
+    description: Resolve 5 smart-return-type issues in examples/07_multi_language/main.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - examples/07_multi_language/main.py
+    rule_id: smart-return-type
+    count: 5
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-68e000e1
+    name: Fix string-concat issues
+    description: Resolve 1 string-concat issues in examples/07_multi_language/main.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/07_multi_language/main.py
+    rule_id: string-concat
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-d1377bc4
+    name: Fix ai-boilerplate issues
+    description: Resolve 2 ai-boilerplate issues in examples/07_multi_language/main.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/07_multi_language/main.py
+    rule_id: ai-boilerplate
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-6f2fabf4
+    name: Fix smart-return-type issues
+    description: Resolve 1 smart-return-type issues in examples/09_code2logic_integration/main.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/09_code2logic_integration/main.py
+    rule_id: smart-return-type
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-beac6f8c
+    name: Fix string-concat issues
+    description: Resolve 3 string-concat issues in examples/09_code2logic_integration/main.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/09_code2logic_integration/main.py
+    rule_id: string-concat
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-18b763bf
+    name: Fix unused-imports issues
+    description: Resolve 4 unused-imports issues in examples/09_code2logic_integration/main.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - examples/09_code2logic_integration/main.py
+    rule_id: unused-imports
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-4e1b8d66
+    name: Fix duplicate-imports issues
+    description: Resolve 1 duplicate-imports issues in examples/09_code2logic_integration/main.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/09_code2logic_integration/main.py
+    rule_id: duplicate-imports
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-745d3daf
+    name: Fix ai-boilerplate issues
+    description: Resolve 2 ai-boilerplate issues in examples/09_code2logic_integration/main.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/09_code2logic_integration/main.py
+    rule_id: ai-boilerplate
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-3f04334c
+    name: Fix smart-return-type issues
+    description: Resolve 1 smart-return-type issues in examples/08_code2llm_integration/main.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/08_code2llm_integration/main.py
+    rule_id: smart-return-type
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-93adeb82
+    name: Fix string-concat issues
+    description: Resolve 3 string-concat issues in examples/08_code2llm_integration/main.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/08_code2llm_integration/main.py
+    rule_id: string-concat
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-fc1e6ac6
+    name: Fix ai-boilerplate issues
+    description: Resolve 4 ai-boilerplate issues in examples/08_code2llm_integration/main.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - examples/08_code2llm_integration/main.py
+    rule_id: ai-boilerplate
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-7c7292ae
+    name: Fix smart-return-type issues
+    description: Resolve 13 smart-return-type issues in examples/10_mcp_ollama_demo/legacy_code/order_processor.py
+    task_type: prefactor
+    priority: high
+    estimate: 3d
+    files:
+    - examples/10_mcp_ollama_demo/legacy_code/order_processor.py
+    rule_id: smart-return-type
+    count: 13
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-b4cbbc07
+    name: Fix string-concat issues
+    description: Resolve 5 string-concat issues in examples/10_mcp_ollama_demo/legacy_code/order_processor.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - examples/10_mcp_ollama_demo/legacy_code/order_processor.py
+    rule_id: string-concat
+    count: 5
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-8f2cdc73
+    name: Fix unused-imports issues
+    description: Resolve 4 unused-imports issues in examples/10_mcp_ollama_demo/legacy_code/order_processor.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - examples/10_mcp_ollama_demo/legacy_code/order_processor.py
+    rule_id: unused-imports
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-941dd5c2
+    name: Fix duplicate-imports issues
+    description: Resolve 1 duplicate-imports issues in examples/10_mcp_ollama_demo/legacy_code/order_processor.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/10_mcp_ollama_demo/legacy_code/order_processor.py
+    rule_id: duplicate-imports
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-6a244dc5
+    name: Fix magic-numbers issues
+    description: Resolve 4 magic-numbers issues in examples/10_mcp_ollama_demo/legacy_code/order_processor.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - examples/10_mcp_ollama_demo/legacy_code/order_processor.py
+    rule_id: magic-numbers
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-0bc2b3b1
+    name: Fix smart-return-type issues
+    description: Resolve 5 smart-return-type issues in examples/10_mcp_ollama_demo/mcp_demo.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - examples/10_mcp_ollama_demo/mcp_demo.py
+    rule_id: smart-return-type
+    count: 5
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-00bfa45e
+    name: Fix string-concat issues
+    description: Resolve 6 string-concat issues in examples/10_mcp_ollama_demo/mcp_demo.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - examples/10_mcp_ollama_demo/mcp_demo.py
+    rule_id: string-concat
+    count: 6
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-d905e31f
+    name: Fix unused-imports issues
+    description: Resolve 6 unused-imports issues in examples/10_mcp_ollama_demo/mcp_demo.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - examples/10_mcp_ollama_demo/mcp_demo.py
+    rule_id: unused-imports
+    count: 6
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-f3a5520e
+    name: Fix llm-hallucinations issues
+    description: Resolve 1 llm-hallucinations issues in examples/10_mcp_ollama_demo/mcp_demo.py
+    task_type: bugfix
+    priority: critical
+    estimate: 1d
+    files:
+    - examples/10_mcp_ollama_demo/mcp_demo.py
+    rule_id: llm-hallucinations
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-8622cc21
+    name: Fix magic-numbers issues
+    description: Resolve 7 magic-numbers issues in examples/10_mcp_ollama_demo/mcp_demo.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - examples/10_mcp_ollama_demo/mcp_demo.py
+    rule_id: magic-numbers
+    count: 7
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-0e064044
+    name: Fix ai-boilerplate issues
+    description: Resolve 2 ai-boilerplate issues in examples/10_mcp_ollama_demo/mcp_demo.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/10_mcp_ollama_demo/mcp_demo.py
+    rule_id: ai-boilerplate
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-d77c8e24
+    name: Fix smart-return-type issues
+    description: Resolve 1 smart-return-type issues in examples/10_mcp_ollama_demo/refactored_output.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/10_mcp_ollama_demo/refactored_output.py
+    rule_id: smart-return-type
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-7f4d2585
+    name: Fix unused-imports issues
+    description: Resolve 6 unused-imports issues in examples/10_mcp_ollama_demo/refactored_output.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - examples/10_mcp_ollama_demo/refactored_output.py
+    rule_id: unused-imports
+    count: 6
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-c01924e3
+    name: Fix magic-numbers issues
+    description: Resolve 7 magic-numbers issues in examples/10_mcp_ollama_demo/refactored_output.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - examples/10_mcp_ollama_demo/refactored_output.py
+    rule_id: magic-numbers
+    count: 7
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-c53e2044
+    name: Fix ai-boilerplate issues
+    description: Resolve 2 ai-boilerplate issues in examples/10_mcp_ollama_demo/refactored_output.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/10_mcp_ollama_demo/refactored_output.py
+    rule_id: ai-boilerplate
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-098fe086
+    name: Fix smart-return-type issues
+    description: Resolve 14 smart-return-type issues in examples/11_claude_code_autonomous/legacy_code/data_processor.py
+    task_type: prefactor
+    priority: high
+    estimate: 3d
+    files:
+    - examples/11_claude_code_autonomous/legacy_code/data_processor.py
+    rule_id: smart-return-type
+    count: 14
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-7ab2ac22
+    name: Fix string-concat issues
+    description: Resolve 10 string-concat issues in examples/11_claude_code_autonomous/legacy_code/data_processor.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - examples/11_claude_code_autonomous/legacy_code/data_processor.py
+    rule_id: string-concat
+    count: 10
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-a1be07df
+    name: Fix unused-imports issues
+    description: Resolve 10 unused-imports issues in examples/11_claude_code_autonomous/legacy_code/data_processor.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - examples/11_claude_code_autonomous/legacy_code/data_processor.py
+    rule_id: unused-imports
+    count: 10
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-4e94e2a4
+    name: Fix ai-boilerplate issues
+    description: Resolve 2 ai-boilerplate issues in examples/11_claude_code_autonomous/legacy_code/data_processor.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/11_claude_code_autonomous/legacy_code/data_processor.py
+    rule_id: ai-boilerplate
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-b022e7e8
+    name: Fix smart-return-type issues
+    description: Resolve 6 smart-return-type issues in examples/11_claude_code_autonomous/claude_autonomous_demo.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - examples/11_claude_code_autonomous/claude_autonomous_demo.py
+    rule_id: smart-return-type
+    count: 6
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-12b48d23
+    name: Fix string-concat issues
+    description: Resolve 5 string-concat issues in examples/11_claude_code_autonomous/claude_autonomous_demo.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - examples/11_claude_code_autonomous/claude_autonomous_demo.py
+    rule_id: string-concat
+    count: 5
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-68957b2f
+    name: Fix unused-imports issues
+    description: Resolve 6 unused-imports issues in examples/11_claude_code_autonomous/claude_autonomous_demo.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - examples/11_claude_code_autonomous/claude_autonomous_demo.py
+    rule_id: unused-imports
+    count: 6
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-c10cd3dd
+    name: Fix duplicate-imports issues
+    description: Resolve 1 duplicate-imports issues in examples/11_claude_code_autonomous/claude_autonomous_demo.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/11_claude_code_autonomous/claude_autonomous_demo.py
+    rule_id: duplicate-imports
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-2e3ff433
+    name: Fix llm-hallucinations issues
+    description: Resolve 1 llm-hallucinations issues in examples/11_claude_code_autonomous/claude_autonomous_demo.py
+    task_type: bugfix
+    priority: critical
+    estimate: 1d
+    files:
+    - examples/11_claude_code_autonomous/claude_autonomous_demo.py
+    rule_id: llm-hallucinations
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-875894bf
+    name: Fix magic-numbers issues
+    description: Resolve 8 magic-numbers issues in examples/11_claude_code_autonomous/claude_autonomous_demo.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - examples/11_claude_code_autonomous/claude_autonomous_demo.py
+    rule_id: magic-numbers
+    count: 8
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-6e0799ce
+    name: Fix ai-boilerplate issues
+    description: Resolve 3 ai-boilerplate issues in examples/11_claude_code_autonomous/claude_autonomous_demo.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/11_claude_code_autonomous/claude_autonomous_demo.py
+    rule_id: ai-boilerplate
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-93c30acb
+    name: Fix relative-imports issues
+    description: Resolve 4 relative-imports issues in examples/12_ollama_simple_demo/best_version.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - examples/12_ollama_simple_demo/best_version.py
+    rule_id: relative-imports
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-f93bb154
+    name: Fix smart-return-type issues
+    description: Resolve 1 smart-return-type issues in examples/12_ollama_simple_demo/best_version.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/12_ollama_simple_demo/best_version.py
+    rule_id: smart-return-type
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-b73a31b1
+    name: Fix unused-imports issues
+    description: Resolve 16 unused-imports issues in examples/12_ollama_simple_demo/best_version.py
+    task_type: prefactor
+    priority: high
+    estimate: 3d
+    files:
+    - examples/12_ollama_simple_demo/best_version.py
+    rule_id: unused-imports
+    count: 16
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-7d6f4d0c
+    name: Fix ai-boilerplate issues
+    description: Resolve 2 ai-boilerplate issues in examples/12_ollama_simple_demo/best_version.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/12_ollama_simple_demo/best_version.py
+    rule_id: ai-boilerplate
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-72f97888
+    name: Fix relative-imports issues
+    description: Resolve 4 relative-imports issues in examples/12_ollama_simple_demo/iteration_1.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - examples/12_ollama_simple_demo/iteration_1.py
+    rule_id: relative-imports
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-2ec52f5b
+    name: Fix smart-return-type issues
+    description: Resolve 1 smart-return-type issues in examples/12_ollama_simple_demo/iteration_1.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/12_ollama_simple_demo/iteration_1.py
+    rule_id: smart-return-type
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-ed2230ce
+    name: Fix unused-imports issues
+    description: Resolve 16 unused-imports issues in examples/12_ollama_simple_demo/iteration_1.py
+    task_type: prefactor
+    priority: high
+    estimate: 3d
+    files:
+    - examples/12_ollama_simple_demo/iteration_1.py
+    rule_id: unused-imports
+    count: 16
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-75bd5636
+    name: Fix ai-boilerplate issues
+    description: Resolve 2 ai-boilerplate issues in examples/12_ollama_simple_demo/iteration_1.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/12_ollama_simple_demo/iteration_1.py
+    rule_id: ai-boilerplate
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-9699a981
+    name: Fix relative-imports issues
+    description: Resolve 4 relative-imports issues in examples/12_ollama_simple_demo/iteration_2.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - examples/12_ollama_simple_demo/iteration_2.py
+    rule_id: relative-imports
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-f1b432d6
+    name: Fix smart-return-type issues
+    description: Resolve 1 smart-return-type issues in examples/12_ollama_simple_demo/iteration_2.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/12_ollama_simple_demo/iteration_2.py
+    rule_id: smart-return-type
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-c4cc99a0
+    name: Fix unused-imports issues
+    description: Resolve 16 unused-imports issues in examples/12_ollama_simple_demo/iteration_2.py
+    task_type: prefactor
+    priority: high
+    estimate: 3d
+    files:
+    - examples/12_ollama_simple_demo/iteration_2.py
+    rule_id: unused-imports
+    count: 16
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-7bd6d2b0
+    name: Fix ai-boilerplate issues
+    description: Resolve 2 ai-boilerplate issues in examples/12_ollama_simple_demo/iteration_2.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/12_ollama_simple_demo/iteration_2.py
+    rule_id: ai-boilerplate
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-01c61bd7
+    name: Fix smart-return-type issues
+    description: Resolve 10 smart-return-type issues in examples/12_ollama_simple_demo/legacy_code/simple_buggy.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - examples/12_ollama_simple_demo/legacy_code/simple_buggy.py
+    rule_id: smart-return-type
+    count: 10
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-fe65c812
+    name: Fix magic-numbers issues
+    description: Resolve 1 magic-numbers issues in examples/12_ollama_simple_demo/legacy_code/simple_buggy.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/12_ollama_simple_demo/legacy_code/simple_buggy.py
+    rule_id: magic-numbers
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-3515b68a
+    name: Fix ai-boilerplate issues
+    description: Resolve 2 ai-boilerplate issues in examples/12_ollama_simple_demo/legacy_code/simple_buggy.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/12_ollama_simple_demo/legacy_code/simple_buggy.py
+    rule_id: ai-boilerplate
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-6e6246e0
+    name: Fix relative-imports issues
+    description: Resolve 10 relative-imports issues in examples/12_ollama_simple_demo/utils/__init__.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - examples/12_ollama_simple_demo/utils/__init__.py
+    rule_id: relative-imports
+    count: 10
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-1ba3d5c6
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in examples/12_ollama_simple_demo/utils/__init__.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/12_ollama_simple_demo/utils/__init__.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-6251b32a
+    name: Fix smart-return-type issues
+    description: Resolve 4 smart-return-type issues in examples/12_ollama_simple_demo/ollama_simple_demo.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - examples/12_ollama_simple_demo/ollama_simple_demo.py
+    rule_id: smart-return-type
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-52ad2c7d
+    name: Fix string-concat issues
+    description: Resolve 5 string-concat issues in examples/12_ollama_simple_demo/ollama_simple_demo.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - examples/12_ollama_simple_demo/ollama_simple_demo.py
+    rule_id: string-concat
+    count: 5
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-4d827139
+    name: Fix unused-imports issues
+    description: Resolve 12 unused-imports issues in examples/12_ollama_simple_demo/ollama_simple_demo.py
+    task_type: prefactor
+    priority: high
+    estimate: 3d
+    files:
+    - examples/12_ollama_simple_demo/ollama_simple_demo.py
+    rule_id: unused-imports
+    count: 12
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-13a20ab4
+    name: Fix llm-hallucinations issues
+    description: Resolve 1 llm-hallucinations issues in examples/12_ollama_simple_demo/ollama_simple_demo.py
+    task_type: bugfix
+    priority: critical
+    estimate: 1d
+    files:
+    - examples/12_ollama_simple_demo/ollama_simple_demo.py
+    rule_id: llm-hallucinations
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-43b7cd55
+    name: Fix magic-numbers issues
+    description: Resolve 3 magic-numbers issues in examples/12_ollama_simple_demo/ollama_simple_demo.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/12_ollama_simple_demo/ollama_simple_demo.py
+    rule_id: magic-numbers
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-b13aecde
+    name: Fix ai-boilerplate issues
+    description: Resolve 2 ai-boilerplate issues in examples/12_ollama_simple_demo/ollama_simple_demo.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/12_ollama_simple_demo/ollama_simple_demo.py
+    rule_id: ai-boilerplate
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-501aae2c
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in examples/12_ollama_simple_demo/utils/calculate_total.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/12_ollama_simple_demo/utils/calculate_total.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-394c6be4
+    name: Fix llm-generated-code issues
+    description: Resolve 1 llm-generated-code issues in examples/12_ollama_simple_demo/utils/calculate_total.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/12_ollama_simple_demo/utils/calculate_total.py
+    rule_id: llm-generated-code
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-8f0354a3
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in examples/12_ollama_simple_demo/utils/load_config.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/12_ollama_simple_demo/utils/load_config.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-f8b1cbb3
+    name: Fix llm-generated-code issues
+    description: Resolve 1 llm-generated-code issues in examples/12_ollama_simple_demo/utils/load_config.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/12_ollama_simple_demo/utils/load_config.py
+    rule_id: llm-generated-code
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-478d7856
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in examples/12_ollama_simple_demo/utils/process_user_input.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/12_ollama_simple_demo/utils/process_user_input.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-f62e05b5
+    name: Fix llm-generated-code issues
+    description: Resolve 1 llm-generated-code issues in examples/12_ollama_simple_demo/utils/process_user_input.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/12_ollama_simple_demo/utils/process_user_input.py
+    rule_id: llm-generated-code
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-dcb5272e
+    name: Fix relative-imports issues
+    description: Resolve 8 relative-imports issues in examples/12_ollama_simple_demo/utils/main.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - examples/12_ollama_simple_demo/utils/main.py
+    rule_id: relative-imports
+    count: 8
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-58d9eb72
+    name: Fix unused-imports issues
+    description: Resolve 6 unused-imports issues in examples/12_ollama_simple_demo/utils/main.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - examples/12_ollama_simple_demo/utils/main.py
+    rule_id: unused-imports
+    count: 6
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-56f66994
+    name: Fix magic-numbers issues
+    description: Resolve 1 magic-numbers issues in examples/12_ollama_simple_demo/utils/main.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/12_ollama_simple_demo/utils/main.py
+    rule_id: magic-numbers
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-474f7ee9
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in examples/12_ollama_simple_demo/utils/save_data.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/12_ollama_simple_demo/utils/save_data.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-41d048e3
+    name: Fix llm-generated-code issues
+    description: Resolve 1 llm-generated-code issues in examples/12_ollama_simple_demo/utils/save_data.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/12_ollama_simple_demo/utils/save_data.py
+    rule_id: llm-generated-code
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-4e9c5a4c
+    name: Fix smart-return-type issues
+    description: Resolve 5 smart-return-type issues in examples/mcp_demo.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - examples/mcp_demo.py
+    rule_id: smart-return-type
+    count: 5
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-d369288c
+    name: Fix unused-imports issues
+    description: Resolve 4 unused-imports issues in examples/mcp_demo.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - examples/mcp_demo.py
+    rule_id: unused-imports
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-83ad8d8a
+    name: Fix llm-hallucinations issues
+    description: Resolve 5 llm-hallucinations issues in examples/mcp_demo.py
+    task_type: bugfix
+    priority: critical
+    estimate: 2d
+    files:
+    - examples/mcp_demo.py
+    rule_id: llm-hallucinations
+    count: 5
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-fb468a3b
+    name: Fix magic-numbers issues
+    description: Resolve 1 magic-numbers issues in examples/mcp_demo.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/mcp_demo.py
+    rule_id: magic-numbers
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-43a9a933
+    name: Fix llm-generated-code issues
+    description: Resolve 8 llm-generated-code issues in examples/mcp_demo.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - examples/mcp_demo.py
+    rule_id: llm-generated-code
+    count: 8
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-3775c93c
+    name: Fix ai-boilerplate issues
+    description: Resolve 2 ai-boilerplate issues in examples/mcp_demo.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/mcp_demo.py
+    rule_id: ai-boilerplate
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-767b0b3d
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in examples/utils/extract_code_from_response.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/utils/extract_code_from_response.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-f1de0438
+    name: Fix llm-generated-code issues
+    description: Resolve 1 llm-generated-code issues in examples/utils/extract_code_from_response.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/utils/extract_code_from_response.py
+    rule_id: llm-generated-code
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-dc135b21
+    name: Fix llm-generated-code issues
+    description: Resolve 2 llm-generated-code issues in examples/utils/extraction.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/utils/extraction.py
+    rule_id: llm-generated-code
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-2abdb923
+    name: Fix relative-imports issues
+    description: Resolve 2 relative-imports issues in examples/utils/__init__.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/utils/__init__.py
+    rule_id: relative-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-875541cf
+    name: Fix string-concat issues
+    description: Resolve 2 string-concat issues in examples/utils/__init__.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/utils/__init__.py
+    rule_id: string-concat
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-529c7bcd
+    name: Fix unused-imports issues
+    description: Resolve 6 unused-imports issues in examples/utils/__init__.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - examples/utils/__init__.py
+    rule_id: unused-imports
+    count: 6
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-4ddc398a
+    name: Fix duplicate-imports issues
+    description: Resolve 2 duplicate-imports issues in examples/utils/__init__.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/utils/__init__.py
+    rule_id: duplicate-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-3114743c
+    name: Fix llm-generated-code issues
+    description: Resolve 4 llm-generated-code issues in examples/utils/__init__.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - examples/utils/__init__.py
+    rule_id: llm-generated-code
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-8f598ffd
+    name: Fix string-concat issues
+    description: Resolve 2 string-concat issues in examples/utils/logging_utils.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/utils/logging_utils.py
+    rule_id: string-concat
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-a8982a86
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in examples/utils/logging_utils.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/utils/logging_utils.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-e5339b86
+    name: Fix magic-numbers issues
+    description: Resolve 3 magic-numbers issues in examples/utils/logging_utils.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/utils/logging_utils.py
+    rule_id: magic-numbers
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-cad49da9
+    name: Fix llm-generated-code issues
+    description: Resolve 4 llm-generated-code issues in examples/utils/logging_utils.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - examples/utils/logging_utils.py
+    rule_id: llm-generated-code
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-3abe48a5
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in examples/utils/save_analysis_data.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/utils/save_analysis_data.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-927dc374
+    name: Fix llm-generated-code issues
+    description: Resolve 1 llm-generated-code issues in examples/utils/save_analysis_data.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/utils/save_analysis_data.py
+    rule_id: llm-generated-code
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-a027c9cc
+    name: Fix string-concat issues
+    description: Resolve 1 string-concat issues in examples/utils/validation_runner.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/utils/validation_runner.py
+    rule_id: string-concat
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-b2a671a1
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in examples/utils/validation_runner.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/utils/validation_runner.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-98006bf4
+    name: Fix llm-generated-code issues
+    description: Resolve 1 llm-generated-code issues in examples/utils/validation_runner.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - examples/utils/validation_runner.py
+    rule_id: llm-generated-code
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-4161ea25
+    name: Fix unused-imports issues
+    description: Resolve 8 unused-imports issues in mcp/server/_tools_vallm.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - mcp/server/_tools_vallm.py
+    rule_id: unused-imports
+    count: 8
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-d8d710dd
+    name: Fix llm-generated-code issues
+    description: Resolve 4 llm-generated-code issues in mcp/server/_tools_vallm.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - mcp/server/_tools_vallm.py
+    rule_id: llm-generated-code
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-32fb1c22
+    name: Fix smart-return-type issues
+    description: Resolve 1 smart-return-type issues in mcp/server/self_server.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - mcp/server/self_server.py
+    rule_id: smart-return-type
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-4a63bee2
+    name: Fix magic-numbers issues
+    description: Resolve 5 magic-numbers issues in mcp/server/self_server.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - mcp/server/self_server.py
+    rule_id: magic-numbers
+    count: 5
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-e3f0b8fe
+    name: Fix ai-boilerplate issues
+    description: Resolve 2 ai-boilerplate issues in mcp/server/self_server.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - mcp/server/self_server.py
+    rule_id: ai-boilerplate
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-d668d7e6
+    name: Fix ai-boilerplate issues
+    description: Resolve 1 ai-boilerplate issues in mcp_server.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - mcp_server.py
+    rule_id: ai-boilerplate
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-30b709d8
+    name: Fix smart-return-type issues
+    description: Resolve 2 smart-return-type issues in scripts/bump_version.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - scripts/bump_version.py
+    rule_id: smart-return-type
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-e018eadf
+    name: Fix ai-boilerplate issues
+    description: Resolve 2 ai-boilerplate issues in scripts/bump_version.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - scripts/bump_version.py
+    rule_id: ai-boilerplate
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-735f0b24
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in src/vallm/cli/__init__.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/cli/__init__.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-ae6a7a3b
+    name: Fix unused-imports issues
+    description: Resolve 4 unused-imports issues in src/vallm/cli/batch_processor.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - src/vallm/cli/batch_processor.py
+    rule_id: unused-imports
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-989c189b
+    name: Fix duplicate-imports issues
+    description: Resolve 3 duplicate-imports issues in src/vallm/cli/batch_processor.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/cli/batch_processor.py
+    rule_id: duplicate-imports
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-b7f5d0cd
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in src/vallm/cli/command_handlers.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/cli/command_handlers.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-5047c56e
+    name: Fix duplicate-imports issues
+    description: Resolve 7 duplicate-imports issues in src/vallm/cli/command_handlers.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - src/vallm/cli/command_handlers.py
+    rule_id: duplicate-imports
+    count: 7
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-db5f6c39
+    name: Fix string-concat issues
+    description: Resolve 1 string-concat issues in src/vallm/cli/output_formatters.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/cli/output_formatters.py
+    rule_id: string-concat
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-5e43becb
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in src/vallm/cli/output_formatters.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/cli/output_formatters.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-4375c4b2
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in src/vallm/cli/settings_builders.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/cli/settings_builders.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-5b9fdf2a
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in src/vallm/cli.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/cli.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-889e0d54
+    name: Fix ai-boilerplate issues
+    description: Resolve 1 ai-boilerplate issues in src/vallm/cli.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/cli.py
+    rule_id: ai-boilerplate
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-f9beb0e8
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in src/vallm/config.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/config.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-969fa44d
+    name: Fix magic-numbers issues
+    description: Resolve 4 magic-numbers issues in src/vallm/config.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - src/vallm/config.py
+    rule_id: magic-numbers
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-02943944
+    name: Fix unused-imports issues
+    description: Resolve 8 unused-imports issues in src/vallm/core/__init__.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - src/vallm/core/__init__.py
+    rule_id: unused-imports
+    count: 8
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-49bf9039
+    name: Fix smart-return-type issues
+    description: Resolve 4 smart-return-type issues in src/vallm/core/ast_compare.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - src/vallm/core/ast_compare.py
+    rule_id: smart-return-type
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-4dbe8575
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in src/vallm/core/ast_compare.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/core/ast_compare.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-83c5ccc5
+    name: Fix string-concat issues
+    description: Resolve 9 string-concat issues in src/vallm/core/gitignore.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - src/vallm/core/gitignore.py
+    rule_id: string-concat
+    count: 9
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-d3174bc4
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in src/vallm/core/gitignore.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/core/gitignore.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-b7264256
+    name: Fix llm-generated-code issues
+    description: Resolve 1 llm-generated-code issues in src/vallm/core/gitignore.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/core/gitignore.py
+    rule_id: llm-generated-code
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-11db01e2
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in src/vallm/core/graph_diff.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/core/graph_diff.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-8d4fa712
+    name: Fix smart-return-type issues
+    description: Resolve 6 smart-return-type issues in src/vallm/core/graph_builder.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - src/vallm/core/graph_builder.py
+    rule_id: smart-return-type
+    count: 6
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-0dd81477
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in src/vallm/core/graph_builder.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/core/graph_builder.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-3385abd4
+    name: Fix string-concat issues
+    description: Resolve 1 string-concat issues in src/vallm/core/languages.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/core/languages.py
+    rule_id: string-concat
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-697325dc
+    name: Fix unused-imports issues
+    description: Resolve 4 unused-imports issues in src/vallm/core/languages.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - src/vallm/core/languages.py
+    rule_id: unused-imports
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-ecb004c1
+    name: Fix llm-generated-code issues
+    description: Resolve 2 llm-generated-code issues in src/vallm/core/languages.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/core/languages.py
+    rule_id: llm-generated-code
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-76b552c5
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in src/vallm/core/proposal.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/core/proposal.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-b15f60bd
+    name: Fix string-concat issues
+    description: Resolve 1 string-concat issues in src/vallm/sandbox/runner.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/sandbox/runner.py
+    rule_id: string-concat
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-2ca31004
+    name: Fix unused-imports issues
+    description: Resolve 4 unused-imports issues in src/vallm/sandbox/runner.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - src/vallm/sandbox/runner.py
+    rule_id: unused-imports
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-bd66e1ef
+    name: Fix magic-numbers issues
+    description: Resolve 2 magic-numbers issues in src/vallm/sandbox/runner.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/sandbox/runner.py
+    rule_id: magic-numbers
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-57872c49
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in src/vallm/hookspecs.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/hookspecs.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-433597d0
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in src/vallm/validators/base.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/base.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-83f35711
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in src/vallm/scoring.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/scoring.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-d0bdad6a
+    name: Fix llm-generated-code issues
+    description: Resolve 1 llm-generated-code issues in src/vallm/scoring.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/scoring.py
+    rule_id: llm-generated-code
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-b333b94a
+    name: Fix relative-imports issues
+    description: Resolve 18 relative-imports issues in src/vallm/validators/imports/__init__.py
+    task_type: prefactor
+    priority: high
+    estimate: 3d
+    files:
+    - src/vallm/validators/imports/__init__.py
+    rule_id: relative-imports
+    count: 18
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-f9785f7a
+    name: Fix unused-imports issues
+    description: Resolve 4 unused-imports issues in src/vallm/validators/complexity.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - src/vallm/validators/complexity.py
+    rule_id: unused-imports
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-36e67e3b
+    name: Fix magic-numbers issues
+    description: Resolve 2 magic-numbers issues in src/vallm/validators/complexity.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/complexity.py
+    rule_id: magic-numbers
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-48fbdba5
+    name: Fix relative-imports issues
+    description: Resolve 2 relative-imports issues in src/vallm/validators/imports/c_imports.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/imports/c_imports.py
+    rule_id: relative-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-e96ae62c
+    name: Fix smart-return-type issues
+    description: Resolve 1 smart-return-type issues in src/vallm/validators/imports/c_imports.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/imports/c_imports.py
+    rule_id: smart-return-type
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-1b3aacd6
+    name: Fix string-concat issues
+    description: Resolve 2 string-concat issues in src/vallm/validators/imports/c_imports.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/imports/c_imports.py
+    rule_id: string-concat
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-fd68a8a6
+    name: Fix relative-imports issues
+    description: Resolve 14 relative-imports issues in src/vallm/validators/imports/factory.py
+    task_type: prefactor
+    priority: high
+    estimate: 3d
+    files:
+    - src/vallm/validators/imports/factory.py
+    rule_id: relative-imports
+    count: 14
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-bd3b4036
+    name: Fix smart-return-type issues
+    description: Resolve 1 smart-return-type issues in src/vallm/validators/imports/factory.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/imports/factory.py
+    rule_id: smart-return-type
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-cd71b68f
+    name: Fix relative-imports issues
+    description: Resolve 2 relative-imports issues in src/vallm/validators/imports/go_imports.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/imports/go_imports.py
+    rule_id: relative-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-40074672
+    name: Fix smart-return-type issues
+    description: Resolve 1 smart-return-type issues in src/vallm/validators/imports/go_imports.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/imports/go_imports.py
+    rule_id: smart-return-type
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-623af541
+    name: Fix string-concat issues
+    description: Resolve 3 string-concat issues in src/vallm/validators/imports/go_imports.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/imports/go_imports.py
+    rule_id: string-concat
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-8f5b1ee1
+    name: Fix unused-imports issues
+    description: Resolve 8 unused-imports issues in src/vallm/validators/imports/go_imports.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - src/vallm/validators/imports/go_imports.py
+    rule_id: unused-imports
+    count: 8
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-e7cccd58
+    name: Fix relative-imports issues
+    description: Resolve 2 relative-imports issues in src/vallm/validators/imports/java_imports.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/imports/java_imports.py
+    rule_id: relative-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-6dc40711
+    name: Fix smart-return-type issues
+    description: Resolve 1 smart-return-type issues in src/vallm/validators/imports/java_imports.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/imports/java_imports.py
+    rule_id: smart-return-type
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-84c8371b
+    name: Fix string-concat issues
+    description: Resolve 1 string-concat issues in src/vallm/validators/imports/java_imports.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/imports/java_imports.py
+    rule_id: string-concat
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-cdb74e00
+    name: Fix unused-imports issues
+    description: Resolve 8 unused-imports issues in src/vallm/validators/imports/java_imports.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - src/vallm/validators/imports/java_imports.py
+    rule_id: unused-imports
+    count: 8
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-0556eaf7
+    name: Fix relative-imports issues
+    description: Resolve 2 relative-imports issues in src/vallm/validators/imports/javascript_imports.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/imports/javascript_imports.py
+    rule_id: relative-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-c437f7f8
+    name: Fix smart-return-type issues
+    description: Resolve 1 smart-return-type issues in src/vallm/validators/imports/javascript_imports.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/imports/javascript_imports.py
+    rule_id: smart-return-type
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-b0e04cd4
+    name: Fix string-concat issues
+    description: Resolve 3 string-concat issues in src/vallm/validators/imports/javascript_imports.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/imports/javascript_imports.py
+    rule_id: string-concat
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-ddd47ada
+    name: Fix relative-imports issues
+    description: Resolve 2 relative-imports issues in src/vallm/validators/imports/python_imports.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/imports/python_imports.py
+    rule_id: relative-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-9368ba9f
+    name: Fix relative-imports issues
+    description: Resolve 2 relative-imports issues in src/vallm/validators/imports/rust_imports.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/imports/rust_imports.py
+    rule_id: relative-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-1eaed606
+    name: Fix smart-return-type issues
+    description: Resolve 1 smart-return-type issues in src/vallm/validators/imports/rust_imports.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/imports/rust_imports.py
+    rule_id: smart-return-type
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-08280a88
+    name: Fix string-concat issues
+    description: Resolve 3 string-concat issues in src/vallm/validators/imports/rust_imports.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/imports/rust_imports.py
+    rule_id: string-concat
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-11b2308a
+    name: Fix unused-imports issues
+    description: Resolve 8 unused-imports issues in src/vallm/validators/imports/rust_imports.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - src/vallm/validators/imports/rust_imports.py
+    rule_id: unused-imports
+    count: 8
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-dae52aa2
+    name: Fix relative-imports issues
+    description: Resolve 2 relative-imports issues in src/vallm/validators/imports/wrapper.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/imports/wrapper.py
+    rule_id: relative-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-f5ddee4e
+    name: Fix string-concat issues
+    description: Resolve 1 string-concat issues in src/vallm/validators/imports/utils.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/imports/utils.py
+    rule_id: string-concat
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-04e1dae7
+    name: Fix llm-generated-code issues
+    description: Resolve 2 llm-generated-code issues in src/vallm/validators/imports/utils.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/imports/utils.py
+    rule_id: llm-generated-code
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-68c5ee1d
+    name: Fix relative-imports issues
+    description: Resolve 2 relative-imports issues in src/vallm/validators/imports.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/imports.py
+    rule_id: relative-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-7483cd3b
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in src/vallm/validators/lint.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/lint.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-69b74c21
+    name: Fix magic-numbers issues
+    description: Resolve 1 magic-numbers issues in src/vallm/validators/lint.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/lint.py
+    rule_id: magic-numbers
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-e17d9784
+    name: Fix llm-generated-code issues
+    description: Resolve 5 llm-generated-code issues in src/vallm/validators/lint.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - src/vallm/validators/lint.py
+    rule_id: llm-generated-code
+    count: 5
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-9f456312
+    name: Fix string-concat issues
+    description: Resolve 1 string-concat issues in src/vallm/validators/logical.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/logical.py
+    rule_id: string-concat
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-7636f718
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in src/vallm/validators/logical.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/logical.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-36761343
+    name: Fix llm-generated-code issues
+    description: Resolve 4 llm-generated-code issues in src/vallm/validators/logical.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - src/vallm/validators/logical.py
+    rule_id: llm-generated-code
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-86446eb8
+    name: Fix string-concat issues
+    description: Resolve 2 string-concat issues in src/vallm/validators/regression.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/regression.py
+    rule_id: string-concat
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-22ed47e6
+    name: Fix unused-imports issues
+    description: Resolve 4 unused-imports issues in src/vallm/validators/regression.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - src/vallm/validators/regression.py
+    rule_id: unused-imports
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-949dc807
+    name: Fix magic-numbers issues
+    description: Resolve 1 magic-numbers issues in src/vallm/validators/regression.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/regression.py
+    rule_id: magic-numbers
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-3cf85229
+    name: Fix llm-generated-code issues
+    description: Resolve 1 llm-generated-code issues in src/vallm/validators/regression.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/regression.py
+    rule_id: llm-generated-code
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-1791ee4a
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in src/vallm/validators/security.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/security.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-ccec706b
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in src/vallm/validators/semantic.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/semantic.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-250bd20f
+    name: Fix magic-numbers issues
+    description: Resolve 3 magic-numbers issues in src/vallm/validators/semantic.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/semantic.py
+    rule_id: magic-numbers
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-b2249312
+    name: Fix unused-imports issues
+    description: Resolve 4 unused-imports issues in src/vallm/validators/semantic_cache.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - src/vallm/validators/semantic_cache.py
+    rule_id: unused-imports
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-057c4d08
+    name: Fix llm-generated-code issues
+    description: Resolve 6 llm-generated-code issues in src/vallm/validators/semantic_cache.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - src/vallm/validators/semantic_cache.py
+    rule_id: llm-generated-code
+    count: 6
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-2ddd1365
+    name: Fix smart-return-type issues
+    description: Resolve 5 smart-return-type issues in test_mcp.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - test_mcp.py
+    rule_id: smart-return-type
+    count: 5
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-fe8a990f
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in test_mcp.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - test_mcp.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-889e1052
+    name: Fix llm-hallucinations issues
+    description: Resolve 2 llm-hallucinations issues in test_mcp.py
+    task_type: bugfix
+    priority: critical
+    estimate: 1d
+    files:
+    - test_mcp.py
+    rule_id: llm-hallucinations
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-046a285e
+    name: Fix ai-boilerplate issues
+    description: Resolve 2 ai-boilerplate issues in test_mcp.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - test_mcp.py
+    rule_id: ai-boilerplate
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-2a4724cb
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in src/vallm/validators/syntax.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/vallm/validators/syntax.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-3e81f7eb
+    name: Fix unused-imports issues
+    description: Resolve 6 unused-imports issues in examples/08_code2llm_integration/main.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - examples/08_code2llm_integration/main.py
+    rule_id: unused-imports
+    count: 6
+    model_hints:
+      planning: balanced
+      implementation: balanced

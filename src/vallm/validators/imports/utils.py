@@ -4,6 +4,32 @@ import os
 from pathlib import Path
 from typing import Callable, Iterator, Optional
 
+_TEST_DIR_NAMES = frozenset(("tests", "test", "__pycache__", "venv", ".venv", "node_modules", "vendor"))
+_SKIP_ROOT_NAMES = frozenset(("tests", "test", "__pycache__", "venv", ".venv", "node_modules"))
+
+
+def _is_gitignored(
+    path: Path,
+    project_root: Optional[Path],
+    gitignore_matcher: Optional[Callable[[Path], bool]],
+) -> bool:
+    """Return True if path matches gitignore rules."""
+    if not gitignore_matcher or not project_root:
+        return False
+    try:
+        return gitignore_matcher(path.relative_to(project_root))
+    except ValueError:
+        return False
+
+
+def _should_skip_dir(name: str, skip_tests: bool, skip_hidden: bool) -> bool:
+    """Return True if a directory should be skipped entirely."""
+    if skip_hidden and name.startswith("."):
+        return True
+    if skip_tests and name in _TEST_DIR_NAMES:
+        return True
+    return False
+
 
 def walk(
     root: Path,
@@ -30,39 +56,23 @@ def walk(
     """
     if max_depth is not None and current_depth > max_depth:
         return
-        
-    if skip_hidden and root.name.startswith("."):
+
+    if _should_skip_dir(root.name, skip_tests, skip_hidden):
         return
-        
-    if skip_tests and root.name in ("tests", "test", "__pycache__", "venv", ".venv", "node_modules"):
+
+    if _is_gitignored(root, project_root, gitignore_matcher):
         return
-        
-    if gitignore_matcher and project_root:
-        try:
-            rel_path = root.relative_to(project_root)
-            if gitignore_matcher(rel_path):
-                return
-        except ValueError:
-            pass
-    
+
     for entry in os.scandir(root):
-        if skip_hidden and entry.name.startswith("."):
-            continue
-            
+        entry_path = Path(entry.path)
+
         if entry.is_dir(follow_symlinks=False):
-            if skip_tests and entry.name in ("tests", "test", "__pycache__", "venv", 
-                                           ".venv", "node_modules", "vendor"):
+            if _should_skip_dir(entry.name, skip_tests, skip_hidden):
                 continue
-            if gitignore_matcher and project_root:
-                try:
-                    rel_path = Path(entry.path).relative_to(project_root)
-                    if gitignore_matcher(rel_path):
-                        continue
-                except ValueError:
-                    pass
-                    
+            if _is_gitignored(entry_path, project_root, gitignore_matcher):
+                continue
             yield from walk(
-                Path(entry.path),
+                entry_path,
                 project_root,
                 gitignore_matcher,
                 skip_tests,
@@ -73,14 +83,9 @@ def walk(
         elif entry.is_file(follow_symlinks=False):
             if not entry.name.endswith(".py"):
                 continue
-            if gitignore_matcher and project_root:
-                try:
-                    rel_path = Path(entry.path).relative_to(project_root)
-                    if gitignore_matcher(rel_path):
-                        continue
-                except ValueError:
-                    pass
-            yield Path(entry.path)
+            if _is_gitignored(entry_path, project_root, gitignore_matcher):
+                continue
+            yield entry_path
 
 
 def validate_import_path(

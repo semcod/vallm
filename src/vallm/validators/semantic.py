@@ -135,7 +135,10 @@ class SemanticValidator(BaseValidator):
 
     def _call_litellm(self, prompt: str) -> str:
         """Call via litellm for multi-provider support."""
-        import litellm
+        try:
+            import litellm
+        except ImportError:
+            raise ImportError("litellm package is required. Install with: pip install litellm")
 
         response = litellm.completion(
             model=f"ollama/{self.model}" if self.provider == "ollama" else self.model,
