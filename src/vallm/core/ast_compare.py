@@ -3,14 +3,21 @@
 from __future__ import annotations
 
 import ast
+from functools import lru_cache
 from typing import Optional
 
 from tree_sitter_language_pack import get_parser
 
 
+@lru_cache(maxsize=32)
+def _cached_get_parser(language: str):
+    """Return a cached tree-sitter parser for *language*."""
+    return get_parser(language)
+
+
 def parse_code(code: str, language: str = "python"):
     """Parse code using tree-sitter and return the tree."""
-    parser = get_parser(language)
+    parser = _cached_get_parser(language)
     return parser.parse(code.encode("utf-8"))
 
 

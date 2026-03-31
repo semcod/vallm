@@ -7,7 +7,7 @@ from typer.testing import CliRunner
 
 from vallm.cli import output_formatters
 from vallm.cli import app
-from vallm.cli.batch_processor import BatchProcessor
+from vallm.cli.batch_processor import BatchProcessor, _compile_patterns
 from vallm.scoring import Issue, PipelineResult, Severity, ValidationResult, Verdict
 
 
@@ -28,10 +28,11 @@ def make_result(filename: str, verdict: Verdict, score: float, issues: list[Issu
 
 def test_batch_processor_skips_toon_files():
     processor = BatchProcessor(Console(file=io.StringIO()))
+    empty = _compile_patterns([])
 
-    assert processor._should_exclude_file(Path("project/validation.toon.yaml"), []) is True
-    assert processor._should_exclude_file(Path("project/validation.toon"), []) is True
-    assert processor._should_exclude_file(Path("project/validation.yaml"), []) is False
+    assert processor._should_exclude_file(Path("project/validation.toon.yaml"), empty) is True
+    assert processor._should_exclude_file(Path("project/validation.toon"), empty) is True
+    assert processor._should_exclude_file(Path("project/validation.yaml"), empty) is False
 
 
 def test_output_batch_toon_is_compact_and_groups_sections(capsys, monkeypatch):
@@ -132,7 +133,10 @@ def test_batch_exits_two_with_real_validation_failure(tmp_path, monkeypatch):
     monkeypatch.setattr(
         BatchProcessor,
         "_parse_filter_patterns",
-        lambda self, include, exclude: {"include": [], "exclude": []},
+        lambda self, include, exclude: {
+            "include": _compile_patterns([]),
+            "exclude": _compile_patterns([]),
+        },
     )
     runner = CliRunner()
     bad_py = tmp_path / "bad.py"

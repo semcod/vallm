@@ -35,8 +35,8 @@ class GoImportValidator(BaseImportValidator):
         """Extract import statements from Go using tree-sitter."""
         imports = []
         try:
-            from tree_sitter_language_pack import get_parser
-            parser = get_parser("go")
+            from vallm.core.ast_compare import _cached_get_parser
+            parser = _cached_get_parser("go")
             tree = parser.parse(code.encode("utf-8"))
 
             def walk(node):

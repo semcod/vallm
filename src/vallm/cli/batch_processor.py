@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import os
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import Optional
 
@@ -18,6 +20,71 @@ from vallm.core.proposal import Proposal
 from vallm.scoring import validate, Verdict
 
 TOON_EXTENSIONS = {".toon.yaml", ".toon"}
+
+_MAX_WORKERS = min(os.cpu_count() or 1, 8)
+
+
+class _CompiledPatterns:
+    """Pre-compiled pattern set: exact names in a frozenset, globs in one regex."""
+
+    __slots__ = ("exact", "regex", "is_empty")
+
+    def __init__(self, exact: frozenset[str], regex, is_empty: bool):
+        self.exact = exact
+        self.regex = regex
+        self.is_empty = is_empty
+
+
+def _compile_patterns(raw: list[str]) -> _CompiledPatterns:
+    """Split *raw* glob strings into an exact-match set and a combined regex."""
+    import fnmatch
+    import re
+
+    if not raw:
+        return _CompiledPatterns(frozenset(), None, True)
+
+    exact: set[str] = set()
+    regex_parts: list[str] = []
+
+    for pat in dict.fromkeys(raw):  # deduplicate, preserve order
+        if any(c in pat for c in ("*", "?", "[", "]")):
+            regex_parts.append(fnmatch.translate(pat))
+        else:
+            exact.add(pat)
+
+    compiled_re = re.compile("|".join(regex_parts)) if regex_parts else None
+    return _CompiledPatterns(frozenset(exact), compiled_re, False)
+
+
+def _validate_single_file(file_path: Path, settings: VallmSettings):
+    """Validate a single file (top-level for thread-pool compatibility).
+
+    Returns (file_path, lang_obj, result, error_str) tuple.
+    """
+    from vallm.validators.file_cache import get_file_cache
+
+    lang_obj = detect_language(file_path)
+    if lang_obj is None:
+        return file_path, None, None, "Unsupported file type"
+
+    cache = get_file_cache()
+    cached = cache.get(file_path)
+    if cached is not None:
+        return file_path, lang_obj, cached, None
+
+    try:
+        code = file_path.read_text(encoding="utf-8")
+    except UnicodeDecodeError:
+        return file_path, None, None, "Unable to read file (binary?)"
+
+    proposal = Proposal(
+        code=code,
+        language=lang_obj.tree_sitter_id,
+        filename=str(file_path),
+    )
+    result = validate(proposal, settings)
+    cache.set(file_path, result)
+    return file_path, lang_obj, result, None
 
 
 class BatchProcessor:
@@ -134,19 +201,12 @@ class BatchProcessor:
         return filtered_files
     
     def _parse_filter_patterns(self, include: Optional[str], exclude: Optional[str]) -> dict:
-        """Parse include and exclude patterns."""
-        import fnmatch
-        
-        patterns = {"include": [], "exclude": []}
-        
-        if include:
-            patterns["include"] = include.split(",")
-        
+        """Parse include and exclude patterns into compiled matchers."""
+        raw_exclude: list[str] = []
         if exclude:
-            patterns["exclude"] = exclude.split(",")
-        
-        # Add default exclude patterns
-        patterns["exclude"].extend([
+            raw_exclude = exclude.split(",")
+
+        raw_exclude.extend([
             # Python
             "*.pyc", "*.pyo", "*.pyd", "__pycache__", ".pytest_cache",
             "*.egg-info", "build", "dist", ".tox", ".coverage", "htmlcov",
@@ -180,44 +240,47 @@ class BatchProcessor:
             # Large data files
             "*.jsonl", "*.parquet", "*.csv", "*.tsv",
         ])
-        
-        return patterns
-    
-    def _should_exclude_file(self, file_path: Path, exclude_patterns: list[str]) -> bool:
-        """Check if file should be excluded based on patterns."""
-        import fnmatch
-        
-        file_str = str(file_path)
+
+        raw_include: list[str] = []
+        if include:
+            raw_include = include.split(",")
+
+        return {
+            "exclude": _compile_patterns(raw_exclude),
+            "include": _compile_patterns(raw_include),
+        }
+
+    def _should_exclude_file(self, file_path: Path, compiled: _CompiledPatterns) -> bool:
+        """Check if file should be excluded based on pre-compiled patterns."""
         file_name = file_path.name
-        file_str_lower = file_str.lower()
+        file_str_lower = str(file_path).lower()
 
         if any(file_str_lower.endswith(ext) for ext in TOON_EXTENSIONS):
             return True
-        
-        for pattern in exclude_patterns:
-            # Check full path match
-            if fnmatch.fnmatch(file_str, pattern):
-                return True
-            # Check filename match
-            if fnmatch.fnmatch(file_name, pattern):
-                return True
-            # Check if any parent directory matches the pattern
-            for parent in file_path.parts:
-                if fnmatch.fnmatch(parent, pattern):
-                    return True
-        return False
-    
-    def _matches_include_pattern(self, file_path: Path, include_patterns: list[str]) -> bool:
-        """Check if file matches include patterns."""
-        import fnmatch
-        
-        if not include_patterns:
+
+        if file_name in compiled.exact or any(p in compiled.exact for p in file_path.parts):
             return True
-        
-        file_str = str(file_path)
-        for pattern in include_patterns:
-            if fnmatch.fnmatch(file_str, pattern) or fnmatch.fnmatch(file_path.name, pattern):
-                return True
+
+        if compiled.regex and (
+            compiled.regex.search(file_name)
+            or any(compiled.regex.search(p) for p in file_path.parts)
+        ):
+            return True
+
+        return False
+
+    def _matches_include_pattern(self, file_path: Path, compiled: _CompiledPatterns) -> bool:
+        """Check if file matches pre-compiled include patterns."""
+        if compiled.is_empty:
+            return True
+
+        file_name = file_path.name
+        if file_name in compiled.exact:
+            return True
+
+        if compiled.regex and compiled.regex.search(file_name):
+            return True
+
         return False
     
     def _handle_no_files_found(self, output_format: str) -> None:
@@ -302,31 +365,105 @@ class BatchProcessor:
         show_issues: bool,
     ) -> tuple[dict, list, int, list]:
         """Process all files for validation."""
+        use_parallel = (
+            not fail_fast
+            and not verbose
+            and len(filtered_files) >= 4
+            and _MAX_WORKERS > 1
+        )
+        if use_parallel:
+            return self._process_files_parallel(
+                filtered_files, settings, output_format, show_issues,
+            )
+        return self._process_files_sequential(
+            filtered_files, settings, output_format, fail_fast, verbose, show_issues,
+        )
+
+    def _process_files_parallel(
+        self,
+        filtered_files: list[Path],
+        settings: VallmSettings,
+        output_format: str,
+        show_issues: bool,
+    ) -> tuple[dict, list, int, list]:
+        """Process files using a thread pool for CPU-bound validators."""
         results_by_language: dict = {}
         failed_files: list = []
         passed_count = 0
         total = len(filtered_files)
+        done = 0
+
+        with ThreadPoolExecutor(max_workers=_MAX_WORKERS) as pool:
+            futures = {
+                pool.submit(_validate_single_file, fp, settings): fp
+                for fp in filtered_files
+            }
+            for future in as_completed(futures):
+                done += 1
+                try:
+                    file_path, lang_obj, result, error = future.result()
+                except Exception as e:
+                    file_path = futures[future]
+                    failed_files.append((file_path, f"Error: {str(e)}"))
+                    continue
+
+                if error is not None:
+                    failed_files.append((file_path, error))
+                    continue
+
+                self._show_progress(done, total, file_path, output_format)
+                passed = self._handle_validation_result(
+                    result, file_path, lang_obj, output_format,
+                    show_issues, results_by_language, failed_files,
+                )
+                if passed:
+                    passed_count += 1
+
+        return results_by_language, failed_files, passed_count, filtered_files
+
+    def _process_files_sequential(
+        self,
+        filtered_files: list[Path],
+        settings: VallmSettings,
+        output_format: str,
+        fail_fast: bool,
+        verbose: bool,
+        show_issues: bool,
+    ) -> tuple[dict, list, int, list]:
+        """Process files sequentially (used for fail_fast / verbose modes)."""
+        from vallm.validators.file_cache import get_file_cache
+
+        results_by_language: dict = {}
+        failed_files: list = []
+        passed_count = 0
+        total = len(filtered_files)
+        cache = get_file_cache()
 
         for i, file_path in enumerate(filtered_files, 1):
             try:
                 self._show_progress(i, total, file_path, output_format)
-
-                code = self._read_file_text(file_path)
-                if code is None:
-                    failed_files.append((file_path, "Unable to read file (binary?)"))
-                    continue
 
                 lang_obj = self._detect_file_language(file_path)
                 if lang_obj is None:
                     failed_files.append((file_path, "Unsupported file type"))
                     continue
 
-                proposal = Proposal(
-                    code=code,
-                    language=lang_obj.tree_sitter_id,
-                    filename=str(file_path),
-                )
-                result = validate(proposal, settings)
+                cached = cache.get(file_path)
+                if cached is not None:
+                    result = cached
+                else:
+                    code = self._read_file_text(file_path)
+                    if code is None:
+                        failed_files.append((file_path, "Unable to read file (binary?)"))
+                        continue
+
+                    proposal = Proposal(
+                        code=code,
+                        language=lang_obj.tree_sitter_id,
+                        filename=str(file_path),
+                    )
+                    result = validate(proposal, settings)
+                    cache.set(file_path, result)
 
                 passed = self._handle_validation_result(
                     result, file_path, lang_obj, output_format,

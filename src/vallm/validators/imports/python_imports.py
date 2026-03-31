@@ -55,6 +55,25 @@ _KNOWN_PYTHON_MODULES = {
 }
 
 
+_module_exists_cache: dict[str, bool] = {}
+_local_modules: frozenset[str] | None = None
+
+
+def _get_local_modules() -> frozenset[str]:
+    """Pre-scan cwd once for local packages/modules."""
+    global _local_modules
+    if _local_modules is None:
+        cwd = Path.cwd()
+        found: set[str] = set()
+        for p in cwd.iterdir():
+            if p.is_dir() and (p / "__init__.py").exists():
+                found.add(p.name)
+            elif p.is_file() and p.suffix == ".py" and p.stem != "__init__":
+                found.add(p.stem)
+        _local_modules = frozenset(found)
+    return _local_modules
+
+
 class PythonImportValidator(BaseImportValidator):
     """Python-specific import validator."""
     
@@ -125,20 +144,27 @@ class PythonImportValidator(BaseImportValidator):
         return imports
     
     def module_exists(self, module_name: str) -> bool:
-        """Check if a Python module exists in current environment."""
+        """Check if a Python module exists in current environment (cached)."""
         top_level = module_name.split(".")[0]
         if top_level in _KNOWN_PYTHON_MODULES:
             return True
+
+        cached = _module_exists_cache.get(top_level)
+        if cached is not None:
+            return cached
+
+        found = False
         try:
             if importlib.util.find_spec(top_level) is not None:
-                return True
+                found = True
         except (ImportError, ValueError):
             pass
-        cwd = Path.cwd()
-        return (
-            (cwd / top_level / "__init__.py").exists()
-            or (cwd / f"{top_level}.py").exists()
-        )
+
+        if not found:
+            found = top_level in _get_local_modules()
+
+        _module_exists_cache[top_level] = found
+        return found
     
     def get_language(self) -> str:
         """Get the language identifier."""
