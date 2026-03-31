@@ -4,30 +4,31 @@ pipeline:
   metrics:
     cc_max: 15
     critical_max: 0
+    vallm_pass_min: 95
 
   custom_tools:
     - name: code2llm_vallm
-      binary: code2llm
+      binary: .venv/bin/code2llm
       command: >-
-        code2llm {workdir} -f toon -o ./project --no-chunk
+        .venv/bin/code2llm {workdir} -f toon -o ./project --no-chunk
         --exclude .git venv dist __pycache__ .pytest_cache .mypy_cache .ruff_cache
         .code2llm_cache build *.egg-info
       output: ""
       allow_failure: false
 
     - name: vallm_src
-      binary: vallm
+      binary: .venv/bin/vallm
       command: >-
-        vallm batch {workdir}/src --recursive --format toon --output ./project
+        .venv/bin/vallm batch {workdir}/src --recursive --format toon --output ./project
         --exclude .git,venv,dist,__pycache__,.pytest_cache,.mypy_cache,.ruff_cache,
         .code2llm_cache,build,*.egg-info
       output: ""
       allow_failure: false
 
     - name: vallm_verify
-      binary: vallm
+      binary: .venv/bin/vallm
       command: >-
-        vallm batch {workdir}/src --recursive --no-complexity --format toon --output ./project/verify
+        .venv/bin/vallm batch {workdir}/src --recursive --no-complexity --format toon --output ./project/verify
         --exclude .git,venv,dist,__pycache__,.pytest_cache,.mypy_cache,.ruff_cache,
         .code2llm_cache,build,*.egg-info
       output: ""
@@ -50,7 +51,7 @@ pipeline:
       optional: true
 
     - name: test
-      run: python3 -m pytest -q --tb=short
+      run: .venv/bin/python -m pytest -q --tb=short
       when: always
 
     - name: prefact

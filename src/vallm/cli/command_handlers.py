@@ -181,7 +181,8 @@ def batch_command(
             results_by_language, passed_count, failed_files, format_, filtered_files
         )
     
-    if failed_files:
+    actual_failures = [f for f in failed_files if str(f[1]).startswith("Validation ")]
+    if actual_failures:
         raise typer.Exit(2)
 
 

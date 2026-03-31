@@ -3,8 +3,10 @@ from datetime import date
 from pathlib import Path
 
 from rich.console import Console
+from typer.testing import CliRunner
 
 from vallm.cli import output_formatters
+from vallm.cli import app
 from vallm.cli.batch_processor import BatchProcessor
 from vallm.scoring import Issue, PipelineResult, Severity, ValidationResult, Verdict
 
@@ -113,3 +115,28 @@ def test_output_batch_toon_is_compact_and_groups_sections(capsys, monkeypatch):
     assert "other,1" in output
     assert "FILES:" not in output
     assert "FAILED:" not in output
+
+
+def test_batch_exits_zero_with_only_unsupported_files(tmp_path):
+    """Regression: unsupported files must not cause Exit(2); only real validation failures should."""
+    runner = CliRunner()
+    unsupported = tmp_path / "data.md"
+    unsupported.write_text("# Just a readme", encoding="utf-8")
+
+    result = runner.invoke(app, ["batch", str(tmp_path), "--recursive", "--no-gitignore"])
+    assert result.exit_code == 0, f"Expected 0, got {result.exit_code}:\n{result.output}"
+
+
+def test_batch_exits_two_with_real_validation_failure(tmp_path, monkeypatch):
+    """Regression: actual validation failure (syntax error) must produce Exit(2)."""
+    monkeypatch.setattr(
+        BatchProcessor,
+        "_parse_filter_patterns",
+        lambda self, include, exclude: {"include": [], "exclude": []},
+    )
+    runner = CliRunner()
+    bad_py = tmp_path / "bad.py"
+    bad_py.write_text("def foo(\n", encoding="utf-8")
+
+    result = runner.invoke(app, ["batch", str(bad_py)])
+    assert result.exit_code == 2, f"Expected 2, got {result.exit_code}:\n{result.output}"
