@@ -58,6 +58,7 @@ dev = [
     "pytest>=9.0",
     "pytest-cov>=7.0",
     "ruff>=0.15",
+    "tox>=4.0",
     "goal>=2.1.174",
     "costs>=0.1.48",
     "pfix>=0.1.72",

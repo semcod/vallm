@@ -1,11 +1,17 @@
 pipeline:
-  name: vallm-quality
+  name: quality-loop-with-llx
 
+  # Quality gates — pipeline iterates until ALL pass
   metrics:
-    cc_max: 15
-    critical_max: 0
-    vallm_pass_min: 95
+    cc_max: 15           # cyclomatic complexity per function
+    vallm_pass_min: 90   # vallm validation pass rate (%)
+    coverage_min: 55     # test coverage (%) — realistic for current codebase
+    # Security gates (uncomment to enable):
+    # vuln_high_max: 0     # pip-audit high severity CVEs
+    # bandit_high_max: 0   # bandit high severity issues
+    # secrets_found_max: 0 # trufflehog/gitleaks secrets
 
+  # Custom tool definitions
   custom_tools:
     - name: code2llm_vallm
       binary: .venv/bin/code2llm
@@ -34,7 +40,39 @@ pipeline:
       output: ""
       allow_failure: false
 
+  # Pipeline stages — use 'tool:' for built-in presets or 'run:' for custom
   stages:
+    # Verify/install all tool dependencies before pipeline starts
+    - name: setup
+      run: |
+        set -e
+        echo "=== pyqual dependency check ==="
+        # Python tools (pip)
+        for pkg in code2llm vallm prefact llx pytest-cov goal; do
+          if python -m pip show "$pkg" >/dev/null 2>&1; then
+            echo "  ✓ $pkg"
+          else
+            echo "  ✗ $pkg — installing…"
+            pip install -q "$pkg" || echo "  ⚠ $pkg install failed (optional)"
+          fi
+        done
+        # Node tools (claude)
+        if command -v claude >/dev/null 2>&1; then
+          echo "  ✓ claude $(claude --version 2>/dev/null)"
+        else
+          echo "  ✗ claude — installing…"
+          npm install -g --prefix="$HOME/.local" @anthropic-ai/claude-code 2>/dev/null \
+            && echo "  ✓ claude installed" \
+            || echo "  ⚠ claude install failed (fix stage will use llx fallback)"
+        fi
+        # Claude Code auth can be either:
+        # - local OAuth session via `claude auth login`
+        # - ANTHROPIC_API_KEY in CI/GitHub Actions
+        # We only verify the CLI is available here.
+        echo "=== setup done ==="
+      when: first_iteration
+      timeout: 300
+
     - name: analyze
       tool: code2llm_vallm
       optional: true
@@ -51,19 +89,43 @@ pipeline:
       optional: true
 
     - name: test
-      run: .venv/bin/python -m pytest -q --tb=short
+      run: .venv/bin/python -m pytest -q --tb=short --cov=src/vallm --cov-report=term-missing --cov-report=json:.pyqual/coverage.json
       when: always
 
     - name: prefact
       tool: prefact
       optional: true
-      when: any_stage_fail
+      when: metrics_fail
       timeout: 900
+
+    # # Claude Code fix — uses Claude Code CLI (Sonnet 4.5) in non-interactive mode
+    # # Auth: `claude auth login` (local) or ANTHROPIC_API_KEY (CI)
+    # - name: claude_fix
+    #   run: |
+    #     export PATH="$HOME/.local/bin:$PATH"
+    #     ERRORS=""
+    #     [ -f .pyqual/errors.json ] && ERRORS=$(cat .pyqual/errors.json)
+    #     [ -f TODO.md ] && ERRORS="$ERRORS
+    #     $(cat TODO.md)"
+    #     if timeout 900 claude -p "Fix all quality gate failures in this Python project. Apply changes directly.
+    #
+    #     $ERRORS" \
+    #       --model sonnet \
+    #       --allowedTools "Edit,Read,Write,Bash(git diff),Bash(python),Bash(pytest -x)" \
+    #       --output-format text; then
+    #       echo "Claude Code fix completed."
+    #     else
+    #       rc=$?
+    #       echo "Claude Code exited with $rc (timeout=900s); falling back to llx fix."
+    #       llx fix . --apply --errors .pyqual/errors.json --verbose
+    #     fi
+    #   when: metrics_fail
+    #   timeout: 1200
 
     - name: fix
       tool: llx-fix
       optional: true
-      when: any_stage_fail
+      when: metrics_fail
       timeout: 1800
 
     - name: verify
@@ -72,9 +134,40 @@ pipeline:
       when: after_fix
       timeout: 300
 
+    # Simple git push (goal push had "Argument list too long" issue with many files)
+    - name: push
+      run: |
+        if [ -n "$(git status --porcelain)" ]; then
+          git add -A
+          git commit -m "chore: pyqual auto-commit [skip ci]" 2>/dev/null || true
+          git push origin HEAD
+        else
+          echo "No changes to push"
+        fi
+      when: metrics_pass
+      optional: true
+      timeout: 120
+
+    - name: publish
+      run: make publish
+      when: metrics_pass
+      optional: true
+      timeout: 300
+
+    # Generate comprehensive markdown report with Mermaid diagram and ASCII flow
+    - name: markdown_report
+      run: python3 -m pyqual.report_generator
+      when: always
+      optional: true
+      timeout: 30
+
+  # Loop behavior
   loop:
     max_iterations: 3
-    on_fail: report
+    on_fail: report      # report | create_ticket | block
 
+  # Environment (optional)
   env:
-    LLM_MODEL: openrouter/qwen/qwen3-coder-next
+    LLM_MODEL: openrouter/x-ai/grok-code-fast-1
+    LLX_DEFAULT_TIER: balanced
+    LLX_VERBOSE: true

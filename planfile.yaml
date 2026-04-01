@@ -2851,3 +2851,55 @@ sprints:
     model_hints:
       planning: balanced
       implementation: balanced
+  - id: ticket-4fb302bf
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in .tox/.pkg/bin/activate_this.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - .tox/.pkg/bin/activate_this.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-5783098c
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in .tox/lint/bin/activate_this.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - .tox/lint/bin/activate_this.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-4af8d04a
+    name: Fix unused-imports issues
+    description: Resolve 4 unused-imports issues in src/vallm/validators/file_cache.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - src/vallm/validators/file_cache.py
+    rule_id: unused-imports
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-5bffe6eb
+    name: Fix outdated-dependency issues
+    description: Resolve 1 outdated-dependency issues in pyproject.toml
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - pyproject.toml
+    rule_id: outdated-dependency
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced

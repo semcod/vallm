@@ -185,11 +185,17 @@ build:
 
 publish-test: build
 	@echo "🚀 Publishing to TestPyPI..."
-	$(PYTHON) -m venv publish-test-env
-	publish-test-env/bin/pip install twine
-	publish-test-env/bin/python -m twine upload --repository testpypi dist/*
-	rm -rf publish-test-env
-	@echo "✓ Published to TestPyPI"
+	@bash -c 'if [ -z "$${TWINE_USERNAME}" ] && [ -z "$${TWINE_PASSWORD}" ] && [ -z "$${PYPI_API_TOKEN}" ]; then \
+		echo "⚠️  No PyPI credentials found. Set TWINE_USERNAME and TWINE_PASSWORD or PYPI_API_TOKEN"; \
+		echo "   Example: TWINE_USERNAME=__token__ TWINE_PASSWORD=pypi-xxx make publish-test"; \
+		echo "   Skipping publish-test."; \
+	else \
+		$(PYTHON) -m venv publish-test-env && \
+		publish-test-env/bin/pip install twine && \
+		publish-test-env/bin/python -m twine upload --repository testpypi dist/* && \
+		rm -rf publish-test-env && \
+		echo "✓ Published to TestPyPI"; \
+	fi'
 
 bump-patch:
 	@echo "🔢 Bumping patch version..."
@@ -205,16 +211,22 @@ bump-major:
 
 publish: build
 	@echo "🚀 Publishing to PyPI..."
-	@echo "🔢 Bumping patch version..."
-	$(MAKE) bump-patch
-	@echo "🔨 Rebuilding package with new version..."
-	$(MAKE) build
-	@echo "📦 Publishing to PyPI..."
-	$(PYTHON) -m venv publish-env
-	publish-env/bin/pip install twine
-	publish-env/bin/python -m twine upload dist/*
-	rm -rf publish-env
-	@echo "✓ Published to PyPI"
+	@bash -c 'if [ -z "$${TWINE_USERNAME}" ] && [ -z "$${TWINE_PASSWORD}" ] && [ -z "$${PYPI_API_TOKEN}" ]; then \
+		echo "⚠️  No PyPI credentials found. Set TWINE_USERNAME and TWINE_PASSWORD or PYPI_API_TOKEN"; \
+		echo "   Example: TWINE_USERNAME=__token__ TWINE_PASSWORD=pypi-xxx make publish"; \
+		echo "   Skipping publish."; \
+	else \
+		echo "🔢 Bumping patch version..."; \
+		$(MAKE) bump-patch; \
+		echo "🔨 Rebuilding package with new version..."; \
+		$(MAKE) build; \
+		echo "📦 Publishing to PyPI..."; \
+		$(PYTHON) -m venv publish-env; \
+		publish-env/bin/pip install twine; \
+		publish-env/bin/python -m twine upload dist/*; \
+		rm -rf publish-env; \
+		echo "✓ Published to PyPI"; \
+	fi'
 
 # =============================================================================
 # Visualization

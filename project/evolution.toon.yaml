@@ -1,31 +1,14 @@
-# code2llm/evolution | 209 func | 32f | 2026-03-30
+# code2llm/evolution | 235 func | 33f | 2026-03-31
 
-NEXT[4] (ranked by impact):
-  [1] !! SPLIT           mcp/server/_tools_vallm.py
-      WHY: 508L, 0 classes, max CC=22
-      EFFORT: ~4h  IMPACT: 11176
+NEXT[0]: no refactoring needed
 
-  [2] !! SPLIT-FUNC      BatchProcessor._process_files  CC=26  fan=12
-      WHY: CC=26 exceeds 15
-      EFFORT: ~1h  IMPACT: 312
-
-  [3] !! SPLIT-FUNC      walk  CC=27  fan=11
-      WHY: CC=27 exceeds 15
-      EFFORT: ~1h  IMPACT: 297
-
-  [4] !  SPLIT-FUNC      validate_code  CC=22  fan=12
-      WHY: CC=22 exceeds 15
-      EFFORT: ~1h  IMPACT: 264
-
-
-RISKS[1]:
-  ⚠ Splitting mcp/server/_tools_vallm.py may break 8 import paths
+RISKS[0]: none
 
 METRICS-TARGET:
   CC̄:          3.4 → ≤2.4
-  max-CC:      27 → ≤13
-  god-modules: 1 → 0
-  high-CC(≥15): 3 → ≤1
+  max-CC:      14 → ≤7
+  god-modules: 0 → 0
+  high-CC(≥15): 0 → ≤0
   hub-types:   0 → ≤0
 
 PATTERNS (language parser shared logic):
@@ -53,4 +36,4 @@ PATTERNS (language parser shared logic):
     - Standardized FunctionInfo/ClassInfo models
 
 HISTORY:
-  prev CC̄=3.5 → now CC̄=3.4
+  prev CC̄=3.4 → now CC̄=3.4

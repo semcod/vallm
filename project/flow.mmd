@@ -4,32 +4,22 @@ flowchart TD
     classDef entry fill:#4dabf7,stroke:#1971c2,color:#fff
 
     subgraph Core
-        mcp__server___tools_vallm__validate_code{{validate_code CC=22}}
-        mcp__server___tools_vallm__handle_validate_syntax["handle_validate_syntax"]
-        mcp__server___tools_vallm__handle_validate_imports["handle_validate_imports"]
-        mcp__server___tools_vallm__handle_validate_security["handle_validate_security"]
-        mcp__server___tools_vallm__handle_validate_code["handle_validate_code"]
-        publish_env__lib__python3__13__site_packages__cryptography__fernet__Fernet__generate_key["generate_key"]
-        publish_env__lib__python3__13__site_packages__cryptography__fernet__Fernet__encrypt["encrypt"]
-        publish_env__lib__python3__13__site_packages__cryptography__fernet__Fernet__encrypt_at_time["encrypt_at_time"]
-        publish_env__lib__python3__13__site_packages__cryptography__fernet__Fernet___encrypt_from_parts["_encrypt_from_parts"]
-        publish_env__lib__python3__13__site_packages__cryptography__fernet__Fernet__decrypt["decrypt"]
-        publish_env__lib__python3__13__site_packages__cryptography__fernet__Fernet__decrypt_at_time["decrypt_at_time"]
-        publish_env__lib__python3__13__site_packages__cryptography__fernet__Fernet__extract_timestamp["extract_timestamp"]
-        publish_env__lib__python3__13__site_packages__cryptography__fernet__Fernet___get_unverified_token_data["_get_unverified_token_data"]
-        publish_env__lib__python3__13__site_packages__cryptography__fernet__Fernet___verify_signature["_verify_signature"]
-        publish_env__lib__python3__13__site_packages__cryptography__fernet__Fernet___decrypt_data["_decrypt_data"]
-        ...["+9244 more"]
+        src__vallm__hookspecs__VallmSpec__validate_proposal["validate_proposal"]
+        src__vallm__hookspecs__VallmSpec__get_validator_name["get_validator_name"]
+        src__vallm__hookspecs__VallmSpec__get_validator_tier["get_validator_tier"]
+        src__vallm__validators__file_cache__FileValidationCache___key["_key"]
+        src__vallm__validators__file_cache__FileValidationCache__get["get"]
+        src__vallm__validators__file_cache__FileValidationCache__clear["clear"]
+        src__vallm__validators__file_cache__clear_file_cache["clear_file_cache"]
+        src__vallm__validators__logical__LogicalErrorValidator__validate["validate"]
+        src__vallm__validators__logical__LogicalErrorValidator___check_pyflakes["_check_pyflakes"]
+        src__vallm__validators__logical__LogicalErrorValidator___parse_pyflakes_line["_parse_pyflakes_line"]
+        src__vallm__validators__logical__create_validator["create_validator"]
+        src__vallm__validators__complexity__ComplexityValidator__validate["validate"]
+        src__vallm__validators__complexity__ComplexityValidator___check_python_complexity["_check_python_complexity"]
+        src__vallm__validators__complexity__ComplexityValidator___check_lizard["_check_lizard"]
+        src__vallm__validators__regression__RegressionValidator__validate["validate"]
+        ...["+162 more"]
     end
 
-    subgraph Exporters
-        publish_env__lib__python3__13__site_packages__cffi__recompiler__Recompiler___generate_cpy_dllexport_python_decl["_generate_cpy_dllexport_python"]
-        publish_env__lib__python3__13__site_packages__rich__console__Console__export_text["export_text"]
-        publish_env__lib__python3__13__site_packages__rich__console__Console__export_html["export_html"]
-        publish_env__lib__python3__13__site_packages__rich__console__Console__export_svg["export_svg"]
-        publish_env__lib__python3__13__site_packages__pip___vendor__rich__console__Console__export_text["export_text"]
-        publish_env__lib__python3__13__site_packages__pip___vendor__rich__console__Console__export_html["export_html"]
-        publish_env__lib__python3__13__site_packages__pip___vendor__rich__console__Console__export_svg["export_svg"]
-    end
-
-    class mcp__server___tools_vallm__handle_validate_syntax,mcp__server___tools_vallm__handle_validate_imports,mcp__server___tools_vallm__handle_validate_security,mcp__server___tools_vallm__handle_validate_code,publish_env__lib__python3__13__site_packages__cryptography__fernet__Fernet__generate_key,publish_env__lib__python3__13__site_packages__cryptography__fernet__Fernet__encrypt,publish_env__lib__python3__13__site_packages__cryptography__fernet__Fernet__encrypt_at_time,publish_env__lib__python3__13__site_packages__cryptography__fernet__Fernet___encrypt_from_parts,publish_env__lib__python3__13__site_packages__cryptography__fernet__Fernet__decrypt,publish_env__lib__python3__13__site_packages__cryptography__fernet__Fernet__decrypt_at_time entry
+    class src__vallm__hookspecs__VallmSpec__validate_proposal,src__vallm__hookspecs__VallmSpec__get_validator_name,src__vallm__hookspecs__VallmSpec__get_validator_tier,src__vallm__validators__file_cache__FileValidationCache___key,src__vallm__validators__file_cache__FileValidationCache__get,src__vallm__validators__file_cache__FileValidationCache__clear,src__vallm__validators__file_cache__clear_file_cache,src__vallm__validators__logical__LogicalErrorValidator__validate,src__vallm__validators__logical__LogicalErrorValidator___check_pyflakes,src__vallm__validators__logical__LogicalErrorValidator___parse_pyflakes_line entry

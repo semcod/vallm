@@ -4262,7 +4262,7 @@
     "code": "F401",
     "end_location": {
       "column": 23,
-      "row": 11
+      "row": 13
     },
     "filename": "/home/tom/github/semcod/vallm/src/vallm/cli/batch_processor.py",
     "fix": {
@@ -4272,11 +4272,11 @@
           "content": "from vallm.cli.output_formatters import (\n    output_batch_results,\n)",
           "end_location": {
             "column": 2,
-            "row": 13
+            "row": 15
           },
           "location": {
             "column": 1,
-            "row": 10
+            "row": 12
           }
         }
       ],
@@ -4284,10 +4284,10 @@
     },
     "location": {
       "column": 5,
-      "row": 11
+      "row": 13
     },
     "message": "`vallm.cli.output_formatters.output_batch_empty` imported but unused",
-    "noqa_row": 11,
+    "noqa_row": 13,
     "url": "https://docs.astral.sh/ruff/rules/unused-import"
   },
   {
@@ -4295,7 +4295,7 @@
     "code": "F401",
     "end_location": {
       "column": 44,
-      "row": 18
+      "row": 20
     },
     "filename": "/home/tom/github/semcod/vallm/src/vallm/cli/batch_processor.py",
     "fix": {
@@ -4305,11 +4305,11 @@
           "content": "from vallm.scoring import validate",
           "end_location": {
             "column": 44,
-            "row": 18
+            "row": 20
           },
           "location": {
             "column": 1,
-            "row": 18
+            "row": 20
           }
         }
       ],
@@ -4317,10 +4317,10 @@
     },
     "location": {
       "column": 37,
-      "row": 18
+      "row": 20
     },
     "message": "`vallm.scoring.Verdict` imported but unused",
-    "noqa_row": 18,
+    "noqa_row": 20,
     "url": "https://docs.astral.sh/ruff/rules/unused-import"
   },
   {
@@ -4328,7 +4328,7 @@
     "code": "F541",
     "end_location": {
       "column": 89,
-      "row": 84
+      "row": 151
     },
     "filename": "/home/tom/github/semcod/vallm/src/vallm/cli/batch_processor.py",
     "fix": {
@@ -4338,11 +4338,11 @@
           "content": "\"[dim]No .gitignore found, using default excludes[/dim]\"",
           "end_location": {
             "column": 89,
-            "row": 84
+            "row": 151
           },
           "location": {
             "column": 32,
-            "row": 84
+            "row": 151
           }
         }
       ],
@@ -4350,51 +4350,18 @@
     },
     "location": {
       "column": 32,
-      "row": 84
+      "row": 151
     },
     "message": "f-string without any placeholders",
-    "noqa_row": 84,
+    "noqa_row": 151,
     "url": "https://docs.astral.sh/ruff/rules/f-string-missing-placeholders"
-  },
-  {
-    "cell": null,
-    "code": "F401",
-    "end_location": {
-      "column": 23,
-      "row": 138
-    },
-    "filename": "/home/tom/github/semcod/vallm/src/vallm/cli/batch_processor.py",
-    "fix": {
-      "applicability": "safe",
-      "edits": [
-        {
-          "content": "",
-          "end_location": {
-            "column": 1,
-            "row": 139
-          },
-          "location": {
-            "column": 1,
-            "row": 138
-          }
-        }
-      ],
-      "message": "Remove unused import: `fnmatch`"
-    },
-    "location": {
-      "column": 16,
-      "row": 138
-    },
-    "message": "`fnmatch` imported but unused",
-    "noqa_row": 138,
-    "url": "https://docs.astral.sh/ruff/rules/unused-import"
   },
   {
     "cell": null,
     "code": "F811",
     "end_location": {
       "column": 67,
-      "row": 225
+      "row": 288
     },
     "filename": "/home/tom/github/semcod/vallm/src/vallm/cli/batch_processor.py",
     "fix": {
@@ -4404,11 +4371,11 @@
           "content": "",
           "end_location": {
             "column": 1,
-            "row": 226
+            "row": 289
           },
           "location": {
             "column": 1,
-            "row": 225
+            "row": 288
           }
         }
       ],
@@ -4416,10 +4383,10 @@
     },
     "location": {
       "column": 49,
-      "row": 225
+      "row": 288
     },
-    "message": "Redefinition of unused `output_batch_empty` from line 11: `output_batch_empty` redefined here",
-    "noqa_row": 225,
+    "message": "Redefinition of unused `output_batch_empty` from line 13: `output_batch_empty` redefined here",
+    "noqa_row": 288,
     "url": "https://docs.astral.sh/ruff/rules/redefined-while-unused"
   },
   {
@@ -4822,6 +4789,39 @@
   },
   {
     "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 15,
+      "row": 10
+    },
+    "filename": "/home/tom/github/semcod/vallm/src/vallm/validators/file_cache.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 11
+          },
+          "location": {
+            "column": 1,
+            "row": 10
+          }
+        }
+      ],
+      "message": "Remove unused import: `hashlib`"
+    },
+    "location": {
+      "column": 8,
+      "row": 10
+    },
+    "message": "`hashlib` imported but unused",
+    "noqa_row": 10,
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
     "code": "F821",
     "end_location": {
       "column": 32,
@@ -5123,7 +5123,7 @@
     "code": "F841",
     "end_location": {
       "column": 17,
-      "row": 65
+      "row": 84
     },
     "filename": "/home/tom/github/semcod/vallm/src/vallm/validators/imports/python_imports.py",
     "fix": {
@@ -5133,11 +5133,11 @@
           "content": "",
           "end_location": {
             "column": 20,
-            "row": 65
+            "row": 84
           },
           "location": {
             "column": 13,
-            "row": 65
+            "row": 84
           }
         }
       ],
@@ -5145,10 +5145,10 @@
     },
     "location": {
       "column": 13,
-      "row": 65
+      "row": 84
     },
     "message": "Local variable `tree` is assigned to but never used",
-    "noqa_row": 65,
+    "noqa_row": 84,
     "url": "https://docs.astral.sh/ruff/rules/unused-variable"
   },
   {
@@ -5348,386 +5348,6 @@
     "message": "`typing.Tuple` imported but unused",
     "noqa_row": 9,
     "url": "https://docs.astral.sh/ruff/rules/unused-import"
-  },
-  {
-    "cell": null,
-    "code": "F401",
-    "end_location": {
-      "column": 12,
-      "row": 8
-    },
-    "filename": "/home/tom/github/semcod/vallm/test_mcp.py",
-    "fix": {
-      "applicability": "safe",
-      "edits": [
-        {
-          "content": "",
-          "end_location": {
-            "column": 1,
-            "row": 9
-          },
-          "location": {
-            "column": 1,
-            "row": 8
-          }
-        }
-      ],
-      "message": "Remove unused import: `json`"
-    },
-    "location": {
-      "column": 8,
-      "row": 8
-    },
-    "message": "`json` imported but unused",
-    "noqa_row": 8,
-    "url": "https://docs.astral.sh/ruff/rules/unused-import"
-  },
-  {
-    "cell": null,
-    "code": "E402",
-    "end_location": {
-      "column": 2,
-      "row": 24
-    },
-    "filename": "/home/tom/github/semcod/vallm/test_mcp.py",
-    "fix": null,
-    "location": {
-      "column": 1,
-      "row": 19
-    },
-    "message": "Module level import not at top of file",
-    "noqa_row": 19,
-    "url": "https://docs.astral.sh/ruff/rules/module-import-not-at-top-of-file"
-  },
-  {
-    "cell": null,
-    "code": "E712",
-    "end_location": {
-      "column": 37,
-      "row": 33
-    },
-    "filename": "/home/tom/github/semcod/vallm/test_mcp.py",
-    "fix": {
-      "applicability": "unsafe",
-      "edits": [
-        {
-          "content": "result['success']",
-          "end_location": {
-            "column": 37,
-            "row": 33
-          },
-          "location": {
-            "column": 12,
-            "row": 33
-          }
-        }
-      ],
-      "message": "Replace with `result['success']`"
-    },
-    "location": {
-      "column": 12,
-      "row": 33
-    },
-    "message": "Avoid equality comparisons to `True`; use `result['success']:` for truth checks",
-    "noqa_row": 33,
-    "url": "https://docs.astral.sh/ruff/rules/true-false-comparison"
-  },
-  {
-    "cell": null,
-    "code": "E712",
-    "end_location": {
-      "column": 37,
-      "row": 39
-    },
-    "filename": "/home/tom/github/semcod/vallm/test_mcp.py",
-    "fix": {
-      "applicability": "unsafe",
-      "edits": [
-        {
-          "content": "result['success']",
-          "end_location": {
-            "column": 37,
-            "row": 39
-          },
-          "location": {
-            "column": 12,
-            "row": 39
-          }
-        }
-      ],
-      "message": "Replace with `result['success']`"
-    },
-    "location": {
-      "column": 12,
-      "row": 39
-    },
-    "message": "Avoid equality comparisons to `True`; use `result['success']:` for truth checks",
-    "noqa_row": 39,
-    "url": "https://docs.astral.sh/ruff/rules/true-false-comparison"
-  },
-  {
-    "cell": null,
-    "code": "E712",
-    "end_location": {
-      "column": 37,
-      "row": 46
-    },
-    "filename": "/home/tom/github/semcod/vallm/test_mcp.py",
-    "fix": {
-      "applicability": "unsafe",
-      "edits": [
-        {
-          "content": "result['success']",
-          "end_location": {
-            "column": 37,
-            "row": 46
-          },
-          "location": {
-            "column": 12,
-            "row": 46
-          }
-        }
-      ],
-      "message": "Replace with `result['success']`"
-    },
-    "location": {
-      "column": 12,
-      "row": 46
-    },
-    "message": "Avoid equality comparisons to `True`; use `result['success']:` for truth checks",
-    "noqa_row": 46,
-    "url": "https://docs.astral.sh/ruff/rules/true-false-comparison"
-  },
-  {
-    "cell": null,
-    "code": "E712",
-    "end_location": {
-      "column": 37,
-      "row": 61
-    },
-    "filename": "/home/tom/github/semcod/vallm/test_mcp.py",
-    "fix": {
-      "applicability": "unsafe",
-      "edits": [
-        {
-          "content": "result['success']",
-          "end_location": {
-            "column": 37,
-            "row": 61
-          },
-          "location": {
-            "column": 12,
-            "row": 61
-          }
-        }
-      ],
-      "message": "Replace with `result['success']`"
-    },
-    "location": {
-      "column": 12,
-      "row": 61
-    },
-    "message": "Avoid equality comparisons to `True`; use `result['success']:` for truth checks",
-    "noqa_row": 61,
-    "url": "https://docs.astral.sh/ruff/rules/true-false-comparison"
-  },
-  {
-    "cell": null,
-    "code": "E712",
-    "end_location": {
-      "column": 37,
-      "row": 70
-    },
-    "filename": "/home/tom/github/semcod/vallm/test_mcp.py",
-    "fix": {
-      "applicability": "unsafe",
-      "edits": [
-        {
-          "content": "result['success']",
-          "end_location": {
-            "column": 37,
-            "row": 70
-          },
-          "location": {
-            "column": 12,
-            "row": 70
-          }
-        }
-      ],
-      "message": "Replace with `result['success']`"
-    },
-    "location": {
-      "column": 12,
-      "row": 70
-    },
-    "message": "Avoid equality comparisons to `True`; use `result['success']:` for truth checks",
-    "noqa_row": 70,
-    "url": "https://docs.astral.sh/ruff/rules/true-false-comparison"
-  },
-  {
-    "cell": null,
-    "code": "E712",
-    "end_location": {
-      "column": 37,
-      "row": 85
-    },
-    "filename": "/home/tom/github/semcod/vallm/test_mcp.py",
-    "fix": {
-      "applicability": "unsafe",
-      "edits": [
-        {
-          "content": "result['success']",
-          "end_location": {
-            "column": 37,
-            "row": 85
-          },
-          "location": {
-            "column": 12,
-            "row": 85
-          }
-        }
-      ],
-      "message": "Replace with `result['success']`"
-    },
-    "location": {
-      "column": 12,
-      "row": 85
-    },
-    "message": "Avoid equality comparisons to `True`; use `result['success']:` for truth checks",
-    "noqa_row": 85,
-    "url": "https://docs.astral.sh/ruff/rules/true-false-comparison"
-  },
-  {
-    "cell": null,
-    "code": "E712",
-    "end_location": {
-      "column": 37,
-      "row": 97
-    },
-    "filename": "/home/tom/github/semcod/vallm/test_mcp.py",
-    "fix": {
-      "applicability": "unsafe",
-      "edits": [
-        {
-          "content": "result['success']",
-          "end_location": {
-            "column": 37,
-            "row": 97
-          },
-          "location": {
-            "column": 12,
-            "row": 97
-          }
-        }
-      ],
-      "message": "Replace with `result['success']`"
-    },
-    "location": {
-      "column": 12,
-      "row": 97
-    },
-    "message": "Avoid equality comparisons to `True`; use `result['success']:` for truth checks",
-    "noqa_row": 97,
-    "url": "https://docs.astral.sh/ruff/rules/true-false-comparison"
-  },
-  {
-    "cell": null,
-    "code": "E712",
-    "end_location": {
-      "column": 37,
-      "row": 115
-    },
-    "filename": "/home/tom/github/semcod/vallm/test_mcp.py",
-    "fix": {
-      "applicability": "unsafe",
-      "edits": [
-        {
-          "content": "result['success']",
-          "end_location": {
-            "column": 37,
-            "row": 115
-          },
-          "location": {
-            "column": 12,
-            "row": 115
-          }
-        }
-      ],
-      "message": "Replace with `result['success']`"
-    },
-    "location": {
-      "column": 12,
-      "row": 115
-    },
-    "message": "Avoid equality comparisons to `True`; use `result['success']:` for truth checks",
-    "noqa_row": 115,
-    "url": "https://docs.astral.sh/ruff/rules/true-false-comparison"
-  },
-  {
-    "cell": null,
-    "code": "E712",
-    "end_location": {
-      "column": 37,
-      "row": 127
-    },
-    "filename": "/home/tom/github/semcod/vallm/test_mcp.py",
-    "fix": {
-      "applicability": "unsafe",
-      "edits": [
-        {
-          "content": "result['success']",
-          "end_location": {
-            "column": 37,
-            "row": 127
-          },
-          "location": {
-            "column": 12,
-            "row": 127
-          }
-        }
-      ],
-      "message": "Replace with `result['success']`"
-    },
-    "location": {
-      "column": 12,
-      "row": 127
-    },
-    "message": "Avoid equality comparisons to `True`; use `result['success']:` for truth checks",
-    "noqa_row": 127,
-    "url": "https://docs.astral.sh/ruff/rules/true-false-comparison"
-  },
-  {
-    "cell": null,
-    "code": "E712",
-    "end_location": {
-      "column": 37,
-      "row": 139
-    },
-    "filename": "/home/tom/github/semcod/vallm/test_mcp.py",
-    "fix": {
-      "applicability": "unsafe",
-      "edits": [
-        {
-          "content": "result['success']",
-          "end_location": {
-            "column": 37,
-            "row": 139
-          },
-          "location": {
-            "column": 12,
-            "row": 139
-          }
-        }
-      ],
-      "message": "Replace with `result['success']`"
-    },
-    "location": {
-      "column": 12,
-      "row": 139
-    },
-    "message": "Avoid equality comparisons to `True`; use `result['success']:` for truth checks",
-    "noqa_row": 139,
-    "url": "https://docs.astral.sh/ruff/rules/true-false-comparison"
   },
   {
     "cell": null,

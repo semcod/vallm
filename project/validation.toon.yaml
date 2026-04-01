@@ -1,7 +1,7 @@
-# vallm batch | 43f | 42✓ 0⚠ 0✗ | 2026-03-31
+# vallm batch | 44f | 43✓ 0⚠ 0✗ | 2026-04-01
 
 SUMMARY:
-  scanned: 43  passed: 42 (97.7%)  warnings: 0  errors: 0  unsupported: 1
+  scanned: 44  passed: 43 (97.7%)  warnings: 0  errors: 0  unsupported: 1
 
 UNSUPPORTED[1]{bucket,count}:
   other,1
