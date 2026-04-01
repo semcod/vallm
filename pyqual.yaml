@@ -72,17 +72,17 @@ pipeline:
         echo "=== setup done ==="
       when: first_iteration
       timeout: 300
-
-    - name: analyze
-      tool: code2llm_vallm
-      optional: true
-      when: first_iteration
-      timeout: 0
-
-    - name: validate
-      tool: vallm_src
-      optional: true
-      timeout: 0
+#
+#    - name: analyze
+#      tool: code2llm_vallm
+#      optional: true
+#      when: first_iteration
+#      timeout: 0
+#
+#    - name: validate
+#      tool: vallm_src
+#      optional: true
+#      timeout: 0
 
     - name: lint
       tool: ruff
