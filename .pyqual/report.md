@@ -1,7 +1,7 @@
 # Pyqual Pipeline Report
 
-**Generated:** 2026-04-01 15:46:22
-**Pipeline run:** 2026-04-01T12:12:40.020421+00:00
+**Generated:** 2026-04-01 15:53:53
+**Pipeline run:** 2026-04-01T13:53:51.218349+00:00
 
 ---
 
@@ -14,19 +14,19 @@ flowchart LR
     S1["validate<br/>0.9s"]
     style S1 fill:#90EE90
     S0 --> S1
-    S2["lint<br/>0.0s"]
+    S2["markdown_report<br/>2.2s"]
     style S2 fill:#90EE90
     S1 --> S2
-    S3["test<br/>6.7s"]
+    S3["lint<br/>0.0s"]
     style S3 fill:#90EE90
     S2 --> S3
-    S4["push<br/>1.9s"]
+    S4["test<br/>8.7s"]
     style S4 fill:#90EE90
     S3 --> S4
-    S5["publish<br/>3.1s"]
+    S5["push<br/>2.4s"]
     style S5 fill:#90EE90
     S4 --> S5
-    S6["markdown_report<br/>2.2s"]
+    S6["publish<br/>3.7s"]
     style S6 fill:#90EE90
     S5 --> S6
     G["✓ All Gates Passed"]
@@ -42,14 +42,14 @@ flowchart LR
 ├─────────────────────────────────────────────────────────────────┤
 │  ✓ analyze                     39.7s 🟢        │
 │  ✓ validate                     0.9s 🟢        │
-│  ✓ lint                         0.0s 🟢        │
-│  ✓ test                         6.7s 🟢        │
-│  ✓ push                         1.9s 🟢        │
-│  ✓ publish                      3.1s 🟢        │
 │  ✓ markdown_report              2.2s 🟢        │
+│  ✓ lint                         0.0s 🟢        │
+│  ✓ test                         8.7s 🟢        │
+│  ✓ push                         2.4s 🟢        │
+│  ✓ publish                      3.7s 🟢        │
 ├─────────────────────────────────────────────────────────────────┤
 │  🎉 ALL GATES PASSED ✓                                           │
-│  ⏱️  Total time: 54.7s                                          │
+│  ⏱️  Total time: 57.7s                                          │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -71,6 +71,11 @@ flowchart LR
 - **Duration:** 0.9s
 - **Return code:** 0
 
+#### ✅ markdown_report
+- **Status:** passed
+- **Duration:** 2.2s
+- **Return code:** 0
+
 #### ✅ lint
 - **Status:** passed
 - **Duration:** 0.0s
@@ -78,22 +83,17 @@ flowchart LR
 
 #### ✅ test
 - **Status:** passed
-- **Duration:** 6.7s
+- **Duration:** 8.7s
 - **Return code:** 0
 
 #### ✅ push
 - **Status:** passed
-- **Duration:** 1.9s
+- **Duration:** 2.4s
 - **Return code:** 0
 
 #### ✅ publish
 - **Status:** passed
-- **Duration:** 3.1s
-- **Return code:** 0
-
-#### ✅ markdown_report
-- **Status:** passed
-- **Duration:** 2.2s
+- **Duration:** 3.7s
 - **Return code:** 0
 
 
@@ -101,4 +101,4 @@ flowchart LR
 
 ## 📝 Summary
 
-✅ **All quality gates passed!** Pipeline completed successfully in 54.7s.
+✅ **All quality gates passed!** Pipeline completed successfully in 57.7s.
