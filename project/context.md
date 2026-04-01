@@ -121,7 +121,7 @@ Main execution flows into the system:
 Args:
     example_name: Name for saving analysis data
     good_code: Example of good code
-- **Calls**: examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, Proposal, src.vallm.validators.complexity.ComplexityValidator.validate, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print
+- **Calls**: examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, Proposal, src.vallm.validators.base.BaseValidator.validate, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print
 
 ### examples.11_claude_code_autonomous.claude_autonomous_demo.main
 > Main entry point.
@@ -135,7 +135,7 @@ Args:
 - **Calls**: typer.Argument, typer.Option, typer.Option, typer.Option, typer.Option, typer.Option, typer.Option, typer.Option
 
 ### examples.05_llm_semantic_review.main.main
-- **Calls**: VallmSettings, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, Proposal, src.vallm.validators.complexity.ComplexityValidator.validate, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print
+- **Calls**: VallmSettings, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, Proposal, src.vallm.validators.base.BaseValidator.validate, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print
 
 ### examples.12_ollama_simple_demo.ollama_simple_demo.main
 > Main function.
@@ -222,7 +222,7 @@ Args:
     name: Example name identifier
     code: Code string to validate
     settings: VallmSettings inst
-- **Calls**: examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, Proposal, src.vallm.validators.complexity.ComplexityValidator.validate, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print
+- **Calls**: examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, Proposal, src.vallm.validators.base.BaseValidator.validate, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print
 
 ### examples.08_code2llm_integration.main.main
 > Main example function.
@@ -465,11 +465,11 @@ Returns:
 
 ### examples.11_claude_code_autonomous.claude_autonomous_demo.validate_with_vallm
 > Validate code using vallm.
-- **Output to**: logger.info, VallmSettings, Proposal, src.vallm.validators.complexity.ComplexityValidator.validate, examples.10_mcp_ollama_demo.run.print
+- **Output to**: logger.info, VallmSettings, Proposal, src.vallm.validators.base.BaseValidator.validate, examples.10_mcp_ollama_demo.run.print
 
 ### examples.12_ollama_simple_demo.ollama_simple_demo.validate_with_vallm
 > Simple vallm validation.
-- **Output to**: examples.12_ollama_simple_demo.ollama_simple_demo.log_step, VallmSettings, Proposal, src.vallm.validators.complexity.ComplexityValidator.validate, examples.10_mcp_ollama_demo.run.print
+- **Output to**: examples.12_ollama_simple_demo.ollama_simple_demo.log_step, VallmSettings, Proposal, src.vallm.validators.base.BaseValidator.validate, examples.10_mcp_ollama_demo.run.print
 
 ### examples.10_mcp_ollama_demo.refactored_output.OrderManager.validate_order
 > Validate order data.
@@ -487,7 +487,7 @@ Returns:
 
 ### examples.07_multi_language.main.validate_single_language
 > Validate a single language code sample.
-- **Output to**: VallmSettings, Proposal, src.vallm.validators.complexity.ComplexityValidator.validate
+- **Output to**: VallmSettings, Proposal, src.vallm.validators.base.BaseValidator.validate
 
 ### examples.07_multi_language.main.validate_all_languages
 > Validate all language samples.
@@ -513,11 +513,11 @@ Returns:
 Args:
     name: Example name identifier
     code: Code s
-- **Output to**: examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, Proposal, src.vallm.validators.complexity.ComplexityValidator.validate
+- **Output to**: examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, Proposal, src.vallm.validators.base.BaseValidator.validate
 
 ### examples.10_mcp_ollama_demo.mcp_demo.validate_with_vallm
 > Validate code using vallm.
-- **Output to**: logger.info, VallmSettings, Proposal, src.vallm.validators.complexity.ComplexityValidator.validate, examples.10_mcp_ollama_demo.run.print
+- **Output to**: logger.info, VallmSettings, Proposal, src.vallm.validators.base.BaseValidator.validate, examples.10_mcp_ollama_demo.run.print
 
 ### src.vallm.hookspecs.VallmSpec.validate_proposal
 > Validate a code proposal and return a ValidationResult.
@@ -526,8 +526,8 @@ Args:
 > Validate all Python files with vallm.
 - **Output to**: examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, VallmSettings, project_path.rglob
 
-### src.vallm.validators.complexity.ComplexityValidator.validate
-- **Output to**: self._check_lizard, issues.extend, details.update, min, ValidationResult
+### src.vallm.validators.base.BaseValidator.validate
+> Validate a proposal and return a result.
 
 ## Behavioral Patterns
 

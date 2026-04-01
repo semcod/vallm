@@ -1,7 +1,7 @@
 # Pyqual Pipeline Report
 
-**Generated:** 2026-04-01 13:57:36
-**Pipeline run:** 2026-04-01T11:57:34.834434+00:00
+**Generated:** 2026-04-01 14:04:30
+**Pipeline run:** 2026-04-01T12:04:28.663223+00:00
 
 ---
 
@@ -11,33 +11,39 @@
 flowchart LR
     S0["claude_fix<br/>6.4s"]
     style S0 fill:#FFB6C1
-    S1["markdown_report<br/>2.4s"]
+    S1["prefact<br/>64.4s"]
     style S1 fill:#90EE90
     S0 --> S1
-    S2["analyze<br/>58.0s"]
+    S2["verify<br/>0.6s"]
     style S2 fill:#90EE90
     S1 --> S2
-    S3["validate<br/>1.1s"]
+    S3["markdown_report<br/>2.4s"]
     style S3 fill:#90EE90
     S2 --> S3
-    S4["lint<br/>0.0s"]
-    style S4 fill:#90EE90
+    S4["unknown<br/>0.0s"]
+    style S4 fill:#FFB6C1
     S3 --> S4
-    S5["test<br/>7.7s"]
+    S5["analyze<br/>36.8s"]
     style S5 fill:#90EE90
     S4 --> S5
-    S6["prefact<br/>64.4s"]
+    S6["validate<br/>1.3s"]
     style S6 fill:#90EE90
     S5 --> S6
-    S7["unknown<br/>0.0s"]
-    style S7 fill:#FFB6C1
+    S7["lint<br/>0.0s"]
+    style S7 fill:#90EE90
     S6 --> S7
-    S8["verify<br/>0.6s"]
+    S8["test<br/>9.2s"]
     style S8 fill:#90EE90
     S7 --> S8
+    S9["push<br/>5.6s"]
+    style S9 fill:#90EE90
+    S8 --> S9
+    S10["publish<br/>2.9s"]
+    style S10 fill:#90EE90
+    S9 --> S10
     G["✗ Gates Failed"]
     style G fill:#FFB6C1,stroke:#DC143C,stroke-width:3px
-    S8 --> G
+    S10 --> G
 ```
 
 ## 📈 ASCII Visualization
@@ -47,17 +53,19 @@ flowchart LR
 │                    PYQUAL PIPELINE FLOW                         │
 ├─────────────────────────────────────────────────────────────────┤
 │  ✗ claude_fix                   6.4s 🔴        │
-│  ✓ markdown_report              2.4s 🟢        │
-│  ✓ analyze                     58.0s 🟢        │
-│  ✓ validate                     1.1s 🟢        │
-│  ✓ lint                         0.0s 🟢        │
-│  ✓ test                         7.7s 🟢        │
 │  ✓ prefact                     64.4s 🟢        │
-│  ✗ unknown                      0.0s 🔴        │
 │  ✓ verify                       0.6s 🟢        │
+│  ✓ markdown_report              2.4s 🟢        │
+│  ✗ unknown                      0.0s 🔴        │
+│  ✓ analyze                     36.8s 🟢        │
+│  ✓ validate                     1.3s 🟢        │
+│  ✓ lint                         0.0s 🟢        │
+│  ✓ test                         9.2s 🟢        │
+│  ✓ push                         5.6s 🟢        │
+│  ✓ publish                      2.9s 🟢        │
 ├─────────────────────────────────────────────────────────────────┤
 │  ❌ SOME GATES FAILED                                            │
-│  ⏱️  Total time: 140.6s                                          │
+│  ⏱️  Total time: 129.6s                                          │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -73,19 +81,33 @@ flowchart LR
 - **Duration:** 6.4s
 - **Return code:** 1
 
+#### ✅ prefact
+- **Status:** passed
+- **Duration:** 64.4s
+- **Return code:** 0
+
+#### ✅ verify
+- **Status:** passed
+- **Duration:** 0.6s
+- **Return code:** 0
+
 #### ✅ markdown_report
 - **Status:** passed
 - **Duration:** 2.4s
 - **Return code:** 0
 
+#### ❌ unknown
+- **Status:** failed
+- **Duration:** 0.0s
+
 #### ✅ analyze
 - **Status:** passed
-- **Duration:** 58.0s
+- **Duration:** 36.8s
 - **Return code:** 0
 
 #### ✅ validate
 - **Status:** passed
-- **Duration:** 1.1s
+- **Duration:** 1.3s
 - **Return code:** 0
 
 #### ✅ lint
@@ -95,21 +117,17 @@ flowchart LR
 
 #### ✅ test
 - **Status:** passed
-- **Duration:** 7.7s
+- **Duration:** 9.2s
 - **Return code:** 0
 
-#### ✅ prefact
+#### ✅ push
 - **Status:** passed
-- **Duration:** 64.4s
+- **Duration:** 5.6s
 - **Return code:** 0
 
-#### ❌ unknown
-- **Status:** failed
-- **Duration:** 0.0s
-
-#### ✅ verify
+#### ✅ publish
 - **Status:** passed
-- **Duration:** 0.6s
+- **Duration:** 2.9s
 - **Return code:** 0
 
 

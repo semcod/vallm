@@ -6,7 +6,7 @@ HEALTH[0]: ok
 REFACTOR[1]:
   1. break 2 circular dependencies
 
-PIPELINES[180]:
+PIPELINES[181]:
   [1] Src [main]: main → run_validation_examples → print
       PURITY: 100% pure
   [2] Src [main]: main → print
@@ -39,7 +39,7 @@ LAYERS:
   │ languages                  227L  1C    6m  CC=6      ←5
   │ scoring                    218L  5C    8m  CC=7      ←0
   │ semantic_cache             187L  1C    8m  CC=5      ←2
-  │ complexity                 183L  1C    4m  CC=12     ←12
+  │ complexity                 183L  1C    4m  CC=12     ←0
   │ lint                       182L  1C    6m  CC=9      ←0
   │ python_imports             179L  1C    8m  CC=14     ←0
   │ utils                      155L  0C    4m  CC=14     ←5
@@ -62,7 +62,7 @@ LAYERS:
   │ hookspecs                   33L  1C    3m  CC=1      ←0
   │ wrapper                     30L  1C    1m  CC=2      ←0
   │ __init__                    25L  0C    0m  CC=0.0    ←0
-  │ base                        21L  1C    1m  CC=1      ←0
+  │ base                        21L  1C    1m  CC=1      ←12
   │ __init__                    19L  0C    0m  CC=0.0    ←0
   │ __main__                     5L  0C    0m  CC=0.0    ←0
   │ __init__                     3L  0C    0m  CC=0.0    ←0
