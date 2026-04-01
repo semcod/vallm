@@ -530,6 +530,71 @@ llm_provider = "ollama"
 llm_model = "qwen2.5-coder:7b"
 ```
 
+## Quality Pipeline (pyqual)
+
+vallm uses **pyqual** — a declarative quality gate system — to ensure code meets all quality standards before shipping.
+
+### Quality Gates
+
+| Gate | Metric | Threshold | Current |
+|------|--------|-----------|---------|
+| Cyclomatic Complexity | cc | ≤ 15 | 3.4 ✅ |
+| Vallm Pass Rate | vallm_pass | ≥ 90% | 97.7% ✅ |
+| Test Coverage | coverage | ≥ 55% | 63.9% ✅ |
+
+### Pipeline Stages
+
+```yaml
+# pyqual.yaml
+pipeline:
+  name: quality-loop-with-llx
+  
+  metrics:
+    cc_max: 15
+    vallm_pass_min: 90
+    coverage_min: 55
+  
+  stages:
+    - setup        # Dependency check
+    - analyze      # code2llm analysis
+    - validate     # vallm batch validation
+    - lint         # ruff linting
+    - test         # pytest with coverage
+    - prefact      # Prefactoring (optional)
+    - fix          # Auto-fix with LLX (optional)
+    - verify       # Post-fix validation
+    - push         # Auto-commit & push
+    - publish      # Build & publish
+```
+
+### Running the Pipeline
+
+```bash
+# Full pipeline with quality gates
+pyqual run
+
+# Check current metrics
+pyqual status
+
+# View pipeline logs
+pyqual logs
+
+# Validate pyqual.yaml config
+pyqual validate
+```
+
+### Publishing to PyPI
+
+```bash
+# Set credentials and publish
+TWINE_USERNAME=__token__ TWINE_PASSWORD=pypi-xxx make publish
+
+# Or publish to TestPyPI
+TWINE_USERNAME=__token__ TWINE_PASSWORD=pypi-xxx make publish-test
+```
+
+Without credentials, the publish stage gracefully skips with a warning.
+
 ## MCP Integration
 
 vallm provides **Model Context Protocol (MCP)** server integration, exposing validation tools as MCP endpoints for LLM tool calling.

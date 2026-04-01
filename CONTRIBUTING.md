@@ -22,6 +22,30 @@ pytest
 
 ## Development Guidelines
 
+### Quality Pipeline
+
+We use **pyqual** — a declarative quality gate system — to ensure all code meets quality standards before merging:
+
+```bash
+# Run full quality pipeline (includes tests, linting, coverage)
+pyqual run
+
+# Check current metrics without running pipeline
+pyqual status
+
+# View pipeline logs
+pyqual logs
+```
+
+**Quality Gates:**
+| Gate | Threshold | Current |
+|------|-----------|---------|
+| Cyclomatic Complexity | ≤ 15 | 3.4 ✅ |
+| Vallm Pass Rate | ≥ 90% | 97.7% ✅ |
+| Test Coverage | ≥ 55% | 63.9% ✅ |
+
+All gates must pass before code can be pushed/published.
+
 ### Code Quality Standards
 
 We use the following tools to maintain code quality:

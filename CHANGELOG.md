@@ -1,3 +1,22 @@
+## [0.1.72] - 2026-04-01
+
+### Added (Quality Pipeline)
+- **pyqual integration** — Declarative quality gate system with automated pipeline
+  - Quality gates: cc ≤ 15, vallm_pass ≥ 90%, coverage ≥ 55%
+  - Automated stages: setup → analyze → validate → test → push → publish
+  - Pipeline config in `pyqual.yaml`
+- **Automated publishing** — `make publish` and `make publish-test` with credential checking
+  - Graceful skip when TWINE_USERNAME/PYPI_API_TOKEN not set
+  - Non-interactive twine upload support
+
+### Changed
+- **test stage** — Added pytest-cov for coverage reporting (63.9% current)
+- **Makefile** — Fixed publish targets to handle missing credentials gracefully
+
+### Docs
+- **README.md** — Added "Quality Pipeline (pyqual)" section with gates and commands
+- **pyqual.yaml** — Full pipeline configuration with 11 stages and 3 quality gates
+
 ## [0.1.9] - 2026-03-22
 
 ## [0.1.10] - 2026-03-30

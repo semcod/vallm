@@ -412,16 +412,16 @@ The validator writes the proposed co
 - **Key Methods**: src.vallm.validators.imports.java_imports.JavaImportValidator.get_language, src.vallm.validators.imports.java_imports.JavaImportValidator._get_error_message, src.vallm.validators.imports.java_imports.JavaImportValidator._get_rule_name, src.vallm.validators.imports.java_imports.JavaImportValidator.extract_imports, src.vallm.validators.imports.java_imports.JavaImportValidator.module_exists
 - **Inherits**: BaseImportValidator
 
+### src.vallm.validators.logical.LogicalErrorValidator
+> Validator for logical errors using pyflakes.
+- **Methods**: 4
+- **Key Methods**: src.vallm.validators.logical.LogicalErrorValidator.__init__, src.vallm.validators.logical.LogicalErrorValidator.validate, src.vallm.validators.logical.LogicalErrorValidator._check_pyflakes, src.vallm.validators.logical.LogicalErrorValidator._parse_pyflakes_line
+
 ### src.vallm.validators.complexity.ComplexityValidator
 > Tier 2: Cyclomatic complexity, maintainability index, and function metrics.
 - **Methods**: 4
 - **Key Methods**: src.vallm.validators.complexity.ComplexityValidator.__init__, src.vallm.validators.complexity.ComplexityValidator.validate, src.vallm.validators.complexity.ComplexityValidator._check_python_complexity, src.vallm.validators.complexity.ComplexityValidator._check_lizard
 - **Inherits**: BaseValidator
-
-### src.vallm.validators.logical.LogicalErrorValidator
-> Validator for logical errors using pyflakes.
-- **Methods**: 4
-- **Key Methods**: src.vallm.validators.logical.LogicalErrorValidator.__init__, src.vallm.validators.logical.LogicalErrorValidator.validate, src.vallm.validators.logical.LogicalErrorValidator._check_pyflakes, src.vallm.validators.logical.LogicalErrorValidator._parse_pyflakes_line
 
 ## Data Transformation Functions
 
@@ -463,13 +463,13 @@ Returns:
  
 - **Output to**: user_input.startswith, user_input.startswith, str, examples.10_mcp_ollama_demo.run.print, user_input.lower
 
-### examples.11_claude_code_autonomous.claude_autonomous_demo.validate_with_vallm
-> Validate code using vallm.
-- **Output to**: logger.info, VallmSettings, Proposal, src.vallm.validators.base.BaseValidator.validate, examples.10_mcp_ollama_demo.run.print
-
 ### examples.12_ollama_simple_demo.ollama_simple_demo.validate_with_vallm
 > Simple vallm validation.
 - **Output to**: examples.12_ollama_simple_demo.ollama_simple_demo.log_step, VallmSettings, Proposal, src.vallm.validators.base.BaseValidator.validate, examples.10_mcp_ollama_demo.run.print
+
+### examples.11_claude_code_autonomous.claude_autonomous_demo.validate_with_vallm
+> Validate code using vallm.
+- **Output to**: logger.info, VallmSettings, Proposal, src.vallm.validators.base.BaseValidator.validate, examples.10_mcp_ollama_demo.run.print
 
 ### examples.10_mcp_ollama_demo.refactored_output.OrderManager.validate_order
 > Validate order data.
