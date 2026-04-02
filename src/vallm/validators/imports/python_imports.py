@@ -3,7 +3,7 @@
 import ast
 import importlib.util
 from pathlib import Path
-from typing import List, Dict, Any, Set
+from typing import List, Dict, Any, Set, Optional
 from vallm.core.proposal import Proposal
 from vallm.scoring import Issue, Severity, ValidationResult
 from .base import BaseImportValidator
@@ -87,8 +87,18 @@ class PythonImportValidator(BaseImportValidator):
             for import_info in imports:
                 module_name = import_info["module"]
                 line = import_info["line"]
+                level = import_info.get("level", 0)
                 
-                if not self.module_exists(module_name):
+                if level > 0:
+                    # Relative import - resolve against source file
+                    if not self._relative_import_exists(module_name, level, proposal.filename):
+                        issues.append(Issue(
+                            message=f"Relative import '{module_name}' not found",
+                            severity=Severity.ERROR,
+                            line=line,
+                            rule="python.import.relative.resolvable"
+                        ))
+                elif not self.module_exists(module_name):
                     issues.append(Issue(
                         message=f"Module '{module_name}' not found",
                         severity=Severity.ERROR,
@@ -114,6 +124,40 @@ class PythonImportValidator(BaseImportValidator):
                 details={"error": str(e), "language": "python"},
             )
     
+    def _relative_import_exists(self, module_name: str, level: int, filename: Optional[str]) -> bool:
+        """Check if a relative import resolves to an existing module."""
+        if not filename:
+            # Without filename context, we can't validate relative imports
+            return True
+        
+        source_path = Path(filename).resolve()
+        base_path = source_path.parent
+        
+        # Go up directories for each level (beyond the first dot)
+        for _ in range(level - 1):
+            base_path = base_path.parent
+        
+        # Resolve the module path
+        module_parts = module_name.split(".")
+        target_path = base_path
+        
+        # Navigate through package structure
+        for part in module_parts[:-1] if len(module_parts) > 1 else []:
+            target_path = target_path / part
+        
+        # Check final module
+        final_name = module_parts[-1] if module_parts else module_name
+        
+        # Check as module file
+        if (target_path / f"{final_name}.py").exists():
+            return True
+        
+        # Check as package
+        if (target_path / final_name / "__init__.py").exists():
+            return True
+        
+        return False
+    
     def extract_imports(self, code: str) -> List[Dict[str, Any]]:
         """Extract import statements from Python code using AST."""
         imports = []
@@ -131,12 +175,14 @@ class PythonImportValidator(BaseImportValidator):
                             "line": node.lineno
                         })
                 elif isinstance(node, ast.ImportFrom):
-                    if node.level > 0 or node.lineno in guarded:
+                    if node.lineno in guarded:
                         continue
+                    # Handle relative imports by storing the level
                     if node.module:
                         imports.append({
                             "module": node.module,
-                            "line": node.lineno
+                            "line": node.lineno,
+                            "level": node.level
                         })
         except SyntaxError:
             pass
