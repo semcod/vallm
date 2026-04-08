@@ -80,7 +80,7 @@ class SemanticValidator(BaseValidator):
         except Exception as e:
             return ValidationResult(
                 validator=self.name,
-                score=0.5,
+                score=0.0,
                 weight=self.weight,
                 confidence=0.1,
                 issues=[
@@ -171,6 +171,9 @@ class SemanticValidator(BaseValidator):
 
     def _parse_response(self, response_text: str) -> ValidationResult:
         """Parse LLM JSON response into a ValidationResult."""
+        if not isinstance(response_text, str):
+            return self._create_parse_error_result(str(response_text))
+
         json_str = self._extract_json_from_response(response_text)
         if json_str is None:
             return self._create_parse_error_result(response_text)
@@ -182,7 +185,7 @@ class SemanticValidator(BaseValidator):
         
         scores = self._parse_scores(data)
         issues = self._parse_issues(data)
-        avg_score = sum(scores.values()) / len(scores) if scores else 0.5
+        avg_score = sum(scores.values()) / len(scores) if scores else 0.0
         
         return ValidationResult(
             validator=self.name,
@@ -215,7 +218,7 @@ class SemanticValidator(BaseValidator):
         """Create result for when JSON cannot be parsed from response."""
         return ValidationResult(
             validator=self.name,
-            score=0.5,
+            score=0.0,
             weight=self.weight,
             confidence=0.3,
             issues=[
@@ -232,7 +235,7 @@ class SemanticValidator(BaseValidator):
         """Create result for when JSON is invalid."""
         return ValidationResult(
             validator=self.name,
-            score=0.5,
+            score=0.0,
             weight=self.weight,
             confidence=0.3,
             issues=[

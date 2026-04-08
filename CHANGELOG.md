@@ -369,6 +369,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Tree-sitter for all** — syntax validation for 165+ languages
 - **Example 07** — comprehensive multi-language demo with 8 languages
 
+## [0.1.72] - 2026-04-08
+
+### Docs
+- Update README.md
+- Update TODO.md
+
+### Test
+- Update tests/mock_llm_provider.py
+- Update tests/semantic_validation/__init__.py
+- Update tests/semantic_validation/fixtures.py
+- Update tests/semantic_validation/test_code_quality.py
+- Update tests/semantic_validation/test_init.py
+- Update tests/semantic_validation/test_syntax_and_multilang.py
+- Update tests/test_semantic_validation.py
+
+### Other
+- Update examples/11_claude_code_autonomous/claude_autonomous_demo.py
+
 ## [0.1.71] - 2026-03-31
 
 ### Docs

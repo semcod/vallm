@@ -16,11 +16,10 @@ import logging
 import os
 import subprocess
 import sys
-import time
 from pathlib import Path
 
 from examples.utils import extract_code_from_response
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, Optional
 
 import requests
 
@@ -591,8 +590,6 @@ def run_autonomous_workflow(code_path: Path, max_iterations: int = 5):
         'final_code': best_code,
         'issues': validation.get('issues', [])
     }
-
-
 
 
 def main():
