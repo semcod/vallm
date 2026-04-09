@@ -10,7 +10,7 @@ from .fixtures import MockLLMProvider
 class TestSemanticValidationCodeQuality:
     """Test semantic validation for code quality scenarios."""
 
-    @pytest.fixture
+    @pytest.fixture(scope="class")
     def mock_llm(self):
         return MockLLMProvider()
 

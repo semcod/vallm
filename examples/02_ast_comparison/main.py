@@ -4,7 +4,10 @@ Demonstrates: tree-sitter parsing, Python AST normalization, similarity scoring.
 """
 
 import json
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
 from examples.utils import save_analysis_data
 from vallm.core.ast_compare import (

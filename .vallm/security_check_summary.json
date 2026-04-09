@@ -1,0 +1,22 @@
+{
+  "insecure_code": {
+    "score": 0.0,
+    "issues_count": 9,
+    "issues": [
+      "[warning]:23 Hardcoded API key",
+      "[warning]:8 Use of eval() is a security risk",
+      "[warning]:11 Use of exec() is a security risk",
+      "[warning]:14 Use of os.system() \u2014 prefer subprocess",
+      "[warning]:17 Unpickling untrusted data is dangerous",
+      "[warning]:20 yaml.load() without Loader is unsafe",
+      "[warning]:23 Hardcoded secret",
+      "[error]:8 Direct eval() call detected",
+      "[error]:11 Direct exec() call detected"
+    ]
+  },
+  "secure_code": {
+    "score": 1.0,
+    "issues_count": 0,
+    "issues": []
+  }
+}

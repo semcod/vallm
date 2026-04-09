@@ -4,7 +4,10 @@ Demonstrates: pattern-based security checks and AST-based detection.
 """
 
 import json
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
 from examples.utils import save_analysis_data
 from vallm import Proposal, VallmSettings

@@ -15,7 +15,6 @@ from .shared import (
     _toon_today,
     build_failed_files_data,
     build_files_data,
-    format_error_message,
 )
 
 if TYPE_CHECKING:
@@ -200,32 +199,69 @@ def output_batch_text(
 
 def output_batch_json(results_by_language: dict, filtered_files: list, passed_count: int, failed_files: list) -> None:
     """Output batch results as JSON."""
+    total_files = len(filtered_files)
+    failed_count = len(failed_files)
+
+    files_details = build_files_data(results_by_language)
+    failed_files_data = build_failed_files_data(failed_files)
+    success_rate = round((passed_count / total_files) * 100, 1) if total_files > 0 else 0.0
+
     data = {
         "summary": {
-            "total_files": len(filtered_files),
+            "total_files": total_files,
             "passed": passed_count,
-            "failed": len(failed_files),
+            "failed": failed_count,
+            "success_rate": success_rate,
         },
-        "files": build_files_data(results_by_language),
-        "failed_files": build_failed_files_data(failed_files),
+        "files": files_details,
+        "failed_files": failed_files_data,
     }
     print(json.dumps(data, indent=2))
 
 
 def output_batch_yaml(results_by_language: dict, filtered_files: list, passed_count: int, failed_files: list) -> None:
     """Output batch results as YAML-like text."""
+    total_files = len(filtered_files)
+    failed_count = len(failed_files)
+
+    files_details = build_files_data(results_by_language)
+    failed_files_data = build_failed_files_data(failed_files)
+    success_rate = round((passed_count / total_files) * 100, 1) if total_files > 0 else 0.0
+
     print("# vallm batch validation results")
     print("---")
     print("summary:")
-    print(f"  total_files: {len(filtered_files)}")
+    print(f"  total_files: {total_files}")
     print(f"  passed: {passed_count}")
-    print(f"  failed: {len(failed_files)}")
-    print("files:")
-    for item in build_files_data(results_by_language):
-        print(f"  - path: {item['path']}")
-        print(f"    language: {item['language']}")
-        print(f"    verdict: {item['verdict']}")
-        print(f"    score: {item['score']}")
+    print(f"  failed: {failed_count}")
+    print(f"  success_rate: {success_rate}%")
+    print()
+
+    if files_details:
+        print("files:")
+        for file_data in files_details:
+            print(f"  - path: {file_data['path']}")
+            print(f"    language: {file_data['language']}")
+            print(f"    verdict: {file_data['verdict']}")
+            print(f"    score: {file_data['score']:.2f}")
+            print(f"    issues_count: {file_data['issues_count']}")
+            if file_data['issues']:
+                print(f"    issues:")
+                for issue in file_data['issues']:
+                    print(f"      - rule: {issue['rule']}")
+                    print(f"        severity: {issue['severity']}")
+                    print(f"        message: \"{issue['message']}\"")
+                    if 'line' in issue:
+                        print(f"        line: {issue['line']}")
+                    if 'column' in issue:
+                        print(f"        column: {issue['column']}")
+        print()
+
+    if failed_files_data:
+        print("failed_files:")
+        for file_data in failed_files_data:
+            print(f"  - path: {file_data['path']}")
+            print(f"    error: {file_data['error']}")
 
 
 def output_batch_toon(results_by_language: dict, filtered_files: list, passed_count: int, failed_files: list) -> None:

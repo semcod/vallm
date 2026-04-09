@@ -2,10 +2,11 @@
 set -e
 clear
 
-VENV="venv"
+VENV=".venv"
+PYTHON="$VENV/bin/python"
 PIP="$VENV/bin/pip"
 
-if [ ! -f "$PIP" ]; then
+if [ ! -x "$PYTHON" ]; then
     echo "Creating virtual environment..."
     python3 -m venv "$VENV"
 fi

@@ -44,7 +44,7 @@ def mock_llm_provider():
     return mock_provider
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture(autouse=True, scope="session")
 def disable_external_calls():
     """Automatically disable external API calls in tests."""
     created_ollama_stub = False

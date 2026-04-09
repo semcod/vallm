@@ -1,0 +1,150 @@
+{
+  "before": {
+    "imports": [
+      [
+        "os",
+        "os"
+      ],
+      [
+        "json",
+        "json"
+      ],
+      [
+        "pathlib",
+        "Path"
+      ]
+    ],
+    "functions": [
+      "read_config",
+      "process_data",
+      "main"
+    ],
+    "classes": [],
+    "calls": [
+      [
+        "read_config",
+        "open"
+      ],
+      [
+        "read_config",
+        "json.load"
+      ],
+      [
+        "process_data",
+        "config.get"
+      ],
+      [
+        "process_data",
+        "item.upper"
+      ],
+      [
+        "main",
+        "read_config"
+      ],
+      [
+        "main",
+        "process_data"
+      ],
+      [
+        "main",
+        "print"
+      ]
+    ]
+  },
+  "after": {
+    "imports": [
+      [
+        "json",
+        "json"
+      ],
+      [
+        "yaml",
+        "yaml"
+      ],
+      [
+        "pathlib",
+        "Path"
+      ],
+      [
+        "dataclasses",
+        "dataclass"
+      ]
+    ],
+    "functions": [
+      "read_config",
+      "process_data",
+      "validate_config",
+      "main"
+    ],
+    "classes": [
+      "Config"
+    ],
+    "calls": [
+      [
+        "read_config",
+        "open"
+      ],
+      [
+        "read_config",
+        "yaml.safe_load"
+      ],
+      [
+        "read_config",
+        "Config"
+      ],
+      [
+        "process_data",
+        "item.upper"
+      ],
+      [
+        "validate_config",
+        "len"
+      ],
+      [
+        "main",
+        "read_config"
+      ],
+      [
+        "main",
+        "validate_config"
+      ],
+      [
+        "main",
+        "process_data"
+      ],
+      [
+        "main",
+        "print"
+      ]
+    ]
+  },
+  "diff": {
+    "has_changes": true,
+    "added_imports": [
+      [
+        "dataclasses",
+        "dataclass"
+      ],
+      [
+        "yaml",
+        "yaml"
+      ]
+    ],
+    "removed_imports": [
+      [
+        "os",
+        "os"
+      ]
+    ],
+    "added_functions": [
+      "validate_config"
+    ],
+    "removed_functions": [],
+    "added_classes": [
+      "Config"
+    ],
+    "breaking_changes": [
+      "Removed import: os from os"
+    ]
+  }
+}

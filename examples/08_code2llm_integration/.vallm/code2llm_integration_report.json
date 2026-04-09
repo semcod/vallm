@@ -1,0 +1,39 @@
+{
+  "analysis_tools": {
+    "code2llm": false,
+    "vallm": true
+  },
+  "project_structure": {
+    "note": "code2llm not installed"
+  },
+  "quality_validation": {
+    "files": [
+      {
+        "file": "main.py",
+        "verdict": "fail",
+        "score": 0.5714285714285714,
+        "errors": 2,
+        "warnings": 0
+      },
+      {
+        "file": "math_utils.py",
+        "verdict": "pass",
+        "score": 1.0,
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "file": "string_utils.py",
+        "verdict": "pass",
+        "score": 1.0,
+        "errors": 0,
+        "warnings": 0
+      }
+    ]
+  },
+  "summary": {
+    "total_files": 3,
+    "passed": 2,
+    "failed": 1
+  }
+}

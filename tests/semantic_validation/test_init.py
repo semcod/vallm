@@ -6,7 +6,7 @@ import pytest
 class TestSemanticValidationInit:
     """Test semantic validator initialization functionality."""
 
-    @pytest.fixture
+    @pytest.fixture(scope="class")
     def mock_llm(self):
         from .fixtures import MockLLMProvider
 

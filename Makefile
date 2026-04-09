@@ -1,6 +1,8 @@
-.PHONY: install dev-install test lint format clean help analyze run docker mermaid-png install-mermaid check-mermaid clean-png test-toon validate-toon test-all-formats build publish bump-patch bump-minor bump-major
+.PHONY: venv install dev-install test test-fast test-slow test-integration test-unit test-cov lint format typecheck check clean help analyze run analyze-all docker mermaid-png mermaid-png-% install-mermaid check-mermaid clean-png test-toon validate-toon test-all-formats toon-demo toon-compare toon-validate test-comprehensive build publish publish-test bump-patch bump-minor bump-major
 
-PYTHON := .venv/bin/python
+VENV := .venv
+PYTHON := $(VENV)/bin/python
+PIP := $(VENV)/bin/pip
 
 # Default target
 help:
@@ -50,16 +52,27 @@ help:
 	@echo "  make clean-png     - Clean PNG files"
 	@echo ""
 
+venv:
+	@if [ ! -x "$(PYTHON)" ]; then \
+		echo "Creating virtual environment in $(VENV)..."; \
+		python3 -m venv "$(VENV)"; \
+	fi
+
+VENV_TARGETS := install dev-install test test-fast test-slow test-integration test-unit test-cov lint format typecheck check run analyze analyze-all toon-demo toon-compare toon-validate test-toon validate-toon test-all-formats build publish-test bump-patch bump-minor bump-major publish mermaid-png test-comprehensive
+$(VENV_TARGETS): venv
+
+mermaid-png-%: venv
+
 # =============================================================================
 # Installation
 # =============================================================================
 
 install:
-	$(PYTHON) -m pip install -e .
+	$(PIP) install -e .
 	@echo "✓ code2llm installed with TOON format support"
 
 dev-install:
-	$(PYTHON) -m pip install -e ".[dev]"
+	$(PIP) install -e ".[dev]"
 	@echo "✓ code2llm installed with dev dependencies"
 
 # =============================================================================
@@ -67,23 +80,23 @@ dev-install:
 # =============================================================================
 
 test:
-	python3 -m pytest tests/ -v --tb=short
+	$(PYTHON) -m pytest tests/ -v --tb=short
 
 # Fast tests - exclude slow and integration tests
 test-fast:
-	python3 -m pytest -m "not slow and not integration" -v --tb=short
+	$(PYTHON) -m pytest -m "not slow and not integration" -v --tb=short -n auto
 
 # Slow tests only
 test-slow:
-	python3 -m pytest -m "slow" -v --tb=short
+	$(PYTHON) -m pytest -m "slow" -v --tb=short
 
 # Integration tests only  
 test-integration:
-	python3 -m pytest -m "integration" -v --tb=short
+	$(PYTHON) -m pytest -m "integration" -v --tb=short
 
 # Unit tests only
 test-unit:
-	python3 -m pytest -m "unit" -v --tb=short
+	$(PYTHON) -m pytest -m "unit" -v --tb=short
 
 test-cov:
 	$(PYTHON) -m pytest tests/ --cov=code2llm --cov-report=html --cov-report=term 2>/dev/null || echo "No tests yet"

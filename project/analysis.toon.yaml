@@ -1,76 +1,88 @@
-# code2llm | 46f 6150L | python:45,shell:1 | 2026-04-01
-# CC̄=3.4 | critical:0/383 | dups:0 | cycles:2
+# code2llm | 58f 7016L | python:56,shell:1 | 2026-04-09
+# CC̄=3.4 | critical:0/425 | dups:0 | cycles:1
 
 HEALTH[0]: ok
 
 REFACTOR[1]:
-  1. break 2 circular dependencies
+  1. break 1 circular dependencies
 
-PIPELINES[181]:
-  [1] Src [main]: main → run_validation_examples → print
+PIPELINES[201]:
+  [1] Src [main]: main → print
       PURITY: 100% pure
-  [2] Src [main]: main → print
+  [2] Src [main]: main → run_validation_examples → print
       PURITY: 100% pure
   [3] Src [main]: main → print
       PURITY: 100% pure
-  [4] Src [__init__]: __init__ → load_config
+  [4] Src [main]: main → print
       PURITY: 100% pure
-  [5] Src [process_user_data]: process_user_data
+  [5] Src [__init__]: __init__ → load_config
       PURITY: 100% pure
 
 LAYERS:
   scripts/                        CC̄=5.0    ←in:0  →out:0
   │ bump_version                78L  0C    2m  CC=5      ←0
   │
-  mcp/                            CC̄=4.1    ←in:0  →out:0
-  │ _tools_vallm               485L  0C   12m  CC=12     ←1
-  │ self_server                185L  0C    5m  CC=6      ←0
-  │ __init__                     1L  0C    0m  CC=0.0    ←0
-  │ __init__                     1L  0C    0m  CC=0.0    ←0
-  │
-  src/                            CC̄=3.3    ←in:0  →out:0
-  │ batch_processor            494L  2C   22m  CC=13     ←0
-  │ output_formatters          476L  0C   24m  CC=10     ←2
+  src/                            CC̄=3.4    ←in:0  →out:0
+  │ output_formatters          476L  0C   21m  CC=10     ←3
+  │ batch_processor_impl       471L  1C   21m  CC=13     ←0
   │ command_handlers           345L  0C   11m  CC=8      ←0
-  │ semantic                   299L  1C   15m  CC=4      ←0
+  │ batch                      315L  0C   16m  CC=10     ←0
+  │ semantic                   302L  1C   15m  CC=5      ←0
   │ gitignore                  272L  1C   10m  CC=11     ←1
   │ regression                 265L  1C   10m  CC=7      ←0
   │ security                   255L  1C    5m  CC=9      ←0
-  │ languages                  227L  1C    6m  CC=6      ←5
+  │ languages                  227L  1C    6m  CC=6      ←6
+  │ python_imports             225L  1C    9m  CC=14     ←0
   │ scoring                    218L  5C    8m  CC=7      ←0
   │ semantic_cache             187L  1C    8m  CC=5      ←2
   │ complexity                 183L  1C    4m  CC=12     ←0
   │ lint                       182L  1C    6m  CC=9      ←0
-  │ python_imports             179L  1C    8m  CC=14     ←0
-  │ utils                      155L  0C    4m  CC=14     ←5
+  │ utils                      166L  0C    5m  CC=14     ←5
   │ runner                     144L  2C    4m  CC=4      ←0
   │ logical                    142L  1C    5m  CC=6      ←0
   │ ast_compare                142L  0C    8m  CC=4      ←5
+  │ batch_processor_patterns   126L  1C    7m  CC=8      ←1
   │ config                     122L  1C    6m  CC=3      ←1
   │ javascript_imports         118L  1C    7m  CC=5      ←0
   │ graph_diff                 104L  1C    3m  CC=9      ←1
   │ syntax                      96L  1C    3m  CC=4      ←0
   │ c_imports                   88L  1C    4m  CC=5      ←0
   │ go_imports                  84L  1C    5m  CC=5      ←0
-  │ file_cache                  82L  1C    7m  CC=3      ←4
+  │ file_cache                  82L  1C    7m  CC=3      ←7
+  │ single                      80L  0C    3m  CC=6      ←0
+  │ __init__                    79L  0C    3m  CC=4      ←3
   │ rust_imports                78L  1C    5m  CC=3      ←0
+  │ batch_processor_validation    78L  0C    2m  CC=7      ←0
   │ base                        70L  1C    7m  CC=3      ←0
   │ java_imports                68L  1C    5m  CC=7      ←0
+  │ shared                      63L  0C    4m  CC=8      ←0
+  │ __init__                    45L  0C    0m  CC=0.0    ←0
   │ factory                     43L  1C    3m  CC=2      ←1
-  │ __init__                    43L  0C    0m  CC=0.0    ←0
   │ proposal                    37L  1C    0m  CC=0.0    ←0
   │ hookspecs                   33L  1C    3m  CC=1      ←0
   │ wrapper                     30L  1C    1m  CC=2      ←0
+  │ batch_processor_files       25L  0C    1m  CC=9      ←1
   │ __init__                    25L  0C    0m  CC=0.0    ←0
-  │ base                        21L  1C    1m  CC=1      ←12
+  │ batch_constants             23L  0C    0m  CC=0.0    ←0
+  │ batch_utils                 22L  1C    1m  CC=6      ←0
+  │ base                        21L  1C    1m  CC=1      ←13
+  │ base                        19L  0C    2m  CC=4      ←0
   │ __init__                    19L  0C    0m  CC=0.0    ←0
+  │ utils                       11L  0C    3m  CC=3      ←0
   │ __main__                     5L  0C    0m  CC=0.0    ←0
+  │ batch_processor              5L  0C    0m  CC=0.0    ←0
   │ __init__                     3L  0C    0m  CC=0.0    ←0
   │ __init__                     1L  0C    0m  CC=0.0    ←0
   │ __init__                     1L  0C    0m  CC=0.0    ←0
   │
+  mcp/                            CC̄=3.3    ←in:0  →out:0
+  │ _tools_vallm               465L  0C   14m  CC=12     ←1
+  │ self_server                185L  0C    5m  CC=6      ←0
+  │ __init__                     1L  0C    0m  CC=0.0    ←0
+  │ __init__                     1L  0C    0m  CC=0.0    ←0
+  │
   ./                              CC̄=0.0    ←in:0  →out:0
-  │ project.sh                  36L  0C    0m  CC=0.0    ←0
+  │ project.sh                  37L  0C    0m  CC=0.0    ←0
   │ mcp_server                  28L  0C    0m  CC=0.0    ←0
   │
 

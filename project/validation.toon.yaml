@@ -1,7 +1,34 @@
-# vallm batch | 44f | 43✓ 0⚠ 0✗ | 2026-04-01
+# vallm batch | 203f | 154✓ 3⚠ 2✗ | 2026-04-09
 
 SUMMARY:
-  scanned: 44  passed: 43 (97.7%)  warnings: 0  errors: 0  unsupported: 1
+  scanned: 203  passed: 154 (75.9%)  warnings: 3  errors: 2  unsupported: 47
 
-UNSUPPORTED[1]{bucket,count}:
-  other,1
+WARNINGS[3]{path,score}:
+  src/vallm/cli/batch_processor_impl.py,0.98
+    issues[1]{rule,severity,message,line}:
+      complexity.maintainability,warning,Low maintainability index: 15.6 (threshold: 20),
+  tests/test_batch_toon_output.py,0.98
+    issues[1]{rule,severity,message,line}:
+      complexity.cyclomatic,warning,test_output_batch_toon_is_compact_and_groups_sections has cyclomatic complexity 20 (max: 15),40
+  tests/test_languages.py,0.98
+    issues[1]{rule,severity,message,line}:
+      complexity.maintainability,warning,Low maintainability index: 7.5 (threshold: 20),
+
+ERRORS[2]{path,score}:
+  project/evolution.yaml,0.00
+    issues[1]{rule,severity,message,line}:
+      syntax.tree_sitter,error,tree-sitter found 1 parse error(s) in yaml,
+  src/vallm/cli/output_formatters/base.py,0.71
+    issues[4]{rule,severity,message,line}:
+      python.import.relative.resolvable,error,Relative import 'json_formatters' not found,2
+      python.import.relative.resolvable,error,Relative import 'rich_formatters' not found,3
+      python.import.relative.resolvable,error,Relative import 'text_formatters' not found,4
+      python.import.relative.resolvable,error,Relative import 'toon_formatters' not found,5
+
+UNSUPPORTED[6]{bucket,count}:
+  *.md,24
+  Dockerfile*,6
+  *.txt,4
+  *.yml,1
+  *.example,1
+  other,11

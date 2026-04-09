@@ -4,28 +4,28 @@
 
 - **Project**: /home/tom/github/semcod/vallm
 - **Primary Language**: python
-- **Languages**: python: 80, shell: 8
+- **Languages**: python: 91, shell: 8
 - **Analysis Mode**: static
-- **Total Functions**: 383
-- **Total Classes**: 43
-- **Modules**: 88
-- **Entry Points**: 246
+- **Total Functions**: 425
+- **Total Classes**: 44
+- **Modules**: 99
+- **Entry Points**: 267
 
 ## Architecture by Module
 
-### src.vallm.cli.output_formatters
-- **Functions**: 24
-- **File**: `output_formatters.py`
-
-### src.vallm.cli.batch_processor
-- **Functions**: 22
-- **Classes**: 2
-- **File**: `batch_processor.py`
+### src.vallm.cli.batch_processor_impl
+- **Functions**: 21
+- **Classes**: 1
+- **File**: `batch_processor_impl.py`
 
 ### examples.11_claude_code_autonomous.legacy_code.data_processor
 - **Functions**: 16
 - **Classes**: 2
 - **File**: `data_processor.py`
+
+### src.vallm.cli.output_formatters.batch
+- **Functions**: 16
+- **File**: `batch.py`
 
 ### src.vallm.validators.semantic
 - **Functions**: 15
@@ -37,6 +37,10 @@
 - **Classes**: 1
 - **File**: `order_processor.py`
 
+### mcp.server._tools_vallm
+- **Functions**: 14
+- **File**: `_tools_vallm.py`
+
 ### examples.10_mcp_ollama_demo.refactored_output
 - **Functions**: 13
 - **Classes**: 1
@@ -46,10 +50,6 @@
 - **Functions**: 12
 - **Classes**: 1
 - **File**: `claude_autonomous_demo.py`
-
-### mcp.server._tools_vallm
-- **Functions**: 12
-- **File**: `_tools_vallm.py`
 
 ### examples.12_ollama_simple_demo.legacy_code.simple_buggy
 - **Functions**: 11
@@ -84,24 +84,24 @@
 - **Classes**: 1
 - **File**: `mcp_demo.py`
 
+### src.vallm.validators.imports.python_imports
+- **Functions**: 9
+- **Classes**: 1
+- **File**: `python_imports.py`
+
 ### src.vallm.validators.semantic_cache
 - **Functions**: 8
 - **Classes**: 1
 - **File**: `semantic_cache.py`
 
-### src.vallm.validators.imports.python_imports
+### src.vallm.core.ast_compare
 - **Functions**: 8
-- **Classes**: 1
-- **File**: `python_imports.py`
+- **File**: `ast_compare.py`
 
 ### src.vallm.scoring
 - **Functions**: 8
 - **Classes**: 5
 - **File**: `scoring.py`
-
-### src.vallm.core.ast_compare
-- **Functions**: 8
-- **File**: `ast_compare.py`
 
 ### src.vallm.validators.file_cache
 - **Functions**: 7
@@ -156,10 +156,6 @@ Args:
 > Extract import statements from JavaScript/TypeScript using tree-sitter.
 - **Calls**: src.vallm.core.ast_compare._cached_get_parser, parser.parse, src.vallm.validators.imports.utils.walk, code.encode, enumerate, src.vallm.validators.imports.utils.walk, re.finditer, imports.append
 
-### src.vallm.cli.batch_processor.BatchProcessor._process_files_sequential
-> Process files sequentially (used for fail_fast / verbose modes).
-- **Calls**: len, src.vallm.validators.file_cache.get_file_cache, enumerate, self._show_progress, self._detect_file_language, cache.get, self._handle_validation_result, failed_files.append
-
 ### examples.09_code2logic_integration.main.main
 > Main example function.
 - **Calls**: examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.09_code2logic_integration.main.validate_with_vallm, examples.09_code2logic_integration.main.build_call_graph, examples.09_code2logic_integration.main.generate_report, examples.09_code2logic_integration.main.visualize_flow, examples.10_mcp_ollama_demo.run.print
@@ -185,6 +181,10 @@ Returns:
     Issue object
 - **Calls**: any, Issue, None.startswith, None.startswith, item.get, None.get, None.get, None.get
 
+### src.vallm.validators.imports.python_imports.PythonImportValidator.validate
+> Validate Python imports using AST.
+- **Calls**: ast.parse, self.extract_imports, self.create_validation_result, import_info.get, len, ValidationResult, len, len
+
 ### src.vallm.validators.imports.rust_imports.RustImportValidator.extract_imports
 > Extract use statements from Rust using tree-sitter.
 - **Calls**: src.vallm.core.ast_compare._cached_get_parser, parser.parse, src.vallm.validators.imports.utils.walk, code.encode, re.finditer, src.vallm.validators.imports.utils.walk, None.strip, imports.append
@@ -193,13 +193,29 @@ Returns:
 > Output plain text batch summary.
 - **Calls**: examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print
 
+### src.vallm.cli.output_formatters.batch.output_batch_text
+> Output plain text batch summary.
+- **Calls**: examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print
+
 ### src.vallm.core.gitignore.GitignoreParser._pattern_to_regex
 > Convert a gitignore pattern to a regex pattern.
 - **Calls**: len, None.join, result.append, result.append, result.append, len, pattern.find, result.append
 
+### src.vallm.cli.output_formatters.output_batch_empty
+> Output empty results.
+- **Calls**: examples.10_mcp_ollama_demo.run.print, json.dumps, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print
+
+### src.vallm.cli.output_formatters.batch.output_batch_empty
+> Output empty results.
+- **Calls**: examples.10_mcp_ollama_demo.run.print, json.dumps, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print
+
 ### examples.mcp_demo.main
 > Run all examples.
 - **Calls**: examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.mcp_demo.example_syntax_validation, examples.mcp_demo.example_security_validation, examples.mcp_demo.example_full_pipeline, examples.mcp_demo.example_selective_validation, examples.10_mcp_ollama_demo.run.print
+
+### src.vallm.validators.semantic.SemanticValidator._parse_response
+> Parse LLM JSON response into a ValidationResult.
+- **Calls**: self._extract_json_from_response, self._parse_scores, self._parse_issues, ValidationResult, isinstance, self._create_parse_error_result, self._create_parse_error_result, json.loads
 
 ### src.vallm.validators.lint.LintValidator._parse_ruff_text
 > Parse ruff text output as fallback.
@@ -210,6 +226,10 @@ Args:
 Returns:
     List of Issue objects
 - **Calls**: None.split, line.strip, output.strip, line.split, len, int, int, message.startswith
+
+### src.vallm.cli.batch_processor_impl.BatchProcessor._process_files_sequential
+> Process files sequentially (used for fail_fast / verbose modes).
+- **Calls**: len, src.vallm.validators.file_cache.get_file_cache, enumerate, self._show_progress, self._validate_single_file_sequential, self._handle_validation_result, failed_files.append, self._show_verbose_output
 
 ### mcp.server.self_server.main
 > Main MCP server loop.
@@ -227,25 +247,6 @@ Args:
 ### examples.08_code2llm_integration.main.main
 > Main example function.
 - **Calls**: examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.08_code2llm_integration.main.create_sample_project, examples.10_mcp_ollama_demo.run.print, examples.08_code2llm_integration.main.validate_with_vallm, examples.08_code2llm_integration.main.generate_report, examples.10_mcp_ollama_demo.run.print
-
-### src.vallm.validators.security.SecurityValidator.validate
-- **Calls**: self._check_patterns, issues.extend, _LANGUAGE_PATTERNS.get, ValidationResult, self._check_patterns, issues.extend, self._check_python_ast, issues.extend
-
-### src.vallm.sandbox.runner.SandboxRunner._run_subprocess
-> Run code in a subprocess with resource limits.
-- **Calls**: ext_map.get, cmd_map.get, ExecutionResult, tempfile.NamedTemporaryFile, f.write, time.monotonic, subprocess.run, ExecutionResult
-
-### src.vallm.sandbox.runner.SandboxRunner._run_docker
-> Run code in a Docker container (requires docker package).
-- **Calls**: docker.from_env, image_map.get, cmd_map.get, client.containers.run, container.wait, None.decode, container.remove, ExecutionResult
-
-### src.vallm.cli.command_handlers.info_command
-> Show information about supported languages and validators.
-- **Calls**: typer.Option, typer.Option, src.vallm.validators.semantic_cache.clear_semantic_cache, None.get_cache_stats, console.print, console.print, src.vallm.cli.command_handlers._show_general_info, Language
-
-### examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.calculate_metrics
-> Calculate metrics with performance issues.
-- **Calls**: range, len, range, item.items, len, isinstance, len, isinstance
 
 ## Process Flows
 
@@ -281,19 +282,19 @@ validate_command [src.vallm.cli.command_handlers]
 extract_imports [src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator]
   └─ →> _cached_get_parser
   └─ →> walk
-      └─> _should_skip_dir
-      └─> _is_gitignored
+      └─> _should_skip_entry
+          └─> _should_skip_dir
+          └─> _is_gitignored
 ```
 
-### Flow 6: _process_files_sequential
-```
-_process_files_sequential [src.vallm.cli.batch_processor.BatchProcessor]
-  └─ →> get_file_cache
-```
-
-### Flow 7: _parse_ruff_result
+### Flow 6: _parse_ruff_result
 ```
 _parse_ruff_result [src.vallm.validators.lint.LintValidator]
+```
+
+### Flow 7: validate
+```
+validate [src.vallm.validators.imports.python_imports.PythonImportValidator]
 ```
 
 ### Flow 8: output_batch_text
@@ -303,17 +304,12 @@ output_batch_text [src.vallm.cli.output_formatters]
   └─ →> print
 ```
 
-### Flow 9: _pattern_to_regex
-```
-_pattern_to_regex [src.vallm.core.gitignore.GitignoreParser]
-```
-
 ## Key Classes
 
-### src.vallm.cli.batch_processor.BatchProcessor
+### src.vallm.cli.batch_processor_impl.BatchProcessor
 > Handles batch validation of multiple files.
-- **Methods**: 19
-- **Key Methods**: src.vallm.cli.batch_processor.BatchProcessor.__init__, src.vallm.cli.batch_processor.BatchProcessor.process_batch, src.vallm.cli.batch_processor.BatchProcessor.output_batch_results, src.vallm.cli.batch_processor.BatchProcessor._load_gitignore_parser, src.vallm.cli.batch_processor.BatchProcessor._build_file_list, src.vallm.cli.batch_processor.BatchProcessor._filter_files, src.vallm.cli.batch_processor.BatchProcessor._parse_filter_patterns, src.vallm.cli.batch_processor.BatchProcessor._should_exclude_file, src.vallm.cli.batch_processor.BatchProcessor._matches_include_pattern, src.vallm.cli.batch_processor.BatchProcessor._handle_no_files_found
+- **Methods**: 21
+- **Key Methods**: src.vallm.cli.batch_processor_impl.BatchProcessor.__init__, src.vallm.cli.batch_processor_impl.BatchProcessor.process_batch, src.vallm.cli.batch_processor_impl.BatchProcessor.output_batch_results, src.vallm.cli.batch_processor_impl.BatchProcessor._load_gitignore_parser, src.vallm.cli.batch_processor_impl.BatchProcessor._build_file_list, src.vallm.cli.batch_processor_impl.BatchProcessor._parse_filter_patterns, src.vallm.cli.batch_processor_impl.BatchProcessor._should_exclude_file, src.vallm.cli.batch_processor_impl.BatchProcessor._matches_include_pattern, src.vallm.cli.batch_processor_impl.BatchProcessor._filter_files, src.vallm.cli.batch_processor_impl.BatchProcessor._handle_no_files_found
 
 ### src.vallm.validators.semantic.SemanticValidator
 > Tier 3: LLM-as-judge semantic code review.
@@ -351,6 +347,12 @@ The validator writes the proposed co
 - **Key Methods**: src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.__init__, src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.validate, src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.extract_imports, src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.module_exists, src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.get_language, src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator._get_error_message, src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator._get_rule_name
 - **Inherits**: BaseImportValidator
 
+### src.vallm.validators.imports.python_imports.PythonImportValidator
+> Python-specific import validator.
+- **Methods**: 7
+- **Key Methods**: src.vallm.validators.imports.python_imports.PythonImportValidator.validate, src.vallm.validators.imports.python_imports.PythonImportValidator._relative_import_exists, src.vallm.validators.imports.python_imports.PythonImportValidator.extract_imports, src.vallm.validators.imports.python_imports.PythonImportValidator.module_exists, src.vallm.validators.imports.python_imports.PythonImportValidator.get_language, src.vallm.validators.imports.python_imports.PythonImportValidator._get_error_message, src.vallm.validators.imports.python_imports.PythonImportValidator._get_rule_name
+- **Inherits**: BaseImportValidator
+
 ### src.vallm.core.languages.Language
 > Supported programming languages with their tree-sitter identifiers.
 - **Methods**: 7
@@ -371,12 +373,6 @@ The validator writes the proposed co
 > Cache for semantic validation results to improve performance.
 - **Methods**: 6
 - **Key Methods**: src.vallm.validators.semantic_cache.SemanticCache.__init__, src.vallm.validators.semantic_cache.SemanticCache._get_cache_key, src.vallm.validators.semantic_cache.SemanticCache.get, src.vallm.validators.semantic_cache.SemanticCache.set, src.vallm.validators.semantic_cache.SemanticCache.clear, src.vallm.validators.semantic_cache.SemanticCache.get_cache_stats
-
-### src.vallm.validators.imports.python_imports.PythonImportValidator
-> Python-specific import validator.
-- **Methods**: 6
-- **Key Methods**: src.vallm.validators.imports.python_imports.PythonImportValidator.validate, src.vallm.validators.imports.python_imports.PythonImportValidator.extract_imports, src.vallm.validators.imports.python_imports.PythonImportValidator.module_exists, src.vallm.validators.imports.python_imports.PythonImportValidator.get_language, src.vallm.validators.imports.python_imports.PythonImportValidator._get_error_message, src.vallm.validators.imports.python_imports.PythonImportValidator._get_rule_name
-- **Inherits**: BaseImportValidator
 
 ### src.vallm.core.gitignore.GitignoreParser
 > Parse .gitignore files and match paths against patterns.
@@ -471,6 +467,14 @@ Returns:
 > Validate code using vallm.
 - **Output to**: logger.info, VallmSettings, Proposal, src.vallm.validators.base.BaseValidator.validate, examples.10_mcp_ollama_demo.run.print
 
+### examples.07_multi_language.main.validate_single_language
+> Validate a single language code sample.
+- **Output to**: VallmSettings, Proposal, src.vallm.validators.base.BaseValidator.validate
+
+### examples.07_multi_language.main.validate_all_languages
+> Validate all language samples.
+- **Output to**: examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, CODE_SAMPLES.items
+
 ### examples.10_mcp_ollama_demo.refactored_output.OrderManager.validate_order
 > Validate order data.
 
@@ -484,14 +488,6 @@ Returns:
 
 ### examples.10_mcp_ollama_demo.refactored_output.process_order
 > Process order data with proper error handling and validation.
-
-### examples.07_multi_language.main.validate_single_language
-> Validate a single language code sample.
-- **Output to**: VallmSettings, Proposal, src.vallm.validators.base.BaseValidator.validate
-
-### examples.07_multi_language.main.validate_all_languages
-> Validate all language samples.
-- **Output to**: examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, CODE_SAMPLES.items
 
 ### examples.10_mcp_ollama_demo.legacy_code.order_processor.process_order
 > Process order data - has multiple issues.
@@ -536,11 +532,6 @@ Args:
 - **Confidence**: 0.90
 - **Functions**: src.vallm.validators.imports.utils.walk
 
-### recursion_output_batch_results
-- **Type**: recursion
-- **Confidence**: 0.90
-- **Functions**: src.vallm.cli.batch_processor.BatchProcessor.output_batch_results
-
 ### state_machine_ComplexityValidator
 - **Type**: state_machine
 - **Confidence**: 0.70
@@ -566,8 +557,10 @@ Functions exposed as public API (no underscore prefix):
 - `examples.12_ollama_simple_demo.ollama_simple_demo.main` - 29 calls
 - `examples.03_security_check.main.main` - 29 calls
 - `src.vallm.cli.output_formatters.output_batch_yaml` - 29 calls
+- `src.vallm.cli.output_formatters.batch.output_batch_yaml` - 29 calls
 - `examples.10_mcp_ollama_demo.mcp_demo.main` - 27 calls
 - `src.vallm.cli.output_formatters.output_batch_toon` - 22 calls
+- `src.vallm.cli.output_formatters.batch.output_batch_toon` - 22 calls
 - `src.vallm.cli.command_handlers.validate_command` - 21 calls
 - `examples.08_code2llm_integration.main.generate_report` - 20 calls
 - `src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.extract_imports` - 19 calls
@@ -580,16 +573,14 @@ Functions exposed as public API (no underscore prefix):
 - `examples.07_multi_language.main.main` - 17 calls
 - `examples.11_claude_code_autonomous.claude_autonomous_demo.run_runtime_tests` - 16 calls
 - `examples.08_code2llm_integration.main.validate_with_vallm` - 16 calls
+- `src.vallm.validators.imports.python_imports.PythonImportValidator.validate` - 16 calls
 - `src.vallm.validators.imports.rust_imports.RustImportValidator.extract_imports` - 16 calls
 - `src.vallm.cli.output_formatters.output_batch_text` - 16 calls
 - `src.vallm.cli.output_formatters.build_results_table` - 16 calls
+- `src.vallm.cli.output_formatters.batch.output_batch_text` - 16 calls
 - `examples.11_claude_code_autonomous.claude_autonomous_demo.call_claude_code` - 15 calls
 - `examples.07_multi_language.main.print_language_info` - 15 calls
 - `src.vallm.cli.output_formatters.output_batch_empty` - 15 calls
-- `examples.11_claude_code_autonomous.claude_autonomous_demo.generate_claude_prompt` - 14 calls
-- `examples.11_claude_code_autonomous.claude_autonomous_demo.generate_feedback_prompt` - 14 calls
-- `examples.mcp_demo.main` - 14 calls
-- `mcp.server.self_server.main` - 14 calls
 
 ## System Interactions
 
@@ -618,15 +609,15 @@ graph TD
     extract_imports --> walk
     extract_imports --> encode
     extract_imports --> enumerate
-    _process_files_seque --> len
-    _process_files_seque --> get_file_cache
-    _process_files_seque --> enumerate
-    _process_files_seque --> _show_progress
-    _process_files_seque --> _detect_file_languag
     main --> validate_with_vallm
     main --> build_call_graph
     extract_imports --> finditer
     main --> read_text
+    main --> search
+    main --> group
+    main --> bump_version
+    main --> sub
+    main --> print_language_info
 ```
 
 ## Reverse Engineering Guidelines

@@ -4,7 +4,10 @@ Demonstrates: import/call graph building and diffing.
 """
 
 import json
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
 from examples.utils import save_analysis_data
 from vallm.core.graph_builder import build_python_graph

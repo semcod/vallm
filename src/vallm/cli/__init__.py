@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import typer
 
+from vallm.cli.batch_processor import BatchProcessor
 from vallm.cli.command_handlers import (
     batch_command,
     check_command,
@@ -31,6 +32,7 @@ info = info_command
 
 __all__ = [
     "app",
+    "BatchProcessor",
     "validate_command",
     "check_command",
     "batch_command",

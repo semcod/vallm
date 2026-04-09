@@ -369,6 +369,41 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Tree-sitter for all** — syntax validation for 165+ languages
 - **Example 07** — comprehensive multi-language demo with 8 languages
 
+## [0.1.73] - 2026-04-09
+
+### Docs
+- Update CONTRIBUTING.md
+- Update README.md
+- Update docs/README.md
+- Update project/README.md
+- Update project/context.md
+
+### Test
+- Update tests/conftest.py
+- Update tests/semantic_validation/test_code_quality.py
+- Update tests/semantic_validation/test_init.py
+- Update tests/semantic_validation/test_syntax_and_multilang.py
+- Update tests/test_ast_compare.py
+- Update tests/test_batch_toon_output.py
+- Update tests/test_examples.py
+- Update tests/test_gitignore.py
+- Update tests/test_performance.py
+- Update tests/test_semantic_validation.py
+- ... and 1 more files
+
+### Other
+- Update .vallm/ast_comparison_summary.json
+- Update .vallm/basic_validation_summary.json
+- Update .vallm/graph_analysis_summary.json
+- Update .vallm/multilang_summary.json
+- Update .vallm/security_check_summary.json
+- Update Makefile
+- Update examples/02_ast_comparison/main.py
+- Update examples/03_security_check/main.py
+- Update examples/04_graph_analysis/main.py
+- Update examples/08_code2llm_integration/.vallm/code2llm_integration_report.json
+- ... and 19 more files
+
 ## [0.1.72] - 2026-04-08
 
 ### Docs

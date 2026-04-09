@@ -1,50 +1,48 @@
-# vallm | 237 func | 34f | 10603L | python | 2026-03-31
+# vallm | 279 func | 44f | 11742L | python | 2026-04-09
 
 HEALTH:
-  CC̄=3.4  critical=11 (limit:10)  dup=0  cycles=2
+  CC̄=3.4  critical=11 (limit:10)  dup=0  cycles=1
 
-ALERTS[15]:
-  !!  high_fan_out     BatchProcessor._process_files_sequential = 15 (limit:10)
+ALERTS[18]:
   !!  high_fan_out     batch_command = 15 (limit:10)
   !   high_fan_out     JavaScriptImportValidator.extract_imports = 14 (limit:10)
+  !   high_fan_out     SemanticValidator._parse_response = 13 (limit:10)
   !   high_fan_out     GoImportValidator.extract_imports = 13 (limit:10)
   !   high_fan_out     RustImportValidator.extract_imports = 13 (limit:10)
   !   high_fan_out     LintValidator._parse_ruff_text = 12 (limit:10)
-  !   high_fan_out     SemanticValidator._parse_response = 11 (limit:10)
+  !   high_fan_out     PythonImportValidator.validate = 11 (limit:10)
   !   high_fan_out     output_batch_toon = 11 (limit:10)
-  !   high_fan_out     main = 11 (limit:10)
+  !   high_fan_out     BatchProcessor._process_files_sequential = 11 (limit:10)
   !   high_fan_out     SandboxRunner._run_docker = 11 (limit:10)
 
-MODULES[46] (top by size):
-  M[src/vallm/cli/batch_processor.py] 494L C:2 F:22 CC↑13 D:0 (python)
-  M[mcp/server/_tools_vallm.py] 485L C:0 F:12 CC↑12 D:1 (python)
-  M[src/vallm/cli/output_formatters.py] 476L C:0 F:24 CC↑10 D:2 (python)
+MODULES[58] (top by size):
+  M[src/vallm/cli/output_formatters.py] 476L C:0 F:21 CC↑10 D:3 (python)
+  M[src/vallm/cli/batch_processor_impl.py] 471L C:1 F:21 CC↑13 D:0 (python)
+  M[mcp/server/_tools_vallm.py] 465L C:0 F:14 CC↑12 D:1 (python)
   M[src/vallm/cli/command_handlers.py] 345L C:0 F:11 CC↑8 D:0 (python)
-  M[src/vallm/validators/semantic.py] 299L C:1 F:15 CC↑4 D:0 (python)
+  M[src/vallm/cli/output_formatters/batch.py] 315L C:0 F:16 CC↑10 D:0 (python)
+  M[src/vallm/validators/semantic.py] 302L C:1 F:15 CC↑5 D:0 (python)
   M[src/vallm/core/gitignore.py] 272L C:1 F:10 CC↑11 D:1 (python)
   M[src/vallm/validators/regression.py] 265L C:1 F:10 CC↑7 D:0 (python)
   M[src/vallm/validators/security.py] 255L C:1 F:5 CC↑9 D:0 (python)
-  M[src/vallm/core/languages.py] 227L C:1 F:6 CC↑6 D:5 (python)
+  M[src/vallm/core/languages.py] 227L C:1 F:6 CC↑6 D:6 (python)
+  M[src/vallm/validators/imports/python_imports.py] 225L C:1 F:9 CC↑14 D:0 (python)
   M[src/vallm/scoring.py] 218L C:5 F:8 CC↑7 D:0 (python)
   M[src/vallm/validators/semantic_cache.py] 187L C:1 F:8 CC↑5 D:2 (python)
   M[mcp/server/self_server.py] 185L C:0 F:5 CC↑6 D:0 (python)
   M[src/vallm/validators/complexity.py] 183L C:1 F:4 CC↑12 D:0 (python)
-  M[src/vallm/validators/lint.py] 182L C:1 F:6 CC↑9 D:0 (python)
-  M[src/vallm/validators/imports/python_imports.py] 179L C:1 F:8 CC↑14 D:0 (python)
-  LANGS: python:45/shell:1
+  LANGS: python:57/shell:1
 
 HOTSPOTS[10]:
-  ★ BatchProcessor._process_files_sequential fan=15  // Analysis pipeline, 15 stages
   ★ batch_command fan=15  // Validate multiple files with auto-detected languages.
   ★ JavaScriptImportValidator.extract_imports fan=14  // Extract import statements from JavaScript/TypeScript using tree-sitter.
+  ★ SemanticValidator._parse_response fan=13  // Parse LLM JSON response into a ValidationResult.
   ★ GoImportValidator.extract_imports fan=13  // Extract import statements from Go using tree-sitter.
   ★ RustImportValidator.extract_imports fan=13  // Extract use statements from Rust using tree-sitter.
 
-REFACTOR[4]:
+REFACTOR[2]:
   [1] M/L Break circular dependency: src.vallm.validators.imports.utils.walk
-  [2] M/L Break circular dependency: src.vallm.cli.batch_processor.BatchProcessor.output_batch_results
-  [3] M/M Reduce BatchProcessor._process_files_sequential fan-out (currently 15)
-  [4] M/M Reduce batch_command fan-out (currently 15)
+  [2] M/M Reduce batch_command fan-out (currently 15)
 
 EVOLUTION:
-  2026-03-31 CC̄=3.4 crit=11 10603L // Automated analysis
+  2026-04-09 CC̄=3.4 crit=11 11742L // Automated analysis

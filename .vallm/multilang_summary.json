@@ -1,0 +1,90 @@
+[
+  {
+    "language": "python",
+    "verdict": "pass",
+    "score": 1.0,
+    "errors": 0,
+    "warnings": 0,
+    "is_bad": false
+  },
+  {
+    "language": "javascript",
+    "verdict": "pass",
+    "score": 1.0,
+    "errors": 0,
+    "warnings": 0,
+    "is_bad": false
+  },
+  {
+    "language": "typescript",
+    "verdict": "pass",
+    "score": 1.0,
+    "errors": 0,
+    "warnings": 0,
+    "is_bad": false
+  },
+  {
+    "language": "go",
+    "verdict": "pass",
+    "score": 1.0,
+    "errors": 0,
+    "warnings": 0,
+    "is_bad": false
+  },
+  {
+    "language": "rust",
+    "verdict": "pass",
+    "score": 1.0,
+    "errors": 0,
+    "warnings": 0,
+    "is_bad": false
+  },
+  {
+    "language": "java",
+    "verdict": "pass",
+    "score": 1.0,
+    "errors": 0,
+    "warnings": 0,
+    "is_bad": false
+  },
+  {
+    "language": "c",
+    "verdict": "pass",
+    "score": 1.0,
+    "errors": 0,
+    "warnings": 0,
+    "is_bad": false
+  },
+  {
+    "language": "ruby",
+    "verdict": "pass",
+    "score": 1.0,
+    "errors": 0,
+    "warnings": 0,
+    "is_bad": false
+  },
+  {
+    "language": "python",
+    "verdict": "fail",
+    "score": 0.0,
+    "errors": 1,
+    "warnings": 0,
+    "is_bad": true
+  },
+  {
+    "language": "javascript",
+    "verdict": "fail",
+    "score": 0.0,
+    "errors": 1,
+    "warnings": 0,
+    "is_bad": true
+  },
+  {
+    "language": "go",
+    "verdict": "fail",
+    "score": 0.0,
+    "errors": 1,
+    "warnings": 0,
+    "is_bad": true
+  }
+]

@@ -4,14 +4,16 @@
 import tempfile
 import time
 from pathlib import Path
-from unittest.mock import Mock, patch
+from unittest.mock import Mock
 
 import pytest
 
 from vallm.cli.batch_processor import BatchProcessor
 from vallm.config import VallmSettings
+from vallm.validators.file_cache import clear_file_cache
 
 
+@pytest.mark.slow
 class TestPerformanceOptimizations:
     """Test performance optimizations."""
     
@@ -49,40 +51,33 @@ if __name__ == "__main__":
             # Mock console to avoid output
             mock_console = Mock()
             mock_console.print = Mock()
-            
+
             processor = BatchProcessor(mock_console)
-            
+            filtered_files = test_files
+
             # Test sequential processing
-            start_time = time.time()
-            results_seq, failed_seq, passed_seq, _ = processor.process_batch(
-                paths=test_files,
-                recursive=False,
-                include=None,
-                exclude=None,
-                use_gitignore=False,
-                settings=settings,
-                output_format="text",
+            clear_file_cache()
+            start_time = time.perf_counter()
+            results_seq, failed_seq, passed_seq, _ = processor._process_files_sequential(
+                filtered_files,
+                settings,
+                "text",
                 fail_fast=False,
                 verbose=False,
                 show_issues=False,
             )
-            sequential_time = time.time() - start_time
+            sequential_time = time.perf_counter() - start_time
             
             # Test parallel processing
-            start_time = time.time()
-            results_par, failed_par, passed_par, _ = processor.process_batch(
-                paths=test_files,
-                recursive=False,
-                include=None,
-                exclude=None,
-                use_gitignore=False,
-                settings=settings,
-                output_format="text",
-                fail_fast=False,
-                verbose=False,
+            clear_file_cache()
+            start_time = time.perf_counter()
+            results_par, failed_par, passed_par, _ = processor._process_files_parallel(
+                filtered_files,
+                settings,
+                "text",
                 show_issues=False,
             )
-            parallel_time = time.time() - start_time
+            parallel_time = time.perf_counter() - start_time
             
             # Results should be the same
             assert passed_seq == passed_par

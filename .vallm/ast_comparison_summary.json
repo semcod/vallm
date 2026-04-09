@@ -1,0 +1,32 @@
+{
+  "ast_similarity": {
+    "sim_v1_v2": 0.7864271457085829,
+    "sim_v1_v3": 0.396969696969697,
+    "sim_v2_v3": 0.5449664429530201
+  },
+  "node_counts": {
+    "Python add()": {
+      "nodes": 18,
+      "errors": 0
+    },
+    "Python multiply()": {
+      "nodes": 35,
+      "errors": 0
+    },
+    "JavaScript fibonacci()": {
+      "nodes": 47,
+      "errors": 0
+    },
+    "C factorial()": {
+      "nodes": 42,
+      "errors": 0
+    }
+  },
+  "structural_diff": {
+    "nodes_before": 18,
+    "nodes_after": 22,
+    "added_types": "{'=', 'assignment'}",
+    "removed_types": "set()",
+    "common_types": "{'(', ':', 'return', 'identifier', 'parameters', 'module', 'binary_operator', 'def', 'return_statement', 'function_definition', 'block', ',', '+', ')'}"
+  }
+}

@@ -2,6 +2,7 @@ import io
 from datetime import date
 from pathlib import Path
 
+import pytest
 from rich.console import Console
 from typer.testing import CliRunner
 
@@ -35,6 +36,7 @@ def test_batch_processor_skips_toon_files():
     assert processor._should_exclude_file(Path("project/validation.yaml"), empty) is False
 
 
+@pytest.mark.slow
 def test_output_batch_toon_is_compact_and_groups_sections(capsys, monkeypatch):
     monkeypatch.setattr(output_formatters, "date", FixedDate)
 
@@ -128,6 +130,7 @@ def test_batch_exits_zero_with_only_unsupported_files(tmp_path):
     assert result.exit_code == 0, f"Expected 0, got {result.exit_code}:\n{result.output}"
 
 
+@pytest.mark.slow
 def test_batch_exits_two_with_real_validation_failure(tmp_path, monkeypatch):
     """Regression: actual validation failure (syntax error) must produce Exit(2)."""
     monkeypatch.setattr(

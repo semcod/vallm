@@ -10,8 +10,8 @@ git clone https://github.com/semcod/vallm
 cd vallm
 
 # Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+python -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 
 # Install in development mode
 pip install -e ".[dev]"

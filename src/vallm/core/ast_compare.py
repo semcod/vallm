@@ -9,7 +9,7 @@ from typing import Optional
 from tree_sitter_language_pack import get_parser
 
 
-@lru_cache(maxsize=32)
+@lru_cache(maxsize=128)
 def _cached_get_parser(language: str):
     """Return a cached tree-sitter parser for *language*."""
     return get_parser(language)

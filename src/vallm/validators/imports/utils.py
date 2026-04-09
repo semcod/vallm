@@ -31,6 +31,22 @@ def _should_skip_dir(name: str, skip_tests: bool, skip_hidden: bool) -> bool:
     return False
 
 
+def _should_skip_entry(
+    path: Path,
+    name: str,
+    project_root: Optional[Path],
+    gitignore_matcher: Optional[Callable[[Path], bool]],
+    skip_tests: bool,
+    skip_hidden: bool,
+) -> bool:
+    """Check if a directory entry should be skipped."""
+    if _should_skip_dir(name, skip_tests, skip_hidden):
+        return True
+    if _is_gitignored(path, project_root, gitignore_matcher):
+        return True
+    return False
+
+
 def walk(
     root: Path,
     project_root: Optional[Path] = None,
@@ -57,19 +73,14 @@ def walk(
     if max_depth is not None and current_depth > max_depth:
         return
 
-    if _should_skip_dir(root.name, skip_tests, skip_hidden):
-        return
-
-    if _is_gitignored(root, project_root, gitignore_matcher):
+    if _should_skip_entry(root, root.name, project_root, gitignore_matcher, skip_tests, skip_hidden):
         return
 
     for entry in os.scandir(root):
         entry_path = Path(entry.path)
 
         if entry.is_dir(follow_symlinks=False):
-            if _should_skip_dir(entry.name, skip_tests, skip_hidden):
-                continue
-            if _is_gitignored(entry_path, project_root, gitignore_matcher):
+            if _should_skip_entry(entry_path, entry.name, project_root, gitignore_matcher, skip_tests, skip_hidden):
                 continue
             yield from walk(
                 entry_path,

@@ -16,27 +16,27 @@ from vallm.core.gitignore import (
 
 class TestGitignoreParser:
     """Test gitignore pattern matching."""
-    
+
     def test_simple_pattern(self):
         """Test simple file pattern matching."""
         parser = GitignoreParser()
         parser.root = Path("/test")
         parser.patterns = [("*.pyc", False)]
-        
+
         assert parser.matches("/test/file.pyc") is True
         assert parser.matches("/test/file.py") is False
-    
+
     def test_directory_pattern(self):
         """Test directory-only pattern."""
         parser = GitignoreParser()
         parser.root = Path("/test")
         parser.patterns = [("node_modules/", False)]
-        
+
         # Should match directories
         assert parser.matches("/test/node_modules/") is True
         # Should match files inside
         assert parser.matches("/test/node_modules/file.js") is True
-    
+
     def test_negation_pattern(self):
         """Test negation with !."""
         parser = GitignoreParser()
@@ -45,7 +45,7 @@ class TestGitignoreParser:
             ("*.log", False),
             ("important.log", True),  # Negation
         ]
-        
+
         assert parser.matches("/test/debug.log") is True
         assert parser.matches("/test/important.log") is False  # Not excluded due to negation
     

@@ -121,6 +121,37 @@ def _build_pipeline_response(
     }
 
 
+def _build_validator_response(
+    result: ValidationResult,
+    validator_name: str,
+) -> Dict[str, Any]:
+    """Build standard validator response dict."""
+    return {
+        "success": True,
+        "validator": validator_name,
+        "score": result.score,
+        "weight": result.weight,
+        "confidence": result.confidence,
+        "verdict": "pass" if result.score >= 0.8 else "review" if result.score >= 0.5 else "fail",
+        "issues": [_format_issue(i) for i in result.issues],
+        "details": result.details or {},
+    }
+
+
+def _build_error_response(
+    error: Exception,
+    validator_name: str,
+) -> Dict[str, Any]:
+    """Build error response dict for validator failures."""
+    return {
+        "success": False,
+        "error": str(error),
+        "validator": validator_name,
+        "score": 0.0,
+        "verdict": "error"
+    }
+
+
 def validate_syntax(code: str, language: str = "python", filename: Optional[str] = None) -> Dict[str, Any]:
     """
     Multi-language syntax checking using vallm SyntaxValidator.
@@ -143,25 +174,10 @@ def validate_syntax(code: str, language: str = "python", filename: Optional[str]
         validator = SyntaxValidator()
         result = validator.validate(proposal, {})
         
-        return {
-            "success": True,
-            "validator": "syntax",
-            "score": result.score,
-            "weight": result.weight,
-            "confidence": result.confidence,
-            "verdict": "pass" if result.score >= 0.8 else "review" if result.score >= 0.5 else "fail",
-            "issues": [_format_issue(i) for i in result.issues],
-            "details": result.details or {},
-        }
+        return _build_validator_response(result, "syntax")
         
     except Exception as e:
-        return {
-            "success": False,
-            "error": str(e),
-            "validator": "syntax",
-            "score": 0.0,
-            "verdict": "error"
-        }
+        return _build_error_response(e, "syntax")
 
 
 def validate_imports(code: str, language: str = "python", filename: Optional[str] = None) -> Dict[str, Any]:
@@ -186,25 +202,10 @@ def validate_imports(code: str, language: str = "python", filename: Optional[str
         validator = ImportValidator()
         result = validator.validate(proposal, {})
         
-        return {
-            "success": True,
-            "validator": "imports",
-            "score": result.score,
-            "weight": result.weight,
-            "confidence": result.confidence,
-            "verdict": "pass" if result.score >= 0.8 else "review" if result.score >= 0.5 else "fail",
-            "issues": [_format_issue(i) for i in result.issues],
-            "details": result.details or {},
-        }
+        return _build_validator_response(result, "imports")
         
     except Exception as e:
-        return {
-            "success": False,
-            "error": str(e),
-            "validator": "imports",
-            "score": 0.0,
-            "verdict": "error"
-        }
+        return _build_error_response(e, "imports")
 
 
 def validate_security(code: str, language: str = "python", filename: Optional[str] = None) -> Dict[str, Any]:
@@ -230,25 +231,10 @@ def validate_security(code: str, language: str = "python", filename: Optional[st
         validator = SecurityValidator()
         result = validator.validate(proposal, {})
         
-        return {
-            "success": True,
-            "validator": "security",
-            "score": result.score,
-            "weight": result.weight,
-            "confidence": result.confidence,
-            "verdict": "pass" if result.score >= 0.8 else "review" if result.score >= 0.5 else "fail",
-            "issues": [_format_issue(i) for i in result.issues],
-            "details": result.details or {},
-        }
+        return _build_validator_response(result, "security")
         
     except Exception as e:
-        return {
-            "success": False,
-            "error": str(e),
-            "validator": "security",
-            "score": 0.0,
-            "verdict": "error"
-        }
+        return _build_error_response(e, "security")
 
 
 def validate_code(
@@ -299,13 +285,7 @@ def validate_code(
         return _build_pipeline_response(results, total_weight, verdict, all_issues)
         
     except Exception as e:
-        return {
-            "success": False,
-            "error": str(e),
-            "validator": "full_pipeline",
-            "score": 0.0,
-            "verdict": "error"
-        }
+        return _build_error_response(e, "full_pipeline")
 
 
 # MCP tool handlers - these functions match the MCP tool schema

@@ -2,7 +2,7 @@ import pytest
 from tests.mock_llm_provider import MockLLMProvider
 
 class TestSemanticValidation:
-    @pytest.fixture
+    @pytest.fixture(scope="class")
     def mock_llm(self):
         return MockLLMProvider()
 

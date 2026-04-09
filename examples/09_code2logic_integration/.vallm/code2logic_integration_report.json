@@ -1,0 +1,48 @@
+{
+  "tools": {
+    "code2logic": false,
+    "vallm": true
+  },
+  "analysis": {
+    "logical_structure": {
+      "note": "code2logic not installed"
+    },
+    "quality_validation": {
+      "verdict": "pass",
+      "score": 1.0,
+      "errors": 0,
+      "warnings": 0,
+      "validators": [
+        {
+          "name": "syntax",
+          "score": 1.0,
+          "issues": 0
+        },
+        {
+          "name": "imports.python",
+          "score": 1.0,
+          "issues": 0
+        },
+        {
+          "name": "complexity",
+          "score": 1.0,
+          "issues": 0
+        }
+      ]
+    },
+    "call_graph": {
+      "functions": [
+        "process_order",
+        "calculate_discount"
+      ],
+      "classes": [
+        "OrderStatus"
+      ],
+      "imports": 2,
+      "calls": 11
+    }
+  },
+  "recommendations": [
+    "High coupling detected - consider refactoring"
+  ]
+}

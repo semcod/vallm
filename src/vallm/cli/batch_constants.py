@@ -1,0 +1,23 @@
+from __future__ import annotations
+
+_MAX_WORKERS = 8
+
+_DEFAULT_EXCLUDE_PATTERNS = [
+    "*.pyc", "*.pyo", "*.pyd", "__pycache__", ".pytest_cache",
+    "*.egg-info", "build", "dist", ".tox", ".coverage", "htmlcov",
+    ".git", ".gitignore", ".gitmodules", ".github",
+    ".vscode", ".idea", "*.swp", "*.swo", "*~", ".DS_Store",
+    "venv", "env", ".venv", "ENV", "virtualenv", "publish-env",
+    "node_modules", "npm-debug.log*", "yarn-debug.log*", "yarn-error.log*",
+    "build", "dist", "target", "bin", "out",
+    ".cache", "cache", "*.cache", "*.tmp", "*.temp",
+    "*.log", "logs",
+    ".DS_Store", "Thumbs.db", "desktop.ini",
+    ".ruff_cache", ".mypy_cache", ".pytest_cache", ".coverage",
+    "_build", "site", ".doctrees",
+    "*.db", "*.sqlite", "*.sqlite3",
+    "*.zip", "*.tar.gz", "*.rar", "*.7z",
+    "*.png", "*.jpg", "*.jpeg", "*.gif", "*.bmp", "*.ico",
+    "*.pdf", "*.doc", "*.docx", "*.xls", "*.xlsx",
+    "*.jsonl", "*.parquet", "*.csv", "*.tsv",
+]
