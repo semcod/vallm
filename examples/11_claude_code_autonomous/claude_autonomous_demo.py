@@ -23,6 +23,17 @@ from typing import Dict, Optional
 
 import requests
 
+CONSTANT_3 = 3
+CONSTANT_4 = 4
+MAX_5 = 5
+MAX_30 = 30
+MAX_50 = 50
+CONSTANT_80 = 80
+TIMEOUT_120 = 120
+CONSTANT_500 = 500
+MAX_4000 = 4000
+
+
 # Setup logging
 
 if __name__ == "__main__":
@@ -50,9 +61,9 @@ class Colors:
 
 def log_section(title: str):
     """Print a section header."""
-    print(f"\n{Colors.BOLD}{Colors.MAGENTA}{'='*80}{Colors.END}")
+    print(f"\n{Colors.BOLD}{Colors.MAGENTA}{'='*CONSTANT_80}{Colors.END}")
     print(f"{Colors.BOLD}{Colors.MAGENTA} {title}{Colors.END}")
-    print(f"{Colors.BOLD}{Colors.MAGENTA}{'='*80}{Colors.END}\n")
+    print(f"{Colors.BOLD}{Colors.MAGENTA}{'='*CONSTANT_80}{Colors.END}\n")
     logger.info(f"SECTION: {title}")
 
 
@@ -62,7 +73,7 @@ def log_step(step: int, description: str):
     logger.info(f"STEP {step}: {description}")
 
 
-def log_code(label: str, code: str, max_lines: int = 30):
+def log_code(label: str, code: str, max_lines: int = MAX_30):
     """Log code with label."""
     lines = code.split('\n')
     if len(lines) > max_lines:
@@ -162,7 +173,7 @@ def call_claude_code(prompt: str, model: str = "claude-3-5-sonnet-20241022", tem
     
     payload = {
         "model": model,
-        "max_tokens": 4000,
+        "max_tokens": MAX_4000,
         "temperature": temperature,
         "messages": [
             {
@@ -173,7 +184,7 @@ def call_claude_code(prompt: str, model: str = "claude-3-5-sonnet-20241022", tem
     }
     
     try:
-        response = requests.post(url, json=payload, headers=headers, timeout=120)
+        response = requests.post(url, json=payload, headers=headers, timeout=TIMEOUT_120)
         response.raise_for_status()
         result = response.json()
         return result['content'][0]['text']
@@ -244,7 +255,7 @@ def validate_with_vallm(code: str, description: str = "Code") -> Dict:
 
 def run_runtime_tests(code_path: Path, test_file: Optional[Path] = None) -> Dict:
     """Run runtime tests on the refactored code."""
-    log_step(4, "Running runtime tests")
+    log_step(CONSTANT_4, "Running runtime tests")
     
     try:
         # Create a test file if not provided
@@ -259,7 +270,7 @@ def run_runtime_tests(code_path: Path, test_file: Optional[Path] = None) -> Dict
             [sys.executable, "-m", "pytest", str(test_file), "-v", "--tb=short"],
             capture_output=True,
             text=True,
-            timeout=30
+            timeout=MAX_30
         )
         
         success = result.returncode == 0
@@ -490,7 +501,7 @@ Please provide the complete corrected code above."""
     return prompt
 
 
-def run_autonomous_workflow(code_path: Path, max_iterations: int = 5):
+def run_autonomous_workflow(code_path: Path, max_iterations: int = MAX_5):
     """Run the complete autonomous refactoring workflow."""
     log_section("Claude Code Autonomous Demo: code2llm → Claude Code → vallm → Runtime Tests → code2llm")
     
@@ -519,12 +530,12 @@ def run_autonomous_workflow(code_path: Path, max_iterations: int = 5):
         
         logger.info("Generated Claude Code prompt")
         print(f"\n{Colors.CYAN}Prompt sent to Claude (truncated):{Colors.END}")
-        print(prompt[:500] + "...")
+        print(prompt[:CONSTANT_500] + "...")
         
         claude_response = call_claude_code(prompt)
         
-        log_step(3, "Received Claude Code response")
-        log_code("CLAUDE RESPONSE", claude_response, max_lines=50)
+        log_step(CONSTANT_3, "Received Claude Code response")
+        log_code("CLAUDE RESPONSE", claude_response, max_lines=MAX_50)
         
         # Step 4: Extract and validate refactored code
         current_code = extract_code_from_response(claude_response)
@@ -535,7 +546,7 @@ def run_autonomous_workflow(code_path: Path, max_iterations: int = 5):
         print(f"\n{Colors.GREEN}✓ Iteration {iteration} saved to: {iteration_file}{Colors.END}")
         
         # Step 5: Validate with vallm
-        log_step(4, "Validating with vallm")
+        log_step(CONSTANT_4, "Validating with vallm")
         validation = validate_with_vallm(current_code, f"Refactored Code (v{iteration})")
         
         # Step 6: Run runtime tests
@@ -602,7 +613,7 @@ def main():
     parser = argparse.ArgumentParser(description='Claude Code Autonomous Demo')
     parser.add_argument('--file', type=str, default='legacy_code/data_processor.py',
                         help='Path to legacy code file')
-    parser.add_argument('--max-iterations', type=int, default=5,
+    parser.add_argument('--max-iterations', type=int, default=MAX_5,
                         help='Maximum refactoring iterations')
     
     args = parser.parse_args()

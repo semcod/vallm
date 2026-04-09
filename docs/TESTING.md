@@ -1,3 +1,7 @@
+---
+path: /home/tom/github/semcod/vallm
+---
+
 # Comprehensive Testing Guide
 
 This document describes the comprehensive testing suite for vallm, covering E2E tests, Docker installation tests, and CI/CD workflows.

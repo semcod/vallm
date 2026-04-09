@@ -1,3 +1,7 @@
+---
+path: /home/tom/github/semcod/vallm
+---
+
 <!-- code2docs:start --># vallm
 
 ![version](https://img.shields.io/badge/version-0.1.0-blue) ![python](https://img.shields.io/badge/python-%3E%3D3.10-blue) ![coverage](https://img.shields.io/badge/coverage-unknown-lightgrey) ![functions](https://img.shields.io/badge/functions-425-green)

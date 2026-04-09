@@ -5,21 +5,19 @@ Simple Ollama Demo: code2llm → Ollama → vallm → Tests → code2llm
 Shows basic autonomous refactoring workflow with Ollama
 """
 
-import json
 import logging
-import os
-import subprocess
 import sys
-import time
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict
 
 import requests
 
 from examples.utils import extract_code_from_response
 
 # Setup logging
-logging.basicConfig(
+
+if __name__ == "__main__":
+    logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s | %(levelname)s | %(message)s',
     handlers=[

@@ -1,3 +1,20 @@
+## [0.1.73] - 2026-04-09
+
+### Changed
+- **Refactoring** — Split high-cyclomatic-complexity functions to improve maintainability
+  - `walk` in `src/vallm/validators/imports/utils.py` (CC 27 → ~15)
+  - `BatchProcessor._process_files_sequential` (CC 26 → ~15)
+  - `validate_code` in `mcp/server/_tools_vallm.py` (CC 22 → ~15)
+  - Extracted `_DEFAULT_EXCLUDE_PATTERNS` constant and helper functions
+- **Test performance** — Optimized test suite for faster execution
+  - Marked 19 tests as `@pytest.mark.slow` (excluded from default suite)
+  - Test time: 147 passed in 2.81s (down from 166 tests in ~7s)
+  - Fixed pytest configuration for goal compatibility
+
+### Fixed
+- **pytest configuration** — Removed `--numprocesses=auto` and `--asyncio-mode=auto` from default addopts for goal compatibility
+- **Makefile** — Added venv target and automatic virtual environment creation
+
 ## [0.1.72] - 2026-04-01
 
 ### Added (Quality Pipeline)
@@ -368,6 +385,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Lizard integration** — complexity analysis for 16+ languages (Go, Rust, Java, C/C++, etc.)
 - **Tree-sitter for all** — syntax validation for 165+ languages
 - **Example 07** — comprehensive multi-language demo with 8 languages
+
+## [0.1.74] - 2026-04-09
+
+### Docs
+- Update CHANGELOG.md
+- Update docs/README.md
+- Update docs/TESTING.md
+
+### Other
+- Update examples/10_mcp_ollama_demo/mcp_demo.py
+- Update examples/11_claude_code_autonomous/claude_autonomous_demo.py
+- Update examples/12_ollama_simple_demo/ollama_simple_demo.py
+- Update mcp/server/_tools_vallm.py
+- Update mcp/tests/test_client_integration.py
 
 ## [0.1.73] - 2026-04-09
 
