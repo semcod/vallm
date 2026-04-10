@@ -2,14 +2,14 @@
 
 ## Overview
 
-- **Project**: /home/tom/github/semcod/vallm
+- **Project**: /tmp/redsl-autonomous/vallm
 - **Primary Language**: python
-- **Languages**: python: 91, shell: 8
+- **Languages**: python: 94, shell: 9
 - **Analysis Mode**: static
 - **Total Functions**: 425
 - **Total Classes**: 44
-- **Modules**: 99
-- **Entry Points**: 267
+- **Modules**: 103
+- **Entry Points**: 0
 
 ## Architecture by Module
 
@@ -18,28 +18,28 @@
 - **Classes**: 1
 - **File**: `batch_processor_impl.py`
 
+### src.vallm.cli.output_formatters.batch
+- **Functions**: 16
+- **File**: `batch.py`
+
 ### examples.11_claude_code_autonomous.legacy_code.data_processor
 - **Functions**: 16
 - **Classes**: 2
 - **File**: `data_processor.py`
-
-### src.vallm.cli.output_formatters.batch
-- **Functions**: 16
-- **File**: `batch.py`
 
 ### src.vallm.validators.semantic
 - **Functions**: 15
 - **Classes**: 1
 - **File**: `semantic.py`
 
+### mcp.server._tools_vallm
+- **Functions**: 14
+- **File**: `_tools_vallm.py`
+
 ### examples.10_mcp_ollama_demo.legacy_code.order_processor
 - **Functions**: 14
 - **Classes**: 1
 - **File**: `order_processor.py`
-
-### mcp.server._tools_vallm
-- **Functions**: 14
-- **File**: `_tools_vallm.py`
 
 ### examples.10_mcp_ollama_demo.refactored_output
 - **Functions**: 13
@@ -70,6 +70,11 @@
 - **Classes**: 1
 - **File**: `gitignore.py`
 
+### src.vallm.validators.imports.python_imports
+- **Functions**: 9
+- **Classes**: 1
+- **File**: `python_imports.py`
+
 ### examples.12_ollama_simple_demo.ollama_simple_demo
 - **Functions**: 9
 - **Classes**: 1
@@ -84,24 +89,19 @@
 - **Classes**: 1
 - **File**: `mcp_demo.py`
 
-### src.vallm.validators.imports.python_imports
-- **Functions**: 9
-- **Classes**: 1
-- **File**: `python_imports.py`
-
 ### src.vallm.validators.semantic_cache
 - **Functions**: 8
 - **Classes**: 1
 - **File**: `semantic_cache.py`
 
-### src.vallm.core.ast_compare
-- **Functions**: 8
-- **File**: `ast_compare.py`
-
 ### src.vallm.scoring
 - **Functions**: 8
 - **Classes**: 5
 - **File**: `scoring.py`
+
+### src.vallm.core.ast_compare
+- **Functions**: 8
+- **File**: `ast_compare.py`
 
 ### src.vallm.validators.file_cache
 - **Functions**: 7
@@ -112,197 +112,9 @@
 
 Main execution flows into the system:
 
-### examples.04_graph_analysis.main.main
-- **Calls**: examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, build_python_graph, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print
-
-### examples.utils.validation_runner.run_validation_examples
-> Run standard validation examples (good, bad, complex code).
-
-Args:
-    example_name: Name for saving analysis data
-    good_code: Example of good code
-- **Calls**: examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, Proposal, src.vallm.validators.base.BaseValidator.validate, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print
-
-### examples.11_claude_code_autonomous.claude_autonomous_demo.main
-> Main entry point.
-- **Calls**: argparse.ArgumentParser, parser.add_argument, parser.add_argument, parser.parse_args, Path, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print
-
-### examples.02_ast_comparison.main.main
-- **Calls**: examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, src.vallm.core.ast_compare.python_ast_similarity, src.vallm.core.ast_compare.python_ast_similarity, src.vallm.core.ast_compare.python_ast_similarity, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print
-
-### src.vallm.cli.command_handlers.batch_command
-> Validate multiple files with auto-detected languages.
-- **Calls**: typer.Argument, typer.Option, typer.Option, typer.Option, typer.Option, typer.Option, typer.Option, typer.Option
-
-### examples.05_llm_semantic_review.main.main
-- **Calls**: VallmSettings, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, Proposal, src.vallm.validators.base.BaseValidator.validate, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print
-
-### examples.12_ollama_simple_demo.ollama_simple_demo.main
-> Main function.
-- **Calls**: argparse.ArgumentParser, parser.add_argument, parser.add_argument, parser.parse_args, Path, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.12_ollama_simple_demo.ollama_simple_demo.run_simple_workflow
-
-### examples.03_security_check.main.main
-- **Calls**: SecurityValidator, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, Proposal, validator.validate, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print
-
-### examples.10_mcp_ollama_demo.mcp_demo.main
-> Main entry point.
-- **Calls**: argparse.ArgumentParser, parser.add_argument, parser.add_argument, parser.parse_args, Path, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.mcp_demo.run_mcp_workflow
-
-### src.vallm.cli.command_handlers.validate_command
-> Validate code with the full pipeline.
-- **Calls**: typer.Option, typer.Option, typer.Option, typer.Option, typer.Option, typer.Option, typer.Option, typer.Option
-
-### src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.extract_imports
-> Extract import statements from JavaScript/TypeScript using tree-sitter.
-- **Calls**: src.vallm.core.ast_compare._cached_get_parser, parser.parse, src.vallm.validators.imports.utils.walk, code.encode, enumerate, src.vallm.validators.imports.utils.walk, re.finditer, imports.append
-
-### examples.09_code2logic_integration.main.main
-> Main example function.
-- **Calls**: examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.09_code2logic_integration.main.validate_with_vallm, examples.09_code2logic_integration.main.build_call_graph, examples.09_code2logic_integration.main.generate_report, examples.09_code2logic_integration.main.visualize_flow, examples.10_mcp_ollama_demo.run.print
-
-### src.vallm.validators.imports.go_imports.GoImportValidator.extract_imports
-> Extract import statements from Go using tree-sitter.
-- **Calls**: src.vallm.core.ast_compare._cached_get_parser, parser.parse, src.vallm.validators.imports.utils.walk, code.encode, re.finditer, src.vallm.validators.imports.utils.walk, imports.append, child.child_by_field_name
-
-### scripts.bump_version.main
-- **Calls**: pyproject_path.read_text, re.search, version_match.group, scripts.bump_version.bump_version, re.sub, pyproject_path.write_text, examples.10_mcp_ollama_demo.run.print, len
-
-### examples.07_multi_language.main.main
-> Main example function.
-- **Calls**: examples.07_multi_language.main.print_language_info, examples.07_multi_language.main.test_language_detection, examples.07_multi_language.main.validate_all_languages, examples.07_multi_language.main.save_results, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, sum
-
-### src.vallm.validators.lint.LintValidator._parse_ruff_result
-> Parse a ruff JSON result into an Issue.
-
-Args:
-    item: Ruff result dictionary
-    
-Returns:
-    Issue object
-- **Calls**: any, Issue, None.startswith, None.startswith, item.get, None.get, None.get, None.get
-
-### src.vallm.validators.imports.python_imports.PythonImportValidator.validate
-> Validate Python imports using AST.
-- **Calls**: ast.parse, self.extract_imports, self.create_validation_result, import_info.get, len, ValidationResult, len, len
-
-### src.vallm.validators.imports.rust_imports.RustImportValidator.extract_imports
-> Extract use statements from Rust using tree-sitter.
-- **Calls**: src.vallm.core.ast_compare._cached_get_parser, parser.parse, src.vallm.validators.imports.utils.walk, code.encode, re.finditer, src.vallm.validators.imports.utils.walk, None.strip, imports.append
-
-### src.vallm.cli.output_formatters.output_batch_text
-> Output plain text batch summary.
-- **Calls**: examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print
-
-### src.vallm.cli.output_formatters.batch.output_batch_text
-> Output plain text batch summary.
-- **Calls**: examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print
-
-### src.vallm.core.gitignore.GitignoreParser._pattern_to_regex
-> Convert a gitignore pattern to a regex pattern.
-- **Calls**: len, None.join, result.append, result.append, result.append, len, pattern.find, result.append
-
-### src.vallm.cli.output_formatters.output_batch_empty
-> Output empty results.
-- **Calls**: examples.10_mcp_ollama_demo.run.print, json.dumps, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print
-
-### src.vallm.cli.output_formatters.batch.output_batch_empty
-> Output empty results.
-- **Calls**: examples.10_mcp_ollama_demo.run.print, json.dumps, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print
-
-### examples.mcp_demo.main
-> Run all examples.
-- **Calls**: examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.mcp_demo.example_syntax_validation, examples.mcp_demo.example_security_validation, examples.mcp_demo.example_full_pipeline, examples.mcp_demo.example_selective_validation, examples.10_mcp_ollama_demo.run.print
-
-### src.vallm.validators.semantic.SemanticValidator._parse_response
-> Parse LLM JSON response into a ValidationResult.
-- **Calls**: self._extract_json_from_response, self._parse_scores, self._parse_issues, ValidationResult, isinstance, self._create_parse_error_result, self._create_parse_error_result, json.loads
-
-### src.vallm.validators.lint.LintValidator._parse_ruff_text
-> Parse ruff text output as fallback.
-
-Args:
-    output: Ruff text output
-    
-Returns:
-    List of Issue objects
-- **Calls**: None.split, line.strip, output.strip, line.split, len, int, int, message.startswith
-
-### src.vallm.cli.batch_processor_impl.BatchProcessor._process_files_sequential
-> Process files sequentially (used for fail_fast / verbose modes).
-- **Calls**: len, src.vallm.validators.file_cache.get_file_cache, enumerate, self._show_progress, self._validate_single_file_sequential, self._handle_validation_result, failed_files.append, self._show_verbose_output
-
-### mcp.server.self_server.main
-> Main MCP server loop.
-- **Calls**: examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, line.strip, examples.10_mcp_ollama_demo.run.print, json.loads, mcp.server.self_server.handle_request, examples.10_mcp_ollama_demo.run.print, json.dumps
-
-### examples.utils.validate_code_example
-> Validate a code example and store results.
-
-Args:
-    name: Example name identifier
-    code: Code string to validate
-    settings: VallmSettings inst
-- **Calls**: examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, Proposal, src.vallm.validators.base.BaseValidator.validate, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print
-
-### examples.08_code2llm_integration.main.main
-> Main example function.
-- **Calls**: examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.08_code2llm_integration.main.create_sample_project, examples.10_mcp_ollama_demo.run.print, examples.08_code2llm_integration.main.validate_with_vallm, examples.08_code2llm_integration.main.generate_report, examples.10_mcp_ollama_demo.run.print
-
 ## Process Flows
 
 Key execution flows identified:
-
-### Flow 1: main
-```
-main [examples.04_graph_analysis.main]
-  └─ →> print
-  └─ →> print
-```
-
-### Flow 2: run_validation_examples
-```
-run_validation_examples [examples.utils.validation_runner]
-  └─ →> print
-  └─ →> print
-  └─ →> validate
-```
-
-### Flow 3: batch_command
-```
-batch_command [src.vallm.cli.command_handlers]
-```
-
-### Flow 4: validate_command
-```
-validate_command [src.vallm.cli.command_handlers]
-```
-
-### Flow 5: extract_imports
-```
-extract_imports [src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator]
-  └─ →> _cached_get_parser
-  └─ →> walk
-      └─> _should_skip_entry
-          └─> _should_skip_dir
-          └─> _is_gitignored
-```
-
-### Flow 6: _parse_ruff_result
-```
-_parse_ruff_result [src.vallm.validators.lint.LintValidator]
-```
-
-### Flow 7: validate
-```
-validate [src.vallm.validators.imports.python_imports.PythonImportValidator]
-```
-
-### Flow 8: output_batch_text
-```
-output_batch_text [src.vallm.cli.output_formatters]
-  └─ →> print
-  └─ →> print
-```
 
 ## Key Classes
 
@@ -317,11 +129,6 @@ output_batch_text [src.vallm.cli.output_formatters]
 - **Key Methods**: src.vallm.validators.semantic.SemanticValidator.__init__, src.vallm.validators.semantic.SemanticValidator.validate, src.vallm.validators.semantic.SemanticValidator._build_prompt, src.vallm.validators.semantic.SemanticValidator._call_llm, src.vallm.validators.semantic.SemanticValidator._call_ollama, src.vallm.validators.semantic.SemanticValidator._call_litellm, src.vallm.validators.semantic.SemanticValidator._call_http, src.vallm.validators.semantic.SemanticValidator._parse_response, src.vallm.validators.semantic.SemanticValidator._extract_json_from_response, src.vallm.validators.semantic.SemanticValidator._create_parse_error_result
 - **Inherits**: BaseValidator
 
-### examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor
-> Data processor with multiple responsibilities - violates SRP.
-- **Methods**: 10
-- **Key Methods**: examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.__init__, examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.process_user_data, examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.calculate_metrics, examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.export_data, examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.validate_email, examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.validate_email_again, examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.process_with_external_api, examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.complex_calculation, examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.unused_function, examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.another_unused_function
-
 ### src.vallm.validators.regression.RegressionValidator
 > Tier 2: Run pytest against proposed code and report pass/fail.
 
@@ -330,16 +137,10 @@ The validator writes the proposed co
 - **Key Methods**: src.vallm.validators.regression.RegressionValidator.__init__, src.vallm.validators.regression.RegressionValidator.validate, src.vallm.validators.regression.RegressionValidator._resolve_test_dir, src.vallm.validators.regression.RegressionValidator._write_code, src.vallm.validators.regression.RegressionValidator._build_pytest_cmd, src.vallm.validators.regression.RegressionValidator._run_pytest, src.vallm.validators.regression.RegressionValidator._interpret, src.vallm.validators.regression.RegressionValidator._parse_failures, src.vallm.validators.regression.RegressionValidator._timeout_result, src.vallm.validators.regression.RegressionValidator._exception_result
 - **Inherits**: BaseValidator
 
-### examples.10_mcp_ollama_demo.refactored_output.OrderManager
-> Class with single responsibility - adheres to SOLID principles.
-- **Methods**: 7
-- **Key Methods**: examples.10_mcp_ollama_demo.refactored_output.OrderManager.__init__, examples.10_mcp_ollama_demo.refactored_output.OrderManager.add_order, examples.10_mcp_ollama_demo.refactored_output.OrderManager.validate_order, examples.10_mcp_ollama_demo.refactored_output.OrderManager.execute_query, examples.10_mcp_ollama_demo.refactored_output.OrderManager.process_payment, examples.10_mcp_ollama_demo.refactored_output.OrderManager.send_email, examples.10_mcp_ollama_demo.refactored_output.OrderManager.get_stats
-
-### src.vallm.validators.imports.base.BaseImportValidator
-> Base class for all import validators.
-- **Methods**: 7
-- **Key Methods**: src.vallm.validators.imports.base.BaseImportValidator.validate, src.vallm.validators.imports.base.BaseImportValidator.extract_imports, src.vallm.validators.imports.base.BaseImportValidator.module_exists, src.vallm.validators.imports.base.BaseImportValidator.get_language, src.vallm.validators.imports.base.BaseImportValidator._get_error_message, src.vallm.validators.imports.base.BaseImportValidator._get_rule_name, src.vallm.validators.imports.base.BaseImportValidator.create_validation_result
-- **Inherits**: ABC
+### examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor
+> Data processor with multiple responsibilities - violates SRP.
+- **Methods**: 10
+- **Key Methods**: examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.__init__, examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.process_user_data, examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.calculate_metrics, examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.export_data, examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.validate_email, examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.validate_email_again, examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.process_with_external_api, examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.complex_calculation, examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.unused_function, examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.another_unused_function
 
 ### src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator
 > JavaScript/TypeScript import validator.
@@ -353,31 +154,42 @@ The validator writes the proposed co
 - **Key Methods**: src.vallm.validators.imports.python_imports.PythonImportValidator.validate, src.vallm.validators.imports.python_imports.PythonImportValidator._relative_import_exists, src.vallm.validators.imports.python_imports.PythonImportValidator.extract_imports, src.vallm.validators.imports.python_imports.PythonImportValidator.module_exists, src.vallm.validators.imports.python_imports.PythonImportValidator.get_language, src.vallm.validators.imports.python_imports.PythonImportValidator._get_error_message, src.vallm.validators.imports.python_imports.PythonImportValidator._get_rule_name
 - **Inherits**: BaseImportValidator
 
+### src.vallm.validators.imports.base.BaseImportValidator
+> Base class for all import validators.
+- **Methods**: 7
+- **Key Methods**: src.vallm.validators.imports.base.BaseImportValidator.validate, src.vallm.validators.imports.base.BaseImportValidator.extract_imports, src.vallm.validators.imports.base.BaseImportValidator.module_exists, src.vallm.validators.imports.base.BaseImportValidator.get_language, src.vallm.validators.imports.base.BaseImportValidator._get_error_message, src.vallm.validators.imports.base.BaseImportValidator._get_rule_name, src.vallm.validators.imports.base.BaseImportValidator.create_validation_result
+- **Inherits**: ABC
+
 ### src.vallm.core.languages.Language
 > Supported programming languages with their tree-sitter identifiers.
 - **Methods**: 7
 - **Key Methods**: src.vallm.core.languages.Language.__init__, src.vallm.core.languages.Language.from_extension, src.vallm.core.languages.Language.from_path, src.vallm.core.languages.Language.from_string, src.vallm.core.languages.Language.is_compiled, src.vallm.core.languages.Language.is_scripting, src.vallm.core.languages.Language.is_web
 - **Inherits**: Enum
 
-### examples.10_mcp_ollama_demo.legacy_code.order_processor.OrderManager
-> Class with mixed responsibilities - SOLID violation.
-- **Methods**: 6
-- **Key Methods**: examples.10_mcp_ollama_demo.legacy_code.order_processor.OrderManager.__init__, examples.10_mcp_ollama_demo.legacy_code.order_processor.OrderManager.add_order, examples.10_mcp_ollama_demo.legacy_code.order_processor.OrderManager.execute_query, examples.10_mcp_ollama_demo.legacy_code.order_processor.OrderManager.process_payment, examples.10_mcp_ollama_demo.legacy_code.order_processor.OrderManager.send_email, examples.10_mcp_ollama_demo.legacy_code.order_processor.OrderManager.get_stats
-
-### src.vallm.validators.file_cache.FileValidationCache
-> In-memory cache keyed on file path + mtime + size.
-- **Methods**: 6
-- **Key Methods**: src.vallm.validators.file_cache.FileValidationCache.__init__, src.vallm.validators.file_cache.FileValidationCache._key, src.vallm.validators.file_cache.FileValidationCache.get, src.vallm.validators.file_cache.FileValidationCache.set, src.vallm.validators.file_cache.FileValidationCache.clear, src.vallm.validators.file_cache.FileValidationCache.stats
+### examples.10_mcp_ollama_demo.refactored_output.OrderManager
+> Class with single responsibility - adheres to SOLID principles.
+- **Methods**: 7
+- **Key Methods**: examples.10_mcp_ollama_demo.refactored_output.OrderManager.__init__, examples.10_mcp_ollama_demo.refactored_output.OrderManager.add_order, examples.10_mcp_ollama_demo.refactored_output.OrderManager.validate_order, examples.10_mcp_ollama_demo.refactored_output.OrderManager.execute_query, examples.10_mcp_ollama_demo.refactored_output.OrderManager.process_payment, examples.10_mcp_ollama_demo.refactored_output.OrderManager.send_email, examples.10_mcp_ollama_demo.refactored_output.OrderManager.get_stats
 
 ### src.vallm.validators.semantic_cache.SemanticCache
 > Cache for semantic validation results to improve performance.
 - **Methods**: 6
 - **Key Methods**: src.vallm.validators.semantic_cache.SemanticCache.__init__, src.vallm.validators.semantic_cache.SemanticCache._get_cache_key, src.vallm.validators.semantic_cache.SemanticCache.get, src.vallm.validators.semantic_cache.SemanticCache.set, src.vallm.validators.semantic_cache.SemanticCache.clear, src.vallm.validators.semantic_cache.SemanticCache.get_cache_stats
 
+### src.vallm.validators.file_cache.FileValidationCache
+> In-memory cache keyed on file path + mtime + size.
+- **Methods**: 6
+- **Key Methods**: src.vallm.validators.file_cache.FileValidationCache.__init__, src.vallm.validators.file_cache.FileValidationCache._key, src.vallm.validators.file_cache.FileValidationCache.get, src.vallm.validators.file_cache.FileValidationCache.set, src.vallm.validators.file_cache.FileValidationCache.clear, src.vallm.validators.file_cache.FileValidationCache.stats
+
 ### src.vallm.core.gitignore.GitignoreParser
 > Parse .gitignore files and match paths against patterns.
 - **Methods**: 6
 - **Key Methods**: src.vallm.core.gitignore.GitignoreParser.__init__, src.vallm.core.gitignore.GitignoreParser._parse, src.vallm.core.gitignore.GitignoreParser.matches, src.vallm.core.gitignore.GitignoreParser._match_pattern, src.vallm.core.gitignore.GitignoreParser._fnmatch, src.vallm.core.gitignore.GitignoreParser._pattern_to_regex
+
+### examples.10_mcp_ollama_demo.legacy_code.order_processor.OrderManager
+> Class with mixed responsibilities - SOLID violation.
+- **Methods**: 6
+- **Key Methods**: examples.10_mcp_ollama_demo.legacy_code.order_processor.OrderManager.__init__, examples.10_mcp_ollama_demo.legacy_code.order_processor.OrderManager.add_order, examples.10_mcp_ollama_demo.legacy_code.order_processor.OrderManager.execute_query, examples.10_mcp_ollama_demo.legacy_code.order_processor.OrderManager.process_payment, examples.10_mcp_ollama_demo.legacy_code.order_processor.OrderManager.send_email, examples.10_mcp_ollama_demo.legacy_code.order_processor.OrderManager.get_stats
 
 ### src.vallm.validators.security.SecurityValidator
 > Tier 2: Security analysis using built-in patterns and optionally bandit.
@@ -390,12 +202,6 @@ The validator writes the proposed co
 - **Methods**: 5
 - **Key Methods**: src.vallm.validators.lint.LintValidator.__init__, src.vallm.validators.lint.LintValidator.validate, src.vallm.validators.lint.LintValidator._check_ruff, src.vallm.validators.lint.LintValidator._parse_ruff_result, src.vallm.validators.lint.LintValidator._parse_ruff_text
 
-### src.vallm.validators.imports.go_imports.GoImportValidator
-> Go import validator.
-- **Methods**: 5
-- **Key Methods**: src.vallm.validators.imports.go_imports.GoImportValidator.get_language, src.vallm.validators.imports.go_imports.GoImportValidator._get_error_message, src.vallm.validators.imports.go_imports.GoImportValidator._get_rule_name, src.vallm.validators.imports.go_imports.GoImportValidator.extract_imports, src.vallm.validators.imports.go_imports.GoImportValidator.module_exists
-- **Inherits**: BaseImportValidator
-
 ### src.vallm.validators.imports.rust_imports.RustImportValidator
 > Rust import validator.
 - **Methods**: 5
@@ -406,6 +212,12 @@ The validator writes the proposed co
 > Java import validator.
 - **Methods**: 5
 - **Key Methods**: src.vallm.validators.imports.java_imports.JavaImportValidator.get_language, src.vallm.validators.imports.java_imports.JavaImportValidator._get_error_message, src.vallm.validators.imports.java_imports.JavaImportValidator._get_rule_name, src.vallm.validators.imports.java_imports.JavaImportValidator.extract_imports, src.vallm.validators.imports.java_imports.JavaImportValidator.module_exists
+- **Inherits**: BaseImportValidator
+
+### src.vallm.validators.imports.go_imports.GoImportValidator
+> Go import validator.
+- **Methods**: 5
+- **Key Methods**: src.vallm.validators.imports.go_imports.GoImportValidator.get_language, src.vallm.validators.imports.go_imports.GoImportValidator._get_error_message, src.vallm.validators.imports.go_imports.GoImportValidator._get_rule_name, src.vallm.validators.imports.go_imports.GoImportValidator.extract_imports, src.vallm.validators.imports.go_imports.GoImportValidator.module_exists
 - **Inherits**: BaseImportValidator
 
 ### src.vallm.validators.logical.LogicalErrorValidator
@@ -423,119 +235,128 @@ The validator writes the proposed co
 
 Key functions that process and transform data:
 
-### examples.09_code2logic_integration.main.validate_with_vallm
-> Validate code quality with vallm.
-- **Output to**: examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, VallmSettings, Proposal
-
-### examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.process_user_data
-> Process user data with deep nesting and security issues.
-- **Output to**: isinstance, len, connection.cursor, cursor.execute, connection.commit
-
-### examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.validate_email
-> Email validation - duplicate function.
-
-### examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.validate_email_again
-> Duplicate email validation function.
-
-### examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.process_with_external_api
-> Process data with external API - no error handling.
-- **Output to**: requests.get, response.json
-
-### examples.12_ollama_simple_demo.legacy_code.simple_buggy.process_user_input
-> Process user input with security issues.
-- **Output to**: user_input.startswith, user_input.startswith, eval, examples.10_mcp_ollama_demo.run.print
-
-### examples.12_ollama_simple_demo.legacy_code.simple_buggy.BadClass.process_data
-> Method with no error handling.
-- **Output to**: isinstance, self.data.append
-
-### examples.12_ollama_simple_demo.utils.process_user_input.process_user_input
-> Process user input with standard logic.
-
-Args:
-    user_input: Raw user input string
-    
-Returns:
- 
-- **Output to**: user_input.startswith, user_input.startswith, str, examples.10_mcp_ollama_demo.run.print, user_input.lower
-
-### examples.12_ollama_simple_demo.ollama_simple_demo.validate_with_vallm
-> Simple vallm validation.
-- **Output to**: examples.12_ollama_simple_demo.ollama_simple_demo.log_step, VallmSettings, Proposal, src.vallm.validators.base.BaseValidator.validate, examples.10_mcp_ollama_demo.run.print
-
-### examples.11_claude_code_autonomous.claude_autonomous_demo.validate_with_vallm
-> Validate code using vallm.
-- **Output to**: logger.info, VallmSettings, Proposal, src.vallm.validators.base.BaseValidator.validate, examples.10_mcp_ollama_demo.run.print
-
-### examples.07_multi_language.main.validate_single_language
-> Validate a single language code sample.
-- **Output to**: VallmSettings, Proposal, src.vallm.validators.base.BaseValidator.validate
-
-### examples.07_multi_language.main.validate_all_languages
-> Validate all language samples.
-- **Output to**: examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, CODE_SAMPLES.items
-
-### examples.10_mcp_ollama_demo.refactored_output.OrderManager.validate_order
-> Validate order data.
-
-### examples.10_mcp_ollama_demo.refactored_output.OrderManager.process_payment
-> Process payment securely.
-- **Output to**: examples.10_mcp_ollama_demo.run.print
-
-### examples.10_mcp_ollama_demo.refactored_output.validate_email
-> Email validation using regex.
-- **Output to**: re.match
-
-### examples.10_mcp_ollama_demo.refactored_output.process_order
-> Process order data with proper error handling and validation.
-
-### examples.10_mcp_ollama_demo.legacy_code.order_processor.process_order
-> Process order data - has multiple issues.
-- **Output to**: len
-
-### examples.10_mcp_ollama_demo.legacy_code.order_processor.OrderManager.process_payment
-> Process payment - security issues.
-- **Output to**: examples.10_mcp_ollama_demo.run.print
-
-### examples.10_mcp_ollama_demo.legacy_code.order_processor.validate_email_1
-> Email validation - duplicated logic.
-
-### examples.10_mcp_ollama_demo.legacy_code.order_processor.validate_email_2
-> Email validation - same logic, different function.
-
-### examples.utils.validate_code_example
-> Validate a code example and store results.
-
-Args:
-    name: Example name identifier
-    code: Code s
-- **Output to**: examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, Proposal, src.vallm.validators.base.BaseValidator.validate
-
-### examples.10_mcp_ollama_demo.mcp_demo.validate_with_vallm
-> Validate code using vallm.
-- **Output to**: logger.info, VallmSettings, Proposal, src.vallm.validators.base.BaseValidator.validate, examples.10_mcp_ollama_demo.run.print
-
 ### src.vallm.hookspecs.VallmSpec.validate_proposal
 > Validate a code proposal and return a ValidationResult.
 
-### examples.08_code2llm_integration.main.validate_with_vallm
-> Validate all Python files with vallm.
-- **Output to**: examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, examples.10_mcp_ollama_demo.run.print, VallmSettings, project_path.rglob
+### src.vallm.validators.syntax.SyntaxValidator.validate
+- **Output to**: ValidationResult, self._validate_python, self._validate_treesitter
+
+### src.vallm.validators.syntax.SyntaxValidator._validate_python
+> Validate Python syntax using ast.parse and tree-sitter.
+- **Output to**: ast.parse, src.vallm.core.ast_compare.tree_sitter_error_count, issues.append, issues.append, Issue
+
+### src.vallm.validators.syntax.SyntaxValidator._validate_treesitter
+> Validate non-Python syntax using tree-sitter.
+- **Output to**: src.vallm.core.ast_compare.tree_sitter_error_count, issues.append, issues.append, Issue, Issue
+
+### src.vallm.validators.semantic.SemanticValidator.validate
+- **Output to**: self.cache.get, self._build_prompt, self._call_llm, self._parse_response, self.cache.set
+
+### src.vallm.validators.semantic.SemanticValidator._parse_response
+> Parse LLM JSON response into a ValidationResult.
+- **Output to**: self._extract_json_from_response, self._parse_scores, self._parse_issues, ValidationResult, isinstance
+
+### src.vallm.validators.semantic.SemanticValidator._create_parse_error_result
+> Create result for when JSON cannot be parsed from response.
+- **Output to**: ValidationResult, Issue
+
+### src.vallm.validators.semantic.SemanticValidator._parse_scores
+> Parse and normalize scores from LLM response.
+- **Output to**: data.get, isinstance, max, min
+
+### src.vallm.validators.semantic.SemanticValidator._parse_issues
+> Parse issues from LLM response.
+- **Output to**: data.get, self._parse_severity, self._parse_line_number, issues.append, isinstance
+
+### src.vallm.validators.semantic.SemanticValidator._parse_severity
+> Parse severity string into Severity enum.
+- **Output to**: severity_map.get, severity_str.lower
+
+### src.vallm.validators.semantic.SemanticValidator._parse_line_number
+> Parse line number from various formats.
+- **Output to**: isinstance, isinstance, int
+
+### src.vallm.validators.security.SecurityValidator.validate
+- **Output to**: self._check_patterns, issues.extend, _LANGUAGE_PATTERNS.get, ValidationResult, self._check_patterns
+
+### src.vallm.validators.regression.RegressionValidator.validate
+- **Output to**: self._resolve_test_dir, tempfile.TemporaryDirectory, self._write_code, self._run_pytest, Path
+
+### src.vallm.validators.regression.RegressionValidator._parse_failures
+> Extract individual FAILED lines from pytest -q output.
+- **Output to**: stdout.splitlines, line.strip, stripped.startswith, None.strip, issues.append
+
+### src.vallm.validators.logical.LogicalErrorValidator.validate
+> Validate code for logical errors using pyflakes.
+
+Args:
+    proposal: Code proposal to validate
+    
+- **Output to**: self._check_pyflakes, ValidationResult, ValidationResult, len, len
+
+### src.vallm.validators.logical.LogicalErrorValidator._parse_pyflakes_line
+> Parse a pyflakes output line into an Issue.
+
+Args:
+    line: Pyflakes output line
+    
+Returns:
+    
+- **Output to**: line.split, int, any, Issue, len
+
+### src.vallm.validators.lint.LintValidator.validate
+> Validate code for linting issues using ruff.
+
+Args:
+    proposal: Code proposal to validate
+    cont
+- **Output to**: self._check_ruff, ValidationResult, ValidationResult, len, len
+
+### src.vallm.validators.lint.LintValidator._parse_ruff_result
+> Parse a ruff JSON result into an Issue.
+
+Args:
+    item: Ruff result dictionary
+    
+Returns:
+    Is
+- **Output to**: any, Issue, None.startswith, None.startswith, item.get
+
+### src.vallm.validators.lint.LintValidator._parse_ruff_text
+> Parse ruff text output as fallback.
+
+Args:
+    output: Ruff text output
+    
+Returns:
+    List of Is
+- **Output to**: None.split, line.strip, output.strip, line.split, len
 
 ### src.vallm.validators.base.BaseValidator.validate
 > Validate a proposal and return a result.
 
-## Behavioral Patterns
+### src.vallm.validators.imports.wrapper.ImportValidator.validate
+> Validate imports by dispatching to language-specific validators.
+- **Output to**: ImportValidatorFactory.create_validator, validator.validate, ValidationResult
 
-### recursion_walk
-- **Type**: recursion
-- **Confidence**: 0.90
-- **Functions**: src.vallm.validators.imports.utils.walk
+### src.vallm.validators.complexity.ComplexityValidator.validate
+- **Output to**: self._check_lizard, issues.extend, details.update, min, ValidationResult
 
-### state_machine_ComplexityValidator
-- **Type**: state_machine
-- **Confidence**: 0.70
-- **Functions**: src.vallm.validators.complexity.ComplexityValidator.__init__, src.vallm.validators.complexity.ComplexityValidator.validate, src.vallm.validators.complexity.ComplexityValidator._check_python_complexity, src.vallm.validators.complexity.ComplexityValidator._check_lizard
+### src.vallm.validators.imports.utils.validate_import_path
+> Validate if an import path is resolvable.
+
+Args:
+    import_path: The import path to validate
+    so
+- **Output to**: import_path.startswith, local_module.exists, local_pkg.exists, import_path.split, len
+
+### src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.validate
+> Validate JavaScript/TypeScript imports using tree-sitter.
+- **Output to**: self.extract_imports, self.create_validation_result, len, self.module_exists, issues.append
+
+### src.vallm.validators.imports.python_imports.PythonImportValidator.validate
+> Validate Python imports using AST.
+- **Output to**: ast.parse, self.extract_imports, self.create_validation_result, import_info.get, len
 
 ## Public API Surface
 
@@ -543,44 +364,44 @@ Functions exposed as public API (no underscore prefix):
 
 - `examples.11_claude_code_autonomous.claude_autonomous_demo.analyze_with_code2llm` - 43 calls
 - `examples.11_claude_code_autonomous.claude_autonomous_demo.run_autonomous_workflow` - 42 calls
-- `examples.04_graph_analysis.main.main` - 40 calls
-- `examples.utils.run_validation_examples` - 40 calls
 - `examples.utils.validation_runner.run_validation_examples` - 40 calls
+- `examples.utils.run_validation_examples` - 40 calls
+- `examples.04_graph_analysis.main.main` - 40 calls
 - `examples.10_mcp_ollama_demo.mcp_demo.analyze_with_code2llm` - 36 calls
 - `examples.10_mcp_ollama_demo.mcp_demo.run_mcp_workflow` - 36 calls
 - `examples.11_claude_code_autonomous.claude_autonomous_demo.main` - 34 calls
 - `examples.12_ollama_simple_demo.ollama_simple_demo.run_simple_workflow` - 31 calls
 - `examples.02_ast_comparison.main.main` - 31 calls
 - `src.vallm.cli.command_handlers.batch_command` - 30 calls
-- `examples.05_llm_semantic_review.main.main` - 29 calls
-- `examples.12_ollama_simple_demo.ollama_simple_demo.analyze_with_code2llm` - 29 calls
-- `examples.12_ollama_simple_demo.ollama_simple_demo.main` - 29 calls
-- `examples.03_security_check.main.main` - 29 calls
 - `src.vallm.cli.output_formatters.output_batch_yaml` - 29 calls
 - `src.vallm.cli.output_formatters.batch.output_batch_yaml` - 29 calls
+- `examples.12_ollama_simple_demo.ollama_simple_demo.analyze_with_code2llm` - 29 calls
+- `examples.12_ollama_simple_demo.ollama_simple_demo.main` - 29 calls
+- `examples.05_llm_semantic_review.main.main` - 29 calls
+- `examples.03_security_check.main.main` - 29 calls
 - `examples.10_mcp_ollama_demo.mcp_demo.main` - 27 calls
 - `src.vallm.cli.output_formatters.output_batch_toon` - 22 calls
 - `src.vallm.cli.output_formatters.batch.output_batch_toon` - 22 calls
 - `src.vallm.cli.command_handlers.validate_command` - 21 calls
 - `examples.08_code2llm_integration.main.generate_report` - 20 calls
 - `src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.extract_imports` - 19 calls
-- `examples.09_code2logic_integration.main.main` - 18 calls
 - `src.vallm.validators.imports.go_imports.GoImportValidator.extract_imports` - 18 calls
 - `scripts.bump_version.main` - 18 calls
+- `examples.09_code2logic_integration.main.main` - 18 calls
+- `examples.11_claude_code_autonomous.claude_autonomous_demo.create_basic_tests` - 17 calls
 - `examples.09_code2logic_integration.main.analyze_with_code2logic` - 17 calls
 - `examples.09_code2logic_integration.main.generate_report` - 17 calls
-- `examples.11_claude_code_autonomous.claude_autonomous_demo.create_basic_tests` - 17 calls
 - `examples.07_multi_language.main.main` - 17 calls
-- `examples.11_claude_code_autonomous.claude_autonomous_demo.run_runtime_tests` - 16 calls
-- `examples.08_code2llm_integration.main.validate_with_vallm` - 16 calls
-- `src.vallm.validators.imports.python_imports.PythonImportValidator.validate` - 16 calls
 - `src.vallm.validators.imports.rust_imports.RustImportValidator.extract_imports` - 16 calls
+- `src.vallm.validators.imports.python_imports.PythonImportValidator.validate` - 16 calls
 - `src.vallm.cli.output_formatters.output_batch_text` - 16 calls
 - `src.vallm.cli.output_formatters.build_results_table` - 16 calls
 - `src.vallm.cli.output_formatters.batch.output_batch_text` - 16 calls
-- `examples.11_claude_code_autonomous.claude_autonomous_demo.call_claude_code` - 15 calls
-- `examples.07_multi_language.main.print_language_info` - 15 calls
+- `examples.11_claude_code_autonomous.claude_autonomous_demo.run_runtime_tests` - 16 calls
+- `examples.08_code2llm_integration.main.validate_with_vallm` - 16 calls
 - `src.vallm.cli.output_formatters.output_batch_empty` - 15 calls
+- `src.vallm.cli.output_formatters.batch.output_batch_empty` - 15 calls
+- `examples.11_claude_code_autonomous.claude_autonomous_demo.call_claude_code` - 15 calls
 
 ## System Interactions
 
@@ -588,36 +409,6 @@ How components interact:
 
 ```mermaid
 graph TD
-    main --> print
-    main --> build_python_graph
-    run_validation_examp --> print
-    run_validation_examp --> Proposal
-    run_validation_examp --> validate
-    main --> ArgumentParser
-    main --> add_argument
-    main --> parse_args
-    main --> Path
-    main --> python_ast_similarit
-    batch_command --> Argument
-    batch_command --> Option
-    main --> VallmSettings
-    main --> Proposal
-    main --> SecurityValidator
-    validate_command --> Option
-    extract_imports --> _cached_get_parser
-    extract_imports --> parse
-    extract_imports --> walk
-    extract_imports --> encode
-    extract_imports --> enumerate
-    main --> validate_with_vallm
-    main --> build_call_graph
-    extract_imports --> finditer
-    main --> read_text
-    main --> search
-    main --> group
-    main --> bump_version
-    main --> sub
-    main --> print_language_info
 ```
 
 ## Reverse Engineering Guidelines
