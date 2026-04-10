@@ -1,9 +1,10 @@
-# code2llm | 58f 7015L | python:58,shell:2 | 2026-04-10
-# CC̄=3.4 | critical:0/425 | dups:0 | cycles:0
+# code2llm | 58f 7015L | python:56,shell:1 | 2026-04-10
+# CC̄=3.4 | critical:0/425 | dups:0 | cycles:1
 
 HEALTH[0]: ok
 
-REFACTOR[0]: none needed
+REFACTOR[1]:
+  1. break 1 circular dependencies
 
 PIPELINES[197]:
   [1] Src [__init__]: __init__
