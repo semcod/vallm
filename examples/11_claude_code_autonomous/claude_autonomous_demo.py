@@ -24,6 +24,7 @@ from typing import Dict, Optional
 import requests
 
 # Setup logging
+logger = logging.getLogger('claude_autonomous')
 
 if __name__ == "__main__":
     logging.basicConfig(
@@ -34,7 +35,6 @@ if __name__ == "__main__":
         logging.FileHandler('claude_autonomous.log')
     ]
 )
-logger = logging.getLogger('claude_autonomous')
 
 # Colors for terminal output
 class Colors:
