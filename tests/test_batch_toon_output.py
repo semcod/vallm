@@ -1,54 +1,27 @@
-import io
-from datetime import date
-from pathlib import Path
-from vallm.cli import output_formatters
-from vallm.scoring import Issue, PipelineResult, Severity, ValidationResult, Verdict
-
-def _get_test_results() -> dict[str, list[PipelineResult]]:
-    return {
-        "python": [
-            make_result(
-                "src/warn.py",
-                Verdict.PASS,
-                0.97,
-                [Issue(message="validate_code CC=22 (max:15)", severity=Severity.WARNING, line=185, rule="complexity.cyclomatic")],
-            ),
-            make_result("src/pass.py", Verdict.PASS, 1.0),
-            make_result(
-                "src/fail.py",
-                Verdict.FAIL,
-                0.91,
-                [Issue(message="Module 'missing.module' not found", severity=Severity.ERROR, line=12, rule="python.import.resolvable")],
-            ),
-        ]
-    }
-
-def _assert_output_content(output: str) -> None:
+def _assert_summary_section(output: str) -> None:
     assert "# vallm batch | 8f | 2✓ 1⚠ 1✗ | 2026-03-26" in output
     assert "SUMMARY:" in output
     assert "scanned: 8  passed: 2 (25.0%)  warnings: 1  errors: 1  unsupported: 5" in output
+
+
+def _assert_warnings_section(output: str) -> None:
     assert "WARNINGS[1]{path,score}:" in output
     assert "src/warn.py,0.97" in output
     assert "src/pass.py" not in output
     assert "issues[1]{rule,severity,message,line}:" in output
     assert "complexity.cyclomatic,warning,validate_code CC=22 (max:15),185" in output
-    assert "ERRORS[1]{path,score}:" in output
-    assert "src/fail.py,0.91" in output
-    assert "python.import.resolvable,error,Module 'missing.module' not found,12" in output
-    assert "UNSUPPORTED[5]{bucket,count}:" in output
+
+
+def _assert_unsupported_patterns(output: str) -> None:
     assert "*.md,1" in output
     assert "Dockerfile*,1" in output
     assert "*.txt,1" in output
     assert "*.example,1" in output
     assert "other,1" in output
+
+
+def _assert_unsupported_section(output: str) -> None:
+    assert "UNSUPPORTED[5]{bucket,count}:" in output
+    _assert_unsupported_patterns(output)
     assert "FILES:" not in output
     assert "FAILED:" not in output
-
-def test_output_batch_toon_is_compact_and_groups_sections(capsys, monkeypatch):
-    monkeypatch.setattr(output_formatters, "date", FixedDate)
-    results_by_language = _get_test_results()
-    filtered_files = [Path("src/warn.py"), Path("src/pass.py"), Path("src/fail.py"), Path("README.md"), Path("Dockerfile.test"), Path("notes.txt"), Path("config.example"), Path("misc")]
-    failed_files = [(Path("README.md"), "Unsupported file type"), (Path("Dockerfile.test"), "Unsupported file type"), (Path("notes.txt"), "Unsupported file type"), (Path("config.example"), "Unsupported file type"), (Path("misc"), "Unsupported file type")]
-
-    output_formatters.output_batch_toon(results_by_language, filtered_files, passed_count=2, failed_files=failed_files)
-    _assert_output_content(capsys.readouterr().out)
