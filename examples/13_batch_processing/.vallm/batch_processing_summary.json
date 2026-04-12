@@ -1,0 +1,64 @@
+{
+  "files_validated": 3,
+  "results": {
+    "bad_file.py": {
+      "verdict": "fail",
+      "score": 0.0,
+      "validators": {
+        "syntax": {
+          "score": 0.0,
+          "issues": 1
+        }
+      }
+    },
+    "complex_file.py": {
+      "verdict": "pass",
+      "score": 1.0,
+      "validators": {
+        "syntax": {
+          "score": 1.0,
+          "issues": 0
+        },
+        "imports.python": {
+          "score": 1.0,
+          "issues": 0
+        },
+        "complexity": {
+          "score": 1.0,
+          "issues": 0
+        },
+        "security": {
+          "score": 1.0,
+          "issues": 0
+        }
+      }
+    },
+    "good_file.py": {
+      "verdict": "pass",
+      "score": 1.0,
+      "validators": {
+        "syntax": {
+          "score": 1.0,
+          "issues": 0
+        },
+        "imports.python": {
+          "score": 1.0,
+          "issues": 0
+        },
+        "complexity": {
+          "score": 1.0,
+          "issues": 0
+        },
+        "security": {
+          "score": 1.0,
+          "issues": 0
+        }
+      }
+    }
+  },
+  "summary": {
+    "passed": 0,
+    "failed": 0,
+    "warning": 0
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "demos": [
+    "proposal_creation",
+    "settings_customization",
+    "result_interpretation",
+    "workflow_integration"
+  ],
+  "status": "completed"
+}
