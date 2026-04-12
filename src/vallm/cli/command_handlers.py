@@ -210,7 +210,7 @@ def info_command(
             lang = Language(language.lower())
             _show_language_info(lang)
         except ValueError:
-            console.error(f"[red]Error: Unsupported language: {language}[/red]")
+            console.print(f"[red]Error: Unsupported language: {language}[/red]", stderr=True)
             raise typer.Exit(1)
     else:
         # Show general info
@@ -223,13 +223,13 @@ def _load_code(file: Optional[Path], code: Optional[str]) -> str:
     """Load code from file or string parameter."""
     if file:
         if not file.exists():
-            console.error(f"[red]Error: File not found: {file}[/red]")
+            console.print(f"[red]Error: File not found: {file}[/red]", stderr=True)
             raise typer.Exit(1)
         return file.read_text()
     elif code:
         return code
     else:
-        console.error("[red]Error: Provide --code or --file[/red]")
+        console.print("[red]Error: Provide --code or --file[/red]", stderr=True)
         raise typer.Exit(1)
 
 
