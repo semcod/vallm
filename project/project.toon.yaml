@@ -1,48 +1,52 @@
-# vallm | 279 func | 44f | 11742L | python | 2026-04-09
+# www | 1161 func | 175f | 29798L | javascript | 2026-04-12
 
 HEALTH:
-  CC̄=3.4  critical=11 (limit:10)  dup=0  cycles=1
+  CC̄=2.4  critical=13 (limit:10)  dup=1  cycles=0
 
-ALERTS[18]:
-  !!  high_fan_out     batch_command = 15 (limit:10)
-  !   high_fan_out     JavaScriptImportValidator.extract_imports = 14 (limit:10)
-  !   high_fan_out     SemanticValidator._parse_response = 13 (limit:10)
-  !   high_fan_out     GoImportValidator.extract_imports = 13 (limit:10)
-  !   high_fan_out     RustImportValidator.extract_imports = 13 (limit:10)
-  !   high_fan_out     LintValidator._parse_ruff_text = 12 (limit:10)
-  !   high_fan_out     PythonImportValidator.validate = 11 (limit:10)
-  !   high_fan_out     output_batch_toon = 11 (limit:10)
-  !   high_fan_out     BatchProcessor._process_files_sequential = 11 (limit:10)
-  !   high_fan_out     SandboxRunner._run_docker = 11 (limit:10)
+ALERTS[13]:
+  !!! high_fan_out     FRONTEND_URL = 29 (limit:10)
+  !!! high_fan_out     MOCK_GITHUB_URL = 29 (limit:10)
+  !!! high_fan_out     FRONTEND_URL = 25 (limit:10)
+  !!! high_fan_out     MOCK_GITHUB_URL = 25 (limit:10)
+  !!! high_fan_out     BACKEND_URL = 25 (limit:10)
+  !!! high_fan_out     run_scheduled_scan = 23 (limit:10)
+  !!! high_fan_out     FRONTEND_URL = 23 (limit:10)
 
-MODULES[58] (top by size):
-  M[src/vallm/cli/output_formatters.py] 476L C:0 F:21 CC↑10 D:3 (python)
-  M[src/vallm/cli/batch_processor_impl.py] 471L C:1 F:21 CC↑13 D:0 (python)
-  M[mcp/server/_tools_vallm.py] 465L C:0 F:14 CC↑12 D:1 (python)
-  M[src/vallm/cli/command_handlers.py] 345L C:0 F:11 CC↑8 D:0 (python)
-  M[src/vallm/cli/output_formatters/batch.py] 315L C:0 F:16 CC↑10 D:0 (python)
-  M[src/vallm/validators/semantic.py] 302L C:1 F:15 CC↑5 D:0 (python)
-  M[src/vallm/core/gitignore.py] 272L C:1 F:10 CC↑11 D:1 (python)
-  M[src/vallm/validators/regression.py] 265L C:1 F:10 CC↑7 D:0 (python)
-  M[src/vallm/validators/security.py] 255L C:1 F:5 CC↑9 D:0 (python)
-  M[src/vallm/core/languages.py] 227L C:1 F:6 CC↑6 D:6 (python)
-  M[src/vallm/validators/imports/python_imports.py] 225L C:1 F:9 CC↑14 D:0 (python)
-  M[src/vallm/scoring.py] 218L C:5 F:8 CC↑7 D:0 (python)
-  M[src/vallm/validators/semantic_cache.py] 187L C:1 F:8 CC↑5 D:2 (python)
-  M[mcp/server/self_server.py] 185L C:0 F:5 CC↑6 D:0 (python)
-  M[src/vallm/validators/complexity.py] 183L C:1 F:4 CC↑12 D:0 (python)
-  LANGS: python:57/shell:1
+MODULES[205] (top by size):
+  M[backend/routers/tickets/redsl.py] 244L C:0 F:3 CC↑7 D:0 (python)
+  M[backend/routers/tickets/crud.py] 188L C:0 F:9 CC↑4 D:0 (python)
+  M[backend/routers/tickets/models.py] 97L C:7 F:1 CC↑1 D:0 (python)
+  M[backend/routers/tickets/webhook.py] 93L C:0 F:3 CC↑3 D:0 (python)
+  M[frontend/src/components/MarketplaceDashboard.jsx] 463L C:0 F:7 CC↑6 D:0 (javascript)
+  M[frontend/src/api.js] 446L C:0 F:49 CC↑6 D:0 (javascript)
+  M[scripts/setup-gitea.sh] 417L C:2 F:10 CC↑0 D:0 (shell)
+  M[backend/routers/audit.py] 396L C:0 F:8 CC↑13 D:1 (python)
+  M[backend/adapters/github.py] 392L C:1 F:22 CC↑6 D:1 (python)
+  M[backend/db_module/tickets_orm.py] 390L C:0 F:25 CC↑9 D:1 (python)
+  M[backend/services/mirror.py] 387L C:1 F:11 CC↑6 D:0 (python)
+  M[backend/adapters/gitlab.py] 379L C:1 F:21 CC↑5 D:0 (python)
+  M[backend/db_module/wrappers.py] 356L C:0 F:37 CC↑1 D:0 (python)
+  M[backend/adapters/gitea.py] 349L C:1 F:21 CC↑5 D:0 (python)
+  M[backend/services/analyzer.py] 344L C:0 F:18 CC↑8 D:3 (python)
+  M[backend/services/billing.py] 343L C:3 F:16 CC↑7 D:3 (python)
+  M[backend/services/autofix.py] 299L C:4 F:8 CC↑7 D:0 (python)
+  M[backend/routers/autopr.py] 296L C:5 F:10 CC↑7 D:0 (python)
+  LANGS: javascript:101/python:96/shell:4
 
 HOTSPOTS[10]:
-  ★ batch_command fan=15  // Validate multiple files with auto-detected languages.
-  ★ JavaScriptImportValidator.extract_imports fan=14  // Extract import statements from JavaScript/TypeScript using tree-sitter.
-  ★ SemanticValidator._parse_response fan=13  // Parse LLM JSON response into a ValidationResult.
-  ★ GoImportValidator.extract_imports fan=13  // Extract import statements from Go using tree-sitter.
-  ★ RustImportValidator.extract_imports fan=13  // Extract use statements from Rust using tree-sitter.
+  ★ FRONTEND_URL fan=29  // Orchestrates 29 calls
+  ★ MOCK_GITHUB_URL fan=29  // Orchestrates 29 calls
+  ★ FRONTEND_URL fan=25  // Orchestrates 25 calls
+  ★ MOCK_GITHUB_URL fan=25  // Orchestrates 25 calls
+  ★ BACKEND_URL fan=25  // Orchestrates 25 calls
 
-REFACTOR[2]:
-  [1] M/L Break circular dependency: src.vallm.validators.imports.utils.walk
-  [2] M/M Reduce batch_command fan-out (currently 15)
+REFACTOR[3]:
+  [1] ✓ Split RedslHealthCard (CC=27→5, extracted .parts.jsx)
+  [2] ✓ Split god module backend/routers/tickets.py (584L→4 files, package)
+  [3] ✓ Extract gui-login-enhanced.spec.js helpers (CC=33→8, loginTestHelpers.js)
+  [4] M/M Reduce FRONTEND_URL fan-out (currently 29)
+  [5] M/M Reduce MOCK_GITHUB_URL fan-out (currently 29)
 
 EVOLUTION:
-  2026-04-09 CC̄=3.4 crit=11 11742L // Automated analysis
+  2026-04-12 CC̄=2.6 crit=19 29798L // Automated analysis
+  2026-04-12 CC̄=2.4 crit=13 29798L // Refactor pass: tickets split, RedslHealthCard split, test helpers extracted
