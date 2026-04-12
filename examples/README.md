@@ -79,6 +79,35 @@ python main.py
 - **Call graphs**: Visualize function dependencies
 - **Complexity analysis**: Identify high-complexity functions
 
+### 10-12. Additional Examples
+- **MCP Ollama Demo** (`10_mcp_ollama_demo/`) - MCP server integration
+- **Claude Code Autonomous** (`11_claude_code_autonomous/`) - Autonomous workflows
+- **Ollama Simple Demo** (`12_ollama_simple_demo/`) - Basic Ollama integration
+
+### 13. Batch Processing (`13_batch_processing/`)
+**Demonstrates**: Batch validation of multiple files
+- **Directory scanning**: Automatic file discovery
+- **Batch reports**: TOON-formatted output
+- **Result aggregation**: Summary statistics
+
+### 14. Advanced API Usage (`14_api_advanced/`)
+**Demonstrates**: Programmatic API patterns
+- **Proposal creation**: Multiple creation methods
+- **Settings customization**: Validator configuration
+- **Workflow integration**: CI/CD quality gates
+
+### 15. CLI Usage (`15_cli_usage/`)
+**Demonstrates**: Command-line interface patterns
+- **CLI invocation**: Programmatic CLI usage
+- **Output formats**: Text and JSON handling
+- **Exit codes**: CI/CD automation
+
+### 16. Configuration (`16_configuration/`)
+**Demonstrates**: Configuration management
+- **Config files**: JSON-based configuration
+- **Environment variables**: Runtime configuration
+- **Profiles**: Predefined validator sets
+
 ## 📊 Analysis Data
 
 Each example generates analysis data in its `.vallm/` folder:
@@ -142,8 +171,8 @@ python main.py
 ## 🤝 Contributing
 
 To add new examples:
-1. Create a new folder with numbered prefix
+1. Create a new folder with numbered prefix (17_*)
 2. Add `main.py` with example code
 3. Create `README.md` with documentation
 4. Include analysis data generation
-5. Update this overview and `run.sh` if needed
+5. Update this overview with the new example description
