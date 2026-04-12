@@ -156,6 +156,14 @@ class BatchProcessor:
 
         return False
 
+    def _load_vallmignore(self):
+        """Load .vallmignore from the current working directory if it exists."""
+        vallmignore_path = Path.cwd() / ".vallmignore"
+        if not vallmignore_path.exists():
+            return None
+        parser = load_gitignore(vallmignore_path)
+        return parser
+
     def _filter_files(
         self,
         files: list[Path],
@@ -167,12 +175,18 @@ class BatchProcessor:
         """Filter files based on patterns and gitignore."""
         filtered_files: list[Path] = []
         excluded_by_gitignore = 0
+        excluded_by_vallmignore = 0
 
         patterns = self._parse_filter_patterns(include, exclude)
+        vallmignore_parser = self._load_vallmignore()
 
         for f in files:
             if use_gitignore and gitignore_parser and gitignore_parser.matches(f):
                 excluded_by_gitignore += 1
+                continue
+
+            if vallmignore_parser and vallmignore_parser.matches(f):
+                excluded_by_vallmignore += 1
                 continue
 
             if self._should_exclude_file(f, patterns["exclude"]):
@@ -183,6 +197,8 @@ class BatchProcessor:
 
         if excluded_by_gitignore > 0:
             self.console.print(f"[dim]Excluded {excluded_by_gitignore} files by .gitignore[/dim]")
+        if excluded_by_vallmignore > 0:
+            self.console.print(f"[dim]Excluded {excluded_by_vallmignore} files by .vallmignore[/dim]")
 
         return filtered_files
 
