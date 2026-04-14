@@ -6,8 +6,6 @@ path: /home/tom/github/semcod/vallm
 
 This document describes the comprehensive testing suite for vallm, covering E2E tests, Docker installation tests, and CI/CD workflows.
 
-## Test Coverage
-
 ### 1. E2E CLI Tests (`tests/test_cli_e2e.py`)
 - **All CLI commands**: `validate`, `check`, `batch`, `info`
 - **Options testing**: `--semantic`, `--security`, `--model`, `--verbose`
@@ -35,13 +33,6 @@ This document describes the comprehensive testing suite for vallm, covering E2E 
 - **Post-installation validation**: help, info, basic validation
 - **Cross-platform compatibility**: different package managers, Python versions
 
-## Running Tests
-
-### Local Testing
-```bash
-# Run all tests
-pytest tests/ -v
-
 # Run specific test suites
 pytest tests/test_cli_e2e.py -v
 pytest tests/test_installation.py -v
@@ -54,8 +45,6 @@ pytest tests/ --cov=vallm --cov-report=html
 pytest tests/ --benchmark-only
 ```
 
-### Docker Testing
-```bash
 # Test Docker installation across systems
 ./scripts/test_docker_installation.sh
 
@@ -74,8 +63,6 @@ The comprehensive GitHub Actions workflow includes:
 - **Compatibility testing**: pip/pipx installation
 - **Documentation testing**: README examples validation
 
-## Test Structure
-
 ### Test Fixtures
 - **VallmCLI**: Helper for running CLI commands
 - **temp_project**: Temporary project with multiple files
@@ -88,8 +75,6 @@ The comprehensive GitHub Actions workflow includes:
 4. **Performance Tests**: Speed and resource usage
 5. **Security Tests**: Vulnerability detection
 6. **Compatibility Tests**: Cross-platform testing
-
-## CI/CD Pipeline
 
 ### Workflow Triggers
 - **Push**: main, develop branches
@@ -110,10 +95,6 @@ The comprehensive GitHub Actions workflow includes:
 - **HTML reports**: Local coverage visualization
 - **Threshold**: 85% coverage target
 
-## Mock Testing
-
-### LLM Mocking
-```python
 # Mock LLM responses for consistent testing
 MOCK_LLM_RESPONSES = {
     "good_code": {"verdict": "pass", "score": 0.9},
@@ -122,8 +103,6 @@ MOCK_LLM_RESPONSES = {
 }
 ```
 
-### File System Mocking
-```python
 # Temporary test projects
 @pytest.fixture
 def temp_project():
@@ -132,16 +111,12 @@ def temp_project():
         yield project_dir
 ```
 
-## Performance Benchmarks
-
 ### Test Metrics
 - **Validation speed**: files/second
 - **Memory usage**: peak memory consumption
 - **Startup time**: CLI command initialization
 - **LLM integration**: response time for semantic validation
 
-### Benchmark Commands
-```bash
 # Large project validation
 time vallm batch large_project --recursive
 
@@ -149,10 +124,6 @@ time vallm batch large_project --recursive
 python -m memory_profiler vallm batch project --recursive
 ```
 
-## Security Testing
-
-### Vulnerability Scanning
-```bash
 # Bandit security scan
 bandit -r src/ -f json -o bandit-report.json
 
@@ -169,27 +140,15 @@ vallm batch security_test --recursive --security
 - **Hardcoded secrets**: passwords, API keys
 - **SQL injection**: string concatenation in queries
 
-## Troubleshooting
-
 ### Common Issues
 1. **LLM not available**: Use mock providers in tests
 2. **Docker build failures**: Check base image availability
 3. **Permission errors**: Use proper file permissions
 4. **Network issues**: Mock external dependencies
 
-### Debug Commands
-```bash
-# Verbose test output
-pytest tests/ -v -s
-
-# Stop on first failure
-pytest tests/ -x
-
 # Run specific test
 pytest tests/test_cli_e2e.py::TestCLICommands::test_help_command -v
 ```
-
-## Contributing
 
 ### Adding New Tests
 1. Create test file in `tests/` directory
@@ -203,8 +162,6 @@ pytest tests/test_cli_e2e.py::TestCLICommands::test_help_command -v
 - **CI/CD**: All tests must pass in CI/CD
 - **Documentation**: Update testing guide
 - **Performance**: Add benchmarks for performance-critical code
-
-## Future Enhancements
 
 ### Planned Additions
 - **Property-based testing**: Hypothesis integration

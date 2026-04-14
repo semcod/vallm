@@ -13,8 +13,6 @@ path: /home/tom/github/semcod/vallm
 **License:** Apache-2.0[(LICENSE)](./LICENSE)  
 **Repository:** [https://github.com/semcod/vallm](https://github.com/semcod/vallm)
 
-## Installation
-
 ### From PyPI
 
 ```bash
@@ -40,14 +38,6 @@ pip install vallm[docker]    # docker features
 pip install vallm[all]    # all optional features
 pip install vallm[dev]    # development tools
 ```
-
-## Quick Start
-
-### CLI Usage
-
-```bash
-# Generate full documentation for your project
-vallm ./my-project
 
 # Only regenerate README
 vallm ./my-project --readme-only
@@ -157,8 +147,6 @@ Content outside the markers is preserved when regenerating. Enable this with `sy
 ```
 vallm/
 ├── project    ├── run├── mcp_server        ├── main_template        ├── main        ├── run        ├── docker-entrypoint├── examples/        ├── main        ├── main        ├── run            ├── data_processor        ├── iteration_1        ├── docker-entrypoint        ├── best_version        ├── iteration_2            ├── simple_buggy            ├── process_user_input            ├── load_config        ├── utils/        ├── ollama_simple_demo            ├── calculate_total            ├── main            ├── save_data        ├── main        ├── claude_autonomous_demo        ├── main_template        ├── main        ├── main        ├── run        ├── docker-entrypoint        ├── main        ├── refactored_output        ├── main            ├── order_processor        ├── extraction        ├── save_analysis_data    ├── utils/        ├── extract_code_from_response        ├── mcp_demo        ├── logging_utils        ├── validation_runner        ├── hookspecs        ├── cli/    ├── mcp_demo    ├── vallm/        ├── __main__            ├── file_cache        ├── main            ├── complexity            ├── base            ├── logical            ├── regression        ├── validators/            ├── security            ├── semantic_cache            ├── syntax            ├── lint            ├── imports/            ├── semantic                ├── base                ├── javascript_imports                ├── python_imports                ├── go_imports                ├── c_imports                ├── rust_imports                ├── wrapper                ├── factory                ├── utils                ├── java_imports            ├── graph_diff        ├── core/            ├── proposal            ├── gitignore        ├── scoring            ├── ast_compare            ├── batch_constants            ├── batch_processor_patterns            ├── batch_processor_files            ├── batch_utils            ├── batch_processor_validation            ├── output_formatters/            ├── batch_processor_impl            ├── batch_processor                ├── base                ├── shared                ├── utils                ├── single            ├── languages                ├── batch        ├── sandbox/    ├── bump_version├── mcp/    ├── server/            ├── runner        ├── _tools_vallm        ├── self_server        ├── config            ├── command_handlers```
-
-## API Overview
 
 ### Classes
 
@@ -535,19 +523,12 @@ vallm/
 
 We welcome contributions! Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
 
-### Development Setup
-
-```bash
 # Clone the repository
 git clone https://github.com/semcod/vallm
 cd vallm
 
 # Install in development mode
 pip install -e ".[dev]"
-
-# Run tests
-pytest
-```
 
 ## Documentation
 
@@ -562,14 +543,14 @@ pytest
 | Output | Description | Link |
 |--------|-------------|------|
 | `README.md` | Project overview (this file) | — |
-| `docs/api.md` | Consolidated API reference | [View](./docs/api.md) |
-| `docs/modules.md` | Module reference with metrics | [View](./docs/modules.md) |
-| `docs/architecture.md` | Architecture with diagrams | [View](./docs/architecture.md) |
-| `docs/dependency-graph.md` | Dependency graphs | [View](./docs/dependency-graph.md) |
-| `docs/coverage.md` | Docstring coverage report | [View](./docs/coverage.md) |
-| `docs/getting-started.md` | Getting started guide | [View](./docs/getting-started.md) |
-| `docs/configuration.md` | Configuration reference | [View](./docs/configuration.md) |
-| `docs/api-changelog.md` | API change tracking | [View](./docs/api-changelog.md) |
+| `docs/api.md` | Consolidated API reference | [View](https://github.com/wronai/vallm/blob/main/docs/api.md) |
+| `docs/modules.md` | Module reference with metrics | [View](https://github.com/wronai/vallm/blob/main/docs/modules.md) |
+| `docs/architecture.md` | Architecture with diagrams | [View](https://github.com/wronai/vallm/blob/main/docs/architecture.md) |
+| `docs/dependency-graph.md` | Dependency graphs | [View](https://github.com/wronai/vallm/blob/main/docs/dependency-graph.md) |
+| `docs/coverage.md` | Docstring coverage report | [View](https://github.com/wronai/vallm/blob/main/docs/coverage.md) |
+| `docs/getting-started.md` | Getting started guide | [View](https://github.com/wronai/vallm/blob/main/docs/getting-started.md) |
+| `docs/configuration.md` | Configuration reference | [View](https://github.com/wronai/vallm/blob/main/docs/configuration.md) |
+| `docs/api-changelog.md` | API change tracking | [View](https://github.com/wronai/vallm/blob/main/docs/api-changelog.md) |
 | `CONTRIBUTING.md` | Contribution guidelines | [View](./CONTRIBUTING.md) |
 | `examples/` | Usage examples | [Browse](./examples) |
 | `mkdocs.yml` | MkDocs configuration | — |
