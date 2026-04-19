@@ -1,0 +1,3 @@
+# Exclude test files — pytest imports cause false "Module not found" errors
+tests/
+archive/

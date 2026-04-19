@@ -9,15 +9,15 @@ REFACTOR[1]:
   1. split 2 high-CC methods  (CC>15)
 
 PIPELINES[230]:
-  [1] Src [process_ticket_with_redsl]: process_ticket_with_redsl → _get_tenant_for_user
+  [1] Src [handle_pr_webhook]: handle_pr_webhook
       PURITY: 100% pure
-  [2] Src [_create_pr_for_ticket]: _create_pr_for_ticket
+  [2] Src [bulk_close_tickets]: bulk_close_tickets → _get_tenant_for_user
       PURITY: 100% pure
-  [3] Src [get_ticket_processing_status]: get_ticket_processing_status → _get_tenant_for_user
+  [3] Src [bulk_reprocess_tickets]: bulk_reprocess_tickets → _get_tenant_for_user
       PURITY: 100% pure
-  [4] Src [handle_pr_webhook]: handle_pr_webhook
+  [4] Src [RedslHealthCard]: RedslHealthCard
       PURITY: 100% pure
-  [5] Src [bulk_close_tickets]: bulk_close_tickets → _get_tenant_for_user
+  [5] Src [handleRefactor]: handleRefactor
       PURITY: 100% pure
 
 LAYERS:

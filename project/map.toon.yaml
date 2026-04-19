@@ -1,24 +1,83 @@
-# vallm | 57f 6540L | shell:1,python:56 | 2026-04-09
-# stats: 279 func | 0 cls | 57 mod | CC̄=3.4 | critical:0 | cycles:0
-# alerts[5]: fan-out batch_command=15; fan-out JavaScriptImportValidator.extract_imports=14; fan-out GoImportValidator.extract_imports=13; fan-out RustImportValidator.extract_imports=13; fan-out SemanticValidator._parse_response=13
-# hotspots[5]: batch_command fan=15; JavaScriptImportValidator.extract_imports fan=14; SemanticValidator._parse_response fan=13; GoImportValidator.extract_imports fan=13; RustImportValidator.extract_imports fan=13
-# evolution: CC̄ 3.4→3.4 (flat 0.0)
+# vallm | 116f 14651L | shell:11,python:101,javascript:4 | 2026-04-19
+# stats: 480 func | 0 cls | 116 mod | CC̄=3.3 | critical:2 | cycles:0
+# alerts[5]: fan-out process_ticket_with_redsl=20; fan-out main=19; fan-out run_autonomous_workflow=19; fan-out analyze_with_code2llm=17; CC main=16
+# hotspots[5]: process_ticket_with_redsl fan=20; run_autonomous_workflow fan=19; main fan=19; analyze_with_code2llm fan=17; analyze_with_code2llm fan=16
+# evolution: CC̄ 3.4→3.3 (improved -0.1)
 # Keys: M=modules, D=details, i=imports, e=exports, c=classes, f=functions, m=methods
-M[57]:
+M[116]:
+  backend/routers/tickets/__init__.py,19
+  backend/routers/tickets/crud.py,187
+  backend/routers/tickets/models.py,96
+  backend/routers/tickets/redsl.py,243
+  backend/routers/tickets/webhook.py,92
+  examples/__init__.py,1
+  examples/01_basic_validation/main.py,77
+  examples/02_ast_comparison/main.py,118
+  examples/03_security_check/main.py,118
+  examples/04_graph_analysis/main.py,158
+  examples/05_llm_semantic_review/main.py,125
+  examples/05_llm_semantic_review/main_template.py,74
+  examples/06_multilang_validation/main.py,217
+  examples/06_multilang_validation/main_template.py,74
+  examples/07_multi_language/main.py,327
+  examples/08_code2llm_integration/main.py,250
+  examples/09_code2logic_integration/main.py,298
+  examples/10_mcp_ollama_demo/docker-entrypoint.sh,35
+  examples/10_mcp_ollama_demo/legacy_code/order_processor.py,131
+  examples/10_mcp_ollama_demo/mcp_demo.py,398
+  examples/10_mcp_ollama_demo/refactored_output.py,127
+  examples/10_mcp_ollama_demo/run.sh,260
+  examples/11_claude_code_autonomous/claude_autonomous_demo.py,660
+  examples/11_claude_code_autonomous/docker-entrypoint.sh,30
+  examples/11_claude_code_autonomous/legacy_code/data_processor.py,224
+  examples/11_claude_code_autonomous/run.sh,232
+  examples/12_ollama_simple_demo/best_version.py,22
+  examples/12_ollama_simple_demo/docker-entrypoint.sh,31
+  examples/12_ollama_simple_demo/iteration_1.py,22
+  examples/12_ollama_simple_demo/iteration_2.py,22
+  examples/12_ollama_simple_demo/legacy_code/simple_buggy.py,112
+  examples/12_ollama_simple_demo/ollama_simple_demo.py,338
+  examples/12_ollama_simple_demo/run.sh,201
+  examples/12_ollama_simple_demo/utils/__init__.py,17
+  examples/12_ollama_simple_demo/utils/calculate_total.py,25
+  examples/12_ollama_simple_demo/utils/load_config.py,19
+  examples/12_ollama_simple_demo/utils/main.py,32
+  examples/12_ollama_simple_demo/utils/process_user_input.py,45
+  examples/12_ollama_simple_demo/utils/save_data.py,20
+  examples/13_batch_processing/main.py,138
+  examples/14_api_advanced/main.py,241
+  examples/15_cli_usage/main.py,255
+  examples/16_configuration/main.py,267
+  examples/cycle-test/full-cycle.sh,259
+  examples/cycle-test/validate-steps.sh,162
+  examples/mcp_demo.py,206
+  examples/run.sh,133
+  examples/utils/__init__.py,195
+  examples/utils/extract_code_from_response.py,32
+  examples/utils/extraction.py,79
+  examples/utils/logging_utils.py,89
+  examples/utils/save_analysis_data.py,25
+  examples/utils/validation_runner.py,104
+  frontend/e2e/gui-login-enhanced.spec.js,61
+  frontend/e2e/loginTestHelpers.js,98
+  frontend/src/components/RedslHealthCard.jsx,49
+  frontend/src/components/RedslHealthCard.parts.jsx,95
   mcp/__init__.py,1
   mcp/server/__init__.py,1
-  mcp/server/_tools_vallm.py,465
+  mcp/server/_tools_vallm.py,464
   mcp/server/self_server.py,185
   mcp_server.py,28
   project.sh,37
   scripts/bump_version.py,78
+  scripts/test_docker_installation.sh,106
   src/vallm/__init__.py,19
   src/vallm/__main__.py,5
   src/vallm/cli/__init__.py,45
   src/vallm/cli/batch_constants.py,23
   src/vallm/cli/batch_processor.py,5
   src/vallm/cli/batch_processor_files.py,25
-  src/vallm/cli/batch_processor_impl.py,471
+  src/vallm/cli/batch_processor_filter.py,25
+  src/vallm/cli/batch_processor_impl.py,487
   src/vallm/cli/batch_processor_patterns.py,126
   src/vallm/cli/batch_processor_validation.py,78
   src/vallm/cli/batch_utils.py,22
@@ -63,6 +122,33 @@ M[57]:
   src/vallm/validators/semantic_cache.py,187
   src/vallm/validators/syntax.py,96
 D:
+  examples/13_batch_processing/main.py:
+    e: main
+    main()
+  frontend/src/components/RedslHealthCard.jsx:
+    i: ../api,./RedslHealthCard.parts,react
+    e: RedslHealthCard,handleRefactor,result,h
+    RedslHealthCard()
+    handleRefactor()
+    result()
+    h()
+  backend/routers/tickets/redsl.py:
+    e: process_ticket_with_redsl,_create_pr_for_ticket,get_ticket_processing_status
+    process_ticket_with_redsl(ticket_id;data;background_tasks;user;db)
+    _create_pr_for_ticket(ticket_id;repo;provider;project_path;decisions;files_modified;token;tenant_id)
+    get_ticket_processing_status(ticket_id;user;db)
+  frontend/src/components/RedslHealthCard.parts.jsx:
+    i: ../constants,./GradeCircle
+    e: MetricRow,ok,StatusChecking,StatusUnavailable,StatusLoading,StatusError,HealthContent,grade,score
+    MetricRow()
+    ok()
+    StatusChecking()
+    StatusUnavailable()
+    StatusLoading()
+    StatusError()
+    HealthContent()
+    grade()
+    score()
   src/vallm/validators/imports/python_imports.py:
     e: PythonImportValidator,_collect_guarded_lines,_get_local_modules
     PythonImportValidator(BaseImportValidator): validate(2),_relative_import_exists(3),extract_imports(1),module_exists(1),get_language(0),_get_error_message(1),_get_rule_name(0)  # Python-specific import validator...
@@ -77,7 +163,43 @@ D:
     validate_import_path(import_path;source_file;project_root;known_modules;stdlib_modules)
   src/vallm/cli/batch_processor_impl.py:
     e: BatchProcessor
-    BatchProcessor: __init__(1),process_batch(10),output_batch_results(5),_load_gitignore_parser(1),_build_file_list(2),_parse_filter_patterns(2),_should_exclude_file(2),_matches_include_pattern(2),_filter_files(5),_handle_no_files_found(1),_show_validation_start(2),_read_file_text(1),_detect_file_language(1),_show_progress(4),_handle_validation_result(7),_show_verbose_output(3),_process_files(6),_process_files_parallel(4),_validate_single_file(2),_validate_single_file_sequential(3),_process_files_sequential(6)  # Handles batch validation of multiple files...
+    BatchProcessor: __init__(1),process_batch(10),output_batch_results(5),_load_gitignore_parser(1),_build_file_list(2),_parse_filter_patterns(2),_should_exclude_file(2),_matches_include_pattern(2),_load_vallmignore(0),_filter_files(5),_handle_no_files_found(1),_show_validation_start(2),_read_file_text(1),_detect_file_language(1),_show_progress(4),_handle_validation_result(7),_show_verbose_output(3),_process_files(6),_process_files_parallel(4),_validate_single_file(2),_validate_single_file_sequential(3),_process_files_sequential(6)  # Handles batch validation of multiple files...
+  examples/11_claude_code_autonomous/claude_autonomous_demo.py:
+    e: Colors,log_section,log_step,log_code,analyze_with_code2llm,call_claude_code,validate_with_vallm,run_runtime_tests,create_basic_tests,generate_claude_prompt,generate_feedback_prompt,run_autonomous_workflow,main
+    Colors:
+    log_section(title)
+    log_step(step;description)
+    log_code(label;code;max_lines)
+    analyze_with_code2llm(code_path)
+    call_claude_code(prompt;model;temperature)
+    validate_with_vallm(code;description)
+    run_runtime_tests(code_path;test_file)
+    create_basic_tests(code_path;test_file)
+    generate_claude_prompt(code;analysis;iteration)
+    generate_feedback_prompt(current_code;validation;test_results;analysis)
+    run_autonomous_workflow(code_path;max_iterations)
+    main()
+  examples/utils/__init__.py:
+    e: save_analysis_data,run_validation_examples,validate_code_example,print_summary
+    save_analysis_data(example_name;result_data)
+    run_validation_examples(example_name;good_code;bad_code;complex_code;settings)
+    validate_code_example(name;code;settings;all_results;include_issue_details)
+    print_summary(all_results)
+  examples/10_mcp_ollama_demo/mcp_demo.py:
+    e: Colors,log_section,log_step,log_code,analyze_with_code2llm,validate_with_vallm,call_ollama,generate_refactoring_prompt,run_mcp_workflow,main
+    Colors:
+    log_section(title)
+    log_step(step;description)
+    log_code(label;code;max_lines)
+    analyze_with_code2llm(code_path)
+    validate_with_vallm(code;description)
+    call_ollama(prompt;model;temperature)
+    generate_refactoring_prompt(code;analysis)
+    run_mcp_workflow(code_path;max_iterations)
+    main()
+  examples/utils/validation_runner.py:
+    e: run_validation_examples
+    run_validation_examples(example_name;good_code;bad_code;complex_code;settings)
   src/vallm/validators/complexity.py:
     e: ComplexityValidator
     ComplexityValidator(BaseValidator): __init__(1),validate(2),_check_python_complexity(1),_check_lizard(3)  # Tier 2: Cyclomatic complexity, maintainability index, and fu...
@@ -97,6 +219,17 @@ D:
     handle_validate_imports(params)
     handle_validate_security(params)
     handle_validate_code(params)
+  examples/05_llm_semantic_review/main.py:
+    e: main
+    main()
+  examples/07_multi_language/main.py:
+    e: test_language_detection,validate_single_language,validate_all_languages,save_results,print_language_info,main
+    test_language_detection()
+    validate_single_language(lang_name;code;is_bad)
+    validate_all_languages()
+    save_results(results)
+    print_language_info()
+    main()
   src/vallm/core/gitignore.py:
     e: GitignoreParser,load_gitignore,get_default_excludes,create_default_gitignore_parser,should_exclude
     GitignoreParser: __init__(1),_parse(1),matches(1),_match_pattern(3),_fnmatch(2),_pattern_to_regex(1)  # Parse .gitignore files and match paths against patterns...
@@ -104,6 +237,37 @@ D:
     get_default_excludes()
     create_default_gitignore_parser()
     should_exclude(path;gitignore_parser;use_defaults)
+  examples/09_code2logic_integration/main.py:
+    e: analyze_with_code2logic,validate_with_vallm,build_call_graph,generate_report,visualize_flow,main
+    analyze_with_code2logic(code)
+    validate_with_vallm(code)
+    build_call_graph(code)
+    generate_report(code2logic_result;vallm_result;graph_result;output_path)
+    visualize_flow(code;output_path)
+    main()
+  examples/11_claude_code_autonomous/legacy_code/data_processor.py:
+    e: DataProcessor,ReportGenerator,load_config,init_database,main
+    DataProcessor: __init__(0),process_user_data(1),calculate_metrics(1),export_data(2),validate_email(1),validate_email_again(1),process_with_external_api(1),complex_calculation(10),unused_function(0),another_unused_function(2)  # Data processor with multiple responsibilities - violates SRP...
+    ReportGenerator: __init__(1),generate_report(0),export_report(1)  # Report generator with tight coupling to DataProcessor...
+    load_config()
+    init_database()
+    main()
+  examples/10_mcp_ollama_demo/legacy_code/order_processor.py:
+    e: OrderManager,process_order,load_config,save_data,calculate,validate_email_1,validate_email_2,calculate_shipping,dead_code
+    OrderManager: __init__(0),add_order(1),execute_query(1),process_payment(2),send_email(3),get_stats(0)  # Class with mixed responsibilities - SOLID violation...
+    process_order(data)
+    load_config()
+    save_data(data;filename)
+    calculate(x;y;z;a;b;c)
+    validate_email_1(email)
+    validate_email_2(email)
+    calculate_shipping(weight)
+    dead_code()
+  src/vallm/cli/batch_processor_filter.py:
+    e: parse_filter_patterns,should_exclude_file,matches_include_pattern
+    parse_filter_patterns(include;exclude)
+    should_exclude_file(file_path;compiled)
+    matches_include_pattern(file_path;compiled)
   src/vallm/cli/output_formatters/batch.py:
     e: output_batch_results,output_batch_empty,_toon_row,_split_toon_results,_ordered_unsupported_items,_unsupported_bucket,_build_unsupported_summary,_print_toon_file_section,_print_toon_unsupported_section,output_batch_rich,output_batch_text,output_batch_json,output_batch_yaml,output_batch_toon,print_summary_header,build_results_table
     output_batch_results(results_by_language;filtered_files;passed_count;failed_files;output_format)
@@ -122,6 +286,33 @@ D:
     output_batch_toon(results_by_language;filtered_files;passed_count;failed_files)
     print_summary_header()
     build_results_table(results_by_language)
+  examples/04_graph_analysis/main.py:
+    e: main
+    main()
+  examples/12_ollama_simple_demo/utils/process_user_input.py:
+    e: process_user_input
+    process_user_input(user_input)
+  examples/12_ollama_simple_demo/ollama_simple_demo.py:
+    e: Colors,log_section,log_step,analyze_with_code2llm,call_ollama,validate_with_vallm,run_simple_test,generate_ollama_prompt,run_simple_workflow,main
+    Colors:
+    log_section(title)
+    log_step(step;description)
+    analyze_with_code2llm(code_path)
+    call_ollama(prompt;model)
+    validate_with_vallm(code)
+    run_simple_test(code)
+    generate_ollama_prompt(code;analysis)
+    run_simple_workflow(code_path;max_iterations)
+    main()
+  examples/10_mcp_ollama_demo/refactored_output.py:
+    e: OrderManager,validate_email,calculate_shipping,load_config,save_data,process_order,main
+    OrderManager: __init__(0),add_order(1),validate_order(1),execute_query(1),process_payment(2),send_email(3),get_stats(0)  # Class with single responsibility - adheres to SOLID principl...
+    validate_email(email)
+    calculate_shipping(weight)
+    load_config()
+    save_data(data;filename)
+    process_order(data)
+    main()
   src/vallm/validators/security.py:
     e: SecurityValidator
     SecurityValidator(BaseValidator): validate(2),_check_patterns(2),_check_python_ast(1),_get_func_name(0),_try_bandit(0)  # Tier 2: Security analysis using built-in patterns and option...
@@ -138,6 +329,38 @@ D:
   src/vallm/cli/batch_processor_files.py:
     e: build_file_list
     build_file_list(paths;recursive)
+  backend/routers/tickets/webhook.py:
+    e: handle_pr_webhook,bulk_close_tickets,bulk_reprocess_tickets
+    handle_pr_webhook(payload;db)
+    bulk_close_tickets(ticket_ids;user;db)
+    bulk_reprocess_tickets(ticket_ids;user;db)
+  examples/15_cli_usage/main.py:
+    e: run_cli_command,demo_single_file_validation,demo_batch_validation,demo_output_formats,demo_programmatic_cli,demo_check_command,main
+    run_cli_command(cmd)
+    demo_single_file_validation()
+    demo_batch_validation()
+    demo_output_formats()
+    demo_programmatic_cli()
+    demo_check_command()
+    main()
+  examples/12_ollama_simple_demo/legacy_code/simple_buggy.py:
+    e: BadClass,process_user_input,load_config,save_data,calculate_total,duplicate_function,duplicate_function,unused_function,main
+    BadClass: __init__(0),process_data(1),another_method(0)  # Class with multiple issues...
+    process_user_input(user_input)
+    load_config()
+    save_data(data;filename)
+    calculate_total(items)
+    duplicate_function()
+    duplicate_function()
+    unused_function()
+    main()
+  examples/08_code2llm_integration/main.py:
+    e: create_sample_project,analyze_with_code2llm,validate_with_vallm,generate_report,main
+    create_sample_project(base_path)
+    analyze_with_code2llm(project_path)
+    validate_with_vallm(project_path)
+    generate_report(code2llm_result;vallm_result;output_path)
+    main()
   src/vallm/cli/batch_processor_patterns.py:
     e: _CompiledPatterns,_compile_patterns,parse_filter_patterns,matches_pattern,should_exclude_file,matches_include_pattern,filter_files
     _CompiledPatterns: __init__(3)  # Pre-compiled pattern set: exact names in a frozenset, globs ...
@@ -166,6 +389,17 @@ D:
     _exit_on_verdict(result)
     _show_language_info(language)
     _show_general_info()
+  examples/utils/extraction.py:
+    e: extract_code_from_response,extract_json_from_response
+    extract_code_from_response(response;language)
+    extract_json_from_response(response)
+  examples/14_api_advanced/main.py:
+    e: demo_proposal_creation,demo_settings_customization,demo_result_interpretation,demo_workflow_integration,main
+    demo_proposal_creation()
+    demo_settings_customization()
+    demo_result_interpretation()
+    demo_workflow_integration()
+    main()
   src/vallm/validators/regression.py:
     e: RegressionValidator
     RegressionValidator(BaseValidator): __init__(3),validate(2),_resolve_test_dir(1),_write_code(2),_build_pytest_cmd(2),_run_pytest(3),_interpret(1),_parse_failures(1),_timeout_result(0),_exception_result(1)  # Tier 2: Run pytest against proposed code and report pass/fai...
@@ -190,6 +424,25 @@ D:
     e: validate_single_file,process_files
     validate_single_file(file_path;settings)
     process_files(files;settings;output_format;fail_fast;verbose;show_issues)
+  backend/routers/tickets/crud.py:
+    e: create_new_ticket,list_tickets,get_stats,search_tickets_endpoint,get_tickets_for_repo,get_action_required_tickets,get_single_ticket,update_existing_ticket,delete_existing_ticket
+    create_new_ticket(data;user;db)
+    list_tickets(status;user;db)
+    get_stats(user;db)
+    search_tickets_endpoint(q;user;db)
+    get_tickets_for_repo(repo;user;db)
+    get_action_required_tickets(user;db)
+    get_single_ticket(ticket_id;user;db)
+    update_existing_ticket(ticket_id;data;user;db)
+    delete_existing_ticket(ticket_id;user;db)
+  examples/16_configuration/main.py:
+    e: demo_config_file,demo_environment_variables,demo_runtime_configuration,demo_profile_switching,demo_threshold_configuration,main
+    demo_config_file()
+    demo_environment_variables()
+    demo_runtime_configuration()
+    demo_profile_switching()
+    demo_threshold_configuration()
+    main()
   src/vallm/validators/logical.py:
     e: LogicalErrorValidator,create_validator
     LogicalErrorValidator: __init__(1),validate(2),_check_pyflakes(1),_parse_pyflakes_line(1)  # Validator for logical errors using pyflakes...
@@ -215,6 +468,9 @@ D:
     handle_tools_call(request_id;params)
     handle_request(request)
     main()
+  examples/03_security_check/main.py:
+    e: main
+    main()
   src/vallm/validators/semantic_cache.py:
     e: SemanticCache,get_semantic_cache,clear_semantic_cache
     SemanticCache: __init__(1),_get_cache_key(3),get(3),set(4),clear(0),get_cache_stats(0)  # Cache for semantic validation results to improve performance...
@@ -236,6 +492,22 @@ D:
     e: bump_version,main
     bump_version(version_str;bump_type)
     main()
+  frontend/e2e/loginTestHelpers.js:
+    e: FRONTEND_URL,MOCK_GITHUB_URL,attemptLogin,element,attemptUserLogin,element,checkLoginStatus,testOAuthFlow,loginClicked,userButtonClicked,isLoggedIn
+    FRONTEND_URL()
+    MOCK_GITHUB_URL()
+    attemptLogin()
+    element()
+    attemptUserLogin()
+    element()
+    checkLoginStatus()
+    testOAuthFlow()
+    loginClicked()
+    userButtonClicked()
+    isLoggedIn()
+  examples/06_multilang_validation/main.py:
+    e: main
+    main()
   src/vallm/validators/syntax.py:
     e: SyntaxValidator
     SyntaxValidator(BaseValidator): validate(2),_validate_python(1),_validate_treesitter(2)  # Tier 1: Fast syntax validation...
@@ -249,19 +521,53 @@ D:
     tree_sitter_node_count(code;language)
     tree_sitter_error_count(code;language)
     structural_diff_summary(code1;code2;language)
+  src/vallm/cli/output_formatters/base.py:
+    e: output_validate_result,output_batch_results
+    output_validate_result(result;output_format;verbose)
+    output_batch_results(results_by_language;filtered_files;passed_count;failed_files;output_format)
   src/vallm/cli/output_formatters/__init__.py:
     e: _toon_today,output_validate_result,output_batch_results
     _toon_today()
-    output_validate_result(result;output_format;verbose)
-    output_batch_results(results_by_language;filtered_files;passed_count;failed_files;output_format)
-  src/vallm/cli/output_formatters/base.py:
-    e: output_validate_result,output_batch_results
     output_validate_result(result;output_format;verbose)
     output_batch_results(results_by_language;filtered_files;passed_count;failed_files;output_format)
   src/vallm/sandbox/runner.py:
     e: ExecutionResult,SandboxRunner
     ExecutionResult:  # Result of sandboxed code execution...
     SandboxRunner: __init__(1),run(2),_run_subprocess(2),_run_docker(2)  # Unified interface for running code in a sandbox...
+  backend/routers/tickets/models.py:
+    e: TicketCreate,TicketUpdate,TicketResponse,TicketListResponse,TicketStatsResponse,RedslAutoPRRequest,RedslAutoPRResponse,_get_tenant_for_user
+    TicketCreate(BaseModel):
+    TicketUpdate(BaseModel):
+    TicketResponse(BaseModel):
+    TicketListResponse(BaseModel):
+    TicketStatsResponse(BaseModel):
+    RedslAutoPRRequest(BaseModel):
+    RedslAutoPRResponse(BaseModel):
+    _get_tenant_for_user(user;db)
+  frontend/e2e/gui-login-enhanced.spec.js:
+    i: ./loginTestHelpers,@playwright/test
+    e: res,result,result,result,loginElement,content,currentUrl,isLoggedIn
+    res()
+    result()
+    result()
+    result()
+    loginElement()
+    content()
+    currentUrl()
+    isLoggedIn()
+  examples/12_ollama_simple_demo/utils/calculate_total.py:
+    e: calculate_total
+    calculate_total(items)
+  examples/mcp_demo.py:
+    e: example_syntax_validation,example_security_validation,example_full_pipeline,example_selective_validation,main
+    example_syntax_validation()
+    example_security_validation()
+    example_full_pipeline()
+    example_selective_validation()
+    main()
+  examples/utils/extract_code_from_response.py:
+    e: extract_code_from_response
+    extract_code_from_response(response)
   src/vallm/validators/file_cache.py:
     e: FileValidationCache,get_file_cache,clear_file_cache
     FileValidationCache: __init__(0),_key(0),get(1),set(2),clear(0)  # In-memory cache keyed on file path + mtime + size...
@@ -286,12 +592,52 @@ D:
     get_default_filenames()
     get_default_output_format()
     get_default_language()
+  examples/05_llm_semantic_review/main_template.py:
+    e: main
+    main()
+  examples/01_basic_validation/main.py:
+    e: main
+    main()
+  examples/06_multilang_validation/main_template.py:
+    e: main
+    main()
+  examples/02_ast_comparison/main.py:
+    e: main
+    main()
+  examples/utils/logging_utils.py:
+    e: Colors,log_section,log_step,log_code,log_result
+    Colors:  # ANSI color codes for terminal output...
+    log_section(title)
+    log_step(step;description)
+    log_code(label;code;max_lines)
+    log_result(status;message)
   src/vallm/validators/imports/wrapper.py:
     e: ImportValidator
     ImportValidator(BaseValidator): validate(2)  # Backward compatibility wrapper for the refactored import val...
   src/vallm/validators/imports/factory.py:
     e: ImportValidatorFactory
     ImportValidatorFactory: create_validator(1),supported_languages(0),register_validator(2)  # Factory for creating language-specific import validators...
+  examples/12_ollama_simple_demo/iteration_1.py:
+    e: main
+    main()
+  examples/12_ollama_simple_demo/best_version.py:
+    e: main
+    main()
+  examples/12_ollama_simple_demo/iteration_2.py:
+    e: main
+    main()
+  examples/12_ollama_simple_demo/utils/load_config.py:
+    e: load_config
+    load_config()
+  examples/12_ollama_simple_demo/utils/main.py:
+    e: run_demo_main
+    run_demo_main()
+  examples/12_ollama_simple_demo/utils/save_data.py:
+    e: save_data
+    save_data(data;filename)
+  examples/utils/save_analysis_data.py:
+    e: save_analysis_data
+    save_analysis_data(example_name;result_data)
   src/vallm/hookspecs.py:
     e: VallmSpec
     VallmSpec: validate_proposal(2),get_validator_name(0),get_validator_tier(0)  # Hook specifications that validators must implement...
@@ -300,6 +646,42 @@ D:
     BaseValidator(ABC): validate(2)  # Base class for all vallm validators...
   project.sh:
   mcp_server.py:
+  backend/routers/tickets/__init__.py:
+  examples/run.sh:
+    e: run_example
+    run_example()
+  examples/__init__.py:
+  examples/cycle-test/full-cycle.sh:
+    e: semcod,print
+    semcod()
+    print()
+  examples/cycle-test/validate-steps.sh:
+    e: check,semcod
+    check()
+    semcod()
+  examples/11_claude_code_autonomous/run.sh:
+    e: print_section,print_step,print_success,print_warning,print_error
+    print_section()
+    print_step()
+    print_success()
+    print_warning()
+    print_error()
+  examples/11_claude_code_autonomous/docker-entrypoint.sh:
+  examples/12_ollama_simple_demo/run.sh:
+  examples/12_ollama_simple_demo/docker-entrypoint.sh:
+  examples/12_ollama_simple_demo/utils/__init__.py:
+  examples/10_mcp_ollama_demo/docker-entrypoint.sh:
+  examples/10_mcp_ollama_demo/run.sh:
+    e: print_section,print_step,print_success,print_warning,print_error,print,print,print,print
+    print_section()
+    print_step()
+    print_success()
+    print_warning()
+    print_error()
+    print()
+    print()
+    print()
+    print()
   src/vallm/cli/__init__.py:
   src/vallm/__init__.py:
   src/vallm/__main__.py:
@@ -315,5 +697,11 @@ Attributes:
   src/vallm/cli/batch_constants.py:
   src/vallm/cli/batch_processor.py:
   src/vallm/sandbox/__init__.py:
+  scripts/test_docker_installation.sh:
+    e: print_status,print_warning,print_error,test_image
+    print_status()
+    print_warning()
+    print_error()
+    test_image()
   mcp/__init__.py:
   mcp/server/__init__.py:

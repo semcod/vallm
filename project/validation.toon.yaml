@@ -1,34 +1,64 @@
-# vallm batch | 203f | 154✓ 3⚠ 2✗ | 2026-04-09
+# vallm batch | 204f | 131✓ 4⚠ 7✗ | 2026-04-19
 
 SUMMARY:
-  scanned: 203  passed: 154 (75.9%)  warnings: 3  errors: 2  unsupported: 47
+  scanned: 204  passed: 131 (64.2%)  warnings: 4  errors: 7  unsupported: 64
 
-WARNINGS[3]{path,score}:
+WARNINGS[4]{path,score}:
+  frontend/src/components/RedslHealthCard.jsx,0.78
+    issues[1]{rule,severity,message,line}:
+      syntax.unsupported,warning,"Could not parse jsx: Download error: Language 'jsx' not available for download. Available groups: [""all""]",
+  frontend/src/components/RedslHealthCard.parts.jsx,0.78
+    issues[1]{rule,severity,message,line}:
+      syntax.unsupported,warning,"Could not parse jsx: Download error: Language 'jsx' not available for download. Available groups: [""all""]",
+  examples/13_batch_processing/main.py,0.98
+    issues[1]{rule,severity,message,line}:
+      complexity.cyclomatic,warning,main has cyclomatic complexity 16 (max: 15),11
   src/vallm/cli/batch_processor_impl.py,0.98
     issues[1]{rule,severity,message,line}:
-      complexity.maintainability,warning,Low maintainability index: 15.6 (threshold: 20),
-  tests/test_batch_toon_output.py,0.98
-    issues[1]{rule,severity,message,line}:
-      complexity.cyclomatic,warning,test_output_batch_toon_is_compact_and_groups_sections has cyclomatic complexity 20 (max: 15),40
-  tests/test_languages.py,0.98
-    issues[1]{rule,severity,message,line}:
-      complexity.maintainability,warning,Low maintainability index: 7.5 (threshold: 20),
+      complexity.maintainability,warning,Low maintainability index: 14.0 (threshold: 20),
 
-ERRORS[2]{path,score}:
+ERRORS[7]{path,score}:
   project/evolution.yaml,0.00
     issues[1]{rule,severity,message,line}:
       syntax.tree_sitter,error,tree-sitter found 1 parse error(s) in yaml,
+  backend/routers/tickets/webhook.py,0.69
+    issues[5]{rule,severity,message,line}:
+      python.import.resolvable,error,Module 'fastapi' not found,4
+      python.import.resolvable,error,Module 'db_session' not found,6
+      python.import.resolvable,error,Module 'db_module.tickets_orm' not found,7
+      python.import.resolvable,error,Module 'routers.auth' not found,11
+      python.import.resolvable,error,Module 'db_module.tickets_orm' not found,36
+  backend/routers/tickets/crud.py,0.71
+    issues[4]{rule,severity,message,line}:
+      python.import.resolvable,error,Module 'fastapi' not found,4
+      python.import.resolvable,error,Module 'db_session' not found,6
+      python.import.resolvable,error,Module 'db_module.tickets_orm' not found,7
+      python.import.resolvable,error,Module 'routers.auth' not found,19
+  backend/routers/tickets/redsl.py,0.71
+    issues[6]{rule,severity,message,line}:
+      python.import.resolvable,error,Module 'fastapi' not found,5
+      python.import.resolvable,error,Module 'db_session' not found,7
+      python.import.resolvable,error,Module 'db_module.tickets_orm' not found,8
+      python.import.resolvable,error,Module 'routers.auth' not found,14
+      python.import.resolvable,error,Module 'services.redsl_client' not found,15
+      python.import.resolvable,error,Module 'worker.tasks.autopr' not found,173
   src/vallm/cli/output_formatters/base.py,0.71
     issues[4]{rule,severity,message,line}:
       python.import.relative.resolvable,error,Relative import 'json_formatters' not found,2
       python.import.relative.resolvable,error,Relative import 'rich_formatters' not found,3
       python.import.relative.resolvable,error,Relative import 'text_formatters' not found,4
       python.import.relative.resolvable,error,Relative import 'toon_formatters' not found,5
+  backend/routers/tickets/models.py,0.86
+    issues[1]{rule,severity,message,line}:
+      python.import.resolvable,error,Module 'database' not found,6
+  backend/routers/tickets/__init__.py,0.89
+    issues[1]{rule,severity,message,line}:
+      python.import.resolvable,error,Module 'fastapi' not found,9
 
 UNSUPPORTED[6]{bucket,count}:
-  *.md,24
-  Dockerfile*,6
-  *.txt,4
+  *.md,33
+  Dockerfile*,4
+  *.txt,12
   *.yml,1
   *.example,1
-  other,11
+  other,13

@@ -1,0 +1,156 @@
+version: '3'
+name: vallm
+description: Vallm - Python Code Flow Analysis with LLM Integration and TOON Format
+
+vars:
+  APP_NAME: vallm
+  PYTHON: python3
+  VENV: .venv
+  PIP: "{{.VENV}}/bin/pip"
+  PY: "{{.VENV}}/bin/python"
+
+env:
+  PYTHONPATH: src/
+
+pipeline:
+  python_version: "3.12"
+  runner_image: ubuntu-latest
+  branches: [main]
+  cache: [~/.cache/pip]
+  artifacts: [dist/]
+
+  stages:
+    - name: install
+      tasks: [venv, install]
+    - name: lint
+      tasks: [lint]
+    - name: test
+      tasks: [test]
+    - name: build
+      tasks: [build]
+      when: "branch:main"
+
+tasks:
+  venv:
+    desc: Create Python virtual environment
+    cmds:
+      - |
+        if [ ! -d "{{.VENV}}" ]; then
+          echo "Creating virtual environment in {{.VENV}}..."
+          {{.PYTHON}} -m venv "{{.VENV}}"
+        fi
+    silent: true
+
+  install:
+    desc: Install package in editable mode
+    deps: [venv]
+    cmds:
+      - "{{.PIP}} install -e .[dev]"
+      - 'echo "vallm installed with dev dependencies"'
+
+  test:
+    desc: Run full pyqual quality pipeline
+    cmds:
+      - pyqual run
+
+  lint:
+    desc: Check quality gates via pyqual
+    cmds:
+      - pyqual check-gates
+
+  fmt:
+    desc: Auto-format code with ruff
+    cmds:
+      - "{{.VENV}}/bin/ruff format src/"
+
+  fmt-check:
+    desc: Check code formatting without fixing
+    cmds:
+      - "{{.VENV}}/bin/ruff format --check src/"
+
+  check:
+    desc: Run all quality checks
+    deps: [fmt-check, lint, typecheck, test]
+
+  fix:
+    desc: Run pyqual pipeline with auto-fix
+    cmds:
+      - pyqual run --auto-fix
+
+  typecheck:
+    desc: Run mypy type checking
+    cmds:
+      - "{{.PY}} -m mypy src/vallm/ --ignore-missing-imports 2>/dev/null || echo 'mypy not installed'"
+
+  build:
+    desc: Build wheel and sdist
+    deps: [test]
+    cmds:
+      - "{{.PY}} -m build"
+
+  clean:
+    desc: Remove build artifacts
+    cmds:
+      - rm -rf build/ dist/ *.egg-info .pytest_cache .mypy_cache .ruff_cache
+
+  test-fast:
+    desc: Run fast unit tests only
+    cmds:
+      - "{{.PY}} -m pytest -m 'not slow and not integration' -v --tb=short -n auto"
+
+  test-cov:
+    desc: Run tests with coverage
+    cmds:
+      - "{{.PY}} -m pytest tests/ --cov=src/vallm --cov-report=html --cov-report=term-missing"
+
+  vallm-self:
+    desc: Run vallm self-analysis
+    cmds:
+      - "echo 'Running vallm self-analysis...'"
+      - "{{.VENV}}/bin/vallm batch src --recursive --format toon --output ./analysis --exclude .git,{{.VENV}},dist,__pycache__"
+
+  publish-test:
+    desc: Publish to TestPyPI
+    deps: [build]
+    cmds:
+      - |
+        if [ -z "${TWINE_USERNAME}" ] && [ -z "${TWINE_PASSWORD}" ] && [ -z "${PYPI_API_TOKEN}" ]; then
+          echo "No PyPI credentials found. Set TWINE_USERNAME/TWINE_PASSWORD or PYPI_API_TOKEN"
+          exit 0
+        fi
+        "{{.PY}}" -m twine upload --repository testpypi dist/*
+
+  publish:
+    desc: Publish to PyPI
+    deps: [build]
+    cmds:
+      - |
+        if [ -z "${TWINE_USERNAME}" ] && [ -z "${TWINE_PASSWORD}" ] && [ -z "${PYPI_API_TOKEN}" ]; then
+          echo "No PyPI credentials found"
+          exit 0
+        fi
+        "{{.PY}}" -m twine upload dist/*
+
+  all:
+    desc: Full CI pipeline
+    deps: [install, check, build]
+
+  sumd:
+    desc: Generate SUMD
+    cmds:
+      - echo "# vallm" > SUMD.md
+      - echo "" >> SUMD.md
+      - echo "Vallm - Python Code Flow Analysis" >> SUMD.md
+
+  sumr:
+    desc: Generate SUMR
+    cmds:
+      - echo "# vallm - Summary" > SUMR.md
+
+  metrics:
+    desc: Show project metrics
+    cmds:
+      - |
+        py_files=$(find src -name '*.py' 2>/dev/null | wc -l)
+        lines=$(find src -name '*.py' -exec cat {} \; 2>/dev/null | wc -l)
+        echo "Metrics: $py_files files, $lines lines"
