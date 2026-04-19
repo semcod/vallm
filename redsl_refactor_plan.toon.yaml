@@ -1,0 +1,22 @@
+# redsl | refactor | 2026-04-19
+# mode=dry-run | files=138 | lines=17265
+# CC̄=7.1 | critical=11 | decisions=1
+
+STATUS[planned]
+
+DECISIONS[1]:
+  1. split_module → src/vallm/cli/batch_processor_impl.py (score=1.17) God module — zbyt duży plik z za dużą liczbą funkcji
+
+METRICS[10]:
+  🟢 mcp_server.py::None CC=0 LOC=28
+  🟢 examples/__init__.py::None CC=0 LOC=1
+  🟢 examples/mcp_demo.py::None CC=3 LOC=206
+  🟢 tests/test_performance.py::None CC=7 LOC=208
+  🟢 tests/test_security.py::None CC=4 LOC=34
+  🟢 tests/test_regression_validator.py::None CC=6 LOC=253
+  🟢 tests/conftest.py::None CC=4 LOC=84
+  🟢 tests/test_scoring.py::None CC=2 LOC=67
+  🟢 tests/test_imports.py::None CC=5 LOC=109
+  🟢 tests/test_vallm.py::None CC=3 LOC=24
+
+LOG: /home/tom/github/semcod/vallm/logs/redsl_20260419_181225.log

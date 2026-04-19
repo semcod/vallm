@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "vallm"
-version = "0.1.76"
+version = "0.1.77"
 description = "A complete toolkit for validating LLM-generated code"
 readme = "README.md"
 license = "Apache-2.0"
@@ -63,6 +63,7 @@ dev = [
     "costs>=0.1.48",
     "pfix>=0.1.72",
     "pyqual>=0.1.59",
+    "redsl>=0.3.0",
 ]
 
 [project.scripts]

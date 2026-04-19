@@ -2,7 +2,7 @@ archive/
 logs/
 logs
 .idea
-
+.redsl
 # Git
 .pyqual/
 .git/

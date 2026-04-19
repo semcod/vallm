@@ -154,3 +154,17 @@ tasks:
         py_files=$(find src -name '*.py' 2>/dev/null | wc -l)
         lines=$(find src -name '*.py' -exec cat {} \; 2>/dev/null | wc -l)
         echo "Metrics: $py_files files, $lines lines"
+
+  redsl:
+    desc: Run ReDSL quality analysis and refactoring
+    cmds:
+      - "{{.VENV}}/bin/redsl analyze . --format toon --output ./project"
+
+  redsl-refactor:
+    desc: Run ReDSL automated refactoring
+    cmds:
+      - "{{.VENV}}/bin/redsl refactor . --format toon --output ./project --apply"
+
+  quality:
+    desc: Full quality pipeline - pyqual + redsl + vallm
+    deps: [test, redsl, vallm-self]
