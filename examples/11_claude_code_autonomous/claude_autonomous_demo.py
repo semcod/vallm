@@ -18,7 +18,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from examples.utils import extract_code_from_response
+from examples.utils import extract_code_from_response, Colors
 from typing import Dict, Optional
 
 import requests
@@ -46,18 +46,6 @@ if __name__ == "__main__":
     ]
 )
 logger = logging.getLogger('claude_autonomous')
-
-# Colors for terminal output
-class Colors:
-    BLUE = '\033[94m'
-    GREEN = '\033[92m'
-    YELLOW = '\033[93m'
-    RED = '\033[91m'
-    CYAN = '\033[96m'
-    MAGENTA = '\033[95m'
-    BOLD = '\033[1m'
-    END = '\033[0m'
-
 
 def log_section(title: str):
     """Print a section header."""

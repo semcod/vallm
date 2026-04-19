@@ -156,7 +156,7 @@ Content outside the markers is preserved when regenerating. Enable this with `sy
 
 ```
 vallm/
-├── project        ├── tickets/├── mcp_server            ├── redsl            ├── webhook            ├── RedslHealthCard                ├── parts            ├── crud            ├── spec    ├── run├── examples/        ├── loginTestHelpers        ├── main        ├── main        ├── main_template        ├── full-cycle        ├── validate-steps        ├── main        ├── run        ├── docker-entrypoint        ├── main            ├── data_processor        ├── main        ├── claude_autonomous_demo        ├── run        ├── main        ├── iteration_1        ├── docker-entrypoint        ├── best_version        ├── iteration_2            ├── simple_buggy        ├── ollama_simple_demo            ├── process_user_input            ├── load_config        ├── utils/            ├── calculate_total            ├── save_data            ├── main        ├── main        ├── main        ├── main        ├── main_template        ├── main        ├── run        ├── docker-entrypoint    ├── mcp_demo        ├── main        ├── refactored_output            ├── order_processor        ├── extraction        ├── save_analysis_data    ├── utils/        ├── extract_code_from_response        ├── logging_utils        ├── validation_runner        ├── mcp_demo        ├── hookspecs        ├── main        ├── main        ├── cli/    ├── vallm/        ├── __main__            ├── file_cache            ├── complexity            ├── base            ├── logical            ├── regression            ├── security        ├── validators/            ├── semantic_cache            ├── semantic            ├── syntax            ├── lint            ├── imports/                ├── base                ├── javascript_imports                ├── python_imports                ├── go_imports                ├── c_imports                ├── rust_imports                ├── utils                ├── wrapper                ├── factory                ├── java_imports            ├── graph_diff        ├── scoring        ├── core/            ├── proposal            ├── gitignore            ├── languages            ├── ast_compare            ├── batch_constants            ├── batch_processor_files            ├── batch_processor_patterns            ├── batch_utils            ├── batch_processor_validation            ├── batch_processor_impl            ├── batch_processor            ├── batch_processor_filter                ├── base            ├── output_formatters/                ├── shared                ├── utils                ├── single                ├── batch            ├── runner        ├── sandbox/    ├── bump_version    ├── test_docker_installation├── mcp/    ├── server/        ├── self_server        ├── _tools_vallm        ├── config            ├── models            ├── command_handlers```
+├── project        ├── tickets/├── mcp_server            ├── webhook            ├── redsl            ├── RedslHealthCard            ├── crud        ├── loginTestHelpers    ├── run            ├── spec                ├── parts├── examples/        ├── main        ├── main        ├── main_template        ├── full-cycle        ├── validate-steps        ├── main        ├── run        ├── docker-entrypoint        ├── main            ├── data_processor        ├── main        ├── claude_autonomous_demo        ├── run        ├── main        ├── iteration_1        ├── docker-entrypoint        ├── best_version        ├── iteration_2            ├── simple_buggy            ├── process_user_input            ├── load_config        ├── utils/            ├── calculate_total        ├── ollama_simple_demo            ├── save_data            ├── main        ├── main        ├── main        ├── main_template        ├── main        ├── main        ├── run        ├── docker-entrypoint    ├── mcp_demo        ├── main        ├── refactored_output            ├── order_processor        ├── extraction    ├── utils/        ├── save_analysis_data        ├── extract_code_from_response        ├── logging_utils        ├── validation_runner        ├── mcp_demo        ├── hookspecs        ├── main        ├── cli/        ├── main    ├── vallm/        ├── __main__            ├── file_cache            ├── complexity            ├── base            ├── logical            ├── regression            ├── security        ├── validators/            ├── semantic_cache            ├── semantic            ├── syntax            ├── lint            ├── imports/                ├── base                ├── javascript_imports                ├── python_imports                ├── go_imports                ├── c_imports                ├── rust_imports                ├── utils                ├── wrapper                ├── factory                ├── java_imports            ├── graph_diff        ├── scoring        ├── core/            ├── proposal            ├── gitignore            ├── ast_compare            ├── languages            ├── batch_constants            ├── batch_processor_files            ├── batch_utils            ├── batch_processor_patterns            ├── batch_processor_validation            ├── batch_processor_impl            ├── batch_processor            ├── batch_processor_filter                ├── base            ├── output_formatters/                ├── shared                ├── utils                ├── single                ├── batch            ├── runner        ├── sandbox/    ├── bump_version    ├── test_docker_installation├── mcp/    ├── server/        ├── self_server        ├── _tools_vallm        ├── config            ├── models            ├── command_handlers```
 
 ## API Overview
 
@@ -215,24 +215,15 @@ vallm/
 
 ### Functions
 
-- `process_ticket_with_redsl(ticket_id, data, background_tasks, user)` — Process ticket with reDSL engine to auto-generate PR.
-- `get_ticket_processing_status(ticket_id, user, db)` — Get processing status for a ticket (polling endpoint).
 - `handle_pr_webhook(payload, db)` — Webhook handler for PR status updates.
 - `bulk_close_tickets(ticket_ids, user, db)` — Bulk close multiple tickets.
 - `bulk_reprocess_tickets(ticket_ids, user, db)` — Reprocess multiple tickets with reDSL.
+- `process_ticket_with_redsl(ticket_id, data, background_tasks, user)` — Process ticket with reDSL engine to auto-generate PR.
+- `get_ticket_processing_status(ticket_id, user, db)` — Get processing status for a ticket (polling endpoint).
 - `RedslHealthCard()` — —
 - `handleRefactor()` — —
 - `result()` — —
 - `h()` — —
-- `MetricRow()` — —
-- `ok()` — —
-- `StatusChecking()` — —
-- `StatusUnavailable()` — —
-- `StatusLoading()` — —
-- `StatusError()` — —
-- `HealthContent()` — —
-- `grade()` — —
-- `score()` — —
 - `create_new_ticket(data, user, db)` — Create new ticket for auto-PR generation.
 - `list_tickets(status, user, db)` — List all tickets for current user.
 - `get_stats(user, db)` — Get ticket statistics for current user.
@@ -242,13 +233,6 @@ vallm/
 - `get_single_ticket(ticket_id, user, db)` — Get single ticket by ID.
 - `update_existing_ticket(ticket_id, data, user, db)` — Update ticket fields.
 - `delete_existing_ticket(ticket_id, user, db)` — Delete (soft delete) a ticket.
-- `res()` — —
-- `result()` — —
-- `loginElement()` — —
-- `content()` — —
-- `currentUrl()` — —
-- `isLoggedIn()` — —
-- `run_example()` — —
 - `FRONTEND_URL()` — —
 - `MOCK_GITHUB_URL()` — —
 - `attemptLogin()` — —
@@ -259,6 +243,22 @@ vallm/
 - `loginClicked()` — —
 - `userButtonClicked()` — —
 - `isLoggedIn()` — —
+- `run_example()` — —
+- `res()` — —
+- `result()` — —
+- `loginElement()` — —
+- `content()` — —
+- `currentUrl()` — —
+- `isLoggedIn()` — —
+- `MetricRow()` — —
+- `ok()` — —
+- `StatusChecking()` — —
+- `StatusUnavailable()` — —
+- `StatusLoading()` — —
+- `StatusError()` — —
+- `HealthContent()` — —
+- `grade()` — —
+- `score()` — —
 - `run_cli_command(cmd)` — Run a CLI command and return result.
 - `demo_single_file_validation()` — Demo: Validate single file via CLI.
 - `demo_batch_validation()` — Demo: Batch validation via CLI.
@@ -316,6 +316,9 @@ vallm/
 - `duplicate_function()` — Another duplicate function.
 - `unused_function()` — This function is never used.
 - `main()` — Main function with problems.
+- `process_user_input(user_input)` — Process user input with standard logic.
+- `load_config()` — Load configuration with default values.
+- `calculate_total(items)` — Calculate total price from items list.
 - `log_section(title)` — —
 - `log_step(step, description)` — —
 - `analyze_with_code2llm(code_path)` — Simple code2llm analysis.
@@ -325,9 +328,6 @@ vallm/
 - `generate_ollama_prompt(code, analysis)` — Generate simple prompt for Ollama.
 - `run_simple_workflow(code_path, max_iterations)` — Run simple refactoring workflow.
 - `main()` — Main function.
-- `process_user_input(user_input)` — Process user input with standard logic.
-- `load_config()` — Load configuration with default values.
-- `calculate_total(items)` — Calculate total price from items list.
 - `save_data(data, filename)` — Save data to JSON file.
 - `run_demo_main()` — Run the standard demo main function pattern.
 - `main()` — —
@@ -368,11 +368,11 @@ vallm/
 - `dead_code()` — Function that's never called.
 - `extract_code_from_response(response, language)` — Extract code from LLM response.
 - `extract_json_from_response(response)` — Extract JSON object from LLM response.
-- `save_analysis_data(example_name, result_data)` — Save analysis data to JSON file.
 - `save_analysis_data(example_name, result_data)` — Save analysis data to .vallm folder.
 - `run_validation_examples(example_name, good_code, bad_code, complex_code)` — Run standard validation examples (good, bad, complex code).
 - `validate_code_example(name, code, settings, all_results)` — Validate a code example and store results.
 - `print_summary(all_results)` — Print summary of all validation results.
+- `save_analysis_data(example_name, result_data)` — Save analysis data to JSON file.
 - `extract_code_from_response(response)` — Extract Python code from LLM response.
 - `log_section(title)` — Print a section header.
 - `log_step(step, description)` — Print a step indicator.
@@ -414,8 +414,6 @@ vallm/
 - `get_default_excludes()` — Get default exclude patterns used when no .gitignore exists.
 - `create_default_gitignore_parser()` — Create a parser with default exclude patterns.
 - `should_exclude(path, gitignore_parser, use_defaults)` — Check if a path should be excluded.
-- `detect_language(source)` — Auto-detect language from file path, extension, or name.
-- `get_language_for_validation(source, explicit)` — Get tree-sitter language ID for validation.
 - `parse_code(code, language)` — Parse code using tree-sitter and return the tree.
 - `parse_python_ast(code)` — Parse Python code using the built-in ast module. Returns None on failure.
 - `normalize_python_ast(tree)` — Normalize a Python AST by replacing identifiers with canonical names.
@@ -423,13 +421,15 @@ vallm/
 - `tree_sitter_node_count(code, language)` — Count the number of nodes in a tree-sitter parse tree.
 - `tree_sitter_error_count(code, language)` — Count syntax errors reported by tree-sitter.
 - `structural_diff_summary(code1, code2, language)` — Return a summary of structural differences between two code snippets.
+- `detect_language(source)` — Auto-detect language from file path, extension, or name.
+- `get_language_for_validation(source, explicit)` — Get tree-sitter language ID for validation.
 - `build_file_list(paths, recursive)` — Build list of files from input paths.
+- `compile_patterns(raw)` — —
 - `parse_filter_patterns(include, exclude)` — Parse include and exclude patterns into compiled matchers.
 - `matches_pattern(path, compiled)` — Check whether a path matches compiled patterns.
 - `should_exclude_file(path, exclude_patterns)` — Return True if the file should be excluded.
 - `matches_include_pattern(path, include_patterns)` — Return True if the file matches include patterns.
 - `filter_files(files, include, exclude, gitignore_parser)` — Filter files based on patterns and gitignore.
-- `compile_patterns(raw)` — —
 - `validate_single_file(file_path, settings)` — Validate a single file (top-level for thread-pool compatibility).
 - `process_files(files, settings, output_format, fail_fast)` — Validate files concurrently and aggregate results.
 - `parse_filter_patterns(include, exclude)` — —

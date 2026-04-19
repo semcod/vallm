@@ -6,7 +6,7 @@ SUMMARY:
   dup_groups:    17
   dup_fragments: 44
   saved_lines:   183
-  scan_ms:       5497
+  scan_ms:       4850
 
 HOTSPOTS[7] (files with most duplication):
   mcp/server/_tools_vallm.py  dup=100L  groups=2  frags=6  (0.8%)

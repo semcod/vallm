@@ -386,6 +386,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Tree-sitter for all** — syntax validation for 165+ languages
 - **Example 07** — comprehensive multi-language demo with 8 languages
 
+## [0.1.76] - 2026-04-19
+
+### Docs
+- Update README.md
+- Update docs/README.md
+- Update project/context.md
+
+### Other
+- Update examples/11_claude_code_autonomous/claude_autonomous_demo.py
+- Update examples/12_ollama_simple_demo/ollama_simple_demo.py
+- Update examples/utils/__init__.py
+- Update project/analysis.toon.yaml
+- Update project/duplication.toon.yaml
+- Update project/index.html
+- Update project/map.toon.yaml
+- Update project/project.toon.yaml
+
 ## [0.1.75] - 2026-04-19
 
 ### Docs

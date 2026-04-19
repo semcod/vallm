@@ -9,7 +9,7 @@
 - **Total Functions**: 480
 - **Total Classes**: 51
 - **Modules**: 116
-- **Entry Points**: 316
+- **Entry Points**: 315
 
 ## Architecture by Module
 
@@ -407,6 +407,14 @@ The validator writes the proposed co
 
 Key functions that process and transform data:
 
+### backend.routers.tickets.webhook.bulk_reprocess_tickets
+> Reprocess multiple tickets with reDSL.
+- **Output to**: router.post, Depends, Depends, backend.routers.tickets.models._get_tenant_for_user, get_ticket
+
+### examples.15_cli_usage.main.demo_output_formats
+> Demo: Different output formats.
+- **Output to**: examples.cycle-test.full-cycle.print, examples.cycle-test.full-cycle.print, examples.cycle-test.full-cycle.print, Path, test_file.write_text
+
 ### backend.routers.tickets.redsl.process_ticket_with_redsl
 > Process ticket with reDSL engine to auto-generate PR.
 
@@ -417,14 +425,6 @@ Flow:
 ### backend.routers.tickets.redsl.get_ticket_processing_status
 > Get processing status for a ticket (polling endpoint).
 - **Output to**: router.get, Depends, Depends, get_ticket, backend.routers.tickets.models._get_tenant_for_user
-
-### backend.routers.tickets.webhook.bulk_reprocess_tickets
-> Reprocess multiple tickets with reDSL.
-- **Output to**: router.post, Depends, Depends, backend.routers.tickets.models._get_tenant_for_user, get_ticket
-
-### examples.15_cli_usage.main.demo_output_formats
-> Demo: Different output formats.
-- **Output to**: examples.cycle-test.full-cycle.print, examples.cycle-test.full-cycle.print, examples.cycle-test.full-cycle.print, Path, test_file.write_text
 
 ### examples.09_code2logic_integration.main.validate_with_vallm
 > Validate code quality with vallm.
@@ -448,14 +448,6 @@ Flow:
 > Validate code using vallm.
 - **Output to**: logger.info, VallmSettings, Proposal, src.vallm.validators.complexity.ComplexityValidator.validate, examples.cycle-test.full-cycle.print
 
-### examples.12_ollama_simple_demo.legacy_code.simple_buggy.process_user_input
-> Process user input with security issues.
-- **Output to**: user_input.startswith, user_input.startswith, eval, examples.cycle-test.full-cycle.print
-
-### examples.12_ollama_simple_demo.legacy_code.simple_buggy.BadClass.process_data
-> Method with no error handling.
-- **Output to**: isinstance, self.data.append
-
 ### examples.12_ollama_simple_demo.utils.process_user_input.process_user_input
 > Process user input with standard logic.
 
@@ -466,17 +458,17 @@ Returns:
  
 - **Output to**: user_input.startswith, user_input.startswith, str, examples.cycle-test.full-cycle.print, user_input.lower
 
+### examples.12_ollama_simple_demo.legacy_code.simple_buggy.process_user_input
+> Process user input with security issues.
+- **Output to**: user_input.startswith, user_input.startswith, eval, examples.cycle-test.full-cycle.print
+
+### examples.12_ollama_simple_demo.legacy_code.simple_buggy.BadClass.process_data
+> Method with no error handling.
+- **Output to**: isinstance, self.data.append
+
 ### examples.12_ollama_simple_demo.ollama_simple_demo.validate_with_vallm
 > Simple vallm validation.
 - **Output to**: examples.12_ollama_simple_demo.ollama_simple_demo.log_step, VallmSettings, Proposal, src.vallm.validators.complexity.ComplexityValidator.validate, examples.cycle-test.full-cycle.print
-
-### examples.07_multi_language.main.validate_single_language
-> Validate a single language code sample.
-- **Output to**: VallmSettings, Proposal, src.vallm.validators.complexity.ComplexityValidator.validate
-
-### examples.07_multi_language.main.validate_all_languages
-> Validate all language samples.
-- **Output to**: examples.cycle-test.full-cycle.print, examples.cycle-test.full-cycle.print, examples.cycle-test.full-cycle.print, examples.cycle-test.full-cycle.print, CODE_SAMPLES.items
 
 ### examples.10_mcp_ollama_demo.refactored_output.OrderManager.validate_order
 > Validate order data.
@@ -491,6 +483,14 @@ Returns:
 
 ### examples.10_mcp_ollama_demo.refactored_output.process_order
 > Process order data with proper error handling and validation.
+
+### examples.07_multi_language.main.validate_single_language
+> Validate a single language code sample.
+- **Output to**: VallmSettings, Proposal, src.vallm.validators.complexity.ComplexityValidator.validate
+
+### examples.07_multi_language.main.validate_all_languages
+> Validate all language samples.
+- **Output to**: examples.cycle-test.full-cycle.print, examples.cycle-test.full-cycle.print, examples.cycle-test.full-cycle.print, examples.cycle-test.full-cycle.print, CODE_SAMPLES.items
 
 ### examples.10_mcp_ollama_demo.legacy_code.order_processor.process_order
 > Process order data - has multiple issues.

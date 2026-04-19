@@ -1,7 +1,7 @@
 # vallm | 116f 14651L | shell:11,python:101,javascript:4 | 2026-04-19
 # stats: 480 func | 0 cls | 116 mod | CC̄=3.3 | critical:2 | cycles:0
 # alerts[5]: fan-out process_ticket_with_redsl=20; fan-out main=19; fan-out run_autonomous_workflow=19; fan-out analyze_with_code2llm=17; CC main=16
-# hotspots[5]: process_ticket_with_redsl fan=20; run_autonomous_workflow fan=19; main fan=19; analyze_with_code2llm fan=17; analyze_with_code2llm fan=16
+# hotspots[5]: process_ticket_with_redsl fan=20; main fan=19; run_autonomous_workflow fan=19; analyze_with_code2llm fan=17; analyze_with_code2llm fan=16
 # evolution: CC̄ 3.4→3.3 (improved -0.1)
 # Keys: M=modules, D=details, i=imports, e=exports, c=classes, f=functions, m=methods
 M[116]:
@@ -132,11 +132,6 @@ D:
     handleRefactor()
     result()
     h()
-  backend/routers/tickets/redsl.py:
-    e: process_ticket_with_redsl,_create_pr_for_ticket,get_ticket_processing_status
-    process_ticket_with_redsl(ticket_id;data;background_tasks;user;db)
-    _create_pr_for_ticket(ticket_id;repo;provider;project_path;decisions;files_modified;token;tenant_id)
-    get_ticket_processing_status(ticket_id;user;db)
   frontend/src/components/RedslHealthCard.parts.jsx:
     i: ../constants,./GradeCircle
     e: MetricRow,ok,StatusChecking,StatusUnavailable,StatusLoading,StatusError,HealthContent,grade,score
@@ -149,6 +144,11 @@ D:
     HealthContent()
     grade()
     score()
+  backend/routers/tickets/redsl.py:
+    e: process_ticket_with_redsl,_create_pr_for_ticket,get_ticket_processing_status
+    process_ticket_with_redsl(ticket_id;data;background_tasks;user;db)
+    _create_pr_for_ticket(ticket_id;repo;provider;project_path;decisions;files_modified;token;tenant_id)
+    get_ticket_processing_status(ticket_id;user;db)
   src/vallm/validators/imports/python_imports.py:
     e: PythonImportValidator,_collect_guarded_lines,_get_local_modules
     PythonImportValidator(BaseImportValidator): validate(2),_relative_import_exists(3),extract_imports(1),module_exists(1),get_language(0),_get_error_message(1),_get_rule_name(0)  # Python-specific import validator...
@@ -555,9 +555,6 @@ D:
     content()
     currentUrl()
     isLoggedIn()
-  examples/12_ollama_simple_demo/utils/calculate_total.py:
-    e: calculate_total
-    calculate_total(items)
   examples/mcp_demo.py:
     e: example_syntax_validation,example_security_validation,example_full_pipeline,example_selective_validation,main
     example_syntax_validation()
@@ -565,6 +562,9 @@ D:
     example_full_pipeline()
     example_selective_validation()
     main()
+  examples/12_ollama_simple_demo/utils/calculate_total.py:
+    e: calculate_total
+    calculate_total(items)
   examples/utils/extract_code_from_response.py:
     e: extract_code_from_response
     extract_code_from_response(response)
@@ -645,8 +645,8 @@ D:
     e: BaseValidator
     BaseValidator(ABC): validate(2)  # Base class for all vallm validators...
   project.sh:
-  mcp_server.py:
   backend/routers/tickets/__init__.py:
+  mcp_server.py:
   examples/run.sh:
     e: run_example
     run_example()
@@ -670,7 +670,6 @@ D:
   examples/12_ollama_simple_demo/run.sh:
   examples/12_ollama_simple_demo/docker-entrypoint.sh:
   examples/12_ollama_simple_demo/utils/__init__.py:
-  examples/10_mcp_ollama_demo/docker-entrypoint.sh:
   examples/10_mcp_ollama_demo/run.sh:
     e: print_section,print_step,print_success,print_warning,print_error,print,print,print,print
     print_section()
@@ -682,6 +681,7 @@ D:
     print()
     print()
     print()
+  examples/10_mcp_ollama_demo/docker-entrypoint.sh:
   src/vallm/cli/__init__.py:
   src/vallm/__init__.py:
   src/vallm/__main__.py:

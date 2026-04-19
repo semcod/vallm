@@ -1,49 +1,51 @@
-# vallm | 311 func | 53f | 12126L | python | 2026-04-19
+# vallm | 480 func | 95f | 19151L | python | 2026-04-19
 
 HEALTH:
-  CC̄=3.4  critical=15 (limit:10)  dup=0  cycles=0
+  CC̄=3.3  critical=27 (limit:10)  dup=2  cycles=0
 
 ALERTS[20]:
   !!! high_fan_out     process_ticket_with_redsl = 20 (limit:10)
+  !!  high_fan_out     main = 19 (limit:10)
+  !!  high_fan_out     run_autonomous_workflow = 19 (limit:10)
+  !!  high_fan_out     analyze_with_code2llm = 17 (limit:10)
+  !!  high_fan_out     analyze_with_code2llm = 16 (limit:10)
+  !!  high_fan_out     run_mcp_workflow = 16 (limit:10)
+  !!  high_fan_out     run_simple_workflow = 15 (limit:10)
   !!  high_fan_out     batch_command = 15 (limit:10)
+  !   cc_exceeded      main = 16 (limit:15)
   !   cc_exceeded      RedslHealthCard = 15 (limit:15)
-  !   high_fan_out     JavaScriptImportValidator.extract_imports = 14 (limit:10)
-  !   high_fan_out     RedslHealthCard = 13 (limit:10)
-  !   high_fan_out     SemanticValidator._parse_response = 13 (limit:10)
-  !   high_fan_out     GoImportValidator.extract_imports = 13 (limit:10)
-  !   high_fan_out     RustImportValidator.extract_imports = 13 (limit:10)
-  !   high_fan_out     LintValidator._parse_ruff_text = 12 (limit:10)
-  !   high_fan_out     _create_pr_for_ticket = 11 (limit:10)
 
-MODULES[68] (top by size):
+MODULES[116] (top by size):
+  M[examples/11_claude_code_autonomous/claude_autonomous_demo.py] 660L C:1 F:12 CC↑12 D:0 (python)
   M[src/vallm/cli/batch_processor_impl.py] 487L C:1 F:22 CC↑13 D:0 (python)
   M[mcp/server/_tools_vallm.py] 464L C:0 F:14 CC↑12 D:1 (python)
+  M[examples/10_mcp_ollama_demo/mcp_demo.py] 398L C:1 F:9 CC↑12 D:0 (python)
   M[src/vallm/cli/command_handlers.py] 345L C:0 F:11 CC↑8 D:0 (python)
+  M[examples/12_ollama_simple_demo/ollama_simple_demo.py] 338L C:1 F:9 CC↑9 D:0 (python)
+  M[examples/07_multi_language/main.py] 327L C:0 F:6 CC↑11 D:0 (python)
   M[src/vallm/cli/output_formatters/batch.py] 315L C:0 F:16 CC↑10 D:2 (python)
   M[src/vallm/validators/semantic.py] 302L C:1 F:15 CC↑5 D:0 (python)
+  M[examples/09_code2logic_integration/main.py] 298L C:0 F:6 CC↑10 D:0 (python)
   M[src/vallm/core/gitignore.py] 272L C:1 F:10 CC↑11 D:1 (python)
+  M[examples/16_configuration/main.py] 267L C:0 F:6 CC↑6 D:0 (python)
   M[src/vallm/validators/regression.py] 265L C:1 F:10 CC↑7 D:0 (python)
-  M[src/vallm/validators/security.py] 255L C:1 F:5 CC↑9 D:0 (python)
-  M[backend/routers/tickets/redsl.py] 243L C:0 F:3 CC↑14 D:0 (python)
-  M[src/vallm/core/languages.py] 227L C:1 F:6 CC↑6 D:6 (python)
-  M[src/vallm/validators/imports/python_imports.py] 225L C:1 F:9 CC↑14 D:0 (python)
-  M[src/vallm/scoring.py] 218L C:5 F:8 CC↑7 D:0 (python)
-  M[backend/routers/tickets/crud.py] 187L C:0 F:9 CC↑6 D:0 (python)
-  M[src/vallm/validators/semantic_cache.py] 187L C:1 F:8 CC↑5 D:2 (python)
-  M[mcp/server/self_server.py] 185L C:0 F:5 CC↑6 D:0 (python)
-  LANGS: python:62/javascript:4/shell:2
+  M[examples/10_mcp_ollama_demo/run.sh] 260L C:0 F:6 CC↑0 D:0 (shell)
+  M[examples/cycle-test/full-cycle.sh] 259L C:0 F:2 CC↑0 D:35 (shell)
+  LANGS: python:101/shell:11/javascript:4
 
 HOTSPOTS[10]:
   ★ process_ticket_with_redsl fan=20  // Analysis pipeline, 20 stages
-  ★ batch_command fan=15  // Validate multiple files with auto-detected languages.
-  ★ JavaScriptImportValidator.extract_imports fan=14  // Extract import statements from JavaScript/TypeScript using tree-sitter.
-  ★ RedslHealthCard fan=13  // Orchestrates 13 calls
-  ★ SemanticValidator._parse_response fan=13  // Parse LLM JSON response into a ValidationResult.
+  ★ main fan=19  // Orchestrates 19 calls
+  ★ run_autonomous_workflow fan=19  // Run the complete autonomous refactoring workflow.
+  ★ analyze_with_code2llm fan=17  // Analysis pipeline, 17 stages
+  ★ analyze_with_code2llm fan=16  // Analysis pipeline, 16 stages
 
-REFACTOR[3]:
-  [1] M/L Split RedslHealthCard (CC=15)
-  [2] M/M Reduce process_ticket_with_redsl fan-out (currently 20)
-  [3] M/M Reduce batch_command fan-out (currently 15)
+REFACTOR[6]:
+  [1] H/H Split god module examples/11_claude_code_autonomous/claude_autonomous_demo.py (660L, 1 classes)
+  [2] M/L Split RedslHealthCard (CC=15)
+  [3] M/L Split main (CC=16)
+  [4] M/M Reduce process_ticket_with_redsl fan-out (currently 20)
+  [5] M/M Reduce main fan-out (currently 19)
 
 EVOLUTION:
-  2026-04-19 CC̄=3.4 crit=15 12126L // Automated analysis
+  2026-04-19 CC̄=3.3 crit=27 19151L // Automated analysis

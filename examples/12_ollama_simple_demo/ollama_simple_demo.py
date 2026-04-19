@@ -12,7 +12,7 @@ from typing import Dict
 
 import requests
 
-from examples.utils import extract_code_from_response
+from examples.utils import extract_code_from_response, Colors
 
 # Setup logging
 
@@ -26,16 +26,6 @@ if __name__ == "__main__":
     ]
 )
 logger = logging.getLogger('ollama_simple')
-
-# Colors
-class Colors:
-    GREEN = '\033[92m'
-    YELLOW = '\033[93m'
-    RED = '\033[91m'
-    CYAN = '\033[96m'
-    BLUE = '\033[94m'
-    BOLD = '\033[1m'
-    END = '\033[0m'
 
 def log_section(title: str):
     print(f"\n{Colors.BOLD}{Colors.BLUE}{'='*60}{Colors.END}")
