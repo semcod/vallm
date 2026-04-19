@@ -155,16 +155,50 @@ tasks:
         lines=$(find src -name '*.py' -exec cat {} \; 2>/dev/null | wc -l)
         echo "Metrics: $py_files files, $lines lines"
 
-  redsl:
-    desc: Run ReDSL quality analysis and refactoring
+  redsl-dry:
+    desc: Run ReDSL analysis (dry-run, no changes)
     cmds:
-      - "{{.VENV}}/bin/redsl analyze . --format toon --output ./project"
+      - "{{.VENV}}/bin/redsl refactor . --dry-run -f text"
 
   redsl-refactor:
-    desc: Run ReDSL automated refactoring
+    desc: Run ReDSL automated refactoring with auto-apply
     cmds:
-      - "{{.VENV}}/bin/redsl refactor . --format toon --output ./project --apply"
+      - "{{.VENV}}/bin/redsl refactor . --apply -n 5"
+
+  redsl-improve:
+    desc: Run ReDSL self-improvement cycle (autonomous mode)
+    cmds:
+      - "{{.VENV}}/bin/redsl improve . --mode autonomous -n 5"
+
+  redsl-heal:
+    desc: Diagnose and fix project issues
+    cmds:
+      - "{{.VENV}}/bin/redsl doctor heal ."
+
+  redsl-health:
+    desc: Check project health (diagnosis only)
+    cmds:
+      - "{{.VENV}}/bin/redsl health ."
+
+  redsl-watch:
+    desc: Start redsl self-improvement scheduler (runs periodically)
+    cmds:
+      - "{{.VENV}}/bin/redsl watch . --interval 3600"
 
   quality:
     desc: Full quality pipeline - pyqual + redsl + vallm
-    deps: [test, redsl, vallm-self]
+    deps: [test, redsl-dry, vallm-self]
+
+  refactor-all:
+    desc: Full autonomous refactoring - pyqual fix + redsl heal + commit
+    cmds:
+      - task: fix
+      - task: redsl-heal
+      - |
+        if [ -n "$(git status --porcelain)" ]; then
+          git add -A
+          git commit -m "refactor: autonomous refactoring via redsl + pyqual" || true
+          echo "Changes committed. Review and push manually."
+        else
+          echo "No changes made."
+        fi

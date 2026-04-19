@@ -14,7 +14,6 @@ stats:
   total: 38
   todo: 38
   done: 0
-
 tasks:
 - id: Q01
   title: 'reduce_complexity: redsl (CC=14)'
@@ -39,7 +38,7 @@ tasks:
   action: reduce_complexity
   priority: 3
   effort: medium
-  status: todo
+  status: done
   labels:
   - refactor
   - complexity
