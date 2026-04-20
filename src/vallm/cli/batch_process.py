@@ -72,16 +72,17 @@ def process_single_file(
 
     text = read_file_text(file_path)
     if text is None:
-        return None, None
+        return None, None, None
 
     language = detect_file_language(file_path)
     if language is None:
-        return None, None
+        return None, None, None
 
     proposal = Proposal(file_path, text, language, settings)
     result = validate(proposal, settings=settings)
 
-    return handle_validation_result(result, file_path, output_format, verbose, show_issues, console)
+    result, file_path = handle_validation_result(result, file_path, output_format, verbose, show_issues, console)
+    return result, file_path, language
 
 
 def process_files(
@@ -116,12 +117,12 @@ def process_files(
         ]
 
         for future in as_completed(futures):
-            result, file_path = future.result()
+            result, file_path, language = future.result()
             if result is None:
                 continue
 
             processed_files.append(file_path)
-            language_name = result.language.name
+            language_name = language.name if language is not None else "unknown"
             if language_name not in results_by_language:
                 results_by_language[language_name] = []
             results_by_language[language_name].append(result)

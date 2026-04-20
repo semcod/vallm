@@ -386,6 +386,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Tree-sitter for all** — syntax validation for 165+ languages
 - **Example 07** — comprehensive multi-language demo with 8 languages
 
+## [0.1.83] - 2026-04-20
+
+### Docs
+- Update README.md
+
+### Other
+- Update redsl.yaml
+
 ## [0.1.82] - 2026-04-20
 
 ### Docs
