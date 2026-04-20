@@ -7,7 +7,7 @@ import io
 import json
 from collections import Counter
 from pathlib import Path
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 from rich.console import Console
 
@@ -19,6 +19,23 @@ from .shared import (
 
 if TYPE_CHECKING:
     pass
+
+
+class VallmJSONEncoder(json.JSONEncoder):
+    """Custom JSON encoder that handles non-serializable vallm objects."""
+
+    def default(self, obj: Any) -> Any:
+        # Handle VallmSettings and other config objects
+        if hasattr(obj, "__class__") and "Settings" in obj.__class__.__name__:
+            return f"<{obj.__class__.__name__} object>"
+        # Handle Path objects
+        if isinstance(obj, Path):
+            return str(obj)
+        # Handle enum objects
+        if hasattr(obj, "value"):
+            return obj.value
+        return super().default(obj)
+
 
 console = Console()
 TOON_UNSUPPORTED_ORDER = ("*.md", "Dockerfile*", "*.txt", "*.yml", "*.example", "other")
@@ -216,7 +233,7 @@ def output_batch_json(results_by_language: dict, filtered_files: list, passed_co
         "files": files_details,
         "failed_files": failed_files_data,
     }
-    print(json.dumps(data, indent=2))
+    print(json.dumps(data, indent=2, cls=VallmJSONEncoder))
 
 
 def output_batch_yaml(results_by_language: dict, filtered_files: list, passed_count: int, failed_files: list) -> None:

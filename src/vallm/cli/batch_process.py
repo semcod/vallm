@@ -78,7 +78,7 @@ def process_single_file(
     if language is None:
         return None, None, None
 
-    proposal = Proposal(file_path, text, language, settings)
+    proposal = Proposal(text, language.name if language else "unknown", filename=str(file_path))
     result = validate(proposal, settings=settings)
 
     result, file_path = handle_validation_result(result, file_path, output_format, verbose, show_issues, console)
