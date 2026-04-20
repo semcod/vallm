@@ -12,8 +12,8 @@ sources:
 - project/duplication.toon.yaml
 stats:
   total: 38
-  todo: 38
-  done: 0
+  todo: 35
+  done: 3
 tasks:
 - id: Q01
   title: 'reduce_complexity: redsl (CC=14)'
@@ -143,13 +143,14 @@ tasks:
   action: reduce_complexity
   priority: 3
   effort: medium
-  status: todo
+  status: done
   labels:
   - refactor
   - complexity
   - cc-12
   source: SUMR.md#refactoring-block-1
   priority_label: medium
+  completed_at: '2026-04-20T06:40:34.560209+00:00'
 - id: Q10
   title: 'reduce_complexity: RedslHealthCard.parts.jsx (CC=14)'
   description: Module 'RedslHealthCard.parts.jsx' has cyclomatic complexity CC=14
@@ -395,13 +396,14 @@ tasks:
   action: extract_function
   priority: 2
   effort: low
-  status: todo
+  status: done
   labels:
   - refactor
   - duplication
   - extract-function
   source: SUMR.md#refactoring-block-2
   priority_label: high
+  completed_at: '2026-04-20T06:40:34.560209+00:00'
 - id: D19
   title: 'extract_function: output_batch_results (saves 16L)'
   description: 'Duplicated ''output_batch_results'': 2 occurrences, 16 lines each,

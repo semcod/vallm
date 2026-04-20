@@ -151,6 +151,24 @@ def _build_error_response(
     }
 
 
+def create_proposal(code: str, language: str, filename: Optional[str]) -> Proposal:
+    """Create a Proposal object from code, language, and filename."""
+    return Proposal(
+        code=code,
+        language=language,
+        filename=filename
+    )
+
+
+def compute_overall_score_and_verdict(results: List[ValidationResult], all_issues: List) -> tuple[float, str]:
+    """Compute overall score and verdict from validation results and issues."""
+    total_weight = sum(r.weight for r in results)
+    overall_score = sum(r.score * r.weight for r in results) / total_weight if total_weight > 0 else 1.0
+    error_count = sum(1 for i in all_issues if i.severity.value == "error")
+    verdict = _compute_verdict(overall_score, error_count)
+    return overall_score, verdict
+
+
 def validate_syntax(code: str, language: str = "python", filename: Optional[str] = None) -> Dict[str, Any]:
     """
     Multi-language syntax checking using vallm SyntaxValidator.
@@ -164,11 +182,7 @@ def validate_syntax(code: str, language: str = "python", filename: Optional[str]
         Dict with validation results including score, issues, and verdict
     """
     try:
-        proposal = Proposal(
-            code=code,
-            language=language,
-            filename=filename
-        )
+        proposal = create_proposal(code, language, filename)
         
         validator = SyntaxValidator()
         result = validator.validate(proposal, {})
@@ -192,11 +206,7 @@ def validate_imports(code: str, language: str = "python", filename: Optional[str
         Dict with validation results including score, issues, and verdict
     """
     try:
-        proposal = Proposal(
-            code=code,
-            language=language,
-            filename=filename
-        )
+        proposal = create_proposal(code, language, filename)
         
         validator = ImportValidator()
         result = validator.validate(proposal, {})
@@ -221,11 +231,7 @@ def validate_security(code: str, language: str = "python", filename: Optional[st
         Dict with validation results including score, issues, and verdict
     """
     try:
-        proposal = Proposal(
-            code=code,
-            language=language,
-            filename=filename
-        )
+        proposal = create_proposal(code, language, filename)
         
         validator = SecurityValidator()
         result = validator.validate(proposal, {})
@@ -259,206 +265,32 @@ def validate_code(
         enable_imports: Enable import validation
         enable_security: Enable security validation
         enable_complexity: Enable complexity validation
-        enable_regression: Enable regression validation (requires reference_code)
+        enable_regression: Enable regression validation
         
     Returns:
-        Dict with comprehensive validation results
+        Dict with full pipeline validation results
     """
     try:
-        proposal = Proposal(
-            code=code,
-            language=language,
-            filename=filename,
-            reference_code=reference_code,
+        proposal = create_proposal(code, language, filename)
+        
+        results, _, total_weight, all_issues = _run_validators(
+            proposal,
+            enable_syntax,
+            enable_imports,
+            enable_security,
+            enable_complexity,
+            enable_regression,
+            reference_code,
         )
-
-        results, total_score, total_weight, all_issues = _run_validators(
-            proposal, enable_syntax, enable_imports, enable_security,
-            enable_complexity, enable_regression, reference_code,
+        
+        overall_score, verdict = compute_overall_score_and_verdict(results, all_issues)
+        
+        return _build_pipeline_response(
+            results,
+            total_weight,
+            verdict,
+            all_issues,
         )
-
-        overall_score = total_score / total_weight if total_weight > 0 else 1.0
-        error_count = sum(1 for i in all_issues if i.severity.value == "error")
-        verdict = _compute_verdict(overall_score, error_count)
-
-        return _build_pipeline_response(results, total_weight, verdict, all_issues)
         
     except Exception as e:
         return _build_error_response(e, "full_pipeline")
-
-
-# MCP tool handlers - these functions match the MCP tool schema
-def handle_validate_syntax(params: Dict[str, Any]) -> Dict[str, Any]:
-    """MCP handler for validate_syntax tool."""
-    return validate_syntax(
-        code=params.get("code", ""),
-        language=params.get("language", "python"),
-        filename=params.get("filename")
-    )
-
-
-def handle_validate_imports(params: Dict[str, Any]) -> Dict[str, Any]:
-    """MCP handler for validate_imports tool."""
-    return validate_imports(
-        code=params.get("code", ""),
-        language=params.get("language", "python"),
-        filename=params.get("filename")
-    )
-
-
-def handle_validate_security(params: Dict[str, Any]) -> Dict[str, Any]:
-    """MCP handler for validate_security tool."""
-    return validate_security(
-        code=params.get("code", ""),
-        language=params.get("language", "python"),
-        filename=params.get("filename")
-    )
-
-
-def handle_validate_code(params: Dict[str, Any]) -> Dict[str, Any]:
-    """MCP handler for validate_code tool."""
-    return validate_code(
-        code=params.get("code", ""),
-        language=params.get("language", "python"),
-        filename=params.get("filename"),
-        reference_code=params.get("reference_code"),
-        enable_syntax=params.get("enable_syntax", True),
-        enable_imports=params.get("enable_imports", True),
-        enable_security=params.get("enable_security", True),
-        enable_complexity=params.get("enable_complexity", True),
-        enable_regression=params.get("enable_regression", False)
-    )
-
-
-# Tool schema for MCP registration
-TOOL_SCHEMA_VALLM = {
-    "validate_syntax": {
-        "name": "validate_syntax",
-        "description": "Check syntax errors in code using vallm SyntaxValidator",
-        "parameters": {
-            "type": "object",
-            "properties": {
-                "code": {
-                    "type": "string",
-                    "description": "Source code to validate"
-                },
-                "language": {
-                    "type": "string", 
-                    "description": "Programming language (python, javascript, go, rust, etc.)",
-                    "default": "python"
-                },
-                "filename": {
-                    "type": "string",
-                    "description": "Optional filename for context"
-                }
-            },
-            "required": ["code"]
-        }
-    },
-    "validate_imports": {
-        "name": "validate_imports",
-        "description": "Validate import resolution and dependencies using vallm ImportValidator",
-        "parameters": {
-            "type": "object",
-            "properties": {
-                "code": {
-                    "type": "string",
-                    "description": "Source code to validate"
-                },
-                "language": {
-                    "type": "string",
-                    "description": "Programming language",
-                    "default": "python"
-                },
-                "filename": {
-                    "type": "string",
-                    "description": "Optional filename for context"
-                }
-            },
-            "required": ["code"]
-        }
-    },
-    "validate_security": {
-        "name": "validate_security",
-        "description": "Detect security issues (eval, exec, secrets, injection attacks) using vallm SecurityValidator",
-        "parameters": {
-            "type": "object",
-            "properties": {
-                "code": {
-                    "type": "string",
-                    "description": "Source code to validate"
-                },
-                "language": {
-                    "type": "string",
-                    "description": "Programming language",
-                    "default": "python"
-                },
-                "filename": {
-                    "type": "string",
-                    "description": "Optional filename for context"
-                }
-            },
-            "required": ["code"]
-        }
-    },
-    "validate_code": {
-        "name": "validate_code",
-        "description": "Run full validation pipeline (syntax + imports + security + complexity + regression) using vallm",
-        "parameters": {
-            "type": "object",
-            "properties": {
-                "code": {
-                    "type": "string",
-                    "description": "Source code to validate"
-                },
-                "language": {
-                    "type": "string",
-                    "description": "Programming language",
-                    "default": "python"
-                },
-                "filename": {
-                    "type": "string",
-                    "description": "Optional filename for context"
-                },
-                "reference_code": {
-                    "type": "string",
-                    "description": "Optional reference code for regression testing"
-                },
-                "enable_syntax": {
-                    "type": "boolean",
-                    "description": "Enable syntax validation",
-                    "default": True
-                },
-                "enable_imports": {
-                    "type": "boolean",
-                    "description": "Enable import validation",
-                    "default": True
-                },
-                "enable_security": {
-                    "type": "boolean",
-                    "description": "Enable security validation",
-                    "default": True
-                },
-                "enable_complexity": {
-                    "type": "boolean",
-                    "description": "Enable complexity validation",
-                    "default": True
-                },
-                "enable_regression": {
-                    "type": "boolean",
-                    "description": "Enable regression validation (requires reference_code)",
-                    "default": False
-                }
-            },
-            "required": ["code"]
-        }
-    }
-}
-
-# Handler mapping for MCP server
-MCP_HANDLERS = {
-    "validate_syntax": handle_validate_syntax,
-    "validate_imports": handle_validate_imports,
-    "validate_security": handle_validate_security,
-    "validate_code": handle_validate_code
-}
