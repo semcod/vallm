@@ -19,7 +19,6 @@ from vallm.config import VallmSettings
 from vallm.core.languages import detect_language
 from vallm.core.proposal import Proposal
 from vallm.scoring import validate
-from vallm.validators.file_cache import get_file_cache
 
 
 if _MAX_WORKERS <= 0:
@@ -80,7 +79,7 @@ def process_single_file(
         return None, None
 
     proposal = Proposal(file_path, text, language, settings)
-    result = validate(proposal, get_file_cache())
+    result = validate(proposal, settings=settings)
 
     return handle_validation_result(result, file_path, output_format, verbose, show_issues, console)
 
