@@ -127,8 +127,8 @@ def process_files(
                 results_by_language[language_name] = []
             results_by_language[language_name].append(result)
 
-            if result.issues:
-                failed_files.append(file_path)
+            if result.all_issues:
+                failed_files.append((file_path, f"Validation {result.verdict.value}: {len(result.all_issues)} issue(s)"))
                 if fail_fast:
                     break
             else:
@@ -150,10 +150,10 @@ def show_validation_start(filtered_files: list[Path], output_format: str, consol
 
 def output_batch_results(
     results_by_language: dict,
+    filtered_files: list,
     passed_count: int,
     failed_files: list,
     output_format: str,
-    filtered_files: list,
 ) -> None:
     """Output batch validation results."""
     render_batch_results(

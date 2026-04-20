@@ -107,3 +107,4 @@ htmlcov/
 *.bak
 *.backup
 .aider*
+.redsl/
