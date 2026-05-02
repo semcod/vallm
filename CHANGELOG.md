@@ -386,6 +386,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Tree-sitter for all** — syntax validation for 165+ languages
 - **Example 07** — comprehensive multi-language demo with 8 languages
 
+- docs(docs): update README
+- feat(goal): update docs
+- feat(docs): add markdown output
+- test(docs): add markdown output
+- feat(examples): add 4 new examples (13-16)
+- chore: bump version to 0.1.75
+- refactor: split batch_processor_impl.py — extract filter logic
+- refactor: Simplify deep nesting: src/vallm/validators/imports/python_imports.py
+- refactor: Extract high-CC functions: tests/test_batch_toon_output.py
+- fix(goal): update docs
+- fix(docs): update docs
+
 ## [0.1.87] - 2026-04-20
 
 ### Docs

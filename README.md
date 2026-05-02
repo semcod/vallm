@@ -1044,3 +1044,20 @@ Tom Sapletta
 - [`src/vallm/__init__.py`](src/vallm/__init__.py) - Package initialization
 - [`src/vallm/__main__.py`](src/vallm/__main__.py) - Module execution support
 - [`src/vallm/py.typed`](src/vallm/py.typed) - Type checking marker
+
+<!-- taskill:status:start -->
+
+## Status
+
+_Last updated by [taskill](https://github.com/oqlos/taskill) at 2026-04-25 13:48 UTC_
+
+| Metric | Value |
+|---|---|
+| HEAD | `4ac3a46` |
+| Coverage | — |
+| Failing tests | — |
+| Commits in last cycle | 50 |
+
+> Mostly documentation and refactoring work: multiple README/docs updates, added markdown output (with tests), new examples, a version bump, and several refactors extracting and simplifying high-complexity code paths.
+
+<!-- taskill:status:end -->
