@@ -1,23 +1,19 @@
-import json
 from typing import Dict, Any
 
 MOCK_LLM_RESPONSES = {
     "good_code": {
         "verdict": "pass",
         "score": 0.9,
-        "reasoning": "Code is well-structured and follows best practices."
+        "reasoning": "Code is well-structured and follows best practices.",
     },
     "bad_code": {
-        "verdict": "review", 
+        "verdict": "review",
         "score": 0.3,
-        "reasoning": "Code has potential issues and could be improved."
+        "reasoning": "Code has potential issues and could be improved.",
     },
-    "syntax_error": {
-        "verdict": "fail",
-        "score": 0.1,
-        "reasoning": "Code contains syntax errors."
-    }
+    "syntax_error": {"verdict": "fail", "score": 0.1, "reasoning": "Code contains syntax errors."},
 }
+
 
 class MockLLMProvider:
     def __init__(self, responses: Dict[str, Any] = None):

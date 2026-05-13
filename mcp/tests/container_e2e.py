@@ -43,7 +43,9 @@ class MCPServerSession:
             bufsize=1,
         )
 
-    def request(self, method: str, params: Optional[Dict[str, Any]] = None, timeout: float = 5.0) -> Dict[str, Any]:
+    def request(
+        self, method: str, params: Optional[Dict[str, Any]] = None, timeout: float = 5.0
+    ) -> Dict[str, Any]:
         """Send a JSON-RPC request and return the decoded response."""
         if self.process.stdin is None or self.process.stdout is None:
             raise RuntimeError("MCP server streams were not initialized")

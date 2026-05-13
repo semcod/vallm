@@ -3,11 +3,6 @@
 Demonstrates: syntax, import, and complexity validation (Tier 1 & 2).
 """
 
-import json
-import os
-from pathlib import Path
-from vallm import Proposal, validate, VallmSettings
-
 # Good code — should PASS
 good_code = """
 def fibonacci(n: int) -> list[int]:
@@ -54,16 +49,17 @@ def overly_complex(a, b, c, d, e, f, g):
         return 0
 """
 
+
 def main():
     from examples.utils import run_validation_examples, save_analysis_data
-    
+
     all_results = run_validation_examples(
         example_name="semantic_review",
         good_code=good_code,
         bad_code=bad_code,
         complex_code=complex_code,
     )
-    
+
     # Save all analysis data
     save_analysis_data("semantic_review", all_results)
     for name, data in all_results.items():

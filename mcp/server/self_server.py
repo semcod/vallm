@@ -47,14 +47,9 @@ def handle_initialize(request_id: Any) -> Dict[str, Any]:
         "id": request_id,
         "result": {
             "protocolVersion": "0.1.0",
-            "serverInfo": {
-                "name": "vallm",
-                "version": "1.0.0"
-            },
-            "capabilities": {
-                "tools": {}
-            }
-        }
+            "serverInfo": {"name": "vallm", "version": "1.0.0"},
+            "capabilities": {"tools": {}},
+        },
     }
 
 
@@ -62,61 +57,44 @@ def handle_tools_list(request_id: Any) -> Dict[str, Any]:
     """Handle tools/list request - return available vallm tools."""
     tools = []
     for tool_schema in TOOL_SCHEMA_VALLM.values():
-        tools.append({
-            "name": tool_schema["name"],
-            "description": tool_schema["description"],
-            "inputSchema": tool_schema["parameters"]
-        })
-    
-    return {
-        "jsonrpc": "2.0",
-        "id": request_id,
-        "result": {
-            "tools": tools
-        }
-    }
+        tools.append(
+            {
+                "name": tool_schema["name"],
+                "description": tool_schema["description"],
+                "inputSchema": tool_schema["parameters"],
+            }
+        )
+
+    return {"jsonrpc": "2.0", "id": request_id, "result": {"tools": tools}}
 
 
 def handle_tools_call(request_id: Any, params: Dict[str, Any]) -> Dict[str, Any]:
     """Handle tools/call request - execute vallm validation."""
     tool_name = params.get("name")
     arguments = params.get("arguments", {})
-    
+
     if tool_name not in MCP_HANDLERS:
         return {
             "jsonrpc": "2.0",
             "id": request_id,
-            "error": {
-                "code": -32601,
-                "message": f"Tool '{tool_name}' not found"
-            }
+            "error": {"code": -32601, "message": f"Tool '{tool_name}' not found"},
         }
-    
+
     try:
         # Call the appropriate handler
         result = MCP_HANDLERS[tool_name](arguments)
-        
+
         return {
             "jsonrpc": "2.0",
             "id": request_id,
-            "result": {
-                "content": [
-                    {
-                        "type": "text",
-                        "text": json.dumps(result, indent=2)
-                    }
-                ]
-            }
+            "result": {"content": [{"type": "text", "text": json.dumps(result, indent=2)}]},
         }
-        
+
     except Exception as e:
         return {
             "jsonrpc": "2.0",
             "id": request_id,
-            "error": {
-                "code": -32603,
-                "message": f"Tool execution failed: {str(e)}"
-            }
+            "error": {"code": -32603, "message": f"Tool execution failed: {str(e)}"},
         }
 
 
@@ -125,7 +103,7 @@ def handle_request(request: Dict[str, Any]) -> Dict[str, Any]:
     method = request.get("method", "")
     params = request.get("params", {})
     request_id = request.get("id")
-    
+
     if method == "initialize":
         return handle_initialize(request_id)
     elif method == "tools/list":
@@ -136,24 +114,24 @@ def handle_request(request: Dict[str, Any]) -> Dict[str, Any]:
         return {
             "jsonrpc": "2.0",
             "id": request_id,
-            "error": {
-                "code": -32601,
-                "message": f"Method '{method}' not found"
-            }
+            "error": {"code": -32601, "message": f"Method '{method}' not found"},
         }
 
 
 def main():
     """Main MCP server loop."""
     print("Vallm MCP Server starting...", file=sys.stderr)
-    print("Available tools: validate_syntax, validate_imports, validate_security, validate_code", file=sys.stderr)
-    
+    print(
+        "Available tools: validate_syntax, validate_imports, validate_security, validate_code",
+        file=sys.stderr,
+    )
+
     try:
         for line in sys.stdin:
             line = line.strip()
             if not line:
                 continue
-                
+
             try:
                 request = json.loads(line)
                 response = handle_request(request)
@@ -161,22 +139,16 @@ def main():
             except json.JSONDecodeError as e:
                 error_response = {
                     "jsonrpc": "2.0",
-                    "error": {
-                        "code": -32700,
-                        "message": f"Parse error: {str(e)}"
-                    }
+                    "error": {"code": -32700, "message": f"Parse error: {str(e)}"},
                 }
                 print(json.dumps(error_response), flush=True)
             except Exception as e:
                 error_response = {
                     "jsonrpc": "2.0",
-                    "error": {
-                        "code": -32603,
-                        "message": f"Internal error: {str(e)}"
-                    }
+                    "error": {"code": -32603, "message": f"Internal error: {str(e)}"},
                 }
                 print(json.dumps(error_response), flush=True)
-                
+
     except KeyboardInterrupt:
         print("Vallm MCP Server shutting down...", file=sys.stderr)
 

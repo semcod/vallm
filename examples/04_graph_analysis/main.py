@@ -3,7 +3,6 @@
 Demonstrates: import/call graph building and diffing.
 """
 
-import json
 import sys
 from pathlib import Path
 
@@ -75,18 +74,18 @@ def main():
     functions_before = graph_before.functions
     classes_before = graph_before.classes
     calls_before = [(e.caller, e.callee) for e in graph_before.calls]
-    
+
     print(f"Imports: {imports_before}")
     print(f"Functions: {functions_before}")
     print(f"Classes: {classes_before}")
     print(f"Calls: {calls_before}")
-    
+
     # Store before data
     all_results["before"] = {
         "imports": imports_before,
         "functions": functions_before,
         "classes": classes_before,
-        "calls": calls_before
+        "calls": calls_before,
     }
 
     print("\n" + "=" * 60)
@@ -97,18 +96,18 @@ def main():
     functions_after = graph_after.functions
     classes_after = graph_after.classes
     calls_after = [(e.caller, e.callee) for e in graph_after.calls]
-    
+
     print(f"Imports: {imports_after}")
     print(f"Functions: {functions_after}")
     print(f"Classes: {classes_after}")
     print(f"Calls: {calls_after}")
-    
+
     # Store after data
     all_results["after"] = {
         "imports": imports_after,
         "functions": functions_after,
         "classes": classes_after,
-        "calls": calls_after
+        "calls": calls_after,
     }
 
     print("\n" + "=" * 60)
@@ -131,11 +130,11 @@ def main():
         "added_functions": diff.added_functions,
         "removed_functions": diff.removed_functions,
         "added_classes": diff.added_classes,
-        "breaking_changes": diff.breaking_changes if diff.breaking_changes else []
+        "breaking_changes": diff.breaking_changes if diff.breaking_changes else [],
     }
 
     if diff.breaking_changes:
-        print(f"\n⚠️  Breaking changes detected:")
+        print("\n⚠️  Breaking changes detected:")
         for change in diff.breaking_changes:
             print(f"  - {change}")
     else:
@@ -143,7 +142,7 @@ def main():
 
     # Save all analysis data
     save_analysis_data("graph_analysis", all_results)
-    
+
     # Print summary
     print("\n" + "=" * 60)
     print("SUMMARY")

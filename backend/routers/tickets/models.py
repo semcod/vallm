@@ -1,4 +1,5 @@
 """Tickets Pydantic models and shared helpers."""
+
 from typing import Dict, List, Optional
 
 from pydantic import BaseModel, Field
@@ -7,6 +8,7 @@ from database import get_or_create_tenant
 
 
 # ─── Pydantic Models ───────────────────────────────────────────────────────────
+
 
 class TicketCreate(BaseModel):
     title: str = Field(..., min_length=1, max_length=200)
@@ -20,7 +22,9 @@ class TicketCreate(BaseModel):
 class TicketUpdate(BaseModel):
     title: Optional[str] = None
     description: Optional[str] = None
-    status: Optional[str] = Field(None, pattern="^(open|analyzing|in_progress|pr_created|merged|closed|error)$")
+    status: Optional[str] = Field(
+        None, pattern="^(open|analyzing|in_progress|pr_created|merged|closed|error)$"
+    )
     priority: Optional[str] = Field(None, pattern="^(low|medium|high|critical)$")
     pr_url: Optional[str] = None
     pr_branch: Optional[str] = None
@@ -81,6 +85,7 @@ class RedslAutoPRResponse(BaseModel):
 
 
 # ─── Helpers ─────────────────────────────────────────────────────────────────
+
 
 def _get_tenant_for_user(user: dict, db) -> Dict:
     """Get or create tenant for authenticated user."""

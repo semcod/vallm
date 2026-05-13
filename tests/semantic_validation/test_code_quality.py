@@ -29,7 +29,7 @@ def fibonacci(n: int) -> list[int]:
     return fib
 """
         proposal = Proposal(code=code, language="python")
-        mock_response = '''```json
+        mock_response = """```json
 {
     "correctness": 5,
     "style": 5,
@@ -38,7 +38,7 @@ def fibonacci(n: int) -> list[int]:
     "issues": [],
     "summary": "Good code"
 }
-```'''
+```"""
         with patch.object(validator, "_call_llm", return_value=mock_response):
             result = validator.validate(proposal, {})
 

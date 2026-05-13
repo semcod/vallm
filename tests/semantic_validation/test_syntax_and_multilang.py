@@ -25,7 +25,7 @@ def invalid_syntax(
     print("Missing closing parenthesis")
 """
         proposal = Proposal(code=code, language="python")
-        mock_response = '''```json
+        mock_response = """```json
 {
     "correctness": 1,
     "style": 1,
@@ -34,7 +34,7 @@ def invalid_syntax(
     "issues": [{"message": "Syntax error", "severity": "error", "line": 2}],
     "summary": "Has syntax errors"
 }
-```'''
+```"""
         with patch.object(validator, "_call_llm", return_value=mock_response):
             result = validator.validate(proposal, {})
 
@@ -52,7 +52,7 @@ def invalid_syntax(
             ("python", "def hello(): return 'world'"),
             ("javascript", "function hello() { return 'world'; }"),
             ("go", "package main\nfunc main() { println('Hello, World!') }"),
-            ("rust", "fn main() { println!(\"Hello, World!\"); }"),
+            ("rust", 'fn main() { println!("Hello, World!"); }'),
         ]
         for language, code in test_cases:
             proposal = Proposal(code=code, language=language)
@@ -77,7 +77,7 @@ def calculate_sum(a, b):
     return a + b
 """
         proposal = Proposal(code=new_code, language="python", reference_code=original_code)
-        mock_response = '''```json
+        mock_response = """```json
 {
     "correctness": 5,
     "style": 4,
@@ -86,7 +86,7 @@ def calculate_sum(a, b):
     "issues": [],
     "summary": "Improved code with validation"
 }
-```'''
+```"""
         with patch.object(validator, "_call_llm", return_value=mock_response):
             result = validator.validate(proposal, {})
 

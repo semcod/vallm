@@ -3,14 +3,13 @@
 Demonstrates: pattern-based security checks and AST-based detection.
 """
 
-import json
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
 from examples.utils import save_analysis_data
-from vallm import Proposal, VallmSettings
+from vallm import Proposal
 from vallm.validators.security import SecurityValidator
 
 # Code with security issues
@@ -78,12 +77,12 @@ def main():
     print(f"Issues ({len(result.issues)}):")
     for issue in result.issues:
         print(f"  {issue}")
-    
+
     # Store result data
     all_results["insecure_code"] = {
         "score": result.score,
         "issues_count": len(result.issues),
-        "issues": [str(issue) for issue in result.issues]
+        "issues": [str(issue) for issue in result.issues],
     }
 
     print("\n" + "=" * 60)
@@ -95,23 +94,27 @@ def main():
     print(f"Issues ({len(result.issues)}):")
     for issue in result.issues:
         print(f"  {issue}")
-    
+
     # Store result data
     all_results["secure_code"] = {
         "score": result.score,
         "issues_count": len(result.issues),
-        "issues": [str(issue) for issue in result.issues]
+        "issues": [str(issue) for issue in result.issues],
     }
 
     # Save all analysis data
     save_analysis_data("security_check", all_results)
-    
+
     # Print summary
     print("\n" + "=" * 60)
     print("SUMMARY")
     print("=" * 60)
-    print(f"Insecure code: {all_results['insecure_code']['score']:.2f} ({all_results['insecure_code']['issues_count']} issues)")
-    print(f"Secure code: {all_results['secure_code']['score']:.2f} ({all_results['secure_code']['issues_count']} issues)")
+    print(
+        f"Insecure code: {all_results['insecure_code']['score']:.2f} ({all_results['insecure_code']['issues_count']} issues)"
+    )
+    print(
+        f"Secure code: {all_results['secure_code']['score']:.2f} ({all_results['secure_code']['issues_count']} issues)"
+    )
 
 
 if __name__ == "__main__":

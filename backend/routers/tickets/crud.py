@@ -1,4 +1,5 @@
 """Tickets CRUD endpoints."""
+
 from typing import Dict, List, Optional
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -38,7 +39,7 @@ async def create_new_ticket(
 ) -> TicketResponse:
     """Create new ticket for auto-PR generation."""
     tenant = _get_tenant_for_user(user, db)
-    
+
     ticket = create_ticket(
         db=db,
         tenant_id=tenant["id"],
@@ -49,9 +50,9 @@ async def create_new_ticket(
             "description": data.description,
             "ticket_type": data.ticket_type,
             "priority": data.priority,
-        }
+        },
     )
-    
+
     return TicketResponse(**ticket)
 
 
@@ -63,10 +64,10 @@ async def list_tickets(
 ) -> TicketListResponse:
     """List all tickets for current user."""
     tenant = _get_tenant_for_user(user, db)
-    
+
     tickets = get_tickets_by_tenant(db, tenant["id"], status=status)
     by_status = count_tickets_by_status(db, tenant["id"])
-    
+
     return TicketListResponse(
         tickets=[TicketResponse(**t) for t in tickets],
         total=len(tickets),
@@ -130,12 +131,12 @@ async def get_single_ticket(
     ticket = get_ticket(db, ticket_id)
     if not ticket:
         raise HTTPException(404, "Ticket not found")
-    
+
     # Verify tenant ownership
     tenant = _get_tenant_for_user(user, db)
     if ticket["tenant_id"] != tenant["id"]:
         raise HTTPException(403, "Not authorized to access this ticket")
-    
+
     return TicketResponse(**ticket)
 
 
@@ -151,17 +152,17 @@ async def update_existing_ticket(
     existing = get_ticket(db, ticket_id)
     if not existing:
         raise HTTPException(404, "Ticket not found")
-    
+
     tenant = _get_tenant_for_user(user, db)
     if existing["tenant_id"] != tenant["id"]:
         raise HTTPException(403, "Not authorized to modify this ticket")
-    
+
     updates = {k: v for k, v in data.dict().items() if v is not None}
     updated = update_ticket(db, ticket_id, updates)
-    
+
     if not updated:
         raise HTTPException(500, "Failed to update ticket")
-    
+
     return TicketResponse(**updated)
 
 
@@ -175,13 +176,13 @@ async def delete_existing_ticket(
     existing = get_ticket(db, ticket_id)
     if not existing:
         raise HTTPException(404, "Ticket not found")
-    
+
     tenant = _get_tenant_for_user(user, db)
     if existing["tenant_id"] != tenant["id"]:
         raise HTTPException(403, "Not authorized to delete this ticket")
-    
+
     success = delete_ticket(db, ticket_id)
     if not success:
         raise HTTPException(500, "Failed to delete ticket")
-    
+
     return {"status": "deleted", "ticket_id": ticket_id}

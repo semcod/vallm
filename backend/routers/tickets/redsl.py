@@ -1,4 +1,5 @@
 """Tickets reDSL auto-PR integration endpoints."""
+
 from datetime import datetime, timezone
 from typing import Dict, List
 
@@ -33,7 +34,7 @@ async def process_ticket_with_redsl(
 ) -> RedslAutoPRResponse:
     """
     Process ticket with reDSL engine to auto-generate PR.
-    
+
     Flow:
       1. Analyze ticket description with reDSL decide()
       2. Run reDSL refactor() on identified files
@@ -45,24 +46,24 @@ async def process_ticket_with_redsl(
     ticket = get_ticket(db, ticket_id)
     if not ticket:
         raise HTTPException(404, "Ticket not found")
-    
+
     tenant = _get_tenant_for_user(user, db)
     if ticket["tenant_id"] != tenant["id"]:
         raise HTTPException(403, "Not authorized")
-    
+
     # Get GitHub token
     token = user.get("github_token", "")
     if not token:
         raise HTTPException(401, "GitHub token required for auto-PR")
-    
+
     # Update status to analyzing
     update_ticket(db, ticket_id, {"status": "analyzing"})
-    
+
     try:
         # Initialize reDSL client
         redsl = RedslClient()
         available = await redsl.health()
-        
+
         if not available:
             mark_ticket_error(db, ticket_id, "reDSL engine not available")
             return RedslAutoPRResponse(
@@ -70,16 +71,16 @@ async def process_ticket_with_redsl(
                 ticket_id=ticket_id,
                 decisions_count=0,
                 files_modified=[],
-                error="reDSL engine is not running"
+                error="reDSL engine is not running",
             )
-        
+
         # Step 1: Decide — analyze where to make changes based on ticket
         decide_result = await redsl.decide(
             project_path=data.project_path,
             description=ticket["description"],
             ticket_type=ticket["ticket_type"],
         )
-        
+
         target_files = decide_result.get("target_files", [])
         if not target_files:
             update_ticket(db, ticket_id, {"status": "open"})  # Reset to open
@@ -88,9 +89,9 @@ async def process_ticket_with_redsl(
                 ticket_id=ticket_id,
                 decisions_count=0,
                 files_modified=[],
-                error="No target files identified for this ticket"
+                error="No target files identified for this ticket",
             )
-        
+
         # Step 2: Refactor — apply changes
         refactor_result = await redsl.refactor(
             project_path=data.project_path,
@@ -100,7 +101,7 @@ async def process_ticket_with_redsl(
             ticket_type=ticket["ticket_type"],
             description=ticket["description"],
         )
-        
+
         decisions = refactor_result.get("decisions", [])
         if not decisions and not data.dry_run:
             update_ticket(db, ticket_id, {"status": "open"})
@@ -109,13 +110,13 @@ async def process_ticket_with_redsl(
                 ticket_id=ticket_id,
                 decisions_count=0,
                 files_modified=[],
-                error="No refactoring decisions made"
+                error="No refactoring decisions made",
             )
-        
+
         # Update ticket with reDSL results
         modified_files = [d.get("target_file", "") for d in decisions if d.get("target_file")]
         update_ticket_redsl_results(db, ticket_id, decisions, modified_files)
-        
+
         # Step 3: Create PR (if not dry_run)
         if data.auto_create_pr and not data.dry_run:
             # Queue background task for PR creation
@@ -130,7 +131,7 @@ async def process_ticket_with_redsl(
                 token,
                 tenant["id"],
             )
-            
+
             return RedslAutoPRResponse(
                 status="processing",
                 ticket_id=ticket_id,
@@ -139,7 +140,7 @@ async def process_ticket_with_redsl(
                 pr_url=None,  # Will be updated by background task
                 branch=None,
             )
-        
+
         # Dry run — just return analysis
         return RedslAutoPRResponse(
             status="dry_run" if data.dry_run else "analyzed",
@@ -147,15 +148,11 @@ async def process_ticket_with_redsl(
             decisions_count=len(decisions),
             files_modified=modified_files,
         )
-        
+
     except Exception as e:
         mark_ticket_error(db, ticket_id, str(e))
         return RedslAutoPRResponse(
-            status="error",
-            ticket_id=ticket_id,
-            decisions_count=0,
-            files_modified=[],
-            error=str(e)
+            status="error", ticket_id=ticket_id, decisions_count=0, files_modified=[], error=str(e)
         )
 
 
@@ -171,11 +168,11 @@ async def _create_pr_for_ticket(
 ):
     """Background task to create PR for processed ticket."""
     from worker.tasks.autopr import create_auto_pr
-    
+
     try:
         # Generate branch name
         branch = f"ticket-{ticket_id[:8]}-{datetime.now(timezone.utc).strftime('%Y%m%d')}"
-        
+
         # Prepare patches from modified files
         patches = []
         for file_path in files_modified:
@@ -183,17 +180,19 @@ async def _create_pr_for_ticket(
             try:
                 with open(full_path, "r", encoding="utf-8") as f:
                     content = f.read()
-                patches.append({
-                    "path": file_path,
-                    "content": content,
-                })
+                patches.append(
+                    {
+                        "path": file_path,
+                        "content": content,
+                    }
+                )
             except Exception:
                 continue  # Skip files that can't be read
-        
+
         if not patches:
             mark_ticket_error(get_db().__next__(), ticket_id, "No patchable files found")
             return
-        
+
         # Queue Celery task for PR creation
         result = create_auto_pr.delay(
             repo=repo,
@@ -204,14 +203,18 @@ async def _create_pr_for_ticket(
             token=token,
             provider_type=provider,
         )
-        
+
         # Note: Actual PR URL will be updated via webhook or polling
         # For now, mark as in_progress
-        update_ticket(get_db().__next__(), ticket_id, {
-            "status": "in_progress",
-            "pr_branch": branch,
-        })
-        
+        update_ticket(
+            get_db().__next__(),
+            ticket_id,
+            {
+                "status": "in_progress",
+                "pr_branch": branch,
+            },
+        )
+
     except Exception as e:
         mark_ticket_error(get_db().__next__(), ticket_id, str(e))
 
@@ -226,11 +229,11 @@ async def get_ticket_processing_status(
     ticket = get_ticket(db, ticket_id)
     if not ticket:
         raise HTTPException(404, "Ticket not found")
-    
+
     tenant = _get_tenant_for_user(user, db)
     if ticket["tenant_id"] != tenant["id"]:
         raise HTTPException(403, "Not authorized")
-    
+
     return {
         "ticket_id": ticket_id,
         "status": ticket["status"],

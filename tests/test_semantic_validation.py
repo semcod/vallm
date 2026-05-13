@@ -1,6 +1,7 @@
 import pytest
 from tests.mock_llm_provider import MockLLMProvider
 
+
 class TestSemanticValidation:
     @pytest.fixture(scope="class")
     def mock_llm(self):
@@ -8,6 +9,7 @@ class TestSemanticValidation:
 
     def test_semantic_validator_init(self, mock_llm):
         from vallm.validators.semantic import SemanticValidator
+
         validator = SemanticValidator()
         validator.llm_provider = mock_llm
         assert validator.tier == 3
@@ -18,6 +20,7 @@ class TestSemanticValidation:
         from vallm.validators.semantic import SemanticValidator
         from vallm.core.proposal import Proposal
         from unittest.mock import patch
+
         validator = SemanticValidator()
         code = """
 def fibonacci(n: int) -> list[int]:
@@ -29,7 +32,7 @@ def fibonacci(n: int) -> list[int]:
     return fib
 """
         proposal = Proposal(code=code, language="python")
-        mock_response = '''```json
+        mock_response = """```json
 {
     "correctness": 5,
     "style": 5,
@@ -38,8 +41,8 @@ def fibonacci(n: int) -> list[int]:
     "issues": [],
     "summary": "Good code"
 }
-```'''  
-        with patch.object(validator, '_call_llm', return_value=mock_response):
+```"""
+        with patch.object(validator, "_call_llm", return_value=mock_response):
             result = validator.validate(proposal, {})
         assert result.score >= 0.7
         assert result.validator == "semantic"
@@ -48,6 +51,7 @@ def fibonacci(n: int) -> list[int]:
     def test_semantic_validation_bad_code(self, mock_llm):
         from vallm.validators.semantic import SemanticValidator
         from vallm.core.proposal import Proposal
+
         validator = SemanticValidator()
         validator.llm_provider = mock_llm
         code = """
@@ -70,6 +74,7 @@ def process_data(data):
         from vallm.validators.semantic import SemanticValidator
         from vallm.core.proposal import Proposal
         from unittest.mock import patch
+
         validator = SemanticValidator()
         validator.cache.clear()
         code = """
@@ -77,7 +82,7 @@ def invalid_syntax(
     print("Missing closing parenthesis")
 """
         proposal = Proposal(code=code, language="python")
-        mock_response = '''```json
+        mock_response = """```json
 {
     "correctness": 1,
     "style": 1,
@@ -86,8 +91,8 @@ def invalid_syntax(
     "issues": [{"message": "Syntax error", "severity": "error", "line": 2}],
     "summary": "Has syntax errors"
 }
-```'''  
-        with patch.object(validator, '_call_llm', return_value=mock_response):
+```"""
+        with patch.object(validator, "_call_llm", return_value=mock_response):
             result = validator.validate(proposal, {})
         assert result.score <= 0.3
         assert result.validator == "semantic"
@@ -96,13 +101,14 @@ def invalid_syntax(
     def test_semantic_validation_multilang(self, mock_llm):
         from vallm.validators.semantic import SemanticValidator
         from vallm.core.proposal import Proposal
+
         validator = SemanticValidator()
         validator.llm_provider = mock_llm
         test_cases = [
             ("python", "def hello(): return 'world'"),
             ("javascript", "function hello() { return 'world'; }"),
             ("go", "package main\nfunc main() { println('Hello, World!') }"),
-            ("rust", "fn main() { println!(\"Hello, World!\"); }")
+            ("rust", 'fn main() { println!("Hello, World!"); }'),
         ]
         for language, code in test_cases:
             proposal = Proposal(code=code, language=language)
@@ -114,6 +120,7 @@ def invalid_syntax(
         from vallm.validators.semantic import SemanticValidator
         from vallm.core.proposal import Proposal
         from unittest.mock import patch
+
         validator = SemanticValidator()
         original_code = """
 def calculate_sum(a, b):
@@ -125,12 +132,8 @@ def calculate_sum(a, b):
         raise TypeError("Both arguments must be numbers")
     return a + b
 """
-        proposal = Proposal(
-            code=new_code, 
-            language="python",
-            reference_code=original_code
-        )
-        mock_response = '''```json
+        proposal = Proposal(code=new_code, language="python", reference_code=original_code)
+        mock_response = """```json
 {
     "correctness": 5,
     "style": 4,
@@ -139,8 +142,8 @@ def calculate_sum(a, b):
     "issues": [],
     "summary": "Improved code with validation"
 }
-```'''  
-        with patch.object(validator, '_call_llm', return_value=mock_response):
+```"""
+        with patch.object(validator, "_call_llm", return_value=mock_response):
             result = validator.validate(proposal, {})
         assert result.validator == "semantic"
         assert result.score >= 0.6
@@ -149,6 +152,7 @@ def calculate_sum(a, b):
         from vallm.validators.semantic import SemanticValidator
         from vallm.core.proposal import Proposal
         from vallm.config import VallmSettings
+
         validator = SemanticValidator()
         settings = VallmSettings(enable_semantic=False)
         code = "def hello(): return 'world'"

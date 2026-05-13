@@ -289,15 +289,18 @@ class TestCode2logicIntegrationExample:
 
 
 @pytest.mark.slow
-@pytest.mark.parametrize("example_name,main_file", [
-    ("01_basic_validation", "main.py"),
-    ("02_ast_comparison", "main.py"),
-    ("03_security_check", "main.py"),
-    ("04_graph_analysis", "main.py"),
-    ("07_multi_language", "main.py"),
-    ("08_code2llm_integration", "main.py"),
-    ("09_code2logic_integration", "main.py"),
-])
+@pytest.mark.parametrize(
+    "example_name,main_file",
+    [
+        ("01_basic_validation", "main.py"),
+        ("02_ast_comparison", "main.py"),
+        ("03_security_check", "main.py"),
+        ("04_graph_analysis", "main.py"),
+        ("07_multi_language", "main.py"),
+        ("08_code2llm_integration", "main.py"),
+        ("09_code2logic_integration", "main.py"),
+    ],
+)
 def test_all_examples_exist(example_name, main_file):
     """Verify all expected example directories and files exist."""
     example_dir = EXAMPLES_DIR / example_name

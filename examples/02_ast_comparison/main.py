@@ -3,7 +3,6 @@
 Demonstrates: tree-sitter parsing, Python AST normalization, similarity scoring.
 """
 
-import json
 import sys
 from pathlib import Path
 
@@ -11,7 +10,6 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
 from examples.utils import save_analysis_data
 from vallm.core.ast_compare import (
-    parse_code,
     python_ast_similarity,
     tree_sitter_node_count,
     tree_sitter_error_count,
@@ -71,7 +69,7 @@ def main():
     all_results["ast_similarity"] = {
         "sim_v1_v2": sim_v1_v2,
         "sim_v1_v3": sim_v1_v3,
-        "sim_v2_v3": sim_v2_v3
+        "sim_v2_v3": sim_v2_v3,
     }
 
     print("\n" + "=" * 60)
@@ -104,12 +102,14 @@ def main():
 
     # Save all analysis data
     save_analysis_data("ast_comparison", all_results)
-    
+
     # Print summary
     print("\n" + "=" * 60)
     print("SUMMARY")
     print("=" * 60)
-    print(f"AST Similarity: v1-v2={all_results['ast_similarity']['sim_v1_v2']:.3f}, v1-v3={all_results['ast_similarity']['sim_v1_v3']:.3f}")
+    print(
+        f"AST Similarity: v1-v2={all_results['ast_similarity']['sim_v1_v2']:.3f}, v1-v3={all_results['ast_similarity']['sim_v1_v3']:.3f}"
+    )
     print(f"Node counts analyzed: {len(all_results['node_counts'])} languages")
     print(f"Structural diff: {diff['nodes_before']} → {diff['nodes_after']} nodes")
 

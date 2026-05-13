@@ -3,21 +3,19 @@
 from __future__ import annotations
 
 import subprocess
-import sys
-from pathlib import Path
 from typing import Optional
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
-import pytest
 
 from vallm.core.proposal import Proposal
-from vallm.scoring import Severity, ValidationResult
+from vallm.scoring import Severity
 from vallm.validators.regression import RegressionValidator
 
 
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
+
 
 def _make_proposal(
     code: str = "x = 1",
@@ -44,6 +42,7 @@ def _completed(returncode: int, stdout: str = "", stderr: str = "") -> subproces
 # ---------------------------------------------------------------------------
 # Unit tests — _interpret
 # ---------------------------------------------------------------------------
+
 
 class TestInterpret:
     """Tests for RegressionValidator._interpret (pure logic, no subprocess)."""
@@ -105,6 +104,7 @@ class TestInterpret:
 # Unit tests — _parse_failures
 # ---------------------------------------------------------------------------
 
+
 class TestParseFailures:
     def setup_method(self):
         self.validator = RegressionValidator()
@@ -131,6 +131,7 @@ class TestParseFailures:
 # ---------------------------------------------------------------------------
 # Unit tests — _resolve_test_dir
 # ---------------------------------------------------------------------------
+
 
 class TestResolveTestDir:
     def test_constructor_arg_wins(self, tmp_path):
@@ -162,6 +163,7 @@ class TestResolveTestDir:
 # Unit tests — timeout / exception helpers
 # ---------------------------------------------------------------------------
 
+
 class TestErrorHelpers:
     def setup_method(self):
         self.validator = RegressionValidator(timeout=30)
@@ -182,6 +184,7 @@ class TestErrorHelpers:
 # ---------------------------------------------------------------------------
 # Integration-style tests — validate() with mocked subprocess
 # ---------------------------------------------------------------------------
+
 
 class TestValidate:
     """Tests for the full validate() path with subprocess mocked out."""
@@ -224,9 +227,7 @@ class TestValidate:
     @patch("vallm.validators.regression.subprocess.run")
     def test_cmd_includes_extra_args(self, mock_run, tmp_path):
         mock_run.return_value = _completed(0)
-        validator = RegressionValidator(
-            test_dir=tmp_path, extra_args=["--maxfail=1", "-x"]
-        )
+        validator = RegressionValidator(test_dir=tmp_path, extra_args=["--maxfail=1", "-x"])
         validator.validate(_make_proposal(), {})
         called_cmd = mock_run.call_args[0][0]
         assert "--maxfail=1" in called_cmd

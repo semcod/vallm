@@ -9,12 +9,12 @@ from typing import Any, Dict
 
 def save_data(data: Dict[str, Any], filename: str) -> None:
     """Save data to JSON file.
-    
+
     Args:
         data: Dictionary to save
         filename: Output filename
     """
     output_path = Path(filename)
-    with open(output_path, 'w') as f:
+    with open(output_path, "w") as f:
         json.dump(data, f, indent=2)
     print(f"Data saved to {output_path}")

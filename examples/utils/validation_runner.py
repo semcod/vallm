@@ -17,14 +17,14 @@ def run_validation_examples(
     settings: VallmSettings | None = None,
 ) -> Dict[str, Any]:
     """Run standard validation examples (good, bad, complex code).
-    
+
     Args:
         example_name: Name for saving analysis data
         good_code: Example of good code to validate
         bad_code: Example of bad code with issues
         complex_code: Example of complex code
         settings: Validation settings (uses default if None)
-        
+
     Returns:
         Dictionary with all validation results
     """
@@ -48,12 +48,14 @@ def run_validation_examples(
     print(f"Score:   {result.weighted_score:.2f}")
     for r in result.results:
         print(f"  {r.validator}: score={r.score:.2f}, issues={len(r.issues)}")
-    
+
     # Store result data
     all_results["good_code"] = {
         "verdict": result.verdict.value,
         "score": result.weighted_score,
-        "validators": {r.validator: {"score": r.score, "issues": len(r.issues)} for r in result.results}
+        "validators": {
+            r.validator: {"score": r.score, "issues": len(r.issues)} for r in result.results
+        },
     }
     print()
 
@@ -68,12 +70,19 @@ def run_validation_examples(
         print(f"  {r.validator}: score={r.score:.2f}, issues={len(r.issues)}")
         for issue in r.issues:
             print(f"    {issue}")
-    
+
     # Store result data
     all_results["bad_code"] = {
         "verdict": result.verdict.value,
         "score": result.weighted_score,
-        "validators": {r.validator: {"score": r.score, "issues": len(r.issues), "issue_details": [str(i) for i in r.issues]} for r in result.results}
+        "validators": {
+            r.validator: {
+                "score": r.score,
+                "issues": len(r.issues),
+                "issue_details": [str(i) for i in r.issues],
+            }
+            for r in result.results
+        },
     }
     print()
 
@@ -88,12 +97,19 @@ def run_validation_examples(
         print(f"  {r.validator}: score={r.score:.2f}, issues={len(r.issues)}")
         for issue in r.issues:
             print(f"    {issue}")
-    
+
     # Store result data
     all_results["complex_code"] = {
         "verdict": result.verdict.value,
         "score": result.weighted_score,
-        "validators": {r.validator: {"score": r.score, "issues": len(r.issues), "issue_details": [str(i) for i in r.issues]} for r in result.results}
+        "validators": {
+            r.validator: {
+                "score": r.score,
+                "issues": len(r.issues),
+                "issue_details": [str(i) for i in r.issues],
+            }
+            for r in result.results
+        },
     }
 
     # Print summary

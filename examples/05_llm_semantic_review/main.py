@@ -8,10 +8,6 @@ Prerequisites:
     3. Install ollama package: pip install ollama
 """
 
-import json
-from pathlib import Path
-
-from examples.utils import save_analysis_data
 from vallm import Proposal, VallmSettings, validate
 
 # Code with subtle bug (off-by-one error)

@@ -10,7 +10,7 @@ from .save_data import save_data
 
 __all__ = [
     "calculate_total",
-    "load_config", 
+    "load_config",
     "run_demo_main",
     "process_user_input",
     "save_data",

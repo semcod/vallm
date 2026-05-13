@@ -4,7 +4,7 @@ MCP Vallm Integration - vallm validators exposed as MCP tools
 
 Provides MCP endpoints for code validation:
 - POST /mcp/self/tools/validate_syntax — Multi-language syntax checking
-- POST /mcp/self/tools/validate_imports — Import resolution validation  
+- POST /mcp/self/tools/validate_imports — Import resolution validation
 - POST /mcp/self/tools/validate_security — Security issue detection
 - POST /mcp/self/tools/validate_code — Full pipeline validation
 
@@ -88,7 +88,9 @@ def _build_pipeline_response(
     """Build the full-pipeline success response dict."""
     error_count = sum(1 for i in all_issues if i.severity.value == "error")
     warning_count = sum(1 for i in all_issues if i.severity.value == "warning")
-    overall_score = sum(r.score * r.weight for r in results) / total_weight if total_weight > 0 else 1.0
+    overall_score = (
+        sum(r.score * r.weight for r in results) / total_weight if total_weight > 0 else 1.0
+    )
     return {
         "success": True,
         "validator": "full_pipeline",
@@ -113,9 +115,7 @@ def _build_pipeline_response(
             for r in results
         ],
         "all_issues": [
-            {**_format_issue(i), "validator": r.validator}
-            for r in results
-            for i in r.issues
+            {**_format_issue(i), "validator": r.validator} for r in results for i in r.issues
         ],
     }
 
@@ -147,115 +147,121 @@ def _build_error_response(
         "error": str(error),
         "validator": validator_name,
         "score": 0.0,
-        "verdict": "error"
+        "verdict": "error",
     }
 
 
 def create_proposal(code: str, language: str, filename: Optional[str]) -> Proposal:
     """Create a Proposal object from code, language, and filename."""
-    return Proposal(
-        code=code,
-        language=language,
-        filename=filename
-    )
+    return Proposal(code=code, language=language, filename=filename)
 
 
-def compute_overall_score_and_verdict(results: List[ValidationResult], all_issues: List) -> tuple[float, str]:
+def compute_overall_score_and_verdict(
+    results: List[ValidationResult], all_issues: List
+) -> tuple[float, str]:
     """Compute overall score and verdict from validation results and issues."""
     total_weight = sum(r.weight for r in results)
-    overall_score = sum(r.score * r.weight for r in results) / total_weight if total_weight > 0 else 1.0
+    overall_score = (
+        sum(r.score * r.weight for r in results) / total_weight if total_weight > 0 else 1.0
+    )
     error_count = sum(1 for i in all_issues if i.severity.value == "error")
     verdict = _compute_verdict(overall_score, error_count)
     return overall_score, verdict
 
 
-def validate_syntax(code: str, language: str = "python", filename: Optional[str] = None) -> Dict[str, Any]:
+def validate_syntax(
+    code: str, language: str = "python", filename: Optional[str] = None
+) -> Dict[str, Any]:
     """
     Multi-language syntax checking using vallm SyntaxValidator.
-    
+
     Args:
         code: Source code to validate
         language: Programming language (python, javascript, go, rust, etc.)
         filename: Optional filename for context
-        
+
     Returns:
         Dict with validation results including score, issues, and verdict
     """
     try:
         proposal = create_proposal(code, language, filename)
-        
+
         validator = SyntaxValidator()
         result = validator.validate(proposal, {})
-        
+
         return _build_validator_response(result, "syntax")
-        
+
     except Exception as e:
         return _build_error_response(e, "syntax")
 
 
-def validate_imports(code: str, language: str = "python", filename: Optional[str] = None) -> Dict[str, Any]:
+def validate_imports(
+    code: str, language: str = "python", filename: Optional[str] = None
+) -> Dict[str, Any]:
     """
     Import resolution validation using vallm ImportValidator.
-    
-    Args:
-        code: Source code to validate
-        language: Programming language 
-        filename: Optional filename for context
-        
-    Returns:
-        Dict with validation results including score, issues, and verdict
-    """
-    try:
-        proposal = create_proposal(code, language, filename)
-        
-        validator = ImportValidator()
-        result = validator.validate(proposal, {})
-        
-        return _build_validator_response(result, "imports")
-        
-    except Exception as e:
-        return _build_error_response(e, "imports")
 
-
-def validate_security(code: str, language: str = "python", filename: Optional[str] = None) -> Dict[str, Any]:
-    """
-    Security issue detection using vallm SecurityValidator.
-    Detects eval, exec, secrets, SQL injection, command injection, etc.
-    
     Args:
         code: Source code to validate
         language: Programming language
         filename: Optional filename for context
-        
+
     Returns:
         Dict with validation results including score, issues, and verdict
     """
     try:
         proposal = create_proposal(code, language, filename)
-        
+
+        validator = ImportValidator()
+        result = validator.validate(proposal, {})
+
+        return _build_validator_response(result, "imports")
+
+    except Exception as e:
+        return _build_error_response(e, "imports")
+
+
+def validate_security(
+    code: str, language: str = "python", filename: Optional[str] = None
+) -> Dict[str, Any]:
+    """
+    Security issue detection using vallm SecurityValidator.
+    Detects eval, exec, secrets, SQL injection, command injection, etc.
+
+    Args:
+        code: Source code to validate
+        language: Programming language
+        filename: Optional filename for context
+
+    Returns:
+        Dict with validation results including score, issues, and verdict
+    """
+    try:
+        proposal = create_proposal(code, language, filename)
+
         validator = SecurityValidator()
         result = validator.validate(proposal, {})
-        
+
         return _build_validator_response(result, "security")
-        
+
     except Exception as e:
         return _build_error_response(e, "security")
 
 
 def validate_code(
-    code: str, 
-    language: str = "python", 
+    code: str,
+    language: str = "python",
     filename: Optional[str] = None,
     reference_code: Optional[str] = None,
     enable_syntax: bool = True,
     enable_imports: bool = True,
     enable_security: bool = True,
     enable_complexity: bool = True,
-    enable_regression: bool = False
+    enable_regression: bool = False,
 ) -> Dict[str, Any]:
     """
     Full pipeline validation combining multiple validators.
-    
+
     Args:
         code: Source code to validate
         language: Programming language
@@ -266,13 +272,13 @@ def validate_code(
         enable_security: Enable security validation
         enable_complexity: Enable complexity validation
         enable_regression: Enable regression validation
-        
+
     Returns:
         Dict with full pipeline validation results
     """
     try:
         proposal = create_proposal(code, language, filename)
-        
+
         results, _, total_weight, all_issues = _run_validators(
             proposal,
             enable_syntax,
@@ -282,15 +288,15 @@ def validate_code(
             enable_regression,
             reference_code,
         )
-        
+
         overall_score, verdict = compute_overall_score_and_verdict(results, all_issues)
-        
+
         return _build_pipeline_response(
             results,
             total_weight,
             verdict,
             all_issues,
         )
-        
+
     except Exception as e:
         return _build_error_response(e, "full_pipeline")
