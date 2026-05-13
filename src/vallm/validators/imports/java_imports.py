@@ -1,35 +1,51 @@
 """Java import validation."""
 
 from typing import List, Dict, Any
-from vallm.core.proposal import Proposal
-from vallm.scoring import Issue, Severity, ValidationResult
 from .base import BaseImportValidator
 
 # Common Java packages
 _KNOWN_JAVA_MODULES = {
-    "java.lang", "java.util", "java.io", "java.net", "java.time",
-    "java.text", "java.math", "java.nio", "java.security", "java.sql",
-    "javax.swing", "javax.servlet", "javax.persistence", "javax.annotation",
-    "org.springframework", "org.junit", "org.apache", "com.google",
-    "com.fasterxml", "org.slf4j", "lombok", "jakarta", "org.hibernate",
+    "java.lang",
+    "java.util",
+    "java.io",
+    "java.net",
+    "java.time",
+    "java.text",
+    "java.math",
+    "java.nio",
+    "java.security",
+    "java.sql",
+    "javax.swing",
+    "javax.servlet",
+    "javax.persistence",
+    "javax.annotation",
+    "org.springframework",
+    "org.junit",
+    "org.apache",
+    "com.google",
+    "com.fasterxml",
+    "org.slf4j",
+    "lombok",
+    "jakarta",
+    "org.hibernate",
 }
 
 
 class JavaImportValidator(BaseImportValidator):
     """Java import validator."""
-    
+
     def get_language(self) -> str:
         """Get language identifier."""
         return "java"
-    
+
     def _get_error_message(self, module_name: str) -> str:
         """Get error message for missing package."""
         return f"Package '{module_name}' not found"
-    
+
     def _get_rule_name(self) -> str:
         """Get rule name for validation errors."""
         return "java.import.resolvable"
-    
+
     def extract_imports(self, code: str) -> List[Dict[str, Any]]:
         """Extract import statements from Java using tree-sitter."""
         imports = []
@@ -54,7 +70,7 @@ class JavaImportValidator(BaseImportValidator):
             pass
 
         return imports
-    
+
     def module_exists(self, module_name: str) -> bool:
         """Check if a Java package is known."""
         # Standard library packages

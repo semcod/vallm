@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Optional
 
 from vallm.config import VallmSettings
@@ -65,9 +65,7 @@ class SandboxRunner:
                 error=f"Unsupported language for subprocess: {language}",
             )
 
-        with tempfile.NamedTemporaryFile(
-            mode="w", suffix=ext, delete=False
-        ) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=ext, delete=False) as f:
             f.write(code)
             tmp_path = f.name
 

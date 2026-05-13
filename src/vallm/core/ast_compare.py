@@ -34,6 +34,7 @@ def normalize_python_ast(tree: ast.AST) -> str:
 
     This enables fingerprint-based comparison that ignores variable naming.
     """
+
     class Normalizer(ast.NodeTransformer):
         def __init__(self):
             self._name_map: dict[str, str] = {}
@@ -122,10 +123,12 @@ def structural_diff_summary(code1: str, code2: str, language: str = "python") ->
 
     def _collect_types(node):
         types = []
+
         def _walk(n):
             types.append(n.type)
             for child in n.children:
                 _walk(child)
+
         _walk(node)
         return types
 

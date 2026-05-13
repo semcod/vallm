@@ -111,7 +111,9 @@ def _ordered_unsupported_items(unsupported_counts: Counter[str]) -> list[tuple[s
         if count:
             ordered.append((bucket, count))
 
-    for bucket in sorted(bucket for bucket in unsupported_counts if bucket not in TOON_UNSUPPORTED_ORDER):
+    for bucket in sorted(
+        bucket for bucket in unsupported_counts if bucket not in TOON_UNSUPPORTED_ORDER
+    ):
         ordered.append((bucket, unsupported_counts[bucket]))
 
     return ordered
@@ -151,12 +153,16 @@ def _print_toon_file_section(title: str, files: list[dict]) -> None:
             print(f"    issues[{len(issues)}]{{rule,severity,message,line}}:")
             for issue in issues:
                 print(
-                    f"      {_toon_row([
-                        issue.get('rule', 'unknown'),
-                        issue.get('severity', 'info'),
-                        issue.get('message', ''),
-                        issue.get('line'),
-                    ])}"
+                    f"      {
+                        _toon_row(
+                            [
+                                issue.get('rule', 'unknown'),
+                                issue.get('severity', 'info'),
+                                issue.get('message', ''),
+                                issue.get('line'),
+                            ]
+                        )
+                    }"
                 )
 
 
@@ -177,7 +183,9 @@ def output_batch_rich(
     print_summary_header()
     table = build_results_table(results_by_language)
     console.print(table)
-    console.print(f"\nTotal: {len(filtered_files)} files, {passed_count} passed, {len(failed_files)} failed")
+    console.print(
+        f"\nTotal: {len(filtered_files)} files, {passed_count} passed, {len(failed_files)} failed"
+    )
 
     if failed_files:
         console.print("\n[red]Failed Files:[/red]")
@@ -214,7 +222,9 @@ def output_batch_text(
             print(f"  {file_path}: {error}")
 
 
-def output_batch_json(results_by_language: dict, filtered_files: list, passed_count: int, failed_files: list) -> None:
+def output_batch_json(
+    results_by_language: dict, filtered_files: list, passed_count: int, failed_files: list
+) -> None:
     """Output batch results as JSON."""
     total_files = len(filtered_files)
     failed_count = len(failed_files)
@@ -236,7 +246,9 @@ def output_batch_json(results_by_language: dict, filtered_files: list, passed_co
     print(json.dumps(data, indent=2, cls=VallmJSONEncoder))
 
 
-def output_batch_yaml(results_by_language: dict, filtered_files: list, passed_count: int, failed_files: list) -> None:
+def output_batch_yaml(
+    results_by_language: dict, filtered_files: list, passed_count: int, failed_files: list
+) -> None:
     """Output batch results as YAML-like text."""
     total_files = len(filtered_files)
     failed_count = len(failed_files)
@@ -262,15 +274,15 @@ def output_batch_yaml(results_by_language: dict, filtered_files: list, passed_co
             print(f"    verdict: {file_data['verdict']}")
             print(f"    score: {file_data['score']:.2f}")
             print(f"    issues_count: {file_data['issues_count']}")
-            if file_data['issues']:
-                print(f"    issues:")
-                for issue in file_data['issues']:
+            if file_data["issues"]:
+                print("    issues:")
+                for issue in file_data["issues"]:
                     print(f"      - rule: {issue['rule']}")
                     print(f"        severity: {issue['severity']}")
-                    print(f"        message: \"{issue['message']}\"")
-                    if 'line' in issue:
+                    print(f'        message: "{issue["message"]}"')
+                    if "line" in issue:
                         print(f"        line: {issue['line']}")
-                    if 'column' in issue:
+                    if "column" in issue:
                         print(f"        column: {issue['column']}")
         print()
 
@@ -281,7 +293,9 @@ def output_batch_yaml(results_by_language: dict, filtered_files: list, passed_co
             print(f"    error: {file_data['error']}")
 
 
-def output_batch_toon(results_by_language: dict, filtered_files: list, passed_count: int, failed_files: list) -> None:
+def output_batch_toon(
+    results_by_language: dict, filtered_files: list, passed_count: int, failed_files: list
+) -> None:
     """Output TOON format batch summary with detailed per-file results."""
     total_files = len(filtered_files)
     files_details = build_files_data(results_by_language)
@@ -290,7 +304,9 @@ def output_batch_toon(results_by_language: dict, filtered_files: list, passed_co
     unsupported_count = sum(unsupported_counts.values())
     success_rate = round((passed_count / total_files) * 100, 1) if total_files > 0 else 0.0
 
-    print(f"# vallm batch | {total_files}f | {passed_count}✓ {len(warnings)}⚠ {len(errors)}✗ | {_toon_today()}")
+    print(
+        f"# vallm batch | {total_files}f | {passed_count}✓ {len(warnings)}⚠ {len(errors)}✗ | {_toon_today()}"
+    )
     print()
     print("SUMMARY:")
     print(

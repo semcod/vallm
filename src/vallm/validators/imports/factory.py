@@ -12,7 +12,7 @@ from .c_imports import CImportValidator
 
 class ImportValidatorFactory:
     """Factory for creating language-specific import validators."""
-    
+
     _validators: Dict[str, Type[BaseImportValidator]] = {
         "python": PythonImportValidator,
         "javascript": JavaScriptImportValidator,
@@ -23,7 +23,7 @@ class ImportValidatorFactory:
         "c": CImportValidator,
         "cpp": CImportValidator,
     }
-    
+
     @classmethod
     def create_validator(cls, language: str) -> BaseImportValidator:
         """Create a validator for the specified language."""
@@ -31,12 +31,12 @@ class ImportValidatorFactory:
         if not validator_class:
             raise ValueError(f"Unsupported language: {language}")
         return validator_class()
-    
+
     @classmethod
     def supported_languages(cls) -> List[str]:
         """Get list of supported languages."""
         return list(cls._validators.keys())
-    
+
     @classmethod
     def register_validator(cls, language: str, validator_class: Type[BaseImportValidator]):
         """Register a new validator for a language."""

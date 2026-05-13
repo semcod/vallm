@@ -59,17 +59,29 @@ class VallmSettings(BaseSettings):
     default_language: str = "python"
 
     # Output file configurations
-    default_toon_filename: str = Field(default="validation.toon.yaml", description="Default filename for toon format output")
-    default_json_filename: str = Field(default="validation.json", description="Default filename for JSON format output")
-    default_yaml_filename: str = Field(default="validation.yaml", description="Default filename for YAML format output")
-    default_txt_filename: str = Field(default="validation.txt", description="Default filename for text format output")
+    default_toon_filename: str = Field(
+        default="validation.toon.yaml", description="Default filename for toon format output"
+    )
+    default_json_filename: str = Field(
+        default="validation.json", description="Default filename for JSON format output"
+    )
+    default_yaml_filename: str = Field(
+        default="validation.yaml", description="Default filename for YAML format output"
+    )
+    default_txt_filename: str = Field(
+        default="validation.txt", description="Default filename for text format output"
+    )
 
     # Cache settings
-    semantic_cache_enabled: bool = Field(default=True, description="Enable semantic validation cache")
+    semantic_cache_enabled: bool = Field(
+        default=True, description="Enable semantic validation cache"
+    )
     semantic_cache_ttl: int = Field(default=3600, description="Semantic cache TTL in seconds")
 
     # Performance settings
-    max_concurrent_validations: int = Field(default=4, description="Maximum concurrent validation tasks")
+    max_concurrent_validations: int = Field(
+        default=4, description="Maximum concurrent validation tasks"
+    )
     timeout_seconds: int = Field(default=300, description="Timeout for validation operations")
 
     @classmethod

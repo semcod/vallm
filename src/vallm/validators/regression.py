@@ -5,7 +5,6 @@ from __future__ import annotations
 import subprocess
 import sys
 import tempfile
-import textwrap
 from pathlib import Path
 from typing import Optional
 
@@ -197,10 +196,7 @@ class RegressionValidator(BaseValidator):
             score=0.0,
             issues=[
                 Issue(
-                    message=(
-                        f"pytest exited with code {ec}.\n"
-                        f"{output}"
-                    ),
+                    message=(f"pytest exited with code {ec}.\n{output}"),
                     severity=Severity.ERROR,
                     rule="regression/pytest-error",
                 )
@@ -218,7 +214,7 @@ class RegressionValidator(BaseValidator):
         for line in stdout.splitlines():
             stripped = line.strip()
             if stripped.startswith("FAILED "):
-                test_id = stripped[len("FAILED "):].strip()
+                test_id = stripped[len("FAILED ") :].strip()
                 # Remove trailing " - AssertionError: …" style suffix for the
                 # rule field; keep the full text in the message.
                 issues.append(
@@ -240,9 +236,7 @@ class RegressionValidator(BaseValidator):
             score=0.0,
             issues=[
                 Issue(
-                    message=(
-                        f"pytest timed out after {self.timeout} seconds."
-                    ),
+                    message=(f"pytest timed out after {self.timeout} seconds."),
                     severity=Severity.ERROR,
                     rule="regression/timeout",
                 )

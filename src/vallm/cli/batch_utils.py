@@ -1,12 +1,13 @@
 import fnmatch
 import re
-from pathlib import Path
 from typing import NamedTuple
+
 
 class CompiledPatterns(NamedTuple):
     exact: frozenset[str]
     regex: re.Pattern | None
     is_empty: bool
+
 
 def compile_patterns(raw: list[str]) -> CompiledPatterns:
     if not raw:

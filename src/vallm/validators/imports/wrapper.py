@@ -9,7 +9,7 @@ from .factory import ImportValidatorFactory
 
 class ImportValidator(BaseValidator):
     """Backward compatibility wrapper for the refactored import validation system."""
-    
+
     tier = 1
     name = "imports"
     weight = 1.5

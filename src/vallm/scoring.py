@@ -166,8 +166,9 @@ def _initialize_validators(validators: Optional[list], settings: VallmSettings) 
     return validators
 
 
-def _run_validation_pipeline(proposal: Proposal, validators: list,
-                              context: dict, settings: VallmSettings) -> list:
+def _run_validation_pipeline(
+    proposal: Proposal, validators: list, context: dict, settings: VallmSettings
+) -> list:
     """Run the validation pipeline and collect results."""
     results = []
     for validator in validators:

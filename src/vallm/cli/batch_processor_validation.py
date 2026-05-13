@@ -55,7 +55,10 @@ def process_files(
     processed_count = 0
 
     with ThreadPoolExecutor(max_workers=_MAX_WORKERS) as executor:
-        futures = {executor.submit(validate_single_file, file_path, settings): file_path for file_path in files}
+        futures = {
+            executor.submit(validate_single_file, file_path, settings): file_path
+            for file_path in files
+        }
         for future in as_completed(futures):
             file_path, lang_obj, result, error = future.result()
             processed_count += 1

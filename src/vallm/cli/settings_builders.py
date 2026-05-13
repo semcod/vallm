@@ -22,7 +22,7 @@ def build_validate_settings(
         settings = VallmSettings.from_toml(config)
     else:
         settings = VallmSettings()
-    
+
     # Override with command line options
     if enable_semantic:
         settings.enable_semantic = enable_semantic
@@ -34,7 +34,7 @@ def build_validate_settings(
         settings.llm_model = model
     if verbose:
         settings.verbose = verbose
-    
+
     return settings
 
 
@@ -49,7 +49,7 @@ def build_batch_settings(
 ) -> VallmSettings:
     """Load and configure settings for batch validation."""
     settings = VallmSettings()
-    
+
     # Override with command line options
     settings.enable_semantic = enable_semantic
     settings.enable_security = enable_security
@@ -59,5 +59,5 @@ def build_batch_settings(
     settings.verbose = verbose
     settings.enable_imports = not no_imports
     settings.enable_complexity = not no_complexity
-    
+
     return settings

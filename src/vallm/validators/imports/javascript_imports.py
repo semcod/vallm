@@ -7,46 +7,78 @@ from .base import BaseImportValidator
 
 # Common JavaScript/Node.js built-in modules
 _KNOWN_JS_MODULES = {
-    "fs", "path", "http", "https", "url", "util", "events", "stream",
-    "crypto", "os", "buffer", "querystring", "child_process", "cluster",
-    "console", "dgram", "dns", "net", "readline", "repl", "tls", "tty",
-    "v8", "vm", "zlib", "worker_threads", "perf_hooks", "async_hooks",
-    "assert", "constants", "domain", "punycode", "string_decoder", "sys",
+    "fs",
+    "path",
+    "http",
+    "https",
+    "url",
+    "util",
+    "events",
+    "stream",
+    "crypto",
+    "os",
+    "buffer",
+    "querystring",
+    "child_process",
+    "cluster",
+    "console",
+    "dgram",
+    "dns",
+    "net",
+    "readline",
+    "repl",
+    "tls",
+    "tty",
+    "v8",
+    "vm",
+    "zlib",
+    "worker_threads",
+    "perf_hooks",
+    "async_hooks",
+    "assert",
+    "constants",
+    "domain",
+    "punycode",
+    "string_decoder",
+    "sys",
 }
 
 
 class JavaScriptImportValidator(BaseImportValidator):
     """JavaScript/TypeScript import validator."""
-    
+
     def __init__(self, language: str = "javascript"):
         self.language = language
-    
+
     def validate(self, proposal: Proposal, context: dict) -> ValidationResult:
         """Validate JavaScript/TypeScript imports using tree-sitter."""
         issues = []
         imports = self.extract_imports(proposal.code)
-        
+
         for import_info in imports:
             module_name = import_info["module"]
             line = import_info["line"]
-            
+
             if not self.module_exists(module_name):
-                issues.append(Issue(
-                    message=f"Module '{module_name}' not found",
-                    severity=Severity.WARNING,  # Less strict for JS
-                    line=line,
-                    rule="js.import.resolvable"
-                ))
-        
+                issues.append(
+                    Issue(
+                        message=f"Module '{module_name}' not found",
+                        severity=Severity.WARNING,  # Less strict for JS
+                        line=line,
+                        rule="js.import.resolvable",
+                    )
+                )
+
         return self.create_validation_result(
             issues, len(imports), len(imports) - len(issues), self.language
         )
-    
+
     def extract_imports(self, code: str) -> List[Dict[str, Any]]:
         """Extract import statements from JavaScript/TypeScript using tree-sitter."""
         imports = []
         try:
             from vallm.core.ast_compare import _cached_get_parser
+
             parser = _cached_get_parser(self.language)
             tree = parser.parse(code.encode("utf-8"))
 
@@ -80,18 +112,21 @@ class JavaScriptImportValidator(BaseImportValidator):
         except Exception:
             # Fallback: simple regex-based extraction
             import re
+
             # Match import statements and require calls
             patterns = [
                 r"import.*?from\s*['\"]([^'\"]+)['\"]",
                 r"import\s*['\"]([^'\"]+)['\"]",
-                r"require\s*\(\s*['\"]([^'\"]+)['\"]\s*\)"
+                r"require\s*\(\s*['\"]([^'\"]+)['\"]\s*\)",
             ]
             for i, pattern in enumerate(patterns):
                 for match in re.finditer(pattern, code):
-                    imports.append({"module": match.group(1), "line": code[:match.start()].count('\n') + 1})
+                    imports.append(
+                        {"module": match.group(1), "line": code[: match.start()].count("\n") + 1}
+                    )
 
         return imports
-    
+
     def module_exists(self, module_name: str) -> bool:
         """Check if a JavaScript/TypeScript module is known."""
         # Relative imports (start with ./ or ../)
@@ -104,15 +139,15 @@ class JavaScriptImportValidator(BaseImportValidator):
         if module_name.startswith("@"):
             return True
         return False
-    
+
     def get_language(self) -> str:
         """Get the language identifier."""
         return self.language
-    
+
     def _get_error_message(self, module_name: str) -> str:
         """Get error message for missing module."""
         return f"Module '{module_name}' not found"
-    
+
     def _get_rule_name(self) -> str:
         """Get rule name for validation errors."""
         return "js.import.resolvable"

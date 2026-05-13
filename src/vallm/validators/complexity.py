@@ -9,7 +9,7 @@ from radon.complexity import cc_visit
 from radon.metrics import mi_visit
 
 from vallm.config import VallmSettings
-from vallm.core.languages import Language, detect_language, LIZARD_SUPPORTED
+from vallm.core.languages import detect_language, LIZARD_SUPPORTED
 from vallm.core.proposal import Proposal
 from vallm.scoring import Issue, Severity, ValidationResult
 from vallm.validators.base import BaseValidator
@@ -121,15 +121,24 @@ class ComplexityValidator(BaseValidator):
         elif lang_obj:
             # Fall back to tree-sitter id for unknown lizard languages
             ext_map = {
-                "python": "py", "javascript": "js", "typescript": "ts",
-                "c": "c", "cpp": "cpp", "java": "java", "go": "go",
-                "rust": "rs", "ruby": "rb", "swift": "swift",
-                "php": "php", "kotlin": "kt", "scala": "scala",
+                "python": "py",
+                "javascript": "js",
+                "typescript": "ts",
+                "c": "c",
+                "cpp": "cpp",
+                "java": "java",
+                "go": "go",
+                "rust": "rs",
+                "ruby": "rb",
+                "swift": "swift",
+                "php": "php",
+                "kotlin": "kt",
+                "scala": "scala",
             }
             ext = ext_map.get(language, language)
         else:
             ext = language
-        
+
         fname = filename or f"proposal.{ext}"
 
         try:

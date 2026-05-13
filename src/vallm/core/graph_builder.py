@@ -98,9 +98,7 @@ def build_python_graph(code: str, module_name: str = "<module>") -> CodeGraph:
         def visit_Call(self, node):
             callee = _get_call_name(node.func)
             if callee:
-                graph.calls.append(
-                    CallEdge(caller=current_scope, callee=callee, line=node.lineno)
-                )
+                graph.calls.append(CallEdge(caller=current_scope, callee=callee, line=node.lineno))
             self.generic_visit(node)
 
     def _get_call_name(node) -> str | None:

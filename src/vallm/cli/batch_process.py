@@ -38,7 +38,9 @@ def detect_file_language(file_path: Path):
     return detect_language(file_path)
 
 
-def show_progress(i: int, total: int, file_path: Path, output_format: str, console: Console) -> None:
+def show_progress(
+    i: int, total: int, file_path: Path, output_format: str, console: Console
+) -> None:
     """Print per-file progress line in rich mode."""
     if output_format == "rich":
         console.print(f"[dim]Processing {i}/{total}: {file_path}[/dim]")
@@ -81,7 +83,9 @@ def process_single_file(
     proposal = Proposal(text, language.name if language else "unknown", filename=str(file_path))
     result = validate(proposal, settings=settings)
 
-    result, file_path = handle_validation_result(result, file_path, output_format, verbose, show_issues, console)
+    result, file_path = handle_validation_result(
+        result, file_path, output_format, verbose, show_issues, console
+    )
     return result, file_path, language
 
 
@@ -128,7 +132,12 @@ def process_files(
             results_by_language[language_name].append(result)
 
             if result.all_issues:
-                failed_files.append((file_path, f"Validation {result.verdict.value}: {len(result.all_issues)} issue(s)"))
+                failed_files.append(
+                    (
+                        file_path,
+                        f"Validation {result.verdict.value}: {len(result.all_issues)} issue(s)",
+                    )
+                )
                 if fail_fast:
                     break
             else:

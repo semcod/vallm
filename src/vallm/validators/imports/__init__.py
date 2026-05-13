@@ -14,7 +14,7 @@ from .wrapper import ImportValidator
 
 __all__ = [
     "BaseImportValidator",
-    "ImportValidatorFactory", 
+    "ImportValidatorFactory",
     "PythonImportValidator",
     "JavaScriptImportValidator",
     "GoImportValidator",

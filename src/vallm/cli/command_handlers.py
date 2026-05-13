@@ -29,20 +29,22 @@ def validate_command(
     enable_security: bool = typer.Option(False, "--security", help="Enable security checks"),
     enable_regression: bool = typer.Option(False, "--regression", help="Enable regression tests"),
     model: Optional[str] = typer.Option(None, "--model", "-m", help="LLM model for semantic"),
-    output_format: str = typer.Option(get_default_output_format(), "--output", "-o", help=OUTPUT_FORMAT_HELP),
+    output_format: str = typer.Option(
+        get_default_output_format(), "--output", "-o", help=OUTPUT_FORMAT_HELP
+    ),
     verbose: bool = typer.Option(False, "--verbose", "-v", help="Show detailed results"),
     exit_on_verdict: bool = typer.Option(False, "--exit", help="Exit with non-zero on fail/review"),
 ) -> None:
     """Validate code with the full pipeline."""
     # Load code
     code_str = _load_code(file, code)
-    
+
     # Load reference if provided
     ref_code = _load_reference(reference)
-    
+
     # Detect language
     detected_language = _detect_and_log_language(file, language)
-    
+
     # Build settings
     settings = build_validate_settings(
         config,
@@ -52,18 +54,18 @@ def validate_command(
         model,
         verbose,
     )
-    
+
     # Create proposal
     proposal = _build_proposal(code_str, detected_language, ref_code, file)
-    
+
     # Run validation
     from vallm.scoring import validate
-    
+
     result = validate(proposal, settings)
-    
+
     # Output result
     output_validate_result(result, output_format, verbose)
-    
+
     # Exit on verdict if requested
     if exit_on_verdict:
         _exit_on_verdict(result)
@@ -73,21 +75,23 @@ def check_command(
     code: Optional[str] = typer.Option(None, "--code", "-c", help="Code string to validate"),
     file: Optional[Path] = typer.Option(None, "--file", "-f", help="File to validate"),
     language: Optional[str] = typer.Option(None, "--lang", "-l", help="Programming language"),
-    output_format: str = typer.Option(get_default_output_format(), "--output", "-o", help="Output format"),
+    output_format: str = typer.Option(
+        get_default_output_format(), "--output", "-o", help="Output format"
+    ),
 ) -> None:
     """Quick syntax check only (tier 1)."""
     # Load code
     code_str = _load_code(file, code)
-    
+
     # Detect language
     detected_language = _detect_and_log_language(file, language)
-    
+
     # Create proposal
     proposal = _build_proposal(code_str, detected_language, None, file)
-    
+
     # Run syntax-only validation
     from vallm.scoring import validate
-    
+
     # Only enable syntax validator
     settings = build_validate_settings(None, False, False, False, None, False)
     settings.enable_syntax = True
@@ -95,16 +99,18 @@ def check_command(
     settings.enable_complexity = False
     settings.enable_security = False
     settings.enable_semantic = False
-    
+
     result = validate(proposal, settings)
-    
+
     # Output result
     output_validate_result(result, output_format, False)
 
 
 def batch_command(
     paths: list[Path] = typer.Argument(..., help="Files or directories to validate"),
-    recursive: bool = typer.Option(False, "--recursive", "-r", help="Search directories recursively"),
+    recursive: bool = typer.Option(
+        False, "--recursive", "-r", help="Search directories recursively"
+    ),
     include: Optional[str] = typer.Option(None, "--include", help="Include pattern (glob)"),
     exclude: Optional[str] = typer.Option(None, "--exclude", help="Exclude pattern (glob)"),
     no_gitignore: bool = typer.Option(False, "--no-gitignore", help="Do not respect .gitignore"),
@@ -112,18 +118,25 @@ def batch_command(
     enable_security: bool = typer.Option(False, "--security", help="Enable security checks"),
     enable_regression: bool = typer.Option(False, "--regression", help="Enable regression tests"),
     no_imports: bool = typer.Option(False, "--no-imports", help="Skip import validation (faster)"),
-    no_complexity: bool = typer.Option(False, "--no-complexity", help="Skip complexity analysis (faster)"),
+    no_complexity: bool = typer.Option(
+        False, "--no-complexity", help="Skip complexity analysis (faster)"
+    ),
     model: Optional[str] = typer.Option(None, "--model", "-m", help="LLM model for semantic"),
-    format_: str = typer.Option(get_default_output_format(), "--format", "-f", help=OUTPUT_FORMAT_HELP),
+    format_: str = typer.Option(
+        get_default_output_format(), "--format", "-f", help=OUTPUT_FORMAT_HELP
+    ),
     output: Optional[Path] = typer.Option(None, "--output", "-o", help="Output directory"),
     fail_fast: bool = typer.Option(False, "--fail-fast", help="Stop on first failure"),
-    verbose: bool = typer.Option(False, "--verbose", "-v", help="Show detailed validation results for each file"),
-    show_issues: bool = typer.Option(False, "--show-issues", "-i", help="Show issues for failed files"),
+    verbose: bool = typer.Option(
+        False, "--verbose", "-v", help="Show detailed validation results for each file"
+    ),
+    show_issues: bool = typer.Option(
+        False, "--show-issues", "-i", help="Show issues for failed files"
+    ),
 ) -> None:
     """Validate multiple files with auto-detected languages."""
-    from vallm.cli.batch_processor import BatchProcessor
     processor = BatchProcessor(console)
-    
+
     settings = build_batch_settings(
         enable_semantic,
         enable_security,
@@ -133,7 +146,7 @@ def batch_command(
         no_imports,
         no_complexity,
     )
-    
+
     results_by_language, failed_files, passed_count, filtered_files = processor.process_batch(
         paths=paths,
         recursive=recursive,
@@ -146,12 +159,12 @@ def batch_command(
         verbose=verbose,
         show_issues=show_issues,
     )
-    
+
     # Handle output to file or stdout
     if output:
         output_dir = Path(output)
         output_dir.mkdir(parents=True, exist_ok=True)
-        
+
         # Generate filename based on format
         default_filenames = get_default_filenames()
         if format_ == "toon":
@@ -162,48 +175,53 @@ def batch_command(
             output_file = output_dir / default_filenames["yaml"]
         else:
             output_file = output_dir / default_filenames["txt"]
-        
+
         # Redirect output to file
         import sys
+
         original_stdout = sys.stdout
         try:
-            with open(output_file, 'w', encoding='utf-8') as f:
+            with open(output_file, "w", encoding="utf-8") as f:
                 sys.stdout = f
                 processor.output_batch_results(
                     results_by_language, passed_count, failed_files, format_, filtered_files
                 )
         finally:
             sys.stdout = original_stdout
-            
+
         console.print(f"[green]✓[/green] Results saved to {output_file}")
     else:
         processor.output_batch_results(
             results_by_language, passed_count, failed_files, format_, filtered_files
         )
-    
+
     actual_failures = [f for f in failed_files if str(f[1]).startswith("Validation ")]
     if actual_failures:
         raise typer.Exit(2)
 
 
 def info_command(
-    language: Optional[str] = typer.Option(None, "--lang", "-l", help="Show info for specific language"),
-    clear_cache: bool = typer.Option(False, "--clear-cache", help="Clear semantic validation cache"),
+    language: Optional[str] = typer.Option(
+        None, "--lang", "-l", help="Show info for specific language"
+    ),
+    clear_cache: bool = typer.Option(
+        False, "--clear-cache", help="Clear semantic validation cache"
+    ),
 ) -> None:
     """Show information about supported languages and validators."""
-    
+
     # Handle cache clearing first
     if clear_cache:
         from vallm.validators.semantic_cache import clear_semantic_cache, get_semantic_cache
+
         clear_semantic_cache()
         cache_stats = get_semantic_cache().get_cache_stats()
         console.print("[green]✓[/green] Semantic validation cache cleared")
         console.print(f"[dim]Cache stats: {cache_stats['total_entries']} entries cleared[/dim]")
         return
-    
+
     from vallm.core.languages import Language
-    from vallm.validators.base import BaseValidator
-    
+
     if language:
         # Show info for specific language
         try:
@@ -218,6 +236,7 @@ def info_command(
 
 
 # Private helper functions
+
 
 def _load_code(file: Optional[Path], code: Optional[str]) -> str:
     """Load code from file or string parameter."""
@@ -252,14 +271,16 @@ def _detect_and_log_language(file: Optional[Path], language: Optional[str]) -> s
     else:
         detected_language = get_default_language()  # default for string input
         console.print(f"[dim]Using default language: {detected_language}[/dim]")
-    
+
     return detected_language
 
 
-def _build_proposal(code_str: str, detected_language: str, ref_code: Optional[str], file: Optional[Path]) -> Proposal:
+def _build_proposal(
+    code_str: str, detected_language: str, ref_code: Optional[str], file: Optional[Path]
+) -> Proposal:
     """Build a proposal object."""
     from vallm.core.proposal import Proposal
-    
+
     return Proposal(
         code=code_str,
         language=detected_language,
@@ -271,7 +292,7 @@ def _build_proposal(code_str: str, detected_language: str, ref_code: Optional[st
 def _exit_on_verdict(result) -> None:
     """Exit with appropriate code based on verdict."""
     from vallm.scoring import Verdict
-    
+
     if result.verdict == Verdict.FAIL:
         raise typer.Exit(1)
     elif result.verdict == Verdict.REVIEW:
@@ -285,29 +306,29 @@ def _show_language_info(language) -> None:
     console.print(f"Extensions: {', '.join(language.extensions)}")
     console.print(f"Tree-sitter language: {language.tree_sitter_language}")
     console.print(f"Compiled: {'Yes' if language.is_compiled() else 'No'}")
-    
+
     # Show validators that support this language
-    from vallm.validators.base import BaseValidator
     from vallm.validators.imports.factory import ImportValidatorFactory
-    
+
     console.print("\n[bold]Supported Validators:[/bold]")
-    
+
     # Syntax validator (supports all)
     console.print("  ✓ Syntax validation")
-    
+
     # Import validation
     factory = ImportValidatorFactory()
     if language.value in factory.supported_languages():
         console.print("  ✓ Import validation")
-    
+
     # Complexity validation
     from vallm.core.languages import LIZARD_SUPPORTED
+
     if language in LIZARD_SUPPORTED:
         console.print("  ✓ Complexity analysis")
-    
+
     # Security validation (supports all)
     console.print("  ✓ Security analysis")
-    
+
     # Semantic validation (supports all with LLM)
     console.print("  ✓ Semantic analysis (requires LLM)")
 
@@ -317,14 +338,14 @@ def _show_general_info() -> None:
     from vallm.core.languages import Language
     from vallm.validators.imports.factory import ImportValidatorFactory
     from vallm.validators.semantic_cache import get_semantic_cache
-    
+
     console.print("[bold]VALLM - Code Validation Tool[/bold]")
     console.print()
-    
+
     console.print("[bold]Supported Languages:[/bold]")
     for lang in Language:
         console.print(f"  {lang.display_name} ({lang.tree_sitter_id}) - {lang.extension}")
-    
+
     console.print("\n[bold]Available Validators:[/bold]")
     console.print("  1. Syntax validation - Fast syntax checking")
     console.print("  2. Import validation - Module resolution checking")
@@ -332,13 +353,13 @@ def _show_general_info() -> None:
     console.print("  4. Security analysis - Security pattern detection")
     console.print("  5. Regression testing - Pytest-based regression checks")
     console.print("  6. Semantic analysis - LLM-powered code review")
-    
+
     # Show cache stats
     cache_stats = get_semantic_cache().get_cache_stats()
     console.print("\n[bold]Semantic Cache:[/bold]")
     console.print(f"  Cached entries: {cache_stats['total_entries']}")
     console.print("  Use 'vallm info --clear-cache' to clear cache")
-    
+
     console.print("\n[bold]Import Validation Languages:[/bold]")
     factory = ImportValidatorFactory()
     for lang in factory.supported_languages():

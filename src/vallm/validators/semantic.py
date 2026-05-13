@@ -56,9 +56,10 @@ class SemanticValidator(BaseValidator):
         self.model = settings.llm_model
         self.base_url = settings.llm_base_url
         self.temperature = settings.llm_temperature
-        
+
         # Initialize cache for performance
         from vallm.validators.semantic_cache import get_semantic_cache
+
         self.cache = get_semantic_cache()
 
     def validate(self, proposal: Proposal, context: dict) -> ValidationResult:
@@ -66,16 +67,16 @@ class SemanticValidator(BaseValidator):
         cached_result = self.cache.get(proposal.code, proposal.language, self.model)
         if cached_result is not None:
             return cached_result
-        
+
         prompt = self._build_prompt(proposal)
 
         try:
             response_text = self._call_llm(prompt)
             result = self._parse_response(response_text)
-            
+
             # Cache the result
             self.cache.set(proposal.code, proposal.language, self.model, result)
-            
+
             return result
         except Exception as e:
             return ValidationResult(
@@ -153,12 +154,14 @@ class SemanticValidator(BaseValidator):
         import urllib.request
 
         url = f"{self.base_url}/api/chat"
-        payload = json.dumps({
-            "model": self.model,
-            "messages": [{"role": "user", "content": prompt}],
-            "stream": False,
-            "options": {"temperature": self.temperature},
-        }).encode("utf-8")
+        payload = json.dumps(
+            {
+                "model": self.model,
+                "messages": [{"role": "user", "content": prompt}],
+                "stream": False,
+                "options": {"temperature": self.temperature},
+            }
+        ).encode("utf-8")
 
         req = urllib.request.Request(
             url,
@@ -177,16 +180,16 @@ class SemanticValidator(BaseValidator):
         json_str = self._extract_json_from_response(response_text)
         if json_str is None:
             return self._create_parse_error_result(response_text)
-        
+
         try:
             data = json.loads(json_str)
         except json.JSONDecodeError:
             return self._create_json_error_result(response_text)
-        
+
         scores = self._parse_scores(data)
         issues = self._parse_issues(data)
         avg_score = sum(scores.values()) / len(scores) if scores else 0.0
-        
+
         return ValidationResult(
             validator=self.name,
             score=avg_score,
@@ -199,21 +202,21 @@ class SemanticValidator(BaseValidator):
                 "model": self.model,
             },
         )
-    
+
     def _extract_json_from_response(self, response_text: str) -> Optional[str]:
         """Extract JSON from response (handle markdown code blocks)."""
         # Try to find JSON in markdown code blocks
         json_match = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", response_text, re.DOTALL)
         if json_match:
             return json_match.group(1)
-        
+
         # Try to find raw JSON
         json_match = re.search(r"\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}", response_text, re.DOTALL)
         if json_match:
             return json_match.group(0)
-        
+
         return None
-    
+
     def _create_parse_error_result(self, response_text: str) -> ValidationResult:
         """Create result for when JSON cannot be parsed from response."""
         return ValidationResult(
@@ -230,7 +233,7 @@ class SemanticValidator(BaseValidator):
             ],
             details={"raw_response": response_text[:500]},
         )
-    
+
     def _create_json_error_result(self, response_text: str) -> ValidationResult:
         """Create result for when JSON is invalid."""
         return ValidationResult(
@@ -247,7 +250,7 @@ class SemanticValidator(BaseValidator):
             ],
             details={"raw_response": response_text[:500]},
         )
-    
+
     def _parse_scores(self, data: dict) -> dict:
         """Parse and normalize scores from LLM response."""
         scores = {}
@@ -258,17 +261,17 @@ class SemanticValidator(BaseValidator):
             else:
                 scores[key] = 0.5
         return scores
-    
+
     def _parse_issues(self, data: dict) -> list:
         """Parse issues from LLM response."""
         issues = []
         for item in data.get("issues", []):
             if not isinstance(item, dict):
                 continue
-                
+
             severity = self._parse_severity(item.get("severity", "info"))
             line = self._parse_line_number(item.get("line"))
-            
+
             issues.append(
                 Issue(
                     message=item.get("message", "Unknown issue"),
@@ -278,7 +281,7 @@ class SemanticValidator(BaseValidator):
                 )
             )
         return issues
-    
+
     def _parse_severity(self, severity_str: str) -> Severity:
         """Parse severity string into Severity enum."""
         severity_map = {
@@ -287,16 +290,16 @@ class SemanticValidator(BaseValidator):
             "info": Severity.INFO,
         }
         return severity_map.get(severity_str.lower(), Severity.INFO)
-    
+
     def _parse_line_number(self, line) -> Optional[int]:
         """Parse line number from various formats."""
         if isinstance(line, int):
             return line
-        
+
         if isinstance(line, str):
             try:
                 return int(line)
             except (ValueError, TypeError):
                 return None
-        
+
         return None

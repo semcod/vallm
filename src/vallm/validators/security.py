@@ -20,7 +20,11 @@ _PYTHON_PATTERNS = [
     (r"\byaml\.load\s*\((?!.*Loader)", "yaml.load() without Loader is unsafe", "security.yaml"),
     (r"\bsubprocess\.\w+\(.*shell\s*=\s*True", "subprocess with shell=True", "security.shell"),
     (r"password\s*=\s*['\"]", "Hardcoded password detected", "security.hardcoded_password"),
-    (r"(?:api[_-]?key|secret[_-]?key|token)\s*=\s*['\"]", "Hardcoded secret", "security.hardcoded_secret"),
+    (
+        r"(?:api[_-]?key|secret[_-]?key|token)\s*=\s*['\"]",
+        "Hardcoded secret",
+        "security.hardcoded_secret",
+    ),
 ]
 
 # JavaScript/TypeScript patterns
@@ -30,17 +34,37 @@ _JS_PATTERNS = [
     (r"innerHTML\s*=", "innerHTML can lead to XSS vulnerabilities", "security.innerhtml"),
     (r"document\.write\s*\(", "document.write can lead to XSS", "security.document_write"),
     (r"\.src\s*=\s*['\"]javascript:", "javascript: URL is dangerous", "security.javascript_url"),
-    (r"new\s+Function\s*\(", "Dynamic Function constructor is dangerous", "security.dynamic_function"),
+    (
+        r"new\s+Function\s*\(",
+        "Dynamic Function constructor is dangerous",
+        "security.dynamic_function",
+    ),
     (r"password\s*[=:]\s*['\"]", "Hardcoded password detected", "security.hardcoded_password"),
-    (r"(?:api[_-]?key|secret|token)\s*[=:]\s*['\"]", "Hardcoded secret", "security.hardcoded_secret"),
-    (r"localStorage\.setItem.*password", "Storing password in localStorage is insecure", "security.localStorage_password"),
-    (r"child_process\.exec\s*\(", "child_process.exec with shell execution", "security.child_process_exec"),
+    (
+        r"(?:api[_-]?key|secret|token)\s*[=:]\s*['\"]",
+        "Hardcoded secret",
+        "security.hardcoded_secret",
+    ),
+    (
+        r"localStorage\.setItem.*password",
+        "Storing password in localStorage is insecure",
+        "security.localStorage_password",
+    ),
+    (
+        r"child_process\.exec\s*\(",
+        "child_process.exec with shell execution",
+        "security.child_process_exec",
+    ),
 ]
 
 # Go patterns
 _GO_PATTERNS = [
     (r"os\.Exec\s*\(", "os.Exec can be dangerous", "security.os_exec"),
-    (r"exec\.Command\s*\(.*sh\s*-c", "Shell command execution with user input", "security.shell_exec"),
+    (
+        r"exec\.Command\s*\(.*sh\s*-c",
+        "Shell command execution with user input",
+        "security.shell_exec",
+    ),
     (r"template\.HTML\s*\(", "Unescaped HTML template output", "security.unescaped_html"),
     (r"template\.JS\s*\(", "Unescaped JavaScript template output", "security.unescaped_js"),
     (r"password\s*:=\s*[\"']", "Hardcoded password detected", "security.hardcoded_password"),
@@ -69,9 +93,17 @@ _JAVA_PATTERNS = [
     (r"ScriptEngine\.eval\s*\(", "Script engine eval is dangerous", "security.script_eval"),
     (r"password\s*=\s*[\"']", "Hardcoded password detected", "security.hardcoded_password"),
     (r"(?:apiKey|secret|token)\s*=\s*[\"']", "Hardcoded secret", "security.hardcoded_secret"),
-    (r"Statement\.executeQuery.*\+", "SQL query with string concatenation", "security.sql_injection"),
+    (
+        r"Statement\.executeQuery.*\+",
+        "SQL query with string concatenation",
+        "security.sql_injection",
+    ),
     (r"String\.format.*SELECT.*WHERE", "SQL query with String.format", "security.sql_format"),
-    (r"ObjectInputStream", "ObjectInputStream can be dangerous for deserialization", "security.deserialization"),
+    (
+        r"ObjectInputStream",
+        "ObjectInputStream can be dangerous for deserialization",
+        "security.deserialization",
+    ),
 ]
 
 # C/C++ patterns
@@ -81,10 +113,22 @@ _C_CPP_PATTERNS = [
     (r"strcpy\s*\(", "strcpy is unsafe - use strncpy", "security.strcpy"),
     (r"strcat\s*\(", "strcat is unsafe - use strncat", "security.strcat"),
     (r"gets\s*\(", "gets() is extremely dangerous - use fgets", "security.gets"),
-    (r"sprintf\s*\([^,]+,\s*[^\"]*%s", "sprintf with string format - potential buffer overflow", "security.sprintf"),
+    (
+        r"sprintf\s*\([^,]+,\s*[^\"]*%s",
+        "sprintf with string format - potential buffer overflow",
+        "security.sprintf",
+    ),
     (r"scanf\s*\(.*%s", "scanf with %s - potential buffer overflow", "security.scanf"),
-    (r"printf\s*\(.*\+.*\)", "printf with variable format - potential format string vulnerability", "security.format_string"),
-    (r"malloc\s*\([^)]*\*\s*[^)]*\)", "malloc with multiplication - potential integer overflow", "security.malloc_overflow"),
+    (
+        r"printf\s*\(.*\+.*\)",
+        "printf with variable format - potential format string vulnerability",
+        "security.format_string",
+    ),
+    (
+        r"malloc\s*\([^)]*\*\s*[^)]*\)",
+        "malloc with multiplication - potential integer overflow",
+        "security.malloc_overflow",
+    ),
     (r"free\s*\([^)]*\)\s*;\s*free\s*\(", "Double free detected", "security.double_free"),
     (r"password\s*=\s*[\"']", "Hardcoded password detected", "security.hardcoded_password"),
     (r"(?:api_key|secret|token)\s*=\s*[\"']", "Hardcoded secret", "security.hardcoded_secret"),
@@ -93,9 +137,17 @@ _C_CPP_PATTERNS = [
 # Language-agnostic patterns (apply to all languages)
 _UNIVERSAL_PATTERNS = [
     (r"password\s*[=:]\s*['\"]", "Hardcoded password detected", "security.hardcoded_password"),
-    (r"(?:api[_-]?key|secret[_-]?key|api[_-]?secret)\s*[=:]\s*['\"]", "Hardcoded API key", "security.hardcoded_apikey"),
+    (
+        r"(?:api[_-]?key|secret[_-]?key|api[_-]?secret)\s*[=:]\s*['\"]",
+        "Hardcoded API key",
+        "security.hardcoded_apikey",
+    ),
     (r"private[_-]?key\s*[=:]\s*['\"]", "Hardcoded private key", "security.hardcoded_privatekey"),
-    (r"aws[_-]?secret[_-]?access[_-]?key\s*[=:]\s*['\"]", "Hardcoded AWS secret", "security.hardcoded_aws"),
+    (
+        r"aws[_-]?secret[_-]?access[_-]?key\s*[=:]\s*['\"]",
+        "Hardcoded AWS secret",
+        "security.hardcoded_aws",
+    ),
     (r"-----BEGIN.*PRIVATE KEY-----", "Private key in code", "security.private_key_in_code"),
 ]
 
@@ -218,7 +270,7 @@ class SecurityValidator(BaseValidator):
         try:
             import tempfile
             import os
-            
+
             # Import bandit modules inside the try block
             from bandit.core.manager import BanditManager
             from bandit.core.config import BanditConfig

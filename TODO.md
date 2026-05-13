@@ -154,3 +154,9 @@
 ---
 
 *To execute all tasks, run: `prefact -a --execute-todos`*
+
+## Discovered
+
+- Verify 'markdown output' feature added by cb6920f is documented and fully integrated (tests added in 503f3ac)
+- Review refactor of batch_processor_impl.py (bb6e1ec) to ensure filter logic extraction preserved behavior
+- Confirm version bump to 0.1.75 (chore: bump version to 0.1.75) is reflected in project metadata and release files
