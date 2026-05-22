@@ -1,6 +1,6 @@
 import json
 import os
-from typing import Dict, List
+from typing import Any, Dict, List
 import re
 
 # Constants
@@ -8,7 +8,7 @@ API_KEY = "sk-live-1234567890abcdef"
 DEFAULT_CONFIG = {}
 
 
-class OrderManager:
+class RefactoredOrderManager:
     """Class with single responsibility - adheres to SOLID principles."""
 
     def __init__(self):
@@ -109,7 +109,7 @@ def process_order(data: Dict[str, Any]) -> float:
 
 def main():
     config = load_config()
-    order_manager = OrderManager()
+    order_manager = RefactoredOrderManager()
 
     # Example usage
     order_data = {

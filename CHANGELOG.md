@@ -398,6 +398,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fix(goal): update docs
 - fix(docs): update docs
 
+## [0.1.88] - 2026-05-23
+
+### Docs
+- Update README.md
+
+### Other
+- Update examples/10_mcp_ollama_demo/refactored_output.py
+- Update examples/13_batch_processing/main.py
+- Update frontend/src/components/RedslHealthCard.jsx
+- Update frontend/src/hooks/useRedslHealth.js
+- Update project.sh
+- Update tree.sh
+
 ## [0.1.87] - 2026-04-20
 
 ### Docs
