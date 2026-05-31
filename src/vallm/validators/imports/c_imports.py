@@ -3,7 +3,7 @@
 from typing import List, Dict, Any
 from vallm.core.proposal import Proposal
 from vallm.scoring import Issue, Severity, ValidationResult
-from vallm.core.tree_sitter_compat import node_children, node_kind, node_start_row, node_text, tree_root
+from vallm.core.tree_sitter_compat import node_children, node_kind, node_start_row, node_text, parse_source, tree_root
 from .base import BaseImportValidator
 
 
@@ -43,7 +43,7 @@ class CImportValidator(BaseImportValidator):
             from vallm.core.ast_compare import _cached_get_parser
 
             parser = _cached_get_parser(self.language)
-            tree = parser.parse(code)
+            tree = parse_source(parser, code)
 
             def walk(node):
                 if node_kind(node) == "preproc_include":

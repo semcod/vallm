@@ -3,6 +3,16 @@
 from __future__ import annotations
 
 
+def parse_source(parser, code: str):
+    """Parse source text with tree-sitter across str/bytes API differences."""
+    if isinstance(code, bytes):
+        return parser.parse(code)
+    try:
+        return parser.parse(code.encode("utf-8"))
+    except TypeError:
+        return parser.parse(code)
+
+
 def tree_root(tree):
     root = tree.root_node
     return root() if callable(root) else root

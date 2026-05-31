@@ -8,6 +8,7 @@ from vallm.core.tree_sitter_compat import (
     node_kind,
     node_start_row,
     node_text,
+    parse_source,
     tree_root,
 )
 from .base import BaseImportValidator
@@ -85,7 +86,7 @@ class GoImportValidator(BaseImportValidator):
             from vallm.core.ast_compare import _cached_get_parser
 
             parser = _cached_get_parser("go")
-            tree = parser.parse(code)
+            tree = parse_source(parser, code)
 
             def walk(node):
                 if node_kind(node) == "import_declaration":

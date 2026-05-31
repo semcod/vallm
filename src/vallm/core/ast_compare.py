@@ -8,7 +8,7 @@ from typing import Optional
 
 from tree_sitter_language_pack import get_parser
 
-from vallm.core.tree_sitter_compat import node_children, node_is_error, node_is_missing, node_kind, tree_root
+from vallm.core.tree_sitter_compat import node_children, node_is_error, node_is_missing, node_kind, parse_source, tree_root
 
 
 @lru_cache(maxsize=128)
@@ -20,7 +20,7 @@ def _cached_get_parser(language: str):
 def parse_code(code: str, language: str = "python"):
     """Parse code using tree-sitter and return the tree."""
     parser = _cached_get_parser(language)
-    return parser.parse(code)
+    return parse_source(parser, code)
 
 
 def parse_python_ast(code: str) -> Optional[ast.AST]:
