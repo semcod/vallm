@@ -1,119 +1,121 @@
-# redup/duplication | 17 groups | 104f 12836L | 2026-04-19
+# redup/duplication | 18 groups | 106f 13101L | 2026-05-29
 
 SUMMARY:
-  files_scanned: 104
-  total_lines:   12836
-  dup_groups:    17
-  dup_fragments: 44
-  saved_lines:   183
-  scan_ms:       4850
+  files_scanned: 106
+  total_lines:   13101
+  dup_groups:    18
+  dup_fragments: 45
+  saved_lines:   188
+  scan_ms:       6140
 
 HOTSPOTS[7] (files with most duplication):
-  mcp/server/_tools_vallm.py  dup=100L  groups=2  frags=6  (0.8%)
+  mcp/server/_tools_vallm.py  dup=73L  groups=1  frags=3  (0.6%)
   examples/10_mcp_ollama_demo/legacy_code/order_processor.py  dup=20L  groups=3  frags=4  (0.2%)
+  src/vallm/cli/batch_filter.py  dup=18L  groups=1  frags=1  (0.1%)
   backend/routers/tickets/crud.py  dup=18L  groups=1  frags=2  (0.1%)
   src/vallm/cli/output_formatters/__init__.py  dup=16L  groups=1  frags=1  (0.1%)
   src/vallm/cli/output_formatters/batch.py  dup=16L  groups=1  frags=1  (0.1%)
   examples/05_llm_semantic_review/main_template.py  dup=14L  groups=1  frags=1  (0.1%)
-  examples/06_multilang_validation/main_template.py  dup=14L  groups=1  frags=1  (0.1%)
 
-DUPLICATES[17] (ranked by impact):
-  [1e916868fd12c434] ! STRU  validate_syntax  L=26 N=3 saved=52 sim=1.00
-      mcp/server/_tools_vallm.py:154-179  (validate_syntax)
-      mcp/server/_tools_vallm.py:182-207  (validate_imports)
-      mcp/server/_tools_vallm.py:210-236  (validate_security)
+DUPLICATES[18] (ranked by impact):
+  [57a4aee3d62142d9] ! STRU  validate_syntax  L=24 N=3 saved=48 sim=1.00
+      mcp/server/_tools_vallm.py:172-195  (validate_syntax)
+      mcp/server/_tools_vallm.py:198-221  (validate_imports)
+      mcp/server/_tools_vallm.py:224-248  (validate_security)
+  [62a6df384a438fe5]   EXAC  should_exclude_file  L=18 N=2 saved=18 sim=1.00
+      src/vallm/cli/batch_filter.py:29-46  (should_exclude_file)
+      src/vallm/cli/batch_processor_filter.py:16-28  (should_exclude_file)
   [0377ac5715a548c6]   EXAC  output_batch_results  L=16 N=2 saved=16 sim=1.00
       src/vallm/cli/output_formatters/__init__.py:39-54  (output_batch_results)
-      src/vallm/cli/output_formatters/batch.py:27-42  (output_batch_results)
+      src/vallm/cli/output_formatters/batch.py:44-59  (output_batch_results)
   [6baf28048162b351]   STRU  main  L=14 N=2 saved=14 sim=1.00
-      examples/05_llm_semantic_review/main_template.py:57-70  (main)
-      examples/06_multilang_validation/main_template.py:57-70  (main)
-  [68b30236533a58ae]   STRU  handle_validate_syntax  L=7 N=3 saved=14 sim=1.00
-      mcp/server/_tools_vallm.py:291-297  (handle_validate_syntax)
-      mcp/server/_tools_vallm.py:300-306  (handle_validate_imports)
-      mcp/server/_tools_vallm.py:309-315  (handle_validate_security)
-  [27dda1031a29e18a]   EXAC  load_config  L=5 N=3 saved=10 sim=1.00
+      examples/05_llm_semantic_review/main_template.py:53-66  (main)
+      examples/06_multilang_validation/main_template.py:53-66  (main)
+  [5f9b7c6a5dbe27b0]   EXAC  load_config  L=5 N=3 saved=10 sim=1.00
       examples/10_mcp_ollama_demo/legacy_code/order_processor.py:34-38  (load_config)
-      examples/11_claude_code_autonomous/legacy_code/data_processor.py:19-22  (load_config)
-      examples/12_ollama_simple_demo/legacy_code/simple_buggy.py:29-32  (load_config)
+      examples/11_claude_code_autonomous/legacy_code/data_processor.py:18-21  (load_config)
+      examples/12_ollama_simple_demo/legacy_code/simple_buggy.py:31-34  (load_config)
+  [bf795f20b1fc2037]   EXAC  main  L=5 N=3 saved=10 sim=1.00
+      examples/12_ollama_simple_demo/best_version.py:10-14  (main)
+      examples/12_ollama_simple_demo/iteration_1.py:10-14  (main)
+      examples/12_ollama_simple_demo/iteration_2.py:10-14  (main)
   [2a8f79ba6c631f6f]   STRU  create_validator  L=10 N=2 saved=10 sim=1.00
-      src/vallm/validators/lint.py:173-182  (create_validator)
-      src/vallm/validators/logical.py:133-142  (create_validator)
+      src/vallm/validators/lint.py:175-184  (create_validator)
+      src/vallm/validators/logical.py:127-136  (create_validator)
   [0ee70ff9b8d9f87e]   STRU  search_tickets_endpoint  L=9 N=2 saved=9 sim=1.00
-      backend/routers/tickets/crud.py:89-97  (search_tickets_endpoint)
-      backend/routers/tickets/crud.py:101-109  (get_tickets_for_repo)
+      backend/routers/tickets/crud.py:90-98  (search_tickets_endpoint)
+      backend/routers/tickets/crud.py:102-110  (get_tickets_for_repo)
   [7c6fc4484a4bfb49]   STRU  _get_error_message  L=3 N=4 saved=9 sim=1.00
-      src/vallm/validators/imports/go_imports.py:26-28  (_get_error_message)
-      src/vallm/validators/imports/java_imports.py:25-27  (_get_error_message)
-      src/vallm/validators/imports/javascript_imports.py:112-114  (_get_error_message)
-      src/vallm/validators/imports/rust_imports.py:25-27  (_get_error_message)
+      src/vallm/validators/imports/go_imports.py:64-66  (_get_error_message)
+      src/vallm/validators/imports/java_imports.py:41-43  (_get_error_message)
+      src/vallm/validators/imports/javascript_imports.py:147-149  (_get_error_message)
+      src/vallm/validators/imports/rust_imports.py:53-55  (_get_error_message)
   [d96fbe45dd774d8b]   STRU  _get_rule_name  L=3 N=4 saved=9 sim=1.00
-      src/vallm/validators/imports/go_imports.py:30-32  (_get_rule_name)
-      src/vallm/validators/imports/java_imports.py:29-31  (_get_rule_name)
-      src/vallm/validators/imports/javascript_imports.py:116-118  (_get_rule_name)
-      src/vallm/validators/imports/rust_imports.py:29-31  (_get_rule_name)
+      src/vallm/validators/imports/go_imports.py:68-70  (_get_rule_name)
+      src/vallm/validators/imports/java_imports.py:45-47  (_get_rule_name)
+      src/vallm/validators/imports/javascript_imports.py:151-153  (_get_rule_name)
+      src/vallm/validators/imports/rust_imports.py:57-59  (_get_rule_name)
   [de3da32194b04163]   EXAC  log_step  L=4 N=3 saved=8 sim=1.00
-      examples/10_mcp_ollama_demo/mcp_demo.py:53-56  (log_step)
-      examples/11_claude_code_autonomous/claude_autonomous_demo.py:70-73  (log_step)
-      examples/12_ollama_simple_demo/ollama_simple_demo.py:46-48  (log_step)
-  [bf795f20b1fc2037]   EXAC  main  L=4 N=3 saved=8 sim=1.00
-      examples/12_ollama_simple_demo/best_version.py:16-19  (main)
-      examples/12_ollama_simple_demo/iteration_1.py:16-19  (main)
-      examples/12_ollama_simple_demo/iteration_2.py:16-19  (main)
+      examples/10_mcp_ollama_demo/mcp_demo.py:51-54  (log_step)
+      examples/11_claude_code_autonomous/claude_autonomous_demo.py:56-59  (log_step)
+      examples/12_ollama_simple_demo/ollama_simple_demo.py:35-37  (log_step)
   [b1da8e8f33b7f775]   STRU  validate_email_1  L=6 N=2 saved=6 sim=1.00
-      examples/10_mcp_ollama_demo/legacy_code/order_processor.py:102-107  (validate_email_1)
-      examples/10_mcp_ollama_demo/legacy_code/order_processor.py:109-114  (validate_email_2)
+      examples/10_mcp_ollama_demo/legacy_code/order_processor.py:108-113  (validate_email_1)
+      examples/10_mcp_ollama_demo/legacy_code/order_processor.py:116-121  (validate_email_2)
   [29507c36c8dbf2ce]   STRU  get_language  L=3 N=3 saved=6 sim=1.00
-      src/vallm/validators/imports/go_imports.py:22-24  (get_language)
-      src/vallm/validators/imports/java_imports.py:21-23  (get_language)
-      src/vallm/validators/imports/rust_imports.py:21-23  (get_language)
+      src/vallm/validators/imports/go_imports.py:60-62  (get_language)
+      src/vallm/validators/imports/java_imports.py:37-39  (get_language)
+      src/vallm/validators/imports/rust_imports.py:49-51  (get_language)
   [bd60d2849a7474ac]   EXAC  __init__  L=3 N=2 saved=3 sim=1.00
       src/vallm/validators/lint.py:21-23  (__init__)
       src/vallm/validators/logical.py:20-22  (__init__)
   [aaae754bdb04529d]   STRU  dead_code  L=3 N=2 saved=3 sim=1.00
-      examples/10_mcp_ollama_demo/legacy_code/order_processor.py:129-131  (dead_code)
-      examples/12_ollama_simple_demo/legacy_code/simple_buggy.py:60-62  (unused_function)
+      examples/10_mcp_ollama_demo/legacy_code/order_processor.py:139-141  (dead_code)
+      examples/12_ollama_simple_demo/legacy_code/simple_buggy.py:67-69  (unused_function)
   [a1c06b6eb8eec00e]   STRU  duplicate_function  L=3 N=2 saved=3 sim=1.00
-      examples/12_ollama_simple_demo/legacy_code/simple_buggy.py:52-54  (duplicate_function)
-      examples/12_ollama_simple_demo/legacy_code/simple_buggy.py:56-58  (duplicate_function)
+      examples/12_ollama_simple_demo/legacy_code/simple_buggy.py:57-59  (duplicate_function)
+      examples/12_ollama_simple_demo/legacy_code/simple_buggy.py:62-64  (duplicate_function)
+  [02f5ba69c51d6a75]   STRU  detect_file_language  L=3 N=2 saved=3 sim=1.00
+      src/vallm/cli/batch_process.py:36-38  (detect_file_language)
+      src/vallm/core/ast_compare.py:13-15  (_cached_get_parser)
   [ab5b16619a4fdd19]   STRU  get_default_output_format  L=3 N=2 saved=3 sim=1.00
-      src/vallm/config.py:115-117  (get_default_output_format)
-      src/vallm/config.py:120-122  (get_default_language)
+      src/vallm/config.py:127-129  (get_default_output_format)
+      src/vallm/config.py:132-134  (get_default_language)
 
-REFACTOR[17] (ranked by priority):
+REFACTOR[18] (ranked by priority):
   [1] ○ extract_function   → mcp/server/utils/validate_syntax.py
-      WHY: 3 occurrences of 26-line block across 1 files — saves 52 lines
+      WHY: 3 occurrences of 24-line block across 1 files — saves 48 lines
       FILES: mcp/server/_tools_vallm.py
-  [2] ○ extract_function   → src/vallm/cli/output_formatters/utils/output_batch_results.py
+  [2] ○ extract_function   → src/vallm/cli/utils/should_exclude_file.py
+      WHY: 2 occurrences of 18-line block across 2 files — saves 18 lines
+      FILES: src/vallm/cli/batch_filter.py, src/vallm/cli/batch_processor_filter.py
+  [3] ○ extract_function   → src/vallm/cli/output_formatters/utils/output_batch_results.py
       WHY: 2 occurrences of 16-line block across 2 files — saves 16 lines
       FILES: src/vallm/cli/output_formatters/__init__.py, src/vallm/cli/output_formatters/batch.py
-  [3] ○ extract_function   → examples/utils/main.py
+  [4] ○ extract_function   → examples/utils/main.py
       WHY: 2 occurrences of 14-line block across 2 files — saves 14 lines
       FILES: examples/05_llm_semantic_review/main_template.py, examples/06_multilang_validation/main_template.py
-  [4] ○ extract_function   → mcp/server/utils/handle_validate_syntax.py
-      WHY: 3 occurrences of 7-line block across 1 files — saves 14 lines
-      FILES: mcp/server/_tools_vallm.py
   [5] ○ extract_function   → examples/utils/load_config.py
       WHY: 3 occurrences of 5-line block across 3 files — saves 10 lines
       FILES: examples/10_mcp_ollama_demo/legacy_code/order_processor.py, examples/11_claude_code_autonomous/legacy_code/data_processor.py, examples/12_ollama_simple_demo/legacy_code/simple_buggy.py
-  [6] ○ extract_function   → src/vallm/validators/utils/create_validator.py
+  [6] ○ extract_function   → examples/12_ollama_simple_demo/utils/main.py
+      WHY: 3 occurrences of 5-line block across 3 files — saves 10 lines
+      FILES: examples/12_ollama_simple_demo/best_version.py, examples/12_ollama_simple_demo/iteration_1.py, examples/12_ollama_simple_demo/iteration_2.py
+  [7] ○ extract_function   → src/vallm/validators/utils/create_validator.py
       WHY: 2 occurrences of 10-line block across 2 files — saves 10 lines
       FILES: src/vallm/validators/lint.py, src/vallm/validators/logical.py
-  [7] ○ extract_function   → backend/routers/tickets/utils/search_tickets_endpoint.py
+  [8] ○ extract_function   → backend/routers/tickets/utils/search_tickets_endpoint.py
       WHY: 2 occurrences of 9-line block across 1 files — saves 9 lines
       FILES: backend/routers/tickets/crud.py
-  [8] ○ extract_function   → src/vallm/validators/imports/utils/_get_error_message.py
+  [9] ○ extract_function   → src/vallm/validators/imports/utils/_get_error_message.py
       WHY: 4 occurrences of 3-line block across 4 files — saves 9 lines
       FILES: src/vallm/validators/imports/go_imports.py, src/vallm/validators/imports/java_imports.py, src/vallm/validators/imports/javascript_imports.py, src/vallm/validators/imports/rust_imports.py
-  [9] ○ extract_function   → src/vallm/validators/imports/utils/_get_rule_name.py
+  [10] ○ extract_function   → src/vallm/validators/imports/utils/_get_rule_name.py
       WHY: 4 occurrences of 3-line block across 4 files — saves 9 lines
       FILES: src/vallm/validators/imports/go_imports.py, src/vallm/validators/imports/java_imports.py, src/vallm/validators/imports/javascript_imports.py, src/vallm/validators/imports/rust_imports.py
-  [10] ○ extract_function   → examples/utils/log_step.py
+  [11] ○ extract_function   → examples/utils/log_step.py
       WHY: 3 occurrences of 4-line block across 3 files — saves 8 lines
       FILES: examples/10_mcp_ollama_demo/mcp_demo.py, examples/11_claude_code_autonomous/claude_autonomous_demo.py, examples/12_ollama_simple_demo/ollama_simple_demo.py
-  [11] ○ extract_function   → examples/12_ollama_simple_demo/utils/main.py
-      WHY: 3 occurrences of 4-line block across 3 files — saves 8 lines
-      FILES: examples/12_ollama_simple_demo/best_version.py, examples/12_ollama_simple_demo/iteration_1.py, examples/12_ollama_simple_demo/iteration_2.py
   [12] ○ extract_function   → examples/10_mcp_ollama_demo/legacy_code/utils/validate_email_1.py
       WHY: 2 occurrences of 6-line block across 1 files — saves 6 lines
       FILES: examples/10_mcp_ollama_demo/legacy_code/order_processor.py
@@ -129,45 +131,48 @@ REFACTOR[17] (ranked by priority):
   [16] ○ extract_function   → examples/12_ollama_simple_demo/legacy_code/utils/duplicate_function.py
       WHY: 2 occurrences of 3-line block across 1 files — saves 3 lines
       FILES: examples/12_ollama_simple_demo/legacy_code/simple_buggy.py
-  [17] ○ extract_function   → src/vallm/utils/get_default_output_format.py
+  [17] ○ extract_function   → src/vallm/utils/detect_file_language.py
+      WHY: 2 occurrences of 3-line block across 2 files — saves 3 lines
+      FILES: src/vallm/cli/batch_process.py, src/vallm/core/ast_compare.py
+  [18] ○ extract_function   → src/vallm/utils/get_default_output_format.py
       WHY: 2 occurrences of 3-line block across 1 files — saves 3 lines
       FILES: src/vallm/config.py
 
 QUICK_WINS[13] (low risk, high savings — do first):
-  [1] extract_function   saved=52L  → mcp/server/utils/validate_syntax.py
+  [1] extract_function   saved=48L  → mcp/server/utils/validate_syntax.py
       FILES: _tools_vallm.py
-  [2] extract_function   saved=16L  → src/vallm/cli/output_formatters/utils/output_batch_results.py
+  [2] extract_function   saved=18L  → src/vallm/cli/utils/should_exclude_file.py
+      FILES: batch_filter.py, batch_processor_filter.py
+  [3] extract_function   saved=16L  → src/vallm/cli/output_formatters/utils/output_batch_results.py
       FILES: __init__.py, batch.py
-  [3] extract_function   saved=14L  → examples/utils/main.py
+  [4] extract_function   saved=14L  → examples/utils/main.py
       FILES: main_template.py, main_template.py
-  [4] extract_function   saved=14L  → mcp/server/utils/handle_validate_syntax.py
-      FILES: _tools_vallm.py
   [5] extract_function   saved=10L  → examples/utils/load_config.py
       FILES: order_processor.py, data_processor.py, simple_buggy.py
-  [6] extract_function   saved=10L  → src/vallm/validators/utils/create_validator.py
+  [6] extract_function   saved=10L  → examples/12_ollama_simple_demo/utils/main.py
+      FILES: best_version.py, iteration_1.py, iteration_2.py
+  [7] extract_function   saved=10L  → src/vallm/validators/utils/create_validator.py
       FILES: lint.py, logical.py
-  [7] extract_function   saved=9L  → backend/routers/tickets/utils/search_tickets_endpoint.py
+  [8] extract_function   saved=9L  → backend/routers/tickets/utils/search_tickets_endpoint.py
       FILES: crud.py
-  [8] extract_function   saved=9L  → src/vallm/validators/imports/utils/_get_error_message.py
+  [9] extract_function   saved=9L  → src/vallm/validators/imports/utils/_get_error_message.py
       FILES: go_imports.py, java_imports.py, javascript_imports.py +1
-  [9] extract_function   saved=9L  → src/vallm/validators/imports/utils/_get_rule_name.py
+  [10] extract_function   saved=9L  → src/vallm/validators/imports/utils/_get_rule_name.py
       FILES: go_imports.py, java_imports.py, javascript_imports.py +1
-  [10] extract_function   saved=8L  → examples/utils/log_step.py
-      FILES: mcp_demo.py, claude_autonomous_demo.py, ollama_simple_demo.py
 
-EFFORT_ESTIMATE (total ≈ 6.1h):
-  hard   validate_syntax                     saved=52L  ~104min
+EFFORT_ESTIMATE (total ≈ 6.3h):
+  hard   validate_syntax                     saved=48L  ~96min
+  medium should_exclude_file                 saved=18L  ~36min
   medium output_batch_results                saved=16L  ~32min
   easy   main                                saved=14L  ~28min
-  easy   handle_validate_syntax              saved=14L  ~28min
   easy   load_config                         saved=10L  ~20min
+  easy   main                                saved=10L  ~20min
   easy   create_validator                    saved=10L  ~20min
   easy   search_tickets_endpoint             saved=9L  ~18min
   easy   _get_error_message                  saved=9L  ~18min
   easy   _get_rule_name                      saved=9L  ~18min
-  easy   log_step                            saved=8L  ~16min
-  ... +7 more (~64min)
+  ... +8 more (~70min)
 
 METRICS-TARGET:
-  dup_groups:  17 → 0
-  saved_lines: 183 lines recoverable
+  dup_groups:  18 → 0
+  saved_lines: 188 lines recoverable

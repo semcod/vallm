@@ -8,6 +8,8 @@ from typing import Optional
 
 from tree_sitter_language_pack import get_parser
 
+from vallm.core.tree_sitter_compat import node_children, node_is_error, node_is_missing, node_kind, tree_root
+
 
 @lru_cache(maxsize=128)
 def _cached_get_parser(language: str):
@@ -18,7 +20,7 @@ def _cached_get_parser(language: str):
 def parse_code(code: str, language: str = "python"):
     """Parse code using tree-sitter and return the tree."""
     parser = _cached_get_parser(language)
-    return parser.parse(code.encode("utf-8"))
+    return parser.parse(code)
 
 
 def parse_python_ast(code: str) -> Optional[ast.AST]:
@@ -93,10 +95,10 @@ def tree_sitter_node_count(code: str, language: str = "python") -> int:
     def _walk(node):
         nonlocal count
         count += 1
-        for child in node.children:
+        for child in node_children(node):
             _walk(child)
 
-    _walk(tree.root_node)
+    _walk(tree_root(tree))
     return count
 
 
@@ -107,12 +109,12 @@ def tree_sitter_error_count(code: str, language: str = "python") -> int:
 
     def _walk(node):
         nonlocal errors
-        if node.type == "ERROR" or node.is_missing:
+        if node_is_error(node) or node_is_missing(node):
             errors += 1
-        for child in node.children:
+        for child in node_children(node):
             _walk(child)
 
-    _walk(tree.root_node)
+    _walk(tree_root(tree))
     return errors
 
 
@@ -125,15 +127,15 @@ def structural_diff_summary(code1: str, code2: str, language: str = "python") ->
         types = []
 
         def _walk(n):
-            types.append(n.type)
-            for child in n.children:
+            types.append(node_kind(n))
+            for child in node_children(n):
                 _walk(child)
 
         _walk(node)
         return types
 
-    types1 = _collect_types(tree1.root_node)
-    types2 = _collect_types(tree2.root_node)
+    types1 = _collect_types(tree_root(tree1))
+    types2 = _collect_types(tree_root(tree2))
 
     set1, set2 = set(types1), set(types2)
     return {

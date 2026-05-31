@@ -1,25 +1,26 @@
 flowchart TD
+%% generated in 0.03s
 
     %% Entry points (blue)
     classDef entry fill:#4dabf7,stroke:#1971c2,color:#fff
 
     subgraph Core
-        src__vallm__hookspecs__VallmSpec__validate_proposal["validate_proposal"]
-        src__vallm__hookspecs__VallmSpec__get_validator_name["get_validator_name"]
-        src__vallm__hookspecs__VallmSpec__get_validator_tier["get_validator_tier"]
-        src__vallm__validators__file_cache__FileValidationCache___key["_key"]
-        src__vallm__validators__file_cache__FileValidationCache__get["get"]
-        src__vallm__validators__file_cache__FileValidationCache__clear["clear"]
-        src__vallm__validators__file_cache__clear_file_cache["clear_file_cache"]
-        src__vallm__validators__logical__LogicalErrorValidator__validate["validate"]
-        src__vallm__validators__logical__LogicalErrorValidator___check_pyflakes["_check_pyflakes"]
-        src__vallm__validators__logical__LogicalErrorValidator___parse_pyflakes_line["_parse_pyflakes_line"]
-        src__vallm__validators__logical__create_validator["create_validator"]
-        src__vallm__validators__complexity__ComplexityValidator__validate["validate"]
-        src__vallm__validators__complexity__ComplexityValidator___check_python_complexity["_check_python_complexity"]
-        src__vallm__validators__complexity__ComplexityValidator___check_lizard["_check_lizard"]
-        src__vallm__validators__regression__RegressionValidator__validate["validate"]
-        ...["+201 more"]
+        frontend__src__hooks__useRedslHealth__useRedslHealth["useRedslHealth"]
+        frontend__src__hooks__useRedslHealth__handleRefactor["handleRefactor"]
+        frontend__src__hooks__useRedslHealth__result["result"]
+        frontend__src__hooks__useRedslHealth__h["h"]
+        frontend__src__components__RedslHealthCard__RedslHealthCard["RedslHealthCard"]
+        frontend__e2e__gui_login_enhanced__spec__res["res"]
+        frontend__e2e__gui_login_enhanced__spec__result["result"]
+        frontend__e2e__gui_login_enhanced__spec__loginElement["loginElement"]
+        frontend__e2e__gui_login_enhanced__spec__currentUrl["currentUrl"]
+        frontend__e2e__gui_login_enhanced__spec__isLoggedIn["isLoggedIn"]
+        frontend__e2e__loginTestHelpers__FRONTEND_URL["FRONTEND_URL"]
+        frontend__e2e__loginTestHelpers__MOCK_GITHUB_URL["MOCK_GITHUB_URL"]
+        frontend__e2e__loginTestHelpers__element["element"]
+        frontend__e2e__loginTestHelpers__testOAuthFlow["testOAuthFlow"]
+        frontend__e2e__loginTestHelpers__loginClicked["loginClicked"]
+        ...["+221 more"]
     end
 
-    class src__vallm__hookspecs__VallmSpec__validate_proposal,src__vallm__hookspecs__VallmSpec__get_validator_name,src__vallm__hookspecs__VallmSpec__get_validator_tier,src__vallm__validators__file_cache__FileValidationCache___key,src__vallm__validators__file_cache__FileValidationCache__get,src__vallm__validators__file_cache__FileValidationCache__clear,src__vallm__validators__file_cache__clear_file_cache,src__vallm__validators__logical__LogicalErrorValidator__validate,src__vallm__validators__logical__LogicalErrorValidator___check_pyflakes,src__vallm__validators__logical__LogicalErrorValidator___parse_pyflakes_line entry
+    class frontend__src__hooks__useRedslHealth__useRedslHealth,frontend__src__hooks__useRedslHealth__handleRefactor,frontend__src__hooks__useRedslHealth__result,frontend__src__hooks__useRedslHealth__h,frontend__src__components__RedslHealthCard__RedslHealthCard,frontend__e2e__gui_login_enhanced__spec__res,frontend__e2e__gui_login_enhanced__spec__result,frontend__e2e__gui_login_enhanced__spec__loginElement,frontend__e2e__gui_login_enhanced__spec__currentUrl,frontend__e2e__gui_login_enhanced__spec__isLoggedIn entry

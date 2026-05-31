@@ -1,0 +1,3665 @@
+project: /home/tom/github/semcod/vallm
+generated_from: code2llm call graph analysis
+stats:
+  total_nodes: 270
+  total_edges: 372
+  modules_count: 81
+nodes:
+  src.vallm.validators.imports.python_imports._collect_guarded_lines:
+    name: _collect_guarded_lines
+    module: src.vallm.validators.imports.python_imports
+    line: 14
+    cyclomatic_complexity: 14
+    calls_out: 11
+    calls_in: 1
+  examples.utils.run_validation_examples:
+    name: run_validation_examples
+    module: examples.utils
+    line: 47
+    cyclomatic_complexity: 12
+    calls_out: 40
+    calls_in: 3
+  src.vallm.validators.imports.utils._is_gitignored:
+    name: _is_gitignored
+    module: src.vallm.validators.imports.utils
+    line: 13
+    cyclomatic_complexity: 4
+    calls_out: 2
+    calls_in: 2
+  src.vallm.cli.batch_processor_patterns.matches_include_pattern:
+    name: matches_include_pattern
+    module: src.vallm.cli.batch_processor_patterns
+    line: 138
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 1
+  src.vallm.scoring._initialize_context:
+    name: _initialize_context
+    module: src.vallm.scoring
+    line: 154
+    cyclomatic_complexity: 2
+    calls_out: 0
+    calls_in: 1
+  examples.09_code2logic_integration.main.analyze_with_code2logic:
+    name: analyze_with_code2logic
+    module: examples.09_code2logic_integration.main
+    line: 86
+    cyclomatic_complexity: 5
+    calls_out: 17
+    calls_in: 1
+  examples.12_ollama_simple_demo.ollama_simple_demo.log_section:
+    name: log_section
+    module: examples.12_ollama_simple_demo.ollama_simple_demo
+    line: 28
+    cyclomatic_complexity: 1
+    calls_out: 4
+    calls_in: 5
+  examples.12_ollama_simple_demo.iteration_2.main:
+    name: main
+    module: examples.12_ollama_simple_demo.iteration_2
+    line: 10
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 0
+  examples.02_ast_comparison.main.main:
+    name: main
+    module: examples.02_ast_comparison.main
+    line: 56
+    cyclomatic_complexity: 2
+    calls_out: 31
+    calls_in: 0
+  examples.12_ollama_simple_demo.iteration_1.main:
+    name: main
+    module: examples.12_ollama_simple_demo.iteration_1
+    line: 10
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 0
+  examples.12_ollama_simple_demo.ollama_simple_demo.validate_with_vallm:
+    name: validate_with_vallm
+    module: examples.12_ollama_simple_demo.ollama_simple_demo
+    line: 103
+    cyclomatic_complexity: 4
+    calls_out: 10
+    calls_in: 1
+  backend.routers.tickets.crud.create_new_ticket:
+    name: create_new_ticket
+    module: backend.routers.tickets.crud
+    line: 35
+    cyclomatic_complexity: 1
+    calls_out: 6
+    calls_in: 0
+  mcp.server._tools_vallm.validate_syntax:
+    name: validate_syntax
+    module: mcp.server._tools_vallm
+    line: 172
+    cyclomatic_complexity: 2
+    calls_out: 5
+    calls_in: 3
+  src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.extract_imports:
+    name: extract_imports
+    module: src.vallm.validators.imports.javascript_imports
+    line: 76
+    cyclomatic_complexity: 4
+    calls_out: 19
+    calls_in: 0
+  examples.09_code2logic_integration.main.validate_with_vallm:
+    name: validate_with_vallm
+    module: examples.09_code2logic_integration.main
+    line: 123
+    cyclomatic_complexity: 6
+    calls_out: 12
+    calls_in: 1
+  examples.09_code2logic_integration.main.generate_report:
+    name: generate_report
+    module: examples.09_code2logic_integration.main
+    line: 182
+    cyclomatic_complexity: 10
+    calls_out: 17
+    calls_in: 1
+  examples.14_api_advanced.main.main:
+    name: main
+    module: examples.14_api_advanced.main
+    line: 207
+    cyclomatic_complexity: 1
+    calls_out: 15
+    calls_in: 0
+  src.vallm.cli.output_formatters.base.output_validate_result:
+    name: output_validate_result
+    module: src.vallm.cli.output_formatters.base
+    line: 11
+    cyclomatic_complexity: 3
+    calls_out: 3
+    calls_in: 2
+  src.vallm.cli.output_formatters.batch.output_batch_empty:
+    name: output_batch_empty
+    module: src.vallm.cli.output_formatters.batch
+    line: 62
+    cyclomatic_complexity: 4
+    calls_out: 15
+    calls_in: 0
+  src.vallm.cli.batch_filter.should_exclude_file:
+    name: should_exclude_file
+    module: src.vallm.cli.batch_filter
+    line: 29
+    cyclomatic_complexity: 10
+    calls_out: 8
+    calls_in: 1
+  src.vallm.cli.output_formatters.batch._toon_row:
+    name: _toon_row
+    module: src.vallm.cli.output_formatters.batch
+    line: 83
+    cyclomatic_complexity: 3
+    calls_out: 5
+    calls_in: 3
+  frontend.e2e.loginTestHelpers.attemptUserLogin:
+    name: attemptUserLogin
+    module: frontend.e2e.loginTestHelpers
+    line: 45
+    cyclomatic_complexity: 4
+    calls_out: 4
+    calls_in: 1
+  examples.utils.logging_utils.log_section:
+    name: log_section
+    module: examples.utils.logging_utils
+    line: 22
+    cyclomatic_complexity: 1
+    calls_out: 4
+    calls_in: 0
+  examples.utils.logging_utils.log_code:
+    name: log_code
+    module: examples.utils.logging_utils
+    line: 45
+    cyclomatic_complexity: 2
+    calls_out: 8
+    calls_in: 0
+  examples.10_mcp_ollama_demo.legacy_code.order_processor.OrderManager.process_payment:
+    name: process_payment
+    module: examples.10_mcp_ollama_demo.legacy_code.order_processor
+    line: 84
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 0
+  examples.08_code2llm_integration.main.main:
+    name: main
+    module: examples.08_code2llm_integration.main
+    line: 229
+    cyclomatic_complexity: 2
+    calls_out: 13
+    calls_in: 0
+  src.vallm.cli.output_formatters.batch.output_batch_json:
+    name: output_batch_json
+    module: src.vallm.cli.output_formatters.batch
+    line: 225
+    cyclomatic_complexity: 2
+    calls_out: 7
+    calls_in: 3
+  src.vallm.core.graph_diff.diff_graphs:
+    name: diff_graphs
+    module: src.vallm.core.graph_diff
+    line: 49
+    cyclomatic_complexity: 5
+    calls_out: 11
+    calls_in: 1
+  examples.11_claude_code_autonomous.legacy_code.data_processor.main:
+    name: main
+    module: examples.11_claude_code_autonomous.legacy_code.data_processor
+    line: 195
+    cyclomatic_complexity: 1
+    calls_out: 12
+    calls_in: 0
+  src.vallm.cli.output_formatters.batch.build_results_table:
+    name: build_results_table
+    module: src.vallm.cli.output_formatters.batch
+    line: 334
+    cyclomatic_complexity: 6
+    calls_out: 12
+    calls_in: 1
+  examples.12_ollama_simple_demo.legacy_code.simple_buggy.save_data:
+    name: save_data
+    module: examples.12_ollama_simple_demo.legacy_code.simple_buggy
+    line: 37
+    cyclomatic_complexity: 1
+    calls_out: 3
+    calls_in: 2
+  examples.12_ollama_simple_demo.utils.main.run_demo_main:
+    name: run_demo_main
+    module: examples.12_ollama_simple_demo.utils.main
+    line: 6
+    cyclomatic_complexity: 1
+    calls_out: 7
+    calls_in: 3
+  src.vallm.core.gitignore.should_exclude:
+    name: should_exclude
+    module: src.vallm.core.gitignore
+    line: 242
+    cyclomatic_complexity: 4
+    calls_out: 3
+    calls_in: 0
+  examples.13_batch_processing.main._display_results:
+    name: _display_results
+    module: examples.13_batch_processing.main
+    line: 80
+    cyclomatic_complexity: 5
+    calls_out: 12
+    calls_in: 1
+  src.vallm.cli.output_formatters.utils.build_files_data:
+    name: build_files_data
+    module: src.vallm.cli.output_formatters.utils
+    line: 9
+    cyclomatic_complexity: 1
+    calls_out: 0
+    calls_in: 3
+  frontend.e2e.loginTestHelpers.testOAuthFlow:
+    name: testOAuthFlow
+    module: frontend.e2e.loginTestHelpers
+    line: 73
+    cyclomatic_complexity: 3
+    calls_out: 9
+    calls_in: 0
+  examples.09_code2logic_integration.main.main:
+    name: main
+    module: examples.09_code2logic_integration.main
+    line: 252
+    cyclomatic_complexity: 2
+    calls_out: 18
+    calls_in: 0
+  examples.09_code2logic_integration.main.visualize_flow:
+    name: visualize_flow
+    module: examples.09_code2logic_integration.main
+    line: 234
+    cyclomatic_complexity: 3
+    calls_out: 5
+    calls_in: 1
+  examples.11_claude_code_autonomous.claude_autonomous_demo.create_basic_tests:
+    name: create_basic_tests
+    module: examples.11_claude_code_autonomous.claude_autonomous_demo
+    line: 314
+    cyclomatic_complexity: 7
+    calls_out: 17
+    calls_in: 1
+  mcp.server.self_server.handle_tools_list:
+    name: handle_tools_list
+    module: mcp.server.self_server
+    line: 56
+    cyclomatic_complexity: 2
+    calls_out: 2
+    calls_in: 1
+  examples.14_api_advanced.main.demo_settings_customization:
+    name: demo_settings_customization
+    module: examples.14_api_advanced.main
+    line: 42
+    cyclomatic_complexity: 1
+    calls_out: 12
+    calls_in: 1
+  src.vallm.cli.output_formatters.batch.output_batch_results:
+    name: output_batch_results
+    module: src.vallm.cli.output_formatters.batch
+    line: 44
+    cyclomatic_complexity: 4
+    calls_out: 4
+    calls_in: 0
+  mcp.server._tools_vallm.validate_imports:
+    name: validate_imports
+    module: mcp.server._tools_vallm
+    line: 198
+    cyclomatic_complexity: 2
+    calls_out: 5
+    calls_in: 0
+  src.vallm.validators.imports.go_imports.GoImportValidator.extract_imports:
+    name: extract_imports
+    module: src.vallm.validators.imports.go_imports
+    line: 72
+    cyclomatic_complexity: 3
+    calls_out: 18
+    calls_in: 0
+  examples.mcp_demo.example_syntax_validation:
+    name: example_syntax_validation
+    module: examples.mcp_demo
+    line: 21
+    cyclomatic_complexity: 2
+    calls_out: 11
+    calls_in: 1
+  examples.08_code2llm_integration.main.validate_with_vallm:
+    name: validate_with_vallm
+    module: examples.08_code2llm_integration.main
+    line: 131
+    cyclomatic_complexity: 6
+    calls_out: 16
+    calls_in: 1
+  src.vallm.cli.output_formatters.batch.print_summary_header:
+    name: print_summary_header
+    module: src.vallm.cli.output_formatters.batch
+    line: 327
+    cyclomatic_complexity: 1
+    calls_out: 3
+    calls_in: 1
+  examples.01_basic_validation.main.main:
+    name: main
+    module: examples.01_basic_validation.main
+    line: 55
+    cyclomatic_complexity: 2
+    calls_out: 7
+    calls_in: 0
+  src.vallm.cli.output_formatters.batch.output_batch_yaml:
+    name: output_batch_yaml
+    module: src.vallm.cli.output_formatters.batch
+    line: 249
+    cyclomatic_complexity: 10
+    calls_out: 29
+    calls_in: 2
+  examples.15_cli_usage.main.demo_check_command:
+    name: demo_check_command
+    module: examples.15_cli_usage.main
+    line: 168
+    cyclomatic_complexity: 1
+    calls_out: 18
+    calls_in: 1
+  examples.15_cli_usage.main.demo_single_file_validation:
+    name: demo_single_file_validation
+    module: examples.15_cli_usage.main
+    line: 17
+    cyclomatic_complexity: 3
+    calls_out: 16
+    calls_in: 1
+  src.vallm.cli.output_formatters.batch._ordered_unsupported_items:
+    name: _ordered_unsupported_items
+    module: src.vallm.cli.output_formatters.batch
+    line: 107
+    cyclomatic_complexity: 6
+    calls_out: 4
+    calls_in: 1
+  examples.07_multi_language.main.save_results:
+    name: save_results
+    module: examples.07_multi_language.main
+    line: 247
+    cyclomatic_complexity: 1
+    calls_out: 5
+    calls_in: 1
+  src.vallm.validators.file_cache.get_file_cache:
+    name: get_file_cache
+    module: src.vallm.validators.file_cache
+    line: 71
+    cyclomatic_complexity: 2
+    calls_out: 1
+    calls_in: 1
+  examples.15_cli_usage.main.demo_programmatic_cli:
+    name: demo_programmatic_cli
+    module: examples.15_cli_usage.main
+    line: 124
+    cyclomatic_complexity: 8
+    calls_out: 20
+    calls_in: 1
+  src.vallm.config.get_default_filenames:
+    name: get_default_filenames
+    module: src.vallm.config
+    line: 116
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 1
+  examples.15_cli_usage.main.demo_batch_validation:
+    name: demo_batch_validation
+    module: examples.15_cli_usage.main
+    line: 61
+    cyclomatic_complexity: 2
+    calls_out: 20
+    calls_in: 1
+  src.vallm.validators.imports.c_imports.CImportValidator.extract_imports:
+    name: extract_imports
+    module: src.vallm.validators.imports.c_imports
+    line: 38
+    cyclomatic_complexity: 2
+    calls_out: 11
+    calls_in: 0
+  src.vallm.cli.command_handlers.check_command:
+    name: check_command
+    module: src.vallm.cli.command_handlers
+    line: 74
+    cyclomatic_complexity: 1
+    calls_out: 11
+    calls_in: 0
+  examples.11_claude_code_autonomous.claude_autonomous_demo.run_autonomous_workflow:
+    name: run_autonomous_workflow
+    module: examples.11_claude_code_autonomous.claude_autonomous_demo
+    line: 518
+    cyclomatic_complexity: 9
+    calls_out: 42
+    calls_in: 1
+  backend.routers.tickets.crud.get_stats:
+    name: get_stats
+    module: backend.routers.tickets.crud
+    line: 79
+    cyclomatic_complexity: 1
+    calls_out: 6
+    calls_in: 0
+  frontend.e2e.loginTestHelpers.attemptLogin:
+    name: attemptLogin
+    module: frontend.e2e.loginTestHelpers
+    line: 30
+    cyclomatic_complexity: 4
+    calls_out: 4
+    calls_in: 1
+  examples.13_batch_processing.main._save_and_cleanup:
+    name: _save_and_cleanup
+    module: examples.13_batch_processing.main
+    line: 110
+    cyclomatic_complexity: 2
+    calls_out: 5
+    calls_in: 1
+  src.vallm.cli.command_handlers._detect_and_log_language:
+    name: _detect_and_log_language
+    module: src.vallm.cli.command_handlers
+    line: 262
+    cyclomatic_complexity: 3
+    calls_out: 5
+    calls_in: 2
+  examples.12_ollama_simple_demo.utils.calculate_total.calculate_total:
+    name: calculate_total
+    module: examples.12_ollama_simple_demo.utils.calculate_total
+    line: 8
+    cyclomatic_complexity: 3
+    calls_out: 5
+    calls_in: 0
+  examples.10_mcp_ollama_demo.refactored_output.load_config:
+    name: load_config
+    module: examples.10_mcp_ollama_demo.refactored_output
+    line: 77
+    cyclomatic_complexity: 1
+    calls_out: 3
+    calls_in: 1
+  src.vallm.cli.batch_processor_impl.BatchProcessor._load_gitignore_parser:
+    name: _load_gitignore_parser
+    module: src.vallm.cli.batch_processor_impl
+    line: 87
+    cyclomatic_complexity: 3
+    calls_out: 4
+    calls_in: 0
+  examples.11_claude_code_autonomous.legacy_code.data_processor.init_database:
+    name: init_database
+    module: examples.11_claude_code_autonomous.legacy_code.data_processor
+    line: 24
+    cyclomatic_complexity: 1
+    calls_out: 4
+    calls_in: 1
+  examples.16_configuration.main.demo_environment_variables:
+    name: demo_environment_variables
+    module: examples.16_configuration.main
+    line: 57
+    cyclomatic_complexity: 4
+    calls_out: 21
+    calls_in: 1
+  examples.10_mcp_ollama_demo.refactored_output.RefactoredOrderManager.process_payment:
+    name: process_payment
+    module: examples.10_mcp_ollama_demo.refactored_output
+    line: 35
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 0
+  src.vallm.cli.batch_processor_impl.BatchProcessor._build_file_list:
+    name: _build_file_list
+    module: src.vallm.cli.batch_processor_impl
+    line: 99
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 0
+  mcp.server.self_server.main:
+    name: main
+    module: mcp.server.self_server
+    line: 121
+    cyclomatic_complexity: 6
+    calls_out: 14
+    calls_in: 0
+  src.vallm.core.ast_compare.tree_sitter_node_count:
+    name: tree_sitter_node_count
+    module: src.vallm.core.ast_compare
+    line: 88
+    cyclomatic_complexity: 1
+    calls_out: 3
+    calls_in: 1
+  examples.utils.validation_runner.run_validation_examples:
+    name: run_validation_examples
+    module: examples.utils.validation_runner
+    line: 12
+    cyclomatic_complexity: 12
+    calls_out: 40
+    calls_in: 0
+  examples.08_code2llm_integration.main.create_sample_project:
+    name: create_sample_project
+    module: examples.08_code2llm_integration.main
+    line: 74
+    cyclomatic_complexity: 2
+    calls_out: 4
+    calls_in: 1
+  src.vallm.validators.imports.utils._should_skip_entry:
+    name: _should_skip_entry
+    module: src.vallm.validators.imports.utils
+    line: 36
+    cyclomatic_complexity: 3
+    calls_out: 2
+    calls_in: 2
+  mcp.server.self_server.handle_initialize:
+    name: handle_initialize
+    module: mcp.server.self_server
+    line: 43
+    cyclomatic_complexity: 1
+    calls_out: 0
+    calls_in: 1
+  src.vallm.validators.imports.rust_imports.RustImportValidator.extract_imports:
+    name: extract_imports
+    module: src.vallm.validators.imports.rust_imports
+    line: 61
+    cyclomatic_complexity: 3
+    calls_out: 16
+    calls_in: 0
+  src.vallm.cli.output_formatters.utils.build_failed_files_data:
+    name: build_failed_files_data
+    module: src.vallm.cli.output_formatters.utils
+    line: 14
+    cyclomatic_complexity: 2
+    calls_out: 2
+    calls_in: 2
+  src.vallm.cli.batch_process.read_file_text:
+    name: read_file_text
+    module: src.vallm.cli.batch_process
+    line: 28
+    cyclomatic_complexity: 2
+    calls_out: 1
+    calls_in: 1
+  examples.15_cli_usage.main.main:
+    name: main
+    module: examples.15_cli_usage.main
+    line: 200
+    cyclomatic_complexity: 1
+    calls_out: 19
+    calls_in: 0
+  mcp.server._tools_vallm.compute_overall_score_and_verdict:
+    name: compute_overall_score_and_verdict
+    module: mcp.server._tools_vallm
+    line: 159
+    cyclomatic_complexity: 6
+    calls_out: 4
+    calls_in: 1
+  src.vallm.core.ast_compare.python_ast_similarity:
+    name: python_ast_similarity
+    module: src.vallm.core.ast_compare
+    line: 65
+    cyclomatic_complexity: 4
+    calls_out: 6
+    calls_in: 3
+  src.vallm.validators.semantic.SemanticValidator.__init__:
+    name: __init__
+    module: src.vallm.validators.semantic
+    line: 52
+    cyclomatic_complexity: 2
+    calls_out: 2
+    calls_in: 0
+  src.vallm.scoring.validate:
+    name: validate
+    module: src.vallm.scoring
+    line: 124
+    cyclomatic_complexity: 1
+    calls_out: 5
+    calls_in: 0
+  examples.16_configuration.main.demo_config_file:
+    name: demo_config_file
+    module: examples.16_configuration.main
+    line: 11
+    cyclomatic_complexity: 1
+    calls_out: 19
+    calls_in: 1
+  src.vallm.cli.command_handlers.info_command:
+    name: info_command
+    module: src.vallm.cli.command_handlers
+    line: 203
+    cyclomatic_complexity: 4
+    calls_out: 13
+    calls_in: 0
+  src.vallm.cli.command_handlers._show_general_info:
+    name: _show_general_info
+    module: src.vallm.cli.command_handlers
+    line: 336
+    cyclomatic_complexity: 3
+    calls_out: 20
+    calls_in: 1
+  src.vallm.core.graph_diff.diff_python_code:
+    name: diff_python_code
+    module: src.vallm.core.graph_diff
+    line: 74
+    cyclomatic_complexity: 1
+    calls_out: 3
+    calls_in: 1
+  mcp.server._tools_vallm._run_validators:
+    name: _run_validators
+    module: mcp.server._tools_vallm
+    line: 47
+    cyclomatic_complexity: 8
+    calls_out: 13
+    calls_in: 1
+  examples.11_claude_code_autonomous.claude_autonomous_demo.main:
+    name: main
+    module: examples.11_claude_code_autonomous.claude_autonomous_demo
+    line: 625
+    cyclomatic_complexity: 4
+    calls_out: 34
+    calls_in: 0
+  src.vallm.cli.output_formatters.batch._unsupported_bucket:
+    name: _unsupported_bucket
+    module: src.vallm.cli.output_formatters.batch
+    line: 122
+    cyclomatic_complexity: 6
+    calls_out: 7
+    calls_in: 1
+  examples.09_code2logic_integration.main.build_call_graph:
+    name: build_call_graph
+    module: examples.09_code2logic_integration.main
+    line: 161
+    cyclomatic_complexity: 3
+    calls_out: 10
+    calls_in: 1
+  mcp.server._tools_vallm._format_issue:
+    name: _format_issue
+    module: mcp.server._tools_vallm
+    line: 27
+    cyclomatic_complexity: 1
+    calls_out: 0
+    calls_in: 3
+  src.vallm.cli.batch_processor_filter.parse_filter_patterns:
+    name: parse_filter_patterns
+    module: src.vallm.cli.batch_processor_filter
+    line: 8
+    cyclomatic_complexity: 3
+    calls_out: 6
+    calls_in: 0
+  examples.16_configuration.main.demo_runtime_configuration:
+    name: demo_runtime_configuration
+    module: examples.16_configuration.main
+    line: 100
+    cyclomatic_complexity: 1
+    calls_out: 14
+    calls_in: 1
+  mcp.server._tools_vallm.validate_security:
+    name: validate_security
+    module: mcp.server._tools_vallm
+    line: 224
+    cyclomatic_complexity: 2
+    calls_out: 5
+    calls_in: 2
+  examples.13_batch_processing.main.main:
+    name: main
+    module: examples.13_batch_processing.main
+    line: 125
+    cyclomatic_complexity: 1
+    calls_out: 11
+    calls_in: 0
+  src.vallm.cli.output_formatters.shared.build_failed_files_data:
+    name: build_failed_files_data
+    module: src.vallm.cli.output_formatters.shared
+    line: 51
+    cyclomatic_complexity: 2
+    calls_out: 2
+    calls_in: 0
+  scripts.bump_version.main:
+    name: main
+    module: scripts.bump_version
+    line: 36
+    cyclomatic_complexity: 5
+    calls_out: 18
+    calls_in: 0
+  src.vallm.config.get_default_language:
+    name: get_default_language
+    module: src.vallm.config
+    line: 132
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 1
+  src.vallm.scoring._get_default_validators:
+    name: _get_default_validators
+    module: src.vallm.scoring
+    line: 185
+    cyclomatic_complexity: 7
+    calls_out: 13
+    calls_in: 1
+  examples.11_claude_code_autonomous.claude_autonomous_demo.log_code:
+    name: log_code
+    module: examples.11_claude_code_autonomous.claude_autonomous_demo
+    line: 62
+    cyclomatic_complexity: 2
+    calls_out: 7
+    calls_in: 2
+  src.vallm.cli.batch_filter.parse_filter_patterns:
+    name: parse_filter_patterns
+    module: src.vallm.cli.batch_filter
+    line: 13
+    cyclomatic_complexity: 3
+    calls_out: 6
+    calls_in: 1
+  src.vallm.core.languages.get_language_for_validation:
+    name: get_language_for_validation
+    module: src.vallm.core.languages
+    line: 227
+    cyclomatic_complexity: 4
+    calls_out: 2
+    calls_in: 0
+  examples.07_multi_language.main.validate_single_language:
+    name: validate_single_language
+    module: examples.07_multi_language.main
+    line: 190
+    cyclomatic_complexity: 1
+    calls_out: 3
+    calls_in: 2
+  examples.08_code2llm_integration.main.analyze_with_code2llm:
+    name: analyze_with_code2llm
+    module: examples.08_code2llm_integration.main
+    line: 90
+    cyclomatic_complexity: 8
+    calls_out: 13
+    calls_in: 1
+  src.vallm.cli.batch_filter.filter_files:
+    name: filter_files
+    module: src.vallm.cli.batch_filter
+    line: 73
+    cyclomatic_complexity: 11
+    calls_out: 9
+    calls_in: 0
+  src.vallm.scoring._run_validation_pipeline:
+    name: _run_validation_pipeline
+    module: src.vallm.scoring
+    line: 169
+    cyclomatic_complexity: 4
+    calls_out: 2
+    calls_in: 1
+  examples.03_security_check.main.main:
+    name: main
+    module: examples.03_security_check.main
+    line: 67
+    cyclomatic_complexity: 5
+    calls_out: 29
+    calls_in: 0
+  examples.10_mcp_ollama_demo.refactored_output.process_order:
+    name: process_order
+    module: examples.10_mcp_ollama_demo.refactored_output
+    line: 89
+    cyclomatic_complexity: 9
+    calls_out: 0
+    calls_in: 1
+  src.vallm.cli.batch_processor_patterns.matches_pattern:
+    name: matches_pattern
+    module: src.vallm.cli.batch_processor_patterns
+    line: 120
+    cyclomatic_complexity: 5
+    calls_out: 1
+    calls_in: 2
+  src.vallm.cli.batch_processor_impl.BatchProcessor.process_batch:
+    name: process_batch
+    module: src.vallm.cli.batch_processor_impl
+    line: 28
+    cyclomatic_complexity: 2
+    calls_out: 6
+    calls_in: 0
+  src.vallm.cli.batch_processor_patterns._compile_patterns:
+    name: _compile_patterns
+    module: src.vallm.cli.batch_processor_patterns
+    line: 22
+    cyclomatic_complexity: 6
+    calls_out: 12
+    calls_in: 6
+  mcp.server._tools_vallm._build_validator_response:
+    name: _build_validator_response
+    module: mcp.server._tools_vallm
+    line: 123
+    cyclomatic_complexity: 5
+    calls_out: 1
+    calls_in: 3
+  src.vallm.validators.syntax.SyntaxValidator._validate_treesitter:
+    name: _validate_treesitter
+    module: src.vallm.validators.syntax
+    line: 73
+    cyclomatic_complexity: 3
+    calls_out: 5
+    calls_in: 0
+  src.vallm.cli.batch_process.show_progress:
+    name: show_progress
+    module: src.vallm.cli.batch_process
+    line: 41
+    cyclomatic_complexity: 2
+    calls_out: 1
+    calls_in: 1
+  examples.mcp_demo.main:
+    name: main
+    module: examples.mcp_demo
+    line: 178
+    cyclomatic_complexity: 2
+    calls_out: 14
+    calls_in: 0
+  src.vallm.cli.output_formatters.single.output_json:
+    name: output_json
+    module: src.vallm.cli.output_formatters.single
+    line: 17
+    cyclomatic_complexity: 2
+    calls_out: 2
+    calls_in: 2
+  examples.12_ollama_simple_demo.legacy_code.simple_buggy.process_user_input:
+    name: process_user_input
+    module: examples.12_ollama_simple_demo.legacy_code.simple_buggy
+    line: 13
+    cyclomatic_complexity: 3
+    calls_out: 4
+    calls_in: 1
+  examples.11_claude_code_autonomous.claude_autonomous_demo.validate_with_vallm:
+    name: validate_with_vallm
+    module: examples.11_claude_code_autonomous.claude_autonomous_demo
+    line: 201
+    cyclomatic_complexity: 12
+    calls_out: 8
+    calls_in: 1
+  examples.15_cli_usage.main.run_cli_command:
+    name: run_cli_command
+    module: examples.15_cli_usage.main
+    line: 11
+    cyclomatic_complexity: 1
+    calls_out: 3
+    calls_in: 5
+  examples.11_claude_code_autonomous.claude_autonomous_demo.call_claude_code:
+    name: call_claude_code
+    module: examples.11_claude_code_autonomous.claude_autonomous_demo
+    line: 157
+    cyclomatic_complexity: 4
+    calls_out: 15
+    calls_in: 1
+  src.vallm.core.gitignore.create_default_gitignore_parser:
+    name: create_default_gitignore_parser
+    module: src.vallm.core.gitignore
+    line: 231
+    cyclomatic_complexity: 2
+    calls_out: 4
+    calls_in: 1
+  src.vallm.cli.output_formatters.output_validate_result:
+    name: output_validate_result
+    module: src.vallm.cli.output_formatters
+    line: 29
+    cyclomatic_complexity: 3
+    calls_out: 3
+    calls_in: 0
+  frontend.e2e.loginTestHelpers.checkLoginStatus:
+    name: checkLoginStatus
+    module: frontend.e2e.loginTestHelpers
+    line: 60
+    cyclomatic_complexity: 4
+    calls_out: 2
+    calls_in: 1
+  backend.routers.tickets.crud.get_action_required_tickets:
+    name: get_action_required_tickets
+    module: backend.routers.tickets.crud
+    line: 114
+    cyclomatic_complexity: 2
+    calls_out: 6
+    calls_in: 0
+  src.vallm.validators.imports.python_imports.PythonImportValidator.module_exists:
+    name: module_exists
+    module: src.vallm.validators.imports.python_imports
+    line: 275
+    cyclomatic_complexity: 6
+    calls_out: 4
+    calls_in: 0
+  examples.utils.save_analysis_data:
+    name: save_analysis_data
+    module: examples.utils
+    line: 29
+    cyclomatic_complexity: 1
+    calls_out: 5
+    calls_in: 0
+  src.vallm.scoring._initialize_validators:
+    name: _initialize_validators
+    module: src.vallm.scoring
+    line: 159
+    cyclomatic_complexity: 2
+    calls_out: 2
+    calls_in: 1
+  src.vallm.cli.batch_processor_patterns.filter_files:
+    name: filter_files
+    module: src.vallm.cli.batch_processor_patterns
+    line: 143
+    cyclomatic_complexity: 8
+    calls_out: 6
+    calls_in: 1
+  examples.13_batch_processing.main._build_result_entry:
+    name: _build_result_entry
+    module: examples.13_batch_processing.main
+    line: 70
+    cyclomatic_complexity: 2
+    calls_out: 1
+    calls_in: 1
+  src.vallm.validators.file_cache.FileValidationCache.set:
+    name: set
+    module: src.vallm.validators.file_cache
+    line: 47
+    cyclomatic_complexity: 2
+    calls_out: 1
+    calls_in: 10
+  scripts.bump_version.bump_version:
+    name: bump_version
+    module: scripts.bump_version
+    line: 12
+    cyclomatic_complexity: 5
+    calls_out: 5
+    calls_in: 1
+  examples.16_configuration.main.demo_threshold_configuration:
+    name: demo_threshold_configuration
+    module: examples.16_configuration.main
+    line: 188
+    cyclomatic_complexity: 3
+    calls_out: 11
+    calls_in: 1
+  examples.11_claude_code_autonomous.claude_autonomous_demo.run_runtime_tests:
+    name: run_runtime_tests
+    module: examples.11_claude_code_autonomous.claude_autonomous_demo
+    line: 260
+    cyclomatic_complexity: 8
+    calls_out: 16
+    calls_in: 1
+  examples.10_mcp_ollama_demo.mcp_demo.log_code:
+    name: log_code
+    module: examples.10_mcp_ollama_demo.mcp_demo
+    line: 57
+    cyclomatic_complexity: 2
+    calls_out: 7
+    calls_in: 3
+  examples.12_ollama_simple_demo.legacy_code.simple_buggy.calculate_total:
+    name: calculate_total
+    module: examples.12_ollama_simple_demo.legacy_code.simple_buggy
+    line: 48
+    cyclomatic_complexity: 2
+    calls_out: 0
+    calls_in: 2
+  examples.11_claude_code_autonomous.legacy_code.data_processor.load_config:
+    name: load_config
+    module: examples.11_claude_code_autonomous.legacy_code.data_processor
+    line: 18
+    cyclomatic_complexity: 1
+    calls_out: 2
+    calls_in: 1
+  src.vallm.core.ast_compare.tree_sitter_error_count:
+    name: tree_sitter_error_count
+    module: src.vallm.core.ast_compare
+    line: 103
+    cyclomatic_complexity: 1
+    calls_out: 3
+    calls_in: 3
+  examples.10_mcp_ollama_demo.mcp_demo.log_step:
+    name: log_step
+    module: examples.10_mcp_ollama_demo.mcp_demo
+    line: 51
+    cyclomatic_complexity: 1
+    calls_out: 2
+    calls_in: 5
+  src.vallm.cli.batch_process.process_single_file:
+    name: process_single_file
+    module: src.vallm.cli.batch_process
+    line: 62
+    cyclomatic_complexity: 4
+    calls_out: 7
+    calls_in: 0
+  mcp.server._tools_vallm._build_pipeline_response:
+    name: _build_pipeline_response
+    module: mcp.server._tools_vallm
+    line: 82
+    cyclomatic_complexity: 12
+    calls_out: 7
+    calls_in: 1
+  src.vallm.cli.batch_processor_patterns.parse_filter_patterns:
+    name: parse_filter_patterns
+    module: src.vallm.cli.batch_processor_patterns
+    line: 105
+    cyclomatic_complexity: 3
+    calls_out: 5
+    calls_in: 1
+  examples.10_mcp_ollama_demo.mcp_demo.generate_refactoring_prompt:
+    name: generate_refactoring_prompt
+    module: examples.10_mcp_ollama_demo.mcp_demo
+    line: 221
+    cyclomatic_complexity: 3
+    calls_out: 3
+    calls_in: 1
+  examples.10_mcp_ollama_demo.mcp_demo.main:
+    name: main
+    module: examples.10_mcp_ollama_demo.mcp_demo
+    line: 367
+    cyclomatic_complexity: 3
+    calls_out: 27
+    calls_in: 0
+  src.vallm.core.ast_compare._cached_get_parser:
+    name: _cached_get_parser
+    module: src.vallm.core.ast_compare
+    line: 13
+    cyclomatic_complexity: 1
+    calls_out: 2
+    calls_in: 4
+  frontend.e2e.gui-login-enhanced.spec.loginElement:
+    name: loginElement
+    module: frontend.e2e.gui-login-enhanced.spec
+    line: 39
+    cyclomatic_complexity: 2
+    calls_out: 3
+    calls_in: 0
+  backend.routers.tickets.crud.update_existing_ticket:
+    name: update_existing_ticket
+    module: backend.routers.tickets.crud
+    line: 144
+    cyclomatic_complexity: 6
+    calls_out: 12
+    calls_in: 0
+  examples.14_api_advanced.main.demo_proposal_creation:
+    name: demo_proposal_creation
+    module: examples.14_api_advanced.main
+    line: 10
+    cyclomatic_complexity: 1
+    calls_out: 10
+    calls_in: 1
+  examples.08_code2llm_integration.main.generate_report:
+    name: generate_report
+    module: examples.08_code2llm_integration.main
+    line: 190
+    cyclomatic_complexity: 6
+    calls_out: 20
+    calls_in: 1
+  src.vallm.cli.batch_processor_files.build_file_list:
+    name: build_file_list
+    module: src.vallm.cli.batch_processor_files
+    line: 8
+    cyclomatic_complexity: 9
+    calls_out: 9
+    calls_in: 1
+  src.vallm.cli.output_formatters.output_batch_results:
+    name: output_batch_results
+    module: src.vallm.cli.output_formatters
+    line: 39
+    cyclomatic_complexity: 4
+    calls_out: 4
+    calls_in: 0
+  examples.12_ollama_simple_demo.ollama_simple_demo.analyze_with_code2llm:
+    name: analyze_with_code2llm
+    module: examples.12_ollama_simple_demo.ollama_simple_demo
+    line: 40
+    cyclomatic_complexity: 6
+    calls_out: 29
+    calls_in: 1
+  examples.10_mcp_ollama_demo.refactored_output.main:
+    name: main
+    module: examples.10_mcp_ollama_demo.refactored_output
+    line: 110
+    cyclomatic_complexity: 1
+    calls_out: 7
+    calls_in: 0
+  backend.routers.tickets.models._get_tenant_for_user:
+    name: _get_tenant_for_user
+    module: backend.routers.tickets.models
+    line: 90
+    cyclomatic_complexity: 4
+    calls_out: 10
+    calls_in: 13
+  examples.14_api_advanced.main.demo_workflow_integration:
+    name: demo_workflow_integration
+    module: examples.14_api_advanced.main
+    line: 147
+    cyclomatic_complexity: 3
+    calls_out: 17
+    calls_in: 1
+  src.vallm.validators.imports.java_imports.JavaImportValidator.extract_imports:
+    name: extract_imports
+    module: src.vallm.validators.imports.java_imports
+    line: 49
+    cyclomatic_complexity: 2
+    calls_out: 7
+    calls_in: 0
+  src.vallm.cli.output_formatters.base.output_batch_results:
+    name: output_batch_results
+    module: src.vallm.cli.output_formatters.base
+    line: 20
+    cyclomatic_complexity: 4
+    calls_out: 3
+    calls_in: 0
+  examples.10_mcp_ollama_demo.legacy_code.order_processor.OrderManager.execute_query:
+    name: execute_query
+    module: examples.10_mcp_ollama_demo.legacy_code.order_processor
+    line: 79
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 0
+  examples.10_mcp_ollama_demo.mcp_demo.validate_with_vallm:
+    name: validate_with_vallm
+    module: examples.10_mcp_ollama_demo.mcp_demo
+    line: 131
+    cyclomatic_complexity: 12
+    calls_out: 8
+    calls_in: 2
+  backend.routers.tickets.webhook.bulk_close_tickets:
+    name: bulk_close_tickets
+    module: backend.routers.tickets.webhook
+    line: 60
+    cyclomatic_complexity: 4
+    calls_out: 7
+    calls_in: 0
+  mcp.server._tools_vallm._build_error_response:
+    name: _build_error_response
+    module: mcp.server._tools_vallm
+    line: 140
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 4
+  examples.utils.print_summary:
+    name: print_summary
+    module: examples.utils
+    line: 212
+    cyclomatic_complexity: 2
+    calls_out: 5
+    calls_in: 0
+  mcp.server._tools_vallm.validate_code:
+    name: validate_code
+    module: mcp.server._tools_vallm
+    line: 251
+    cyclomatic_complexity: 2
+    calls_out: 5
+    calls_in: 3
+  src.vallm.validators.syntax.SyntaxValidator._validate_python:
+    name: _validate_python
+    module: src.vallm.validators.syntax
+    line: 37
+    cyclomatic_complexity: 4
+    calls_out: 7
+    calls_in: 0
+  src.vallm.validators.imports.utils.walk:
+    name: walk
+    module: src.vallm.validators.imports.utils
+    line: 52
+    cyclomatic_complexity: 10
+    calls_out: 9
+    calls_in: 11
+  examples.10_mcp_ollama_demo.mcp_demo.log_section:
+    name: log_section
+    module: examples.10_mcp_ollama_demo.mcp_demo
+    line: 43
+    cyclomatic_complexity: 1
+    calls_out: 4
+    calls_in: 4
+  src.vallm.validators.imports.python_imports.PythonImportValidator.extract_imports:
+    name: extract_imports
+    module: src.vallm.validators.imports.python_imports
+    line: 249
+    cyclomatic_complexity: 9
+    calls_out: 7
+    calls_in: 0
+  src.vallm.cli.output_formatters.shared.format_error_message:
+    name: format_error_message
+    module: src.vallm.cli.output_formatters.shared
+    line: 8
+    cyclomatic_complexity: 3
+    calls_out: 4
+    calls_in: 1
+  src.vallm.validators.semantic_cache.get_semantic_cache:
+    name: get_semantic_cache
+    module: src.vallm.validators.semantic_cache
+    line: 171
+    cyclomatic_complexity: 2
+    calls_out: 1
+    calls_in: 3
+  examples.11_claude_code_autonomous.claude_autonomous_demo.log_step:
+    name: log_step
+    module: examples.11_claude_code_autonomous.claude_autonomous_demo
+    line: 56
+    cyclomatic_complexity: 1
+    calls_out: 2
+    calls_in: 6
+  examples.mcp_demo.example_selective_validation:
+    name: example_selective_validation
+    module: examples.mcp_demo
+    line: 136
+    cyclomatic_complexity: 3
+    calls_out: 10
+    calls_in: 1
+  backend.routers.tickets.redsl.process_ticket_with_redsl:
+    name: process_ticket_with_redsl
+    module: backend.routers.tickets.redsl
+    line: 28
+    cyclomatic_complexity: 14
+    calls_out: 34
+    calls_in: 0
+  examples.10_mcp_ollama_demo.mcp_demo.call_ollama:
+    name: call_ollama
+    module: examples.10_mcp_ollama_demo.mcp_demo
+    line: 189
+    cyclomatic_complexity: 3
+    calls_out: 12
+    calls_in: 2
+  src.vallm.config.reload_settings:
+    name: reload_settings
+    module: src.vallm.config
+    line: 108
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 0
+  examples.12_ollama_simple_demo.utils.process_user_input.process_user_input:
+    name: process_user_input
+    module: examples.12_ollama_simple_demo.utils.process_user_input
+    line: 6
+    cyclomatic_complexity: 9
+    calls_out: 9
+    calls_in: 1
+  backend.routers.tickets.redsl.get_ticket_processing_status:
+    name: get_ticket_processing_status
+    module: backend.routers.tickets.redsl
+    line: 223
+    cyclomatic_complexity: 3
+    calls_out: 9
+    calls_in: 0
+  src.vallm.cli.batch_process.detect_file_language:
+    name: detect_file_language
+    module: src.vallm.cli.batch_process
+    line: 36
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 1
+  backend.routers.tickets.webhook.bulk_reprocess_tickets:
+    name: bulk_reprocess_tickets
+    module: backend.routers.tickets.webhook
+    line: 79
+    cyclomatic_complexity: 4
+    calls_out: 7
+    calls_in: 0
+  src.vallm.core.ast_compare.parse_code:
+    name: parse_code
+    module: src.vallm.core.ast_compare
+    line: 18
+    cyclomatic_complexity: 1
+    calls_out: 3
+    calls_in: 4
+  src.vallm.cli.command_handlers._show_language_info:
+    name: _show_language_info
+    module: src.vallm.cli.command_handlers
+    line: 302
+    cyclomatic_complexity: 4
+    calls_out: 15
+    calls_in: 1
+  examples.cycle-test.full-cycle.print:
+    name: print
+    module: examples.cycle-test.full-cycle
+    line: 105
+    cyclomatic_complexity: 0
+    calls_out: 0
+    calls_in: 739
+  src.vallm.cli.batch_processor_patterns.should_exclude_file:
+    name: should_exclude_file
+    module: src.vallm.cli.batch_processor_patterns
+    line: 133
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 1
+  examples.13_batch_processing.main._run_validation:
+    name: _run_validation
+    module: examples.13_batch_processing.main
+    line: 60
+    cyclomatic_complexity: 2
+    calls_out: 5
+    calls_in: 1
+  src.vallm.cli.output_formatters.batch.output_batch_rich:
+    name: output_batch_rich
+    module: src.vallm.cli.output_formatters.batch
+    line: 176
+    cyclomatic_complexity: 3
+    calls_out: 8
+    calls_in: 3
+  src.vallm.core.gitignore.get_default_excludes:
+    name: get_default_excludes
+    module: src.vallm.core.gitignore
+    line: 165
+    cyclomatic_complexity: 1
+    calls_out: 0
+    calls_in: 1
+  src.vallm.validators.semantic_cache.clear_semantic_cache:
+    name: clear_semantic_cache
+    module: src.vallm.validators.semantic_cache
+    line: 183
+    cyclomatic_complexity: 2
+    calls_out: 1
+    calls_in: 1
+  backend.routers.tickets.crud.search_tickets_endpoint:
+    name: search_tickets_endpoint
+    module: backend.routers.tickets.crud
+    line: 90
+    cyclomatic_complexity: 2
+    calls_out: 6
+    calls_in: 0
+  src.vallm.core.ast_compare.structural_diff_summary:
+    name: structural_diff_summary
+    module: src.vallm.core.ast_compare
+    line: 119
+    cyclomatic_complexity: 1
+    calls_out: 11
+    calls_in: 1
+  examples.07_multi_language.main.test_language_detection:
+    name: test_language_detection
+    module: examples.07_multi_language.main
+    line: 161
+    cyclomatic_complexity: 4
+    calls_out: 6
+    calls_in: 1
+  examples.04_graph_analysis.main.main:
+    name: main
+    module: examples.04_graph_analysis.main
+    line: 67
+    cyclomatic_complexity: 9
+    calls_out: 40
+    calls_in: 0
+  mcp.server._tools_vallm._compute_verdict:
+    name: _compute_verdict
+    module: mcp.server._tools_vallm
+    line: 38
+    cyclomatic_complexity: 5
+    calls_out: 0
+    calls_in: 1
+  examples.15_cli_usage.main.demo_output_formats:
+    name: demo_output_formats
+    module: examples.15_cli_usage.main
+    line: 92
+    cyclomatic_complexity: 3
+    calls_out: 12
+    calls_in: 1
+  src.vallm.validators.complexity.ComplexityValidator._check_lizard:
+    name: _check_lizard
+    module: src.vallm.validators.complexity
+    line: 110
+    cyclomatic_complexity: 12
+    calls_out: 11
+    calls_in: 0
+  examples.12_ollama_simple_demo.best_version.main:
+    name: main
+    module: examples.12_ollama_simple_demo.best_version
+    line: 10
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 0
+  src.vallm.cli.output_formatters.utils.format_error_message:
+    name: format_error_message
+    module: src.vallm.cli.output_formatters.utils
+    line: 1
+    cyclomatic_complexity: 3
+    calls_out: 4
+    calls_in: 1
+  examples.13_batch_processing.main._print_summary:
+    name: _print_summary
+    module: examples.13_batch_processing.main
+    line: 97
+    cyclomatic_complexity: 7
+    calls_out: 9
+    calls_in: 1
+  examples.06_multilang_validation.main.main:
+    name: main
+    module: examples.06_multilang_validation.main
+    line: 177
+    cyclomatic_complexity: 4
+    calls_out: 11
+    calls_in: 0
+  src.vallm.cli.batch_process.handle_no_files_found:
+    name: handle_no_files_found
+    module: src.vallm.cli.batch_process
+    line: 149
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 1
+  mcp.server._tools_vallm.create_proposal:
+    name: create_proposal
+    module: mcp.server._tools_vallm
+    line: 154
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 4
+  src.vallm.cli.output_formatters.batch._print_toon_unsupported_section:
+    name: _print_toon_unsupported_section
+    module: src.vallm.cli.output_formatters.batch
+    line: 169
+    cyclomatic_complexity: 2
+    calls_out: 5
+    calls_in: 1
+  examples.10_mcp_ollama_demo.mcp_demo.analyze_with_code2llm:
+    name: analyze_with_code2llm
+    module: examples.10_mcp_ollama_demo.mcp_demo
+    line: 71
+    cyclomatic_complexity: 9
+    calls_out: 36
+    calls_in: 1
+  examples.12_ollama_simple_demo.ollama_simple_demo.call_ollama:
+    name: call_ollama
+    module: examples.12_ollama_simple_demo.ollama_simple_demo
+    line: 76
+    cyclomatic_complexity: 2
+    calls_out: 8
+    calls_in: 1
+  examples.07_multi_language.main.print_language_info:
+    name: print_language_info
+    module: examples.07_multi_language.main
+    line: 259
+    cyclomatic_complexity: 8
+    calls_out: 15
+    calls_in: 1
+  examples.12_ollama_simple_demo.legacy_code.simple_buggy.load_config:
+    name: load_config
+    module: examples.12_ollama_simple_demo.legacy_code.simple_buggy
+    line: 31
+    cyclomatic_complexity: 1
+    calls_out: 2
+    calls_in: 1
+  src.vallm.core.languages.detect_language:
+    name: detect_language
+    module: src.vallm.core.languages
+    line: 206
+    cyclomatic_complexity: 5
+    calls_out: 3
+    calls_in: 7
+  src.vallm.validators.imports.python_imports._get_local_modules:
+    name: _get_local_modules
+    module: src.vallm.validators.imports.python_imports
+    line: 142
+    cyclomatic_complexity: 8
+    calls_out: 9
+    calls_in: 1
+  examples.mcp_demo.example_full_pipeline:
+    name: example_full_pipeline
+    module: examples.mcp_demo
+    line: 84
+    cyclomatic_complexity: 3
+    calls_out: 10
+    calls_in: 1
+  backend.routers.tickets.crud.delete_existing_ticket:
+    name: delete_existing_ticket
+    module: backend.routers.tickets.crud
+    line: 170
+    cyclomatic_complexity: 4
+    calls_out: 9
+    calls_in: 0
+  examples.07_multi_language.main.validate_all_languages:
+    name: validate_all_languages
+    module: examples.07_multi_language.main
+    line: 213
+    cyclomatic_complexity: 6
+    calls_out: 13
+    calls_in: 1
+  src.vallm.core.graph_builder.build_python_graph:
+    name: build_python_graph
+    module: src.vallm.core.graph_builder
+    line: 47
+    cyclomatic_complexity: 2
+    calls_out: 23
+    calls_in: 5
+  examples.utils.logging_utils.log_result:
+    name: log_result
+    module: examples.utils.logging_utils
+    line: 66
+    cyclomatic_complexity: 1
+    calls_out: 4
+    calls_in: 0
+  backend.routers.tickets.crud.get_single_ticket:
+    name: get_single_ticket
+    module: backend.routers.tickets.crud
+    line: 125
+    cyclomatic_complexity: 3
+    calls_out: 8
+    calls_in: 0
+  src.vallm.cli.output_formatters.batch._split_toon_results:
+    name: _split_toon_results
+    module: src.vallm.cli.output_formatters.batch
+    line: 90
+    cyclomatic_complexity: 6
+    calls_out: 4
+    calls_in: 1
+  examples.06_multilang_validation.main_template.main:
+    name: main
+    module: examples.06_multilang_validation.main_template
+    line: 53
+    cyclomatic_complexity: 2
+    calls_out: 4
+    calls_in: 0
+  examples.12_ollama_simple_demo.utils.load_config.load_config:
+    name: load_config
+    module: examples.12_ollama_simple_demo.utils.load_config
+    line: 8
+    cyclomatic_complexity: 1
+    calls_out: 0
+    calls_in: 2
+  examples.14_api_advanced.main.demo_result_interpretation:
+    name: demo_result_interpretation
+    module: examples.14_api_advanced.main
+    line: 87
+    cyclomatic_complexity: 7
+    calls_out: 25
+    calls_in: 1
+  examples.12_ollama_simple_demo.ollama_simple_demo.run_simple_workflow:
+    name: run_simple_workflow
+    module: examples.12_ollama_simple_demo.ollama_simple_demo
+    line: 182
+    cyclomatic_complexity: 9
+    calls_out: 31
+    calls_in: 1
+  src.vallm.cli.settings_builders.build_validate_settings:
+    name: build_validate_settings
+    module: src.vallm.cli.settings_builders
+    line: 11
+    cyclomatic_complexity: 7
+    calls_out: 2
+    calls_in: 2
+  examples.11_claude_code_autonomous.claude_autonomous_demo.log_section:
+    name: log_section
+    module: examples.11_claude_code_autonomous.claude_autonomous_demo
+    line: 48
+    cyclomatic_complexity: 1
+    calls_out: 4
+    calls_in: 5
+  examples.utils.save_analysis_data.save_analysis_data:
+    name: save_analysis_data
+    module: examples.utils.save_analysis_data
+    line: 10
+    cyclomatic_complexity: 1
+    calls_out: 5
+    calls_in: 10
+  src.vallm.validators.imports.utils._should_skip_dir:
+    name: _should_skip_dir
+    module: src.vallm.validators.imports.utils
+    line: 27
+    cyclomatic_complexity: 5
+    calls_out: 1
+    calls_in: 1
+  examples.05_llm_semantic_review.main.main:
+    name: main
+    module: examples.05_llm_semantic_review.main
+    line: 62
+    cyclomatic_complexity: 11
+    calls_out: 29
+    calls_in: 0
+  frontend.e2e.gui-login-enhanced.spec.content:
+    name: content
+    module: frontend.e2e.gui-login-enhanced.spec
+    line: 41
+    cyclomatic_complexity: 3
+    calls_out: 1
+    calls_in: 1
+  src.vallm.core.gitignore.load_gitignore:
+    name: load_gitignore
+    module: src.vallm.core.gitignore
+    line: 149
+    cyclomatic_complexity: 3
+    calls_out: 4
+    calls_in: 2
+  src.vallm.cli.output_formatters.batch.output_batch_text:
+    name: output_batch_text
+    module: src.vallm.cli.output_formatters.batch
+    line: 196
+    cyclomatic_complexity: 7
+    calls_out: 16
+    calls_in: 0
+  mcp.server.self_server.handle_request:
+    name: handle_request
+    module: mcp.server.self_server
+    line: 101
+    cyclomatic_complexity: 4
+    calls_out: 6
+    calls_in: 1
+  examples.05_llm_semantic_review.main_template.main:
+    name: main
+    module: examples.05_llm_semantic_review.main_template
+    line: 53
+    cyclomatic_complexity: 2
+    calls_out: 4
+    calls_in: 0
+  examples.07_multi_language.main.main:
+    name: main
+    module: examples.07_multi_language.main
+    line: 292
+    cyclomatic_complexity: 11
+    calls_out: 17
+    calls_in: 0
+  src.vallm.cli.command_handlers._build_proposal:
+    name: _build_proposal
+    module: src.vallm.cli.command_handlers
+    line: 278
+    cyclomatic_complexity: 2
+    calls_out: 2
+    calls_in: 2
+  examples.12_ollama_simple_demo.ollama_simple_demo.main:
+    name: main
+    module: examples.12_ollama_simple_demo.ollama_simple_demo
+    line: 282
+    cyclomatic_complexity: 5
+    calls_out: 29
+    calls_in: 0
+  src.vallm.core.ast_compare.parse_python_ast:
+    name: parse_python_ast
+    module: src.vallm.core.ast_compare
+    line: 24
+    cyclomatic_complexity: 2
+    calls_out: 1
+    calls_in: 2
+  src.vallm.config.get_default_output_format:
+    name: get_default_output_format
+    module: src.vallm.config
+    line: 127
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 3
+  src.vallm.cli.output_formatters.batch.output_batch_toon:
+    name: output_batch_toon
+    module: src.vallm.cli.output_formatters.batch
+    line: 296
+    cyclomatic_complexity: 5
+    calls_out: 22
+    calls_in: 3
+  src.vallm.scoring.compute_verdict:
+    name: compute_verdict
+    module: src.vallm.scoring
+    line: 97
+    cyclomatic_complexity: 6
+    calls_out: 3
+    calls_in: 1
+  src.vallm.cli.batch_utils.compile_patterns:
+    name: compile_patterns
+    module: src.vallm.cli.batch_utils
+    line: 12
+    cyclomatic_complexity: 6
+    calls_out: 12
+    calls_in: 0
+  examples.utils.validate_code_example:
+    name: validate_code_example
+    module: examples.utils
+    line: 158
+    cyclomatic_complexity: 9
+    calls_out: 13
+    calls_in: 0
+  examples.mcp_demo.example_security_validation:
+    name: example_security_validation
+    module: examples.mcp_demo
+    line: 55
+    cyclomatic_complexity: 2
+    calls_out: 9
+    calls_in: 1
+  src.vallm.config.get_settings:
+    name: get_settings
+    module: src.vallm.config
+    line: 95
+    cyclomatic_complexity: 3
+    calls_out: 5
+    calls_in: 4
+  examples.13_batch_processing.main._create_test_files:
+    name: _create_test_files
+    module: examples.13_batch_processing.main
+    line: 48
+    cyclomatic_complexity: 3
+    calls_out: 9
+    calls_in: 1
+  examples.12_ollama_simple_demo.utils.save_data.save_data:
+    name: save_data
+    module: examples.12_ollama_simple_demo.utils.save_data
+    line: 10
+    cyclomatic_complexity: 1
+    calls_out: 4
+    calls_in: 0
+  src.vallm.cli.output_formatters.single.output_rich:
+    name: output_rich
+    module: src.vallm.cli.output_formatters.single
+    line: 44
+    cyclomatic_complexity: 6
+    calls_out: 10
+    calls_in: 2
+  src.vallm.cli.output_formatters.single.output_text:
+    name: output_text
+    module: src.vallm.cli.output_formatters.single
+    line: 36
+    cyclomatic_complexity: 2
+    calls_out: 3
+    calls_in: 2
+  src.vallm.cli.batch_processor_validation.validate_single_file:
+    name: validate_single_file
+    module: src.vallm.cli.batch_processor_validation
+    line: 17
+    cyclomatic_complexity: 4
+    calls_out: 8
+    calls_in: 0
+  src.vallm.core.graph_diff._diff_list:
+    name: _diff_list
+    module: src.vallm.core.graph_diff
+    line: 81
+    cyclomatic_complexity: 9
+    calls_out: 9
+    calls_in: 8
+  examples.12_ollama_simple_demo.ollama_simple_demo.run_simple_test:
+    name: run_simple_test
+    module: examples.12_ollama_simple_demo.ollama_simple_demo
+    line: 144
+    cyclomatic_complexity: 2
+    calls_out: 5
+    calls_in: 1
+  examples.utils.logging_utils.log_step:
+    name: log_step
+    module: examples.utils.logging_utils
+    line: 34
+    cyclomatic_complexity: 1
+    calls_out: 2
+    calls_in: 0
+  examples.10_mcp_ollama_demo.refactored_output.RefactoredOrderManager.execute_query:
+    name: execute_query
+    module: examples.10_mcp_ollama_demo.refactored_output
+    line: 31
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 0
+  examples.10_mcp_ollama_demo.mcp_demo.run_mcp_workflow:
+    name: run_mcp_workflow
+    module: examples.10_mcp_ollama_demo.mcp_demo
+    line: 257
+    cyclomatic_complexity: 5
+    calls_out: 36
+    calls_in: 1
+  examples.11_claude_code_autonomous.claude_autonomous_demo.analyze_with_code2llm:
+    name: analyze_with_code2llm
+    module: examples.11_claude_code_autonomous.claude_autonomous_demo
+    line: 76
+    cyclomatic_complexity: 10
+    calls_out: 43
+    calls_in: 1
+  src.vallm.cli.batch_process.show_validation_start:
+    name: show_validation_start
+    module: src.vallm.cli.batch_process
+    line: 154
+    cyclomatic_complexity: 2
+    calls_out: 2
+    calls_in: 1
+  src.vallm.cli.batch_processor_validation.process_files:
+    name: process_files
+    module: src.vallm.cli.batch_processor_validation
+    line: 43
+    cyclomatic_complexity: 7
+    calls_out: 10
+    calls_in: 1
+  src.vallm.cli.output_formatters.batch._print_toon_file_section:
+    name: _print_toon_file_section
+    module: src.vallm.cli.output_formatters.batch
+    line: 146
+    cyclomatic_complexity: 4
+    calls_out: 12
+    calls_in: 2
+  backend.routers.tickets.crud.get_tickets_for_repo:
+    name: get_tickets_for_repo
+    module: backend.routers.tickets.crud
+    line: 102
+    cyclomatic_complexity: 2
+    calls_out: 6
+    calls_in: 0
+  src.vallm.cli.output_formatters.batch._build_unsupported_summary:
+    name: _build_unsupported_summary
+    module: src.vallm.cli.output_formatters.batch
+    line: 137
+    cyclomatic_complexity: 3
+    calls_out: 5
+    calls_in: 1
+  backend.routers.tickets.crud.list_tickets:
+    name: list_tickets
+    module: backend.routers.tickets.crud
+    line: 60
+    cyclomatic_complexity: 2
+    calls_out: 9
+    calls_in: 0
+  src.vallm.cli.batch_filter.matches_include_pattern:
+    name: matches_include_pattern
+    module: src.vallm.cli.batch_filter
+    line: 49
+    cyclomatic_complexity: 5
+    calls_out: 1
+    calls_in: 1
+  src.vallm.core.ast_compare.normalize_python_ast:
+    name: normalize_python_ast
+    module: src.vallm.core.ast_compare
+    line: 32
+    cyclomatic_complexity: 1
+    calls_out: 11
+    calls_in: 2
+  examples.12_ollama_simple_demo.ollama_simple_demo.log_step:
+    name: log_step
+    module: examples.12_ollama_simple_demo.ollama_simple_demo
+    line: 35
+    cyclomatic_complexity: 1
+    calls_out: 2
+    calls_in: 4
+  mcp.server.self_server.handle_tools_call:
+    name: handle_tools_call
+    module: mcp.server.self_server
+    line: 71
+    cyclomatic_complexity: 3
+    calls_out: 4
+    calls_in: 1
+  src.vallm.validators.logical.LogicalErrorValidator.validate:
+    name: validate
+    module: src.vallm.validators.logical
+    line: 24
+    cyclomatic_complexity: 2
+    calls_out: 5
+    calls_in: 24
+  src.vallm.cli.command_handlers._load_code:
+    name: _load_code
+    module: src.vallm.cli.command_handlers
+    line: 241
+    cyclomatic_complexity: 4
+    calls_out: 6
+    calls_in: 2
+  src.vallm.cli.batch_process.handle_validation_result:
+    name: handle_validation_result
+    module: src.vallm.cli.batch_process
+    line: 49
+    cyclomatic_complexity: 4
+    calls_out: 1
+    calls_in: 1
+  examples.16_configuration.main.demo_profile_switching:
+    name: demo_profile_switching
+    module: examples.16_configuration.main
+    line: 136
+    cyclomatic_complexity: 6
+    calls_out: 13
+    calls_in: 1
+  examples.16_configuration.main.main:
+    name: main
+    module: examples.16_configuration.main
+    line: 230
+    cyclomatic_complexity: 1
+    calls_out: 16
+    calls_in: 0
+  examples.12_ollama_simple_demo.legacy_code.simple_buggy.main:
+    name: main
+    module: examples.12_ollama_simple_demo.legacy_code.simple_buggy
+    line: 99
+    cyclomatic_complexity: 1
+    calls_out: 7
+    calls_in: 0
+  examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.__init__:
+    name: __init__
+    module: examples.11_claude_code_autonomous.legacy_code.data_processor
+    line: 44
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 0
+  src.vallm.scoring._initialize_settings:
+    name: _initialize_settings
+    module: src.vallm.scoring
+    line: 149
+    cyclomatic_complexity: 2
+    calls_out: 1
+    calls_in: 1
+  src.vallm.cli.batch_filter.load_vallmignore:
+    name: load_vallmignore
+    module: src.vallm.cli.batch_filter
+    line: 64
+    cyclomatic_complexity: 2
+    calls_out: 3
+    calls_in: 1
+edges:
+- caller: frontend.e2e.gui-login-enhanced.spec.loginElement
+  callee: frontend.e2e.gui-login-enhanced.spec.content
+  call_type: resolved
+- caller: frontend.e2e.loginTestHelpers.testOAuthFlow
+  callee: frontend.e2e.loginTestHelpers.attemptLogin
+  call_type: resolved
+- caller: frontend.e2e.loginTestHelpers.testOAuthFlow
+  callee: frontend.e2e.loginTestHelpers.attemptUserLogin
+  call_type: resolved
+- caller: frontend.e2e.loginTestHelpers.testOAuthFlow
+  callee: frontend.e2e.loginTestHelpers.checkLoginStatus
+  call_type: resolved
+- caller: backend.routers.tickets.webhook.bulk_close_tickets
+  callee: backend.routers.tickets.models._get_tenant_for_user
+  call_type: resolved
+- caller: backend.routers.tickets.webhook.bulk_reprocess_tickets
+  callee: backend.routers.tickets.models._get_tenant_for_user
+  call_type: resolved
+- caller: examples.05_llm_semantic_review.main.main
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.05_llm_semantic_review.main.main
+  callee: src.vallm.validators.logical.LogicalErrorValidator.validate
+  call_type: resolved
+- caller: examples.09_code2logic_integration.main.analyze_with_code2logic
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.09_code2logic_integration.main.validate_with_vallm
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.09_code2logic_integration.main.validate_with_vallm
+  callee: src.vallm.validators.logical.LogicalErrorValidator.validate
+  call_type: resolved
+- caller: examples.09_code2logic_integration.main.build_call_graph
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.09_code2logic_integration.main.build_call_graph
+  callee: src.vallm.core.graph_builder.build_python_graph
+  call_type: resolved
+- caller: examples.09_code2logic_integration.main.generate_report
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.09_code2logic_integration.main.visualize_flow
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.09_code2logic_integration.main.main
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.09_code2logic_integration.main.main
+  callee: examples.09_code2logic_integration.main.validate_with_vallm
+  call_type: resolved
+- caller: examples.09_code2logic_integration.main.main
+  callee: examples.09_code2logic_integration.main.build_call_graph
+  call_type: resolved
+- caller: examples.09_code2logic_integration.main.main
+  callee: examples.09_code2logic_integration.main.generate_report
+  call_type: resolved
+- caller: examples.09_code2logic_integration.main.main
+  callee: examples.09_code2logic_integration.main.visualize_flow
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.iteration_1.main
+  callee: examples.12_ollama_simple_demo.utils.main.run_demo_main
+  call_type: resolved
+- caller: examples.04_graph_analysis.main.main
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.04_graph_analysis.main.main
+  callee: src.vallm.core.graph_builder.build_python_graph
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.best_version.main
+  callee: examples.12_ollama_simple_demo.utils.main.run_demo_main
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.iteration_2.main
+  callee: examples.12_ollama_simple_demo.utils.main.run_demo_main
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.utils.process_user_input.process_user_input
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.11_claude_code_autonomous.claude_autonomous_demo.log_section
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.11_claude_code_autonomous.claude_autonomous_demo.log_step
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.11_claude_code_autonomous.claude_autonomous_demo.log_code
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.11_claude_code_autonomous.claude_autonomous_demo.analyze_with_code2llm
+  callee: examples.11_claude_code_autonomous.claude_autonomous_demo.log_step
+  call_type: resolved
+- caller: examples.11_claude_code_autonomous.claude_autonomous_demo.analyze_with_code2llm
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.11_claude_code_autonomous.claude_autonomous_demo.call_claude_code
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.11_claude_code_autonomous.claude_autonomous_demo.validate_with_vallm
+  callee: src.vallm.validators.logical.LogicalErrorValidator.validate
+  call_type: resolved
+- caller: examples.11_claude_code_autonomous.claude_autonomous_demo.validate_with_vallm
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.11_claude_code_autonomous.claude_autonomous_demo.run_runtime_tests
+  callee: examples.11_claude_code_autonomous.claude_autonomous_demo.log_step
+  call_type: resolved
+- caller: examples.11_claude_code_autonomous.claude_autonomous_demo.run_runtime_tests
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.11_claude_code_autonomous.claude_autonomous_demo.run_runtime_tests
+  callee: examples.11_claude_code_autonomous.claude_autonomous_demo.create_basic_tests
+  call_type: resolved
+- caller: examples.11_claude_code_autonomous.claude_autonomous_demo.create_basic_tests
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.11_claude_code_autonomous.claude_autonomous_demo.run_autonomous_workflow
+  callee: examples.11_claude_code_autonomous.claude_autonomous_demo.log_section
+  call_type: resolved
+- caller: examples.11_claude_code_autonomous.claude_autonomous_demo.run_autonomous_workflow
+  callee: examples.11_claude_code_autonomous.claude_autonomous_demo.log_code
+  call_type: resolved
+- caller: examples.11_claude_code_autonomous.claude_autonomous_demo.run_autonomous_workflow
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.11_claude_code_autonomous.claude_autonomous_demo.run_autonomous_workflow
+  callee: examples.11_claude_code_autonomous.claude_autonomous_demo.analyze_with_code2llm
+  call_type: resolved
+- caller: examples.11_claude_code_autonomous.claude_autonomous_demo.main
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.11_claude_code_autonomous.claude_autonomous_demo.main
+  callee: examples.11_claude_code_autonomous.claude_autonomous_demo.run_autonomous_workflow
+  call_type: resolved
+- caller: examples.11_claude_code_autonomous.claude_autonomous_demo.main
+  callee: examples.11_claude_code_autonomous.claude_autonomous_demo.log_section
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.legacy_code.simple_buggy.process_user_input
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.legacy_code.simple_buggy.main
+  callee: examples.12_ollama_simple_demo.legacy_code.simple_buggy.load_config
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.legacy_code.simple_buggy.main
+  callee: examples.12_ollama_simple_demo.legacy_code.simple_buggy.process_user_input
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.legacy_code.simple_buggy.main
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.legacy_code.simple_buggy.main
+  callee: examples.12_ollama_simple_demo.legacy_code.simple_buggy.calculate_total
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.legacy_code.simple_buggy.main
+  callee: examples.12_ollama_simple_demo.legacy_code.simple_buggy.save_data
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.utils.calculate_total.calculate_total
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.utils.main.run_demo_main
+  callee: examples.12_ollama_simple_demo.utils.load_config.load_config
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.utils.main.run_demo_main
+  callee: examples.12_ollama_simple_demo.utils.process_user_input.process_user_input
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.utils.main.run_demo_main
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.utils.main.run_demo_main
+  callee: examples.12_ollama_simple_demo.legacy_code.simple_buggy.calculate_total
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.utils.main.run_demo_main
+  callee: examples.12_ollama_simple_demo.legacy_code.simple_buggy.save_data
+  call_type: resolved
+- caller: backend.routers.tickets.redsl.process_ticket_with_redsl
+  callee: backend.routers.tickets.models._get_tenant_for_user
+  call_type: resolved
+- caller: backend.routers.tickets.redsl.get_ticket_processing_status
+  callee: backend.routers.tickets.models._get_tenant_for_user
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.utils.save_data.save_data
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.01_basic_validation.main.main
+  callee: examples.utils.run_validation_examples
+  call_type: resolved
+- caller: examples.01_basic_validation.main.main
+  callee: examples.utils.save_analysis_data.save_analysis_data
+  call_type: resolved
+- caller: examples.01_basic_validation.main.main
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: backend.routers.tickets.crud.create_new_ticket
+  callee: backend.routers.tickets.models._get_tenant_for_user
+  call_type: resolved
+- caller: backend.routers.tickets.crud.list_tickets
+  callee: backend.routers.tickets.models._get_tenant_for_user
+  call_type: resolved
+- caller: backend.routers.tickets.crud.get_stats
+  callee: backend.routers.tickets.models._get_tenant_for_user
+  call_type: resolved
+- caller: backend.routers.tickets.crud.search_tickets_endpoint
+  callee: backend.routers.tickets.models._get_tenant_for_user
+  call_type: resolved
+- caller: backend.routers.tickets.crud.get_tickets_for_repo
+  callee: backend.routers.tickets.models._get_tenant_for_user
+  call_type: resolved
+- caller: backend.routers.tickets.crud.get_action_required_tickets
+  callee: backend.routers.tickets.models._get_tenant_for_user
+  call_type: resolved
+- caller: backend.routers.tickets.crud.get_single_ticket
+  callee: backend.routers.tickets.models._get_tenant_for_user
+  call_type: resolved
+- caller: backend.routers.tickets.crud.update_existing_ticket
+  callee: backend.routers.tickets.models._get_tenant_for_user
+  call_type: resolved
+- caller: backend.routers.tickets.crud.delete_existing_ticket
+  callee: backend.routers.tickets.models._get_tenant_for_user
+  call_type: resolved
+- caller: examples.06_multilang_validation.main_template.main
+  callee: examples.utils.run_validation_examples
+  call_type: resolved
+- caller: examples.06_multilang_validation.main_template.main
+  callee: examples.utils.save_analysis_data.save_analysis_data
+  call_type: resolved
+- caller: examples.06_multilang_validation.main_template.main
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.__init__
+  callee: examples.12_ollama_simple_demo.utils.load_config.load_config
+  call_type: resolved
+- caller: examples.11_claude_code_autonomous.legacy_code.data_processor.main
+  callee: examples.11_claude_code_autonomous.legacy_code.data_processor.load_config
+  call_type: resolved
+- caller: examples.11_claude_code_autonomous.legacy_code.data_processor.main
+  callee: examples.11_claude_code_autonomous.legacy_code.data_processor.init_database
+  call_type: resolved
+- caller: examples.11_claude_code_autonomous.legacy_code.data_processor.main
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.06_multilang_validation.main.main
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.06_multilang_validation.main.main
+  callee: src.vallm.validators.logical.LogicalErrorValidator.validate
+  call_type: resolved
+- caller: examples.02_ast_comparison.main.main
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.02_ast_comparison.main.main
+  callee: src.vallm.core.ast_compare.python_ast_similarity
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.ollama_simple_demo.log_section
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.ollama_simple_demo.log_step
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.ollama_simple_demo.analyze_with_code2llm
+  callee: examples.12_ollama_simple_demo.ollama_simple_demo.log_step
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.ollama_simple_demo.analyze_with_code2llm
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.ollama_simple_demo.call_ollama
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.ollama_simple_demo.validate_with_vallm
+  callee: examples.12_ollama_simple_demo.ollama_simple_demo.log_step
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.ollama_simple_demo.validate_with_vallm
+  callee: src.vallm.validators.logical.LogicalErrorValidator.validate
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.ollama_simple_demo.validate_with_vallm
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.ollama_simple_demo.run_simple_test
+  callee: examples.12_ollama_simple_demo.ollama_simple_demo.log_step
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.ollama_simple_demo.run_simple_test
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.ollama_simple_demo.run_simple_workflow
+  callee: examples.12_ollama_simple_demo.ollama_simple_demo.log_section
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.ollama_simple_demo.run_simple_workflow
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.ollama_simple_demo.main
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.ollama_simple_demo.main
+  callee: examples.12_ollama_simple_demo.ollama_simple_demo.run_simple_workflow
+  call_type: resolved
+- caller: examples.12_ollama_simple_demo.ollama_simple_demo.main
+  callee: examples.12_ollama_simple_demo.ollama_simple_demo.log_section
+  call_type: resolved
+- caller: examples.03_security_check.main.main
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.16_configuration.main.demo_config_file
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.16_configuration.main.demo_environment_variables
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.16_configuration.main.demo_runtime_configuration
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.16_configuration.main.demo_profile_switching
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.16_configuration.main.demo_threshold_configuration
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.16_configuration.main.demo_threshold_configuration
+  callee: src.vallm.validators.logical.LogicalErrorValidator.validate
+  call_type: resolved
+- caller: examples.16_configuration.main.main
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.16_configuration.main.main
+  callee: examples.16_configuration.main.demo_config_file
+  call_type: resolved
+- caller: examples.16_configuration.main.main
+  callee: examples.16_configuration.main.demo_environment_variables
+  call_type: resolved
+- caller: examples.16_configuration.main.main
+  callee: examples.16_configuration.main.demo_runtime_configuration
+  call_type: resolved
+- caller: examples.16_configuration.main.main
+  callee: examples.16_configuration.main.demo_profile_switching
+  call_type: resolved
+- caller: examples.16_configuration.main.main
+  callee: examples.16_configuration.main.demo_threshold_configuration
+  call_type: resolved
+- caller: examples.utils.save_analysis_data.save_analysis_data
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.07_multi_language.main.test_language_detection
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.07_multi_language.main.test_language_detection
+  callee: src.vallm.core.languages.detect_language
+  call_type: resolved
+- caller: examples.07_multi_language.main.validate_single_language
+  callee: src.vallm.validators.logical.LogicalErrorValidator.validate
+  call_type: resolved
+- caller: examples.07_multi_language.main.validate_all_languages
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.07_multi_language.main.validate_all_languages
+  callee: examples.07_multi_language.main.validate_single_language
+  call_type: resolved
+- caller: examples.07_multi_language.main.save_results
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.07_multi_language.main.print_language_info
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.07_multi_language.main.main
+  callee: examples.07_multi_language.main.print_language_info
+  call_type: resolved
+- caller: examples.07_multi_language.main.main
+  callee: examples.07_multi_language.main.test_language_detection
+  call_type: resolved
+- caller: examples.07_multi_language.main.main
+  callee: examples.07_multi_language.main.validate_all_languages
+  call_type: resolved
+- caller: examples.07_multi_language.main.main
+  callee: examples.07_multi_language.main.save_results
+  call_type: resolved
+- caller: examples.07_multi_language.main.main
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.10_mcp_ollama_demo.legacy_code.order_processor.OrderManager.execute_query
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.10_mcp_ollama_demo.legacy_code.order_processor.OrderManager.process_payment
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.utils.save_analysis_data
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.utils.run_validation_examples
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.utils.run_validation_examples
+  callee: src.vallm.validators.logical.LogicalErrorValidator.validate
+  call_type: resolved
+- caller: examples.utils.validate_code_example
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.utils.validate_code_example
+  callee: src.vallm.validators.logical.LogicalErrorValidator.validate
+  call_type: resolved
+- caller: examples.utils.print_summary
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.10_mcp_ollama_demo.refactored_output.RefactoredOrderManager.execute_query
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.10_mcp_ollama_demo.refactored_output.RefactoredOrderManager.process_payment
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.10_mcp_ollama_demo.refactored_output.main
+  callee: examples.10_mcp_ollama_demo.refactored_output.load_config
+  call_type: resolved
+- caller: examples.10_mcp_ollama_demo.refactored_output.main
+  callee: examples.10_mcp_ollama_demo.refactored_output.process_order
+  call_type: resolved
+- caller: examples.10_mcp_ollama_demo.refactored_output.main
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.utils.validation_runner.run_validation_examples
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.utils.validation_runner.run_validation_examples
+  callee: src.vallm.validators.logical.LogicalErrorValidator.validate
+  call_type: resolved
+- caller: examples.14_api_advanced.main.demo_proposal_creation
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.14_api_advanced.main.demo_settings_customization
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.14_api_advanced.main.demo_result_interpretation
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.14_api_advanced.main.demo_result_interpretation
+  callee: src.vallm.validators.logical.LogicalErrorValidator.validate
+  call_type: resolved
+- caller: examples.14_api_advanced.main.demo_workflow_integration
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.14_api_advanced.main.demo_workflow_integration
+  callee: src.vallm.validators.logical.LogicalErrorValidator.validate
+  call_type: resolved
+- caller: examples.14_api_advanced.main.main
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.14_api_advanced.main.main
+  callee: examples.14_api_advanced.main.demo_proposal_creation
+  call_type: resolved
+- caller: examples.14_api_advanced.main.main
+  callee: examples.14_api_advanced.main.demo_settings_customization
+  call_type: resolved
+- caller: examples.14_api_advanced.main.main
+  callee: examples.14_api_advanced.main.demo_result_interpretation
+  call_type: resolved
+- caller: examples.14_api_advanced.main.main
+  callee: examples.14_api_advanced.main.demo_workflow_integration
+  call_type: resolved
+- caller: examples.14_api_advanced.main.main
+  callee: examples.utils.save_analysis_data.save_analysis_data
+  call_type: resolved
+- caller: examples.utils.logging_utils.log_section
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.utils.logging_utils.log_step
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.utils.logging_utils.log_code
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.utils.logging_utils.log_result
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.08_code2llm_integration.main.analyze_with_code2llm
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.08_code2llm_integration.main.analyze_with_code2llm
+  callee: src.vallm.core.languages.detect_language
+  call_type: resolved
+- caller: examples.08_code2llm_integration.main.validate_with_vallm
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.08_code2llm_integration.main.validate_with_vallm
+  callee: src.vallm.validators.logical.LogicalErrorValidator.validate
+  call_type: resolved
+- caller: examples.08_code2llm_integration.main.generate_report
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.08_code2llm_integration.main.main
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.08_code2llm_integration.main.main
+  callee: examples.08_code2llm_integration.main.create_sample_project
+  call_type: resolved
+- caller: examples.08_code2llm_integration.main.main
+  callee: examples.08_code2llm_integration.main.validate_with_vallm
+  call_type: resolved
+- caller: examples.08_code2llm_integration.main.main
+  callee: examples.08_code2llm_integration.main.generate_report
+  call_type: resolved
+- caller: examples.10_mcp_ollama_demo.mcp_demo.log_section
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.10_mcp_ollama_demo.mcp_demo.log_step
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.10_mcp_ollama_demo.mcp_demo.log_code
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.10_mcp_ollama_demo.mcp_demo.analyze_with_code2llm
+  callee: examples.10_mcp_ollama_demo.mcp_demo.log_step
+  call_type: resolved
+- caller: examples.10_mcp_ollama_demo.mcp_demo.analyze_with_code2llm
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.10_mcp_ollama_demo.mcp_demo.validate_with_vallm
+  callee: src.vallm.validators.logical.LogicalErrorValidator.validate
+  call_type: resolved
+- caller: examples.10_mcp_ollama_demo.mcp_demo.validate_with_vallm
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.10_mcp_ollama_demo.mcp_demo.call_ollama
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.10_mcp_ollama_demo.mcp_demo.run_mcp_workflow
+  callee: examples.10_mcp_ollama_demo.mcp_demo.log_section
+  call_type: resolved
+- caller: examples.10_mcp_ollama_demo.mcp_demo.run_mcp_workflow
+  callee: examples.10_mcp_ollama_demo.mcp_demo.log_code
+  call_type: resolved
+- caller: examples.10_mcp_ollama_demo.mcp_demo.run_mcp_workflow
+  callee: examples.10_mcp_ollama_demo.mcp_demo.analyze_with_code2llm
+  call_type: resolved
+- caller: examples.10_mcp_ollama_demo.mcp_demo.run_mcp_workflow
+  callee: examples.10_mcp_ollama_demo.mcp_demo.log_step
+  call_type: resolved
+- caller: examples.10_mcp_ollama_demo.mcp_demo.run_mcp_workflow
+  callee: examples.10_mcp_ollama_demo.mcp_demo.validate_with_vallm
+  call_type: resolved
+- caller: examples.10_mcp_ollama_demo.mcp_demo.run_mcp_workflow
+  callee: examples.10_mcp_ollama_demo.mcp_demo.generate_refactoring_prompt
+  call_type: resolved
+- caller: examples.10_mcp_ollama_demo.mcp_demo.run_mcp_workflow
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.10_mcp_ollama_demo.mcp_demo.main
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.10_mcp_ollama_demo.mcp_demo.main
+  callee: examples.10_mcp_ollama_demo.mcp_demo.run_mcp_workflow
+  call_type: resolved
+- caller: examples.10_mcp_ollama_demo.mcp_demo.main
+  callee: examples.10_mcp_ollama_demo.mcp_demo.log_section
+  call_type: resolved
+- caller: src.vallm.validators.complexity.ComplexityValidator._check_lizard
+  callee: src.vallm.core.languages.detect_language
+  call_type: resolved
+- caller: src.vallm.validators.semantic.SemanticValidator.__init__
+  callee: src.vallm.validators.semantic_cache.get_semantic_cache
+  call_type: resolved
+- caller: src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.extract_imports
+  callee: src.vallm.core.ast_compare._cached_get_parser
+  call_type: resolved
+- caller: src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.extract_imports
+  callee: src.vallm.validators.imports.utils.walk
+  call_type: resolved
+- caller: src.vallm.validators.imports.rust_imports.RustImportValidator.extract_imports
+  callee: src.vallm.core.ast_compare._cached_get_parser
+  call_type: resolved
+- caller: src.vallm.validators.imports.rust_imports.RustImportValidator.extract_imports
+  callee: src.vallm.validators.imports.utils.walk
+  call_type: resolved
+- caller: src.vallm.validators.syntax.SyntaxValidator._validate_python
+  callee: src.vallm.core.ast_compare.tree_sitter_error_count
+  call_type: resolved
+- caller: src.vallm.validators.syntax.SyntaxValidator._validate_treesitter
+  callee: src.vallm.core.ast_compare.tree_sitter_error_count
+  call_type: resolved
+- caller: src.vallm.validators.imports.c_imports.CImportValidator.extract_imports
+  callee: src.vallm.validators.imports.utils.walk
+  call_type: resolved
+- caller: src.vallm.validators.imports.utils._should_skip_entry
+  callee: src.vallm.validators.imports.utils._should_skip_dir
+  call_type: resolved
+- caller: src.vallm.validators.imports.utils._should_skip_entry
+  callee: src.vallm.validators.imports.utils._is_gitignored
+  call_type: resolved
+- caller: src.vallm.validators.imports.utils.walk
+  callee: src.vallm.validators.imports.utils._should_skip_entry
+  call_type: resolved
+- caller: src.vallm.validators.imports.utils.walk
+  callee: src.vallm.validators.imports.utils._is_gitignored
+  call_type: resolved
+- caller: src.vallm.validators.imports.java_imports.JavaImportValidator.extract_imports
+  callee: src.vallm.validators.imports.utils.walk
+  call_type: resolved
+- caller: examples.15_cli_usage.main.demo_single_file_validation
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.15_cli_usage.main.demo_single_file_validation
+  callee: examples.15_cli_usage.main.run_cli_command
+  call_type: resolved
+- caller: examples.15_cli_usage.main.demo_batch_validation
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.15_cli_usage.main.demo_output_formats
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.15_cli_usage.main.demo_programmatic_cli
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.15_cli_usage.main.demo_programmatic_cli
+  callee: examples.15_cli_usage.main.run_cli_command
+  call_type: resolved
+- caller: examples.15_cli_usage.main.demo_check_command
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.15_cli_usage.main.main
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.15_cli_usage.main.main
+  callee: examples.15_cli_usage.main.demo_single_file_validation
+  call_type: resolved
+- caller: examples.15_cli_usage.main.main
+  callee: examples.15_cli_usage.main.demo_batch_validation
+  call_type: resolved
+- caller: examples.05_llm_semantic_review.main_template.main
+  callee: examples.utils.run_validation_examples
+  call_type: resolved
+- caller: examples.05_llm_semantic_review.main_template.main
+  callee: examples.utils.save_analysis_data.save_analysis_data
+  call_type: resolved
+- caller: examples.05_llm_semantic_review.main_template.main
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: src.vallm.validators.imports.python_imports._collect_guarded_lines
+  callee: src.vallm.validators.file_cache.FileValidationCache.set
+  call_type: resolved
+- caller: src.vallm.validators.imports.python_imports._get_local_modules
+  callee: src.vallm.validators.file_cache.FileValidationCache.set
+  call_type: resolved
+- caller: src.vallm.validators.imports.python_imports.PythonImportValidator.extract_imports
+  callee: src.vallm.validators.imports.python_imports._collect_guarded_lines
+  call_type: resolved
+- caller: src.vallm.validators.imports.python_imports.PythonImportValidator.module_exists
+  callee: src.vallm.validators.imports.python_imports._get_local_modules
+  call_type: resolved
+- caller: src.vallm.validators.imports.go_imports.GoImportValidator.extract_imports
+  callee: src.vallm.core.ast_compare._cached_get_parser
+  call_type: resolved
+- caller: src.vallm.validators.imports.go_imports.GoImportValidator.extract_imports
+  callee: src.vallm.validators.imports.utils.walk
+  call_type: resolved
+- caller: src.vallm.cli.batch_processor_validation.validate_single_file
+  callee: src.vallm.core.languages.detect_language
+  call_type: resolved
+- caller: src.vallm.cli.batch_processor_validation.validate_single_file
+  callee: src.vallm.validators.file_cache.get_file_cache
+  call_type: resolved
+- caller: src.vallm.cli.batch_processor_validation.validate_single_file
+  callee: src.vallm.validators.logical.LogicalErrorValidator.validate
+  call_type: resolved
+- caller: examples.13_batch_processing.main._create_test_files
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.13_batch_processing.main._run_validation
+  callee: src.vallm.validators.logical.LogicalErrorValidator.validate
+  call_type: resolved
+- caller: examples.13_batch_processing.main._display_results
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.13_batch_processing.main._display_results
+  callee: examples.13_batch_processing.main._build_result_entry
+  call_type: resolved
+- caller: examples.13_batch_processing.main._print_summary
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.13_batch_processing.main._save_and_cleanup
+  callee: examples.utils.save_analysis_data.save_analysis_data
+  call_type: resolved
+- caller: examples.13_batch_processing.main._save_and_cleanup
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.13_batch_processing.main.main
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.13_batch_processing.main.main
+  callee: examples.13_batch_processing.main._create_test_files
+  call_type: resolved
+- caller: examples.13_batch_processing.main.main
+  callee: examples.13_batch_processing.main._run_validation
+  call_type: resolved
+- caller: examples.13_batch_processing.main.main
+  callee: examples.13_batch_processing.main._display_results
+  call_type: resolved
+- caller: examples.13_batch_processing.main.main
+  callee: examples.13_batch_processing.main._print_summary
+  call_type: resolved
+- caller: src.vallm.cli.batch_processor_impl.BatchProcessor.process_batch
+  callee: src.vallm.cli.batch_processor_patterns.filter_files
+  call_type: resolved
+- caller: src.vallm.cli.batch_processor_impl.BatchProcessor.process_batch
+  callee: src.vallm.cli.batch_process.show_validation_start
+  call_type: resolved
+- caller: src.vallm.cli.batch_processor_impl.BatchProcessor.process_batch
+  callee: src.vallm.cli.batch_processor_validation.process_files
+  call_type: resolved
+- caller: src.vallm.cli.batch_processor_impl.BatchProcessor.process_batch
+  callee: src.vallm.cli.batch_process.handle_no_files_found
+  call_type: resolved
+- caller: src.vallm.cli.batch_processor_impl.BatchProcessor._load_gitignore_parser
+  callee: src.vallm.core.gitignore.load_gitignore
+  call_type: resolved
+- caller: src.vallm.cli.batch_processor_impl.BatchProcessor._build_file_list
+  callee: src.vallm.cli.batch_processor_files.build_file_list
+  call_type: resolved
+- caller: src.vallm.cli.batch_processor_patterns._compile_patterns
+  callee: src.vallm.validators.file_cache.FileValidationCache.set
+  call_type: resolved
+- caller: src.vallm.cli.batch_processor_patterns.parse_filter_patterns
+  callee: src.vallm.cli.batch_processor_patterns._compile_patterns
+  call_type: resolved
+- caller: src.vallm.cli.batch_processor_patterns.should_exclude_file
+  callee: src.vallm.cli.batch_processor_patterns.matches_pattern
+  call_type: resolved
+- caller: src.vallm.cli.batch_processor_patterns.matches_include_pattern
+  callee: src.vallm.cli.batch_processor_patterns.matches_pattern
+  call_type: resolved
+- caller: src.vallm.cli.batch_processor_patterns.filter_files
+  callee: src.vallm.cli.batch_processor_patterns.parse_filter_patterns
+  call_type: resolved
+- caller: src.vallm.cli.batch_processor_patterns.filter_files
+  callee: src.vallm.cli.batch_processor_patterns.should_exclude_file
+  call_type: resolved
+- caller: src.vallm.cli.batch_processor_patterns.filter_files
+  callee: src.vallm.cli.batch_processor_patterns.matches_include_pattern
+  call_type: resolved
+- caller: src.vallm.core.gitignore.create_default_gitignore_parser
+  callee: src.vallm.core.gitignore.get_default_excludes
+  call_type: resolved
+- caller: src.vallm.core.gitignore.should_exclude
+  callee: src.vallm.core.gitignore.create_default_gitignore_parser
+  call_type: resolved
+- caller: src.vallm.cli.batch_filter.parse_filter_patterns
+  callee: src.vallm.cli.batch_processor_patterns._compile_patterns
+  call_type: resolved
+- caller: src.vallm.cli.batch_filter.load_vallmignore
+  callee: src.vallm.core.gitignore.load_gitignore
+  call_type: resolved
+- caller: src.vallm.cli.batch_filter.filter_files
+  callee: src.vallm.cli.batch_filter.parse_filter_patterns
+  call_type: resolved
+- caller: src.vallm.cli.batch_filter.filter_files
+  callee: src.vallm.cli.batch_filter.load_vallmignore
+  call_type: resolved
+- caller: src.vallm.cli.batch_filter.filter_files
+  callee: src.vallm.cli.batch_filter.should_exclude_file
+  call_type: resolved
+- caller: src.vallm.cli.batch_filter.filter_files
+  callee: src.vallm.cli.batch_filter.matches_include_pattern
+  call_type: resolved
+- caller: src.vallm.cli.batch_processor_filter.parse_filter_patterns
+  callee: src.vallm.cli.batch_processor_patterns._compile_patterns
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.base.output_validate_result
+  callee: src.vallm.cli.output_formatters.single.output_json
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.base.output_validate_result
+  callee: src.vallm.cli.output_formatters.single.output_text
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.base.output_validate_result
+  callee: src.vallm.cli.output_formatters.single.output_rich
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.base.output_batch_results
+  callee: src.vallm.cli.output_formatters.batch.output_batch_json
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.base.output_batch_results
+  callee: src.vallm.cli.output_formatters.batch.output_batch_toon
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.base.output_batch_results
+  callee: src.vallm.cli.output_formatters.batch.output_batch_rich
+  call_type: resolved
+- caller: src.vallm.core.graph_diff.diff_graphs
+  callee: src.vallm.core.graph_diff._diff_list
+  call_type: resolved
+- caller: src.vallm.core.graph_diff.diff_python_code
+  callee: src.vallm.core.graph_builder.build_python_graph
+  call_type: resolved
+- caller: src.vallm.core.graph_diff.diff_python_code
+  callee: src.vallm.core.graph_diff.diff_graphs
+  call_type: resolved
+- caller: src.vallm.core.graph_diff._diff_list
+  callee: src.vallm.validators.file_cache.FileValidationCache.set
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.single.output_json
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.single.output_text
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.utils.build_failed_files_data
+  callee: src.vallm.cli.output_formatters.utils.format_error_message
+  call_type: resolved
+- caller: src.vallm.cli.batch_process.detect_file_language
+  callee: src.vallm.core.languages.detect_language
+  call_type: resolved
+- caller: src.vallm.cli.batch_process.process_single_file
+  callee: src.vallm.cli.batch_process.show_progress
+  call_type: resolved
+- caller: src.vallm.cli.batch_process.process_single_file
+  callee: src.vallm.cli.batch_process.read_file_text
+  call_type: resolved
+- caller: src.vallm.cli.batch_process.process_single_file
+  callee: src.vallm.cli.batch_process.detect_file_language
+  call_type: resolved
+- caller: src.vallm.cli.batch_process.process_single_file
+  callee: src.vallm.validators.logical.LogicalErrorValidator.validate
+  call_type: resolved
+- caller: src.vallm.cli.batch_process.process_single_file
+  callee: src.vallm.cli.batch_process.handle_validation_result
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.shared.build_failed_files_data
+  callee: src.vallm.cli.output_formatters.shared.format_error_message
+  call_type: resolved
+- caller: scripts.bump_version.main
+  callee: scripts.bump_version.bump_version
+  call_type: resolved
+- caller: scripts.bump_version.main
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.output_validate_result
+  callee: src.vallm.cli.output_formatters.single.output_json
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.output_validate_result
+  callee: src.vallm.cli.output_formatters.single.output_text
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.output_validate_result
+  callee: src.vallm.cli.output_formatters.single.output_rich
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.output_batch_results
+  callee: src.vallm.cli.output_formatters.batch.output_batch_json
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.output_batch_results
+  callee: src.vallm.cli.output_formatters.batch.output_batch_yaml
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.output_batch_results
+  callee: src.vallm.cli.output_formatters.batch.output_batch_toon
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.output_batch_results
+  callee: src.vallm.cli.output_formatters.batch.output_batch_rich
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.batch.output_batch_results
+  callee: src.vallm.cli.output_formatters.batch.output_batch_json
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.batch.output_batch_results
+  callee: src.vallm.cli.output_formatters.batch.output_batch_yaml
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.batch.output_batch_results
+  callee: src.vallm.cli.output_formatters.batch.output_batch_toon
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.batch.output_batch_results
+  callee: src.vallm.cli.output_formatters.batch.output_batch_rich
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.batch.output_batch_empty
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.batch._build_unsupported_summary
+  callee: src.vallm.cli.output_formatters.batch._unsupported_bucket
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.batch._print_toon_file_section
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.batch._print_toon_file_section
+  callee: src.vallm.cli.output_formatters.batch._toon_row
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.batch._print_toon_unsupported_section
+  callee: src.vallm.cli.output_formatters.batch._ordered_unsupported_items
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.batch._print_toon_unsupported_section
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.batch._print_toon_unsupported_section
+  callee: src.vallm.cli.output_formatters.batch._toon_row
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.batch.output_batch_rich
+  callee: src.vallm.cli.output_formatters.batch.print_summary_header
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.batch.output_batch_rich
+  callee: src.vallm.cli.output_formatters.batch.build_results_table
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.batch.output_batch_text
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.batch.output_batch_json
+  callee: src.vallm.cli.output_formatters.utils.build_files_data
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.batch.output_batch_json
+  callee: src.vallm.cli.output_formatters.utils.build_failed_files_data
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.batch.output_batch_json
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.batch.output_batch_yaml
+  callee: src.vallm.cli.output_formatters.utils.build_files_data
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.batch.output_batch_yaml
+  callee: src.vallm.cli.output_formatters.utils.build_failed_files_data
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.batch.output_batch_yaml
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.batch.output_batch_toon
+  callee: src.vallm.cli.output_formatters.utils.build_files_data
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.batch.output_batch_toon
+  callee: src.vallm.cli.output_formatters.batch._split_toon_results
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.batch.output_batch_toon
+  callee: src.vallm.cli.output_formatters.batch._build_unsupported_summary
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.batch.output_batch_toon
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: src.vallm.cli.output_formatters.batch.print_summary_header
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: mcp.server._tools_vallm._build_pipeline_response
+  callee: mcp.server._tools_vallm._format_issue
+  call_type: resolved
+- caller: mcp.server._tools_vallm._build_validator_response
+  callee: mcp.server._tools_vallm._format_issue
+  call_type: resolved
+- caller: mcp.server._tools_vallm.compute_overall_score_and_verdict
+  callee: mcp.server._tools_vallm._compute_verdict
+  call_type: resolved
+- caller: mcp.server._tools_vallm.validate_syntax
+  callee: mcp.server._tools_vallm.create_proposal
+  call_type: resolved
+- caller: mcp.server._tools_vallm.validate_syntax
+  callee: mcp.server._tools_vallm._build_validator_response
+  call_type: resolved
+- caller: mcp.server._tools_vallm.validate_syntax
+  callee: mcp.server._tools_vallm._build_error_response
+  call_type: resolved
+- caller: mcp.server._tools_vallm.validate_imports
+  callee: mcp.server._tools_vallm.create_proposal
+  call_type: resolved
+- caller: mcp.server._tools_vallm.validate_imports
+  callee: mcp.server._tools_vallm._build_validator_response
+  call_type: resolved
+- caller: mcp.server._tools_vallm.validate_imports
+  callee: mcp.server._tools_vallm._build_error_response
+  call_type: resolved
+- caller: mcp.server._tools_vallm.validate_security
+  callee: mcp.server._tools_vallm.create_proposal
+  call_type: resolved
+- caller: mcp.server._tools_vallm.validate_security
+  callee: mcp.server._tools_vallm._build_validator_response
+  call_type: resolved
+- caller: mcp.server._tools_vallm.validate_security
+  callee: mcp.server._tools_vallm._build_error_response
+  call_type: resolved
+- caller: mcp.server._tools_vallm.validate_code
+  callee: mcp.server._tools_vallm.create_proposal
+  call_type: resolved
+- caller: mcp.server._tools_vallm.validate_code
+  callee: mcp.server._tools_vallm._run_validators
+  call_type: resolved
+- caller: mcp.server._tools_vallm.validate_code
+  callee: mcp.server._tools_vallm.compute_overall_score_and_verdict
+  call_type: resolved
+- caller: mcp.server._tools_vallm.validate_code
+  callee: mcp.server._tools_vallm._build_pipeline_response
+  call_type: resolved
+- caller: mcp.server._tools_vallm.validate_code
+  callee: mcp.server._tools_vallm._build_error_response
+  call_type: resolved
+- caller: src.vallm.core.languages.get_language_for_validation
+  callee: src.vallm.core.languages.detect_language
+  call_type: resolved
+- caller: mcp.server.self_server.handle_request
+  callee: mcp.server.self_server.handle_initialize
+  call_type: resolved
+- caller: mcp.server.self_server.handle_request
+  callee: mcp.server.self_server.handle_tools_list
+  call_type: resolved
+- caller: mcp.server.self_server.handle_request
+  callee: mcp.server.self_server.handle_tools_call
+  call_type: resolved
+- caller: mcp.server.self_server.main
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: mcp.server.self_server.main
+  callee: mcp.server.self_server.handle_request
+  call_type: resolved
+- caller: examples.mcp_demo.example_syntax_validation
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.mcp_demo.example_syntax_validation
+  callee: mcp.server._tools_vallm.validate_syntax
+  call_type: resolved
+- caller: examples.mcp_demo.example_security_validation
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.mcp_demo.example_security_validation
+  callee: mcp.server._tools_vallm.validate_security
+  call_type: resolved
+- caller: examples.mcp_demo.example_full_pipeline
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.mcp_demo.example_full_pipeline
+  callee: mcp.server._tools_vallm.validate_code
+  call_type: resolved
+- caller: examples.mcp_demo.example_selective_validation
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.mcp_demo.example_selective_validation
+  callee: mcp.server._tools_vallm.validate_code
+  call_type: resolved
+- caller: examples.mcp_demo.main
+  callee: examples.cycle-test.full-cycle.print
+  call_type: resolved
+- caller: examples.mcp_demo.main
+  callee: examples.mcp_demo.example_syntax_validation
+  call_type: resolved
+- caller: examples.mcp_demo.main
+  callee: examples.mcp_demo.example_security_validation
+  call_type: resolved
+- caller: examples.mcp_demo.main
+  callee: examples.mcp_demo.example_full_pipeline
+  call_type: resolved
+- caller: examples.mcp_demo.main
+  callee: examples.mcp_demo.example_selective_validation
+  call_type: resolved
+- caller: src.vallm.cli.batch_utils.compile_patterns
+  callee: src.vallm.validators.file_cache.FileValidationCache.set
+  call_type: resolved
+- caller: src.vallm.core.ast_compare.parse_code
+  callee: src.vallm.core.ast_compare._cached_get_parser
+  call_type: resolved
+- caller: src.vallm.core.ast_compare.python_ast_similarity
+  callee: src.vallm.core.ast_compare.parse_python_ast
+  call_type: resolved
+- caller: src.vallm.core.ast_compare.python_ast_similarity
+  callee: src.vallm.core.ast_compare.normalize_python_ast
+  call_type: resolved
+- caller: src.vallm.core.ast_compare.tree_sitter_node_count
+  callee: src.vallm.core.ast_compare.parse_code
+  call_type: resolved
+- caller: src.vallm.core.ast_compare.tree_sitter_error_count
+  callee: src.vallm.core.ast_compare.parse_code
+  call_type: resolved
+- caller: src.vallm.core.ast_compare.structural_diff_summary
+  callee: src.vallm.core.ast_compare.parse_code
+  call_type: resolved
+- caller: src.vallm.core.ast_compare.structural_diff_summary
+  callee: src.vallm.validators.file_cache.FileValidationCache.set
+  call_type: resolved
+- caller: src.vallm.scoring.validate
+  callee: src.vallm.scoring._initialize_settings
+  call_type: resolved
+- caller: src.vallm.scoring.validate
+  callee: src.vallm.scoring._initialize_context
+  call_type: resolved
+- caller: src.vallm.scoring.validate
+  callee: src.vallm.scoring._initialize_validators
+  call_type: resolved
+- caller: src.vallm.scoring.validate
+  callee: src.vallm.scoring._run_validation_pipeline
+  call_type: resolved
+- caller: src.vallm.scoring.validate
+  callee: src.vallm.scoring.compute_verdict
+  call_type: resolved
+- caller: src.vallm.scoring._initialize_validators
+  callee: src.vallm.scoring._get_default_validators
+  call_type: resolved
+- caller: src.vallm.cli.command_handlers.check_command
+  callee: src.vallm.cli.command_handlers._load_code
+  call_type: resolved
+- caller: src.vallm.cli.command_handlers.check_command
+  callee: src.vallm.cli.command_handlers._detect_and_log_language
+  call_type: resolved
+- caller: src.vallm.cli.command_handlers.check_command
+  callee: src.vallm.cli.command_handlers._build_proposal
+  call_type: resolved
+- caller: src.vallm.cli.command_handlers.check_command
+  callee: src.vallm.cli.settings_builders.build_validate_settings
+  call_type: resolved
+- caller: src.vallm.cli.command_handlers.check_command
+  callee: src.vallm.validators.logical.LogicalErrorValidator.validate
+  call_type: resolved
+- caller: src.vallm.cli.command_handlers.check_command
+  callee: src.vallm.cli.output_formatters.base.output_validate_result
+  call_type: resolved
+- caller: src.vallm.cli.command_handlers.info_command
+  callee: src.vallm.validators.semantic_cache.clear_semantic_cache
+  call_type: resolved
+- caller: src.vallm.cli.command_handlers.info_command
+  callee: src.vallm.cli.command_handlers._show_general_info
+  call_type: resolved
+- caller: src.vallm.cli.command_handlers.info_command
+  callee: src.vallm.cli.command_handlers._show_language_info
+  call_type: resolved
+- caller: src.vallm.cli.command_handlers.info_command
+  callee: src.vallm.validators.semantic_cache.get_semantic_cache
+  call_type: resolved
+- caller: src.vallm.cli.command_handlers._detect_and_log_language
+  callee: src.vallm.core.languages.detect_language
+  call_type: resolved
+- caller: src.vallm.cli.command_handlers._detect_and_log_language
+  callee: src.vallm.config.get_default_language
+  call_type: resolved
+- caller: src.vallm.config.reload_settings
+  callee: src.vallm.config.get_settings
+  call_type: resolved
+- caller: src.vallm.config.get_default_filenames
+  callee: src.vallm.config.get_settings
+  call_type: resolved
+- caller: src.vallm.config.get_default_output_format
+  callee: src.vallm.config.get_settings
+  call_type: resolved
+- caller: src.vallm.config.get_default_language
+  callee: src.vallm.config.get_settings
+  call_type: resolved
+modules:
+  backend.routers.tickets.crud:
+  - backend.routers.tickets.crud.create_new_ticket
+  - backend.routers.tickets.crud.delete_existing_ticket
+  - backend.routers.tickets.crud.get_action_required_tickets
+  - backend.routers.tickets.crud.get_single_ticket
+  - backend.routers.tickets.crud.get_stats
+  - backend.routers.tickets.crud.get_tickets_for_repo
+  - backend.routers.tickets.crud.list_tickets
+  - backend.routers.tickets.crud.search_tickets_endpoint
+  - backend.routers.tickets.crud.update_existing_ticket
+  backend.routers.tickets.models:
+  - backend.routers.tickets.models._get_tenant_for_user
+  backend.routers.tickets.redsl:
+  - backend.routers.tickets.redsl.get_ticket_processing_status
+  - backend.routers.tickets.redsl.process_ticket_with_redsl
+  backend.routers.tickets.webhook:
+  - backend.routers.tickets.webhook.bulk_close_tickets
+  - backend.routers.tickets.webhook.bulk_reprocess_tickets
+  examples.01_basic_validation.main:
+  - examples.01_basic_validation.main.main
+  examples.02_ast_comparison.main:
+  - examples.02_ast_comparison.main.main
+  examples.03_security_check.main:
+  - examples.03_security_check.main.main
+  examples.04_graph_analysis.main:
+  - examples.04_graph_analysis.main.main
+  examples.05_llm_semantic_review.main:
+  - examples.05_llm_semantic_review.main.main
+  examples.05_llm_semantic_review.main_template:
+  - examples.05_llm_semantic_review.main_template.main
+  examples.06_multilang_validation.main:
+  - examples.06_multilang_validation.main.main
+  examples.06_multilang_validation.main_template:
+  - examples.06_multilang_validation.main_template.main
+  examples.07_multi_language.main:
+  - examples.07_multi_language.main.main
+  - examples.07_multi_language.main.print_language_info
+  - examples.07_multi_language.main.save_results
+  - examples.07_multi_language.main.test_language_detection
+  - examples.07_multi_language.main.validate_all_languages
+  - examples.07_multi_language.main.validate_single_language
+  examples.08_code2llm_integration.main:
+  - examples.08_code2llm_integration.main.analyze_with_code2llm
+  - examples.08_code2llm_integration.main.create_sample_project
+  - examples.08_code2llm_integration.main.generate_report
+  - examples.08_code2llm_integration.main.main
+  - examples.08_code2llm_integration.main.validate_with_vallm
+  examples.09_code2logic_integration.main:
+  - examples.09_code2logic_integration.main.analyze_with_code2logic
+  - examples.09_code2logic_integration.main.build_call_graph
+  - examples.09_code2logic_integration.main.generate_report
+  - examples.09_code2logic_integration.main.main
+  - examples.09_code2logic_integration.main.validate_with_vallm
+  - examples.09_code2logic_integration.main.visualize_flow
+  examples.10_mcp_ollama_demo.legacy_code.order_processor:
+  - examples.10_mcp_ollama_demo.legacy_code.order_processor.OrderManager.execute_query
+  - examples.10_mcp_ollama_demo.legacy_code.order_processor.OrderManager.process_payment
+  examples.10_mcp_ollama_demo.mcp_demo:
+  - examples.10_mcp_ollama_demo.mcp_demo.analyze_with_code2llm
+  - examples.10_mcp_ollama_demo.mcp_demo.call_ollama
+  - examples.10_mcp_ollama_demo.mcp_demo.generate_refactoring_prompt
+  - examples.10_mcp_ollama_demo.mcp_demo.log_code
+  - examples.10_mcp_ollama_demo.mcp_demo.log_section
+  - examples.10_mcp_ollama_demo.mcp_demo.log_step
+  - examples.10_mcp_ollama_demo.mcp_demo.main
+  - examples.10_mcp_ollama_demo.mcp_demo.run_mcp_workflow
+  - examples.10_mcp_ollama_demo.mcp_demo.validate_with_vallm
+  examples.10_mcp_ollama_demo.refactored_output:
+  - examples.10_mcp_ollama_demo.refactored_output.RefactoredOrderManager.execute_query
+  - examples.10_mcp_ollama_demo.refactored_output.RefactoredOrderManager.process_payment
+  - examples.10_mcp_ollama_demo.refactored_output.load_config
+  - examples.10_mcp_ollama_demo.refactored_output.main
+  - examples.10_mcp_ollama_demo.refactored_output.process_order
+  examples.11_claude_code_autonomous.claude_autonomous_demo:
+  - examples.11_claude_code_autonomous.claude_autonomous_demo.analyze_with_code2llm
+  - examples.11_claude_code_autonomous.claude_autonomous_demo.call_claude_code
+  - examples.11_claude_code_autonomous.claude_autonomous_demo.create_basic_tests
+  - examples.11_claude_code_autonomous.claude_autonomous_demo.log_code
+  - examples.11_claude_code_autonomous.claude_autonomous_demo.log_section
+  - examples.11_claude_code_autonomous.claude_autonomous_demo.log_step
+  - examples.11_claude_code_autonomous.claude_autonomous_demo.main
+  - examples.11_claude_code_autonomous.claude_autonomous_demo.run_autonomous_workflow
+  - examples.11_claude_code_autonomous.claude_autonomous_demo.run_runtime_tests
+  - examples.11_claude_code_autonomous.claude_autonomous_demo.validate_with_vallm
+  examples.11_claude_code_autonomous.legacy_code.data_processor:
+  - examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.__init__
+  - examples.11_claude_code_autonomous.legacy_code.data_processor.init_database
+  - examples.11_claude_code_autonomous.legacy_code.data_processor.load_config
+  - examples.11_claude_code_autonomous.legacy_code.data_processor.main
+  examples.12_ollama_simple_demo.best_version:
+  - examples.12_ollama_simple_demo.best_version.main
+  examples.12_ollama_simple_demo.iteration_1:
+  - examples.12_ollama_simple_demo.iteration_1.main
+  examples.12_ollama_simple_demo.iteration_2:
+  - examples.12_ollama_simple_demo.iteration_2.main
+  examples.12_ollama_simple_demo.legacy_code.simple_buggy:
+  - examples.12_ollama_simple_demo.legacy_code.simple_buggy.calculate_total
+  - examples.12_ollama_simple_demo.legacy_code.simple_buggy.load_config
+  - examples.12_ollama_simple_demo.legacy_code.simple_buggy.main
+  - examples.12_ollama_simple_demo.legacy_code.simple_buggy.process_user_input
+  - examples.12_ollama_simple_demo.legacy_code.simple_buggy.save_data
+  examples.12_ollama_simple_demo.ollama_simple_demo:
+  - examples.12_ollama_simple_demo.ollama_simple_demo.analyze_with_code2llm
+  - examples.12_ollama_simple_demo.ollama_simple_demo.call_ollama
+  - examples.12_ollama_simple_demo.ollama_simple_demo.log_section
+  - examples.12_ollama_simple_demo.ollama_simple_demo.log_step
+  - examples.12_ollama_simple_demo.ollama_simple_demo.main
+  - examples.12_ollama_simple_demo.ollama_simple_demo.run_simple_test
+  - examples.12_ollama_simple_demo.ollama_simple_demo.run_simple_workflow
+  - examples.12_ollama_simple_demo.ollama_simple_demo.validate_with_vallm
+  examples.12_ollama_simple_demo.utils.calculate_total:
+  - examples.12_ollama_simple_demo.utils.calculate_total.calculate_total
+  examples.12_ollama_simple_demo.utils.load_config:
+  - examples.12_ollama_simple_demo.utils.load_config.load_config
+  examples.12_ollama_simple_demo.utils.main:
+  - examples.12_ollama_simple_demo.utils.main.run_demo_main
+  examples.12_ollama_simple_demo.utils.process_user_input:
+  - examples.12_ollama_simple_demo.utils.process_user_input.process_user_input
+  examples.12_ollama_simple_demo.utils.save_data:
+  - examples.12_ollama_simple_demo.utils.save_data.save_data
+  examples.13_batch_processing.main:
+  - examples.13_batch_processing.main._build_result_entry
+  - examples.13_batch_processing.main._create_test_files
+  - examples.13_batch_processing.main._display_results
+  - examples.13_batch_processing.main._print_summary
+  - examples.13_batch_processing.main._run_validation
+  - examples.13_batch_processing.main._save_and_cleanup
+  - examples.13_batch_processing.main.main
+  examples.14_api_advanced.main:
+  - examples.14_api_advanced.main.demo_proposal_creation
+  - examples.14_api_advanced.main.demo_result_interpretation
+  - examples.14_api_advanced.main.demo_settings_customization
+  - examples.14_api_advanced.main.demo_workflow_integration
+  - examples.14_api_advanced.main.main
+  examples.15_cli_usage.main:
+  - examples.15_cli_usage.main.demo_batch_validation
+  - examples.15_cli_usage.main.demo_check_command
+  - examples.15_cli_usage.main.demo_output_formats
+  - examples.15_cli_usage.main.demo_programmatic_cli
+  - examples.15_cli_usage.main.demo_single_file_validation
+  - examples.15_cli_usage.main.main
+  - examples.15_cli_usage.main.run_cli_command
+  examples.16_configuration.main:
+  - examples.16_configuration.main.demo_config_file
+  - examples.16_configuration.main.demo_environment_variables
+  - examples.16_configuration.main.demo_profile_switching
+  - examples.16_configuration.main.demo_runtime_configuration
+  - examples.16_configuration.main.demo_threshold_configuration
+  - examples.16_configuration.main.main
+  examples.cycle-test.full-cycle:
+  - examples.cycle-test.full-cycle.print
+  examples.mcp_demo:
+  - examples.mcp_demo.example_full_pipeline
+  - examples.mcp_demo.example_security_validation
+  - examples.mcp_demo.example_selective_validation
+  - examples.mcp_demo.example_syntax_validation
+  - examples.mcp_demo.main
+  examples.utils:
+  - examples.utils.print_summary
+  - examples.utils.run_validation_examples
+  - examples.utils.save_analysis_data
+  - examples.utils.validate_code_example
+  examples.utils.logging_utils:
+  - examples.utils.logging_utils.log_code
+  - examples.utils.logging_utils.log_result
+  - examples.utils.logging_utils.log_section
+  - examples.utils.logging_utils.log_step
+  examples.utils.save_analysis_data:
+  - examples.utils.save_analysis_data.save_analysis_data
+  examples.utils.validation_runner:
+  - examples.utils.validation_runner.run_validation_examples
+  frontend.e2e.gui-login-enhanced.spec:
+  - frontend.e2e.gui-login-enhanced.spec.content
+  - frontend.e2e.gui-login-enhanced.spec.loginElement
+  frontend.e2e.loginTestHelpers:
+  - frontend.e2e.loginTestHelpers.attemptLogin
+  - frontend.e2e.loginTestHelpers.attemptUserLogin
+  - frontend.e2e.loginTestHelpers.checkLoginStatus
+  - frontend.e2e.loginTestHelpers.testOAuthFlow
+  mcp.server._tools_vallm:
+  - mcp.server._tools_vallm._build_error_response
+  - mcp.server._tools_vallm._build_pipeline_response
+  - mcp.server._tools_vallm._build_validator_response
+  - mcp.server._tools_vallm._compute_verdict
+  - mcp.server._tools_vallm._format_issue
+  - mcp.server._tools_vallm._run_validators
+  - mcp.server._tools_vallm.compute_overall_score_and_verdict
+  - mcp.server._tools_vallm.create_proposal
+  - mcp.server._tools_vallm.validate_code
+  - mcp.server._tools_vallm.validate_imports
+  - mcp.server._tools_vallm.validate_security
+  - mcp.server._tools_vallm.validate_syntax
+  mcp.server.self_server:
+  - mcp.server.self_server.handle_initialize
+  - mcp.server.self_server.handle_request
+  - mcp.server.self_server.handle_tools_call
+  - mcp.server.self_server.handle_tools_list
+  - mcp.server.self_server.main
+  scripts.bump_version:
+  - scripts.bump_version.bump_version
+  - scripts.bump_version.main
+  src.vallm.cli.batch_filter:
+  - src.vallm.cli.batch_filter.filter_files
+  - src.vallm.cli.batch_filter.load_vallmignore
+  - src.vallm.cli.batch_filter.matches_include_pattern
+  - src.vallm.cli.batch_filter.parse_filter_patterns
+  - src.vallm.cli.batch_filter.should_exclude_file
+  src.vallm.cli.batch_process:
+  - src.vallm.cli.batch_process.detect_file_language
+  - src.vallm.cli.batch_process.handle_no_files_found
+  - src.vallm.cli.batch_process.handle_validation_result
+  - src.vallm.cli.batch_process.process_single_file
+  - src.vallm.cli.batch_process.read_file_text
+  - src.vallm.cli.batch_process.show_progress
+  - src.vallm.cli.batch_process.show_validation_start
+  src.vallm.cli.batch_processor_files:
+  - src.vallm.cli.batch_processor_files.build_file_list
+  src.vallm.cli.batch_processor_filter:
+  - src.vallm.cli.batch_processor_filter.parse_filter_patterns
+  src.vallm.cli.batch_processor_impl:
+  - src.vallm.cli.batch_processor_impl.BatchProcessor._build_file_list
+  - src.vallm.cli.batch_processor_impl.BatchProcessor._load_gitignore_parser
+  - src.vallm.cli.batch_processor_impl.BatchProcessor.process_batch
+  src.vallm.cli.batch_processor_patterns:
+  - src.vallm.cli.batch_processor_patterns._compile_patterns
+  - src.vallm.cli.batch_processor_patterns.filter_files
+  - src.vallm.cli.batch_processor_patterns.matches_include_pattern
+  - src.vallm.cli.batch_processor_patterns.matches_pattern
+  - src.vallm.cli.batch_processor_patterns.parse_filter_patterns
+  - src.vallm.cli.batch_processor_patterns.should_exclude_file
+  src.vallm.cli.batch_processor_validation:
+  - src.vallm.cli.batch_processor_validation.process_files
+  - src.vallm.cli.batch_processor_validation.validate_single_file
+  src.vallm.cli.batch_utils:
+  - src.vallm.cli.batch_utils.compile_patterns
+  src.vallm.cli.command_handlers:
+  - src.vallm.cli.command_handlers._build_proposal
+  - src.vallm.cli.command_handlers._detect_and_log_language
+  - src.vallm.cli.command_handlers._load_code
+  - src.vallm.cli.command_handlers._show_general_info
+  - src.vallm.cli.command_handlers._show_language_info
+  - src.vallm.cli.command_handlers.check_command
+  - src.vallm.cli.command_handlers.info_command
+  src.vallm.cli.output_formatters:
+  - src.vallm.cli.output_formatters.output_batch_results
+  - src.vallm.cli.output_formatters.output_validate_result
+  src.vallm.cli.output_formatters.base:
+  - src.vallm.cli.output_formatters.base.output_batch_results
+  - src.vallm.cli.output_formatters.base.output_validate_result
+  src.vallm.cli.output_formatters.batch:
+  - src.vallm.cli.output_formatters.batch._build_unsupported_summary
+  - src.vallm.cli.output_formatters.batch._ordered_unsupported_items
+  - src.vallm.cli.output_formatters.batch._print_toon_file_section
+  - src.vallm.cli.output_formatters.batch._print_toon_unsupported_section
+  - src.vallm.cli.output_formatters.batch._split_toon_results
+  - src.vallm.cli.output_formatters.batch._toon_row
+  - src.vallm.cli.output_formatters.batch._unsupported_bucket
+  - src.vallm.cli.output_formatters.batch.build_results_table
+  - src.vallm.cli.output_formatters.batch.output_batch_empty
+  - src.vallm.cli.output_formatters.batch.output_batch_json
+  - src.vallm.cli.output_formatters.batch.output_batch_results
+  - src.vallm.cli.output_formatters.batch.output_batch_rich
+  - src.vallm.cli.output_formatters.batch.output_batch_text
+  - src.vallm.cli.output_formatters.batch.output_batch_toon
+  - src.vallm.cli.output_formatters.batch.output_batch_yaml
+  - src.vallm.cli.output_formatters.batch.print_summary_header
+  src.vallm.cli.output_formatters.shared:
+  - src.vallm.cli.output_formatters.shared.build_failed_files_data
+  - src.vallm.cli.output_formatters.shared.format_error_message
+  src.vallm.cli.output_formatters.single:
+  - src.vallm.cli.output_formatters.single.output_json
+  - src.vallm.cli.output_formatters.single.output_rich
+  - src.vallm.cli.output_formatters.single.output_text
+  src.vallm.cli.output_formatters.utils:
+  - src.vallm.cli.output_formatters.utils.build_failed_files_data
+  - src.vallm.cli.output_formatters.utils.build_files_data
+  - src.vallm.cli.output_formatters.utils.format_error_message
+  src.vallm.cli.settings_builders:
+  - src.vallm.cli.settings_builders.build_validate_settings
+  src.vallm.config:
+  - src.vallm.config.get_default_filenames
+  - src.vallm.config.get_default_language
+  - src.vallm.config.get_default_output_format
+  - src.vallm.config.get_settings
+  - src.vallm.config.reload_settings
+  src.vallm.core.ast_compare:
+  - src.vallm.core.ast_compare._cached_get_parser
+  - src.vallm.core.ast_compare.normalize_python_ast
+  - src.vallm.core.ast_compare.parse_code
+  - src.vallm.core.ast_compare.parse_python_ast
+  - src.vallm.core.ast_compare.python_ast_similarity
+  - src.vallm.core.ast_compare.structural_diff_summary
+  - src.vallm.core.ast_compare.tree_sitter_error_count
+  - src.vallm.core.ast_compare.tree_sitter_node_count
+  src.vallm.core.gitignore:
+  - src.vallm.core.gitignore.create_default_gitignore_parser
+  - src.vallm.core.gitignore.get_default_excludes
+  - src.vallm.core.gitignore.load_gitignore
+  - src.vallm.core.gitignore.should_exclude
+  src.vallm.core.graph_builder:
+  - src.vallm.core.graph_builder.build_python_graph
+  src.vallm.core.graph_diff:
+  - src.vallm.core.graph_diff._diff_list
+  - src.vallm.core.graph_diff.diff_graphs
+  - src.vallm.core.graph_diff.diff_python_code
+  src.vallm.core.languages:
+  - src.vallm.core.languages.detect_language
+  - src.vallm.core.languages.get_language_for_validation
+  src.vallm.scoring:
+  - src.vallm.scoring._get_default_validators
+  - src.vallm.scoring._initialize_context
+  - src.vallm.scoring._initialize_settings
+  - src.vallm.scoring._initialize_validators
+  - src.vallm.scoring._run_validation_pipeline
+  - src.vallm.scoring.compute_verdict
+  - src.vallm.scoring.validate
+  src.vallm.validators.complexity:
+  - src.vallm.validators.complexity.ComplexityValidator._check_lizard
+  src.vallm.validators.file_cache:
+  - src.vallm.validators.file_cache.FileValidationCache.set
+  - src.vallm.validators.file_cache.get_file_cache
+  src.vallm.validators.imports.c_imports:
+  - src.vallm.validators.imports.c_imports.CImportValidator.extract_imports
+  src.vallm.validators.imports.go_imports:
+  - src.vallm.validators.imports.go_imports.GoImportValidator.extract_imports
+  src.vallm.validators.imports.java_imports:
+  - src.vallm.validators.imports.java_imports.JavaImportValidator.extract_imports
+  src.vallm.validators.imports.javascript_imports:
+  - src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.extract_imports
+  src.vallm.validators.imports.python_imports:
+  - src.vallm.validators.imports.python_imports.PythonImportValidator.extract_imports
+  - src.vallm.validators.imports.python_imports.PythonImportValidator.module_exists
+  - src.vallm.validators.imports.python_imports._collect_guarded_lines
+  - src.vallm.validators.imports.python_imports._get_local_modules
+  src.vallm.validators.imports.rust_imports:
+  - src.vallm.validators.imports.rust_imports.RustImportValidator.extract_imports
+  src.vallm.validators.imports.utils:
+  - src.vallm.validators.imports.utils._is_gitignored
+  - src.vallm.validators.imports.utils._should_skip_dir
+  - src.vallm.validators.imports.utils._should_skip_entry
+  - src.vallm.validators.imports.utils.walk
+  src.vallm.validators.logical:
+  - src.vallm.validators.logical.LogicalErrorValidator.validate
+  src.vallm.validators.semantic:
+  - src.vallm.validators.semantic.SemanticValidator.__init__
+  src.vallm.validators.semantic_cache:
+  - src.vallm.validators.semantic_cache.clear_semantic_cache
+  - src.vallm.validators.semantic_cache.get_semantic_cache
+  src.vallm.validators.syntax:
+  - src.vallm.validators.syntax.SyntaxValidator._validate_python
+  - src.vallm.validators.syntax.SyntaxValidator._validate_treesitter
+entry_points:
+- backend.routers.tickets.crud.create_new_ticket
+- backend.routers.tickets.crud.delete_existing_ticket
+- backend.routers.tickets.crud.get_action_required_tickets
+- backend.routers.tickets.crud.get_single_ticket
+- backend.routers.tickets.crud.get_stats
+- backend.routers.tickets.crud.get_tickets_for_repo
+- backend.routers.tickets.crud.list_tickets
+- backend.routers.tickets.crud.search_tickets_endpoint
+- backend.routers.tickets.crud.update_existing_ticket
+- backend.routers.tickets.redsl._create_pr_for_ticket
+- backend.routers.tickets.redsl.get_ticket_processing_status
+- backend.routers.tickets.redsl.process_ticket_with_redsl
+- backend.routers.tickets.webhook.bulk_close_tickets
+- backend.routers.tickets.webhook.bulk_reprocess_tickets
+- backend.routers.tickets.webhook.handle_pr_webhook
+- examples.01_basic_validation.main.main
+- examples.02_ast_comparison.main.main
+- examples.03_security_check.main.main
+- examples.04_graph_analysis.main.main
+- examples.05_llm_semantic_review.main.main
+- examples.05_llm_semantic_review.main_template.main
+- examples.06_multilang_validation.main.main
+- examples.06_multilang_validation.main_template.main
+- examples.07_multi_language.main.main
+- examples.08_code2llm_integration.main.main
+- examples.09_code2logic_integration.main.main
+- examples.10_mcp_ollama_demo.legacy_code.order_processor.OrderManager.__init__
+- examples.10_mcp_ollama_demo.legacy_code.order_processor.OrderManager.add_order
+- examples.10_mcp_ollama_demo.legacy_code.order_processor.OrderManager.execute_query
+- examples.10_mcp_ollama_demo.legacy_code.order_processor.OrderManager.get_stats
+- examples.10_mcp_ollama_demo.legacy_code.order_processor.OrderManager.process_payment
+- examples.10_mcp_ollama_demo.legacy_code.order_processor.OrderManager.send_email
+- examples.10_mcp_ollama_demo.legacy_code.order_processor.calculate
+- examples.10_mcp_ollama_demo.legacy_code.order_processor.calculate_shipping
+- examples.10_mcp_ollama_demo.legacy_code.order_processor.dead_code
+- examples.10_mcp_ollama_demo.legacy_code.order_processor.load_config
+- examples.10_mcp_ollama_demo.legacy_code.order_processor.process_order
+- examples.10_mcp_ollama_demo.legacy_code.order_processor.save_data
+- examples.10_mcp_ollama_demo.legacy_code.order_processor.validate_email_1
+- examples.10_mcp_ollama_demo.legacy_code.order_processor.validate_email_2
+- examples.10_mcp_ollama_demo.mcp_demo.main
+- examples.10_mcp_ollama_demo.refactored_output.RefactoredOrderManager.__init__
+- examples.10_mcp_ollama_demo.refactored_output.RefactoredOrderManager.add_order
+- examples.10_mcp_ollama_demo.refactored_output.RefactoredOrderManager.execute_query
+- examples.10_mcp_ollama_demo.refactored_output.RefactoredOrderManager.get_stats
+- examples.10_mcp_ollama_demo.refactored_output.RefactoredOrderManager.process_payment
+- examples.10_mcp_ollama_demo.refactored_output.RefactoredOrderManager.send_email
+- examples.10_mcp_ollama_demo.refactored_output.RefactoredOrderManager.validate_order
+- examples.10_mcp_ollama_demo.refactored_output.calculate_shipping
+- examples.10_mcp_ollama_demo.refactored_output.main
+- examples.10_mcp_ollama_demo.refactored_output.save_data
+- examples.10_mcp_ollama_demo.refactored_output.validate_email
+- examples.10_mcp_ollama_demo.run.print
+- examples.10_mcp_ollama_demo.run.print_error
+- examples.10_mcp_ollama_demo.run.print_section
+- examples.10_mcp_ollama_demo.run.print_step
+- examples.10_mcp_ollama_demo.run.print_success
+- examples.10_mcp_ollama_demo.run.print_warning
+- examples.11_claude_code_autonomous.claude_autonomous_demo.main
+- examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.__init__
+- examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.another_unused_function
+- examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.calculate_metrics
+- examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.complex_calculation
+- examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.export_data
+- examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.process_user_data
+- examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.process_with_external_api
+- examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.unused_function
+- examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.validate_email
+- examples.11_claude_code_autonomous.legacy_code.data_processor.DataProcessor.validate_email_again
+- examples.11_claude_code_autonomous.legacy_code.data_processor.ReportGenerator.__init__
+- examples.11_claude_code_autonomous.legacy_code.data_processor.ReportGenerator.export_report
+- examples.11_claude_code_autonomous.legacy_code.data_processor.ReportGenerator.generate_report
+- examples.11_claude_code_autonomous.legacy_code.data_processor.main
+- examples.11_claude_code_autonomous.run.print_error
+- examples.11_claude_code_autonomous.run.print_section
+- examples.11_claude_code_autonomous.run.print_step
+- examples.11_claude_code_autonomous.run.print_success
+- examples.11_claude_code_autonomous.run.print_warning
+- examples.12_ollama_simple_demo.best_version.main
+- examples.12_ollama_simple_demo.iteration_1.main
+- examples.12_ollama_simple_demo.iteration_2.main
+- examples.12_ollama_simple_demo.legacy_code.simple_buggy.BadClass.__init__
+- examples.12_ollama_simple_demo.legacy_code.simple_buggy.BadClass.another_method
+- examples.12_ollama_simple_demo.legacy_code.simple_buggy.BadClass.process_data
+- examples.12_ollama_simple_demo.legacy_code.simple_buggy.duplicate_function
+- examples.12_ollama_simple_demo.legacy_code.simple_buggy.main
+- examples.12_ollama_simple_demo.legacy_code.simple_buggy.unused_function
+- examples.12_ollama_simple_demo.ollama_simple_demo.main
+- examples.12_ollama_simple_demo.utils.calculate_total.calculate_total
+- examples.12_ollama_simple_demo.utils.save_data.save_data
+- examples.13_batch_processing.main.main
+- examples.14_api_advanced.main.main
+- examples.15_cli_usage.main.main
+- examples.16_configuration.main.main
+- examples.cycle-test.full-cycle.semcod
+- examples.cycle-test.validate-steps.check
+- examples.cycle-test.validate-steps.semcod
+- examples.mcp_demo.main
+- examples.run.run_example
+- examples.utils.extract_code_from_response.extract_code_from_response
+- examples.utils.extraction.extract_json_from_response
+- examples.utils.logging_utils.log_code
+- examples.utils.logging_utils.log_result
+- examples.utils.logging_utils.log_section
+- examples.utils.logging_utils.log_step
+- examples.utils.print_summary
+- examples.utils.save_analysis_data
+- examples.utils.validate_code_example
+- examples.utils.validation_runner.run_validation_examples
+- frontend.e2e.gui-login-enhanced.spec.currentUrl
+- frontend.e2e.gui-login-enhanced.spec.isLoggedIn
+- frontend.e2e.gui-login-enhanced.spec.loginElement
+- frontend.e2e.gui-login-enhanced.spec.res
+- frontend.e2e.gui-login-enhanced.spec.result
+- frontend.e2e.loginTestHelpers.FRONTEND_URL
+- frontend.e2e.loginTestHelpers.MOCK_GITHUB_URL
+- frontend.e2e.loginTestHelpers.element
+- frontend.e2e.loginTestHelpers.isLoggedIn
+- frontend.e2e.loginTestHelpers.loginClicked
+- frontend.e2e.loginTestHelpers.testOAuthFlow
+- frontend.e2e.loginTestHelpers.userButtonClicked
+- frontend.src.components.RedslHealthCard.RedslHealthCard
+- frontend.src.components.RedslHealthCard.parts.HealthContent
+- frontend.src.components.RedslHealthCard.parts.MetricRow
+- frontend.src.components.RedslHealthCard.parts.StatusChecking
+- frontend.src.components.RedslHealthCard.parts.StatusError
+- frontend.src.components.RedslHealthCard.parts.StatusLoading
+- frontend.src.components.RedslHealthCard.parts.StatusUnavailable
+- frontend.src.components.RedslHealthCard.parts.grade
+- frontend.src.components.RedslHealthCard.parts.ok
+- frontend.src.components.RedslHealthCard.parts.score
+- frontend.src.hooks.useRedslHealth.h
+- frontend.src.hooks.useRedslHealth.handleRefactor
+- frontend.src.hooks.useRedslHealth.result
+- frontend.src.hooks.useRedslHealth.useRedslHealth
+- mcp.server._tools_vallm.validate_imports
+- mcp.server.self_server.main
+- scripts.bump_version.main
+- scripts.test_docker_installation.print_error
+- scripts.test_docker_installation.print_status
+- scripts.test_docker_installation.print_warning
+- scripts.test_docker_installation.test_image
+- src.vallm.cli.batch_filter.filter_files
+- src.vallm.cli.batch_process.output_batch_results
+- src.vallm.cli.batch_process.process_files
+- src.vallm.cli.batch_process.process_single_file
+- src.vallm.cli.batch_processor_filter.matches_include_pattern
+- src.vallm.cli.batch_processor_filter.parse_filter_patterns
+- src.vallm.cli.batch_processor_filter.should_exclude_file
+- src.vallm.cli.batch_processor_impl.BatchProcessor.__init__
+- src.vallm.cli.batch_processor_impl.BatchProcessor._build_file_list
+- src.vallm.cli.batch_processor_impl.BatchProcessor._load_gitignore_parser
+- src.vallm.cli.batch_processor_impl.BatchProcessor.process_batch
+- src.vallm.cli.batch_processor_patterns._CompiledPatterns.__init__
+- src.vallm.cli.batch_processor_validation.validate_single_file
+- src.vallm.cli.batch_utils.compile_patterns
+- src.vallm.cli.command_handlers.batch_command
+- src.vallm.cli.command_handlers.check_command
+- src.vallm.cli.command_handlers.info_command
+- src.vallm.cli.command_handlers.validate_command
+- src.vallm.cli.output_formatters._toon_today
+- src.vallm.cli.output_formatters.base.output_batch_results
+- src.vallm.cli.output_formatters.batch.VallmJSONEncoder.default
+- src.vallm.cli.output_formatters.batch.output_batch_empty
+- src.vallm.cli.output_formatters.batch.output_batch_results
+- src.vallm.cli.output_formatters.batch.output_batch_text
+- src.vallm.cli.output_formatters.output_batch_results
+- src.vallm.cli.output_formatters.output_validate_result
+- src.vallm.cli.output_formatters.shared.build_failed_files_data
+- src.vallm.cli.output_formatters.shared.build_files_data
+- src.vallm.config.VallmSettings.from_toml
+- src.vallm.config.reload_settings
+- src.vallm.core.gitignore.GitignoreParser.__init__
+- src.vallm.core.gitignore.GitignoreParser._fnmatch
+- src.vallm.core.gitignore.GitignoreParser._match_pattern
+- src.vallm.core.gitignore.GitignoreParser._parse
+- src.vallm.core.gitignore.GitignoreParser._pattern_to_regex
+- src.vallm.core.gitignore.GitignoreParser.matches
+- src.vallm.core.gitignore.should_exclude
+- src.vallm.core.graph_builder.CodeGraph.to_dict
+- src.vallm.core.languages.Language.__init__
+- src.vallm.core.languages.Language.from_extension
+- src.vallm.core.languages.Language.from_path
+- src.vallm.core.languages.Language.from_string
+- src.vallm.core.languages.get_language_for_validation
+- src.vallm.hookspecs.VallmSpec.get_validator_name
+- src.vallm.hookspecs.VallmSpec.get_validator_tier
+- src.vallm.hookspecs.VallmSpec.validate_proposal
+- src.vallm.sandbox.runner.SandboxRunner.__init__
+- src.vallm.sandbox.runner.SandboxRunner._run_docker
+- src.vallm.sandbox.runner.SandboxRunner._run_subprocess
+- src.vallm.sandbox.runner.SandboxRunner.run
+- src.vallm.scoring.Issue.__str__
+- src.vallm.scoring.validate
+- src.vallm.validators.base.BaseValidator.validate
+- src.vallm.validators.complexity.ComplexityValidator.__init__
+- src.vallm.validators.complexity.ComplexityValidator._check_lizard
+- src.vallm.validators.complexity.ComplexityValidator._check_python_complexity
+- src.vallm.validators.complexity.ComplexityValidator.validate
+- src.vallm.validators.file_cache.FileValidationCache.__init__
+- src.vallm.validators.file_cache.FileValidationCache._key
+- src.vallm.validators.file_cache.FileValidationCache.clear
+- src.vallm.validators.file_cache.FileValidationCache.get
+- src.vallm.validators.file_cache.clear_file_cache
+- src.vallm.validators.imports.base.BaseImportValidator._get_error_message
+- src.vallm.validators.imports.base.BaseImportValidator._get_rule_name
+- src.vallm.validators.imports.base.BaseImportValidator.create_validation_result
+- src.vallm.validators.imports.base.BaseImportValidator.extract_imports
+- src.vallm.validators.imports.base.BaseImportValidator.get_language
+- src.vallm.validators.imports.base.BaseImportValidator.module_exists
+- src.vallm.validators.imports.base.BaseImportValidator.validate
+- src.vallm.validators.imports.c_imports.CImportValidator.__init__
+- src.vallm.validators.imports.c_imports.CImportValidator.extract_imports
+- src.vallm.validators.imports.c_imports.CImportValidator.module_exists
+- src.vallm.validators.imports.c_imports.CImportValidator.validate
+- src.vallm.validators.imports.factory.ImportValidatorFactory.create_validator
+- src.vallm.validators.imports.factory.ImportValidatorFactory.register_validator
+- src.vallm.validators.imports.factory.ImportValidatorFactory.supported_languages
+- src.vallm.validators.imports.go_imports.GoImportValidator._get_error_message
+- src.vallm.validators.imports.go_imports.GoImportValidator._get_rule_name
+- src.vallm.validators.imports.go_imports.GoImportValidator.extract_imports
+- src.vallm.validators.imports.go_imports.GoImportValidator.get_language
+- src.vallm.validators.imports.go_imports.GoImportValidator.module_exists
+- src.vallm.validators.imports.java_imports.JavaImportValidator._get_error_message
+- src.vallm.validators.imports.java_imports.JavaImportValidator._get_rule_name
+- src.vallm.validators.imports.java_imports.JavaImportValidator.extract_imports
+- src.vallm.validators.imports.java_imports.JavaImportValidator.get_language
+- src.vallm.validators.imports.java_imports.JavaImportValidator.module_exists
+- src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.__init__
+- src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator._get_error_message
+- src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator._get_rule_name
+- src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.extract_imports
+- src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.get_language
+- src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.module_exists
+- src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.validate
+- src.vallm.validators.imports.python_imports.PythonImportValidator._get_error_message
+- src.vallm.validators.imports.python_imports.PythonImportValidator._get_rule_name
+- src.vallm.validators.imports.python_imports.PythonImportValidator._relative_import_exists
+- src.vallm.validators.imports.python_imports.PythonImportValidator.extract_imports
+- src.vallm.validators.imports.python_imports.PythonImportValidator.get_language
+- src.vallm.validators.imports.python_imports.PythonImportValidator.module_exists
+- src.vallm.validators.imports.python_imports.PythonImportValidator.validate
+- src.vallm.validators.imports.rust_imports.RustImportValidator._get_error_message
+- src.vallm.validators.imports.rust_imports.RustImportValidator._get_rule_name
+- src.vallm.validators.imports.rust_imports.RustImportValidator.extract_imports
+- src.vallm.validators.imports.rust_imports.RustImportValidator.get_language
+- src.vallm.validators.imports.rust_imports.RustImportValidator.module_exists
+- src.vallm.validators.imports.utils.validate_import_path
+- src.vallm.validators.imports.wrapper.ImportValidator.validate
+- src.vallm.validators.lint.LintValidator.__init__
+- src.vallm.validators.lint.LintValidator._check_ruff
+- src.vallm.validators.lint.LintValidator._parse_ruff_result
+- src.vallm.validators.lint.LintValidator._parse_ruff_text
+- src.vallm.validators.lint.LintValidator.validate
+- src.vallm.validators.lint.create_validator
+- src.vallm.validators.logical.LogicalErrorValidator.__init__
+- src.vallm.validators.logical.LogicalErrorValidator._check_pyflakes
+- src.vallm.validators.logical.LogicalErrorValidator._parse_pyflakes_line
+- src.vallm.validators.logical.create_validator
+- src.vallm.validators.regression.RegressionValidator.__init__
+- src.vallm.validators.regression.RegressionValidator._build_pytest_cmd
+- src.vallm.validators.regression.RegressionValidator._exception_result
+- src.vallm.validators.regression.RegressionValidator._interpret
+- src.vallm.validators.regression.RegressionValidator._parse_failures
+- src.vallm.validators.regression.RegressionValidator._resolve_test_dir
+- src.vallm.validators.regression.RegressionValidator._run_pytest
+- src.vallm.validators.regression.RegressionValidator._timeout_result
+- src.vallm.validators.regression.RegressionValidator._write_code
+- src.vallm.validators.regression.RegressionValidator.validate
+- src.vallm.validators.security.SecurityValidator._check_patterns
+- src.vallm.validators.security.SecurityValidator._check_python_ast
+- src.vallm.validators.security.SecurityValidator._get_func_name
+- src.vallm.validators.security.SecurityValidator._try_bandit
+- src.vallm.validators.security.SecurityValidator.validate
+- src.vallm.validators.semantic.SemanticValidator.__init__
+- src.vallm.validators.semantic.SemanticValidator._build_prompt
+- src.vallm.validators.semantic.SemanticValidator._call_http
+- src.vallm.validators.semantic.SemanticValidator._call_litellm
+- src.vallm.validators.semantic.SemanticValidator._call_llm
+- src.vallm.validators.semantic.SemanticValidator._call_ollama
+- src.vallm.validators.semantic.SemanticValidator._create_json_error_result
+- src.vallm.validators.semantic.SemanticValidator._create_parse_error_result
+- src.vallm.validators.semantic.SemanticValidator._extract_json_from_response
+- src.vallm.validators.semantic.SemanticValidator._parse_issues
+- src.vallm.validators.semantic.SemanticValidator._parse_line_number
+- src.vallm.validators.semantic.SemanticValidator._parse_response
+- src.vallm.validators.semantic.SemanticValidator._parse_scores
+- src.vallm.validators.semantic.SemanticValidator._parse_severity
+- src.vallm.validators.semantic.SemanticValidator.validate
+- src.vallm.validators.semantic_cache.SemanticCache.__init__
+- src.vallm.validators.semantic_cache.SemanticCache._get_cache_key
+- src.vallm.validators.semantic_cache.SemanticCache.clear
+- src.vallm.validators.semantic_cache.SemanticCache.get
+- src.vallm.validators.semantic_cache.SemanticCache.get_cache_stats
+- src.vallm.validators.semantic_cache.SemanticCache.set
+- src.vallm.validators.syntax.SyntaxValidator._validate_python
+- src.vallm.validators.syntax.SyntaxValidator._validate_treesitter
+- src.vallm.validators.syntax.SyntaxValidator.validate

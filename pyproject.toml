@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "vallm"
-version = "0.1.88"
+version = "0.1.89"
 description = "A complete toolkit for validating LLM-generated code"
 readme = "README.md"
 license = "Apache-2.0"
@@ -51,8 +51,9 @@ graph = [
     "networkx>=3.0",
 ]
 docker = ["docker>=6.0"]
+intract = ["intract>=0.5.0"]
 all = [
-    "vallm[security,semantic,llm,graph,docker]",
+    "vallm[security,semantic,llm,graph,docker,intract]",
 ]
 dev = [
     "pytest>=9.0",
@@ -75,6 +76,7 @@ imports = "vallm.validators.imports:ImportValidator"
 complexity = "vallm.validators.complexity:ComplexityValidator"
 security = "vallm.validators.security:SecurityValidator"
 semantic = "vallm.validators.semantic:SemanticValidator"
+intract = "vallm.validators.intract:IntractValidator"
 
 [project.urls]
 Homepage = "https://github.com/semcod/vallm"

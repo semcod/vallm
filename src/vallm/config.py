@@ -34,8 +34,12 @@ class VallmSettings(BaseSettings):
     enable_security: bool = False
     enable_regression: bool = False
     enable_semantic: bool = False
+    enable_intract: bool = False
 
-    # Complexity limits
+    # Intract settings
+    intract_manifest: str = "intent.yaml"
+    intract_mode: str = "project"
+    intract_fail_on: str = "violation,missing_required_p1,invalid_manifest"
     max_cyclomatic_complexity: int = 15
     max_cognitive_complexity: int = 20
     max_function_length: int = 100

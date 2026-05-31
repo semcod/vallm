@@ -51,7 +51,7 @@ class JavaImportValidator(BaseImportValidator):
         imports = []
         try:
             parser = get_parser("java")
-            tree = parser.parse(code.encode("utf-8"))
+            tree = parser.parse(code)
 
             def walk(node):
                 if node.type == "import_declaration":

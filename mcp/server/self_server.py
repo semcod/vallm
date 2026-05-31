@@ -122,7 +122,7 @@ def main():
     """Main MCP server loop."""
     print("Vallm MCP Server starting...", file=sys.stderr)
     print(
-        "Available tools: validate_syntax, validate_imports, validate_security, validate_code",
+        "Available tools: validate_syntax, validate_imports, validate_security, validate_code, validate_intent_contracts, validate_intract_project, validate_intract_staged",
         file=sys.stderr,
     )
 

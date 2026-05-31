@@ -1,4 +1,5 @@
 flowchart TD
+%% generated in 0.03s
     examples__01_basic_validation["examples.01_basic_validation<br/>1 funcs"]
     examples__02_ast_comparison["examples.02_ast_comparison<br/>1 funcs"]
     examples__03_security_check["examples.03_security_check<br/>1 funcs"]
@@ -11,46 +12,63 @@ flowchart TD
     examples__10_mcp_ollama_demo["examples.10_mcp_ollama_demo<br/>42 funcs"]
     examples__11_claude_code_autonomous["examples.11_claude_code_autonomous<br/>33 funcs"]
     examples__12_ollama_simple_demo["examples.12_ollama_simple_demo<br/>27 funcs"]
+    examples__13_batch_processing["examples.13_batch_processing<br/>7 funcs"]
+    examples__14_api_advanced["examples.14_api_advanced<br/>5 funcs"]
+    examples__15_cli_usage["examples.15_cli_usage<br/>7 funcs"]
+    examples__16_configuration["examples.16_configuration<br/>6 funcs"]
+    examples__cycle_test["examples.cycle-test<br/>4 funcs"]
     examples__mcp_demo["examples.mcp_demo<br/>5 funcs"]
     examples__utils["examples.utils<br/>13 funcs"]
-    mcp__server["mcp.server<br/>19 funcs"]
+    mcp__server["mcp.server<br/>17 funcs"]
     scripts__bump_version["scripts.bump_version<br/>2 funcs"]
-    src__vallm["src.vallm<br/>258 funcs"]
-    src__vallm ==>|133| examples__10_mcp_ollama_demo
-    examples__utils ==>|72| examples__10_mcp_ollama_demo
-    examples__11_claude_code_autonomous ==>|69| examples__10_mcp_ollama_demo
-    examples__12_ollama_simple_demo ==>|53| examples__10_mcp_ollama_demo
-    examples__09_code2logic_integration ==>|38| examples__10_mcp_ollama_demo
-    examples__mcp_demo ==>|38| examples__10_mcp_ollama_demo
-    examples__04_graph_analysis ==>|33| examples__10_mcp_ollama_demo
-    examples__07_multi_language ==>|27| examples__10_mcp_ollama_demo
-    examples__08_code2llm_integration ==>|24| examples__10_mcp_ollama_demo
-    examples__02_ast_comparison ==>|21| examples__10_mcp_ollama_demo
-    examples__05_llm_semantic_review ==>|19| examples__10_mcp_ollama_demo
-    examples__03_security_check ==>|17| examples__10_mcp_ollama_demo
-    examples__06_multilang_validation ==>|9| examples__10_mcp_ollama_demo
+    src__vallm["src.vallm<br/>243 funcs"]
+    examples__utils ==>|72| examples__cycle_test
+    examples__11_claude_code_autonomous ==>|69| examples__cycle_test
+    src__vallm ==>|68| examples__cycle_test
+    examples__15_cli_usage ==>|60| examples__cycle_test
+    examples__16_configuration ==>|56| examples__cycle_test
+    examples__12_ollama_simple_demo ==>|53| examples__cycle_test
+    examples__14_api_advanced ==>|52| examples__cycle_test
+    examples__10_mcp_ollama_demo ==>|49| examples__cycle_test
+    examples__09_code2logic_integration ==>|38| examples__cycle_test
+    examples__mcp_demo ==>|38| examples__cycle_test
+    examples__04_graph_analysis ==>|33| examples__cycle_test
+    examples__07_multi_language ==>|27| examples__cycle_test
+    examples__08_code2llm_integration ==>|24| examples__cycle_test
+    examples__13_batch_processing ==>|22| examples__cycle_test
+    examples__02_ast_comparison ==>|21| examples__cycle_test
+    examples__05_llm_semantic_review ==>|19| examples__cycle_test
+    examples__03_security_check ==>|17| examples__cycle_test
+    examples__06_multilang_validation ==>|9| examples__cycle_test
     examples__mcp_demo ==>|8| mcp__server
     examples__utils ==>|7| src__vallm
     examples__02_ast_comparison ==>|6| src__vallm
-    mcp__server ==>|6| examples__10_mcp_ollama_demo
-    scripts__bump_version ==>|5| examples__10_mcp_ollama_demo
+    mcp__server ==>|6| examples__cycle_test
+    scripts__bump_version ==>|5| examples__cycle_test
+    examples__04_graph_analysis -->|3| src__vallm
     examples__05_llm_semantic_review -->|2| src__vallm
-    examples__05_llm_semantic_review -->|2| examples__utils
+    examples__09_code2logic_integration -->|2| src__vallm
     examples__01_basic_validation -->|2| examples__utils
     examples__06_multilang_validation -->|2| examples__utils
     examples__07_multi_language -->|2| src__vallm
-    examples__10_mcp_ollama_demo -->|2| examples__utils
+    examples__14_api_advanced -->|2| src__vallm
     examples__08_code2llm_integration -->|2| src__vallm
-    examples__09_code2logic_integration -->|1| src__vallm
-    examples__04_graph_analysis -->|1| src__vallm
+    examples__10_mcp_ollama_demo -->|2| examples__utils
+    examples__05_llm_semantic_review -->|2| examples__utils
     examples__04_graph_analysis -->|1| examples__utils
-    examples__12_ollama_simple_demo -->|1| src__vallm
-    examples__12_ollama_simple_demo -->|1| examples__utils
-    examples__12_ollama_simple_demo -->|1| examples__11_claude_code_autonomous
     examples__11_claude_code_autonomous -->|1| src__vallm
     examples__11_claude_code_autonomous -->|1| examples__utils
-    examples__01_basic_validation -->|1| examples__10_mcp_ollama_demo
-    examples__02_ast_comparison -->|1| examples__utils
+    examples__01_basic_validation -->|1| examples__cycle_test
+    examples__11_claude_code_autonomous -->|1| examples__12_ollama_simple_demo
     examples__06_multilang_validation -->|1| src__vallm
+    examples__02_ast_comparison -->|1| examples__utils
+    examples__12_ollama_simple_demo -->|1| src__vallm
+    examples__12_ollama_simple_demo -->|1| examples__utils
     examples__03_security_check -->|1| examples__utils
+    examples__16_configuration -->|1| src__vallm
+    examples__16_configuration -->|1| examples__utils
+    examples__14_api_advanced -->|1| examples__utils
     examples__10_mcp_ollama_demo -->|1| src__vallm
+    examples__15_cli_usage -->|1| examples__utils
+    examples__13_batch_processing -->|1| src__vallm
+    examples__13_batch_processing -->|1| examples__utils

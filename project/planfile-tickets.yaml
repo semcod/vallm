@@ -1,0 +1,2982 @@
+source: code2llm
+# generated in 0.31s
+schema: code2llm.planfile_tickets.v1
+project_root: /home/tom/github/semcod/vallm
+tickets:
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: run_autonomous_workflow'
+  description: 'code2llm reports `God Function: run_autonomous_workflow` in `examples/11_claude_code_autonomous/claude_autonomous_demo.py:518`.
+
+
+    Function ''run_autonomous_workflow'' is oversized: CC=9, fan-out=19, mutations=19.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/11_claude_code_autonomous/claude_autonomous_demo.py
+  dedupe_key: 'code2llm:smell:god_function:examples/11_claude_code_autonomous/claude_autonomous_demo.py:518:God
+    Function: run_autonomous_workflow'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: all_results'
+  description: 'code2llm reports `Shotgun Surgery: all_results` in `examples/13_batch_processing/main.py:80`.
+
+
+    Mutation of variable ''all_results'' spans 12 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - examples/13_batch_processing/main.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:examples/13_batch_processing/main.py:80:Shotgun
+    Surgery: all_results'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: code'
+  description: 'code2llm reports `Shotgun Surgery: code` in `examples/10_mcp_ollama_demo/mcp_demo.py:71`.
+
+
+    Mutation of variable ''code'' spans 8 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - examples/10_mcp_ollama_demo/mcp_demo.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:examples/10_mcp_ollama_demo/mcp_demo.py:71:Shotgun
+    Surgery: code'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: code_path'
+  description: 'code2llm reports `Shotgun Surgery: code_path` in `examples/10_mcp_ollama_demo/mcp_demo.py:367`.
+
+
+    Mutation of variable ''code_path'' spans 5 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - examples/10_mcp_ollama_demo/mcp_demo.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:examples/10_mcp_ollama_demo/mcp_demo.py:367:Shotgun
+    Surgery: code_path'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: config'
+  description: 'code2llm reports `Shotgun Surgery: config` in `examples/16_configuration/main.py:11`.
+
+
+    Mutation of variable ''config'' spans 7 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - examples/16_configuration/main.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:examples/16_configuration/main.py:11:Shotgun
+    Surgery: config'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: file_name'
+  description: 'code2llm reports `Shotgun Surgery: file_name` in `examples/13_batch_processing/main.py:80`.
+
+
+    Mutation of variable ''file_name'' spans 5 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - examples/13_batch_processing/main.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:examples/13_batch_processing/main.py:80:Shotgun
+    Surgery: file_name'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: functions'
+  description: 'code2llm reports `Shotgun Surgery: functions` in `examples/10_mcp_ollama_demo/mcp_demo.py:71`.
+
+
+    Mutation of variable ''functions'' spans 5 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - examples/10_mcp_ollama_demo/mcp_demo.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:examples/10_mcp_ollama_demo/mcp_demo.py:71:Shotgun
+    Surgery: functions'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: icon'
+  description: 'code2llm reports `Shotgun Surgery: icon` in `examples/10_mcp_ollama_demo/mcp_demo.py:131`.
+
+
+    Mutation of variable ''icon'' spans 6 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - examples/10_mcp_ollama_demo/mcp_demo.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:examples/10_mcp_ollama_demo/mcp_demo.py:131:Shotgun
+    Surgery: icon'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: lang'
+  description: 'code2llm reports `Shotgun Surgery: lang` in `src/vallm/cli/command_handlers.py:203`.
+
+
+    Mutation of variable ''lang'' spans 5 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - src/vallm/cli/command_handlers.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:src/vallm/cli/command_handlers.py:203:Shotgun
+    Surgery: lang'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: lines'
+  description: 'code2llm reports `Shotgun Surgery: lines` in `examples/10_mcp_ollama_demo/mcp_demo.py:71`.
+
+
+    Mutation of variable ''lines'' spans 7 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - examples/10_mcp_ollama_demo/mcp_demo.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:examples/10_mcp_ollama_demo/mcp_demo.py:71:Shotgun
+    Surgery: lines'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: overall_score'
+  description: 'code2llm reports `Shotgun Surgery: overall_score` in `mcp/server/_tools_vallm.py:82`.
+
+
+    Mutation of variable ''overall_score'' spans 5 functions. Changing this logic
+    requires work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - mcp/server/_tools_vallm.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:mcp/server/_tools_vallm.py:82:Shotgun
+    Surgery: overall_score'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: parser'
+  description: 'code2llm reports `Shotgun Surgery: parser` in `src/vallm/core/gitignore.py:149`.
+
+
+    Mutation of variable ''parser'' spans 12 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - src/vallm/core/gitignore.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:src/vallm/core/gitignore.py:149:Shotgun
+    Surgery: parser'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: passed'
+  description: 'code2llm reports `Shotgun Surgery: passed` in `src/vallm/cli/output_formatters/batch.py:196`.
+
+
+    Mutation of variable ''passed'' spans 5 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - src/vallm/cli/output_formatters/batch.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:src/vallm/cli/output_formatters/batch.py:196:Shotgun
+    Surgery: passed'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: pattern'
+  description: 'code2llm reports `Shotgun Surgery: pattern` in `examples/utils/extract_code_from_response.py:8`.
+
+
+    Mutation of variable ''pattern'' spans 7 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - examples/utils/extract_code_from_response.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:examples/utils/extract_code_from_response.py:8:Shotgun
+    Surgery: pattern'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: prompt'
+  description: 'code2llm reports `Shotgun Surgery: prompt` in `examples/11_claude_code_autonomous/claude_autonomous_demo.py:452`.
+
+
+    Mutation of variable ''prompt'' spans 7 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - examples/11_claude_code_autonomous/claude_autonomous_demo.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:examples/11_claude_code_autonomous/claude_autonomous_demo.py:452:Shotgun
+    Surgery: prompt'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: proposal'
+  description: 'code2llm reports `Shotgun Surgery: proposal` in `examples/utils/__init__.py:47`.
+
+
+    Mutation of variable ''proposal'' spans 24 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - examples/utils/__init__.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:examples/utils/__init__.py:47:Shotgun
+    Surgery: proposal'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: report'
+  description: 'code2llm reports `Shotgun Surgery: report` in `examples/09_code2logic_integration/main.py:182`.
+
+
+    Mutation of variable ''report'' spans 6 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - examples/09_code2logic_integration/main.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:examples/09_code2logic_integration/main.py:182:Shotgun
+    Surgery: report'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: response'
+  description: 'code2llm reports `Shotgun Surgery: response` in `examples/11_claude_code_autonomous/claude_autonomous_demo.py:157`.
+
+
+    Mutation of variable ''response'' spans 9 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - examples/11_claude_code_autonomous/claude_autonomous_demo.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:examples/11_claude_code_autonomous/claude_autonomous_demo.py:157:Shotgun
+    Surgery: response'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: result'
+  description: 'code2llm reports `Shotgun Surgery: result` in `examples/12_ollama_simple_demo/ollama_simple_demo.py:76`.
+
+
+    Mutation of variable ''result'' spans 58 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - examples/12_ollama_simple_demo/ollama_simple_demo.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:examples/12_ollama_simple_demo/ollama_simple_demo.py:76:Shotgun
+    Surgery: result'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: results'
+  description: 'code2llm reports `Shotgun Surgery: results` in `src/vallm/scoring.py:124`.
+
+
+    Mutation of variable ''results'' spans 9 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - src/vallm/scoring.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:src/vallm/scoring.py:124:Shotgun Surgery:
+    results'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: settings'
+  description: 'code2llm reports `Shotgun Surgery: settings` in `examples/utils/__init__.py:47`.
+
+
+    Mutation of variable ''settings'' spans 25 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - examples/utils/__init__.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:examples/utils/__init__.py:47:Shotgun
+    Surgery: settings'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: stderr'
+  description: 'code2llm reports `Shotgun Surgery: stderr` in `examples/15_cli_usage/main.py:124`.
+
+
+    Mutation of variable ''stderr'' spans 5 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - examples/15_cli_usage/main.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:examples/15_cli_usage/main.py:124:Shotgun
+    Surgery: stderr'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: stdout'
+  description: 'code2llm reports `Shotgun Surgery: stdout` in `examples/15_cli_usage/main.py:124`.
+
+
+    Mutation of variable ''stdout'' spans 5 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - examples/15_cli_usage/main.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:examples/15_cli_usage/main.py:124:Shotgun
+    Surgery: stdout'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: total'
+  description: 'code2llm reports `Shotgun Surgery: total` in `examples/12_ollama_simple_demo/utils/calculate_total.py:8`.
+
+
+    Mutation of variable ''total'' spans 10 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - examples/12_ollama_simple_demo/utils/calculate_total.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:examples/12_ollama_simple_demo/utils/calculate_total.py:8:Shotgun
+    Surgery: total'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: tree'
+  description: 'code2llm reports `Shotgun Surgery: tree` in `src/vallm/core/ast_compare.py:88`.
+
+
+    Mutation of variable ''tree'' spans 11 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - src/vallm/core/ast_compare.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:src/vallm/core/ast_compare.py:88:Shotgun
+    Surgery: tree'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: card_number, self, amount'
+  description: 'code2llm reports `Data Clump: card_number, self, amount` in `examples/10_mcp_ollama_demo/legacy_code/order_processor.py:84`.
+
+
+    Arguments (card_number, self, amount) are used together in multiple functions:
+    examples.10_mcp_ollama_demo.legacy_code.order_processor.OrderManager.process_payment,
+    examples.10_mcp_ollama_demo.refactored_output.RefactoredOrderManager.process_payment.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - examples/10_mcp_ollama_demo/legacy_code/order_processor.py
+  dedupe_key: 'code2llm:smell:data_clump:examples/10_mcp_ollama_demo/legacy_code/order_processor.py:84:Data
+    Clump: card_number, self, amount'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: card_number, self, amount'
+  description: 'code2llm reports `Data Clump: card_number, self, amount` in `examples/10_mcp_ollama_demo/refactored_output.py:35`.
+
+
+    Arguments (card_number, self, amount) are used together in multiple functions:
+    examples.10_mcp_ollama_demo.legacy_code.order_processor.OrderManager.process_payment,
+    examples.10_mcp_ollama_demo.refactored_output.RefactoredOrderManager.process_payment.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - examples/10_mcp_ollama_demo/refactored_output.py
+  dedupe_key: 'code2llm:smell:data_clump:examples/10_mcp_ollama_demo/refactored_output.py:35:Data
+    Clump: card_number, self, amount'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: code, language, filename'
+  description: 'code2llm reports `Data Clump: code, language, filename` in `mcp/server/_tools_vallm.py:154`.
+
+
+    Arguments (code, language, filename) are used together in multiple functions:
+    mcp.server._tools_vallm.create_proposal, mcp.server._tools_vallm.validate_syntax,
+    mcp.server._tools_vallm.validate_imports, mcp.server._tools_vallm.validate_security.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - mcp/server/_tools_vallm.py
+  dedupe_key: 'code2llm:smell:data_clump:mcp/server/_tools_vallm.py:154:Data Clump:
+    code, language, filename'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: code, language, filename'
+  description: 'code2llm reports `Data Clump: code, language, filename` in `mcp/server/_tools_vallm.py:172`.
+
+
+    Arguments (code, language, filename) are used together in multiple functions:
+    mcp.server._tools_vallm.create_proposal, mcp.server._tools_vallm.validate_syntax,
+    mcp.server._tools_vallm.validate_imports, mcp.server._tools_vallm.validate_security.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - mcp/server/_tools_vallm.py
+  dedupe_key: 'code2llm:smell:data_clump:mcp/server/_tools_vallm.py:172:Data Clump:
+    code, language, filename'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: code, language, filename'
+  description: 'code2llm reports `Data Clump: code, language, filename` in `mcp/server/_tools_vallm.py:198`.
+
+
+    Arguments (code, language, filename) are used together in multiple functions:
+    mcp.server._tools_vallm.create_proposal, mcp.server._tools_vallm.validate_syntax,
+    mcp.server._tools_vallm.validate_imports, mcp.server._tools_vallm.validate_security.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - mcp/server/_tools_vallm.py
+  dedupe_key: 'code2llm:smell:data_clump:mcp/server/_tools_vallm.py:198:Data Clump:
+    code, language, filename'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: code, language, filename'
+  description: 'code2llm reports `Data Clump: code, language, filename` in `mcp/server/_tools_vallm.py:224`.
+
+
+    Arguments (code, language, filename) are used together in multiple functions:
+    mcp.server._tools_vallm.create_proposal, mcp.server._tools_vallm.validate_syntax,
+    mcp.server._tools_vallm.validate_imports, mcp.server._tools_vallm.validate_security.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - mcp/server/_tools_vallm.py
+  dedupe_key: 'code2llm:smell:data_clump:mcp/server/_tools_vallm.py:224:Data Clump:
+    code, language, filename'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: code, max_lines, label'
+  description: 'code2llm reports `Data Clump: code, max_lines, label` in `examples/11_claude_code_autonomous/claude_autonomous_demo.py:62`.
+
+
+    Arguments (code, max_lines, label) are used together in multiple functions: examples.11_claude_code_autonomous.claude_autonomous_demo.log_code,
+    examples.utils.logging_utils.log_code, examples.10_mcp_ollama_demo.mcp_demo.log_code.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - examples/11_claude_code_autonomous/claude_autonomous_demo.py
+  dedupe_key: 'code2llm:smell:data_clump:examples/11_claude_code_autonomous/claude_autonomous_demo.py:62:Data
+    Clump: code, max_lines, label'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: code, max_lines, label'
+  description: 'code2llm reports `Data Clump: code, max_lines, label` in `examples/utils/logging_utils.py:45`.
+
+
+    Arguments (code, max_lines, label) are used together in multiple functions: examples.11_claude_code_autonomous.claude_autonomous_demo.log_code,
+    examples.utils.logging_utils.log_code, examples.10_mcp_ollama_demo.mcp_demo.log_code.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - examples/utils/logging_utils.py
+  dedupe_key: 'code2llm:smell:data_clump:examples/utils/logging_utils.py:45:Data Clump:
+    code, max_lines, label'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: code, max_lines, label'
+  description: 'code2llm reports `Data Clump: code, max_lines, label` in `examples/10_mcp_ollama_demo/mcp_demo.py:57`.
+
+
+    Arguments (code, max_lines, label) are used together in multiple functions: examples.11_claude_code_autonomous.claude_autonomous_demo.log_code,
+    examples.utils.logging_utils.log_code, examples.10_mcp_ollama_demo.mcp_demo.log_code.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - examples/10_mcp_ollama_demo/mcp_demo.py
+  dedupe_key: 'code2llm:smell:data_clump:examples/10_mcp_ollama_demo/mcp_demo.py:57:Data
+    Clump: code, max_lines, label'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: code, model, self, language'
+  description: 'code2llm reports `Data Clump: code, model, self, language` in `src/vallm/validators/semantic_cache.py:30`.
+
+
+    Arguments (code, model, self, language) are used together in multiple functions:
+    src.vallm.validators.semantic_cache.SemanticCache._get_cache_key, src.vallm.validators.semantic_cache.SemanticCache.get.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/validators/semantic_cache.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/validators/semantic_cache.py:30:Data
+    Clump: code, model, self, language'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: code, model, self, language'
+  description: 'code2llm reports `Data Clump: code, model, self, language` in `src/vallm/validators/semantic_cache.py:45`.
+
+
+    Arguments (code, model, self, language) are used together in multiple functions:
+    src.vallm.validators.semantic_cache.SemanticCache._get_cache_key, src.vallm.validators.semantic_cache.SemanticCache.get.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/validators/semantic_cache.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/validators/semantic_cache.py:45:Data
+    Clump: code, model, self, language'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: code, self, language'
+  description: 'code2llm reports `Data Clump: code, self, language` in `src/vallm/validators/syntax.py:73`.
+
+
+    Arguments (code, self, language) are used together in multiple functions: src.vallm.validators.syntax.SyntaxValidator._validate_treesitter,
+    src.vallm.sandbox.runner.SandboxRunner.run, src.vallm.sandbox.runner.SandboxRunner._run_subprocess,
+    src.vallm.sandbox.runner.SandboxRunner._run_docker.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/validators/syntax.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/validators/syntax.py:73:Data Clump:
+    code, self, language'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: code, self, language'
+  description: 'code2llm reports `Data Clump: code, self, language` in `src/vallm/sandbox/runner.py:37`.
+
+
+    Arguments (code, self, language) are used together in multiple functions: src.vallm.validators.syntax.SyntaxValidator._validate_treesitter,
+    src.vallm.sandbox.runner.SandboxRunner.run, src.vallm.sandbox.runner.SandboxRunner._run_subprocess,
+    src.vallm.sandbox.runner.SandboxRunner._run_docker.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/sandbox/runner.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/sandbox/runner.py:37:Data Clump:
+    code, self, language'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: code, self, language'
+  description: 'code2llm reports `Data Clump: code, self, language` in `src/vallm/sandbox/runner.py:49`.
+
+
+    Arguments (code, self, language) are used together in multiple functions: src.vallm.validators.syntax.SyntaxValidator._validate_treesitter,
+    src.vallm.sandbox.runner.SandboxRunner.run, src.vallm.sandbox.runner.SandboxRunner._run_subprocess,
+    src.vallm.sandbox.runner.SandboxRunner._run_docker.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/sandbox/runner.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/sandbox/runner.py:49:Data Clump:
+    code, self, language'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: code, self, language'
+  description: 'code2llm reports `Data Clump: code, self, language` in `src/vallm/sandbox/runner.py:99`.
+
+
+    Arguments (code, self, language) are used together in multiple functions: src.vallm.validators.syntax.SyntaxValidator._validate_treesitter,
+    src.vallm.sandbox.runner.SandboxRunner.run, src.vallm.sandbox.runner.SandboxRunner._run_subprocess,
+    src.vallm.sandbox.runner.SandboxRunner._run_docker.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/sandbox/runner.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/sandbox/runner.py:99:Data Clump:
+    code, self, language'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: exclude, gitignore_parser, files, console,
+    use_gitignore, include'
+  description: 'code2llm reports `Data Clump: exclude, gitignore_parser, files, console,
+    use_gitignore, include` in `src/vallm/cli/batch_processor_patterns.py:143`.
+
+
+    Arguments (exclude, gitignore_parser, files, console, use_gitignore, include)
+    are used together in multiple functions: src.vallm.cli.batch_processor_patterns.filter_files,
+    src.vallm.cli.batch_filter.filter_files.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/cli/batch_processor_patterns.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/cli/batch_processor_patterns.py:143:Data
+    Clump: exclude, gitignore_parser, files, console, use_gitignore, include'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: exclude, gitignore_parser, files, console,
+    use_gitignore, include'
+  description: 'code2llm reports `Data Clump: exclude, gitignore_parser, files, console,
+    use_gitignore, include` in `src/vallm/cli/batch_filter.py:73`.
+
+
+    Arguments (exclude, gitignore_parser, files, console, use_gitignore, include)
+    are used together in multiple functions: src.vallm.cli.batch_processor_patterns.filter_files,
+    src.vallm.cli.batch_filter.filter_files.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/cli/batch_filter.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/cli/batch_filter.py:73:Data Clump:
+    exclude, gitignore_parser, files, console, use_gitignore, include'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: failed_files, results_by_language, passed_count,
+    filtered_files'
+  description: 'code2llm reports `Data Clump: failed_files, results_by_language, passed_count,
+    filtered_files` in `src/vallm/cli/output_formatters/batch.py:176`.
+
+
+    Arguments (failed_files, results_by_language, passed_count, filtered_files) are
+    used together in multiple functions: src.vallm.cli.output_formatters.batch.output_batch_rich,
+    src.vallm.cli.output_formatters.batch.output_batch_text, src.vallm.cli.output_formatters.batch.output_batch_json,
+    src.vallm.cli.output_formatters.batch.output_batch_yaml, src.vallm.cli.output_formatters.batch.output_batch_toon.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/cli/output_formatters/batch.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/cli/output_formatters/batch.py:176:Data
+    Clump: failed_files, results_by_language, passed_count, filtered_files'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: failed_files, results_by_language, passed_count,
+    filtered_files'
+  description: 'code2llm reports `Data Clump: failed_files, results_by_language, passed_count,
+    filtered_files` in `src/vallm/cli/output_formatters/batch.py:196`.
+
+
+    Arguments (failed_files, results_by_language, passed_count, filtered_files) are
+    used together in multiple functions: src.vallm.cli.output_formatters.batch.output_batch_rich,
+    src.vallm.cli.output_formatters.batch.output_batch_text, src.vallm.cli.output_formatters.batch.output_batch_json,
+    src.vallm.cli.output_formatters.batch.output_batch_yaml, src.vallm.cli.output_formatters.batch.output_batch_toon.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/cli/output_formatters/batch.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/cli/output_formatters/batch.py:196:Data
+    Clump: failed_files, results_by_language, passed_count, filtered_files'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: failed_files, results_by_language, passed_count,
+    filtered_files'
+  description: 'code2llm reports `Data Clump: failed_files, results_by_language, passed_count,
+    filtered_files` in `src/vallm/cli/output_formatters/batch.py:225`.
+
+
+    Arguments (failed_files, results_by_language, passed_count, filtered_files) are
+    used together in multiple functions: src.vallm.cli.output_formatters.batch.output_batch_rich,
+    src.vallm.cli.output_formatters.batch.output_batch_text, src.vallm.cli.output_formatters.batch.output_batch_json,
+    src.vallm.cli.output_formatters.batch.output_batch_yaml, src.vallm.cli.output_formatters.batch.output_batch_toon.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/cli/output_formatters/batch.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/cli/output_formatters/batch.py:225:Data
+    Clump: failed_files, results_by_language, passed_count, filtered_files'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: failed_files, results_by_language, passed_count,
+    filtered_files'
+  description: 'code2llm reports `Data Clump: failed_files, results_by_language, passed_count,
+    filtered_files` in `src/vallm/cli/output_formatters/batch.py:249`.
+
+
+    Arguments (failed_files, results_by_language, passed_count, filtered_files) are
+    used together in multiple functions: src.vallm.cli.output_formatters.batch.output_batch_rich,
+    src.vallm.cli.output_formatters.batch.output_batch_text, src.vallm.cli.output_formatters.batch.output_batch_json,
+    src.vallm.cli.output_formatters.batch.output_batch_yaml, src.vallm.cli.output_formatters.batch.output_batch_toon.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/cli/output_formatters/batch.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/cli/output_formatters/batch.py:249:Data
+    Clump: failed_files, results_by_language, passed_count, filtered_files'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: failed_files, results_by_language, passed_count,
+    filtered_files'
+  description: 'code2llm reports `Data Clump: failed_files, results_by_language, passed_count,
+    filtered_files` in `src/vallm/cli/output_formatters/batch.py:296`.
+
+
+    Arguments (failed_files, results_by_language, passed_count, filtered_files) are
+    used together in multiple functions: src.vallm.cli.output_formatters.batch.output_batch_rich,
+    src.vallm.cli.output_formatters.batch.output_batch_text, src.vallm.cli.output_formatters.batch.output_batch_json,
+    src.vallm.cli.output_formatters.batch.output_batch_yaml, src.vallm.cli.output_formatters.batch.output_batch_toon.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/cli/output_formatters/batch.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/cli/output_formatters/batch.py:296:Data
+    Clump: failed_files, results_by_language, passed_count, filtered_files'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: filtered_files, output_format, results_by_language,
+    failed_files, passed_count'
+  description: 'code2llm reports `Data Clump: filtered_files, output_format, results_by_language,
+    failed_files, passed_count` in `src/vallm/cli/output_formatters/base.py:20`.
+
+
+    Arguments (filtered_files, output_format, results_by_language, failed_files, passed_count)
+    are used together in multiple functions: src.vallm.cli.output_formatters.base.output_batch_results,
+    src.vallm.cli.batch_process.output_batch_results, src.vallm.cli.output_formatters.output_batch_results,
+    src.vallm.cli.output_formatters.batch.output_batch_results.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/cli/output_formatters/base.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/cli/output_formatters/base.py:20:Data
+    Clump: filtered_files, output_format, results_by_language, failed_files, passed_count'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: filtered_files, output_format, results_by_language,
+    failed_files, passed_count'
+  description: 'code2llm reports `Data Clump: filtered_files, output_format, results_by_language,
+    failed_files, passed_count` in `src/vallm/cli/batch_process.py:160`.
+
+
+    Arguments (filtered_files, output_format, results_by_language, failed_files, passed_count)
+    are used together in multiple functions: src.vallm.cli.output_formatters.base.output_batch_results,
+    src.vallm.cli.batch_process.output_batch_results, src.vallm.cli.output_formatters.output_batch_results,
+    src.vallm.cli.output_formatters.batch.output_batch_results.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/cli/batch_process.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/cli/batch_process.py:160:Data Clump:
+    filtered_files, output_format, results_by_language, failed_files, passed_count'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: filtered_files, output_format, results_by_language,
+    failed_files, passed_count'
+  description: 'code2llm reports `Data Clump: filtered_files, output_format, results_by_language,
+    failed_files, passed_count` in `src/vallm/cli/output_formatters/__init__.py:39`.
+
+
+    Arguments (filtered_files, output_format, results_by_language, failed_files, passed_count)
+    are used together in multiple functions: src.vallm.cli.output_formatters.base.output_batch_results,
+    src.vallm.cli.batch_process.output_batch_results, src.vallm.cli.output_formatters.output_batch_results,
+    src.vallm.cli.output_formatters.batch.output_batch_results.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/cli/output_formatters/__init__.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/cli/output_formatters/__init__.py:39:Data
+    Clump: filtered_files, output_format, results_by_language, failed_files, passed_count'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: filtered_files, output_format, results_by_language,
+    failed_files, passed_count'
+  description: 'code2llm reports `Data Clump: filtered_files, output_format, results_by_language,
+    failed_files, passed_count` in `src/vallm/cli/output_formatters/batch.py:44`.
+
+
+    Arguments (filtered_files, output_format, results_by_language, failed_files, passed_count)
+    are used together in multiple functions: src.vallm.cli.output_formatters.base.output_batch_results,
+    src.vallm.cli.batch_process.output_batch_results, src.vallm.cli.output_formatters.output_batch_results,
+    src.vallm.cli.output_formatters.batch.output_batch_results.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/cli/output_formatters/batch.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/cli/output_formatters/batch.py:44:Data
+    Clump: filtered_files, output_format, results_by_language, failed_files, passed_count'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: good_code, complex_code, example_name, settings,
+    bad_code'
+  description: 'code2llm reports `Data Clump: good_code, complex_code, example_name,
+    settings, bad_code` in `examples/utils/__init__.py:47`.
+
+
+    Arguments (good_code, complex_code, example_name, settings, bad_code) are used
+    together in multiple functions: examples.utils.run_validation_examples, examples.utils.validation_runner.run_validation_examples.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - examples/utils/__init__.py
+  dedupe_key: 'code2llm:smell:data_clump:examples/utils/__init__.py:47:Data Clump:
+    good_code, complex_code, example_name, settings, bad_code'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: good_code, complex_code, example_name, settings,
+    bad_code'
+  description: 'code2llm reports `Data Clump: good_code, complex_code, example_name,
+    settings, bad_code` in `examples/utils/validation_runner.py:12`.
+
+
+    Arguments (good_code, complex_code, example_name, settings, bad_code) are used
+    together in multiple functions: examples.utils.run_validation_examples, examples.utils.validation_runner.run_validation_examples.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - examples/utils/validation_runner.py
+  dedupe_key: 'code2llm:smell:data_clump:examples/utils/validation_runner.py:12:Data
+    Clump: good_code, complex_code, example_name, settings, bad_code'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: output_format, verbose, result'
+  description: 'code2llm reports `Data Clump: output_format, verbose, result` in `src/vallm/cli/output_formatters/base.py:11`.
+
+
+    Arguments (output_format, verbose, result) are used together in multiple functions:
+    src.vallm.cli.output_formatters.base.output_validate_result, src.vallm.cli.output_formatters.output_validate_result.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/cli/output_formatters/base.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/cli/output_formatters/base.py:11:Data
+    Clump: output_format, verbose, result'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: output_format, verbose, result'
+  description: 'code2llm reports `Data Clump: output_format, verbose, result` in `src/vallm/cli/output_formatters/__init__.py:29`.
+
+
+    Arguments (output_format, verbose, result) are used together in multiple functions:
+    src.vallm.cli.output_formatters.base.output_validate_result, src.vallm.cli.output_formatters.output_validate_result.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/cli/output_formatters/__init__.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/cli/output_formatters/__init__.py:29:Data
+    Clump: output_format, verbose, result'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: proposal, context, settings, validators'
+  description: 'code2llm reports `Data Clump: proposal, context, settings, validators`
+    in `src/vallm/scoring.py:124`.
+
+
+    Arguments (proposal, context, settings, validators) are used together in multiple
+    functions: src.vallm.scoring.validate, src.vallm.scoring._run_validation_pipeline.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/scoring.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/scoring.py:124:Data Clump: proposal,
+    context, settings, validators'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: proposal, context, settings, validators'
+  description: 'code2llm reports `Data Clump: proposal, context, settings, validators`
+    in `src/vallm/scoring.py:169`.
+
+
+    Arguments (proposal, context, settings, validators) are used together in multiple
+    functions: src.vallm.scoring.validate, src.vallm.scoring._run_validation_pipeline.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/scoring.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/scoring.py:169:Data Clump: proposal,
+    context, settings, validators'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: proposal, self, context'
+  description: 'code2llm reports `Data Clump: proposal, self, context` in `src/vallm/hookspecs.py:21`.
+
+
+    Arguments (proposal, self, context) are used together in multiple functions: src.vallm.hookspecs.VallmSpec.validate_proposal,
+    src.vallm.validators.logical.LogicalErrorValidator.validate, src.vallm.validators.base.BaseValidator.validate,
+    src.vallm.validators.complexity.ComplexityValidator.validate, src.vallm.validators.semantic.SemanticValidator.validate,
+    src.vallm.validators.security.SecurityValidator.validate, src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.validate,
+    src.vallm.validators.syntax.SyntaxValidator.validate, src.vallm.validators.lint.LintValidator.validate,
+    src.vallm.validators.imports.base.BaseImportValidator.validate, src.vallm.validators.imports.c_imports.CImportValidator.validate,
+    src.vallm.validators.imports.wrapper.ImportValidator.validate, src.vallm.validators.regression.RegressionValidator.validate,
+    src.vallm.validators.imports.python_imports.PythonImportValidator.validate.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/hookspecs.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/hookspecs.py:21:Data Clump: proposal,
+    self, context'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: proposal, self, context'
+  description: 'code2llm reports `Data Clump: proposal, self, context` in `src/vallm/validators/logical.py:24`.
+
+
+    Arguments (proposal, self, context) are used together in multiple functions: src.vallm.hookspecs.VallmSpec.validate_proposal,
+    src.vallm.validators.logical.LogicalErrorValidator.validate, src.vallm.validators.base.BaseValidator.validate,
+    src.vallm.validators.complexity.ComplexityValidator.validate, src.vallm.validators.semantic.SemanticValidator.validate,
+    src.vallm.validators.security.SecurityValidator.validate, src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.validate,
+    src.vallm.validators.syntax.SyntaxValidator.validate, src.vallm.validators.lint.LintValidator.validate,
+    src.vallm.validators.imports.base.BaseImportValidator.validate, src.vallm.validators.imports.c_imports.CImportValidator.validate,
+    src.vallm.validators.imports.wrapper.ImportValidator.validate, src.vallm.validators.regression.RegressionValidator.validate,
+    src.vallm.validators.imports.python_imports.PythonImportValidator.validate.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/validators/logical.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/validators/logical.py:24:Data Clump:
+    proposal, self, context'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: proposal, self, context'
+  description: 'code2llm reports `Data Clump: proposal, self, context` in `src/vallm/validators/base.py:19`.
+
+
+    Arguments (proposal, self, context) are used together in multiple functions: src.vallm.hookspecs.VallmSpec.validate_proposal,
+    src.vallm.validators.logical.LogicalErrorValidator.validate, src.vallm.validators.base.BaseValidator.validate,
+    src.vallm.validators.complexity.ComplexityValidator.validate, src.vallm.validators.semantic.SemanticValidator.validate,
+    src.vallm.validators.security.SecurityValidator.validate, src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.validate,
+    src.vallm.validators.syntax.SyntaxValidator.validate, src.vallm.validators.lint.LintValidator.validate,
+    src.vallm.validators.imports.base.BaseImportValidator.validate, src.vallm.validators.imports.c_imports.CImportValidator.validate,
+    src.vallm.validators.imports.wrapper.ImportValidator.validate, src.vallm.validators.regression.RegressionValidator.validate,
+    src.vallm.validators.imports.python_imports.PythonImportValidator.validate.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/validators/base.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/validators/base.py:19:Data Clump:
+    proposal, self, context'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: proposal, self, context'
+  description: 'code2llm reports `Data Clump: proposal, self, context` in `src/vallm/validators/complexity.py:31`.
+
+
+    Arguments (proposal, self, context) are used together in multiple functions: src.vallm.hookspecs.VallmSpec.validate_proposal,
+    src.vallm.validators.logical.LogicalErrorValidator.validate, src.vallm.validators.base.BaseValidator.validate,
+    src.vallm.validators.complexity.ComplexityValidator.validate, src.vallm.validators.semantic.SemanticValidator.validate,
+    src.vallm.validators.security.SecurityValidator.validate, src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.validate,
+    src.vallm.validators.syntax.SyntaxValidator.validate, src.vallm.validators.lint.LintValidator.validate,
+    src.vallm.validators.imports.base.BaseImportValidator.validate, src.vallm.validators.imports.c_imports.CImportValidator.validate,
+    src.vallm.validators.imports.wrapper.ImportValidator.validate, src.vallm.validators.regression.RegressionValidator.validate,
+    src.vallm.validators.imports.python_imports.PythonImportValidator.validate.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/validators/complexity.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/validators/complexity.py:31:Data
+    Clump: proposal, self, context'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: proposal, self, context'
+  description: 'code2llm reports `Data Clump: proposal, self, context` in `src/vallm/validators/semantic.py:65`.
+
+
+    Arguments (proposal, self, context) are used together in multiple functions: src.vallm.hookspecs.VallmSpec.validate_proposal,
+    src.vallm.validators.logical.LogicalErrorValidator.validate, src.vallm.validators.base.BaseValidator.validate,
+    src.vallm.validators.complexity.ComplexityValidator.validate, src.vallm.validators.semantic.SemanticValidator.validate,
+    src.vallm.validators.security.SecurityValidator.validate, src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.validate,
+    src.vallm.validators.syntax.SyntaxValidator.validate, src.vallm.validators.lint.LintValidator.validate,
+    src.vallm.validators.imports.base.BaseImportValidator.validate, src.vallm.validators.imports.c_imports.CImportValidator.validate,
+    src.vallm.validators.imports.wrapper.ImportValidator.validate, src.vallm.validators.regression.RegressionValidator.validate,
+    src.vallm.validators.imports.python_imports.PythonImportValidator.validate.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/validators/semantic.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/validators/semantic.py:65:Data
+    Clump: proposal, self, context'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: proposal, self, context'
+  description: 'code2llm reports `Data Clump: proposal, self, context` in `src/vallm/validators/security.py:174`.
+
+
+    Arguments (proposal, self, context) are used together in multiple functions: src.vallm.hookspecs.VallmSpec.validate_proposal,
+    src.vallm.validators.logical.LogicalErrorValidator.validate, src.vallm.validators.base.BaseValidator.validate,
+    src.vallm.validators.complexity.ComplexityValidator.validate, src.vallm.validators.semantic.SemanticValidator.validate,
+    src.vallm.validators.security.SecurityValidator.validate, src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.validate,
+    src.vallm.validators.syntax.SyntaxValidator.validate, src.vallm.validators.lint.LintValidator.validate,
+    src.vallm.validators.imports.base.BaseImportValidator.validate, src.vallm.validators.imports.c_imports.CImportValidator.validate,
+    src.vallm.validators.imports.wrapper.ImportValidator.validate, src.vallm.validators.regression.RegressionValidator.validate,
+    src.vallm.validators.imports.python_imports.PythonImportValidator.validate.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/validators/security.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/validators/security.py:174:Data
+    Clump: proposal, self, context'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: proposal, self, context'
+  description: 'code2llm reports `Data Clump: proposal, self, context` in `src/vallm/validators/imports/javascript_imports.py:53`.
+
+
+    Arguments (proposal, self, context) are used together in multiple functions: src.vallm.hookspecs.VallmSpec.validate_proposal,
+    src.vallm.validators.logical.LogicalErrorValidator.validate, src.vallm.validators.base.BaseValidator.validate,
+    src.vallm.validators.complexity.ComplexityValidator.validate, src.vallm.validators.semantic.SemanticValidator.validate,
+    src.vallm.validators.security.SecurityValidator.validate, src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.validate,
+    src.vallm.validators.syntax.SyntaxValidator.validate, src.vallm.validators.lint.LintValidator.validate,
+    src.vallm.validators.imports.base.BaseImportValidator.validate, src.vallm.validators.imports.c_imports.CImportValidator.validate,
+    src.vallm.validators.imports.wrapper.ImportValidator.validate, src.vallm.validators.regression.RegressionValidator.validate,
+    src.vallm.validators.imports.python_imports.PythonImportValidator.validate.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/validators/imports/javascript_imports.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/validators/imports/javascript_imports.py:53:Data
+    Clump: proposal, self, context'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: proposal, self, context'
+  description: 'code2llm reports `Data Clump: proposal, self, context` in `src/vallm/validators/syntax.py:20`.
+
+
+    Arguments (proposal, self, context) are used together in multiple functions: src.vallm.hookspecs.VallmSpec.validate_proposal,
+    src.vallm.validators.logical.LogicalErrorValidator.validate, src.vallm.validators.base.BaseValidator.validate,
+    src.vallm.validators.complexity.ComplexityValidator.validate, src.vallm.validators.semantic.SemanticValidator.validate,
+    src.vallm.validators.security.SecurityValidator.validate, src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.validate,
+    src.vallm.validators.syntax.SyntaxValidator.validate, src.vallm.validators.lint.LintValidator.validate,
+    src.vallm.validators.imports.base.BaseImportValidator.validate, src.vallm.validators.imports.c_imports.CImportValidator.validate,
+    src.vallm.validators.imports.wrapper.ImportValidator.validate, src.vallm.validators.regression.RegressionValidator.validate,
+    src.vallm.validators.imports.python_imports.PythonImportValidator.validate.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/validators/syntax.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/validators/syntax.py:20:Data Clump:
+    proposal, self, context'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: proposal, self, context'
+  description: 'code2llm reports `Data Clump: proposal, self, context` in `src/vallm/validators/lint.py:25`.
+
+
+    Arguments (proposal, self, context) are used together in multiple functions: src.vallm.hookspecs.VallmSpec.validate_proposal,
+    src.vallm.validators.logical.LogicalErrorValidator.validate, src.vallm.validators.base.BaseValidator.validate,
+    src.vallm.validators.complexity.ComplexityValidator.validate, src.vallm.validators.semantic.SemanticValidator.validate,
+    src.vallm.validators.security.SecurityValidator.validate, src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.validate,
+    src.vallm.validators.syntax.SyntaxValidator.validate, src.vallm.validators.lint.LintValidator.validate,
+    src.vallm.validators.imports.base.BaseImportValidator.validate, src.vallm.validators.imports.c_imports.CImportValidator.validate,
+    src.vallm.validators.imports.wrapper.ImportValidator.validate, src.vallm.validators.regression.RegressionValidator.validate,
+    src.vallm.validators.imports.python_imports.PythonImportValidator.validate.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/validators/lint.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/validators/lint.py:25:Data Clump:
+    proposal, self, context'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: proposal, self, context'
+  description: 'code2llm reports `Data Clump: proposal, self, context` in `src/vallm/validators/imports/base.py:15`.
+
+
+    Arguments (proposal, self, context) are used together in multiple functions: src.vallm.hookspecs.VallmSpec.validate_proposal,
+    src.vallm.validators.logical.LogicalErrorValidator.validate, src.vallm.validators.base.BaseValidator.validate,
+    src.vallm.validators.complexity.ComplexityValidator.validate, src.vallm.validators.semantic.SemanticValidator.validate,
+    src.vallm.validators.security.SecurityValidator.validate, src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.validate,
+    src.vallm.validators.syntax.SyntaxValidator.validate, src.vallm.validators.lint.LintValidator.validate,
+    src.vallm.validators.imports.base.BaseImportValidator.validate, src.vallm.validators.imports.c_imports.CImportValidator.validate,
+    src.vallm.validators.imports.wrapper.ImportValidator.validate, src.vallm.validators.regression.RegressionValidator.validate,
+    src.vallm.validators.imports.python_imports.PythonImportValidator.validate.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/validators/imports/base.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/validators/imports/base.py:15:Data
+    Clump: proposal, self, context'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: proposal, self, context'
+  description: 'code2llm reports `Data Clump: proposal, self, context` in `src/vallm/validators/imports/c_imports.py:15`.
+
+
+    Arguments (proposal, self, context) are used together in multiple functions: src.vallm.hookspecs.VallmSpec.validate_proposal,
+    src.vallm.validators.logical.LogicalErrorValidator.validate, src.vallm.validators.base.BaseValidator.validate,
+    src.vallm.validators.complexity.ComplexityValidator.validate, src.vallm.validators.semantic.SemanticValidator.validate,
+    src.vallm.validators.security.SecurityValidator.validate, src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.validate,
+    src.vallm.validators.syntax.SyntaxValidator.validate, src.vallm.validators.lint.LintValidator.validate,
+    src.vallm.validators.imports.base.BaseImportValidator.validate, src.vallm.validators.imports.c_imports.CImportValidator.validate,
+    src.vallm.validators.imports.wrapper.ImportValidator.validate, src.vallm.validators.regression.RegressionValidator.validate,
+    src.vallm.validators.imports.python_imports.PythonImportValidator.validate.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/validators/imports/c_imports.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/validators/imports/c_imports.py:15:Data
+    Clump: proposal, self, context'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: proposal, self, context'
+  description: 'code2llm reports `Data Clump: proposal, self, context` in `src/vallm/validators/imports/wrapper.py:17`.
+
+
+    Arguments (proposal, self, context) are used together in multiple functions: src.vallm.hookspecs.VallmSpec.validate_proposal,
+    src.vallm.validators.logical.LogicalErrorValidator.validate, src.vallm.validators.base.BaseValidator.validate,
+    src.vallm.validators.complexity.ComplexityValidator.validate, src.vallm.validators.semantic.SemanticValidator.validate,
+    src.vallm.validators.security.SecurityValidator.validate, src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.validate,
+    src.vallm.validators.syntax.SyntaxValidator.validate, src.vallm.validators.lint.LintValidator.validate,
+    src.vallm.validators.imports.base.BaseImportValidator.validate, src.vallm.validators.imports.c_imports.CImportValidator.validate,
+    src.vallm.validators.imports.wrapper.ImportValidator.validate, src.vallm.validators.regression.RegressionValidator.validate,
+    src.vallm.validators.imports.python_imports.PythonImportValidator.validate.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/validators/imports/wrapper.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/validators/imports/wrapper.py:17:Data
+    Clump: proposal, self, context'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: proposal, self, context'
+  description: 'code2llm reports `Data Clump: proposal, self, context` in `src/vallm/validators/regression.py:66`.
+
+
+    Arguments (proposal, self, context) are used together in multiple functions: src.vallm.hookspecs.VallmSpec.validate_proposal,
+    src.vallm.validators.logical.LogicalErrorValidator.validate, src.vallm.validators.base.BaseValidator.validate,
+    src.vallm.validators.complexity.ComplexityValidator.validate, src.vallm.validators.semantic.SemanticValidator.validate,
+    src.vallm.validators.security.SecurityValidator.validate, src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.validate,
+    src.vallm.validators.syntax.SyntaxValidator.validate, src.vallm.validators.lint.LintValidator.validate,
+    src.vallm.validators.imports.base.BaseImportValidator.validate, src.vallm.validators.imports.c_imports.CImportValidator.validate,
+    src.vallm.validators.imports.wrapper.ImportValidator.validate, src.vallm.validators.regression.RegressionValidator.validate,
+    src.vallm.validators.imports.python_imports.PythonImportValidator.validate.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/validators/regression.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/validators/regression.py:66:Data
+    Clump: proposal, self, context'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: proposal, self, context'
+  description: 'code2llm reports `Data Clump: proposal, self, context` in `src/vallm/validators/imports/python_imports.py:160`.
+
+
+    Arguments (proposal, self, context) are used together in multiple functions: src.vallm.hookspecs.VallmSpec.validate_proposal,
+    src.vallm.validators.logical.LogicalErrorValidator.validate, src.vallm.validators.base.BaseValidator.validate,
+    src.vallm.validators.complexity.ComplexityValidator.validate, src.vallm.validators.semantic.SemanticValidator.validate,
+    src.vallm.validators.security.SecurityValidator.validate, src.vallm.validators.imports.javascript_imports.JavaScriptImportValidator.validate,
+    src.vallm.validators.syntax.SyntaxValidator.validate, src.vallm.validators.lint.LintValidator.validate,
+    src.vallm.validators.imports.base.BaseImportValidator.validate, src.vallm.validators.imports.c_imports.CImportValidator.validate,
+    src.vallm.validators.imports.wrapper.ImportValidator.validate, src.vallm.validators.regression.RegressionValidator.validate,
+    src.vallm.validators.imports.python_imports.PythonImportValidator.validate.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/vallm/validators/imports/python_imports.py
+  dedupe_key: 'code2llm:smell:data_clump:src/vallm/validators/imports/python_imports.py:160:Data
+    Clump: proposal, self, context'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: self, body, subject, to'
+  description: 'code2llm reports `Data Clump: self, body, subject, to` in `examples/10_mcp_ollama_demo/legacy_code/order_processor.py:92`.
+
+
+    Arguments (self, body, subject, to) are used together in multiple functions: examples.10_mcp_ollama_demo.legacy_code.order_processor.OrderManager.send_email,
+    examples.10_mcp_ollama_demo.refactored_output.RefactoredOrderManager.send_email.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - examples/10_mcp_ollama_demo/legacy_code/order_processor.py
+  dedupe_key: 'code2llm:smell:data_clump:examples/10_mcp_ollama_demo/legacy_code/order_processor.py:92:Data
+    Clump: self, body, subject, to'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: self, body, subject, to'
+  description: 'code2llm reports `Data Clump: self, body, subject, to` in `examples/10_mcp_ollama_demo/refactored_output.py:41`.
+
+
+    Arguments (self, body, subject, to) are used together in multiple functions: examples.10_mcp_ollama_demo.legacy_code.order_processor.OrderManager.send_email,
+    examples.10_mcp_ollama_demo.refactored_output.RefactoredOrderManager.send_email.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - examples/10_mcp_ollama_demo/refactored_output.py
+  dedupe_key: 'code2llm:smell:data_clump:examples/10_mcp_ollama_demo/refactored_output.py:41:Data
+    Clump: self, body, subject, to'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: temperature, model, prompt'
+  description: 'code2llm reports `Data Clump: temperature, model, prompt` in `examples/11_claude_code_autonomous/claude_autonomous_demo.py:157`.
+
+
+    Arguments (temperature, model, prompt) are used together in multiple functions:
+    examples.11_claude_code_autonomous.claude_autonomous_demo.call_claude_code, examples.10_mcp_ollama_demo.mcp_demo.call_ollama.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - examples/11_claude_code_autonomous/claude_autonomous_demo.py
+  dedupe_key: 'code2llm:smell:data_clump:examples/11_claude_code_autonomous/claude_autonomous_demo.py:157:Data
+    Clump: temperature, model, prompt'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: temperature, model, prompt'
+  description: 'code2llm reports `Data Clump: temperature, model, prompt` in `examples/10_mcp_ollama_demo/mcp_demo.py:189`.
+
+
+    Arguments (temperature, model, prompt) are used together in multiple functions:
+    examples.11_claude_code_autonomous.claude_autonomous_demo.call_claude_code, examples.10_mcp_ollama_demo.mcp_demo.call_ollama.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - examples/10_mcp_ollama_demo/mcp_demo.py
+  dedupe_key: 'code2llm:smell:data_clump:examples/10_mcp_ollama_demo/mcp_demo.py:189:Data
+    Clump: temperature, model, prompt'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: ticket_id, db, user'
+  description: 'code2llm reports `Data Clump: ticket_id, db, user` in `backend/routers/tickets/redsl.py:223`.
+
+
+    Arguments (ticket_id, db, user) are used together in multiple functions: backend.routers.tickets.redsl.get_ticket_processing_status,
+    backend.routers.tickets.crud.get_single_ticket, backend.routers.tickets.crud.delete_existing_ticket.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - backend/routers/tickets/redsl.py
+  dedupe_key: 'code2llm:smell:data_clump:backend/routers/tickets/redsl.py:223:Data
+    Clump: ticket_id, db, user'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: ticket_id, db, user'
+  description: 'code2llm reports `Data Clump: ticket_id, db, user` in `backend/routers/tickets/crud.py:125`.
+
+
+    Arguments (ticket_id, db, user) are used together in multiple functions: backend.routers.tickets.redsl.get_ticket_processing_status,
+    backend.routers.tickets.crud.get_single_ticket, backend.routers.tickets.crud.delete_existing_ticket.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - backend/routers/tickets/crud.py
+  dedupe_key: 'code2llm:smell:data_clump:backend/routers/tickets/crud.py:125:Data
+    Clump: ticket_id, db, user'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: ticket_id, db, user'
+  description: 'code2llm reports `Data Clump: ticket_id, db, user` in `backend/routers/tickets/crud.py:170`.
+
+
+    Arguments (ticket_id, db, user) are used together in multiple functions: backend.routers.tickets.redsl.get_ticket_processing_status,
+    backend.routers.tickets.crud.get_single_ticket, backend.routers.tickets.crud.delete_existing_ticket.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - backend/routers/tickets/crud.py
+  dedupe_key: 'code2llm:smell:data_clump:backend/routers/tickets/crud.py:170:Data
+    Clump: ticket_id, db, user'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: ticket_ids, db, user'
+  description: 'code2llm reports `Data Clump: ticket_ids, db, user` in `backend/routers/tickets/webhook.py:60`.
+
+
+    Arguments (ticket_ids, db, user) are used together in multiple functions: backend.routers.tickets.webhook.bulk_close_tickets,
+    backend.routers.tickets.webhook.bulk_reprocess_tickets.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - backend/routers/tickets/webhook.py
+  dedupe_key: 'code2llm:smell:data_clump:backend/routers/tickets/webhook.py:60:Data
+    Clump: ticket_ids, db, user'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: ticket_ids, db, user'
+  description: 'code2llm reports `Data Clump: ticket_ids, db, user` in `backend/routers/tickets/webhook.py:79`.
+
+
+    Arguments (ticket_ids, db, user) are used together in multiple functions: backend.routers.tickets.webhook.bulk_close_tickets,
+    backend.routers.tickets.webhook.bulk_reprocess_tickets.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - backend/routers/tickets/webhook.py
+  dedupe_key: 'code2llm:smell:data_clump:backend/routers/tickets/webhook.py:79:Data
+    Clump: ticket_ids, db, user'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: HealthContent'
+  description: 'code2llm reports `God Function: HealthContent` in `frontend/src/components/RedslHealthCard.parts.jsx:54`.
+
+
+    Function ''HealthContent'' is oversized: CC=14, fan-out=1, mutations=0.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - frontend/src/components/RedslHealthCard.parts.jsx
+  dedupe_key: 'code2llm:smell:god_function:frontend/src/components/RedslHealthCard.parts.jsx:54:God
+    Function: HealthContent'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: _collect_guarded_lines'
+  description: 'code2llm reports `God Function: _collect_guarded_lines` in `src/vallm/validators/imports/python_imports.py:14`.
+
+
+    Function ''_collect_guarded_lines'' is oversized: CC=14, fan-out=5, mutations=2.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/vallm/validators/imports/python_imports.py
+  dedupe_key: 'code2llm:smell:god_function:src/vallm/validators/imports/python_imports.py:14:God
+    Function: _collect_guarded_lines'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: _create_pr_for_ticket'
+  description: 'code2llm reports `God Function: _create_pr_for_ticket` in `backend/routers/tickets/redsl.py:159`.
+
+
+    Function ''_create_pr_for_ticket'' is oversized: CC=5, fan-out=11, mutations=0.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - backend/routers/tickets/redsl.py
+  dedupe_key: 'code2llm:smell:god_function:backend/routers/tickets/redsl.py:159:God
+    Function: _create_pr_for_ticket'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: _get_default_validators'
+  description: 'code2llm reports `God Function: _get_default_validators` in `src/vallm/scoring.py:185`.
+
+
+    Function ''_get_default_validators'' is oversized: CC=7, fan-out=8, mutations=7.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/vallm/scoring.py
+  dedupe_key: 'code2llm:smell:god_function:src/vallm/scoring.py:185:God Function:
+    _get_default_validators'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: _parse_response'
+  description: 'code2llm reports `God Function: _parse_response` in `src/vallm/validators/semantic.py:175`.
+
+
+    Function ''_parse_response'' is oversized: CC=5, fan-out=13, mutations=0.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/vallm/validators/semantic.py
+  dedupe_key: 'code2llm:smell:god_function:src/vallm/validators/semantic.py:175:God
+    Function: _parse_response'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: _parse_ruff_text'
+  description: 'code2llm reports `God Function: _parse_ruff_text` in `src/vallm/validators/lint.py:129`.
+
+
+    Function ''_parse_ruff_text'' is oversized: CC=9, fan-out=12, mutations=0.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/vallm/validators/lint.py
+  dedupe_key: 'code2llm:smell:god_function:src/vallm/validators/lint.py:129:God Function:
+    _parse_ruff_text'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: _run_docker'
+  description: 'code2llm reports `God Function: _run_docker` in `src/vallm/sandbox/runner.py:99`.
+
+
+    Function ''_run_docker'' is oversized: CC=3, fan-out=11, mutations=0.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/vallm/sandbox/runner.py
+  dedupe_key: 'code2llm:smell:god_function:src/vallm/sandbox/runner.py:99:God Function:
+    _run_docker'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: _run_validators'
+  description: 'code2llm reports `God Function: _run_validators` in `mcp/server/_tools_vallm.py:47`.
+
+
+    Function ''_run_validators'' is oversized: CC=8, fan-out=9, mutations=15.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - mcp/server/_tools_vallm.py
+  dedupe_key: 'code2llm:smell:god_function:mcp/server/_tools_vallm.py:47:God Function:
+    _run_validators'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: analyze_with_code2llm'
+  description: 'code2llm reports `God Function: analyze_with_code2llm` in `examples/11_claude_code_autonomous/claude_autonomous_demo.py:76`.
+
+
+    Function ''analyze_with_code2llm'' is oversized: CC=10, fan-out=17, mutations=10.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/11_claude_code_autonomous/claude_autonomous_demo.py
+  dedupe_key: 'code2llm:smell:god_function:examples/11_claude_code_autonomous/claude_autonomous_demo.py:76:God
+    Function: analyze_with_code2llm'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: analyze_with_code2llm'
+  description: 'code2llm reports `God Function: analyze_with_code2llm` in `examples/12_ollama_simple_demo/ollama_simple_demo.py:40`.
+
+
+    Function ''analyze_with_code2llm'' is oversized: CC=6, fan-out=13, mutations=6.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/12_ollama_simple_demo/ollama_simple_demo.py
+  dedupe_key: 'code2llm:smell:god_function:examples/12_ollama_simple_demo/ollama_simple_demo.py:40:God
+    Function: analyze_with_code2llm'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: analyze_with_code2llm'
+  description: 'code2llm reports `God Function: analyze_with_code2llm` in `examples/08_code2llm_integration/main.py:90`.
+
+
+    Function ''analyze_with_code2llm'' is oversized: CC=8, fan-out=9, mutations=8.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/08_code2llm_integration/main.py
+  dedupe_key: 'code2llm:smell:god_function:examples/08_code2llm_integration/main.py:90:God
+    Function: analyze_with_code2llm'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: analyze_with_code2llm'
+  description: 'code2llm reports `God Function: analyze_with_code2llm` in `examples/10_mcp_ollama_demo/mcp_demo.py:71`.
+
+
+    Function ''analyze_with_code2llm'' is oversized: CC=9, fan-out=16, mutations=9.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/10_mcp_ollama_demo/mcp_demo.py
+  dedupe_key: 'code2llm:smell:god_function:examples/10_mcp_ollama_demo/mcp_demo.py:71:God
+    Function: analyze_with_code2llm'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: batch_command'
+  description: 'code2llm reports `God Function: batch_command` in `src/vallm/cli/command_handlers.py:109`.
+
+
+    Function ''batch_command'' is oversized: CC=8, fan-out=15, mutations=20.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/vallm/cli/command_handlers.py
+  dedupe_key: 'code2llm:smell:god_function:src/vallm/cli/command_handlers.py:109:God
+    Function: batch_command'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: build_batch_settings'
+  description: 'code2llm reports `God Function: build_batch_settings` in `src/vallm/cli/settings_builders.py:41`.
+
+
+    Function ''build_batch_settings'' is oversized: CC=2, fan-out=1, mutations=8.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/vallm/cli/settings_builders.py
+  dedupe_key: 'code2llm:smell:god_function:src/vallm/cli/settings_builders.py:41:God
+    Function: build_batch_settings'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: build_files_data'
+  description: 'code2llm reports `God Function: build_files_data` in `src/vallm/cli/output_formatters/shared.py:18`.
+
+
+    Function ''build_files_data'' is oversized: CC=8, fan-out=6, mutations=8.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/vallm/cli/output_formatters/shared.py
+  dedupe_key: 'code2llm:smell:god_function:src/vallm/cli/output_formatters/shared.py:18:God
+    Function: build_files_data'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: build_python_graph'
+  description: 'code2llm reports `God Function: build_python_graph` in `src/vallm/core/graph_builder.py:47`.
+
+
+    Function ''build_python_graph'' is oversized: CC=2, fan-out=14, mutations=3.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/vallm/core/graph_builder.py
+  dedupe_key: 'code2llm:smell:god_function:src/vallm/core/graph_builder.py:47:God
+    Function: build_python_graph'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: build_results_table'
+  description: 'code2llm reports `God Function: build_results_table` in `src/vallm/cli/output_formatters/batch.py:334`.
+
+
+    Function ''build_results_table'' is oversized: CC=6, fan-out=7, mutations=9.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/vallm/cli/output_formatters/batch.py
+  dedupe_key: 'code2llm:smell:god_function:src/vallm/cli/output_formatters/batch.py:334:God
+    Function: build_results_table'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: build_validate_settings'
+  description: 'code2llm reports `God Function: build_validate_settings` in `src/vallm/cli/settings_builders.py:11`.
+
+
+    Function ''build_validate_settings'' is oversized: CC=7, fan-out=2, mutations=7.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/vallm/cli/settings_builders.py
+  dedupe_key: 'code2llm:smell:god_function:src/vallm/cli/settings_builders.py:11:God
+    Function: build_validate_settings'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: bump_version'
+  description: 'code2llm reports `God Function: bump_version` in `scripts/bump_version.py:12`.
+
+
+    Function ''bump_version'' is oversized: CC=5, fan-out=4, mutations=13.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - scripts/bump_version.py
+  dedupe_key: 'code2llm:smell:god_function:scripts/bump_version.py:12:God Function:
+    bump_version'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: check_command'
+  description: 'code2llm reports `God Function: check_command` in `src/vallm/cli/command_handlers.py:74`.
+
+
+    Function ''check_command'' is oversized: CC=1, fan-out=8, mutations=10.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/vallm/cli/command_handlers.py
+  dedupe_key: 'code2llm:smell:god_function:src/vallm/cli/command_handlers.py:74:God
+    Function: check_command'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: compute_verdict'
+  description: 'code2llm reports `God Function: compute_verdict` in `src/vallm/scoring.py:97`.
+
+
+    Function ''compute_verdict'' is oversized: CC=6, fan-out=3, mutations=7.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/vallm/scoring.py
+  dedupe_key: 'code2llm:smell:god_function:src/vallm/scoring.py:97:God Function: compute_verdict'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: create_basic_tests'
+  description: 'code2llm reports `God Function: create_basic_tests` in `examples/11_claude_code_autonomous/claude_autonomous_demo.py:314`.
+
+
+    Function ''create_basic_tests'' is oversized: CC=7, fan-out=10, mutations=9.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/11_claude_code_autonomous/claude_autonomous_demo.py
+  dedupe_key: 'code2llm:smell:god_function:examples/11_claude_code_autonomous/claude_autonomous_demo.py:314:God
+    Function: create_basic_tests'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: demo_check_command'
+  description: 'code2llm reports `God Function: demo_check_command` in `examples/15_cli_usage/main.py:168`.
+
+
+    Function ''demo_check_command'' is oversized: CC=1, fan-out=7, mutations=14.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/15_cli_usage/main.py
+  dedupe_key: 'code2llm:smell:god_function:examples/15_cli_usage/main.py:168:God Function:
+    demo_check_command'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: demo_output_formats'
+  description: 'code2llm reports `God Function: demo_output_formats` in `examples/15_cli_usage/main.py:92`.
+
+
+    Function ''demo_output_formats'' is oversized: CC=3, fan-out=5, mutations=9.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/15_cli_usage/main.py
+  dedupe_key: 'code2llm:smell:god_function:examples/15_cli_usage/main.py:92:God Function:
+    demo_output_formats'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: demo_programmatic_cli'
+  description: 'code2llm reports `God Function: demo_programmatic_cli` in `examples/15_cli_usage/main.py:124`.
+
+
+    Function ''demo_programmatic_cli'' is oversized: CC=8, fan-out=12, mutations=10.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/15_cli_usage/main.py
+  dedupe_key: 'code2llm:smell:god_function:examples/15_cli_usage/main.py:124:God Function:
+    demo_programmatic_cli'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: demo_single_file_validation'
+  description: 'code2llm reports `God Function: demo_single_file_validation` in `examples/15_cli_usage/main.py:17`.
+
+
+    Function ''demo_single_file_validation'' is oversized: CC=3, fan-out=5, mutations=7.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/15_cli_usage/main.py
+  dedupe_key: 'code2llm:smell:god_function:examples/15_cli_usage/main.py:17:God Function:
+    demo_single_file_validation'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: demo_threshold_configuration'
+  description: 'code2llm reports `God Function: demo_threshold_configuration` in `examples/16_configuration/main.py:188`.
+
+
+    Function ''demo_threshold_configuration'' is oversized: CC=3, fan-out=4, mutations=7.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/16_configuration/main.py
+  dedupe_key: 'code2llm:smell:god_function:examples/16_configuration/main.py:188:God
+    Function: demo_threshold_configuration'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: extract_imports'
+  description: 'code2llm reports `God Function: extract_imports` in `src/vallm/validators/imports/javascript_imports.py:76`.
+
+
+    Function ''extract_imports'' is oversized: CC=4, fan-out=14, mutations=0.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/vallm/validators/imports/javascript_imports.py
+  dedupe_key: 'code2llm:smell:god_function:src/vallm/validators/imports/javascript_imports.py:76:God
+    Function: extract_imports'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: extract_imports'
+  description: 'code2llm reports `God Function: extract_imports` in `src/vallm/validators/imports/rust_imports.py:61`.
+
+
+    Function ''extract_imports'' is oversized: CC=3, fan-out=13, mutations=0.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/vallm/validators/imports/rust_imports.py
+  dedupe_key: 'code2llm:smell:god_function:src/vallm/validators/imports/rust_imports.py:61:God
+    Function: extract_imports'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: extract_imports'
+  description: 'code2llm reports `God Function: extract_imports` in `src/vallm/validators/imports/go_imports.py:72`.
+
+
+    Function ''extract_imports'' is oversized: CC=3, fan-out=13, mutations=0.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/vallm/validators/imports/go_imports.py
+  dedupe_key: 'code2llm:smell:god_function:src/vallm/validators/imports/go_imports.py:72:God
+    Function: extract_imports'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: filter_files'
+  description: 'code2llm reports `God Function: filter_files` in `src/vallm/cli/batch_filter.py:73`.
+
+
+    Function ''filter_files'' is oversized: CC=11, fan-out=8, mutations=7.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/vallm/cli/batch_filter.py
+  dedupe_key: 'code2llm:smell:god_function:src/vallm/cli/batch_filter.py:73:God Function:
+    filter_files'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: generate_claude_prompt'
+  description: 'code2llm reports `God Function: generate_claude_prompt` in `examples/11_claude_code_autonomous/claude_autonomous_demo.py:366`.
+
+
+    Function ''generate_claude_prompt'' is oversized: CC=5, fan-out=5, mutations=7.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/11_claude_code_autonomous/claude_autonomous_demo.py
+  dedupe_key: 'code2llm:smell:god_function:examples/11_claude_code_autonomous/claude_autonomous_demo.py:366:God
+    Function: generate_claude_prompt'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: generate_feedback_prompt'
+  description: 'code2llm reports `God Function: generate_feedback_prompt` in `examples/11_claude_code_autonomous/claude_autonomous_demo.py:452`.
+
+
+    Function ''generate_feedback_prompt'' is oversized: CC=4, fan-out=6, mutations=7.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/11_claude_code_autonomous/claude_autonomous_demo.py
+  dedupe_key: 'code2llm:smell:god_function:examples/11_claude_code_autonomous/claude_autonomous_demo.py:452:God
+    Function: generate_feedback_prompt'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: generate_report'
+  description: 'code2llm reports `God Function: generate_report` in `examples/09_code2logic_integration/main.py:182`.
+
+
+    Function ''generate_report'' is oversized: CC=10, fan-out=10, mutations=7.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/09_code2logic_integration/main.py
+  dedupe_key: 'code2llm:smell:god_function:examples/09_code2logic_integration/main.py:182:God
+    Function: generate_report'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: load_gitignore'
+  description: 'code2llm reports `God Function: load_gitignore` in `src/vallm/core/gitignore.py:149`.
+
+
+    Function ''load_gitignore'' is oversized: CC=3, fan-out=4, mutations=7.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/vallm/core/gitignore.py
+  dedupe_key: 'code2llm:smell:god_function:src/vallm/core/gitignore.py:149:God Function:
+    load_gitignore'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: main'
+  description: 'code2llm reports `God Function: main` in `examples/04_graph_analysis/main.py:67`.
+
+
+    Function ''main'' is oversized: CC=9, fan-out=5, mutations=15.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/04_graph_analysis/main.py
+  dedupe_key: 'code2llm:smell:god_function:examples/04_graph_analysis/main.py:67:God
+    Function: main'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: main'
+  description: 'code2llm reports `God Function: main` in `examples/11_claude_code_autonomous/claude_autonomous_demo.py:625`.
+
+
+    Function ''main'' is oversized: CC=4, fan-out=13, mutations=6.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/11_claude_code_autonomous/claude_autonomous_demo.py
+  dedupe_key: 'code2llm:smell:god_function:examples/11_claude_code_autonomous/claude_autonomous_demo.py:625:God
+    Function: main'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: main'
+  description: 'code2llm reports `God Function: main` in `examples/11_claude_code_autonomous/legacy_code/data_processor.py:195`.
+
+
+    Function ''main'' is oversized: CC=1, fan-out=11, mutations=7.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/11_claude_code_autonomous/legacy_code/data_processor.py
+  dedupe_key: 'code2llm:smell:god_function:examples/11_claude_code_autonomous/legacy_code/data_processor.py:195:God
+    Function: main'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: main'
+  description: 'code2llm reports `God Function: main` in `examples/02_ast_comparison/main.py:56`.
+
+
+    Function ''main'' is oversized: CC=2, fan-out=8, mutations=12.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/02_ast_comparison/main.py
+  dedupe_key: 'code2llm:smell:god_function:examples/02_ast_comparison/main.py:56:God
+    Function: main'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: main'
+  description: 'code2llm reports `God Function: main` in `examples/12_ollama_simple_demo/ollama_simple_demo.py:282`.
+
+
+    Function ''main'' is oversized: CC=5, fan-out=12, mutations=7.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/12_ollama_simple_demo/ollama_simple_demo.py
+  dedupe_key: 'code2llm:smell:god_function:examples/12_ollama_simple_demo/ollama_simple_demo.py:282:God
+    Function: main'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: main'
+  description: 'code2llm reports `God Function: main` in `examples/03_security_check/main.py:67`.
+
+
+    Function ''main'' is oversized: CC=5, fan-out=7, mutations=8.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/03_security_check/main.py
+  dedupe_key: 'code2llm:smell:god_function:examples/03_security_check/main.py:67:God
+    Function: main'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: main'
+  description: 'code2llm reports `God Function: main` in `examples/10_mcp_ollama_demo/mcp_demo.py:367`.
+
+
+    Function ''main'' is oversized: CC=3, fan-out=12, mutations=6.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/10_mcp_ollama_demo/mcp_demo.py
+  dedupe_key: 'code2llm:smell:god_function:examples/10_mcp_ollama_demo/mcp_demo.py:367:God
+    Function: main'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: main'
+  description: 'code2llm reports `God Function: main` in `examples/13_batch_processing/main.py:125`.
+
+
+    Function ''main'' is oversized: CC=1, fan-out=8, mutations=11.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/13_batch_processing/main.py
+  dedupe_key: 'code2llm:smell:god_function:examples/13_batch_processing/main.py:125:God
+    Function: main'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: main'
+  description: 'code2llm reports `God Function: main` in `scripts/bump_version.py:36`.
+
+
+    Function ''main'' is oversized: CC=5, fan-out=11, mutations=7.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - scripts/bump_version.py
+  dedupe_key: 'code2llm:smell:god_function:scripts/bump_version.py:36:God Function:
+    main'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: output_batch_toon'
+  description: 'code2llm reports `God Function: output_batch_toon` in `src/vallm/cli/output_formatters/batch.py:296`.
+
+
+    Function ''output_batch_toon'' is oversized: CC=5, fan-out=11, mutations=9.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/vallm/cli/output_formatters/batch.py
+  dedupe_key: 'code2llm:smell:god_function:src/vallm/cli/output_formatters/batch.py:296:God
+    Function: output_batch_toon'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: process_files'
+  description: 'code2llm reports `God Function: process_files` in `src/vallm/cli/batch_processor_validation.py:43`.
+
+
+    Function ''process_files'' is oversized: CC=7, fan-out=8, mutations=18.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/vallm/cli/batch_processor_validation.py
+  dedupe_key: 'code2llm:smell:god_function:src/vallm/cli/batch_processor_validation.py:43:God
+    Function: process_files'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: process_files'
+  description: 'code2llm reports `God Function: process_files` in `src/vallm/cli/batch_process.py:92`.
+
+
+    Function ''process_files'' is oversized: CC=8, fan-out=9, mutations=18.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/vallm/cli/batch_process.py
+  dedupe_key: 'code2llm:smell:god_function:src/vallm/cli/batch_process.py:92:God Function:
+    process_files'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: process_order'
+  description: 'code2llm reports `God Function: process_order` in `examples/10_mcp_ollama_demo/refactored_output.py:89`.
+
+
+    Function ''process_order'' is oversized: CC=9, fan-out=0, mutations=7.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/10_mcp_ollama_demo/refactored_output.py
+  dedupe_key: 'code2llm:smell:god_function:examples/10_mcp_ollama_demo/refactored_output.py:89:God
+    Function: process_order'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: process_single_file'
+  description: 'code2llm reports `God Function: process_single_file` in `src/vallm/cli/batch_process.py:62`.
+
+
+    Function ''process_single_file'' is oversized: CC=4, fan-out=7, mutations=8.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/vallm/cli/batch_process.py
+  dedupe_key: 'code2llm:smell:god_function:src/vallm/cli/batch_process.py:62:God Function:
+    process_single_file'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: process_ticket_with_redsl'
+  description: 'code2llm reports `God Function: process_ticket_with_redsl` in `backend/routers/tickets/redsl.py:28`.
+
+
+    Function ''process_ticket_with_redsl'' is oversized: CC=14, fan-out=20, mutations=0.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - backend/routers/tickets/redsl.py
+  dedupe_key: 'code2llm:smell:god_function:backend/routers/tickets/redsl.py:28:God
+    Function: process_ticket_with_redsl'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: run_mcp_workflow'
+  description: 'code2llm reports `God Function: run_mcp_workflow` in `examples/10_mcp_ollama_demo/mcp_demo.py:257`.
+
+
+    Function ''run_mcp_workflow'' is oversized: CC=5, fan-out=16, mutations=15.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/10_mcp_ollama_demo/mcp_demo.py
+  dedupe_key: 'code2llm:smell:god_function:examples/10_mcp_ollama_demo/mcp_demo.py:257:God
+    Function: run_mcp_workflow'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: run_simple_workflow'
+  description: 'code2llm reports `God Function: run_simple_workflow` in `examples/12_ollama_simple_demo/ollama_simple_demo.py:182`.
+
+
+    Function ''run_simple_workflow'' is oversized: CC=9, fan-out=15, mutations=15.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/12_ollama_simple_demo/ollama_simple_demo.py
+  dedupe_key: 'code2llm:smell:god_function:examples/12_ollama_simple_demo/ollama_simple_demo.py:182:God
+    Function: run_simple_workflow'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: run_validation_examples'
+  description: 'code2llm reports `God Function: run_validation_examples` in `examples/utils/__init__.py:47`.
+
+
+    Function ''run_validation_examples'' is oversized: CC=12, fan-out=6, mutations=11.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/utils/__init__.py
+  dedupe_key: 'code2llm:smell:god_function:examples/utils/__init__.py:47:God Function:
+    run_validation_examples'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: run_validation_examples'
+  description: 'code2llm reports `God Function: run_validation_examples` in `examples/utils/validation_runner.py:12`.
+
+
+    Function ''run_validation_examples'' is oversized: CC=12, fan-out=6, mutations=11.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/utils/validation_runner.py
+  dedupe_key: 'code2llm:smell:god_function:examples/utils/validation_runner.py:12:God
+    Function: run_validation_examples'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: structural_diff_summary'
+  description: 'code2llm reports `God Function: structural_diff_summary` in `src/vallm/core/ast_compare.py:119`.
+
+
+    Function ''structural_diff_summary'' is oversized: CC=1, fan-out=6, mutations=8.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/vallm/core/ast_compare.py
+  dedupe_key: 'code2llm:smell:god_function:src/vallm/core/ast_compare.py:119:God Function:
+    structural_diff_summary'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: useRedslHealth'
+  description: 'code2llm reports `God Function: useRedslHealth` in `frontend/src/hooks/useRedslHealth.js:4`.
+
+
+    Function ''useRedslHealth'' is oversized: CC=10, fan-out=13, mutations=0.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - frontend/src/hooks/useRedslHealth.js
+  dedupe_key: 'code2llm:smell:god_function:frontend/src/hooks/useRedslHealth.js:4:God
+    Function: useRedslHealth'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: validate'
+  description: 'code2llm reports `God Function: validate` in `src/vallm/validators/imports/python_imports.py:160`.
+
+
+    Function ''validate'' is oversized: CC=6, fan-out=11, mutations=0.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/vallm/validators/imports/python_imports.py
+  dedupe_key: 'code2llm:smell:god_function:src/vallm/validators/imports/python_imports.py:160:God
+    Function: validate'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: validate_all_languages'
+  description: 'code2llm reports `God Function: validate_all_languages` in `examples/07_multi_language/main.py:213`.
+
+
+    Function ''validate_all_languages'' is oversized: CC=6, fan-out=5, mutations=9.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/07_multi_language/main.py
+  dedupe_key: 'code2llm:smell:god_function:examples/07_multi_language/main.py:213:God
+    Function: validate_all_languages'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: validate_code'
+  description: 'code2llm reports `God Function: validate_code` in `mcp/server/_tools_vallm.py:251`.
+
+
+    Function ''validate_code'' is oversized: CC=2, fan-out=5, mutations=13.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - mcp/server/_tools_vallm.py
+  dedupe_key: 'code2llm:smell:god_function:mcp/server/_tools_vallm.py:251:God Function:
+    validate_code'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: validate_code_example'
+  description: 'code2llm reports `God Function: validate_code_example` in `examples/utils/__init__.py:158`.
+
+
+    Function ''validate_code_example'' is oversized: CC=9, fan-out=5, mutations=7.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/utils/__init__.py
+  dedupe_key: 'code2llm:smell:god_function:examples/utils/__init__.py:158:God Function:
+    validate_code_example'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: validate_import_path'
+  description: 'code2llm reports `God Function: validate_import_path` in `src/vallm/validators/imports/utils.py:108`.
+
+
+    Function ''validate_import_path'' is oversized: CC=14, fan-out=8, mutations=10.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/vallm/validators/imports/utils.py
+  dedupe_key: 'code2llm:smell:god_function:src/vallm/validators/imports/utils.py:108:God
+    Function: validate_import_path'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: validate_single_file'
+  description: 'code2llm reports `God Function: validate_single_file` in `src/vallm/cli/batch_processor_validation.py:17`.
+
+
+    Function ''validate_single_file'' is oversized: CC=4, fan-out=8, mutations=7.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/vallm/cli/batch_processor_validation.py
+  dedupe_key: 'code2llm:smell:god_function:src/vallm/cli/batch_processor_validation.py:17:God
+    Function: validate_single_file'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: validate_with_vallm'
+  description: 'code2llm reports `God Function: validate_with_vallm` in `examples/11_claude_code_autonomous/claude_autonomous_demo.py:201`.
+
+
+    Function ''validate_with_vallm'' is oversized: CC=12, fan-out=6, mutations=7.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/11_claude_code_autonomous/claude_autonomous_demo.py
+  dedupe_key: 'code2llm:smell:god_function:examples/11_claude_code_autonomous/claude_autonomous_demo.py:201:God
+    Function: validate_with_vallm'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: validate_with_vallm'
+  description: 'code2llm reports `God Function: validate_with_vallm` in `examples/08_code2llm_integration/main.py:131`.
+
+
+    Function ''validate_with_vallm'' is oversized: CC=6, fan-out=10, mutations=8.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/08_code2llm_integration/main.py
+  dedupe_key: 'code2llm:smell:god_function:examples/08_code2llm_integration/main.py:131:God
+    Function: validate_with_vallm'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: validate_with_vallm'
+  description: 'code2llm reports `God Function: validate_with_vallm` in `examples/10_mcp_ollama_demo/mcp_demo.py:131`.
+
+
+    Function ''validate_with_vallm'' is oversized: CC=12, fan-out=6, mutations=7.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/10_mcp_ollama_demo/mcp_demo.py
+  dedupe_key: 'code2llm:smell:god_function:examples/10_mcp_ollama_demo/mcp_demo.py:131:God
+    Function: validate_with_vallm'
+applied: []
+skipped: []

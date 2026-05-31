@@ -9,6 +9,7 @@ from vallm.cli.command_handlers import (
     batch_command,
     check_command,
     info_command,
+    intract_command,
     validate_command,
 )
 
@@ -22,12 +23,14 @@ app = typer.Typer(
 app.command(name="validate")(validate_command)
 app.command(name="check")(check_command)
 app.command(name="batch")(batch_command)
+app.command(name="intract")(intract_command)
 app.command(name="info")(info_command)
 
 # Backward compatibility aliases
 batch = batch_command
 validate = validate_command
 check = check_command
+intract = intract_command
 info = info_command
 
 __all__ = [
@@ -36,10 +39,12 @@ __all__ = [
     "validate_command",
     "check_command",
     "batch_command",
+    "intract_command",
     "info_command",
     # Backward compatibility
     "validate",
     "check",
     "batch",
+    "intract",
     "info",
 ]

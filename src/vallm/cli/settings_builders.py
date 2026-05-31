@@ -13,6 +13,7 @@ def build_validate_settings(
     enable_semantic: bool,
     enable_security: bool,
     enable_regression: bool,
+    enable_intract: bool,
     model: Optional[str],
     verbose: bool,
 ) -> VallmSettings:
@@ -30,6 +31,8 @@ def build_validate_settings(
         settings.enable_security = enable_security
     if enable_regression:
         settings.enable_regression = enable_regression
+    if enable_intract:
+        settings.enable_intract = enable_intract
     if model:
         settings.llm_model = model
     if verbose:
@@ -42,6 +45,7 @@ def build_batch_settings(
     enable_semantic: bool,
     enable_security: bool,
     enable_regression: bool,
+    enable_intract: bool,
     model: Optional[str],
     verbose: bool,
     no_imports: bool,
@@ -54,6 +58,7 @@ def build_batch_settings(
     settings.enable_semantic = enable_semantic
     settings.enable_security = enable_security
     settings.enable_regression = enable_regression
+    settings.enable_intract = enable_intract
     if model:
         settings.llm_model = model
     settings.verbose = verbose

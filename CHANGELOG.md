@@ -398,6 +398,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fix(goal): update docs
 - fix(docs): update docs
 
+## [0.1.89] - 2026-05-31
+
+### Docs
+- Update README.md
+- Update TODO/1.md
+- Update project/README.md
+- Update project/context.md
+
+### Test
+- Update tests/test_ast_compare.py
+- Update tests/test_intract.py
+- Update tests/test_intract_cli.py
+
+### Other
+- Update .env.example
+- Update .gitignore
+- Update mcp/server/_tools_vallm.py
+- Update mcp/server/self_server.py
+- Update mcp/tests/quick_test.py
+- Update project/analysis.toon.yaml
+- Update project/calls.mmd
+- Update project/calls.png
+- Update project/calls.toon.yaml
+- Update project/calls.yaml
+- ... and 12 more files
+
 ## [0.1.88] - 2026-05-23
 
 ### Docs

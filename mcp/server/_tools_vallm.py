@@ -300,3 +300,225 @@ def validate_code(
 
     except Exception as e:
         return _build_error_response(e, "full_pipeline")
+
+
+def validate_intent_contracts(
+    code: str,
+    filename: str | None = None,
+) -> Dict[str, Any]:
+    """Validate inline @intract contracts in a code snippet."""
+    try:
+        from intract.integrations.vallm import validate_proposal
+
+        mapped = validate_proposal(code, filename=filename)
+        return {
+            "success": True,
+            "validator": "intract",
+            "score": mapped.score,
+            "verdict": mapped.status,
+            "issues": [issue.__dict__ for issue in mapped.issues],
+        }
+    except ImportError:
+        return {
+            "success": False,
+            "validator": "intract",
+            "error": "Intract is not installed. Install with: pip install 'vallm[intract]'",
+            "score": 0.0,
+            "verdict": "error",
+        }
+    except Exception as e:
+        return _build_error_response(e, "intract")
+
+
+def validate_intract_project(
+    path: str,
+    manifest: str | None = None,
+    staged: bool = False,
+    changed: bool = False,
+    base: str = "main",
+) -> Dict[str, Any]:
+    """Validate Intract contracts for a project directory."""
+    try:
+        from pathlib import Path
+
+        from vallm.validators.intract import run_project_intract_check
+
+        report, decision, files = run_project_intract_check(
+            Path(path),
+            staged=staged,
+            changed=changed,
+            base_ref=base,
+            manifest=Path(manifest) if manifest else None,
+        )
+        return {
+            "success": not decision.should_fail,
+            "validator": "intract_project",
+            "verdict": "fail" if decision.should_fail else "pass",
+            "report": report.to_dict(),
+            "policy": {
+                "should_fail": decision.should_fail,
+                "reasons": decision.reasons,
+                "warnings": decision.warnings,
+            },
+            "changed_files": files,
+        }
+    except ImportError:
+        return {
+            "success": False,
+            "validator": "intract_project",
+            "error": "Intract is not installed. Install with: pip install 'vallm[intract]'",
+            "verdict": "error",
+        }
+    except Exception as e:
+        return _build_error_response(e, "intract_project")
+
+
+def _call_validate_syntax(args: Dict[str, Any]) -> Dict[str, Any]:
+    return validate_syntax(args.get("code", ""), args.get("language", "python"), args.get("filename"))
+
+
+def _call_validate_imports(args: Dict[str, Any]) -> Dict[str, Any]:
+    return validate_imports(args.get("code", ""), args.get("language", "python"), args.get("filename"))
+
+
+def _call_validate_security(args: Dict[str, Any]) -> Dict[str, Any]:
+    return validate_security(args.get("code", ""), args.get("language", "python"), args.get("filename"))
+
+
+def _call_validate_code(args: Dict[str, Any]) -> Dict[str, Any]:
+    return validate_code(
+        args.get("code", ""),
+        args.get("language", "python"),
+        args.get("filename"),
+        args.get("reference_code"),
+        bool(args.get("enable_syntax", True)),
+        bool(args.get("enable_imports", True)),
+        bool(args.get("enable_security", True)),
+        bool(args.get("enable_complexity", True)),
+        bool(args.get("enable_regression", False)),
+    )
+
+
+def _call_validate_intent_contracts(args: Dict[str, Any]) -> Dict[str, Any]:
+    return validate_intent_contracts(args.get("code", ""), args.get("filename"))
+
+
+def validate_intract_staged(
+    path: str,
+    manifest: str | None = None,
+    base: str = "main",
+) -> Dict[str, Any]:
+    """Validate staged Intract contracts for a project directory."""
+    return validate_intract_project(path, manifest=manifest, staged=True, changed=False, base=base)
+
+
+def _call_validate_intract_staged(args: Dict[str, Any]) -> Dict[str, Any]:
+    return validate_intract_staged(args.get("path", "."), args.get("manifest"), args.get("base", "main"))
+
+
+def _call_validate_intract_project(args: Dict[str, Any]) -> Dict[str, Any]:
+    return validate_intract_project(
+        args.get("path", "."),
+        args.get("manifest"),
+        bool(args.get("staged", False)),
+        bool(args.get("changed", False)),
+        args.get("base", "main"),
+    )
+
+
+_CODE_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "code": {"type": "string", "description": "Source code to validate"},
+        "language": {"type": "string", "default": "python", "description": "Programming language"},
+        "filename": {"type": "string", "description": "Optional filename for context"},
+    },
+    "required": ["code"],
+}
+
+
+TOOL_SCHEMA_VALLM = {
+    "validate_syntax": {
+        "name": "validate_syntax",
+        "description": "Multi-language syntax checking using vallm SyntaxValidator",
+        "parameters": _CODE_SCHEMA,
+    },
+    "validate_imports": {
+        "name": "validate_imports",
+        "description": "Import resolution validation using vallm ImportValidator",
+        "parameters": _CODE_SCHEMA,
+    },
+    "validate_security": {
+        "name": "validate_security",
+        "description": "Security issue detection using vallm SecurityValidator",
+        "parameters": _CODE_SCHEMA,
+    },
+    "validate_code": {
+        "name": "validate_code",
+        "description": "Full pipeline validation combining multiple validators",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                **_CODE_SCHEMA["properties"],
+                "reference_code": {"type": "string", "description": "Reference code for regression testing"},
+                "enable_syntax": {"type": "boolean", "default": True},
+                "enable_imports": {"type": "boolean", "default": True},
+                "enable_security": {"type": "boolean", "default": True},
+                "enable_complexity": {"type": "boolean", "default": True},
+                "enable_regression": {"type": "boolean", "default": False},
+            },
+            "required": ["code"],
+        },
+    },
+    "validate_intent_contracts": {
+        "name": "validate_intent_contracts",
+        "description": "Validate inline @intract intent contracts in a code snippet",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "code": {"type": "string", "description": "Source code containing @intract contracts"},
+                "filename": {"type": "string", "description": "Optional filename for contract context"},
+            },
+            "required": ["code"],
+        },
+    },
+    "validate_intract_project": {
+        "name": "validate_intract_project",
+        "description": "Validate Intract intent contracts for a project directory",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "path": {"type": "string", "description": "Project root directory", "default": "."},
+                "manifest": {"type": "string", "description": "Path to intract.yaml / intent.yaml"},
+                "staged": {"type": "boolean", "default": False, "description": "Validate staged files only"},
+                "changed": {"type": "boolean", "default": False, "description": "Validate branch diff only"},
+                "base": {"type": "string", "default": "main", "description": "Base ref for --changed"},
+            },
+            "required": ["path"],
+        },
+    },
+    "validate_intract_staged": {
+        "name": "validate_intract_staged",
+        "description": "Validate staged Intract intent contracts before commit",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "path": {"type": "string", "description": "Project root directory", "default": "."},
+                "manifest": {"type": "string", "description": "Path to intract.yaml / intent.yaml"},
+                "base": {"type": "string", "default": "main", "description": "Unused compatibility field"},
+            },
+            "required": ["path"],
+        },
+    },
+}
+
+
+MCP_HANDLERS = {
+    "validate_syntax": _call_validate_syntax,
+    "validate_imports": _call_validate_imports,
+    "validate_security": _call_validate_security,
+    "validate_code": _call_validate_code,
+    "validate_intent_contracts": _call_validate_intent_contracts,
+    "validate_intract_project": _call_validate_intract_project,
+    "validate_intract_staged": _call_validate_intract_staged,
+}

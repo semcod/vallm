@@ -65,7 +65,7 @@ class RustImportValidator(BaseImportValidator):
             from vallm.core.ast_compare import _cached_get_parser
 
             parser = _cached_get_parser("rust")
-            tree = parser.parse(code.encode("utf-8"))
+            tree = parser.parse(code)
 
             def walk(node):
                 if node.type == "use_declaration":

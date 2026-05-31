@@ -16,6 +16,7 @@ from vallm.core.languages import detect_language
 from vallm.core.proposal import Proposal
 
 console = Console()
+err_console = Console(stderr=True)
 OUTPUT_FORMAT_HELP = "Output format"
 
 
@@ -28,6 +29,7 @@ def validate_command(
     enable_semantic: bool = typer.Option(False, "--semantic", help="Enable LLM-as-judge"),
     enable_security: bool = typer.Option(False, "--security", help="Enable security checks"),
     enable_regression: bool = typer.Option(False, "--regression", help="Enable regression tests"),
+    enable_intract: bool = typer.Option(False, "--intract", help="Enable Intract intent contract checks"),
     model: Optional[str] = typer.Option(None, "--model", "-m", help="LLM model for semantic"),
     output_format: str = typer.Option(
         get_default_output_format(), "--output", "-o", help=OUTPUT_FORMAT_HELP
@@ -51,6 +53,7 @@ def validate_command(
         enable_semantic,
         enable_security,
         enable_regression,
+        enable_intract,
         model,
         verbose,
     )
@@ -93,7 +96,7 @@ def check_command(
     from vallm.scoring import validate
 
     # Only enable syntax validator
-    settings = build_validate_settings(None, False, False, False, None, False)
+    settings = build_validate_settings(None, False, False, False, False, None, False)
     settings.enable_syntax = True
     settings.enable_imports = False
     settings.enable_complexity = False
@@ -117,6 +120,7 @@ def batch_command(
     enable_semantic: bool = typer.Option(False, "--semantic", help="Enable LLM-as-judge"),
     enable_security: bool = typer.Option(False, "--security", help="Enable security checks"),
     enable_regression: bool = typer.Option(False, "--regression", help="Enable regression tests"),
+    enable_intract: bool = typer.Option(False, "--intract", help="Enable Intract intent contract checks"),
     no_imports: bool = typer.Option(False, "--no-imports", help="Skip import validation (faster)"),
     no_complexity: bool = typer.Option(
         False, "--no-complexity", help="Skip complexity analysis (faster)"
@@ -141,6 +145,7 @@ def batch_command(
         enable_semantic,
         enable_security,
         enable_regression,
+        enable_intract,
         model,
         verbose,
         no_imports,
@@ -200,6 +205,70 @@ def batch_command(
         raise typer.Exit(2)
 
 
+def intract_command(
+    path: Path = typer.Argument(Path("."), help="Project root to validate."),
+    staged: bool = typer.Option(False, "--staged", help="Validate staged files only."),
+    changed: bool = typer.Option(False, "--changed", help="Validate branch diff only."),
+    base: str = typer.Option("main", "--base", help="Base ref for --changed."),
+    manifest: Optional[Path] = typer.Option(None, "--manifest", help="Path to intent.yaml / intract.yaml."),
+    output_format: str = typer.Option("text", "--format", "-f", help="Output format: text|json"),
+    exit_on_fail: bool = typer.Option(True, "--exit/--no-exit", help="Exit non-zero on policy failure."),
+) -> None:
+    """Validate Intract intent contracts for a project, branch, or staged changes."""
+    import json
+
+    from vallm.validators.intract import run_project_intract_check
+
+    try:
+        report, decision, files = run_project_intract_check(
+            path,
+            staged=staged,
+            changed=changed,
+            base_ref=base,
+            manifest=manifest,
+        )
+    except ImportError:
+        err_console.print(
+            "[red]Error:[/red] Intract is not installed. Install with: pip install 'vallm[intract]'",
+        )
+        raise typer.Exit(1) from None
+
+    if output_format == "json":
+        payload = {
+            "report": report.to_dict(),
+            "policy": {
+                "should_fail": decision.should_fail,
+                "reasons": decision.reasons,
+                "warnings": decision.warnings,
+            },
+            "changed_files": files,
+        }
+        console.print_json(json.dumps(payload, ensure_ascii=False))
+    else:
+        lines = ["VALLM INTRACT CHECK", ""]
+        if files:
+            lines.append("Changed files:")
+            lines.extend(f"- {item}" for item in files)
+            lines.append("")
+        lines.append(f"Status: {report.status.value}")
+        lines.append(f"Passed: {len(report.passed)}")
+        lines.append(f"Partial: {len(report.partial)}")
+        lines.append(f"Failed: {len(report.failed)}")
+        lines.append(f"Violations: {len(report.violations)}")
+        if decision.reasons:
+            lines.append("")
+            lines.append("FAIL REASONS:")
+            lines.extend(f"- {item}" for item in decision.reasons)
+        if decision.warnings:
+            lines.append("")
+            lines.append("WARNINGS:")
+            lines.extend(f"- {item}" for item in decision.warnings)
+        console.print("\n".join(lines))
+
+    if exit_on_fail and decision.should_fail:
+        raise typer.Exit(1)
+
+
 def info_command(
     language: Optional[str] = typer.Option(
         None, "--lang", "-l", help="Show info for specific language"
@@ -228,7 +297,7 @@ def info_command(
             lang = Language(language.lower())
             _show_language_info(lang)
         except ValueError:
-            console.print(f"[red]Error: Unsupported language: {language}[/red]", stderr=True)
+            err_console.print(f"[red]Error: Unsupported language: {language}[/red]")
             raise typer.Exit(1)
     else:
         # Show general info
@@ -242,13 +311,13 @@ def _load_code(file: Optional[Path], code: Optional[str]) -> str:
     """Load code from file or string parameter."""
     if file:
         if not file.exists():
-            console.print(f"[red]Error: File not found: {file}[/red]", stderr=True)
+            err_console.print(f"[red]Error: File not found: {file}[/red]")
             raise typer.Exit(1)
         return file.read_text()
     elif code:
         return code
     else:
-        console.print("[red]Error: Provide --code or --file[/red]", stderr=True)
+        err_console.print("[red]Error: Provide --code or --file[/red]")
         raise typer.Exit(1)
 
 
@@ -353,6 +422,7 @@ def _show_general_info() -> None:
     console.print("  4. Security analysis - Security pattern detection")
     console.print("  5. Regression testing - Pytest-based regression checks")
     console.print("  6. Semantic analysis - LLM-powered code review")
+    console.print("  7. Intract contracts - Intent contract validation (pip install vallm[intract])")
 
     # Show cache stats
     cache_stats = get_semantic_cache().get_cache_stats()

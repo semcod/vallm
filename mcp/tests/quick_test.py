@@ -94,6 +94,9 @@ def test_tool_schema():
             "validate_imports",
             "validate_security",
             "validate_code",
+            "validate_intent_contracts",
+            "validate_intract_project",
+            "validate_intract_staged",
         ]
         actual_tools = list(TOOL_SCHEMA_VALLM.keys())
 

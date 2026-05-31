@@ -9,17 +9,18 @@ from vallm.core.ast_compare import (
     tree_sitter_node_count,
     tree_sitter_error_count,
 )
+from vallm.core.tree_sitter_compat import node_kind, tree_root
 
 
 def test_parse_code_python():
     tree = parse_code("def foo(): pass", "python")
-    assert tree.root_node.type == "module"
+    assert node_kind(tree_root(tree)) == "module"
 
 
 @pytest.mark.slow
 def test_parse_code_javascript():
     tree = parse_code("const x = 1;", "javascript")
-    assert tree.root_node is not None
+    assert tree_root(tree) is not None
 
 
 @pytest.mark.slow

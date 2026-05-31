@@ -216,4 +216,9 @@ def _get_default_validators(settings: VallmSettings) -> list:
 
         validators.append(SemanticValidator(settings))
 
+    if getattr(settings, "enable_intract", False):
+        from vallm.validators.intract import IntractValidator
+
+        validators.append(IntractValidator(settings))
+
     return validators

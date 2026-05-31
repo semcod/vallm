@@ -1,0 +1,443 @@
+# code2llm call graph | /home/tom/github/semcod/vallm
+# generated in 0.54s
+# nodes: 270 | edges: 372 | modules: 81
+# CC̄=3.2
+
+HUBS[20]:
+  examples.cycle-test.full-cycle.print
+    CC=0  in:739  out:0  total:739
+  examples.11_claude_code_autonomous.claude_autonomous_demo.analyze_with_code2llm
+    CC=10  in:1  out:43  total:44
+  examples.utils.run_validation_examples
+    CC=12  in:3  out:40  total:43
+  examples.11_claude_code_autonomous.claude_autonomous_demo.run_autonomous_workflow
+    CC=9  in:1  out:42  total:43
+  examples.utils.validation_runner.run_validation_examples
+    CC=12  in:0  out:40  total:40
+  examples.04_graph_analysis.main.main
+    CC=9  in:0  out:40  total:40
+  examples.10_mcp_ollama_demo.mcp_demo.analyze_with_code2llm
+    CC=9  in:1  out:36  total:37
+  examples.10_mcp_ollama_demo.mcp_demo.run_mcp_workflow
+    CC=5  in:1  out:36  total:37
+  examples.11_claude_code_autonomous.claude_autonomous_demo.main
+    CC=4  in:0  out:34  total:34
+  backend.routers.tickets.redsl.process_ticket_with_redsl
+    CC=14  in:0  out:34  total:34
+  examples.12_ollama_simple_demo.ollama_simple_demo.run_simple_workflow
+    CC=9  in:1  out:31  total:32
+  examples.02_ast_comparison.main.main
+    CC=2  in:0  out:31  total:31
+  src.vallm.cli.output_formatters.batch.output_batch_yaml
+    CC=10  in:2  out:29  total:31
+  examples.12_ollama_simple_demo.ollama_simple_demo.analyze_with_code2llm
+    CC=6  in:1  out:29  total:30
+  examples.03_security_check.main.main
+    CC=5  in:0  out:29  total:29
+  examples.05_llm_semantic_review.main.main
+    CC=11  in:0  out:29  total:29
+  examples.12_ollama_simple_demo.ollama_simple_demo.main
+    CC=5  in:0  out:29  total:29
+  src.vallm.validators.logical.LogicalErrorValidator.validate
+    CC=2  in:24  out:5  total:29
+  src.vallm.core.graph_builder.build_python_graph
+    CC=2  in:5  out:23  total:28
+  examples.10_mcp_ollama_demo.mcp_demo.main
+    CC=3  in:0  out:27  total:27
+
+MODULES:
+  backend.routers.tickets.crud  [9 funcs]
+    create_new_ticket  CC=1  out:6
+    delete_existing_ticket  CC=4  out:9
+    get_action_required_tickets  CC=2  out:6
+    get_single_ticket  CC=3  out:8
+    get_stats  CC=1  out:6
+    get_tickets_for_repo  CC=2  out:6
+    list_tickets  CC=2  out:9
+    search_tickets_endpoint  CC=2  out:6
+    update_existing_ticket  CC=6  out:12
+  backend.routers.tickets.models  [1 funcs]
+    _get_tenant_for_user  CC=4  out:10
+  backend.routers.tickets.redsl  [2 funcs]
+    get_ticket_processing_status  CC=3  out:9
+    process_ticket_with_redsl  CC=14  out:34
+  backend.routers.tickets.webhook  [2 funcs]
+    bulk_close_tickets  CC=4  out:7
+    bulk_reprocess_tickets  CC=4  out:7
+  examples.01_basic_validation.main  [1 funcs]
+    main  CC=2  out:7
+  examples.02_ast_comparison.main  [1 funcs]
+    main  CC=2  out:31
+  examples.03_security_check.main  [1 funcs]
+    main  CC=5  out:29
+  examples.04_graph_analysis.main  [1 funcs]
+    main  CC=9  out:40
+  examples.05_llm_semantic_review.main  [1 funcs]
+    main  CC=11  out:29
+  examples.05_llm_semantic_review.main_template  [1 funcs]
+    main  CC=2  out:4
+  examples.06_multilang_validation.main  [1 funcs]
+    main  CC=4  out:11
+  examples.06_multilang_validation.main_template  [1 funcs]
+    main  CC=2  out:4
+  examples.07_multi_language.main  [6 funcs]
+    main  CC=11  out:17
+    print_language_info  CC=8  out:15
+    save_results  CC=1  out:5
+    test_language_detection  CC=4  out:6
+    validate_all_languages  CC=6  out:13
+    validate_single_language  CC=1  out:3
+  examples.08_code2llm_integration.main  [5 funcs]
+    analyze_with_code2llm  CC=8  out:13
+    create_sample_project  CC=2  out:4
+    generate_report  CC=6  out:20
+    main  CC=2  out:13
+    validate_with_vallm  CC=6  out:16
+  examples.09_code2logic_integration.main  [6 funcs]
+    analyze_with_code2logic  CC=5  out:17
+    build_call_graph  CC=3  out:10
+    generate_report  CC=10  out:17
+    main  CC=2  out:18
+    validate_with_vallm  CC=6  out:12
+    visualize_flow  CC=3  out:5
+  examples.10_mcp_ollama_demo.legacy_code.order_processor  [2 funcs]
+    execute_query  CC=1  out:1
+    process_payment  CC=1  out:1
+  examples.10_mcp_ollama_demo.mcp_demo  [9 funcs]
+    analyze_with_code2llm  CC=9  out:36
+    call_ollama  CC=3  out:12
+    generate_refactoring_prompt  CC=3  out:3
+    log_code  CC=2  out:7
+    log_section  CC=1  out:4
+    log_step  CC=1  out:2
+    main  CC=3  out:27
+    run_mcp_workflow  CC=5  out:36
+    validate_with_vallm  CC=12  out:8
+  examples.10_mcp_ollama_demo.refactored_output  [5 funcs]
+    execute_query  CC=1  out:1
+    process_payment  CC=1  out:1
+    load_config  CC=1  out:3
+    main  CC=1  out:7
+    process_order  CC=9  out:0
+  examples.11_claude_code_autonomous.claude_autonomous_demo  [10 funcs]
+    analyze_with_code2llm  CC=10  out:43
+    call_claude_code  CC=4  out:15
+    create_basic_tests  CC=7  out:17
+    log_code  CC=2  out:7
+    log_section  CC=1  out:4
+    log_step  CC=1  out:2
+    main  CC=4  out:34
+    run_autonomous_workflow  CC=9  out:42
+    run_runtime_tests  CC=8  out:16
+    validate_with_vallm  CC=12  out:8
+  examples.11_claude_code_autonomous.legacy_code.data_processor  [4 funcs]
+    __init__  CC=1  out:1
+    init_database  CC=1  out:4
+    load_config  CC=1  out:2
+    main  CC=1  out:12
+  examples.12_ollama_simple_demo.best_version  [1 funcs]
+    main  CC=1  out:1
+  examples.12_ollama_simple_demo.iteration_1  [1 funcs]
+    main  CC=1  out:1
+  examples.12_ollama_simple_demo.iteration_2  [1 funcs]
+    main  CC=1  out:1
+  examples.12_ollama_simple_demo.legacy_code.simple_buggy  [5 funcs]
+    calculate_total  CC=2  out:0
+    load_config  CC=1  out:2
+    main  CC=1  out:7
+    process_user_input  CC=3  out:4
+    save_data  CC=1  out:3
+  examples.12_ollama_simple_demo.ollama_simple_demo  [8 funcs]
+    analyze_with_code2llm  CC=6  out:29
+    call_ollama  CC=2  out:8
+    log_section  CC=1  out:4
+    log_step  CC=1  out:2
+    main  CC=5  out:29
+    run_simple_test  CC=2  out:5
+    run_simple_workflow  CC=9  out:31
+    validate_with_vallm  CC=4  out:10
+  examples.12_ollama_simple_demo.utils.calculate_total  [1 funcs]
+    calculate_total  CC=3  out:5
+  examples.12_ollama_simple_demo.utils.load_config  [1 funcs]
+    load_config  CC=1  out:0
+  examples.12_ollama_simple_demo.utils.main  [1 funcs]
+    run_demo_main  CC=1  out:7
+  examples.12_ollama_simple_demo.utils.process_user_input  [1 funcs]
+    process_user_input  CC=9  out:9
+  examples.12_ollama_simple_demo.utils.save_data  [1 funcs]
+    save_data  CC=1  out:4
+  examples.13_batch_processing.main  [7 funcs]
+    _build_result_entry  CC=2  out:1
+    _create_test_files  CC=3  out:9
+    _display_results  CC=5  out:12
+    _print_summary  CC=7  out:9
+    _run_validation  CC=2  out:5
+    _save_and_cleanup  CC=2  out:5
+    main  CC=1  out:11
+  examples.14_api_advanced.main  [5 funcs]
+    demo_proposal_creation  CC=1  out:10
+    demo_result_interpretation  CC=7  out:25
+    demo_settings_customization  CC=1  out:12
+    demo_workflow_integration  CC=3  out:17
+    main  CC=1  out:15
+  examples.15_cli_usage.main  [7 funcs]
+    demo_batch_validation  CC=2  out:20
+    demo_check_command  CC=1  out:18
+    demo_output_formats  CC=3  out:12
+    demo_programmatic_cli  CC=8  out:20
+    demo_single_file_validation  CC=3  out:16
+    main  CC=1  out:19
+    run_cli_command  CC=1  out:3
+  examples.16_configuration.main  [6 funcs]
+    demo_config_file  CC=1  out:19
+    demo_environment_variables  CC=4  out:21
+    demo_profile_switching  CC=6  out:13
+    demo_runtime_configuration  CC=1  out:14
+    demo_threshold_configuration  CC=3  out:11
+    main  CC=1  out:16
+  examples.cycle-test.full-cycle  [1 funcs]
+    print  CC=0  out:0
+  examples.mcp_demo  [5 funcs]
+    example_full_pipeline  CC=3  out:10
+    example_security_validation  CC=2  out:9
+    example_selective_validation  CC=3  out:10
+    example_syntax_validation  CC=2  out:11
+    main  CC=2  out:14
+  examples.utils  [4 funcs]
+    print_summary  CC=2  out:5
+    run_validation_examples  CC=12  out:40
+    save_analysis_data  CC=1  out:5
+    validate_code_example  CC=9  out:13
+  examples.utils.logging_utils  [4 funcs]
+    log_code  CC=2  out:8
+    log_result  CC=1  out:4
+    log_section  CC=1  out:4
+    log_step  CC=1  out:2
+  examples.utils.save_analysis_data  [1 funcs]
+    save_analysis_data  CC=1  out:5
+  examples.utils.validation_runner  [1 funcs]
+    run_validation_examples  CC=12  out:40
+  frontend.e2e.gui-login-enhanced.spec  [2 funcs]
+    content  CC=3  out:1
+    loginElement  CC=2  out:3
+  frontend.e2e.loginTestHelpers  [4 funcs]
+    attemptLogin  CC=4  out:4
+    attemptUserLogin  CC=4  out:4
+    checkLoginStatus  CC=4  out:2
+    testOAuthFlow  CC=3  out:9
+  mcp.server._tools_vallm  [12 funcs]
+    _build_error_response  CC=1  out:1
+    _build_pipeline_response  CC=12  out:7
+    _build_validator_response  CC=5  out:1
+    _compute_verdict  CC=5  out:0
+    _format_issue  CC=1  out:0
+    _run_validators  CC=8  out:13
+    compute_overall_score_and_verdict  CC=6  out:4
+    create_proposal  CC=1  out:1
+    validate_code  CC=2  out:5
+    validate_imports  CC=2  out:5
+  mcp.server.self_server  [5 funcs]
+    handle_initialize  CC=1  out:0
+    handle_request  CC=4  out:6
+    handle_tools_call  CC=3  out:4
+    handle_tools_list  CC=2  out:2
+    main  CC=6  out:14
+  scripts.bump_version  [2 funcs]
+    bump_version  CC=5  out:5
+    main  CC=5  out:18
+  src.vallm.cli.batch_filter  [5 funcs]
+    filter_files  CC=11  out:9
+    load_vallmignore  CC=2  out:3
+    matches_include_pattern  CC=5  out:1
+    parse_filter_patterns  CC=3  out:6
+    should_exclude_file  CC=10  out:8
+  src.vallm.cli.batch_process  [7 funcs]
+    detect_file_language  CC=1  out:1
+    handle_no_files_found  CC=1  out:1
+    handle_validation_result  CC=4  out:1
+    process_single_file  CC=4  out:7
+    read_file_text  CC=2  out:1
+    show_progress  CC=2  out:1
+    show_validation_start  CC=2  out:2
+  src.vallm.cli.batch_processor_files  [1 funcs]
+    build_file_list  CC=9  out:9
+  src.vallm.cli.batch_processor_filter  [1 funcs]
+    parse_filter_patterns  CC=3  out:6
+  src.vallm.cli.batch_processor_impl  [3 funcs]
+    _build_file_list  CC=1  out:1
+    _load_gitignore_parser  CC=3  out:4
+    process_batch  CC=2  out:6
+  src.vallm.cli.batch_processor_patterns  [6 funcs]
+    _compile_patterns  CC=6  out:12
+    filter_files  CC=8  out:6
+    matches_include_pattern  CC=1  out:1
+    matches_pattern  CC=5  out:1
+    parse_filter_patterns  CC=3  out:5
+    should_exclude_file  CC=1  out:1
+  src.vallm.cli.batch_processor_validation  [2 funcs]
+    process_files  CC=7  out:10
+    validate_single_file  CC=4  out:8
+  src.vallm.cli.batch_utils  [1 funcs]
+    compile_patterns  CC=6  out:12
+  src.vallm.cli.command_handlers  [7 funcs]
+    _build_proposal  CC=2  out:2
+    _detect_and_log_language  CC=3  out:5
+    _load_code  CC=4  out:6
+    _show_general_info  CC=3  out:20
+    _show_language_info  CC=4  out:15
+    check_command  CC=1  out:11
+    info_command  CC=4  out:13
+  src.vallm.cli.output_formatters  [2 funcs]
+    output_batch_results  CC=4  out:4
+    output_validate_result  CC=3  out:3
+  src.vallm.cli.output_formatters.base  [2 funcs]
+    output_batch_results  CC=4  out:3
+    output_validate_result  CC=3  out:3
+  src.vallm.cli.output_formatters.batch  [16 funcs]
+    _build_unsupported_summary  CC=3  out:5
+    _ordered_unsupported_items  CC=6  out:4
+    _print_toon_file_section  CC=4  out:12
+    _print_toon_unsupported_section  CC=2  out:5
+    _split_toon_results  CC=6  out:4
+    _toon_row  CC=3  out:5
+    _unsupported_bucket  CC=6  out:7
+    build_results_table  CC=6  out:12
+    output_batch_empty  CC=4  out:15
+    output_batch_json  CC=2  out:7
+  src.vallm.cli.output_formatters.shared  [2 funcs]
+    build_failed_files_data  CC=2  out:2
+    format_error_message  CC=3  out:4
+  src.vallm.cli.output_formatters.single  [3 funcs]
+    output_json  CC=2  out:2
+    output_rich  CC=6  out:10
+    output_text  CC=2  out:3
+  src.vallm.cli.output_formatters.utils  [3 funcs]
+    build_failed_files_data  CC=2  out:2
+    build_files_data  CC=1  out:0
+    format_error_message  CC=3  out:4
+  src.vallm.cli.settings_builders  [1 funcs]
+    build_validate_settings  CC=7  out:2
+  src.vallm.config  [5 funcs]
+    get_default_filenames  CC=1  out:1
+    get_default_language  CC=1  out:1
+    get_default_output_format  CC=1  out:1
+    get_settings  CC=3  out:5
+    reload_settings  CC=1  out:1
+  src.vallm.core.ast_compare  [8 funcs]
+    _cached_get_parser  CC=1  out:2
+    normalize_python_ast  CC=1  out:11
+    parse_code  CC=1  out:3
+    parse_python_ast  CC=2  out:1
+    python_ast_similarity  CC=4  out:6
+    structural_diff_summary  CC=1  out:11
+    tree_sitter_error_count  CC=1  out:3
+    tree_sitter_node_count  CC=1  out:3
+  src.vallm.core.gitignore  [4 funcs]
+    create_default_gitignore_parser  CC=2  out:4
+    get_default_excludes  CC=1  out:0
+    load_gitignore  CC=3  out:4
+    should_exclude  CC=4  out:3
+  src.vallm.core.graph_builder  [1 funcs]
+    build_python_graph  CC=2  out:23
+  src.vallm.core.graph_diff  [3 funcs]
+    _diff_list  CC=9  out:9
+    diff_graphs  CC=5  out:11
+    diff_python_code  CC=1  out:3
+  src.vallm.core.languages  [2 funcs]
+    detect_language  CC=5  out:3
+    get_language_for_validation  CC=4  out:2
+  src.vallm.scoring  [7 funcs]
+    _get_default_validators  CC=7  out:13
+    _initialize_context  CC=2  out:0
+    _initialize_settings  CC=2  out:1
+    _initialize_validators  CC=2  out:2
+    _run_validation_pipeline  CC=4  out:2
+    compute_verdict  CC=6  out:3
+    validate  CC=1  out:5
+  src.vallm.validators.complexity  [1 funcs]
+    _check_lizard  CC=12  out:11
+  src.vallm.validators.file_cache  [2 funcs]
+    set  CC=2  out:1
+    get_file_cache  CC=2  out:1
+  src.vallm.validators.imports.c_imports  [1 funcs]
+    extract_imports  CC=2  out:11
+  src.vallm.validators.imports.go_imports  [1 funcs]
+    extract_imports  CC=3  out:18
+  src.vallm.validators.imports.java_imports  [1 funcs]
+    extract_imports  CC=2  out:7
+  src.vallm.validators.imports.javascript_imports  [1 funcs]
+    extract_imports  CC=4  out:19
+  src.vallm.validators.imports.python_imports  [4 funcs]
+    extract_imports  CC=9  out:7
+    module_exists  CC=6  out:4
+    _collect_guarded_lines  CC=14  out:11
+    _get_local_modules  CC=8  out:9
+  src.vallm.validators.imports.rust_imports  [1 funcs]
+    extract_imports  CC=3  out:16
+  src.vallm.validators.imports.utils  [4 funcs]
+    _is_gitignored  CC=4  out:2
+    _should_skip_dir  CC=5  out:1
+    _should_skip_entry  CC=3  out:2
+    walk  CC=10  out:9
+  src.vallm.validators.logical  [1 funcs]
+    validate  CC=2  out:5
+  src.vallm.validators.semantic  [1 funcs]
+    __init__  CC=2  out:2
+  src.vallm.validators.semantic_cache  [2 funcs]
+    clear_semantic_cache  CC=2  out:1
+    get_semantic_cache  CC=2  out:1
+  src.vallm.validators.syntax  [2 funcs]
+    _validate_python  CC=4  out:7
+    _validate_treesitter  CC=3  out:5
+
+EDGES:
+  frontend.e2e.gui-login-enhanced.spec.loginElement → frontend.e2e.gui-login-enhanced.spec.content
+  frontend.e2e.loginTestHelpers.testOAuthFlow → frontend.e2e.loginTestHelpers.attemptLogin
+  frontend.e2e.loginTestHelpers.testOAuthFlow → frontend.e2e.loginTestHelpers.attemptUserLogin
+  frontend.e2e.loginTestHelpers.testOAuthFlow → frontend.e2e.loginTestHelpers.checkLoginStatus
+  backend.routers.tickets.webhook.bulk_close_tickets → backend.routers.tickets.models._get_tenant_for_user
+  backend.routers.tickets.webhook.bulk_reprocess_tickets → backend.routers.tickets.models._get_tenant_for_user
+  examples.05_llm_semantic_review.main.main → examples.cycle-test.full-cycle.print
+  examples.05_llm_semantic_review.main.main → src.vallm.validators.logical.LogicalErrorValidator.validate
+  examples.09_code2logic_integration.main.analyze_with_code2logic → examples.cycle-test.full-cycle.print
+  examples.09_code2logic_integration.main.validate_with_vallm → examples.cycle-test.full-cycle.print
+  examples.09_code2logic_integration.main.validate_with_vallm → src.vallm.validators.logical.LogicalErrorValidator.validate
+  examples.09_code2logic_integration.main.build_call_graph → examples.cycle-test.full-cycle.print
+  examples.09_code2logic_integration.main.build_call_graph → src.vallm.core.graph_builder.build_python_graph
+  examples.09_code2logic_integration.main.generate_report → examples.cycle-test.full-cycle.print
+  examples.09_code2logic_integration.main.visualize_flow → examples.cycle-test.full-cycle.print
+  examples.09_code2logic_integration.main.main → examples.cycle-test.full-cycle.print
+  examples.09_code2logic_integration.main.main → examples.09_code2logic_integration.main.validate_with_vallm
+  examples.09_code2logic_integration.main.main → examples.09_code2logic_integration.main.build_call_graph
+  examples.09_code2logic_integration.main.main → examples.09_code2logic_integration.main.generate_report
+  examples.09_code2logic_integration.main.main → examples.09_code2logic_integration.main.visualize_flow
+  examples.12_ollama_simple_demo.iteration_1.main → examples.12_ollama_simple_demo.utils.main.run_demo_main
+  examples.04_graph_analysis.main.main → examples.cycle-test.full-cycle.print
+  examples.04_graph_analysis.main.main → src.vallm.core.graph_builder.build_python_graph
+  examples.12_ollama_simple_demo.best_version.main → examples.12_ollama_simple_demo.utils.main.run_demo_main
+  examples.12_ollama_simple_demo.iteration_2.main → examples.12_ollama_simple_demo.utils.main.run_demo_main
+  examples.12_ollama_simple_demo.utils.process_user_input.process_user_input → examples.cycle-test.full-cycle.print
+  examples.11_claude_code_autonomous.claude_autonomous_demo.log_section → examples.cycle-test.full-cycle.print
+  examples.11_claude_code_autonomous.claude_autonomous_demo.log_step → examples.cycle-test.full-cycle.print
+  examples.11_claude_code_autonomous.claude_autonomous_demo.log_code → examples.cycle-test.full-cycle.print
+  examples.11_claude_code_autonomous.claude_autonomous_demo.analyze_with_code2llm → examples.11_claude_code_autonomous.claude_autonomous_demo.log_step
+  examples.11_claude_code_autonomous.claude_autonomous_demo.analyze_with_code2llm → examples.cycle-test.full-cycle.print
+  examples.11_claude_code_autonomous.claude_autonomous_demo.call_claude_code → examples.cycle-test.full-cycle.print
+  examples.11_claude_code_autonomous.claude_autonomous_demo.validate_with_vallm → src.vallm.validators.logical.LogicalErrorValidator.validate
+  examples.11_claude_code_autonomous.claude_autonomous_demo.validate_with_vallm → examples.cycle-test.full-cycle.print
+  examples.11_claude_code_autonomous.claude_autonomous_demo.run_runtime_tests → examples.11_claude_code_autonomous.claude_autonomous_demo.log_step
+  examples.11_claude_code_autonomous.claude_autonomous_demo.run_runtime_tests → examples.cycle-test.full-cycle.print
+  examples.11_claude_code_autonomous.claude_autonomous_demo.run_runtime_tests → examples.11_claude_code_autonomous.claude_autonomous_demo.create_basic_tests
+  examples.11_claude_code_autonomous.claude_autonomous_demo.create_basic_tests → examples.cycle-test.full-cycle.print
+  examples.11_claude_code_autonomous.claude_autonomous_demo.run_autonomous_workflow → examples.11_claude_code_autonomous.claude_autonomous_demo.log_section
+  examples.11_claude_code_autonomous.claude_autonomous_demo.run_autonomous_workflow → examples.11_claude_code_autonomous.claude_autonomous_demo.log_code
+  examples.11_claude_code_autonomous.claude_autonomous_demo.run_autonomous_workflow → examples.cycle-test.full-cycle.print
+  examples.11_claude_code_autonomous.claude_autonomous_demo.run_autonomous_workflow → examples.11_claude_code_autonomous.claude_autonomous_demo.analyze_with_code2llm
+  examples.11_claude_code_autonomous.claude_autonomous_demo.main → examples.cycle-test.full-cycle.print
+  examples.11_claude_code_autonomous.claude_autonomous_demo.main → examples.11_claude_code_autonomous.claude_autonomous_demo.run_autonomous_workflow
+  examples.11_claude_code_autonomous.claude_autonomous_demo.main → examples.11_claude_code_autonomous.claude_autonomous_demo.log_section
+  examples.12_ollama_simple_demo.legacy_code.simple_buggy.process_user_input → examples.cycle-test.full-cycle.print
+  examples.12_ollama_simple_demo.legacy_code.simple_buggy.main → examples.12_ollama_simple_demo.legacy_code.simple_buggy.load_config
+  examples.12_ollama_simple_demo.legacy_code.simple_buggy.main → examples.12_ollama_simple_demo.legacy_code.simple_buggy.process_user_input
+  examples.12_ollama_simple_demo.legacy_code.simple_buggy.main → examples.cycle-test.full-cycle.print
+  examples.12_ollama_simple_demo.legacy_code.simple_buggy.main → examples.12_ollama_simple_demo.legacy_code.simple_buggy.calculate_total

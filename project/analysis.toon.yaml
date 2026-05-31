@@ -1,199 +1,314 @@
-# code2llm | 116f 14651L | python:101,shell:11,javascript:4 | 2026-04-19
-# CC̄=3.3 | critical:2/480 | dups:1 | cycles:0
+# code2llm | 145f 17824L | python:105,shell:12,yaml:9,txt:5,javascript:5,toml:1,yml:1,ini:1,test:1,json:1 | 2026-05-29
+# generated in 0.04s
+# CC̅=3.2 | critical:0/487 | dups:0 | cycles:0
 
-HEALTH[3]:
-  🔴 DUP   1 classes duplicated
-  🟡 CC    RedslHealthCard CC=15 (limit:15)
-  🟡 CC    main CC=16 (limit:15)
+HEALTH[0]: ok
 
-REFACTOR[2]:
-  1. rm duplicates  (-1 dup classes)
-  2. split 2 high-CC methods  (CC>15)
+REFACTOR[0]: none needed
 
-PIPELINES[229]:
-  [1] Src [handle_pr_webhook]: handle_pr_webhook
+PIPELINES[214]:
+  [1] Src [useRedslHealth]: useRedslHealth
       PURITY: 100% pure
-  [2] Src [bulk_close_tickets]: bulk_close_tickets → _get_tenant_for_user
+  [2] Src [handleRefactor]: handleRefactor
       PURITY: 100% pure
-  [3] Src [bulk_reprocess_tickets]: bulk_reprocess_tickets → _get_tenant_for_user
+  [3] Src [result]: result
       PURITY: 100% pure
   [4] Src [RedslHealthCard]: RedslHealthCard
       PURITY: 100% pure
-  [5] Src [handleRefactor]: handleRefactor
+  [5] Src [res]: res
+      PURITY: 100% pure
+  [6] Src [result]: result
+      PURITY: 100% pure
+  [7] Src [loginElement]: loginElement → content
+      PURITY: 100% pure
+  [8] Src [currentUrl]: currentUrl
+      PURITY: 100% pure
+  [9] Src [FRONTEND_URL]: FRONTEND_URL
+      PURITY: 100% pure
+  [10] Src [MOCK_GITHUB_URL]: MOCK_GITHUB_URL
+      PURITY: 100% pure
+  [11] Src [element]: element
+      PURITY: 100% pure
+  [12] Src [testOAuthFlow]: testOAuthFlow → attemptLogin
+      PURITY: 100% pure
+  [13] Src [userButtonClicked]: userButtonClicked
+      PURITY: 100% pure
+  [14] Src [isLoggedIn]: isLoggedIn
+      PURITY: 100% pure
+  [15] Src [HealthContent]: HealthContent
+      PURITY: 100% pure
+  [16] Src [handle_pr_webhook]: handle_pr_webhook
+      PURITY: 100% pure
+  [17] Src [bulk_close_tickets]: bulk_close_tickets → _get_tenant_for_user
+      PURITY: 100% pure
+  [18] Src [bulk_reprocess_tickets]: bulk_reprocess_tickets → _get_tenant_for_user
+      PURITY: 100% pure
+  [19] Src [main]: main → print
+      PURITY: 100% pure
+  [20] Src [main]: main → print
+      PURITY: 100% pure
+  [21] Src [main]: main → run_demo_main → load_config
+      PURITY: 100% pure
+  [22] Src [main]: main → print
+      PURITY: 100% pure
+  [23] Src [main]: main → run_demo_main → load_config
+      PURITY: 100% pure
+  [24] Src [main]: main → run_demo_main → load_config
+      PURITY: 100% pure
+  [25] Src [main]: main → print
+      PURITY: 100% pure
+  [26] Src [process_data]: process_data
+      PURITY: 100% pure
+  [27] Src [main]: main → load_config
+      PURITY: 100% pure
+  [28] Src [calculate_total]: calculate_total → print
+      PURITY: 100% pure
+  [29] Src [process_ticket_with_redsl]: process_ticket_with_redsl → _get_tenant_for_user
+      PURITY: 100% pure
+  [30] Src [_create_pr_for_ticket]: _create_pr_for_ticket
+      PURITY: 100% pure
+  [31] Src [get_ticket_processing_status]: get_ticket_processing_status → _get_tenant_for_user
+      PURITY: 100% pure
+  [32] Src [save_data]: save_data → print
+      PURITY: 100% pure
+  [33] Src [main]: main → run_validation_examples → print
+      PURITY: 100% pure
+  [34] Src [create_new_ticket]: create_new_ticket → _get_tenant_for_user
+      PURITY: 100% pure
+  [35] Src [list_tickets]: list_tickets → _get_tenant_for_user
+      PURITY: 100% pure
+  [36] Src [get_stats]: get_stats → _get_tenant_for_user
+      PURITY: 100% pure
+  [37] Src [search_tickets_endpoint]: search_tickets_endpoint → _get_tenant_for_user
+      PURITY: 100% pure
+  [38] Src [get_tickets_for_repo]: get_tickets_for_repo → _get_tenant_for_user
+      PURITY: 100% pure
+  [39] Src [get_action_required_tickets]: get_action_required_tickets → _get_tenant_for_user
+      PURITY: 100% pure
+  [40] Src [get_single_ticket]: get_single_ticket → _get_tenant_for_user
+      PURITY: 100% pure
+  [41] Src [update_existing_ticket]: update_existing_ticket → _get_tenant_for_user
+      PURITY: 100% pure
+  [42] Src [delete_existing_ticket]: delete_existing_ticket → _get_tenant_for_user
+      PURITY: 100% pure
+  [43] Src [main]: main → run_validation_examples → print
+      PURITY: 100% pure
+  [44] Src [__init__]: __init__ → load_config
+      PURITY: 100% pure
+  [45] Src [process_user_data]: process_user_data
+      PURITY: 100% pure
+  [46] Src [calculate_metrics]: calculate_metrics
+      PURITY: 100% pure
+  [47] Src [export_data]: export_data
+      PURITY: 100% pure
+  [48] Src [process_with_external_api]: process_with_external_api
+      PURITY: 100% pure
+  [49] Src [generate_report]: generate_report
+      PURITY: 100% pure
+  [50] Src [export_report]: export_report
       PURITY: 100% pure
 
 LAYERS:
   backend/                        CC̄=4.1    ←in:0  →out:0
-  │ redsl                      243L  0C    3m  CC=14     ←0
-  │ crud                       187L  0C    9m  CC=6      ←0
-  │ models                      96L  7C    1m  CC=4      ←3
-  │ webhook                     92L  0C    3m  CC=8      ←0
-  │ __init__                    19L  0C    0m  CC=0.0    ←0
+  │ redsl                      246L  0C    3m  CC=14     ←0
+  │ crud                       188L  0C    9m  CC=6      ←0
+  │ models                     101L  7C    1m  CC=4      ←3
+  │ webhook                     94L  0C    3m  CC=8      ←0
+  │ __init__                    20L  0C    0m  CC=0.0    ←0
   │
-  src/                            CC̄=3.4    ←in:0  →out:0
-  │ batch_processor_impl       487L  1C   22m  CC=13     ←0
-  │ command_handlers           345L  0C   11m  CC=8      ←0
-  │ batch                      315L  0C   16m  CC=10     ←2
-  │ semantic                   302L  1C   15m  CC=5      ←0
-  │ gitignore                  272L  1C   10m  CC=11     ←1
-  │ regression                 265L  1C   10m  CC=7      ←0
-  │ security                   255L  1C    5m  CC=9      ←0
-  │ languages                  227L  1C    6m  CC=6      ←6
-  │ python_imports             225L  1C    9m  CC=14     ←0
-  │ scoring                    218L  5C    8m  CC=7      ←0
+  mcp/                            CC̄=3.7    ←in:0  →out:0
+  │ _tools_vallm               302L  0C   12m  CC=12     ←1
+  │ self_server                157L  0C    5m  CC=6      ←0
+  │ __init__                     1L  0C    0m  CC=0.0    ←0
+  │ __init__                     1L  0C    0m  CC=0.0    ←0
+  │
+  src/                            CC̄=3.3    ←in:0  →out:0
+  │ command_handlers           366L  0C   11m  CC=8      ←0
+  │ batch                      348L  1C   17m  CC=10     ←2
+  │ python_imports             308L  1C    9m  CC=14     ←0
+  │ security                   307L  1C    5m  CC=9      ←0
+  │ semantic                   305L  1C   15m  CC=5      ←0
+  │ gitignore                  266L  1C   10m  CC=11     ←2
+  │ languages                  264L  1C    6m  CC=6      ←6
+  │ regression                 259L  1C   10m  CC=7      ←0
+  │ scoring                    219L  5C    8m  CC=7      ←0
+  │ complexity                 192L  1C    4m  CC=12     ←0
   │ semantic_cache             187L  1C    8m  CC=5      ←2
-  │ complexity                 183L  1C    4m  CC=12     ←16
-  │ lint                       182L  1C    6m  CC=9      ←0
-  │ utils                      166L  0C    5m  CC=14     ←5
-  │ runner                     144L  2C    4m  CC=4      ←0
-  │ logical                    142L  1C    5m  CC=6      ←0
-  │ ast_compare                142L  0C    8m  CC=4      ←5
-  │ batch_processor_patterns   126L  1C    7m  CC=8      ←2
-  │ config                     122L  1C    6m  CC=3      ←1
-  │ javascript_imports         118L  1C    7m  CC=5      ←0
+  │ lint                       184L  1C    6m  CC=9      ←0
+  │ batch_process              174L  0C    9m  CC=8      ←1
+  │ utils                      172L  0C    5m  CC=14     ←5
+  │ batch_processor_patterns   171L  1C    7m  CC=8      ←3
+  │ javascript_imports         153L  1C    7m  CC=5      ←0
+  │ ast_compare                145L  0C    8m  CC=4      ←5
+  │ runner                     142L  2C    4m  CC=4      ←0
+  │ c_imports                  141L  1C    4m  CC=5      ←0
+  │ logical                    136L  1C    5m  CC=6      ←16
+  │ config                     134L  1C    6m  CC=3      ←1
+  │ go_imports                 128L  1C    5m  CC=5      ←0
+  │ graph_builder              115L  3C    2m  CC=3      ←3
+  │ batch_filter               109L  0C    5m  CC=11     ←0
+  │ rust_imports               108L  1C    5m  CC=3      ←0
   │ graph_diff                 104L  1C    3m  CC=9      ←1
+  │ batch_processor_impl       101L  1C    5m  CC=3      ←0
   │ syntax                      96L  1C    3m  CC=4      ←0
-  │ c_imports                   88L  1C    4m  CC=5      ←0
-  │ go_imports                  84L  1C    5m  CC=5      ←0
-  │ file_cache                  82L  1C    7m  CC=3      ←7
+  │ java_imports                84L  1C    5m  CC=7      ←0
+  │ file_cache                  81L  1C    7m  CC=3      ←6
+  │ batch_processor_validation    81L  0C    2m  CC=7      ←1
+  │ batch_constants             81L  0C    0m  CC=0.0    ←0
   │ single                      80L  0C    3m  CC=6      ←2
-  │ __init__                    79L  0C    3m  CC=4      ←1
-  │ rust_imports                78L  1C    5m  CC=3      ←0
-  │ batch_processor_validation    78L  0C    2m  CC=7      ←0
-  │ base                        70L  1C    7m  CC=3      ←0
-  │ java_imports                68L  1C    5m  CC=7      ←0
+  │ __init__                    79L  0C    3m  CC=4      ←0
+  │ base                        73L  1C    7m  CC=3      ←0
   │ shared                      63L  0C    4m  CC=8      ←1
+  │ settings_builders           63L  0C    2m  CC=7      ←1
   │ __init__                    45L  0C    0m  CC=0.0    ←0
-  │ factory                     43L  1C    3m  CC=2      ←1
+  │ factory                     43L  1C    3m  CC=2      ←0
+  │ batch_processor_filter      37L  0C    3m  CC=10     ←0
   │ proposal                    37L  1C    0m  CC=0.0    ←0
   │ hookspecs                   33L  1C    3m  CC=1      ←0
   │ wrapper                     30L  1C    1m  CC=2      ←0
+  │ base                        30L  0C    2m  CC=4      ←1
   │ batch_processor_files       25L  0C    1m  CC=9      ←1
-  │ batch_processor_filter      25L  0C    3m  CC=10     ←0
   │ __init__                    25L  0C    0m  CC=0.0    ←0
-  │ batch_constants             23L  0C    0m  CC=0.0    ←0
-  │ batch_utils                 22L  1C    1m  CC=6      ←0
+  │ batch_utils                 23L  1C    1m  CC=6      ←0
   │ base                        21L  1C    1m  CC=1      ←0
-  │ base                        19L  0C    2m  CC=4      ←1
   │ __init__                    19L  0C    0m  CC=0.0    ←0
-  │ utils                       11L  0C    3m  CC=3      ←0
+  │ utils                       15L  0C    3m  CC=3      ←1
+  │ __init__                     8L  0C    0m  CC=0.0    ←0
   │ __main__                     5L  0C    0m  CC=0.0    ←0
   │ batch_processor              5L  0C    0m  CC=0.0    ←0
-  │ __init__                     3L  0C    0m  CC=0.0    ←0
   │ __init__                     1L  0C    0m  CC=0.0    ←0
   │ __init__                     1L  0C    0m  CC=0.0    ←0
   │
-  mcp/                            CC̄=3.3    ←in:0  →out:0
-  │ _tools_vallm               464L  0C   14m  CC=12     ←1
-  │ self_server                185L  0C    5m  CC=6      ←0
-  │ __init__                     1L  0C    0m  CC=0.0    ←0
+  examples/                       CC̄=3.1    ←in:3  →out:88  !! split
+  │ !! claude_autonomous_demo     681L  0C   12m  CC=12     ←0
+  │ mcp_demo                   413L  1C    9m  CC=12     ←0
+  │ ollama_simple_demo         332L  0C    9m  CC=9      ←0
+  │ main                       320L  0C    6m  CC=11     ←0
+  │ main                       290L  0C    6m  CC=10     ←0
+  │ main                       269L  0C    6m  CC=6      ←0
+  │ main                       265L  0C    5m  CC=8      ←0
+  │ run.sh                     260L  0C    6m  CC=0.0    ←0
+  │ full-cycle.sh              259L  0C    2m  CC=0.0    ←35
+  │ main                       244L  0C    5m  CC=7      ←0
+  │ main                       242L  0C    7m  CC=8      ←0
+  │ run.sh                     232L  0C    5m  CC=0.0    ←0
+  │ data_processor             229L  2C   16m  CC=10     ←0
+  │ __init__                   222L  1C    4m  CC=12     ←3
+  │ main                       217L  0C    1m  CC=4      ←0
+  │ mcp_demo                   207L  0C    5m  CC=3      ←0
+  │ run.sh                     201L  0C    0m  CC=0.0    ←0
+  │ validate-steps.sh          162L  0C    2m  CC=0.0    ←0
+  │ main                       157L  0C    1m  CC=9      ←0
+  │ main                       148L  0C    7m  CC=7      ←0
+  │ order_processor            141L  1C   14m  CC=10     ←0
+  │ run.sh                     133L  0C    1m  CC=0.0    ←0
+  │ refactored_output          130L  1C   13m  CC=9      ←0
+  │ simple_buggy               122L  1C   10m  CC=8      ←1
+  │ main                       121L  0C    1m  CC=11     ←0
+  │ main                       121L  0C    1m  CC=5      ←0
+  │ validation_runner          120L  0C    1m  CC=12     ←0
+  │ main                       118L  0C    1m  CC=2      ←0
+  │ logging_utils               89L  1C    4m  CC=2      ←0
+  │ extraction                  79L  0C    2m  CC=7      ←3
+  │ main                        75L  0C    1m  CC=2      ←0
+  │ main_template               70L  0C    1m  CC=2      ←0
+  │ main_template               70L  0C    1m  CC=2      ←0
+  │ process_user_input          45L  0C    1m  CC=9      ←1
+  │ Dockerfile                  37L  0C    0m  CC=0.0    ←0
+  │ docker-entrypoint.sh        35L  0C    0m  CC=0.0    ←0
+  │ Dockerfile                  33L  0C    0m  CC=0.0    ←0
+  │ Dockerfile                  33L  0C    0m  CC=0.0    ←0
+  │ extract_code_from_response    32L  0C    1m  CC=3      ←0
+  │ docker-entrypoint.sh        31L  0C    0m  CC=0.0    ←0
+  │ main                        30L  0C    1m  CC=1      ←3
+  │ docker-entrypoint.sh        30L  0C    0m  CC=0.0    ←0
+  │ calculate_total             25L  0C    1m  CC=3      ←0
+  │ save_analysis_data          25L  0C    1m  CC=1      ←10
+  │ save_data                   20L  0C    1m  CC=1      ←0
+  │ iteration_1                 18L  0C    1m  CC=1      ←0
+  │ best_version                18L  0C    1m  CC=1      ←0
+  │ iteration_2                 18L  0C    1m  CC=1      ←0
+  │ __init__                    17L  0C    0m  CC=0.0    ←0
+  │ load_config                 14L  0C    1m  CC=1      ←2
+  │ requirements.txt             6L  0C    0m  CC=0.0    ←0
+  │ requirements.txt             4L  0C    0m  CC=0.0    ←0
+  │ requirements.txt             4L  0C    0m  CC=0.0    ←0
   │ __init__                     1L  0C    0m  CC=0.0    ←0
   │
-  frontend/                       CC̄=3.2    ←in:0  →out:0
+  frontend/                       CC̄=3.1    ←in:0  →out:0
   │ loginTestHelpers.js         98L  0C   10m  CC=4      ←0
   │ RedslHealthCard.parts.jsx    95L  0C    9m  CC=14     ←0
   │ gui-login-enhanced.spec.js    61L  0C    6m  CC=3      ←0
-  │ !! RedslHealthCard.jsx         49L  0C    4m  CC=15     ←0
-  │
-  examples/                       CC̄=3.1    ←in:13  →out:88  !! split  ×DUP
-  │ !! claude_autonomous_demo     660L  1C   12m  CC=12     ←0
-  │ mcp_demo                   398L  1C    9m  CC=12     ←0
-  │ ollama_simple_demo         338L  1C    9m  CC=9      ←0
-  │ main                       327L  0C    6m  CC=11     ←0
-  │ main                       298L  0C    6m  CC=10     ←0
-  │ main                       267L  0C    6m  CC=6      ←0
-  │ run.sh                     260L  0C    6m  CC=0.0    ←0
-  │ full-cycle.sh              259L  0C    2m  CC=0.0    ←35
-  │ main                       255L  0C    7m  CC=8      ←0
-  │ main                       250L  0C    5m  CC=8      ←0
-  │ main                       241L  0C    5m  CC=7      ←0
-  │ run.sh                     232L  0C    5m  CC=0.0    ←0
-  │ data_processor             224L  2C   16m  CC=10     ←1
-  │ main                       217L  0C    1m  CC=4      ←0
-  │ mcp_demo                   206L  0C    5m  CC=3      ←0
-  │ run.sh                     201L  0C    0m  CC=0.0    ←0
-  │ __init__                   195L  0C    4m  CC=12     ←10
-  │ validate-steps.sh          162L  0C    2m  CC=0.0    ←0
-  │ main                       158L  0C    1m  CC=9      ←0
-  │ !! main                       138L  0C    1m  CC=16     ←0
-  │ run.sh                     133L  0C    1m  CC=0.0    ←0
-  │ order_processor            131L  1C   14m  CC=10     ←0  ×DUP
-  │ refactored_output          127L  1C   13m  CC=9      ←0  ×DUP
-  │ main                       125L  0C    1m  CC=11     ←0
-  │ main                       118L  0C    1m  CC=5      ←0
-  │ main                       118L  0C    1m  CC=2      ←0
-  │ simple_buggy               112L  1C   10m  CC=8      ←1
-  │ validation_runner          104L  0C    1m  CC=12     ←0
-  │ logging_utils               89L  1C    4m  CC=2      ←0
-  │ extraction                  79L  0C    2m  CC=7      ←3
-  │ main                        77L  0C    1m  CC=2      ←0
-  │ main_template               74L  0C    1m  CC=2      ←0
-  │ main_template               74L  0C    1m  CC=2      ←0
-  │ process_user_input          45L  0C    1m  CC=9      ←1
-  │ docker-entrypoint.sh        35L  0C    0m  CC=0.0    ←0
-  │ main                        32L  0C    1m  CC=1      ←3
-  │ extract_code_from_response    32L  0C    1m  CC=3      ←0
-  │ docker-entrypoint.sh        31L  0C    0m  CC=0.0    ←0
-  │ docker-entrypoint.sh        30L  0C    0m  CC=0.0    ←0
-  │ calculate_total             25L  0C    1m  CC=3      ←0
-  │ save_analysis_data          25L  0C    1m  CC=1      ←0
-  │ iteration_1                 22L  0C    1m  CC=1      ←0
-  │ best_version                22L  0C    1m  CC=1      ←0
-  │ iteration_2                 22L  0C    1m  CC=1      ←0
-  │ save_data                   20L  0C    1m  CC=1      ←0
-  │ load_config                 19L  0C    1m  CC=1      ←0
-  │ __init__                    17L  0C    0m  CC=0.0    ←0
-  │ __init__                     1L  0C    0m  CC=0.0    ←0
+  │ useRedslHealth.js           43L  0C    4m  CC=10     ←0
+  │ RedslHealthCard.jsx         13L  0C    1m  CC=6      ←0
   │
   scripts/                        CC̄=1.7    ←in:0  →out:5
   │ test_docker_installation.sh   106L  0C    4m  CC=0.0    ←0
-  │ bump_version                78L  0C    2m  CC=5      ←0
+  │ bump_version                75L  0C    2m  CC=5      ←0
   │
   ./                              CC̄=0.0    ←in:0  →out:0
-  │ project.sh                  37L  0C    0m  CC=0.0    ←0
+  │ !! planfile.yaml              557L  0C    0m  CC=0.0    ←0
+  │ !! goal.yaml                  514L  0C    0m  CC=0.0    ←0
+  │ Makefile                   293L  0C    0m  CC=0.0    ←0
+  │ Taskfile.yml               204L  0C    0m  CC=0.0    ←0
+  │ pyqual.yaml                173L  0C    0m  CC=0.0    ←0
+  │ Dockerfile.test            138L  0C    0m  CC=0.0    ←0
+  │ pyproject.toml             135L  0C    0m  CC=0.0    ←0
+  │ sumd.json                  126L  0C    0m  CC=0.0    ←0
+  │ tox.ini                    104L  0C    0m  CC=0.0    ←0
+  │ prefact.yaml                82L  0C    0m  CC=0.0    ←0
+  │ redsl.yaml                  75L  0C    0m  CC=0.0    ←0
+  │ project.sh                  54L  0C    0m  CC=0.0    ←0
+  │ .pre-commit-config.yaml     31L  0C    0m  CC=0.0    ←0
   │ mcp_server                  28L  0C    0m  CC=0.0    ←0
+  │ redsl_refactor_report.toon.yaml    25L  0C    0m  CC=0.0    ←0
+  │ redsl_refactor_plan.toon.yaml    22L  0C    0m  CC=0.0    ←0
+  │ .pre-commit-hooks.yaml      22L  0C    0m  CC=0.0    ←0
+  │ redsl_change_1776004347.txt     1L  0C    0m  CC=0.0    ←0
+  │ tree.sh                      1L  0C    0m  CC=0.0    ←0
+  │ redsl_change_1776004821.txt     1L  0C    0m  CC=0.0    ←0
   │
 
 COUPLING:
-                                                     examples.cycle-test                            examples                           src.vallm  examples.11_claude_code_autonomous               examples.15_cli_usage           examples.16_configuration      examples.12_ollama_simple_demo            examples.14_api_advanced         examples.10_mcp_ollama_demo                      examples.utils  examples.09_code2logic_integration          examples.04_graph_analysis          examples.07_multi_language          examples.02_ast_comparison    examples.08_code2llm_integration
-                 examples.cycle-test                                  ──                                 ←76                                 ←68                                 ←69                                 ←60                                 ←56                                 ←53                                 ←52                                 ←49                                 ←34                                 ←38                                 ←33                                 ←27                                 ←21                                 ←24  hub
-                            examples                                  76                                  ──                                   4                                                                      ←1                                  ←1                                                                      ←1                                                                                                                                              ←1                                                                      ←1                                      hub
-                           src.vallm                                  68                                  ←4                                  ──                                  ←1                                                                      ←1                                  ←1                                  ←2                                  ←1                                  ←3                                  ←1                                  ←1                                  ←2                                  ←6                                  ←2  hub
-  examples.11_claude_code_autonomous                                  69                                                                       1                                  ──                                                                                                          ←1                                                                                                           1                                                                                                                                                                                      !! fan-out
-               examples.15_cli_usage                                  60                                   1                                                                                                          ──                                                                                                                                                                                                                                                                                                                                                                          !! fan-out
-           examples.16_configuration                                  56                                   1                                   1                                                                                                          ──                                                                                                                                                                                                                                                                                                                                      !! fan-out
-      examples.12_ollama_simple_demo                                  53                                                                       1                                   1                                                                                                          ──                                                                                                           1                                                                                                                                                                                      !! fan-out
-            examples.14_api_advanced                                  52                                   1                                   2                                                                                                                                                                                  ──                                                                                                                                                                                                                                                              !! fan-out
-         examples.10_mcp_ollama_demo                                  49                                                                       1                                                                                                                                                                                                                      ──                                   2                                                                                                                                                                                      !! fan-out
-                      examples.utils                                  34                                                                       3                                  ←1                                                                                                          ←1                                                                      ←2                                  ──                                                                                                                                                                                      !! fan-out
-  examples.09_code2logic_integration                                  38                                                                       1                                                                                                                                                                                                                                                                                              ──                                                                                                                                                  !! fan-out
-          examples.04_graph_analysis                                  33                                   1                                   1                                                                                                                                                                                                                                                                                                                                  ──                                                                                                              !! fan-out
-          examples.07_multi_language                                  27                                                                       2                                                                                                                                                                                                                                                                                                                                                                      ──                                                                          !! fan-out
-          examples.02_ast_comparison                                  21                                   1                                   6                                                                                                                                                                                                                                                                                                                                                                                                          ──                                      !! fan-out
-    examples.08_code2llm_integration                                  24                                                                       2                                                                                                                                                                                                                                                                                                                                                                                                                                              ──  !! fan-out
+                                                     examples.cycle-test                           src.vallm                            examples  examples.11_claude_code_autonomous               examples.15_cli_usage           examples.16_configuration      examples.12_ollama_simple_demo            examples.14_api_advanced         examples.10_mcp_ollama_demo                      examples.utils  examples.09_code2logic_integration          examples.04_graph_analysis          examples.07_multi_language          examples.02_ast_comparison    examples.08_code2llm_integration
+                 examples.cycle-test                                  ──                                 ←68                                 ←76                                 ←69                                 ←60                                 ←56                                 ←53                                 ←52                                 ←49                                 ←34                                 ←38                                 ←33                                 ←27                                 ←21                                 ←24  hub
+                           src.vallm                                  68                                  ──                                  ←4                                  ←1                                                                      ←1                                  ←1                                  ←2                                  ←1                                  ←3                                  ←2                                  ←3                                  ←2                                  ←6                                  ←2  hub
+                            examples                                  76                                   4                                  ──                                                                                                                                                                                                                                                                                                                                                                                                                                                  !! fan-out
+  examples.11_claude_code_autonomous                                  69                                   1                                                                      ──                                                                                                           1                                                                                                           1                                                                                                                                                                                      !! fan-out
+               examples.15_cli_usage                                  60                                                                                                                                              ──                                                                                                                                                                                   1                                                                                                                                                                                      !! fan-out
+           examples.16_configuration                                  56                                   1                                                                                                                                              ──                                                                                                                                               1                                                                                                                                                                                      !! fan-out
+      examples.12_ollama_simple_demo                                  53                                   1                                                                      ←1                                                                                                          ──                                                                                                           1                                                                                                                                                                                      !! fan-out
+            examples.14_api_advanced                                  52                                   2                                                                                                                                                                                                                      ──                                                                       1                                                                                                                                                                                      !! fan-out
+         examples.10_mcp_ollama_demo                                  49                                   1                                                                                                                                                                                                                                                          ──                                   2                                                                                                                                                                                      !! fan-out
+                      examples.utils                                  34                                   3                                                                      ←1                                  ←1                                  ←1                                  ←1                                  ←1                                  ←2                                  ──                                                                      ←1                                                                      ←1                                      hub
+  examples.09_code2logic_integration                                  38                                   2                                                                                                                                                                                                                                                                                                                                  ──                                                                                                                                                  !! fan-out
+          examples.04_graph_analysis                                  33                                   3                                                                                                                                                                                                                                                                                               1                                                                      ──                                                                                                              !! fan-out
+          examples.07_multi_language                                  27                                   2                                                                                                                                                                                                                                                                                                                                                                                                          ──                                                                          !! fan-out
+          examples.02_ast_comparison                                  21                                   6                                                                                                                                                                                                                                                                                               1                                                                                                                                              ──                                      !! fan-out
+    examples.08_code2llm_integration                                  24                                   2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ──  !! fan-out
   CYCLES: none
-  HUB: src.vallm/ (fan-in=29)
-  HUB: examples.cycle-test/ (fan-in=740)
-  HUB: examples/ (fan-in=13)
   HUB: mcp.server/ (fan-in=8)
-  SMELL: examples.15_cli_usage/ fan-out=61 → split needed
-  SMELL: examples.02_ast_comparison/ fan-out=28 → split needed
+  HUB: src.vallm/ (fan-in=32)
+  HUB: examples.utils/ (fan-in=14)
+  HUB: examples.cycle-test/ (fan-in=739)
   SMELL: examples.16_configuration/ fan-out=58 → split needed
+  SMELL: examples.07_multi_language/ fan-out=29 → split needed
+  SMELL: examples.15_cli_usage/ fan-out=61 → split needed
+  SMELL: examples.14_api_advanced/ fan-out=55 → split needed
+  SMELL: examples.12_ollama_simple_demo/ fan-out=55 → split needed
+  SMELL: examples.13_batch_processing/ fan-out=24 → split needed
+  SMELL: src.vallm/ fan-out=68 → split needed
+  SMELL: examples.02_ast_comparison/ fan-out=28 → split needed
+  SMELL: examples.04_graph_analysis/ fan-out=37 → split needed
+  SMELL: examples.03_security_check/ fan-out=18 → split needed
+  SMELL: examples.06_multilang_validation/ fan-out=12 → split needed
   SMELL: examples.utils/ fan-out=37 → split needed
   SMELL: examples.05_llm_semantic_review/ fan-out=23 → split needed
-  SMELL: examples.12_ollama_simple_demo/ fan-out=56 → split needed
-  SMELL: examples.08_code2llm_integration/ fan-out=26 → split needed
-  SMELL: src.vallm/ fan-out=68 → split needed
   SMELL: examples/ fan-out=88 → split needed
-  SMELL: examples.09_code2logic_integration/ fan-out=39 → split needed
-  SMELL: examples.13_batch_processing/ fan-out=25 → split needed
   SMELL: examples.10_mcp_ollama_demo/ fan-out=52 → split needed
-  SMELL: examples.11_claude_code_autonomous/ fan-out=71 → split needed
-  SMELL: examples.14_api_advanced/ fan-out=55 → split needed
-  SMELL: examples.04_graph_analysis/ fan-out=35 → split needed
-  SMELL: examples.07_multi_language/ fan-out=29 → split needed
-  SMELL: examples.06_multilang_validation/ fan-out=12 → split needed
-  SMELL: examples.03_security_check/ fan-out=18 → split needed
+  SMELL: examples.08_code2llm_integration/ fan-out=26 → split needed
+  SMELL: examples.11_claude_code_autonomous/ fan-out=72 → split needed
+  SMELL: examples.09_code2logic_integration/ fan-out=40 → split needed
 
 EXTERNAL:
   validation: run `vallm batch .` → validation.toon

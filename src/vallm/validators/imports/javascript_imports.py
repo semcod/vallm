@@ -80,7 +80,7 @@ class JavaScriptImportValidator(BaseImportValidator):
             from vallm.core.ast_compare import _cached_get_parser
 
             parser = _cached_get_parser(self.language)
-            tree = parser.parse(code.encode("utf-8"))
+            tree = parser.parse(code)
 
             def walk(node):
                 # import x from 'module'
