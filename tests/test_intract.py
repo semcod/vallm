@@ -123,3 +123,46 @@ def test_intract_validator_with_real_intract():
     )
     result = IntractValidator().validate(Proposal(code=code, language="python"), {})
     assert result.has_errors
+
+
+def test_resolve_intract_policy_uses_vallm_settings(tmp_path):
+    pytest.importorskip("intract")
+    from vallm.config import VallmSettings
+    from vallm.validators.intract import resolve_intract_policy
+
+    (tmp_path / "intract.yaml").write_text("project:\n  name: demo\ncontracts: []\n", encoding="utf-8")
+    fail_on, warn_on = resolve_intract_policy(
+        tmp_path,
+        settings=VallmSettings(intract_fail_on="violation", intract_warn_on="partial"),
+    )
+    assert fail_on == ["violation"]
+    assert warn_on == ["partial"]
+
+
+def test_run_project_intract_check_builds_graph_for_missing_p1(tmp_path, monkeypatch):
+    pytest.importorskip("intract")
+    from vallm.validators.intract import run_project_intract_check
+
+    calls = {"graph": 0}
+
+    def fake_build_graph(root, manifest=None):
+        calls["graph"] += 1
+        return type("G", (), {"missing": ["scan.project_file"]})()
+
+    monkeypatch.setattr("intract.graph.build_graph", fake_build_graph)
+    (tmp_path / "demo.py").write_text("x = 1\n", encoding="utf-8")
+    (tmp_path / "intract.yaml").write_text(
+        "project:\n  name: demo\ncontracts:\n"
+        "  - scope: project\n    intent: analyze:code\n    priority: 1\n    require: [scan.project_files]\n",
+        encoding="utf-8",
+    )
+
+    _report, decision, _files = run_project_intract_check(
+        tmp_path,
+        manifest=tmp_path / "intract.yaml",
+        fail_on=["missing_required_p1"],
+        warn_on=["partial"],
+    )
+    assert calls["graph"] == 1
+    assert decision.should_fail
+    assert any("missing_required_p1" in reason for reason in decision.reasons)

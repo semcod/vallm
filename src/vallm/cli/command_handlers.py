@@ -211,14 +211,26 @@ def intract_command(
     changed: bool = typer.Option(False, "--changed", help="Validate branch diff only."),
     base: str = typer.Option("main", "--base", help="Base ref for --changed."),
     manifest: Optional[Path] = typer.Option(None, "--manifest", help="Path to intent.yaml / intract.yaml."),
+    fail_on: Optional[str] = typer.Option(
+        None,
+        "--fail-on",
+        help="Comma-separated policy fail tokens (overrides VALLM_INTRACT_FAIL_ON).",
+    ),
+    warn_on: Optional[str] = typer.Option(
+        None,
+        "--warn-on",
+        help="Comma-separated policy warn tokens (overrides VALLM_INTRACT_WARN_ON).",
+    ),
     output_format: str = typer.Option("text", "--format", "-f", help="Output format: text|json"),
     exit_on_fail: bool = typer.Option(True, "--exit/--no-exit", help="Exit non-zero on policy failure."),
 ) -> None:
     """Validate Intract intent contracts for a project, branch, or staged changes."""
     import json
 
-    from vallm.validators.intract import run_project_intract_check
+    from vallm.config import get_settings
+    from vallm.validators.intract import _parse_policy_tokens, run_project_intract_check
 
+    settings = get_settings()
     try:
         report, decision, files = run_project_intract_check(
             path,
@@ -226,6 +238,9 @@ def intract_command(
             changed=changed,
             base_ref=base,
             manifest=manifest,
+            settings=settings,
+            fail_on=_parse_policy_tokens(fail_on) or None,
+            warn_on=_parse_policy_tokens(warn_on) or None,
         )
     except ImportError:
         err_console.print(

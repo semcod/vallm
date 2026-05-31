@@ -40,6 +40,7 @@ class VallmSettings(BaseSettings):
     intract_manifest: str = "intent.yaml"
     intract_mode: str = "project"
     intract_fail_on: str = "violation,missing_required_p1,invalid_manifest"
+    intract_warn_on: str = "partial,unknown"
     max_cyclomatic_complexity: int = 15
     max_cognitive_complexity: int = 20
     max_function_length: int = 100
