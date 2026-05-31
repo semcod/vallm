@@ -1,6 +1,15 @@
 """Rust import validation."""
 
 from typing import List, Dict, Any
+
+from vallm.core.tree_sitter_compat import (
+    node_child_by_field_name,
+    node_children,
+    node_kind,
+    node_start_row,
+    node_text,
+    tree_root,
+)
 from .base import BaseImportValidator
 
 # Common Rust standard library crates
@@ -68,27 +77,24 @@ class RustImportValidator(BaseImportValidator):
             tree = parser.parse(code)
 
             def walk(node):
-                if node.type == "use_declaration":
-                    # Extract module path
-                    for child in node.children:
-                        if child.type == "scoped_identifier" or child.type == "identifier":
-                            module = child.text.decode("utf-8")
-                            imports.append({"module": module, "line": node.start_point[0] + 1})
+                if node_kind(node) == "use_declaration":
+                    for child in node_children(node):
+                        if node_kind(child) in {"scoped_identifier", "identifier"}:
+                            module = node_text(child, code)
+                            imports.append({"module": module, "line": node_start_row(node)})
                             break
-                        elif child.type == "use_list":
-                            # use std::{io, fs}; - extract parent scope
-                            parent = node.child_by_field_name("argument")
+                        if node_kind(child) == "use_list":
+                            parent = node_child_by_field_name(node, "argument")
                             if parent:
-                                module = parent.text.decode("utf-8")
-                                imports.append({"module": module, "line": node.start_point[0] + 1})
+                                module = node_text(parent, code)
+                                imports.append({"module": module, "line": node_start_row(node)})
                             break
 
-                for child in node.children:
+                for child in node_children(node):
                     walk(child)
 
-            walk(tree.root_node)
+            walk(tree_root(tree))
         except Exception:
-            # Fallback: simple regex-based extraction
             import re
 
             pattern = r"use\s+([^;]+);"
@@ -100,9 +106,7 @@ class RustImportValidator(BaseImportValidator):
 
     def module_exists(self, module_name: str) -> bool:
         """Check if a Rust crate/module is known."""
-        # Standard library
         top_level = module_name.split("::")[0]
         if top_level in _KNOWN_RUST_MODULES:
             return True
-        # Common crates (assume external crates exist)
-        return True  # Rust crates are typically in Cargo.toml
+        return True

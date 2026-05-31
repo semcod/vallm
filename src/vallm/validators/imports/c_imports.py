@@ -3,6 +3,7 @@
 from typing import List, Dict, Any
 from vallm.core.proposal import Proposal
 from vallm.scoring import Issue, Severity, ValidationResult
+from vallm.core.tree_sitter_compat import node_children, node_kind, node_start_row, node_text, tree_root
 from .base import BaseImportValidator
 
 
@@ -39,25 +40,27 @@ class CImportValidator(BaseImportValidator):
         """Extract #include statements from C/C++ using tree-sitter."""
         includes = []
         try:
-            parser = get_parser(self.language)
+            from vallm.core.ast_compare import _cached_get_parser
+
+            parser = _cached_get_parser(self.language)
             tree = parser.parse(code)
 
             def walk(node):
-                if node.type == "preproc_include":
-                    for child in node.children:
-                        if child.type == "string_literal":
-                            header = child.text.decode("utf-8").strip('"<>')
-                            includes.append({"module": header, "line": node.start_point[0] + 1})
+                if node_kind(node) == "preproc_include":
+                    for child in node_children(node):
+                        if node_kind(child) == "string_literal":
+                            header = node_text(child, code).strip('"<>')
+                            includes.append({"module": header, "line": node_start_row(node)})
                             break
-                        elif child.type == "system_lib_string":
-                            header = child.text.decode("utf-8").strip("<>")
-                            includes.append({"module": header, "line": node.start_point[0] + 1})
+                        if node_kind(child) == "system_lib_string":
+                            header = node_text(child, code).strip("<>")
+                            includes.append({"module": header, "line": node_start_row(node)})
                             break
 
-                for child in node.children:
+                for child in node_children(node):
                     walk(child)
 
-            walk(tree.root_node)
+            walk(tree_root(tree))
         except Exception:
             pass
 

@@ -1,6 +1,8 @@
 """Java import validation."""
 
 from typing import List, Dict, Any
+
+from vallm.core.tree_sitter_compat import node_children, node_kind, node_start_row, node_text, tree_root
 from .base import BaseImportValidator
 
 # Common Java packages
@@ -50,22 +52,23 @@ class JavaImportValidator(BaseImportValidator):
         """Extract import statements from Java using tree-sitter."""
         imports = []
         try:
-            parser = get_parser("java")
+            from vallm.core.ast_compare import _cached_get_parser
+
+            parser = _cached_get_parser("java")
             tree = parser.parse(code)
 
             def walk(node):
-                if node.type == "import_declaration":
-                    # Get full package path
-                    for child in node.children:
-                        if child.type == "scoped_identifier" or child.type == "identifier":
-                            module = child.text.decode("utf-8")
-                            imports.append({"module": module, "line": node.start_point[0] + 1})
+                if node_kind(node) == "import_declaration":
+                    for child in node_children(node):
+                        if node_kind(child) in {"scoped_identifier", "identifier"}:
+                            module = node_text(child, code)
+                            imports.append({"module": module, "line": node_start_row(node)})
                             break
 
-                for child in node.children:
+                for child in node_children(node):
                     walk(child)
 
-            walk(tree.root_node)
+            walk(tree_root(tree))
         except Exception:
             pass
 
@@ -73,12 +76,10 @@ class JavaImportValidator(BaseImportValidator):
 
     def module_exists(self, module_name: str) -> bool:
         """Check if a Java package is known."""
-        # Standard library packages
         top_level = module_name.rsplit(".", 1)[0] if "." in module_name else module_name
         for known in _KNOWN_JAVA_MODULES:
             if module_name.startswith(known) or known.startswith(top_level):
                 return True
-        # Common external packages
         if module_name.startswith("org.") or module_name.startswith("com."):
             return True
         return False

@@ -1,6 +1,15 @@
 """Go import validation."""
 
 from typing import List, Dict, Any
+
+from vallm.core.tree_sitter_compat import (
+    node_child_by_field_name,
+    node_children,
+    node_kind,
+    node_start_row,
+    node_text,
+    tree_root,
+)
 from .base import BaseImportValidator
 
 # Common Go standard library packages
@@ -79,29 +88,28 @@ class GoImportValidator(BaseImportValidator):
             tree = parser.parse(code)
 
             def walk(node):
-                if node.type == "import_declaration":
-                    for child in node.children:
-                        if child.type == "import_spec":
-                            path_node = child.child_by_field_name("path")
+                if node_kind(node) == "import_declaration":
+                    for child in node_children(node):
+                        if node_kind(child) == "import_spec":
+                            path_node = node_child_by_field_name(child, "path")
                             if path_node:
-                                path = path_node.text.decode("utf-8").strip('"')
-                                imports.append({"module": path, "line": node.start_point[0] + 1})
-                        elif child.type == "import_spec_list":
-                            for spec in child.children:
-                                if spec.type == "import_spec":
-                                    path_node = spec.child_by_field_name("path")
+                                path = node_text(path_node, code).strip('"')
+                                imports.append({"module": path, "line": node_start_row(node)})
+                        elif node_kind(child) == "import_spec_list":
+                            for spec in node_children(child):
+                                if node_kind(spec) == "import_spec":
+                                    path_node = node_child_by_field_name(spec, "path")
                                     if path_node:
-                                        path = path_node.text.decode("utf-8").strip('"')
+                                        path = node_text(path_node, code).strip('"')
                                         imports.append(
-                                            {"module": path, "line": node.start_point[0] + 1}
+                                            {"module": path, "line": node_start_row(node)}
                                         )
 
-                for child in node.children:
+                for child in node_children(node):
                     walk(child)
 
-            walk(tree.root_node)
+            walk(tree_root(tree))
         except Exception:
-            # Fallback: simple regex-based extraction
             import re
 
             pattern = r"import\s*\(?\s*\"([^\"]+)\""
@@ -114,11 +122,9 @@ class GoImportValidator(BaseImportValidator):
 
     def module_exists(self, module_name: str) -> bool:
         """Check if a Go package is known."""
-        # Standard library
         top_level = module_name.split("/")[0]
         if top_level in _KNOWN_GO_MODULES:
             return True
-        # Common external packages (GitHub, etc.)
         if module_name.startswith("github.com/"):
             return True
         if module_name.startswith("golang.org/"):

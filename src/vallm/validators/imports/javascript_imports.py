@@ -3,6 +3,14 @@
 from typing import List, Dict, Any
 from vallm.core.proposal import Proposal
 from vallm.scoring import Issue, Severity, ValidationResult
+from vallm.core.tree_sitter_compat import (
+    node_child_by_field_name,
+    node_children,
+    node_kind,
+    node_start_row,
+    node_text,
+    tree_root,
+)
 from .base import BaseImportValidator
 
 # Common JavaScript/Node.js built-in modules
@@ -83,43 +91,37 @@ class JavaScriptImportValidator(BaseImportValidator):
             tree = parser.parse(code)
 
             def walk(node):
-                # import x from 'module'
-                # import { x } from 'module'
-                # import 'module'
-                if node.type == "import_statement":
+                if node_kind(node) == "import_statement":
                     source = None
-                    for child in node.children:
-                        if child.type == "string":
-                            source = child.text.decode("utf-8").strip("'\"")
+                    for child in node_children(node):
+                        if node_kind(child) == "string":
+                            source = node_text(child, code).strip("'\"")
                             break
                     if source:
-                        imports.append({"module": source, "line": node.start_point[0] + 1})
+                        imports.append({"module": source, "line": node_start_row(node)})
 
-                # require('module')
-                elif node.type == "call_expression":
-                    func = node.child_by_field_name("function")
-                    if func and func.text.decode("utf-8") == "require":
-                        for child in node.children:
-                            if child.type == "string":
-                                source = child.text.decode("utf-8").strip("'\"")
-                                imports.append({"module": source, "line": node.start_point[0] + 1})
+                elif node_kind(node) == "call_expression":
+                    func = node_child_by_field_name(node, "function")
+                    if func and node_text(func, code) == "require":
+                        for child in node_children(node):
+                            if node_kind(child) == "string":
+                                source = node_text(child, code).strip("'\"")
+                                imports.append({"module": source, "line": node_start_row(node)})
                                 break
 
-                for child in node.children:
+                for child in node_children(node):
                     walk(child)
 
-            walk(tree.root_node)
+            walk(tree_root(tree))
         except Exception:
-            # Fallback: simple regex-based extraction
             import re
 
-            # Match import statements and require calls
             patterns = [
                 r"import.*?from\s*['\"]([^'\"]+)['\"]",
                 r"import\s*['\"]([^'\"]+)['\"]",
                 r"require\s*\(\s*['\"]([^'\"]+)['\"]\s*\)",
             ]
-            for i, pattern in enumerate(patterns):
+            for pattern in patterns:
                 for match in re.finditer(pattern, code):
                     imports.append(
                         {"module": match.group(1), "line": code[: match.start()].count("\n") + 1}
@@ -129,13 +131,10 @@ class JavaScriptImportValidator(BaseImportValidator):
 
     def module_exists(self, module_name: str) -> bool:
         """Check if a JavaScript/TypeScript module is known."""
-        # Relative imports (start with ./ or ../)
         if module_name.startswith("./") or module_name.startswith("../"):
             return True
-        # Node.js built-ins
         if module_name.split("/")[0] in _KNOWN_JS_MODULES:
             return True
-        # @scoped packages - assume exists (can't verify without package.json)
         if module_name.startswith("@"):
             return True
         return False
