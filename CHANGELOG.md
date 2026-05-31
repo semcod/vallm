@@ -398,6 +398,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fix(goal): update docs
 - fix(docs): update docs
 
+## [0.1.92] - 2026-05-31
+
+### Docs
+- Update README.md
+
+### Test
+- Update tests/conftest.py
+
+### Other
+- Update uv.lock
+
 ## [0.1.91] - 2026-05-31
 
 ### Docs

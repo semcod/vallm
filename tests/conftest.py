@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Shared pytest configuration and fixtures."""
 
+import contextlib
+import importlib.util
 import sys
 import types
 
@@ -61,7 +63,17 @@ def disable_external_calls():
         created_ollama_stub = True
 
     try:
-        with patch("requests.post"), patch("ollama.Client"), patch("litellm.completion"):
+        patch_targets: list[str] = []
+        if importlib.util.find_spec("requests") is not None:
+            patch_targets.append("requests.post")
+        if importlib.util.find_spec("litellm") is not None:
+            patch_targets.append("litellm.completion")
+        if not created_ollama_stub and importlib.util.find_spec("ollama") is not None:
+            patch_targets.append("ollama.Client")
+
+        with contextlib.ExitStack() as stack:
+            for target in patch_targets:
+                stack.enter_context(patch(target))
             yield
     finally:
         if created_ollama_stub:
