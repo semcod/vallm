@@ -1,0 +1,393 @@
+// LESS format — define @variables here as needed
+
+app {
+  name: vallm;
+  version: 0.1.92;
+  description: "A complete toolkit for validating LLM-generated code";
+  license: Apache-2.0;
+  authors: "semcod, Tom Sapletta <tom@sapletta.com>";
+  keywords: "llm, validation, code-review, ast, static-analysis";
+  homepage: https://github.com/semcod/vallm;
+  repository: https://github.com/semcod/vallm;
+}
+
+dependencies {
+  runtime: "pluggy>=1.6, pydantic>=2.12, pydantic-settings>=2.13, typer>=0.12, rich>=14.3, tree-sitter>=0.25, tree-sitter-language-pack>=1.4, radon>=6.0, lizard>=1.21, pyflakes>=3.4";
+  security: bandit>=1.7;
+  semantic: code-bert-score>=0.4;
+  llm: "ollama>=0.4, litellm>=1.0";
+  graph: networkx>=3.0;
+  docker: docker>=6.0;
+  intract: intract>=0.5.0;
+  all: "vallm[security,semantic,llm,graph,docker,intract]";
+  dev: "pytest>=9.0, pytest-cov>=7.0, ruff>=0.15, tox>=4.0, goal>=2.1.218, costs>=0.1.48, pfix>=0.1.72, pyqual>=0.1.59, redsl>=0.3.0";
+}
+
+interface[type="api"] {
+  type: rest;
+  framework: fastapi;
+}
+
+interface[type="cli"] {
+  framework: argparse;
+}
+interface[type="cli"] page[name="vallm"] {
+  entry: vallm.cli:app;
+}
+
+workflow[name="venv"] {
+  trigger: manual;
+  step-1: run cmd=if [ ! -x "$(PYTHON)" ]; then \;
+  step-2: run cmd=echo "Creating virtual environment in $(VENV)..."; \;
+  step-3: run cmd=python3 -m venv "$(VENV)"; \;
+  step-4: run cmd=fi;
+}
+
+workflow[name="install"] {
+  trigger: manual;
+  step-1: run cmd=$(PIP) install -e .;
+  step-2: run cmd=echo "✓ code2llm installed with TOON format support";
+}
+
+workflow[name="dev-install"] {
+  trigger: manual;
+  step-1: run cmd=$(PIP) install -e ".[dev]";
+  step-2: run cmd=echo "✓ code2llm installed with dev dependencies";
+}
+
+workflow[name="test"] {
+  trigger: manual;
+  step-1: run cmd=$(PYTHON) -m pytest tests/ -v --tb=short;
+}
+
+workflow[name="test-fast"] {
+  trigger: manual;
+  step-1: run cmd=$(PYTHON) -m pytest -m "not slow and not integration" -v --tb=short -n auto;
+}
+
+workflow[name="test-slow"] {
+  trigger: manual;
+  step-1: run cmd=$(PYTHON) -m pytest -m "slow" -v --tb=short;
+}
+
+workflow[name="test-integration"] {
+  trigger: manual;
+  step-1: run cmd=$(PYTHON) -m pytest -m "integration" -v --tb=short;
+}
+
+workflow[name="test-unit"] {
+  trigger: manual;
+  step-1: run cmd=$(PYTHON) -m pytest -m "unit" -v --tb=short;
+}
+
+workflow[name="test-cov"] {
+  trigger: manual;
+  step-1: run cmd=$(PYTHON) -m pytest tests/ --cov=code2llm --cov-report=html --cov-report=term 2>/dev/null || echo "No tests yet";
+}
+
+workflow[name="test-toon"] {
+  trigger: manual;
+  step-1: run cmd=echo "🎯 Testing TOON format...";
+  step-2: run cmd=$(PYTHON) -m code2llm ./ -v -o ./test_toon -m hybrid -f toon;
+  step-3: run cmd=$(PYTHON) validate_toon.py test_toon/analysis.toon;
+  step-4: run cmd=echo "✓ TOON format test complete";
+}
+
+workflow[name="validate-toon"] {
+  trigger: manual;
+  step-1: depend target=test-toon;
+}
+
+workflow[name="test-all-formats"] {
+  trigger: manual;
+  step-1: run cmd=echo "📊 Testing all output formats...";
+  step-2: run cmd=$(PYTHON) -m code2llm ./ -v -o ./test_all -m hybrid -f all;
+  step-3: run cmd=$(PYTHON) validate_toon.py test_all/analysis.toon;
+  step-4: run cmd=echo "✓ All formats test complete";
+}
+
+workflow[name="test-comprehensive"] {
+  trigger: manual;
+  step-1: run cmd=echo "🚀 Running comprehensive test suite...";
+  step-2: run cmd=bash project.sh;
+  step-3: run cmd=echo "✓ Comprehensive tests complete";
+}
+
+workflow[name="lint"] {
+  trigger: manual;
+  step-1: run cmd=$(PYTHON) -m flake8 code2llm/ --max-line-length=100 --ignore=E203,W503 2>/dev/null || echo "flake8 not installed";
+  step-2: run cmd=$(PYTHON) -m black --check code2llm/ 2>/dev/null || echo "black not installed";
+  step-3: run cmd=echo "✓ Linting complete";
+}
+
+workflow[name="format"] {
+  trigger: manual;
+  step-1: run cmd=$(PYTHON) -m black code2llm/ --line-length=100 2>/dev/null || echo "black not installed, run: pip install black";
+  step-2: run cmd=echo "✓ Code formatted";
+}
+
+workflow[name="typecheck"] {
+  trigger: manual;
+  step-1: run cmd=$(PYTHON) -m mypy code2llm/ --ignore-missing-imports 2>/dev/null || echo "mypy not installed";
+}
+
+workflow[name="check"] {
+  trigger: manual;
+  step-1: run cmd=echo "✓ All checks passed";
+}
+
+workflow[name="run"] {
+  trigger: manual;
+  step-1: run cmd=$(PYTHON) -m code2llm ../python/stts_core -v -o ./output;
+}
+
+workflow[name="analyze"] {
+  trigger: manual;
+  step-1: run cmd=echo "🎯 Running TOON format analysis on current project...";
+  step-2: run cmd=$(PYTHON) -m code2llm ./ -v -o ./analysis -m hybrid -f toon;
+  step-3: run cmd=$(PYTHON) validate_toon.py analysis/analysis.toon;
+  step-4: run cmd=echo "✓ TOON analysis complete - check analysis/analysis.toon";
+}
+
+workflow[name="analyze-all"] {
+  trigger: manual;
+  step-1: run cmd=echo "📊 Running analysis with all formats...";
+  step-2: run cmd=$(PYTHON) -m code2llm ./ -v -o ./analysis_all -m hybrid -f all;
+  step-3: run cmd=$(PYTHON) validate_toon.py analysis_all/analysis.toon;
+  step-4: run cmd=echo "✓ All formats analysis complete - check analysis_all/";
+}
+
+workflow[name="toon-demo"] {
+  trigger: manual;
+  step-1: run cmd=echo "🎯 Quick TOON format demo...";
+  step-2: run cmd=$(PYTHON) -m code2llm ./ -v -o ./demo -m hybrid -f toon;
+  step-3: run cmd=echo "📁 Generated: demo/analysis.toon";
+  step-4: run cmd=echo "📊 Size: $$(du -h demo/analysis.toon | cut -f1)";
+  step-5: run cmd=echo "🔍 Preview:";
+  step-6: run cmd=head -20 demo/analysis.toon;
+}
+
+workflow[name="toon-compare"] {
+  trigger: manual;
+  step-1: run cmd=echo "📊 Comparing TOON vs YAML formats...";
+  step-2: run cmd=$(PYTHON) -m code2llm ./ -v -o ./compare -m hybrid -f toon,yaml;
+  step-3: run cmd=echo "📁 Files generated:";
+  step-4: run cmd=echo "  - TOON:  compare/analysis.toon  ($$(du -h compare/analysis.toon | cut -f1))";
+  step-5: run cmd=echo "  - YAML:  compare/analysis.yaml  ($$(du -h compare/analysis.yaml | cut -f1))";
+  step-6: run cmd=echo "  - Ratio: $$(echo "scale=1; $$(du -k compare/analysis.yaml | cut -f1) / $$(du -k compare/analysis.toon | cut -f1)" | bc)x smaller";
+  step-7: run cmd=$(PYTHON) validate_toon.py compare/analysis.yaml compare/analysis.toon;
+}
+
+workflow[name="toon-validate"] {
+  trigger: manual;
+  step-1: run cmd=echo "🔍 Validating TOON format structure...";
+  step-2: run cmd=$(PYTHON) validate_toon.py analysis/analysis.toon 2>/dev/null || $(PYTHON) validate_toon.py test_toon/analysis.toon 2>/dev/null || echo "Run 'make test-toon' first";
+}
+
+workflow[name="build"] {
+  trigger: manual;
+  step-1: run cmd=rm -rf build/ dist/ *.egg-info;
+  step-2: run cmd=$(PYTHON) -m build;
+  step-3: run cmd=echo "✓ Build complete - check dist/";
+}
+
+workflow[name="publish-test"] {
+  trigger: manual;
+  step-1: run cmd=echo "🚀 Publishing to TestPyPI...";
+  step-2: run cmd=bash -c 'if [ -z "$${TWINE_USERNAME}" ] && [ -z "$${TWINE_PASSWORD}" ] && [ -z "$${PYPI_API_TOKEN}" ]; then \;
+  step-3: run cmd=echo "⚠️  No PyPI credentials found. Set TWINE_USERNAME and TWINE_PASSWORD or PYPI_API_TOKEN"; \;
+  step-4: run cmd=echo "   Example: TWINE_USERNAME=__token__ TWINE_PASSWORD=pypi-xxx make publish-test"; \;
+  step-5: run cmd=echo "   Skipping publish-test."; \;
+  step-6: run cmd=else \;
+  step-7: run cmd=$(PYTHON) -m venv publish-test-env && \;
+  step-8: run cmd=publish-test-env/bin/pip install twine && \;
+  step-9: run cmd=publish-test-env/bin/python -m twine upload --repository testpypi dist/* && \;
+  step-10: run cmd=rm -rf publish-test-env && \;
+  step-11: run cmd=echo "✓ Published to TestPyPI"; \;
+  step-12: run cmd=fi';
+}
+
+workflow[name="bump-patch"] {
+  trigger: manual;
+  step-1: run cmd=echo "🔢 Bumping patch version...";
+  step-2: run cmd=$(PYTHON) scripts/bump_version.py patch 2>/dev/null || echo "Create scripts/bump_version.py or edit pyproject.toml manually";
+}
+
+workflow[name="bump-minor"] {
+  trigger: manual;
+  step-1: run cmd=echo "🔢 Bumping minor version...";
+  step-2: run cmd=$(PYTHON) scripts/bump_version.py minor 2>/dev/null || echo "Create scripts/bump_version.py or edit pyproject.toml manually";
+}
+
+workflow[name="bump-major"] {
+  trigger: manual;
+  step-1: run cmd=echo "🔢 Bumping major version...";
+  step-2: run cmd=$(PYTHON) scripts/bump_version.py major 2>/dev/null || echo "Create scripts/bump_version.py or edit pyproject.toml manually";
+}
+
+workflow[name="publish"] {
+  trigger: manual;
+  step-1: run cmd=echo "🚀 Publishing to PyPI...";
+  step-2: run cmd=bash -c 'if [ -z "$${TWINE_USERNAME}" ] && [ -z "$${TWINE_PASSWORD}" ] && [ -z "$${PYPI_API_TOKEN}" ]; then \;
+  step-3: run cmd=echo "⚠️  No PyPI credentials found. Set TWINE_USERNAME and TWINE_PASSWORD or PYPI_API_TOKEN"; \;
+  step-4: run cmd=echo "   Example: TWINE_USERNAME=__token__ TWINE_PASSWORD=pypi-xxx make publish"; \;
+  step-5: run cmd=echo "   Skipping publish."; \;
+  step-6: run cmd=else \;
+  step-7: run cmd=echo "🔢 Bumping patch version..."; \;
+  step-8: run cmd=$(MAKE) bump-patch; \;
+  step-9: run cmd=echo "🔨 Rebuilding package with new version..."; \;
+  step-10: run cmd=$(MAKE) build; \;
+  step-11: run cmd=echo "📦 Publishing to PyPI..."; \;
+  step-12: run cmd=$(PYTHON) -m venv publish-env; \;
+  step-13: run cmd=publish-env/bin/pip install twine; \;
+  step-14: run cmd=publish-env/bin/python -m twine upload dist/*; \;
+  step-15: run cmd=rm -rf publish-env; \;
+  step-16: run cmd=echo "✓ Published to PyPI"; \;
+  step-17: run cmd=fi';
+}
+
+workflow[name="mermaid-png"] {
+  trigger: manual;
+  step-1: run cmd=$(PYTHON) mermaid_to_png.py --batch output output;
+}
+
+workflow[name="install-mermaid"] {
+  trigger: manual;
+  step-1: run cmd=npm install -g @mermaid-js/mermaid-cli;
+}
+
+workflow[name="check-mermaid"] {
+  trigger: manual;
+  step-1: run cmd=echo "Checking available Mermaid renderers...";
+  step-2: run cmd=which mmdc > /dev/null && echo "✓ mmdc (mermaid-cli)" || echo "✗ mmdc (run: npm install -g @mermaid-js/mermaid-cli)";
+  step-3: run cmd=which npx > /dev/null && echo "✓ npx (for @mermaid-js/mermaid-cli)" || echo "✗ npx (install Node.js)";
+  step-4: run cmd=which puppeteer > /dev/null && echo "✓ puppeteer" || echo "✗ puppeteer (run: npm install -g puppeteer)";
+}
+
+workflow[name="clean"] {
+  trigger: manual;
+  step-1: run cmd=rm -rf build/ dist/ *.egg-info;
+  step-2: run cmd=rm -rf .pytest_cache .coverage htmlcov/;
+  step-3: run cmd=rm -rf code2llm/__pycache__ code2llm/*/__pycache__;
+  step-4: run cmd=rm -rf test_* demo compare analysis analysis_all output_* 2>/dev/null || true;
+  step-5: run cmd=find . -name "*.pyc" -delete 2>/dev/null || true;
+  step-6: run cmd=find . -name "__pycache__" -type d -exec rm -rf {} + 2>/dev/null || true;
+  step-7: run cmd=echo "✓ Cleaned build artifacts and test outputs";
+}
+
+workflow[name="clean-png"] {
+  trigger: manual;
+  step-1: run cmd=rm -f output/*.png;
+  step-2: run cmd=echo "✓ Cleaned PNG files";
+}
+
+workflow[name="quickstart"] {
+  trigger: manual;
+  step-1: run cmd=echo "🚀 Quick Start with code2llm TOON format:";
+  step-2: run cmd=echo "";
+  step-3: run cmd=echo "1. Install:        make install";
+  step-4: run cmd=echo "2. Test TOON:      make test-toon";
+  step-5: run cmd=echo "3. Analyze:        make analyze";
+  step-6: run cmd=echo "4. Compare:        make toon-compare";
+  step-7: run cmd=echo "5. All formats:    make test-all-formats";
+  step-8: run cmd=echo "";
+  step-9: run cmd=echo "📖 For more: make help";
+}
+
+workflow[name="fmt"] {
+  trigger: manual;
+  step-1: run cmd={{.VENV}}/bin/ruff format src/;
+}
+
+workflow[name="fmt-check"] {
+  trigger: manual;
+  step-1: run cmd={{.VENV}}/bin/ruff format --check src/;
+}
+
+workflow[name="fix"] {
+  trigger: manual;
+  step-1: run cmd=pyqual run --auto-fix;
+}
+
+workflow[name="vallm-self"] {
+  trigger: manual;
+  step-1: run cmd=echo 'Running vallm self-analysis...';
+  step-2: run cmd={{.VENV}}/bin/vallm batch src --recursive --format toon --output ./analysis --exclude .git,{{.VENV}},dist,__pycache__;
+}
+
+workflow[name="sumd"] {
+  trigger: manual;
+  step-1: run cmd=echo "# vallm" > SUMD.md;
+  step-2: run cmd=echo "" >> SUMD.md;
+  step-3: run cmd=echo "Vallm - Python Code Flow Analysis" >> SUMD.md;
+}
+
+workflow[name="sumr"] {
+  trigger: manual;
+  step-1: run cmd=echo "# vallm - Summary" > SUMR.md;
+}
+
+workflow[name="metrics"] {
+  trigger: manual;
+  step-1: run cmd=py_files=$(find src -name '*.py' 2>/dev/null | wc -l)
+lines=$(find src -name '*.py' -exec cat {} \; 2>/dev/null | wc -l)
+echo "Metrics: $py_files files, $lines lines";
+}
+
+workflow[name="redsl-dry"] {
+  trigger: manual;
+  step-1: run cmd={{.VENV}}/bin/redsl refactor . --dry-run -f text;
+}
+
+workflow[name="redsl-refactor"] {
+  trigger: manual;
+  step-1: run cmd={{.VENV}}/bin/redsl refactor . --apply -n 5;
+}
+
+workflow[name="redsl-improve"] {
+  trigger: manual;
+  step-1: run cmd={{.VENV}}/bin/redsl improve . --mode autonomous -n 5;
+}
+
+workflow[name="redsl-heal"] {
+  trigger: manual;
+  step-1: run cmd={{.VENV}}/bin/redsl doctor heal .;
+}
+
+workflow[name="redsl-health"] {
+  trigger: manual;
+  step-1: run cmd={{.VENV}}/bin/redsl health .;
+}
+
+workflow[name="redsl-watch"] {
+  trigger: manual;
+  step-1: run cmd={{.VENV}}/bin/redsl watch . --interval 3600;
+}
+
+workflow[name="refactor-all"] {
+  trigger: manual;
+  step-1: run cmd=if [ -n "$(git status --porcelain)" ]; then
+  git add -A
+  git commit -m "refactor: autonomous refactoring via redsl + pyqual" || true
+  echo "Changes committed. Review and push manually."
+else
+  echo "No changes made."
+fi;
+}
+
+env_vars {
+  keys: VALLM_DEFAULT_TOON_FILENAME, VALLM_DEFAULT_JSON_FILENAME, VALLM_DEFAULT_YAML_FILENAME, VALLM_DEFAULT_TXT_FILENAME, VALLM_OUTPUT_FORMAT, VALLM_DEFAULT_LANGUAGE, VALLM_PASS_THRESHOLD, VALLM_REVIEW_THRESHOLD, VALLM_ENABLE_SYNTAX, VALLM_ENABLE_IMPORTS, VALLM_ENABLE_COMPLEXITY, VALLM_ENABLE_SECURITY, VALLM_ENABLE_REGRESSION, VALLM_ENABLE_SEMANTIC, VALLM_MAX_CYCLOMATIC_COMPLEXITY, VALLM_MAX_COGNITIVE_COMPLEXITY, VALLM_MAX_FUNCTION_LENGTH, VALLM_LLM_PROVIDER, VALLM_LLM_MODEL, VALLM_LLM_BASE_URL, VALLM_LLM_TEMPERATURE, VALLM_SANDBOX_BACKEND, VALLM_SANDBOX_TIMEOUT, VALLM_SANDBOX_MEMORY_LIMIT, VALLM_SEMANTIC_CACHE_ENABLED, VALLM_SEMANTIC_CACHE_TTL, VALLM_MAX_CONCURRENT_VALIDATIONS, VALLM_TIMEOUT_SECONDS, OPENROUTER_API_KEY, LLM_MODEL, VALLM_ENABLE_INTRACT, VALLM_INTRACT_MANIFEST, VALLM_INTRACT_MODE, VALLM_INTRACT_FAIL_ON;
+}
+
+deploy {
+  target: docker;
+}
+
+environment[name="local"] {
+  runtime: docker-compose;
+  env_file: .env;
+  template_file: .env.example;
+  python_version: >=3.11,<3.14;
+  vars: LLM_MODEL, OPENROUTER_API_KEY, VALLM_DEFAULT_JSON_FILENAME, VALLM_DEFAULT_LANGUAGE, VALLM_DEFAULT_TOON_FILENAME, VALLM_DEFAULT_TXT_FILENAME, VALLM_DEFAULT_YAML_FILENAME, VALLM_ENABLE_COMPLEXITY, VALLM_ENABLE_IMPORTS, VALLM_ENABLE_INTRACT, VALLM_ENABLE_REGRESSION, VALLM_ENABLE_SECURITY, VALLM_ENABLE_SEMANTIC, VALLM_ENABLE_SYNTAX, VALLM_INTRACT_FAIL_ON, VALLM_INTRACT_MANIFEST, VALLM_INTRACT_MODE, VALLM_LLM_BASE_URL, VALLM_LLM_MODEL, VALLM_LLM_PROVIDER, VALLM_LLM_TEMPERATURE, VALLM_MAX_COGNITIVE_COMPLEXITY, VALLM_MAX_CONCURRENT_VALIDATIONS, VALLM_MAX_CYCLOMATIC_COMPLEXITY, VALLM_MAX_FUNCTION_LENGTH, VALLM_OUTPUT_FORMAT, VALLM_PASS_THRESHOLD, VALLM_REVIEW_THRESHOLD, VALLM_SANDBOX_BACKEND, VALLM_SANDBOX_MEMORY_LIMIT, VALLM_SANDBOX_TIMEOUT, VALLM_SEMANTIC_CACHE_ENABLED, VALLM_SEMANTIC_CACHE_TTL, VALLM_TIMEOUT_SECONDS;
+  runtime_llm: OPENROUTER_API_KEY;
+}
