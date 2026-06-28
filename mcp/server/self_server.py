@@ -39,14 +39,18 @@ except ImportError as exc:
     print(f"Error: Could not import vallm MCP tools: {exc}", file=sys.stderr)
     sys.exit(1)
 
+_PROTOCOL_VERSION = "2024-11-05"
+_NOTIFICATIONS = frozenset({"notifications/initialized", "notifications/cancelled"})
 
-def handle_initialize(request_id: Any) -> Dict[str, Any]:
+
+def handle_initialize(request_id: Any, params: Dict[str, Any] | None = None) -> Dict[str, Any]:
     """Handle MCP initialize request."""
+    client_version = (params or {}).get("protocolVersion", _PROTOCOL_VERSION)
     return {
         "jsonrpc": "2.0",
         "id": request_id,
         "result": {
-            "protocolVersion": "0.1.0",
+            "protocolVersion": client_version,
             "serverInfo": {"name": "vallm", "version": "1.0.0"},
             "capabilities": {"tools": {}},
         },
@@ -104,8 +108,10 @@ def handle_request(request: Dict[str, Any]) -> Dict[str, Any]:
     params = request.get("params", {})
     request_id = request.get("id")
 
+    if method in _NOTIFICATIONS:
+        return {}
     if method == "initialize":
-        return handle_initialize(request_id)
+        return handle_initialize(request_id, params)
     elif method == "tools/list":
         return handle_tools_list(request_id)
     elif method == "tools/call":
@@ -135,7 +141,8 @@ def main():
             try:
                 request = json.loads(line)
                 response = handle_request(request)
-                print(json.dumps(response), flush=True)
+                if response:
+                    print(json.dumps(response), flush=True)
             except json.JSONDecodeError as e:
                 error_response = {
                     "jsonrpc": "2.0",

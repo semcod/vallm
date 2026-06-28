@@ -8,6 +8,7 @@ from typing import Optional
 
 from vallm.config import VallmSettings
 from vallm.core.proposal import Proposal
+from vallm.llm_backend import LLMBackend, get_backend
 from vallm.scoring import Issue, Severity, ValidationResult
 from vallm.validators.base import BaseValidator
 
@@ -49,13 +50,18 @@ class SemanticValidator(BaseValidator):
     name = "semantic"
     weight = 1.0
 
-    def __init__(self, settings: Optional[VallmSettings] = None):
+    def __init__(
+        self,
+        settings: Optional[VallmSettings] = None,
+        backend: LLMBackend | None = None,
+    ):
         if settings is None:
             settings = VallmSettings()
         self.provider = settings.llm_provider
         self.model = settings.llm_model
         self.base_url = settings.llm_base_url
         self.temperature = settings.llm_temperature
+        self._backend = backend
 
         # Initialize cache for performance
         from vallm.validators.semantic_cache import get_semantic_cache
@@ -110,67 +116,18 @@ class SemanticValidator(BaseValidator):
         )
 
     def _call_llm(self, prompt: str) -> str:
-        """Call the LLM backend. Tries ollama first, then litellm, then HTTP."""
-        if self.provider == "ollama":
-            return self._call_ollama(prompt)
-        elif self.provider == "litellm":
-            return self._call_litellm(prompt)
-        else:
-            return self._call_http(prompt)
-
-    def _call_ollama(self, prompt: str) -> str:
-        """Call Ollama using the ollama Python package."""
-        try:
-            import ollama
-
-            client = ollama.Client(host=self.base_url)
-            response = client.chat(
-                model=self.model,
-                messages=[{"role": "user", "content": prompt}],
-                options={"temperature": self.temperature},
-            )
-            return response["message"]["content"]
-        except ImportError:
-            # Fallback to HTTP if ollama package not installed
-            return self._call_http(prompt)
-
-    def _call_litellm(self, prompt: str) -> str:
-        """Call via litellm for multi-provider support."""
-        try:
-            import litellm
-        except ImportError:
-            raise ImportError("litellm package is required. Install with: pip install litellm")
-
-        response = litellm.completion(
-            model=f"ollama/{self.model}" if self.provider == "ollama" else self.model,
+        """Call the LLM backend via LLMBackend Protocol."""
+        from vallm.llm_backend import LitellmBackend
+        backend = get_backend(self.provider, backend=self._backend)
+        model = self.model
+        if self.provider == "ollama" and isinstance(backend, LitellmBackend):
+            model = f"ollama/{self.model}"
+        return backend.complete(
+            model=model,
             messages=[{"role": "user", "content": prompt}],
             temperature=self.temperature,
             api_base=self.base_url,
         )
-        return response.choices[0].message.content
-
-    def _call_http(self, prompt: str) -> str:
-        """Direct HTTP call to Ollama API (no external deps needed)."""
-        import urllib.request
-
-        url = f"{self.base_url}/api/chat"
-        payload = json.dumps(
-            {
-                "model": self.model,
-                "messages": [{"role": "user", "content": prompt}],
-                "stream": False,
-                "options": {"temperature": self.temperature},
-            }
-        ).encode("utf-8")
-
-        req = urllib.request.Request(
-            url,
-            data=payload,
-            headers={"Content-Type": "application/json"},
-        )
-        with urllib.request.urlopen(req, timeout=120) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-            return data["message"]["content"]
 
     def _parse_response(self, response_text: str) -> ValidationResult:
         """Parse LLM JSON response into a ValidationResult."""

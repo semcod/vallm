@@ -56,7 +56,7 @@ def test_mcp_server_startup():
         response = json.loads(stdout.strip().splitlines()[-1])
         server_info = response.get("result", {}).get("serverInfo", {})
         if (
-            response.get("result", {}).get("protocolVersion") == "0.1.0"
+            response.get("result", {}).get("protocolVersion") == "2024-11-05"
             and server_info.get("name") == "vallm"
         ):
             print(

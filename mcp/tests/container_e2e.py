@@ -116,7 +116,7 @@ def test_initialize(session: MCPServerSession) -> None:
     result = response.get("result", {})
     server_info = result.get("serverInfo", {})
 
-    assert result.get("protocolVersion") == "0.1.0"
+    assert result.get("protocolVersion") == "2024-11-05"
     assert server_info.get("name") == "vallm"
     print(f"✅ Initialized {server_info.get('name')} v{server_info.get('version')}")
 
