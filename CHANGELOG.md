@@ -398,6 +398,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fix(goal): update docs
 - fix(docs): update docs
 
+## [0.1.93] - 2026-06-29
+
+### Docs
+- Update README.md
+
 ## [0.1.92] - 2026-05-31
 
 ### Docs
