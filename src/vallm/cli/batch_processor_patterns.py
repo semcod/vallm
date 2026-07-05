@@ -75,7 +75,6 @@ _DEFAULT_EXCLUDES = [
     "build",
     "dist",
     "target",
-    "bin",
     "out",
     ".cache",
     "cache",

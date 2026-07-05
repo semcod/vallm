@@ -37,7 +37,6 @@ _DEFAULT_EXCLUDE_PATTERNS = [
     "build",
     "dist",
     "target",
-    "bin",
     "out",
     ".cache",
     "cache",

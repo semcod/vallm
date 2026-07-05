@@ -1,0 +1,15 @@
+# local.dev.txt — locally developed dependencies of this project (generated 2026-07-04)
+# by ~/github/local.dev.sh — DO NOT EDIT; see ~/github/local.dev.md
+# project: vallm 0.1.93 (python) at /home/tom/github/semcod/vallm
+# deps declared: 27 | with local source: 7
+
+## LOCAL DEPS  (dep | required | local source (version) | installed | status)
+costs | >=0.1.48 | /home/tom/github/semcod/costs (0.1.53) | 0.1.48 non-editable | STALE-INSTALL (local 0.1.53) -> fix: pip install -e /home/tom/github/semcod/costs  [pyproject.toml[dev]]
+goal | >=2.1.218 | /home/tom/github/semcod/goal (2.1.266) | 2.1.240 non-editable | STALE-INSTALL (local 2.1.266) -> fix: pip install -e /home/tom/github/semcod/goal  [pyproject.toml[dev]]
+intract | >=0.5.0 | /home/tom/github/semcod/intract (0.5.14) | - | NOT-INSTALLED  [pyproject.toml[intract]]
+ollama | >=0.4 | /home/tom/github/wronai/contract/tools/reclapp-setup (?) | - | NOT-INSTALLED  [pyproject.toml[llm]]
+pfix | >=0.1.72 | /home/tom/github/semcod/pfix (0.1.76) | 0.1.72 non-editable | STALE-INSTALL (local 0.1.76) -> fix: pip install -e /home/tom/github/semcod/pfix  [pyproject.toml[dev]]
+pyqual | >=0.1.59 | /home/tom/github/semcod/pyqual (0.1.150) | 0.1.140 non-editable | STALE-INSTALL (local 0.1.150) -> fix: pip install -e /home/tom/github/semcod/pyqual  [pyproject.toml[dev]]
+redsl | >=0.3.0 | /home/tom/github/semcod/redsl (1.2.64) | - | NOT-INSTALLED  [pyproject.toml[dev]]
+
+## EXTERNAL DEPS (no local source, 19): bandit, code-bert-score, docker, litellm, lizard, networkx, pluggy, pydantic, pydantic-settings, pyflakes, pytest, pytest-cov, radon, rich, ruff, tox, tree-sitter, tree-sitter-language-pack, typer

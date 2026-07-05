@@ -1,3 +1,23 @@
+## [Unreleased]
+
+### Fixed
+- `_DEFAULT_EXCLUDE_PATTERNS` (duplicated in `batch_constants.py` and `batch_processor_patterns.py`)
+  included a bare `"bin"` entry, matched against every path component, so any real `bin/`
+  directory (common in Go/Ruby/Node/shell-script projects for CLI entry points) was silently
+  excluded from batch validation. Removed.
+- `build_file_list()` used `path.rglob("*")`, collecting every file (including everything
+  inside a populated virtualenv) before exclusion patterns were applied downstream. Rewrote
+  to walk with `os.walk` and prune directories matching the default excludes before descending.
+
+## [0.1.94] - 2026-07-05
+
+### Docs
+- Update CHANGELOG.md
+- Update README.md
+
+### Other
+- Update local.dev.txt
+
 ## [0.1.73] - 2026-04-09
 
 ### Changed
