@@ -1,5 +1,4 @@
 source: code2llm
-# generated in 0.31s
 schema: code2llm.planfile_tickets.v1
 project_root: /home/tom/github/semcod/vallm
 tickets:
@@ -2978,5 +2977,21 @@ tickets:
   - examples/10_mcp_ollama_demo/mcp_demo.py
   dedupe_key: 'code2llm:smell:god_function:examples/10_mcp_ollama_demo/mcp_demo.py:131:God
     Function: validate_with_vallm'
+- signal: slow_test_warning
+  title: 'Address slow test: tests.semantic_validation.test_code_quality.TestSemanticValidationCodeQuality.test_semantic_validation_good_code'
+  description: 'Test `tests.semantic_validation.test_code_quality.TestSemanticValidationCodeQuality.test_semantic_validation_good_code`
+    took 2.27s to run.
+
+
+    Optimize its setup, mock slow external dependencies, or refactor its logic to
+    reduce overall test suite execution time.'
+  priority: medium
+  labels:
+  - llm-ready
+  - test-optimization
+  - slow-test
+  files:
+  - tests/semantic_validation/test_code_quality.py
+  dedupe_key: test-optimization:tests.semantic_validation.test_code_quality.TestSemanticValidationCodeQuality:test_semantic_validation_good_code
 applied: []
 skipped: []
