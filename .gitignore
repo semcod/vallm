@@ -109,3 +109,13 @@ htmlcov/
 *.backup
 .aider*
 .redsl/
+.aider.tags.cache.v4/
+.benchmarks/
+.claude/
+.code2llm_cache/
+.github/
+.redup/
+.ruff_cache/
+.taskill/
+.tox/
+.vallm/
