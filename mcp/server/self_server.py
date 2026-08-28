@@ -19,9 +19,10 @@ Configuration for Claude Desktop (claude_desktop_config.json):
 }
 """
 
-from pathlib import Path
 import json
+import os
 import sys
+from pathlib import Path
 from typing import Any, Dict
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -41,6 +42,54 @@ except ImportError as exc:
 
 _PROTOCOL_VERSION = "2024-11-05"
 _NOTIFICATIONS = frozenset({"notifications/initialized", "notifications/cancelled"})
+_TRUE_VALUES = frozenset({"1", "true", "yes", "on"})
+_DEFAULT_MAX_CODE_BYTES = 1_000_000
+
+
+def _enabled(name: str) -> bool:
+    return os.getenv(name, "").strip().lower() in _TRUE_VALUES
+
+
+def _max_code_bytes() -> int:
+    try:
+        return max(1, int(os.getenv("VALLM_MCP_MAX_CODE_BYTES", _DEFAULT_MAX_CODE_BYTES)))
+    except ValueError:
+        return _DEFAULT_MAX_CODE_BYTES
+
+
+def _project_root() -> Path:
+    return Path(os.getenv("VALLM_MCP_PROJECT_ROOT", ".")).expanduser().resolve()
+
+
+def _require_project_path(raw_path: object) -> str:
+    if not isinstance(raw_path, str) or not raw_path.strip():
+        raise ValueError("project path must be a non-empty string")
+    candidate = Path(raw_path).expanduser().resolve(strict=False)
+    try:
+        candidate.relative_to(_project_root())
+    except ValueError as exc:
+        raise PermissionError(
+            "vallm MCP path is outside VALLM_MCP_PROJECT_ROOT"
+        ) from exc
+    return str(candidate)
+
+
+def _guard_tool_call(tool_name: str, arguments: Dict[str, Any]) -> None:
+    for field in ("code", "reference_code"):
+        value = arguments.get(field)
+        if isinstance(value, str) and len(value.encode("utf-8")) > _max_code_bytes():
+            raise ValueError(f"{field} exceeds VALLM_MCP_MAX_CODE_BYTES")
+
+    if tool_name == "validate_code" and bool(arguments.get("enable_regression", False)):
+        if not _enabled("VALLM_MCP_ALLOW_EXECUTE"):
+            raise PermissionError(
+                "regression execution through MCP is disabled; set VALLM_MCP_ALLOW_EXECUTE=1"
+            )
+
+    if tool_name in {"validate_intract_project", "validate_intract_staged"}:
+        arguments["path"] = _require_project_path(arguments.get("path", "."))
+        if arguments.get("manifest"):
+            arguments["manifest"] = _require_project_path(arguments["manifest"])
 
 
 def handle_initialize(request_id: Any, params: Dict[str, Any] | None = None) -> Dict[str, Any]:
@@ -85,6 +134,7 @@ def handle_tools_call(request_id: Any, params: Dict[str, Any]) -> Dict[str, Any]
         }
 
     try:
+        _guard_tool_call(tool_name, arguments)
         # Call the appropriate handler
         result = MCP_HANDLERS[tool_name](arguments)
 

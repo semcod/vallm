@@ -620,12 +620,20 @@ Add to your `claude_desktop_config.json`:
       "command": "python3",
       "args": ["/path/to/vallm/mcp_server.py"],
       "env": {
-        "PYTHONPATH": "/path/to/vallm/src"
+        "PYTHONPATH": "/path/to/vallm/src",
+        "VALLM_MCP_PROJECT_ROOT": "/path/to/projects",
+        "VALLM_MCP_ALLOW_EXECUTE": "0"
       }
     }
   }
 }
 ```
+
+Project-level Intract validation is confined to the current directory unless
+`VALLM_MCP_PROJECT_ROOT` selects another trusted root. The regression validator
+runs `pytest`, so MCP disables it unless `VALLM_MCP_ALLOW_EXECUTE=1` is set.
+Code and reference payloads are limited to 1 MB by default; customize this with
+`VALLM_MCP_MAX_CODE_BYTES`.
 
 ### Available MCP Tools
 
