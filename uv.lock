@@ -4032,7 +4032,6 @@ all = [
 dev = [
     { name = "costs" },
     { name = "goal" },
-    { name = "pfix" },
     { name = "pyqual" },
     { name = "pytest" },
     { name = "pytest-cov" },
@@ -4072,7 +4071,6 @@ requires-dist = [
     { name = "lizard", specifier = ">=1.21" },
     { name = "networkx", marker = "extra == 'graph'", specifier = ">=3.0" },
     { name = "ollama", marker = "extra == 'llm'", specifier = ">=0.4" },
-    { name = "pfix", marker = "extra == 'dev'", specifier = ">=0.1.72" },
     { name = "pluggy", specifier = ">=1.6" },
     { name = "pydantic", specifier = ">=2.12" },
     { name = "pydantic-settings", specifier = ">=2.13" },
