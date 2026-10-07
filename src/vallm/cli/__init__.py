@@ -19,6 +19,16 @@ app = typer.Typer(
     no_args_is_help=True,
 )
 
+
+@app.callback()
+def _main_callback() -> None:
+    try:
+        from vallm.autoupdate import check_for_updates
+        check_for_updates("vallm")
+    except Exception:
+        pass
+
+
 # Register commands
 app.command(name="validate")(validate_command)
 app.command(name="check")(check_command)
