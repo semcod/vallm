@@ -1,0 +1,23 @@
+{
+  "ticket": "ticket-001",
+  "summary": "Batch SQLite inserts in legacy_code/data_processor.py and adopt Wellmanifest baseline standards",
+  "allowedPaths": [
+    ".aider.conf.yml",
+    ".cursor/rules/new-project-standard.mdc",
+    ".github/copilot-instructions.md",
+    ".gitignore",
+    ".governance/**",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "GEMINI.md",
+    "examples/11_claude_code_autonomous/legacy_code/data_processor.py",
+    "project/ticket-001/**"
+  ],
+  "forbiddenPaths": [
+    ".env",
+    "config/**",
+    ".github/workflows/**"
+  ],
+  "authorization": "SESSION_EXECUTION_AUTHORIZATION",
+  "outcome": "Batch SQLite inserts in legacy_code/data_processor.py and adopt Wellmanifest baseline standards verified with 0 PERF-AUDIT findings and 0 ConformanceRunner errors."
+}
