@@ -51,6 +51,7 @@ class DataProcessor:
 
     def process_user_data(self, user_data):
         """Process user data with deep nesting and security issues."""
+        rows_to_insert = []
         if user_data:
             if isinstance(user_data, list):
                 for user in user_data:
@@ -59,11 +60,14 @@ class DataProcessor:
                             if "password" in user:
                                 if "@" in user["email"]:
                                     if len(user["password"]) > 6:
-                                        # SQL injection vulnerability
-                                        query = f"INSERT INTO users (name, email, password, created_at) VALUES ('{user['name']}', '{user['email']}', '{user['password']}', '{datetime.now()}')"
-                                        cursor = connection.cursor()
-                                        cursor.execute(query)
-                                        connection.commit()
+                                        rows_to_insert.append(
+                                            (
+                                                user["name"],
+                                                user["email"],
+                                                user["password"],
+                                                str(datetime.now()),
+                                            )
+                                        )
 
                                         # Process the user
                                         processed_user = {
@@ -77,6 +81,13 @@ class DataProcessor:
                                         if "users_processed" not in self.stats:
                                             self.stats["users_processed"] = 0
                                         self.stats["users_processed"] += 1
+        if rows_to_insert and connection is not None:
+            cursor = connection.cursor()
+            cursor.executemany(
+                "INSERT INTO users (name, email, password, created_at) VALUES (?, ?, ?, ?)",
+                rows_to_insert,
+            )
+            connection.commit()
         return self.processed_data
 
     def calculate_metrics(self, data):

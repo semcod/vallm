@@ -1,0 +1,7 @@
+{
+  "schema": "wellmanifest.manifest/v1",
+  "standard": {
+    "id": "profile:baseline",
+    "version": "0.20.46"
+  }
+}
